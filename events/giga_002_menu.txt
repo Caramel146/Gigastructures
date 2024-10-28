@@ -812,13 +812,7 @@ country_event = {
 				# 	}
 				# 	random_system = {
 				# 		limit = {
-				# 			NOR = {
-				# 				has_star_flag = giga_inner
-				# 				has_star_flag = giga_outer_01
-				# 				has_star_flag = giga_outer_02
-				# 				has_star_flag = giga_outer_03
-				# 				has_star_flag = giga_galactic_center
-				# 			}
+				# 			giga_is_core_system = no
 				# 		}
 				# 		spawn_system = { initializer = "giga_paluush_initializer" }
 				# 	}
