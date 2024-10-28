@@ -3,8 +3,8 @@ objectTypes = {
 	#### NDB Shield
 	
 	pdxmesh = {
-		name = "nbd_shield_effect_mesh"
-		file = "gfx/models/effects/nbd_shield/nbd_shield_effect.mesh"
+		name = "ndb_shield_effect_mesh"
+		file = "gfx/models/effects/ndb_shield/ndb_shield_effect.mesh"
 	
 		meshsettings = {
 			index = 0
@@ -17,7 +17,7 @@ objectTypes = {
 
 	pdxmesh = {
 		name = "ndb_shield_projector_mesh"
-		file = "gfx/models/effects/nbd_shield/nbd_shield_effect_projector.mesh"
+		file = "gfx/models/effects/ndb_shield/ndb_shield_effect_projector.mesh"
 		animation = { id = idle 						type = projector_idle }
 		meshsettings = {
 			index = 0
@@ -26,8 +26,8 @@ objectTypes = {
 	}
 
 	pdxmesh = {
-		name = "nbd_shield_effect_scrawl_mesh"
-		file = "gfx/models/effects/nbd_shield/nbd_shield_effect_scrawl.mesh"
+		name = "ndb_shield_effect_scrawl_mesh"
+		file = "gfx/models/effects/ndb_shield/ndb_shield_effect_scrawl.mesh"
 	
 		meshsettings = {
 			index = 0
