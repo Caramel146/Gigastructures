@@ -55,11 +55,7 @@ event = {
 								any_neighbor_system = {
 									is_fe_cluster = yes
 								}
-								has_star_flag = giga_inner
-								has_star_flag = giga_outer_01
-								has_star_flag = giga_outer_02
-								has_star_flag = giga_outer_03
-								has_star_flag = giga_galactic_center
+								giga_is_core_system = yes
 							}
 						}
 						spawn_system = { initializer = "ring_world_titanic_init_01" hyperlane = no }
