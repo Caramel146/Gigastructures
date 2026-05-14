@@ -109,6 +109,9 @@ on_game_start_country = {							events = { giga_orbital_arcology_origin.001 }} #
 # Equatorial Shipyard Origin
 on_game_start_country = {							events = { giga_equatorial_shipyard_origin.001 }} # Event that finishes system setup
 
+# Katzen Pretender Origin
+on_game_start_country = {							events = { postkaiser.001 }} # Event to setup most of origin
+
 # Pouchkinn
 on_planet_set_surveyed = {								events = { giga_pouchkinn.001 } }		# Found Pouchkinn
 on_colonized = {									events = { giga_pouchkinn.003 } }		# Begin Pouchkinn timers

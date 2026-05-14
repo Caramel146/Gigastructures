@@ -1,0 +1,187 @@
+namespace = postkaiser
+
+### game start setup
+country_event = {
+    id = postkaiser.001
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        has_origin = origin_postkaiser
+    }
+
+    immediate = {
+        species = {
+            save_global_event_target_as = flusion_katzens
+        }
+
+        # random_system = {
+        #     limit = {
+        #         # distance = {
+        #         #     source = this
+        #         #     min_jumps  = 1
+        #         #     max_jumps = 3
+        #         #     use_bypasses = no
+        #         # }
+        #         any_system_planet = {
+        #             is_colonizable = yes
+        #             has_owner = no
+        #         }
+        #         NOR = {
+        #             has_owner = yes
+        #             has_star_flag = empire_cluster
+        #             has_star_flag = flusion_system
+        #             has_star_flag = postkaiser_splinter_home_socialist
+        #             has_star_flag = postkaiser_splinter_home_republic
+        #             has_star_flag = postkaiser_splinter_home_realm
+        #             has_star_flag = postkaiser_splinter_home_junta
+        #         }
+        #     }
+        #     random_system_planet = {
+        #         limit = {
+        #             is_colonizable = yes
+        #         }
+        #         set_planet_size = 20
+        #         clear_deposits = yes
+        #         clear_planet_modifiers = yes
+        #         create_katzen_socialist = yes
+        #         create_pop_group = { #they only get 500 from within the effect - this is roughly alt to generate_start_pops
+        #             species = event_target:flusion_katzens
+        #             size = 2000
+        #         }
+        #         generate_start_deposits_and_blockers = yes
+        #         generate_start_buildings_and_districts = yes
+        #     }
+        #     set_star_flag = postkaiser_splinter_home_socialist
+        # }
+        #
+        # random_system = {
+        #     limit = {
+        #         # distance = {
+        #         #     source = this
+        #         #     min_jumps  = 1
+        #         #     max_jumps = 3
+        #         #     use_bypasses = no
+        #         # }
+        #         any_system_planet = {
+        #             is_colonizable = yes
+        #             has_owner = no
+        #         }
+        #         NOR = {
+        #             has_owner = yes
+        #             has_star_flag = empire_cluster
+        #             has_star_flag = flusion_system
+        #             has_star_flag = postkaiser_splinter_home_socialist
+        #             has_star_flag = postkaiser_splinter_home_republic
+        #             has_star_flag = postkaiser_splinter_home_realm
+        #             has_star_flag = postkaiser_splinter_home_junta
+        #         }
+        #     }
+        #     random_system_planet = {
+        #         limit = {
+        #             is_colonizable = yes
+        #         }
+        #         set_planet_size = 20
+        #         clear_deposits = yes
+        #         clear_planet_modifiers = yes
+        #         create_katzen_republic = yes
+        #         create_pop_group = { #they only get 500 from within the effect - this is roughly alt to generate_start_pops
+        #             species = event_target:flusion_katzens
+        #             size = 2000
+        #         }
+        #         generate_start_deposits_and_blockers = yes
+        #         generate_start_buildings_and_districts = yes
+        #     }
+        #     set_star_flag = postkaiser_splinter_home_republic
+        # }
+        #
+        # random_system = {
+        #     limit = {
+        #         # distance = {
+        #         #     source = this
+        #         #     min_jumps  = 1
+        #         #     max_jumps = 3
+        #         #     use_bypasses = no
+        #         # }
+        #         any_system_planet = {
+        #             is_colonizable = yes
+        #             has_owner = no
+        #         }
+        #         NOR = {
+        #             has_owner = yes
+        #             has_star_flag = empire_cluster
+        #             has_star_flag = flusion_system
+        #             has_star_flag = postkaiser_splinter_home_socialist
+        #             has_star_flag = postkaiser_splinter_home_republic
+        #             has_star_flag = postkaiser_splinter_home_realm
+        #             has_star_flag = postkaiser_splinter_home_junta
+        #         }
+        #     }
+        #     random_system_planet = {
+        #         limit = {
+        #             is_colonizable = yes
+        #         }
+        #         set_planet_size = 20
+        #         clear_deposits = yes
+        #         clear_planet_modifiers = yes
+        #         create_katzen_realm = yes
+        #         create_pop_group = { #they only get 500 from within the effect - this is roughly alt to generate_start_pops
+        #             species = event_target:flusion_katzens
+        #             size = 2000
+        #         }
+        #         generate_start_deposits_and_blockers = yes
+        #         generate_start_buildings_and_districts = yes
+        #     }
+        #     set_star_flag = postkaiser_splinter_home_realm
+        # }
+        #
+        # random_system = {
+        #     limit = {
+        #         # distance = {
+        #         #     source = this
+        #         #     min_jumps  = 1
+        #         #     max_jumps = 3
+        #         #     use_bypasses = no
+        #         # }
+        #         any_system_planet = {
+        #             is_colonizable = yes
+        #             has_owner = no
+        #         }
+        #         NOR = {
+        #             has_owner = yes
+        #             has_star_flag = empire_cluster
+        #             has_star_flag = flusion_system
+        #             has_star_flag = postkaiser_splinter_home_socialist
+        #             has_star_flag = postkaiser_splinter_home_republic
+        #             has_star_flag = postkaiser_splinter_home_realm
+        #             has_star_flag = postkaiser_splinter_home_junta
+        #         }
+        #     }
+        #     random_system_planet = {
+        #         limit = {
+        #             is_colonizable = yes
+        #         }
+        #         set_planet_size = 20
+        #         clear_deposits = yes
+        #         clear_planet_modifiers = yes
+        #         create_katzen_junta = yes
+        #         create_pop_group = { #they only get 500 from within the effect - this is roughly alt to generate_start_pops
+        #             species = event_target:flusion_katzens
+        #             size = 2000
+        #         }
+        #         generate_start_deposits_and_blockers = yes
+        #         generate_start_buildings_and_districts = yes
+        #     }
+        #     set_star_flag = postkaiser_splinter_home_junta
+        # }
+        #
+        # capital_scope = {
+        #     solar_system = {
+        #         spawn_system = {
+        #             initializer = "giga_flusion_postkaiser_initializer"
+        #             max_jumps = 3
+        #         }
+        #     }
+        # }
+    }
+}

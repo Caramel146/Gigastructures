@@ -120,6 +120,12 @@ katzen_trait_martial = {
 	sorting_priority = 15
 	initial = no
 	randomized = no
+	allowed_archetypes = { BIOLOGICAL LITHOID  }
+	species_potential_add = {
+		from = {
+			has_origin = origin_postkaiser
+		}
+	}
 	species_possible_remove = {
 		can_remove_beneficial_genetic_traits = yes
 	}

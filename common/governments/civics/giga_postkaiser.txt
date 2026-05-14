@@ -1,0 +1,17 @@
+
+origin_postkaiser = {
+    is_origin = yes
+    icon = "gfx/interface/icons/origins/origins_hegemon.dds"
+    picture = GFX_origin_legendary_leader
+    description = "origin_tooltip_postkaiser_effects"
+    max_once_global = yes
+    possible = {
+        species_archetype = { NOT = { value = MACHINE } } #TODO no alt version of katzen_trait_martial
+    }
+    traits = {
+        trait = katzen_trait_martial
+    }
+    random_weight = { base = 0 }
+    initializers = { giga_postkaiser_start }
+    flags = { custom_start_screen starting_event }
+}

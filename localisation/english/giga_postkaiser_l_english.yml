@@ -1,0 +1,7 @@
+﻿l_english:
+ giga_postkaiser_start_NAME:0 "$origin_postkaiser$"
+ giga_postkaiser_start_DESC:0 "$origin_postkaiser_desc$"
+
+ origin_postkaiser: "$origin_katzen_civil_war$" #Kaiser's Wake
+ origin_postkaiser_desc: "$origin_katzen_civil_war_desc$" #The Katzenartig Imperium was thought unstoppable, until its great leader Kaiser Kattail disappeared without warning. Warlords, separatists and ideologues seized the opportunity... and the Imperium collapsed into chaos. #, industry and technology disintegrating rapidly. With the surviving contenders stabilised, they now look outwards again to bring their vision of the future to the stars.
+ origin_tooltip_postkaiser_effects: "Other splinter states exist in the galaxy, seeking control over Flusion itself."

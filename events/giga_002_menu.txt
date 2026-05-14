@@ -658,6 +658,7 @@ country_event = {
 						NOT = { any_system = { has_star_flag = flusion_system } }
 						NOT = { has_global_flag = giga_jublio_disabled } 
 						NOT = { any_country = { has_origin = origin_eawafkaiser } }
+						NOT = { any_country = { has_origin = origin_postkaiser } }
 					}
 					random_system = { 
 						limit = { 
