@@ -26,6 +26,10 @@ building_giga_eawaf_psifusion_reactor = {
 	planet_modifier = {
 		planet_jobs_produces_mult = 0.10
 	}
+
+	inline_script = {
+		script = buildings/on_all_wilderness_buildings_districts
+	}
 }
 
 building_giga_eawaf_sirens_capital = {
@@ -122,6 +126,10 @@ building_giga_eawaf_disenchanter_building_1 = {
 			giga_eawaf_apply_outer_strife_field_modifier = yes
 		}
 	}
+
+	inline_script = {
+		script = buildings/on_all_wilderness_buildings_districts
+	}
 }
 
 building_giga_eawaf_disenchanter_building_2 = {
@@ -170,5 +178,9 @@ building_giga_eawaf_disenchanter_building_2 = {
 			giga_eawaf_clear_outer_strife_field_modifier = yes
 			giga_eawaf_apply_outer_strife_field_modifier = yes
 		}
+	}
+
+	inline_script = {
+		script = buildings/on_all_wilderness_buildings_districts
 	}
 }
