@@ -1,0 +1,74 @@
+﻿l_english:
+ # giga_planetary_computer_start_NAME:0 "Planetary Computer" #initialiser
+ # giga_planetary_computer_start_DESC:0 "Start on a Planetary Computing Complex."
+ origin_scorched:0 "Scorched Earth"
+ origin_scorched_desc:0 "§RWARNING: Challenging Origin§!\nThis species clings on to life in an irradiated wasteland - since time immemorial, or so their oldest stories say. But now, as their archaeological capabilities grow, they must grapple with the possibility that something else came Before..." #yes that capital B is deliberate
+ origin_tooltip_scorched_effects: "Start on an $pc_katzenland$ with the $trait_giga_incandescent$ trait."
+ giga_start_screen_scorched:0 "Our society's oldest memories are of firestorms overhead, and gales sandblasting away our shelters. We knew nothing else. It wasn't until we turned out telescopes to distant worlds that we realised how hostile our home is for life. Driven by renewed interest in the story of life on our planet, our archaeologists are digging deep below the sands, hunting for anything that the howling winds have not destroyed..."
+
+ trait_giga_incandescent:0 "Incandescent"
+ trait_giga_incandescent_desc: "Tempered in the furnace of a scorched world, this species has an unfaltering drive to endure."
+ #origin_tooltip_post_apocalyptic_effects: "- $HOMEWORLD$ ['concept_pc_nuked']$NEW_LINE$- $SPECIES_TRAITS$ ['concept_survivor']" #TODO
+
+ giga_situation_scorched:0 "Immolated Origins"
+ giga_situation_scorched_type:0 "$giga_situation_scorched$"
+ giga_situation_scorched_monthly_change_tooltip:0 "The progress of this situation is dependent on the §YApproach§! we pick and our responses to §YEvents§! that occur."
+ giga_situation_scorched_desc:0 "Two of the $name_alderson$'s three habitable segments are controlled by pre-FTL alien civilisations. If we wish to bring the entire disk under our control, we must deal with them."
+ giga_situation_scorched_stage_renewal:0 "Renewal"
+ giga_situation_scorched_stage_synthesis:0 "Synthesis"
+ giga_situation_scorched_stage_continuity:0 "Continuity"
+
+ #relentless_industrialists_situation_completion_tooltip:0 "§Y[Target.GetName]§! will become a §YTomb World§!.\nFurther effects may happen, depending on the §YApproach§! picked." #TODO
+ giga_situation_scorched_renewal: "Rebirth outcome"
+ giga_situation_scorched_synthesis: "Synthesis outcome"
+ giga_situation_scorched_continuity: "Continuity outcome"
+
+ giga_situation_scorched_approach_renewal:0 "Restoration"
+ giga_situation_scorched_approach_renewal_desc:0 "giga_situation_scorched_approach_renewal_desc"
+ giga_situation_scorched_approach_synthesis:0 "Debate"
+ giga_situation_scorched_approach_synthesis_desc:0 "giga_situation_scorched_approach_synthesis_desc"
+ giga_situation_scorched_approach_continuity:0 "Autochthony"
+ giga_situation_scorched_approach_continuity_desc:0 "giga_situation_scorched_approach_continuity_desc"
+ giga_situation_scorched_progress:0 "Collective Memory"
+
+ # approach_shroud_forged_suppress: "Suppress" #TODO
+ # approach_shroud_forged_suppress_desc: "The Shroud-Forged are suppressed by the collective, and forced into line by hunter-seeker drones."
+ # progress_shroud_forged_suppress: "Suppressing the Shroud-Forged"
+ # approach_shroud_forged_suppress_tooltip: "Monthly Progress: §Y$@situation_suppress_progress|0$§!"
+
+
+ giga_scorched.002.name: "Out the Dustbin of History"
+ giga_scorched.002.desc: "A couple years in you get the Ashes of History event, informing of revelations regarding your history being on a destroyed planetcraft and ambiguously not even from the world, and the resulting identity crisis. This begins the Immolated Origins situation."
+ giga_scorched.002.a.renewal: "We must recover our lost culture!"
+ giga_scorched.002.a.synthesis: "An interesting debate."
+ giga_scorched.002.a.continuity: "We don't need to rewrite our culture!"
+ giga_scorched.002.a.tooltip: "§YOur situation approach can be changed at any time.§!"
+
+ giga_scorched.003.name: "commemoration"
+ giga_scorched.003.desc: "commemoration desc"
+ giga_scorched.003.a.renewal: "renewal"
+ giga_scorched.003.a.synthesis: "eh"
+ giga_scorched.003.a.continuity: "continuity"
+ #giga_scorched.003.a.tooltip: "§YOur decisions will affect§!" #TODO
+
+ giga_scorched.004.name: "heritage"
+ giga_scorched.004.desc: "heritage desc"
+ giga_scorched.004.a.renewal: "renewal"
+ giga_scorched.004.a.synthesis: "eh"
+ giga_scorched.004.a.continuity: "continuity"
+
+ giga_scorched.005.name: "remember"
+ giga_scorched.005.desc: "remember desc"
+ giga_scorched.005.a.renewal: "renewal"
+ giga_scorched.005.a.synthesis: "eh"
+ giga_scorched.005.a.continuity: "continuity"
+
+ giga_scorched.006.name: "see"
+ giga_scorched.006.desc: "see desc"
+ giga_scorched.006.a.renewal: "renewal"
+ giga_scorched.006.a.synthesis: "eh"
+ giga_scorched.006.a.continuity: "continuity"
+
+ giga_scorched.007.name: "conclusion"
+ giga_scorched.007.desc: "conclusion desc"
+ giga_scorched.007.a: "path chosen event line over"

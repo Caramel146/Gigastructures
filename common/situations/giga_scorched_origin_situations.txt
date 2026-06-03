@@ -1,0 +1,148 @@
+
+giga_situation_scorched = {
+    picture = GFX_evt_relic_world_building
+
+    initial_progress = 150
+
+    abort_trigger = {
+    }
+
+    progress_direction = bidirectional
+    #complete_category = negative
+    #fail_category = positive
+
+    complete_icon = GFX_situation_outcome_unknown
+    complete_icon_frame = GFX_situation_outcome_frame_blue
+    fail_icon = GFX_situation_outcome_unknown
+    fail_icon_frame = GFX_situation_outcome_frame_blue
+
+    # on_fail = {
+    #     # You shouldn't get this without cheating
+    #     custom_tooltip = giga_situation_scorched_renewal
+    #     custom_tooltip = giga_situation_scorched_synthesis
+    #     hidden_effect = {
+    #         situation_event = { id = toxoids.30 }
+    #     }
+    # }
+    # on_progress_complete = {
+    #     # You shouldn't get this without cheating
+    #     custom_tooltip = giga_situation_scorched_synthesis
+    #     situation_event = { id = toxoids.30 }
+    # }
+    on_abort = {
+        # Storm has ended
+        custom_tooltip = giga_situation_scorched_continuity #TODO just outcome
+        situation_event = { id = toxoids.30 }
+    }
+
+    on_monthly = { #TODO make less random using monthly gatekeeper event and variables
+        # events = {
+        #     situation.204 # Update the variables used to calculate shielding costs every month
+        # }
+        random_events = {
+            10 = 0
+            5 = giga_scorched.003
+            5 = giga_scorched.004
+            5 = giga_scorched.005
+            5 = giga_scorched.006
+        }
+    }
+
+    stages = {
+        giga_situation_scorched_stage_renewal = {
+            end = 100
+            icon = GFX_situation_stage_1
+            icon_background = GFX_situation_stage_frame_blue
+            modifier = {
+                faction_approval = -0.10
+            }
+        }
+        giga_situation_scorched_stage_synthesis = {
+            end = 200
+            icon = GFX_situation_stage_2
+            icon_background = GFX_situation_stage_frame_blue
+            modifier = {
+                faction_approval = -0.10
+                country_unity_produces_mult = -0.05
+            }
+        }
+        giga_situation_scorched_stage_continuity = {
+            end = 300
+            icon = GFX_situation_stage_3
+            icon_background = GFX_situation_stage_frame_blue
+            modifier = {
+                faction_approval = -0.10
+            }
+        }
+    }
+
+    monthly_progress = {
+        modifier = {
+            desc = string_current_approach
+            current_situation_approach = giga_situation_scorched_approach_renewal
+            subtract = 1
+        }
+        modifier = {
+            desc = string_current_approach
+            current_situation_approach = giga_situation_scorched_approach_synthesis
+            add = 0
+        }
+        modifier = {
+            desc = string_current_approach
+            current_situation_approach = giga_situation_scorched_approach_continuity
+            add = 1
+        }
+    }
+
+    approach = {
+        name = giga_situation_scorched_approach_renewal
+        icon = GFX_situation_approach_society
+        icon_background = GFX_situation_approach_bg_yellow
+
+        on_select = {
+            custom_tooltip = approach_climate_do_nothing_tooltip
+        }
+
+        ai_weight = {
+            base = 0
+        }
+    }
+
+    approach = {
+        name = giga_situation_scorched_approach_synthesis
+        icon = GFX_situation_approach_open_conversation
+        icon_background = GFX_situation_approach_bg_green
+        default = yes
+
+        on_select = {
+            custom_tooltip = approach_climate_cleanup_efforts_tooltip
+        }
+
+        target_modifier = {
+            planet_pops_upkeep_mult = 1
+            planet_buildings_upkeep_mult = 1
+        }
+
+        ai_weight = {
+            base = 1
+        }
+    }
+
+    approach = {
+        name = giga_situation_scorched_approach_continuity
+        icon = GFX_situation_approach_shrug
+        icon_background = GFX_situation_approach_bg_yellow
+
+        on_select = {
+            custom_tooltip = approach_climate_embrace_change_tooltip
+        }
+
+        ai_weight = {
+            base = 2
+            modifier = {
+                factor = 0
+                owner = { empire_has_good_habitability_on_tomb_worlds = no }
+            }
+        }
+    }
+}
