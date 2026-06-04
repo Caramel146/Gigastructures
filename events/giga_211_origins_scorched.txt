@@ -10,6 +10,7 @@ country_event = {
     immediate = {
         #Planet setup
         capital_scope = {
+            create_katzenland_deposits_new = yes
             add_modifier = {
                 modifier = "irradiated_desert_planet"
                 days = -1
@@ -29,22 +30,14 @@ country_event = {
     title = giga_scorched.002.name
     desc = giga_scorched.002.desc
 
-    immediate = {
-        set_variable = {
-            which = giga_scorched_questions_answered
-            value = 0
-        }
-    }
-
     option = {
         name = giga_scorched.002.a.renewal
         start_situation = {
             type = giga_situation_scorched
             target = root
-        }
-        every_situation = {
-            limit = { is_situation_type = giga_situation_scorched }
-            set_situation_approach = giga_situation_scorched_approach_renewal
+            effect = {
+                set_situation_approach = giga_situation_scorched_approach_renewal
+            }
         }
         custom_tooltip = giga_scorched.002.a.tooltip
         ai_chance = {
@@ -57,10 +50,9 @@ country_event = {
         start_situation = {
             type = giga_situation_scorched
             target = root
-        }
-        every_situation = {
-            limit = { is_situation_type = giga_situation_scorched }
-            set_situation_approach = giga_situation_scorched_approach_synthesis
+            effect = {
+                set_situation_approach = giga_situation_scorched_approach_synthesis
+            }
         }
         custom_tooltip = giga_scorched.002.a.tooltip
         ai_chance = {
@@ -73,10 +65,9 @@ country_event = {
         start_situation = {
             type = giga_situation_scorched
             target = root
-        }
-        every_situation = {
-            limit = { is_situation_type = giga_situation_scorched }
-            set_situation_approach = giga_situation_scorched_approach_continuity
+            effect = {
+                set_situation_approach = giga_situation_scorched_approach_continuity
+            }
         }
         custom_tooltip = giga_scorched.002.a.tooltip
         ai_chance = {
@@ -85,74 +76,74 @@ country_event = {
     }
 }
 
+#Roll a new random event from the list every x months into the situation
 situation_event = {
     id = giga_scorched.003
     is_triggered_only = yes
+    hide_window = yes
 
-    picture = GFX_evt_alderson #TODO
-    title = giga_scorched.003.name
-    desc = giga_scorched.003.desc
+    immediate = {
+        change_variable = {
+            which = scorched_situation_timer
+            value = 1
+        }
 
-    option = {
-        name = giga_scorched.003.a.renewal
-        owner = {
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                add_situation_progress = -10
+        if = {
+            limit = {
+                check_variable = {
+                    which = scorched_situation_timer
+                    value >= 24
+                }
             }
-        }
-        ai_chance = {
-            base = 1
-        }
-    }
-
-    option = {
-        name = giga_scorched.003.a.synthesis
-        # every_situation = {
-        #     limit = { is_situation_type = giga_situation_scorched }
-        #     #nothing
-        # }
-        ai_chance = {
-            base = 1
-        }
-    }
-
-    option = {
-        name = giga_scorched.003.a.continuity
-        owner = {
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                add_situation_progress = 10
+            export_trigger_value_to_variable = {
+                trigger = situation_progress
+                variable = scorched_situation_final_position
             }
-        }
-        ai_chance = {
-            base = 1
-        }
-    }
-
-    #count random events rolled to know when to finish the situation
-    after = {
-        owner = {
-            change_variable = {
-                which = giga_scorched_questions_answered
-                value = 1
-            }
-            if = {
-                limit = {
-                    check_variable = {
-                        which = federation_secession_war
-                        value = 4 #TODO final event count scripted variable in this file
+            owner = {
+                set_variable = {
+                    which = scorched_situation_final_position
+                    value = prev.scorched_situation_final_position
+                }
+                random_list = {
+                    1 = {
+                        country_event = { id = giga_scorched.004 }
+                        modifier = {
+                            factor = 0
+                            has_country_flag = scorched_origin_event_1
+                        }
+                    }
+                    1 = {
+                        country_event = { id = giga_scorched.004 }
+                        modifier = {
+                            factor = 0
+                            has_country_flag = scorched_origin_event_2
+                        }
+                    }
+                    1 = {
+                        country_event = { id = giga_scorched.004 }
+                        modifier = {
+                            factor = 0
+                            has_country_flag = scorched_origin_event_3
+                        }
+                    }
+                    1 = {
+                        country_event = { id = giga_scorched.004 }
+                        modifier = {
+                            factor = 0
+                            has_country_flag = scorched_origin_event_4
+                        }
                     }
                 }
-                country_event = {
-                    id = giga_scorched.007
-                }
+            }
+            set_variable = {
+                which = scorched_situation_timer
+                value = 0
             }
         }
     }
 }
 
-situation_event = {
+country_event = {
     id = giga_scorched.004
     is_triggered_only = yes
 
@@ -160,13 +151,15 @@ situation_event = {
     title = giga_scorched.004.name
     desc = giga_scorched.004.desc
 
+    immediate = {
+        set_country_flag = triggered_scorched_event_2
+    }
+
     option = {
         name = giga_scorched.004.a.renewal
-        owner = {
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                add_situation_progress = -10
-            }
+        every_situation = {
+            limit = { is_situation_type = giga_situation_scorched }
+            add_situation_progress = -24
         }
         ai_chance = {
             base = 1
@@ -186,40 +179,39 @@ situation_event = {
 
     option = {
         name = giga_scorched.004.a.continuity
-        owner = {
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                add_situation_progress = 10
-            }
+        every_situation = {
+            limit = { is_situation_type = giga_situation_scorched }
+            add_situation_progress = 24
         }
         ai_chance = {
             base = 1
         }
     }
 
-    #count random events rolled to know when to finish the situation
+    #check if all events have been done
     after = {
-        owner = {
-            change_variable = {
-                which = giga_scorched_questions_answered
-                value = 1
+        if = {
+            limit = {
+                AND = {
+                    has_country_flag = scorched_origin_event_1
+                    has_country_flag = scorched_origin_event_2
+                    has_country_flag = scorched_origin_event_3
+                    has_country_flag = scorched_origin_event_4
+                }
+                check_variable = {
+                    which = giga_scorched_questions_answered
+                    value = 4 #TODO final event count scripted variable in this file
+                }
             }
-            if = {
-                limit = {
-                    check_variable = {
-                        which = federation_secession_war
-                        value = 4 #TODO final event count scripted variable in this file
-                    }
-                }
-                country_event = {
-                    id = giga_scorched.007
-                }
+            every_situation = {
+                limit = { is_situation_type = giga_situation_scorched }
+                set_situation_flag = scorched_situation_abort
             }
         }
     }
 }
 
-situation_event = {
+country_event = {
     id = giga_scorched.005
     is_triggered_only = yes
 
@@ -227,13 +219,15 @@ situation_event = {
     title = giga_scorched.005.name
     desc = giga_scorched.005.desc
 
+    immediate = {
+        set_country_flag = triggered_scorched_event_3
+    }
+
     option = {
         name = giga_scorched.005.a.renewal
-        owner = {
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                add_situation_progress = -10
-            }
+        every_situation = {
+            limit = { is_situation_type = giga_situation_scorched }
+            add_situation_progress = -24
         }
         ai_chance = {
             base = 1
@@ -253,40 +247,39 @@ situation_event = {
 
     option = {
         name = giga_scorched.005.a.continuity
-        owner = {
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                add_situation_progress = 10
-            }
+        every_situation = {
+            limit = { is_situation_type = giga_situation_scorched }
+            add_situation_progress = 24
         }
         ai_chance = {
             base = 1
         }
     }
 
-    #count random events rolled to know when to finish the situation
+    #check if all events have been done
     after = {
-        owner = {
-            change_variable = {
-                which = giga_scorched_questions_answered
-                value = 1
+        if = {
+            limit = {
+                AND = {
+                    has_country_flag = scorched_origin_event_1
+                    has_country_flag = scorched_origin_event_2
+                    has_country_flag = scorched_origin_event_3
+                    has_country_flag = scorched_origin_event_4
+                }
+                check_variable = {
+                    which = giga_scorched_questions_answered
+                    value = 4 #TODO final event count scripted variable in this file
+                }
             }
-            if = {
-                limit = {
-                    check_variable = {
-                        which = federation_secession_war
-                        value = 4 #TODO final event count scripted variable in this file
-                    }
-                }
-                country_event = {
-                    id = giga_scorched.007
-                }
+            every_situation = {
+                limit = { is_situation_type = giga_situation_scorched }
+                set_situation_flag = scorched_situation_abort
             }
         }
     }
 }
 
-situation_event = {
+country_event = {
     id = giga_scorched.006
     is_triggered_only = yes
 
@@ -294,13 +287,15 @@ situation_event = {
     title = giga_scorched.006.name
     desc = giga_scorched.006.desc
 
+    immediate = {
+        set_country_flag = triggered_scorched_event_4
+    }
+
     option = {
         name = giga_scorched.006.a.renewal
-        owner = {
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                add_situation_progress = -10
-            }
+        every_situation = {
+            limit = { is_situation_type = giga_situation_scorched }
+            add_situation_progress = -24
         }
         ai_chance = {
             base = 1
@@ -320,34 +315,33 @@ situation_event = {
 
     option = {
         name = giga_scorched.006.a.continuity
-        owner = {
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                add_situation_progress = 10
-            }
+        every_situation = {
+            limit = { is_situation_type = giga_situation_scorched }
+            add_situation_progress = 24
         }
         ai_chance = {
             base = 1
         }
     }
 
-    #count random events rolled to know when to finish the situation
+    #check if all events have been done
     after = {
-        owner = {
-            change_variable = {
-                which = giga_scorched_questions_answered
-                value = 1
+        if = {
+            limit = {
+                AND = {
+                    has_country_flag = scorched_origin_event_1
+                    has_country_flag = scorched_origin_event_2
+                    has_country_flag = scorched_origin_event_3
+                    has_country_flag = scorched_origin_event_4
+                }
+                check_variable = {
+                    which = giga_scorched_questions_answered
+                    value = 4 #TODO final event count scripted variable in this file
+                }
             }
-            if = {
-                limit = {
-                    check_variable = {
-                        which = federation_secession_war
-                        value = 4 #TODO final event count scripted variable in this file
-                    }
-                }
-                country_event = {
-                    id = giga_scorched.007
-                }
+            every_situation = {
+                limit = { is_situation_type = giga_situation_scorched }
+                set_situation_flag = scorched_situation_abort
             }
         }
     }
@@ -361,14 +355,107 @@ country_event = {
     title = giga_scorched.007.name
     desc = giga_scorched.007.desc
 
+    immediate = {
+        set_country_flag = triggered_scorched_event_1
+    }
+
     option = {
-        name = giga_scorched.007.a
+        name = giga_scorched.007.a.renewal
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
-            destroy_situation = this
+            add_situation_progress = -24
         }
         ai_chance = {
             base = 1
         }
+    }
+
+    option = {
+        name = giga_scorched.007.a.synthesis
+        # every_situation = {
+        #     limit = { is_situation_type = giga_situation_scorched }
+        #     #nothing
+        # }
+        ai_chance = {
+            base = 1
+        }
+    }
+
+    option = {
+        name = giga_scorched.007.a.continuity
+        every_situation = {
+            limit = { is_situation_type = giga_situation_scorched }
+            add_situation_progress = 24
+        }
+        ai_chance = {
+            base = 1
+        }
+    }
+
+    #check if all events have been done
+    after = {
+        if = {
+            limit = {
+                AND = {
+                    has_country_flag = scorched_origin_event_1
+                    has_country_flag = scorched_origin_event_2
+                    has_country_flag = scorched_origin_event_3
+                    has_country_flag = scorched_origin_event_4
+                }
+                check_variable = {
+                    which = giga_scorched_questions_answered
+                    value = 4 #TODO final event count scripted variable in this file
+                }
+            }
+            every_situation = {
+                limit = { is_situation_type = giga_situation_scorched }
+                set_situation_flag = scorched_situation_abort
+            }
+        }
+    }
+}
+
+situation_event = {
+    id = giga_scorched.008
+    is_triggered_only = yes
+
+    picture = GFX_evt_alderson #TODO
+    title = giga_scorched.008.name
+    desc = giga_scorched.008.desc
+
+    option = {
+        trigger = {
+            check_variable = {
+                which = scorched_situation_final_position
+                value < 100
+            }
+        }
+        name = giga_scorched.008.a.renewal
+    }
+
+    option = {
+        trigger = {
+            AND = {
+                check_variable = {
+                    which = scorched_situation_final_position
+                    value >= 100
+                }
+                check_variable = {
+                    which = scorched_situation_final_position
+                    value <= 200
+                }
+            }
+        }
+        name = giga_scorched.008.a.synthesis
+    }
+
+    option = {
+        trigger = {
+            check_variable = {
+                which = scorched_situation_final_position
+                value < 100
+            }
+        }
+        name = giga_scorched.008.a.continuity
     }
 }

@@ -1,10 +1,13 @@
 
 giga_situation_scorched = {
-    picture = GFX_evt_relic_world_building
+    picture = GFX_evt_katzenland
 
+    #there are only 144 progress points worth of movement available, so players will never finish the situation
+    #instead the monthly gatekeeper and subsequent events will trigger the abort
     initial_progress = 150
 
     abort_trigger = {
+        has_situation_flag = scorched_situation_abort
     }
 
     progress_direction = bidirectional
@@ -30,21 +33,13 @@ giga_situation_scorched = {
     #     situation_event = { id = toxoids.30 }
     # }
     on_abort = {
-        # Storm has ended
         custom_tooltip = giga_situation_scorched_continuity #TODO just outcome
-        situation_event = { id = toxoids.30 }
+        situation_event = { id = giga_scorched.008 } #Conclude the situation and event chain
     }
 
     on_monthly = { #TODO make less random using monthly gatekeeper event and variables
-        # events = {
-        #     situation.204 # Update the variables used to calculate shielding costs every month
-        # }
-        random_events = {
-            10 = 0
-            5 = giga_scorched.003
-            5 = giga_scorched.004
-            5 = giga_scorched.005
-            5 = giga_scorched.006
+        events = {
+            giga_scorched.003 # Gatekeeper to help control a pool of events
         }
     }
 
@@ -80,7 +75,7 @@ giga_situation_scorched = {
         modifier = {
             desc = string_current_approach
             current_situation_approach = giga_situation_scorched_approach_renewal
-            subtract = 1
+            subtract = 0.5 #situation lasts 8 years (96 months) so this gives 48 progress units of movement total - AKA worth two event choices
         }
         modifier = {
             desc = string_current_approach
@@ -90,7 +85,7 @@ giga_situation_scorched = {
         modifier = {
             desc = string_current_approach
             current_situation_approach = giga_situation_scorched_approach_continuity
-            add = 1
+            add = 0.5 #situation lasts 8 years (96 months) so this gives 48 progress units of movement total - AKA worth two event choices
         }
     }
 

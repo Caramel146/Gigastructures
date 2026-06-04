@@ -96,6 +96,77 @@ create_katzenland_deposits = {
 	}
 }
 
+create_katzenland_deposits_new = {
+	export_trigger_value_to_variable = {
+		trigger = planet_size
+		variable = katzenland_district_rolls
+	}
+	change_variable = { #help make sure little planets have enough district cap since randomisation hits them harder
+		which = katzenland_district_rolls
+		value = 5
+	}
+	while = {
+		count = katzenland_district_rolls
+		random_list = {
+			30 = {
+				#nothing - adds randomisation into deposit count
+			}
+
+			#blockers
+			8 = {
+				add_deposit = d_katzenland_unsteady_ground
+			}
+			8 = {
+				add_deposit = d_katzenland_glassflats
+			}
+			8 = {
+				add_deposit = d_katzenland_sandblasting_winds
+			}
+			8 = {
+				add_deposit = d_katzenland_frequent_simooms
+			}
+			8 = {
+				add_deposit = d_katzenland_roving_dunes
+			}
+
+
+			#energy district cap is most common
+			16 = {
+				add_deposit = d_katzenland_orographic_currents
+			}
+			16 = {
+				add_deposit = d_katzenland_fissile_formations
+			}
+			16 = {
+				add_deposit = d_katzenland_thermoconductive_bedrock
+			}
+
+			#mining districts, slightly rarer
+			12 = {
+				add_deposit = d_katzenland_metamorphosed_debris
+			}
+			12 = {
+				add_deposit = d_katzenland_stripped_topsoil
+			}
+			12 = {
+				add_deposit = d_katzenland_metallic_heaps
+			}
+
+			#food? In an irradiated desert?
+			4 = {
+				add_deposit = d_katzenland_radiothermal_bore
+			}
+			4 = {
+				add_deposit = d_katzenland_subterranean_grotto
+			}
+			4 = {
+				add_deposit = d_katzenland_salt_lake
+			}
+		}
+	}
+	clear_variable = katzenland_district_rolls
+}
+
 # since 3.3 removing a planet which has a colony on it causes a crash
 # so here's a little effect to shorten stuff - TTFTCUTS
 giga_remove_planet = {

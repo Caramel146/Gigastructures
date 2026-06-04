@@ -1,4 +1,35 @@
 ﻿l_english:
+
+ d_katzenland_unsteady_ground: "Unsteady Ground"
+ d_katzenland_unsteady_ground_desc: "The surface here is chronically unstable as a result of a cataclysmic past disruption."
+ d_katzenland_glassflats: "Glassflats"
+ d_katzenland_glassflats_desc: "Some unthinkably hot past event once melted the sand in this region. It became a frozen ocean of solid glass, useless for almost anything."
+ d_katzenland_sandblasting_winds: "Sandblasting Winds"
+ d_katzenland_sandblasting_winds_desc: "Grit-filled gusts slowly wear away at any structure (or unlucky organism) sitting in the open for too long."
+ d_katzenland_frequent_simooms: "Frequent Simooms"
+ d_katzenland_frequent_simooms_desc: "This region has endemic intermittent winds hot and dry enough to quickly burn living organisms."
+ d_katzenland_roving_dunes: "Roving Dunes"
+ d_katzenland_roving_dunes_desc: "Chokingly thick sand migrates circuitously through the various winds, periodically swamping any permanent constructions."
+ d_katzenland_orographic_currents: "Orographic Currents"
+ d_katzenland_orographic_currents_desc: "Reliable temperature differentials and winding mountains combine to create valleys of steady, moderate wind, ready to be harnessed."
+ d_katzenland_fissile_formations: "Fissile Formations"
+ d_katzenland_fissile_formations_desc: "Muffled concentrations of radiation betray the treasure trove of energetic fissile fuel hiding below the surface."
+ d_katzenland_thermoconductive_bedrock: "Thermoconductive Bedrock"
+ d_katzenland_thermoconductive_bedrock_desc: "The highly thermally conductive geology here is practically a natural industrial-scale heat sink."
+ d_katzenland_metamorphosed_debris: "Metamorphosed Debris"
+ d_katzenland_metamorphosed_debris_desc: "Energetic impacts have fused unrecognisable concentrations of metal into valuable slag."
+ d_katzenland_stripped_topsoil: "Stripped Topsoil"
+ d_katzenland_stripped_topsoil_desc: "Storms have devoured the dunes here, bringing the surface closer to the bedrock and the wealth it contains."
+ d_katzenland_metallic_heaps: "Metallic Heaps"
+ d_katzenland_metallic_heaps_desc: "Prevailing duststorms reliably deposit heavier particles here, leaving mounds of valuable metal dust in lees."
+ d_katzenland_radiothermal_bore: "Radiothermal Bore"
+ d_katzenland_radiothermal_bore_desc: "An aquifer of scalding water provides a welcome spring of life."
+ d_katzenland_subterranean_grotto: "Subterranean Grotto"
+ d_katzenland_subterranean_grotto_desc: "Thick layers of rock protect this relatively vibrant refuge from the harsh conditions on surface."
+ d_katzenland_salt_lake: "Salt Lake"
+ d_katzenland_salt_lake_desc: "Though exposed water quickly evaporates, thick black mud survives here beneath an insulating salt crust. Plants that can tolerate the hypersaline conditions have a monopoly over the moisture."
+
+
  # giga_planetary_computer_start_NAME:0 "Planetary Computer" #initialiser
  # giga_planetary_computer_start_DESC:0 "Start on a Planetary Computing Complex."
  origin_scorched:0 "Scorched Earth"
@@ -44,18 +75,12 @@
  giga_scorched.002.a.continuity: "We don't need to rewrite our culture!"
  giga_scorched.002.a.tooltip: "§YOur situation approach can be changed at any time.§!"
 
- giga_scorched.003.name: "commemoration"
- giga_scorched.003.desc: "commemoration desc"
- giga_scorched.003.a.renewal: "renewal"
- giga_scorched.003.a.synthesis: "eh"
- giga_scorched.003.a.continuity: "continuity"
- #giga_scorched.003.a.tooltip: "§YOur decisions will affect§!" #TODO
-
  giga_scorched.004.name: "heritage"
  giga_scorched.004.desc: "heritage desc"
  giga_scorched.004.a.renewal: "renewal"
  giga_scorched.004.a.synthesis: "eh"
  giga_scorched.004.a.continuity: "continuity"
+ #giga_scorched.003.a.tooltip: "§YOur decisions will affect§!" #TODO
 
  giga_scorched.005.name: "remember"
  giga_scorched.005.desc: "remember desc"
@@ -69,6 +94,14 @@
  giga_scorched.006.a.synthesis: "eh"
  giga_scorched.006.a.continuity: "continuity"
 
- giga_scorched.007.name: "conclusion"
- giga_scorched.007.desc: "conclusion desc"
- giga_scorched.007.a: "path chosen event line over"
+ giga_scorched.007.name: "commemoration"
+ giga_scorched.007.desc: "commemoration desc"
+ giga_scorched.007.a.renewal: "renewal"
+ giga_scorched.007.a.synthesis: "eh"
+ giga_scorched.007.a.continuity: "continuity"
+
+ giga_scorched.008.name: "conclusion"
+ giga_scorched.008.desc: "conclusion desc"
+ giga_scorched.008.a.renewal: "renewal conclusion"
+ giga_scorched.008.a.synthesis: "synthesis conclusion"
+ giga_scorched.008.a.continuity: "continuity conclusion"
