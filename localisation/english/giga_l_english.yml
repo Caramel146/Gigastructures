@@ -3471,6 +3471,9 @@
   katzenland_planet_terraformed:0 "Necropolis"
   katzenland_planet_terraformed_desc:0 "Although once devastated by some sort of large-scale conflict, this planet has been restored to a more habitable state. It is littered with ruins indicating that it once held a thriving civilization, and these ruins provide an incredible opportunity to study a long-gone culture and scrap whatever materials we can out of them, while the large amounts of leftover radioactive materials and infrastructure would be quite useful if repurposed towards energy generation."
 
+  irradiated_desert_shelters:0 "Ancestral Shelters"
+  irradiated_desert_shelters_desc:0 "The world is harsh, but its inhabitants are hardy. Thick rammed earth is a low-tech but practical solution to the inhospitable environment."
+
   ringworld_upgrade_timer:0 "Ringworld Habitation Upgrade"
   ringworld_upgrade_timer_desc:0 "We're upgrading this section of the facility to accommodate and support our ever growing populous."
 

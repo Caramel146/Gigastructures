@@ -703,3 +703,53 @@ define_text = {
 		localization_key = giga_galactic_wonders_tooltip_ring_world_no_habitables_bio
 	}
 }
+
+define_text = {
+	name = GigaOriginScorchedQuestionsAnswered
+	default = giga_situation_scorched_questions_answered_zero
+	text = {
+		trigger = {
+			check_variable = {
+				which = giga_scorched_questions_answered
+				value = 0
+			}
+		}
+		localization_key = giga_situation_scorched_questions_answered_zero
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = giga_scorched_questions_answered
+				value = 1
+			}
+		}
+		localization_key = giga_situation_scorched_questions_answered_one
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = giga_scorched_questions_answered
+				value = 2
+			}
+		}
+		localization_key = giga_situation_scorched_questions_answered_two
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = giga_scorched_questions_answered
+				value = 3
+			}
+		}
+		localization_key = giga_situation_scorched_questions_answered_three
+	}
+	text = {
+		trigger = {
+			check_variable = {
+				which = giga_scorched_questions_answered
+				value = 4
+			}
+		}
+		localization_key = giga_situation_scorched_questions_answered_four
+	}
+}

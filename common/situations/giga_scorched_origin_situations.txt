@@ -19,22 +19,16 @@ giga_situation_scorched = {
     fail_icon = GFX_situation_outcome_unknown
     fail_icon_frame = GFX_situation_outcome_frame_blue
 
-    # on_fail = {
-    #     # You shouldn't get this without cheating
-    #     custom_tooltip = giga_situation_scorched_renewal
-    #     custom_tooltip = giga_situation_scorched_synthesis
-    #     hidden_effect = {
-    #         situation_event = { id = toxoids.30 }
-    #     }
-    # }
-    # on_progress_complete = {
-    #     # You shouldn't get this without cheating
-    #     custom_tooltip = giga_situation_scorched_synthesis
-    #     situation_event = { id = toxoids.30 }
-    # }
+    on_fail = {
+        # Only here for info display since the situation shouldn't be completed - it should abort instead
+        custom_tooltip = giga_situation_scorched_outcome
+    }
+    on_progress_complete = {
+        # Only here for info display since the situation shouldn't be completed - it should abort instead
+        custom_tooltip = giga_situation_scorched_outcome
+    }
     on_abort = {
-        custom_tooltip = giga_situation_scorched_continuity #TODO just outcome
-        situation_event = { id = giga_scorched.008 } #Conclude the situation and event chain
+        owner = { country_event = { id = giga_scorched.008 } } #Conclude the situation and event chain
     }
 
     on_monthly = { #TODO make less random using monthly gatekeeper event and variables
@@ -49,7 +43,7 @@ giga_situation_scorched = {
             icon = GFX_situation_stage_1
             icon_background = GFX_situation_stage_frame_blue
             modifier = {
-                faction_approval = -0.10
+                country_unity_produces_mult = -0.1
             }
         }
         giga_situation_scorched_stage_synthesis = {
@@ -57,8 +51,9 @@ giga_situation_scorched = {
             icon = GFX_situation_stage_2
             icon_background = GFX_situation_stage_frame_blue
             modifier = {
-                faction_approval = -0.10
+                #open debate is destabilising but also doesn't radicalise people apart, so modifiers are different here
                 country_unity_produces_mult = -0.05
+                planet_stability_add = -2.5
             }
         }
         giga_situation_scorched_stage_continuity = {
@@ -66,24 +61,24 @@ giga_situation_scorched = {
             icon = GFX_situation_stage_3
             icon_background = GFX_situation_stage_frame_blue
             modifier = {
-                faction_approval = -0.10
+                country_unity_produces_mult = -0.1
             }
         }
     }
 
     monthly_progress = {
         modifier = {
-            desc = string_current_approach
+            desc = giga_situation_scorched_progress
             current_situation_approach = giga_situation_scorched_approach_renewal
             subtract = 0.5 #situation lasts 8 years (96 months) so this gives 48 progress units of movement total - AKA worth two event choices
         }
         modifier = {
-            desc = string_current_approach
+            desc = giga_situation_scorched_progress
             current_situation_approach = giga_situation_scorched_approach_synthesis
             add = 0
         }
         modifier = {
-            desc = string_current_approach
+            desc = giga_situation_scorched_progress
             current_situation_approach = giga_situation_scorched_approach_continuity
             add = 0.5 #situation lasts 8 years (96 months) so this gives 48 progress units of movement total - AKA worth two event choices
         }
@@ -95,11 +90,11 @@ giga_situation_scorched = {
         icon_background = GFX_situation_approach_bg_yellow
 
         on_select = {
-            custom_tooltip = approach_climate_do_nothing_tooltip
+            custom_tooltip = giga_situation_scorched_approach_renewal_tooltip
         }
 
         ai_weight = {
-            base = 0
+            base = 1
         }
     }
 
@@ -110,12 +105,7 @@ giga_situation_scorched = {
         default = yes
 
         on_select = {
-            custom_tooltip = approach_climate_cleanup_efforts_tooltip
-        }
-
-        target_modifier = {
-            planet_pops_upkeep_mult = 1
-            planet_buildings_upkeep_mult = 1
+            custom_tooltip = giga_situation_scorched_approach_synthesis_tooltip
         }
 
         ai_weight = {
@@ -129,15 +119,11 @@ giga_situation_scorched = {
         icon_background = GFX_situation_approach_bg_yellow
 
         on_select = {
-            custom_tooltip = approach_climate_embrace_change_tooltip
+            custom_tooltip = giga_situation_scorched_approach_continuity_tooltip
         }
 
         ai_weight = {
-            base = 2
-            modifier = {
-                factor = 0
-                owner = { empire_has_good_habitability_on_tomb_worlds = no }
-            }
+            base = 1
         }
     }
 }

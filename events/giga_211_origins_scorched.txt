@@ -9,11 +9,22 @@ country_event = {
 
     immediate = {
         #Planet setup
+        #Bit of a mess trying to interact in the right orders with the vanilla planet setup parts that apply, could probably be improved
         capital_scope = {
             create_katzenland_deposits_new = yes
+
+            remove_all_buildings = yes
+            generate_start_buildings_and_districts = yes
+
+            generate_home_planet_final_pass = yes
+
             add_modifier = {
                 modifier = "irradiated_desert_planet"
                 days = -1
+            }
+            add_modifier = {
+                modifier = "irradiated_desert_shelters"
+                years = 50
             }
         }
 
@@ -26,7 +37,7 @@ country_event = {
     id = giga_scorched.002
     is_triggered_only = yes
 
-    picture = GFX_evt_alderson #TODO
+    picture = GFX_evt_maginot_world
     title = giga_scorched.002.name
     desc = giga_scorched.002.desc
 
@@ -39,7 +50,7 @@ country_event = {
                 set_situation_approach = giga_situation_scorched_approach_renewal
             }
         }
-        custom_tooltip = giga_scorched.002.a.tooltip
+        custom_tooltip = giga_scorched.002.a.renewal.tooltip
         ai_chance = {
             base = 1
         }
@@ -54,7 +65,7 @@ country_event = {
                 set_situation_approach = giga_situation_scorched_approach_synthesis
             }
         }
-        custom_tooltip = giga_scorched.002.a.tooltip
+        custom_tooltip = giga_scorched.002.a.synthesis.tooltip
         ai_chance = {
             base = 1
         }
@@ -69,7 +80,7 @@ country_event = {
                 set_situation_approach = giga_situation_scorched_approach_continuity
             }
         }
-        custom_tooltip = giga_scorched.002.a.tooltip
+        custom_tooltip = giga_scorched.002.a.continuity.tooltip
         ai_chance = {
             base = 1
         }
@@ -109,28 +120,28 @@ situation_event = {
                         country_event = { id = giga_scorched.004 }
                         modifier = {
                             factor = 0
-                            has_country_flag = scorched_origin_event_1
+                            has_country_flag = triggered_scorched_event_1 #checks triggered instead of concluded in case it rolls again in the time someone doesn't answer
                         }
                     }
                     1 = {
                         country_event = { id = giga_scorched.004 }
                         modifier = {
                             factor = 0
-                            has_country_flag = scorched_origin_event_2
+                            has_country_flag = triggered_scorched_event_2
                         }
                     }
                     1 = {
                         country_event = { id = giga_scorched.004 }
                         modifier = {
                             factor = 0
-                            has_country_flag = scorched_origin_event_3
+                            has_country_flag = triggered_scorched_event_3
                         }
                     }
                     1 = {
                         country_event = { id = giga_scorched.004 }
                         modifier = {
                             factor = 0
-                            has_country_flag = scorched_origin_event_4
+                            has_country_flag = triggered_scorched_event_4
                         }
                     }
                 }
@@ -190,17 +201,21 @@ country_event = {
 
     #check if all events have been done
     after = {
+        set_or_change_variable = {
+            which = giga_scorched_questions_answered
+            value = 1
+        }
         if = {
             limit = {
-                AND = {
-                    has_country_flag = scorched_origin_event_1
-                    has_country_flag = scorched_origin_event_2
-                    has_country_flag = scorched_origin_event_3
-                    has_country_flag = scorched_origin_event_4
-                }
+                # AND = {
+                #     has_country_flag = scorched_origin_event_1
+                #     has_country_flag = scorched_origin_event_2
+                #     has_country_flag = scorched_origin_event_3
+                #     has_country_flag = scorched_origin_event_4
+                # }
                 check_variable = {
                     which = giga_scorched_questions_answered
-                    value = 4 #TODO final event count scripted variable in this file
+                    value = 4
                 }
             }
             every_situation = {
@@ -258,17 +273,21 @@ country_event = {
 
     #check if all events have been done
     after = {
+        set_or_change_variable = {
+            which = giga_scorched_questions_answered
+            value = 1
+        }
         if = {
             limit = {
-                AND = {
-                    has_country_flag = scorched_origin_event_1
-                    has_country_flag = scorched_origin_event_2
-                    has_country_flag = scorched_origin_event_3
-                    has_country_flag = scorched_origin_event_4
-                }
+                # AND = {
+                #     has_country_flag = scorched_origin_event_1
+                #     has_country_flag = scorched_origin_event_2
+                #     has_country_flag = scorched_origin_event_3
+                #     has_country_flag = scorched_origin_event_4
+                # }
                 check_variable = {
                     which = giga_scorched_questions_answered
-                    value = 4 #TODO final event count scripted variable in this file
+                    value = 4
                 }
             }
             every_situation = {
@@ -326,17 +345,21 @@ country_event = {
 
     #check if all events have been done
     after = {
+        set_or_change_variable = {
+            which = giga_scorched_questions_answered
+            value = 1
+        }
         if = {
             limit = {
-                AND = {
-                    has_country_flag = scorched_origin_event_1
-                    has_country_flag = scorched_origin_event_2
-                    has_country_flag = scorched_origin_event_3
-                    has_country_flag = scorched_origin_event_4
-                }
+                # AND = {
+                #     has_country_flag = scorched_origin_event_1
+                #     has_country_flag = scorched_origin_event_2
+                #     has_country_flag = scorched_origin_event_3
+                #     has_country_flag = scorched_origin_event_4
+                # }
                 check_variable = {
                     which = giga_scorched_questions_answered
-                    value = 4 #TODO final event count scripted variable in this file
+                    value = 4
                 }
             }
             every_situation = {
@@ -394,17 +417,21 @@ country_event = {
 
     #check if all events have been done
     after = {
+        set_or_change_variable = {
+            which = giga_scorched_questions_answered
+            value = 1
+        }
         if = {
             limit = {
-                AND = {
-                    has_country_flag = scorched_origin_event_1
-                    has_country_flag = scorched_origin_event_2
-                    has_country_flag = scorched_origin_event_3
-                    has_country_flag = scorched_origin_event_4
-                }
+                # AND = {
+                #     has_country_flag = scorched_origin_event_1
+                #     has_country_flag = scorched_origin_event_2
+                #     has_country_flag = scorched_origin_event_3
+                #     has_country_flag = scorched_origin_event_4
+                # }
                 check_variable = {
                     which = giga_scorched_questions_answered
-                    value = 4 #TODO final event count scripted variable in this file
+                    value = 4
                 }
             }
             every_situation = {

@@ -4,7 +4,7 @@
 @blocker_high = 10 #from vanilla
 
 d_katzenland_unsteady_ground = {
-    time = 270
+    time = 360 #relatively long time. Vanilla blockers are eg 270 for 2-district blockers.
     icon = d_deep_sinkhole
 
     is_for_colonizable = yes
@@ -65,7 +65,7 @@ d_katzenland_unsteady_ground = {
 }
 
 d_katzenland_glassflats = {
-    time = 270
+    time = 360 #relatively long time. Vanilla blockers are eg 270 for 2-district blockers.
 
     is_for_colonizable = yes
     category = deposit_cat_blockers_natural
@@ -125,7 +125,7 @@ d_katzenland_glassflats = {
 }
 
 d_katzenland_sandblasting_winds = {
-    time = 270
+    time = 360 #relatively long time. Vanilla blockers are eg 270 for 2-district blockers.
     icon = d_dust_desert
 
     is_for_colonizable = yes
@@ -186,7 +186,7 @@ d_katzenland_sandblasting_winds = {
 }
 
 d_katzenland_frequent_simooms = {
-    time = 270
+    time = 360 #relatively long time. Vanilla blockers are eg 270 for 2-district blockers.
     icon = d_forceful_winds
 
     is_for_colonizable = yes
@@ -247,7 +247,7 @@ d_katzenland_frequent_simooms = {
 }
 
 d_katzenland_roving_dunes = {
-    time = 270
+    time = 360 #relatively long time. Vanilla blockers are eg 270 for 2-district blockers.
     icon = d_searing_desert
 
     is_for_colonizable = yes
