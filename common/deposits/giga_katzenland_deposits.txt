@@ -664,3 +664,58 @@ d_katzenland_salt_lake = {
         }
     }
 }
+
+d_katzenland_commemoration_memorial = {
+    icon = d_crashed_slaver_ship_memorial
+    is_for_colonizable = yes
+
+    category = deposit_cat_rare
+
+    triggered_planet_modifier = {
+        potential = {
+            owner = { is_gestalt = no }
+        }
+        planet_civilians_society_research_produces_add = 0.05
+        planet_civilians_consumer_goods_upkeep_add = 0.1
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            owner = { is_gestalt = yes }
+        }
+        planet_maintenance_drones_society_research_produces_add = 0.05
+        planet_maintenance_drones_minerals_upkeep_add = 0.2
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}
+
+d_katzenland_commemoration_creation = {
+    icon = d_crashed_slaver_ship_memorial
+    is_for_colonizable = yes
+
+    category = deposit_cat_rare
+
+    triggered_planet_modifier = {
+        potential = {
+            owner = { is_gestalt = no }
+        }
+        planet_civilians_unity_produces_add = 0.1
+        planet_civilians_consumer_goods_upkeep_add = 0.1
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            owner = { is_gestalt = yes }
+        }
+        planet_maintenance_drones_unity_produces_add = 0.05
+        planet_maintenance_drones_trade_produces_add = 0.05
+        planet_maintenance_drones_minerals_upkeep_add = 0.2
+    }
+
+    drop_weight = {
+        weight = 0
+    }
+}

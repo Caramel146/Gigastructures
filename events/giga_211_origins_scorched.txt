@@ -103,7 +103,7 @@ situation_event = {
             limit = {
                 check_variable = {
                     which = scorched_situation_timer
-                    value >= 24
+                    value >= 30
                 }
             }
             export_trigger_value_to_variable = {
@@ -158,7 +158,7 @@ country_event = {
     id = giga_scorched.004
     is_triggered_only = yes
 
-    picture = GFX_evt_alderson #TODO
+    picture = GFX_evt_death_from_above
     title = giga_scorched.004.name
     desc = giga_scorched.004.desc
 
@@ -168,6 +168,9 @@ country_event = {
 
     option = {
         name = giga_scorched.004.a.renewal
+        capital_scope = {
+            add_deposit = d_katzenland_commemoration_memorial
+        }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = -24
@@ -178,18 +181,10 @@ country_event = {
     }
 
     option = {
-        name = giga_scorched.004.a.synthesis
-        # every_situation = {
-        #     limit = { is_situation_type = giga_situation_scorched }
-        #     #nothing
-        # }
-        ai_chance = {
-            base = 1
-        }
-    }
-
-    option = {
         name = giga_scorched.004.a.continuity
+        capital_scope = {
+            add_deposit = d_katzenland_commemoration_creation
+        }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = 24
@@ -227,7 +222,7 @@ country_event = {
     id = giga_scorched.005
     is_triggered_only = yes
 
-    picture = GFX_evt_alderson #TODO
+    picture = GFX_evt_cosmic_storms_windswept_fates
     title = giga_scorched.005.name
     desc = giga_scorched.005.desc
 
@@ -237,6 +232,7 @@ country_event = {
 
     option = {
         name = giga_scorched.005.a.renewal
+        custom_tooltip = giga_scorched.005.a.renewal.tooltip
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = -24
@@ -247,18 +243,8 @@ country_event = {
     }
 
     option = {
-        name = giga_scorched.005.a.synthesis
-        # every_situation = {
-        #     limit = { is_situation_type = giga_situation_scorched }
-        #     #nothing
-        # }
-        ai_chance = {
-            base = 1
-        }
-    }
-
-    option = {
         name = giga_scorched.005.a.continuity
+        custom_tooltip = giga_scorched.005.a.continuity.tooltip
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = 24
@@ -296,7 +282,7 @@ country_event = {
     id = giga_scorched.006
     is_triggered_only = yes
 
-    picture = GFX_evt_alderson #TODO
+    picture = GFX_evt_alien_cavemen
     title = giga_scorched.006.name
     desc = giga_scorched.006.desc
 
@@ -306,6 +292,10 @@ country_event = {
 
     option = {
         name = giga_scorched.006.a.renewal
+        add_modifier = {
+            modifier = giga_scorched_tenacity
+            days = -1
+        }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = -24
@@ -316,18 +306,8 @@ country_event = {
     }
 
     option = {
-        name = giga_scorched.006.a.synthesis
-        # every_situation = {
-        #     limit = { is_situation_type = giga_situation_scorched }
-        #     #nothing
-        # }
-        ai_chance = {
-            base = 1
-        }
-    }
-
-    option = {
         name = giga_scorched.006.a.continuity
+        custom_tooltip = giga_scorched.006.a.continuity.tooltip
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = 24
@@ -365,7 +345,7 @@ country_event = {
     id = giga_scorched.007
     is_triggered_only = yes
 
-    picture = GFX_evt_alderson #TODO
+    picture = GFX_evt_star_chart
     title = giga_scorched.007.name
     desc = giga_scorched.007.desc
 
@@ -375,6 +355,10 @@ country_event = {
 
     option = {
         name = giga_scorched.007.a.renewal
+        add_modifier = {
+            modifier = giga_scorched_everseeking
+            days = -1
+        }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = -24
@@ -385,18 +369,8 @@ country_event = {
     }
 
     option = {
-        name = giga_scorched.007.a.synthesis
-        # every_situation = {
-        #     limit = { is_situation_type = giga_situation_scorched }
-        #     #nothing
-        # }
-        ai_chance = {
-            base = 1
-        }
-    }
-
-    option = {
         name = giga_scorched.007.a.continuity
+        custom_tooltip = giga_scorched.007.a.continuity.tooltip
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = 24
@@ -434,7 +408,7 @@ country_event = {
     id = giga_scorched.008
     is_triggered_only = yes
 
-    picture = GFX_evt_alderson #TODO
+    picture = GFX_evt_unity_symbol
     title = giga_scorched.008.name
     desc = giga_scorched.008.desc
 
@@ -446,6 +420,15 @@ country_event = {
             }
         }
         name = giga_scorched.008.a.renewal
+        custom_tooltip = giga_scorched.008.a.renewal.tooltip
+        capital_scope = {
+            remove_modifier = irradiated_desert_planet
+            add_modifier = {
+                modifier = irradiated_desert_planet_rehabilitated
+                days = -1
+            }
+        }
+        give_next_terraforming_tech_option_effect = yes
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             destroy_situation = this
@@ -466,6 +449,16 @@ country_event = {
             }
         }
         name = giga_scorched.008.a.synthesis
+        add_modifier = {
+            modifier = giga_scorched_alloyed_identity
+            days = -1
+        }
+        add_monthly_resource_mult = {
+            resource = society_research
+            value = @tier4researchreward
+            min = @tier4researchmin
+            max = @tier4researchmax
+        }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             destroy_situation = this
@@ -480,6 +473,15 @@ country_event = {
             }
         }
         name = giga_scorched.008.a.continuity
+        if = {
+            limit = {
+                NOT = {
+                    has_technology = tech_katzen_atomic_munitions #who is going to have this by this point lmao
+                }
+            }
+            add_research_option = tech_katzen_atomic_munitions
+        }
+        custom_tooltip = giga_scorched.008.a.continuity.tooltip
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             destroy_situation = this
