@@ -24,7 +24,7 @@ country_event = {
             }
             add_modifier = {
                 modifier = "irradiated_desert_shelters"
-                years = 50
+                years = 30
             }
         }
 
@@ -218,10 +218,7 @@ country_event = {
                     value = 4
                 }
             }
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                set_situation_flag = scorched_situation_abort
-            }
+            country_event = { id = giga_scorched.008 }
         }
     }
 }
@@ -290,10 +287,7 @@ country_event = {
                     value = 4
                 }
             }
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                set_situation_flag = scorched_situation_abort
-            }
+            country_event = { id = giga_scorched.008 }
         }
     }
 }
@@ -362,10 +356,7 @@ country_event = {
                     value = 4
                 }
             }
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                set_situation_flag = scorched_situation_abort
-            }
+            country_event = { id = giga_scorched.008 }
         }
     }
 }
@@ -434,15 +425,12 @@ country_event = {
                     value = 4
                 }
             }
-            every_situation = {
-                limit = { is_situation_type = giga_situation_scorched }
-                set_situation_flag = scorched_situation_abort
-            }
+            country_event = { id = giga_scorched.008 }
         }
     }
 }
 
-situation_event = {
+country_event = {
     id = giga_scorched.008
     is_triggered_only = yes
 
@@ -458,6 +446,10 @@ situation_event = {
             }
         }
         name = giga_scorched.008.a.renewal
+        every_situation = {
+            limit = { is_situation_type = giga_situation_scorched }
+            destroy_situation = this
+        }
     }
 
     option = {
@@ -474,6 +466,10 @@ situation_event = {
             }
         }
         name = giga_scorched.008.a.synthesis
+        every_situation = {
+            limit = { is_situation_type = giga_situation_scorched }
+            destroy_situation = this
+        }
     }
 
     option = {
@@ -484,5 +480,9 @@ situation_event = {
             }
         }
         name = giga_scorched.008.a.continuity
+        every_situation = {
+            limit = { is_situation_type = giga_situation_scorched }
+            destroy_situation = this
+        }
     }
 }

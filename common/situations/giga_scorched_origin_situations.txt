@@ -6,10 +6,6 @@ giga_situation_scorched = {
     #instead the monthly gatekeeper and subsequent events will trigger the abort
     initial_progress = 150
 
-    abort_trigger = {
-        has_situation_flag = scorched_situation_abort
-    }
-
     progress_direction = bidirectional
     #complete_category = negative
     #fail_category = positive
@@ -20,15 +16,12 @@ giga_situation_scorched = {
     fail_icon_frame = GFX_situation_outcome_frame_blue
 
     on_fail = {
-        # Only here for info display since the situation shouldn't be completed - it should abort instead
+        # Only here for info display since the situation shouldn't be completed - it should be deleted instead
         custom_tooltip = giga_situation_scorched_outcome
     }
     on_progress_complete = {
-        # Only here for info display since the situation shouldn't be completed - it should abort instead
+        # Only here for info display since the situation shouldn't be completed - it should be deleted instead
         custom_tooltip = giga_situation_scorched_outcome
-    }
-    on_abort = {
-        owner = { country_event = { id = giga_scorched.008 } } #Conclude the situation and event chain
     }
 
     on_monthly = { #TODO make less random using monthly gatekeeper event and variables
