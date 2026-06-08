@@ -46,7 +46,7 @@
 
  giga_situation_scorched:0 "Immolated Origins"
  giga_situation_scorched_type:0 "$giga_situation_scorched$"
- giga_situation_scorched_monthly_change_tooltip:0 "The progress of this situation is dependent on the §YApproach§! we pick and our responses to §YEvents§! that occur."
+ giga_situation_scorched_monthly_change_tooltip:0 "The progress of this situation is dependent on the §YApproach§! we pick and our responses to related §YEvents§! that occur."
  giga_situation_scorched_desc:0 "Our identity is in crisis after our understanding of history was shaken by the discovery that our homeworld is the wreck of an ancient planet-cum-warship. We must seek firm ground on which to rebase our civilisation."
  giga_situation_scorched_stage_renewal:0 "Renewal"
  giga_situation_scorched_stage_synthesis:0 "Synthesis"
