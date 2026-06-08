@@ -63,7 +63,7 @@ giga_situation_scorched = {
         modifier = {
             desc = giga_situation_scorched_progress
             current_situation_approach = giga_situation_scorched_approach_renewal
-            subtract = 0.5 #situation lasts 8 years (96 months) so this gives 48 progress units of movement total - AKA worth two event choices
+            subtract = 0.2 #situation lasts 12 years (144 months) so this gives 28.8 progress units of movement total - AKA worth one event choice (24) with a little room to manoeuvre
         }
         modifier = {
             desc = giga_situation_scorched_progress
@@ -73,7 +73,7 @@ giga_situation_scorched = {
         modifier = {
             desc = giga_situation_scorched_progress
             current_situation_approach = giga_situation_scorched_approach_continuity
-            add = 0.5 #situation lasts 8 years (96 months) so this gives 48 progress units of movement total - AKA worth two event choices
+            add = 0.2 #situation lasts 12 years (144 months) so this gives 28.8 progress units of movement total - AKA worth one event choice (24) with a little room to manoeuvre
         }
     }
 

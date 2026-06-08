@@ -108,6 +108,17 @@ tech_katzen_atomic_munitions = {
 			desc = "katzen_bombing_desc"
 		}
 	}
+
+	# flavour change if gained from the Scorched Earth origin
+	technology_swap = {
+		name = tech_katzen_atomic_munitions_scorched_swap
+		inherit_icon = no
+		inherit_effects = yes
+
+		trigger = {
+			has_country_flag = tech_katzen_atomic_munitions_from_scorched
+		}
+	}
 }
 
 giga_tech_event_squareworld = {

@@ -1294,6 +1294,11 @@ country_event = {
 		set_country_flag = katzen_atomic_munitions_possible
 	}
 	option = {
+		trigger = {
+			NOT = {
+				has_origin = origin_scorched
+			}
+		}
 		name = "giga_flusion.005.a"
 		add_research_option = tech_katzen_atomic_munitions
 		add_tech_progress = {
@@ -1316,8 +1321,20 @@ country_event = {
 	}
 
 	option = {
+		trigger = {
+			NOT = {
+				has_origin = origin_scorched
+			}
+		}
 		name = "giga_flusion.005.b"
 		remove_country_flag = katzen_atomic_munitions_possible
+	}
+
+	option = {
+		trigger = {
+			has_country_flag = tech_katzen_atomic_munitions_from_scorched
+		}
+		name = "giga_flusion.005.c"
 	}
 }
 

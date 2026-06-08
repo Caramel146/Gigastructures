@@ -24,12 +24,15 @@ country_event = {
             }
             add_modifier = {
                 modifier = "irradiated_desert_shelters"
-                years = 30
+                years = 15 #long enough to complete the situation and rejig your economy to prevent collapse #TODO make this decay gradually over a long period
             }
+
+            set_planet_flag = giga_scorched_homeworld@root
         }
 
         #Start story situation
-        country_event = { id = giga_scorched.002 days = 10 random = 10 }
+        country_event = { id = giga_scorched.002 days = 1080 random = 360 }
+        #situation (~12 years) should therefore be over within 15 years of game start
     }
 }
 
@@ -103,7 +106,7 @@ situation_event = {
             limit = {
                 check_variable = {
                     which = scorched_situation_timer
-                    value >= 30
+                    value >= 36 #roughly 3 years
                 }
             }
             export_trigger_value_to_variable = {
@@ -124,21 +127,21 @@ situation_event = {
                         }
                     }
                     1 = {
-                        country_event = { id = giga_scorched.004 }
+                        country_event = { id = giga_scorched.005 }
                         modifier = {
                             factor = 0
                             has_country_flag = triggered_scorched_event_2
                         }
                     }
                     1 = {
-                        country_event = { id = giga_scorched.004 }
+                        country_event = { id = giga_scorched.006 }
                         modifier = {
                             factor = 0
                             has_country_flag = triggered_scorched_event_3
                         }
                     }
                     1 = {
-                        country_event = { id = giga_scorched.004 }
+                        country_event = { id = giga_scorched.007 }
                         modifier = {
                             factor = 0
                             has_country_flag = triggered_scorched_event_4
@@ -163,7 +166,7 @@ country_event = {
     desc = giga_scorched.004.desc
 
     immediate = {
-        set_country_flag = triggered_scorched_event_2
+        set_country_flag = triggered_scorched_event_1
     }
 
     option = {
@@ -196,9 +199,11 @@ country_event = {
 
     #check if all events have been done
     after = {
-        set_or_change_variable = {
-            which = giga_scorched_questions_answered
-            value = 1
+        hidden_effect = {
+            set_or_change_variable = {
+                which = giga_scorched_questions_answered
+                value = 1
+            }
         }
         if = {
             limit = {
@@ -227,12 +232,15 @@ country_event = {
     desc = giga_scorched.005.desc
 
     immediate = {
-        set_country_flag = triggered_scorched_event_3
+        set_country_flag = triggered_scorched_event_2
     }
 
     option = {
         name = giga_scorched.005.a.renewal
         custom_tooltip = giga_scorched.005.a.renewal.tooltip
+        hidden_effect = {
+            set_country_flag = giga_incandescent_society #modifies the Incandescent trait
+        }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = -24
@@ -245,6 +253,9 @@ country_event = {
     option = {
         name = giga_scorched.005.a.continuity
         custom_tooltip = giga_scorched.005.a.continuity.tooltip
+        hidden_effect = {
+            set_country_flag = giga_incandescent_unity #modifies the Incandescent trait
+        }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = 24
@@ -256,9 +267,11 @@ country_event = {
 
     #check if all events have been done
     after = {
-        set_or_change_variable = {
-            which = giga_scorched_questions_answered
-            value = 1
+        hidden_effect = {
+            set_or_change_variable = {
+                which = giga_scorched_questions_answered
+                value = 1
+            }
         }
         if = {
             limit = {
@@ -287,7 +300,7 @@ country_event = {
     desc = giga_scorched.006.desc
 
     immediate = {
-        set_country_flag = triggered_scorched_event_4
+        set_country_flag = triggered_scorched_event_3
     }
 
     option = {
@@ -308,6 +321,9 @@ country_event = {
     option = {
         name = giga_scorched.006.a.continuity
         custom_tooltip = giga_scorched.006.a.continuity.tooltip
+        hidden_effect = {
+            set_country_flag = giga_incandescent_habitability_floor #modifies the Incandescent trait
+        }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = 24
@@ -319,9 +335,11 @@ country_event = {
 
     #check if all events have been done
     after = {
-        set_or_change_variable = {
-            which = giga_scorched_questions_answered
-            value = 1
+        hidden_effect = {
+            set_or_change_variable = {
+                which = giga_scorched_questions_answered
+                value = 1
+            }
         }
         if = {
             limit = {
@@ -350,7 +368,7 @@ country_event = {
     desc = giga_scorched.007.desc
 
     immediate = {
-        set_country_flag = triggered_scorched_event_1
+        set_country_flag = triggered_scorched_event_4
     }
 
     option = {
@@ -371,6 +389,9 @@ country_event = {
     option = {
         name = giga_scorched.007.a.continuity
         custom_tooltip = giga_scorched.007.a.continuity.tooltip
+        hidden_effect = {
+            set_country_flag = giga_incandescent_efficiency #modifies the Incandescent trait
+        }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = 24
@@ -382,9 +403,11 @@ country_event = {
 
     #check if all events have been done
     after = {
-        set_or_change_variable = {
-            which = giga_scorched_questions_answered
-            value = 1
+        hidden_effect = {
+            set_or_change_variable = {
+                which = giga_scorched_questions_answered
+                value = 1
+            }
         }
         if = {
             limit = {
@@ -412,6 +435,10 @@ country_event = {
     title = giga_scorched.008.name
     desc = giga_scorched.008.desc
 
+    immediate = {
+        set_country_flag = tech_katzen_atomic_munitions_from_scorched #needs to run beforehand to trigger tech swap in option tooltips
+    }
+
     option = {
         trigger = {
             check_variable = {
@@ -421,6 +448,10 @@ country_event = {
         }
         name = giga_scorched.008.a.renewal
         custom_tooltip = giga_scorched.008.a.renewal.tooltip
+        hidden_effect = {
+            set_country_flag = giga_incandescent_empire_size_pops #modifies the Incandescent trait
+            remove_country_flag = tech_katzen_atomic_munitions_from_scorched #remove the tech swap if the option with the tech isn't chosen
+        }
         capital_scope = {
             remove_modifier = irradiated_desert_planet
             add_modifier = {
@@ -437,14 +468,14 @@ country_event = {
 
     option = {
         trigger = {
-            AND = {
+            NOR = { #this is also a backup option
                 check_variable = {
                     which = scorched_situation_final_position
-                    value >= 100
+                    value < 100
                 }
                 check_variable = {
                     which = scorched_situation_final_position
-                    value <= 200
+                    value > 200
                 }
             }
         }
@@ -459,6 +490,9 @@ country_event = {
             min = @tier4researchmin
             max = @tier4researchmax
         }
+        hidden_effect = {
+            remove_country_flag = tech_katzen_atomic_munitions_from_scorched #remove the tech swap if the option with the tech isn't chosen
+        }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             destroy_situation = this
@@ -469,7 +503,7 @@ country_event = {
         trigger = {
             check_variable = {
                 which = scorched_situation_final_position
-                value < 100
+                value > 100
             }
         }
         name = giga_scorched.008.a.continuity
@@ -479,7 +513,23 @@ country_event = {
                     has_technology = tech_katzen_atomic_munitions #who is going to have this by this point lmao
                 }
             }
+            set_country_flag = katzen_atomic_munitions_possible
             add_research_option = tech_katzen_atomic_munitions
+        }
+        hidden_effect = {
+            set_country_flag = giga_scorched_habitability_preference #opens the Irradiated Desert World Preference trait for modification
+        }
+        every_owned_planet = {
+            limit = {
+                has_planet_flag = giga_scorched_homeworld@root
+            }
+            every_owned_species = {
+                modify_species = {
+                    species = this
+                    ideal_planet_class = pc_katzenland
+                    add_trait = trait_pc_katzenland_preference
+                }
+            }
         }
         custom_tooltip = giga_scorched.008.a.continuity.tooltip
         every_situation = {

@@ -2711,8 +2711,8 @@
   trait_pc_ringworld_hive_preference:0 "Hive World Preference"
   trait_pc_ringworld_hive_preference_desc:0 "§LClimate preference is determined at the genetic level, by eons of evolution or skillful manipulation.§!"
 
-  mod_pc_katzenland_habitability:0 "Katzenland Habitability"
-  trait_pc_katzenland_preference:0 "Katzenland Preference"
+  mod_pc_katzenland_habitability:0 "Irradiated Desert World Habitability"
+  trait_pc_katzenland_preference:0 "Irradiated Desert World Preference"
   trait_pc_katzenland_preference_desc:0 "§LClimate preference is determined at the genetic level, by eons of evolution or skillful manipulation.§!"
 
   mod_pc_ehof_habitat_habitability:0 "Asteroid Habitat Habitability"
@@ -6566,7 +6566,7 @@
 	giga_flusion.001.name:0 "Hyperdiversity"
 	giga_flusion.001.desc:0 "Our science ship surveying the primitive world of Flusion has made a surprising discovery, as it appears this primitive world is inhabited not by one, but several sapient species!\n\nThe crew has been able to identify 5 main species: the feline Katzens, the amphibious Zuspris, the humanoid Roqualians, and the crustacean Kronks; with a fifth \"Flusionian\" species consisting of dozens of other hard-to-classify subspecies.\n\nOur scientists still aren't sure how or why so many species ended up on a single world, but this is surely a remarkable find."
 	giga_flusion.001.a:0 "Interesting."
-  giga_flusion.001.b:0 "Wait, Katzens and Zuspris...?"
+    giga_flusion.001.b:0 "Wait, Katzens and Zuspris...?"
 
 	giga_flusion.002.name:0 "A Tale of Two Species"
 	giga_flusion.002.desc:0 "Our findings of Katzens and Zuspris on different planets seem to indicate that the world the two species escaped to after Katzenland's destruction is none other than the primitive planet of Flusion!\n\nAlthough, at the time of their discovery on Flusion, both species seemed to have drasticaly regressed technologically. This implies the §YMeopian Expedition 1§! most likely crash-landed on the planet, forcing the few remaining individuals to rebuild practically their entire technological base.\n\nEven though it isn't a particularly important discovery, these findings are nonetheless of great interest to our planetary bioarcheologists. It also shows that, even when things are looking particularly dire for a civilization, one must not cast aside the possibility of their miraculous survival against all odds.\n\nWhich can be both uplifting and terrifying to think about..."
@@ -6582,13 +6582,14 @@
 	giga_flusion.005.desc:0 "After Flusion's destruction caused by the Katzens incinerating the entire planet in nuclear fire, our scientists couldn't help but notice that the Katzens' method of nuclear self-devastation were surprisingly efficient for a primitive species.\n\nAdditionally, Katzenland's archeological records show that its destruction was just as quick as that of Flusion, which further indicates that the Katzens had mastered the art of destroying planets in nuclear hellfire.\n\nThe more... radical elements of our military are suggesting that we reverse-engineer our findings on both of these worlds, in order to effectively adapt the Katzen methods to our planetary bombardment operations.\n\nThis would undoubtedly enable us to devastate worlds with unseen efficiency, although the rest of the galaxy might not be too happy about us destroying entire worlds in atomic fire..."
 	giga_flusion.005.a:0 "A wonderful suggestion! Let us do so at once..."
 	giga_flusion.005.b:0 "Preposterous."
+	giga_flusion.005.c:0 "Curious, but not unique. We already have this ability."
 
 	giga_flusion.201.name:0 "Planet Devastated"
 	giga_flusion.201.desc:0 "Our fleets have now completely destroyed the surface of an enemy planet, eradicating all signs of life and transforming it into a gigantic boiling radioactive desert. The sheer amount of weaponry we unleashed has had the side-effect of \"synthetizing\" some rare resources (that usually only naturally form under extreme conditions) onto the planet's surface, as well.\n\nTruly a beautiful sight."
 	giga_flusion.201.a:0 "The Katzens would be proud, if they weren't all dead."
 
-	bombardment_katzen:0 "Katzen"
-	bombardment_katzen_desc:0 "Based on the methods of the Katzens, $bombardment_katzen$ Bombardment unleashes the full might of nuclear, antimatter and biological weaponry onto the planet's surface.\n- §PApocalyptic§! damage to §YArmies§!\n- §PApocalyptic§! damage to §YPlanet§!\n- §PApocalyptic§! damage to §YPops§!\n- Will bombard undefended planets\n- Can reduce planets to Irradiated Desert Worlds\n - High chance of generating rare resource deposits on devastated worlds\n- Will §Rreduce§! the opinion of foreign empires we are not allied with upon planet devastation, if used on a non-genocidal empire\n- §RThis bombardment stance can, and will, completely ruin the planets it is used on§!"
+	bombardment_katzen:0 "Atomic"
+	bombardment_katzen_desc:0 "$bombardment_katzen$ Bombardment unleashes the full might of nuclear, antimatter and biological weaponry onto the planet's surface.\n- §PApocalyptic§! damage to §YArmies§!\n- §PApocalyptic§! damage to §YPlanet§!\n- §PApocalyptic§! damage to §YPops§!\n- Will bombard undefended planets\n- Can reduce planets to Irradiated Desert Worlds\n - High chance of generating rare resource deposits on devastated worlds\n- Will §Rreduce§! the opinion of foreign empires we are not allied with upon planet devastation, if used on a non-genocidal empire\n- §RThis bombardment stance can, and will, completely ruin the planets it is used on§!"
 
     # bombardment_house_cat_katzen: "$bombardment_katzen$"
 	# bombardment_house_cat_katzen_desc: "$bombardment_katzen_desc$"
@@ -6607,6 +6608,8 @@
 
 	tech_katzen_atomic_munitions:0 "Katzen Atomic Munitions"
 	tech_katzen_atomic_munitions_desc:0 "The extremely militaristic and nuclear-loving Katzens have managed to destroy the surfaces of both Katzenland and Flusion with remarkable ease and efficiency. They seemed to employ a vast array of different explosives in order to deal as much damage as possible, ranging from radioactive fission warheads, to antimatter bombs, and biochemical weaponry. By adopting their methods, our ships could be made to completely devastate enemy worlds with ease."
+	tech_katzen_atomic_munitions_scorched_swap:0 "Reclaimed Atomic Munitions"
+	tech_katzen_atomic_munitions_scorched_swap_desc:0 "An unknown power in the distant past employed an apocalyptic regime of bombardment against our homeworld. They seem to have employed a vast array of different explosives in order to deal as much damage as possible, ranging from radioactive fission warheads, to antimatter bombs, and biochemical weaponry. By taking their methods for our own, we would wield the power to recreate our homeworld's conditions on any planet we choose."
 
 	giga_fusion_age:0 "Fusion Age"
 	giga_fusion_age_desc:0 "This civilization has advanced to the equivalent of a Fusion Age. They have mastered nuclear fusion, and space travel to their local moon system is commonplace. They however still haven't discovered FTL, and interplanetary flight remains scarce. Political unification has yet to be achieved, with the planet harboring several different major nationstates."

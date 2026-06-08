@@ -364,12 +364,12 @@ katzenland_planet_terraformed = {
 	planet_jobs_alloys_produces_mult = 0.075
 }
 
-#modifier to help Scorched Earth origin not die
+#modifier to help Scorched Earth origin not die, and balance out species types with minimum hab
 irradiated_desert_shelters = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_archaeology.dds"
 	icon_frame = 1
 
-	pop_environment_tolerance = 0.4
+	pop_environment_tolerance = 0.3
 }
 
 giga_scorched_tenacity = {
@@ -387,7 +387,7 @@ giga_scorched_everseeking = {
 
 giga_scorched_alloyed_identity = {
 	icon = "gfx/interface/icons/modifiers/mod_faction_approval.dds"
-	council_agenda_progress_speed = 0.4
+	council_agenda_progress_speed = 0.25
 	faction_approval = 0.05
 	pop_factions_produces_mult = 0.2
 }
