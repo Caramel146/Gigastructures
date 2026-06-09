@@ -256,6 +256,7 @@ origin_scorched = {
 	icon = "gfx/interface/icons/origins/origins_post_apocalyptic.dds" #TODO unique
 	picture = GFX_origin_scorched
 	description = origin_tooltip_scorched_effects
+	flags = { custom_start_screen }
 
 	possible = {
 		ethics = {

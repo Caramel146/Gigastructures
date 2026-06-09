@@ -5,7 +5,7 @@
  d_katzenland_glassflats: "Glassflats"
  d_katzenland_glassflats_desc: "Some unthinkably hot past event once melted the sand in this region. It became a frozen ocean of solid glass, useless for almost anything."
  d_katzenland_sandblasting_winds: "Sandblasting Winds"
- d_katzenland_sandblasting_winds_desc: "Grit-filled gusts slowly wear away at any structure (or unlucky organism) sitting in the open for too long."
+ d_katzenland_sandblasting_winds_desc: "Grit-filled gusts relentlessly grind away any structure (or unlucky organism) that sits in the open for too long."
  d_katzenland_frequent_simooms: "Frequent Simooms"
  d_katzenland_frequent_simooms_desc: "This region has endemic intermittent winds hot and dry enough to quickly burn living organisms."
  d_katzenland_roving_dunes: "Roving Dunes"
@@ -42,7 +42,12 @@
  trait_giga_incandescent:0 "Incandescent"
  trait_giga_incandescent_desc: "Tempered in the furnace of a scorched world, this species has an unfaltering drive to endure."
  #origin_tooltip_post_apocalyptic_effects: "- $HOMEWORLD$ ['concept_pc_nuked']$NEW_LINE$- $SPECIES_TRAITS$ ['concept_survivor']" #TODO concepts with this as a reference
- #giga_incandescent_efficiency_trait_tooltip: "Effects on $pc_katzenland$s:$TABBED_NEW_LINE$$MOD_POP_BONUS_WORKFORCE_MULT$: §G+5%§!" #issue here is idk how to make triggered tooltips so this buff can be everywhere
+ giga_incandescent_efficiency_trait_tooltip: "This trait may have other effects depending on our choices during the §Y$giga_situation_scorched$§! situation. Effects other than $MOD_ARMY_DEFENSE_DAMAGE_MULT$ are doubled on §Y$pc_katzenland$s§!." #TODO make the specific effects display somehow. With GigaIncandescentTooltip?
+ # giga_incandescent_society_tooltip: "§Y+5% $biologist_jobs_bonus_workforce_mult$§!"
+ # giga_incandescent_unity_tooltip: ""
+ # giga_incandescent_habitability_floor_tooltip: ""
+ # giga_incandescent_efficiency_tooltip: ""
+ # giga_incandescent_empire_size_pops_tooltip: ""
 
  giga_situation_scorched:0 "Immolated Origins"
  giga_situation_scorched_type:0 "$giga_situation_scorched$"
@@ -54,7 +59,7 @@
 
  #relentless_industrialists_situation_completion_tooltip:0 "§Y[Target.GetName]§! will become a §YTomb World§!.\nFurther effects may happen, depending on the §YApproach§! picked." #TODO
  # giga_situation_scorched_outcome: "The situation will end once we have answered four §YQuestions§! events that will pop up roughly every §Y2 years§!.\n\nThe outcome will depend on which §YStage§! we are in upon the situation's conclusion.\n\n§YQuestions Answered:§! [giga_scorched_questions_answered]/4" #couldn't get this simpler version to work
- giga_situation_scorched_outcome: "The outcome will depend on which §YStage§! we are in upon the situation's conclusion.\n\nThe situation will end once we have answered four §YQuestions§! that will pop up every §Y3 years§!.\n\n§YQuestions Answered:§! [GigaOriginScorchedQuestionsAnswered]"
+ giga_situation_scorched_outcome: "The outcome will depend on which §YStage§! we are in upon the situation's conclusion.\n\nThe situation will end once we have answered four §YQuestions§! that will pop up every §Y3 years§!.\n\n§YQuestions Answered:§! [owner.GigaOriginScorchedQuestionsAnswered]"
  giga_situation_scorched_questions_answered_zero: "0/4"
  giga_situation_scorched_questions_answered_one: "1/4"
  giga_situation_scorched_questions_answered_two: "2/4"
@@ -112,11 +117,11 @@
  giga_scorched.008.name: "Immolated Origins: A New Chapter"
  giga_scorched.008.desc: "What did we lose that day? What is our heritage? What are our proudest moments? What is our homeworld? We have asked, and answered, every question. We have battled with every idea, and looked at ourselves more closely than we may have liked.\n\nNow, communities once rifted by such existential disagreements are tentatively coming back together, embracing around the new story of the [root.GetSpeciesAdj] civilisation. There is one final question, but by now, we already know the answer. Who are we?"
  giga_scorched.008.a.renewal: "We are an ancient race of the stars."
- giga_scorched.008.a.renewal.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y-10% $MOD_EMPIRE_SIZE_POPS_MULT$."
+ giga_scorched.008.a.renewal.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y-10% $MOD_EMPIRE_SIZE_POPS_MULT$§!."
  irradiated_desert_planet_rehabilitated: "Rehabilitated Wasteland"
  irradiated_desert_planet_rehabilitated_desc: "This planet was subjected to untold amounts of nuclear weaponry in the distant past. Its surface still suffers from high background radiation, dust storms, and extreme heatwaves, but is in the process of recovery. The upsides of the the sheer quantity of explosives unleashed on this world are beginning to shine through, since the crust was violently loaded with heavy elements, and minerals were melted into almost alloy-like materials."
  giga_scorched.008.a.synthesis: "Sometimes, answers are complex."
  giga_scorched_alloyed_identity: "Alloyed Identity"
  giga_scorched_alloyed_identity_desc: "Our unity is tempered in the forges of debate, where every obstacle must be faced to be overcome."
  giga_scorched.008.a.continuity: "We are a young race of the wastelands."
- giga_scorched.008.a.continuity.tooltip: "All pops on [root.GetHomeWorldName] will be given the $trait_pc_katzenland_preference$ trait. $trait_pc_katzenland_preference$ will become available for species habitability modification."
+ giga_scorched.008.a.continuity.tooltip: "§Y$trait_pc_katzenland_preference$§! is now available for species habitability modification."

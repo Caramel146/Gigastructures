@@ -1334,6 +1334,12 @@ country_event = {
 		trigger = {
 			has_country_flag = tech_katzen_atomic_munitions_from_scorched
 		}
+		add_monthly_resource_mult = {
+			resource = engineering_research
+			value = @tier4researchreward
+			min = @tier4researchmin
+			max = @tier4researchmax
+		}
 		name = "giga_flusion.005.c"
 	}
 }
@@ -1512,10 +1518,11 @@ planet_event = {
 				modifier = "irradiated_desert_planet"
 				days = -1
 			}
-			while = {
-				count = 12
-				create_katzenland_deposits = yes
-			}
+			# while = {
+			# 	count = 12
+			# 	create_katzenland_deposits = yes
+			# }
+			create_katzenland_deposits_new = yes
 			while = {
 				count = 28
 				random_owned_pop_group = { kill_single_pop = yes }

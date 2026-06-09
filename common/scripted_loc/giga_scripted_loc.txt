@@ -753,3 +753,38 @@ define_text = {
 		localization_key = giga_situation_scorched_questions_answered_four
 	}
 }
+
+# define_text = {
+# 	name = GigaIncandescentTooltip
+# 	default = BLANK_STRING
+# 	text = {
+# 		trigger = {
+# 			has_country_flag = giga_incandescent_society
+# 		}
+# 		localization_key = giga_incandescent_society_tooltip
+# 	}
+# 	text = {
+# 		trigger = {
+# 			has_country_flag = giga_incandescent_unity
+# 		}
+# 		localization_key = giga_incandescent_unity_tooltip
+# 	}
+# 	text = {
+# 		trigger = {
+# 			has_country_flag = giga_incandescent_habitability_floor
+# 		}
+# 		localization_key = giga_incandescent_habitability_floor_tooltip
+# 	}
+# 	text = {
+# 		trigger = {
+# 			has_country_flag = giga_incandescent_efficiency
+# 		}
+# 		localization_key = giga_incandescent_efficiency_tooltip
+# 	}
+# 	text = {
+# 		trigger = {
+# 			has_country_flag = giga_incandescent_empire_size_pops
+# 		}
+# 		localization_key = giga_incandescent_empire_size_pops_tooltip
+# 	}
+# }

@@ -49,52 +49,52 @@ setup_katzenland_planet = {
 	add_deposit = d_bomb_crater
 }
 
-create_katzenland_deposits = {
-	random_list = {
-		30 = {
-			add_deposit = d_radioactive_wasteland
-			add_deposit = d_bomb_crater
-		}
-		20 = {
-			add_deposit = d_searing_desert
-			add_deposit = d_bomb_crater
-		}
-		20 = {
-			add_deposit = d_city_ruins
-			add_deposit = d_radioactive_wasteland
-		}
-		20 = {
-			add_deposit = d_ore_rich_caverns
-			add_deposit = d_tempestous_mountain
-		}
-		20 = {
-			add_deposit = d_arid_highlands
-			add_deposit = d_tempestous_mountain
-		}
-		20 = {
-			add_deposit = d_betharian_deposit
-			add_deposit = d_ore_rich_caverns
-		}
-		20 = {
-			add_deposit = d_bubbling_swamp
-			add_deposit = d_ore_rich_caverns
-		}
-		20 = {
-			add_deposit = d_dust_caverns
-			add_deposit = d_radioactive_wasteland
-		}
-		20 = {
-			add_deposit = d_crystalline_caverns
-		}
-		15 = {
-			add_deposit = d_arid_highlands
-			add_deposit = d_rich_mountain
-		}
-		10 = {
-			add_deposit = d_dust_desert
-		}
-	}
-}
+# create_katzenland_deposits = {
+# 	random_list = {
+# 		30 = {
+# 			add_deposit = d_radioactive_wasteland
+# 			add_deposit = d_bomb_crater
+# 		}
+# 		20 = {
+# 			add_deposit = d_searing_desert
+# 			add_deposit = d_bomb_crater
+# 		}
+# 		20 = {
+# 			add_deposit = d_city_ruins
+# 			add_deposit = d_radioactive_wasteland
+# 		}
+# 		20 = {
+# 			add_deposit = d_ore_rich_caverns
+# 			add_deposit = d_tempestous_mountain
+# 		}
+# 		20 = {
+# 			add_deposit = d_arid_highlands
+# 			add_deposit = d_tempestous_mountain
+# 		}
+# 		20 = {
+# 			add_deposit = d_betharian_deposit
+# 			add_deposit = d_ore_rich_caverns
+# 		}
+# 		20 = {
+# 			add_deposit = d_bubbling_swamp
+# 			add_deposit = d_ore_rich_caverns
+# 		}
+# 		20 = {
+# 			add_deposit = d_dust_caverns
+# 			add_deposit = d_radioactive_wasteland
+# 		}
+# 		20 = {
+# 			add_deposit = d_crystalline_caverns
+# 		}
+# 		15 = {
+# 			add_deposit = d_arid_highlands
+# 			add_deposit = d_rich_mountain
+# 		}
+# 		10 = {
+# 			add_deposit = d_dust_desert
+# 		}
+# 	}
+# }
 
 create_katzenland_deposits_new = {
 	export_trigger_value_to_variable = {
@@ -264,19 +264,19 @@ create_katzenland_deposits_new = {
 		}
 	}
 
-	#If it's a homeworld (origin), guarantee sufficient food - but still random enough
+	#If it's a homeworld (origin), guarantee sufficient food
 	#Let's say their ancestors have explored planetary resources better
 	if = {
 		limit = {
 			is_capital = yes
 		}
-		while = {
-			limit = {
-				num_free_districts = {
-					type = district_farming
-					value > 4
-				}
-			}
+		# while = {
+		# 	limit = {
+		# 		num_free_districts = {
+		# 			type = district_farming
+		# 			value > 4
+		# 		}
+		# 	}
 			random_list = {
 				1 = {
 					add_deposit = d_katzenland_radiothermal_bore
@@ -288,7 +288,7 @@ create_katzenland_deposits_new = {
 					add_deposit = d_katzenland_salt_lake
 				}
 			}
-		}
+		# }
 	}
 
 	#if it's a random/new world, roll special deposits
