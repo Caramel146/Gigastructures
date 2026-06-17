@@ -1697,16 +1697,19 @@ country_event = {
 			which = ehof_phase
 			value > 0
 		}
-		any_system_within_border = {
-			has_star_flag = ehof_megastructure_system@root
-			any_fleet_in_system = {
-				can_use_ehof = yes
-				is_mobile = yes
-				exists = controller
-				controller = {
-					is_same_value = root
+		OR = {
+			any_system_within_border = {
+				has_star_flag = ehof_megastructure_system@root
+				any_fleet_in_system = {
+					can_use_ehof = yes
+					is_mobile = yes
+					exists = controller
+					controller = {
+						is_same_value = root
+					}
 				}
 			}
+			has_country_flag = ehof_spinal_mount_possessed
 		}
 		NOR = {
 			has_country_flag = ehof_can_activate
