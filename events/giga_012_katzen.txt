@@ -9060,10 +9060,12 @@ country_event = {
 					is_planet_class = pc_flusion_gaia_ecu
 					NOT = { has_planet_flag = flusion_fully_built_up }
 				}
-				planet_event = { id = giga_katzen.0801 }
+				planet_event = { id = giga_katzen.0801 } #manage Flusio-arcology
 			}
 		}
 		set_update_modifiers_batch = end
+
+
 	}
 }
 

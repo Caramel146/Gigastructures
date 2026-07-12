@@ -10614,6 +10614,16 @@ country_event = {
 			limit = { is_ai = no }
 			country_event = { id = giga_katrebels.00176 }
 		}
+		every_country = {
+			limit = {
+				OR = {
+					has_modifier = contributing_ezic_1
+					has_modifier = contributing_ezic_2
+					has_modifier = contributing_ezic_3
+				}
+			}
+			clear_contribute_ezic_modifiers = yes
+		}
 		event_target:eziccountry = {
 			if = {
 				limit = { any_owned_ship = { is_ship_size = giga_katzen_submarine } }
