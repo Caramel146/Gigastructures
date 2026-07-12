@@ -8913,7 +8913,7 @@ planet_event = { #Every 6 months, warforges will randomly create a fleet
 }
 
 ###FLUSION EXPANSION###
-#Flusion slowly expands, gaining 200 pops per year.
+#Flusion slowly expands
 country_event = {
 	id = giga_katzen.080
 
@@ -8927,280 +8927,768 @@ country_event = {
 	}
 
 	immediate = {
-		set_update_modifiers_batch = begin
-		country_event = { id = giga_katzen.080 days = 360 }
+		country_event = { id = giga_katzen.080 days = 330 random = 60 } #run event again in approximately a year
+		
+		# event_target:gigaflusion = {
+		# 	change_variable = {
+		# 		which = years_since_kaiser_spawned
+		# 		value = 1
+		# 	}
+		# 	if = { #After 2 years, clear all blockers
+		# 		limit = {
+		# 			check_variable = {
+		# 				which = years_since_kaiser_spawned
+		# 				value >= 2
+		# 			}
+		# 			NOT = { has_planet_flag = kaiser_cleared_flusion_blockers }
+		# 			has_orbital_bombardment = no
+		# 			has_ground_combat = no
+		# 		}
+		# 		set_planet_flag = kaiser_cleared_flusion_blockers
+		# 		clear_blockers = yes
+		# 	}
+		# 	if = { #After 5 years, build orbital arcology
+		# 		limit = {
+		# 			check_variable = {
+		# 				which = years_since_kaiser_spawned
+		# 				value >= 5
+		# 			}
+		# 			has_orbital_bombardment = no
+		# 			has_ground_combat = no
+		# 			NOT = { has_planet_flag = kaiser_built_orbital_arcology }
+		# 			event_target:giga_jublio_system = { starbase = { owner = { is_country_type = katzenartig_imperium } } }
+		# 		}
+		# 		set_planet_flag = kaiser_built_orbital_arcology
+		# 		set_planet_flag = orbital_arcology
+		# 		solar_system = {
+		# 			spawn_megastructure = {
+		# 				type = orbital_arcology_1
+		# 				planet = event_target:gigaflusion
+		# 				owner = event_target:flusion_primitives_country
+		# 			}
+		# 		}
+		# 	}
+		# 	if = { #After 10 years, spawn defences
+		# 		limit = {
+		# 			check_variable = {
+		# 				which = years_since_kaiser_spawned
+		# 				value >= 10
+		# 			}
+		# 			has_orbital_bombardment = no
+		# 			has_ground_combat = no
+		# 			NOT = { has_planet_flag = kaiser_built_flusion_defenses_1 }
+		# 			event_target:giga_jublio_system = { starbase = { owner = { is_country_type = katzenartig_imperium } } }
+		# 		}
+		# 		set_planet_flag = kaiser_built_flusion_defenses_1
+		# 		ROOT = {
+		# 			create_fleet = { #Flusion defenses
+		# 				name = "Katzenplanetenverteidigung"
+		# 				settings = {
+		# 					spawn_debris = no
+		# 				}
+		# 				effect = {
+		# 					set_owner = event_target:flusion_primitives_country
+		# 					create_ship = {
+		# 						name = "Katzenplanetenverteidigung"
+		# 						design = "Meoder"
+		# 						upgradable = no
+		# 					}
+		# 					set_location = {
+		# 						target = event_target:gigaflusion
+		# 						distance = 10
+		# 						angle = 90
+		# 					}
+		# 					set_fleet_flag = katzen_planet_platform
+		# 				}
+		# 			}
+		# 			create_fleet = {
+		# 				name = "Katzenplanetenverteidigung"
+		# 				settings = {
+		# 					spawn_debris = no
+		# 				}
+		# 				effect = {
+		# 					set_owner = event_target:flusion_primitives_country
+		# 					create_ship = {
+		# 						name = "Katzenplanetenverteidigung"
+		# 						design = "Meoder"
+		# 						upgradable = no
+		# 					}
+		# 					set_location = {
+		# 						target = event_target:gigaflusion
+		# 						distance = 10
+		# 						angle = 270
+		# 					}
+		# 					set_fleet_flag = katzen_planet_platform
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			has_orbital_bombardment = no
+		# 			has_ground_combat = no
+		# 		}
+		# 		#Create 2 pops
+		# 		while = {
+		# 			count = 2
+		# 			random_list = {
+		# 				2 = { create_pop_group = { species = event_target:flusion_katzens } }
+		# 				1 = { create_pop_group = { species = event_target:flusionians } }
+		# 				1 = { create_pop_group = { species = event_target:solakians } }
+		# 				1 = { create_pop_group = { species = event_target:arcticezics } }
+		# 				1 = { create_pop_group = { species = event_target:kronks } }
+		# 			}
+		# 		}
+		# 	}
+		# 	if = {
+		# 		limit = { #Flusio-Arcology!
+		# 			count_owned_pop_amount = { count >= 9000 } #its over 9000!
+		# 			NOT = { is_planet_class = pc_flusion_gaia_ecu }
+		# 			has_orbital_bombardment = no
+		# 			has_ground_combat = no
+		# 		}
+        #         giga_make_flusio_arcology = yes
+		#
+		# 		every_country = {
+		# 			limit = { is_ai = no }
+		# 			country_event = { id = giga_katzen.6001 }
+		# 		}
+		# 	}
+		# 	if = {
+		# 		limit = {
+		# 			is_planet_class = pc_flusion_gaia_ecu
+		# 			NOT = { has_planet_flag = flusion_fully_built_up }
+		# 		}
+		# 		planet_event = { id = giga_katzen.0801 } #manage Flusio-arcology
+		# 	}
+		# }
+
 		event_target:gigaflusion = {
+			set_update_modifiers_batch = begin
 			change_variable = {
-				which = years_since_kaiser_spawned
+				which = years_since_kaiser_spawned #not strictly a year but it is on average
 				value = 1
 			}
-			if = { #After 2 years, clear all blockers
-				limit = {
-					check_variable = {
-						which = years_since_kaiser_spawned
-						value >= 2
-					}
-					NOT = { has_planet_flag = kaiser_cleared_flusion_blockers }
-					has_orbital_bombardment = no
-					has_ground_combat = no
-				}
-				set_planet_flag = kaiser_cleared_flusion_blockers
-				clear_blockers = yes
-			}
-			if = { #After 5 years, build orbital arcology
-				limit = {
-					check_variable = {
-						which = years_since_kaiser_spawned
-						value >= 5
-					}
-					has_orbital_bombardment = no
-					has_ground_combat = no
-					NOT = { has_planet_flag = kaiser_built_orbital_arcology }
-					event_target:giga_jublio_system = { starbase = { owner = { is_country_type = katzenartig_imperium } } }
-				}
-				set_planet_flag = kaiser_built_orbital_arcology
-				set_planet_flag = orbital_arcology
-				solar_system = {
-					spawn_megastructure = {
-						type = orbital_arcology_1
-						planet = event_target:gigaflusion
-						owner = event_target:flusion_primitives_country
-					}
-				}
-			}
-			if = { #After 10 years, spawn defences
-				limit = {
-					check_variable = {
-						which = years_since_kaiser_spawned
-						value >= 10
-					}
-					has_orbital_bombardment = no
-					has_ground_combat = no
-					NOT = { has_planet_flag = kaiser_built_flusion_defenses_1 }
-					event_target:giga_jublio_system = { starbase = { owner = { is_country_type = katzenartig_imperium } } }
-				}
-				set_planet_flag = kaiser_built_flusion_defenses_1
-				ROOT = {
-					create_fleet = { #Flusion defenses
-						name = "Katzenplanetenverteidigung"
-						settings = {
-							spawn_debris = no
-						}
-						effect = {
-							set_owner = event_target:flusion_primitives_country
-							create_ship = {
-								name = "Katzenplanetenverteidigung"
-								design = "Meoder"
-								upgradable = no
-							}
-							set_location = {
-								target = event_target:gigaflusion
-								distance = 10
-								angle = 90
-							}
-							set_fleet_flag = katzen_planet_platform
-						}
-					}
-					create_fleet = {
-						name = "Katzenplanetenverteidigung"
-						settings = {
-							spawn_debris = no
-						}
-						effect = {
-							set_owner = event_target:flusion_primitives_country
-							create_ship = {
-								name = "Katzenplanetenverteidigung"
-								design = "Meoder"
-								upgradable = no
-							}
-							set_location = {
-								target = event_target:gigaflusion
-								distance = 10
-								angle = 270
-							}
-							set_fleet_flag = katzen_planet_platform
-						}
-					}
-				}
-			}
+
 			if = {
-				limit = {
+				limit = { #don't develop if the planet is in active conflict
 					has_orbital_bombardment = no
 					has_ground_combat = no
 				}
-				#Create 2 pops
-				while = {
-					count = 2
+
+				random_list = { #roll to build orbital defences
+					100 = {
+					}
+					0 = { #Orbital defences 1
+						create_fleet = {
+							name = "Katzenplanetenverteidigung"
+							settings = {
+								spawn_debris = no
+							}
+							effect = {
+								set_owner = event_target:flusion_primitives_country
+								create_ship = {
+									name = "Katzenplanetenverteidigung"
+									design = "Meoder"
+									upgradable = no
+								}
+								set_location = {
+									target = event_target:gigaflusion
+									distance = 10
+									angle = 90
+								}
+								set_fleet_flag = katzen_planet_platform
+							}
+						}
+						set_carrier_flag = kaiser_built_flusion_defenses_1
+						modifier = {
+							add = years_since_kaiser_spawned
+						}
+						modifier = {
+							subtract = 5 #effectively demands a minimum of this many years passed
+						}
+						modifier = {
+							factor = 0
+							has_carrier_flag = kaiser_built_flusion_defenses_1
+						}
+						modifier = {
+							factor = 0
+							solar_system = {
+								NOT = {
+									starbase? = {
+										owner = { is_country_type = katzenartig_imperium }
+									}
+								}
+							}
+						}
+					}
+					0 = { #Orbital defences 2
+						create_fleet = {
+							name = "Katzenplanetenverteidigung"
+							settings = {
+								spawn_debris = no
+							}
+							effect = {
+								set_owner = event_target:flusion_primitives_country
+								create_ship = {
+									name = "Katzenplanetenverteidigung"
+									design = "Meoder"
+									upgradable = no
+								}
+								set_location = {
+									target = event_target:gigaflusion
+									distance = 10
+									angle = 270
+								}
+								set_fleet_flag = katzen_planet_platform
+							}
+						}
+						set_carrier_flag = kaiser_built_flusion_defenses_2
+						modifier = {
+							add = years_since_kaiser_spawned
+						}
+						modifier = {
+							subtract = 10 #effectively demands a minimum of this many years passed
+						}
+						modifier = {
+							factor = 0
+							has_carrier_flag = kaiser_built_flusion_defenses_2
+						}
+						modifier = {
+							factor = 0
+							solar_system = {
+								NOT = {
+									starbase? = {
+										owner = { is_country_type = katzenartig_imperium }
+									}
+								}
+							}
+						}
+					}
+				}
+
+				##### this section deliberately runs a specific order of else_ifs to weigh Flusion's development priorities
+
+				if = { #run cleanup efforts!
+					limit = {
+						planet_devastation > 20
+					}
+					add_planet_devastation = 15
+				}
+
+				else_if = { #if it's not devastation keeping housing down, see if we can build some districts!
+					limit = {
+						OR = { #only if near capacity
+							free_housing <= 1000
+							free_jobs <= 500
+						}
+						OR = {
+							num_free_districts = {
+								type = district_city
+								value > 0
+							}
+							num_free_districts = {
+								type = district_arcology_housing #district_flusion_city
+								value > 0
+							}
+						}
+					}
 					random_list = {
-						2 = { create_pop_group = { species = event_target:flusion_katzens } }
-						1 = { create_pop_group = { species = event_target:flusionians } }
-						1 = { create_pop_group = { species = event_target:solakians } }
-						1 = { create_pop_group = { species = event_target:arcticezics } }
-						1 = { create_pop_group = { species = event_target:kronks } }
+						15 = {
+							if = {
+								limit = { is_planet_class = pc_flusion_gaia_ecu }
+								add_district = district_arcology_housing #district_flusion_city
+							}
+							else = {
+								add_district = district_city
+							}
+							modifier = { #much more likely if Flusion desperately needs housing
+								factor = 10
+								free_housing <= 0
+							}
+						}
+						5 = {
+							if = {
+								limit = { is_planet_class = pc_flusion_gaia_ecu }
+								add_district = district_arcology_urban_1 #district_flusion_heavy_industry
+							}
+							else = {
+								add_district = district_generator
+							}
+							modifier = { #more likely if Flusion has few districts of this type. Also means more rural development early, then more city development during Eperopolis Program!
+								factor = 2
+								AND = {
+									NOT = { is_planet_class = pc_flusion_gaia_ecu }
+									num_districts = { type = district_generator value < 4 }
+								}
+							}
+							modifier = { #more likely if Flusion has few districts of this type (Flusioarc version)
+								factor = 2
+								AND = {
+									is_planet_class = pc_flusion_gaia_ecu
+									num_districts = { type = district_arcology_urban_1 value < 8 }
+								}
+							}
+						}
+						5 = {
+							if = {
+								limit = { is_planet_class = pc_flusion_gaia_ecu }
+								add_district = district_arcology_urban_2 #district_flusion_mining
+							}
+							else = {
+								add_district = district_mining
+							}
+							modifier = { #more likely if Flusion has few districts of this type. Also means more rural development early, then more city development during Eperopolis Program!
+								factor = 2
+								AND = {
+									NOT = { is_planet_class = pc_flusion_gaia_ecu }
+									num_districts = { type = district_mining value < 4 }
+								}
+							}
+							modifier = { #more likely if Flusion has few districts of this type (Flusioarc version)
+								factor = 2
+								AND = {
+									is_planet_class = pc_flusion_gaia_ecu
+									num_districts = { type = district_arcology_urban_2 value < 8 }
+								}
+							}
+						}
+						5 = {
+							if = {
+								limit = { is_planet_class = pc_flusion_gaia_ecu }
+								add_district = district_arcology_urban_3 #district_flusion_farming
+							}
+							else = {
+								add_district = district_farming
+							}
+							modifier = { #more likely if Flusion has few districts of this type. Also means more rural development early, then more city development during Eperopolis Program!
+								factor = 2
+								AND = {
+									NOT = { is_planet_class = pc_flusion_gaia_ecu }
+									num_districts = { type = district_farming value < 4 }
+								}
+							}
+							modifier = { #more likely if Flusion has few districts of this type (Flusioarc version)
+								factor = 2
+								AND = {
+									is_planet_class = pc_flusion_gaia_ecu
+									num_districts = { type = district_arcology_urban_3 value < 8 }
+								}
+							}
+						}
+					}
+				}
+
+				else_if = { #if there's no space for another district, maybe we need to clear a blocker
+					limit = {
+						any_deposit = { is_blocker = yes }
+					}
+					random_deposit = {
+						limit = { is_blocker = yes }
+						remove_deposit = yes
+					}
+				}
+
+				else_if = { #no room for normal city districts? Build orbital infrastructure (no Overlord DLC)
+					limit = {
+						OR = { #only if near capacity
+							free_housing <= 1000
+							free_jobs <= 500
+						}
+						solar_system = {
+							starbase? = {
+								owner = { is_country_type = katzenartig_imperium }
+							}
+						}
+						NOR = {
+							has_planet_flag = orbital_arcology
+							has_global_flag = orbital_arcologies_disabled
+						}
+						has_overlord_dlc = no #it's an orbital ring building with Overlord
+					}
+					set_planet_flag = orbital_arcology
+					solar_system = {
+						spawn_megastructure = {
+							type = orbital_arcology_1
+							planet = event_target:gigaflusion
+							owner = event_target:flusion_primitives_country
+						}
+					}
+				}
+
+				else_if = { #no room for normal city districts? Build orbital infrastructure (Overlord DLC)
+					limit = {
+						OR = { #only if near capacity, with a time-based backup since rings boost jobs as well as available space
+							free_housing <= 1000
+							free_jobs <= 500
+							check_variable = {
+								which = years_since_kaiser_spawned
+								value >= 20
+							}
+						}
+						solar_system = {
+							starbase? = {
+								owner = { is_country_type = katzenartig_imperium }
+							}
+						}
+						NOT = { #blocks duplicates - taken from orbital ring mega
+							exists = orbital_defence
+							solar_system = {
+								any_system_megastructure = {
+									giga_is_orbital_ring = yes
+									# check planet
+									exists = planet
+									planet = {
+										has_carrier_flag = gigaflusion
+									}
+								}
+							}
+						}
+						NOT = { has_carrier_flag = flusion_has_orbital_ring_1 }
+						has_overlord_dlc = yes
+					}
+					giga_set_has_mega_flag = yes
+					set_carrier_flag = flusion_has_orbital_ring_1
+					create_starbase = {
+						size = orbital_ring_tier_1
+						owner = event_target:flusion_primitives_country
+						module = orbital_ring_habitation
+						module = orbital_ring_habitation
+					}
+				}
+
+				else_if = { #upgrade orbital ring to level 2
+					limit = {
+						OR = { #only if near capacity, with a time-based backup since rings boost jobs as well as available space
+							free_housing <= 1000
+							free_jobs <= 500
+							check_variable = {
+								which = years_since_kaiser_spawned
+								value >= 30
+							}
+						}
+						solar_system = {
+							starbase? = {
+								owner = { is_country_type = katzenartig_imperium }
+							}
+						}
+						has_carrier_flag = flusion_has_orbital_ring_1
+						NOT = { has_carrier_flag = flusion_has_orbital_ring_2 }
+					}
+					set_carrier_flag = flusion_has_orbital_ring_2
+					orbital_defence = { #remove old orbital ring
+						starbase = {
+							fleet = {
+								destroy_fleet = this
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_global_flag = orbital_arcologies_disabled
+						}
+						create_starbase = {
+							size = orbital_ring_tier_2
+							owner = event_target:flusion_primitives_country
+							module = orbital_ring_habitation
+							module = orbital_ring_habitation
+							module = orbital_ring_habitation
+							building = ring_alloys_hub
+						}
+					}
+					else = {
+						create_starbase = {
+							size = orbital_ring_tier_2
+							owner = event_target:flusion_primitives_country
+							module = orbital_ring_habitation
+							module = orbital_ring_habitation
+							module = orbital_ring_habitation
+							building = ring_giga_orbital_arcology
+						}
+					}
+				}
+
+				else_if = { #upgrade orbital ring to level 3
+					limit = {
+						OR = { #only if near capacity, with a time-based backup since rings boost jobs as well as available space
+							free_housing <= 1000
+							free_jobs <= 500
+							check_variable = {
+								which = years_since_kaiser_spawned
+								value >= 40
+							}
+						}
+						solar_system = {
+							starbase? = {
+								owner = { is_country_type = katzenartig_imperium }
+							}
+						}
+						has_carrier_flag = flusion_has_orbital_ring_2
+						NOT = { has_carrier_flag = flusion_has_orbital_ring_3 }
+					}
+					set_carrier_flag = flusion_has_orbital_ring_3
+					orbital_defence = { #remove old orbital ring
+						starbase = {
+							fleet = {
+								destroy_fleet = this
+							}
+						}
+					}
+					if = {
+						limit = {
+							has_global_flag = orbital_arcologies_disabled
+						}
+						create_starbase = {
+							size = orbital_ring_tier_3
+							owner = event_target:flusion_primitives_country
+
+							module = orbital_ring_habitation
+							module = orbital_ring_habitation
+							module = orbital_ring_habitation
+							module = orbital_ring_habitation
+							building = ring_alloys_hub
+							building = ring_minerals_hub
+						}
+					}
+					else = {
+						create_starbase = {
+							size = orbital_ring_tier_3
+							owner = event_target:flusion_primitives_country
+
+							module = orbital_ring_habitation
+							module = orbital_ring_habitation
+							module = orbital_ring_habitation
+							module = orbital_ring_habitation
+							building = ring_giga_orbital_arcology
+							building = ring_alloys_hub
+						}
+					}
+				}
+
+				else_if = { #we must be fully developed given the space available. Begin the megacity program!
+					limit = {
+						OR = { #only if near capacity
+							free_housing <= 1000
+							free_jobs <= 500
+						}
+						NOT = { has_carrier_flag = megacity_program_begun }
+					}
+					set_planet_flag = megacity_program_begun
+					add_deposit = d_flusion_katown_central
+					every_country = {
+						limit = { is_ai = no }
+						country_event = { id = giga_katzen.6000 } #inform that megacity program has begun
+					}
+				}
+
+				else_if = { #megacity program is underway. Continue or complete it.
+					limit = {
+						OR = { #only if near capacity
+							free_housing <= 1000
+							free_jobs <= 500
+						}
+						NOT = { has_carrier_flag = megacity_program_complete }
+					}
+					if = { #Central Katown again just to be safe in case it gets removed.
+						limit = { NOT = { has_deposit = d_flusion_katown_central } }
+						add_deposit = d_flusion_katown_central
+					}
+					else_if = {
+						limit = { NOT = { has_deposit = d_flusion_bundengrad } }
+						add_deposit = d_flusion_bundengrad
+					}
+					else_if = {
+						limit = { NOT = { has_deposit = d_flusion_katown_submerged } }
+						add_deposit = d_flusion_katown_submerged
+					}
+					else_if = {
+						limit = { NOT = { has_deposit = d_flusion_teho } }
+						add_deposit = d_flusion_teho
+					}
+					else_if = {
+						limit = { NOT = { has_deposit = d_flusion_lutecien } }
+						add_deposit = d_flusion_lutecien
+					}
+					else_if = {
+						limit = { NOT = { has_deposit = d_flusion_uranstadt } }
+						add_deposit = d_flusion_uranstadt
+					}
+					else_if = {
+						limit = { NOT = { has_deposit = d_flusion_grosslaurendaar } }
+						add_deposit = d_flusion_grosslaurendaar
+					}
+					else_if = {
+						limit = { NOT = { has_deposit = d_flusion_katown_outer } }
+						giga_make_flusio_arcology = yes #includes adding d_flusion_katown_outer
+						set_carrier_flag = megacity_program_complete
+						every_country = {
+							limit = { is_ai = no }
+							country_event = { id = giga_katzen.6001 } #inform that megacity program is complete
+						}
+					}
+				}
+
+				else = { #no need to build up yet. Run a minor pseudo-Nutritional Plenitude effect
+					random_owned_pop_group = {
+						limit = { #with a couple limits for optimal Katzenlife pops
+							is_robot_pop_group = no
+							species = {
+								NOR = {
+									can_think = no
+									has_trait = trait_exd
+									has_trait = trait_hive_mind
+									has_trait = trait_humanoid_psychological_infertility
+								}
+							}
+						}
+						species = { save_event_target_as = flusion_growth_species }
+					}
+					create_pop_group = {
+						size = 150
+						random = 50 #therefore 100-200 pops
+						species = event_target:flusion_growth_species
+						ethos = random
 					}
 				}
 			}
-			if = {
-				limit = { #Flusio-Arcology!
-					count_owned_pop_amount = { count >= 9000 } #its over 9000!
-					NOT = { is_planet_class = pc_flusion_gaia_ecu }
-					has_orbital_bombardment = no
-					has_ground_combat = no
-				}
-                giga_make_flusio_arcology = yes
-
-				every_country = {
-					limit = { is_ai = no }
-					country_event = { id = giga_katzen.6001 }
-				}
-			}
-			if = {
-				limit = {
-					is_planet_class = pc_flusion_gaia_ecu
-					NOT = { has_planet_flag = flusion_fully_built_up }
-				}
-				planet_event = { id = giga_katzen.0801 } #manage Flusio-arcology
-			}
+			set_update_modifiers_batch = end
 		}
-		set_update_modifiers_batch = end
-
-
 	}
 }
 
 #Manage flusio-arcology
-planet_event = {
-	id = giga_katzen.0801
-
-	is_triggered_only = yes
-	hide_window = yes
-
-	trigger = {
-		is_planet_class = pc_flusion_gaia_ecu
-		NOT = { has_planet_flag = flusion_fully_built_up }
-	}
-
-	immediate = {
-		set_update_modifiers_batch = begin
-		if = {
-			limit = {
-				OR = {
-					free_district_slots = 0
-					free_district_slots < 0
-				}
-			}
-			set_planet_flag = flusion_fully_built_up
-			event_target:flusion_primitives_country = {
-				set_country_flag = kaiser_flusion_fully_built_up
-			}
-		}
-		set_variable = {
-			which = giga_flusion_habitability_value
-			value = 0
-		}
-		set_variable = {
-			which = giga_flusion_extra_district_count_unemployed
-			value = 0
-		}
-		set_variable = {
-			which = giga_flusion_district_slots
-			value = 0
-		}
-		set_variable = {
-			which = giga_flusion_pop_count_value
-			value = 0
-		}
-		export_trigger_value_to_variable = {
-			trigger = pop_amount
-			variable = giga_flusion_pop_count_value
-		}
-		if = {
-			limit = {
-                free_housing < 0
-			}
-			while = {
-				limit = {
-                    free_housing < 0
-				}
-				add_district = district_flusion_city
-			}
-		}
-		#If unemployment, fix!!
-		if = {
-			limit = { num_unemployed > 1 free_district_slots > 0 }
-			export_trigger_value_to_variable = {
-				trigger = habitability
-				variable = giga_flusion_habitability_value
-			}
-			export_trigger_value_to_variable = {
-				trigger = num_unemployed
-				variable = giga_flusion_extra_district_count_unemployed
-			}
-			divide_variable = {
-				which = giga_flusion_extra_district_count_unemployed
-				value = 10
-			}
-			ceiling_variable = giga_flusion_extra_district_count_unemployed
-			export_trigger_value_to_variable = {
-				trigger = free_district_slots
-				variable = giga_flusion_district_slots
-			}
-			if = {
-				limit = { #equalize if more districts than possible
-					check_variable = {
-						which = giga_flusion_extra_district_count_unemployed
-						value > giga_flusion_district_slots
-					}
-				}
-				set_variable = {
-					which = giga_flusion_extra_district_count_unemployed
-					value = giga_flusion_district_slots
-				}
-			}
-			while = {
-				count = giga_flusion_extra_district_count_unemployed
-				random_list = {
-					10 = {
-						add_district = district_flusion_heavy_industry
-						modifier = {
-							add = 1000
-							event_target:flusion_primitives_country = {
-								check_variable = {
-									which = kaiser_resource_balance
-									value < 5
-								}
-							}
-						}
-					}
-					10 = {
-						add_district = district_flusion_mining
-						modifier = {
-							add = 1000
-							event_target:flusion_primitives_country = {
-								check_variable = {
-									which = kaiser_resource_balance
-									value < 5
-								}
-							}
-						}
-					}
-					#10 = { add_district = district_flusion_science }
-					10 = {
-						add_district = district_flusion_farming
-						modifier = {
-							add = 1000
-							check_variable = {
-								which = giga_flusion_habitability_value
-								value < 0.6
-							}
-						}
-					}
-				}
-			}
-		}
-		set_update_modifiers_batch = end
-	}
-}
+# planet_event = {
+# 	id = giga_katzen.0801
+#
+# 	is_triggered_only = yes
+# 	hide_window = yes
+#
+# 	trigger = {
+# 		is_planet_class = pc_flusion_gaia_ecu
+# 		NOT = { has_planet_flag = flusion_fully_built_up }
+# 	}
+#
+# 	immediate = {
+# 		set_update_modifiers_batch = begin
+# 		if = {
+# 			limit = {
+# 				OR = {
+# 					free_district_slots = 0
+# 					free_district_slots < 0
+# 				}
+# 			}
+# 			set_planet_flag = flusion_fully_built_up
+# 			event_target:flusion_primitives_country = {
+# 				set_country_flag = kaiser_flusion_fully_built_up
+# 			}
+# 		}
+# 		set_variable = {
+# 			which = giga_flusion_habitability_value
+# 			value = 0
+# 		}
+# 		set_variable = {
+# 			which = giga_flusion_extra_district_count_unemployed
+# 			value = 0
+# 		}
+# 		set_variable = {
+# 			which = giga_flusion_district_slots
+# 			value = 0
+# 		}
+# 		set_variable = {
+# 			which = giga_flusion_pop_count_value
+# 			value = 0
+# 		}
+# 		export_trigger_value_to_variable = {
+# 			trigger = pop_amount
+# 			variable = giga_flusion_pop_count_value
+# 		}
+# 		if = {
+# 			limit = {
+#                 free_housing < 0
+# 			}
+# 			while = {
+# 				limit = {
+#                     free_housing < 0
+# 				}
+# 				add_district = district_flusion_city
+# 			}
+# 		}
+# 		#If unemployment, fix!!
+# 		if = {
+# 			limit = { num_unemployed > 1 free_district_slots > 0 }
+# 			export_trigger_value_to_variable = {
+# 				trigger = habitability
+# 				variable = giga_flusion_habitability_value
+# 			}
+# 			export_trigger_value_to_variable = {
+# 				trigger = num_unemployed
+# 				variable = giga_flusion_extra_district_count_unemployed
+# 			}
+# 			divide_variable = {
+# 				which = giga_flusion_extra_district_count_unemployed
+# 				value = 10
+# 			}
+# 			ceiling_variable = giga_flusion_extra_district_count_unemployed
+# 			export_trigger_value_to_variable = {
+# 				trigger = free_district_slots
+# 				variable = giga_flusion_district_slots
+# 			}
+# 			if = {
+# 				limit = { #equalize if more districts than possible
+# 					check_variable = {
+# 						which = giga_flusion_extra_district_count_unemployed
+# 						value > giga_flusion_district_slots
+# 					}
+# 				}
+# 				set_variable = {
+# 					which = giga_flusion_extra_district_count_unemployed
+# 					value = giga_flusion_district_slots
+# 				}
+# 			}
+# 			while = {
+# 				count = giga_flusion_extra_district_count_unemployed
+# 				random_list = {
+# 					10 = {
+# 						add_district = district_flusion_heavy_industry
+# 						modifier = {
+# 							add = 1000
+# 							event_target:flusion_primitives_country = {
+# 								check_variable = {
+# 									which = kaiser_resource_balance
+# 									value < 5
+# 								}
+# 							}
+# 						}
+# 					}
+# 					10 = {
+# 						add_district = district_flusion_mining
+# 						modifier = {
+# 							add = 1000
+# 							event_target:flusion_primitives_country = {
+# 								check_variable = {
+# 									which = kaiser_resource_balance
+# 									value < 5
+# 								}
+# 							}
+# 						}
+# 					}
+# 					#10 = { add_district = district_flusion_science }
+# 					10 = {
+# 						add_district = district_flusion_farming
+# 						modifier = {
+# 							add = 1000
+# 							check_variable = {
+# 								which = giga_flusion_habitability_value
+# 								value < 0.6
+# 							}
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+# 		set_update_modifiers_batch = end
+# 	}
+# }
 
 country_event = { #20 years
 	id = giga_katzen.082
@@ -11991,7 +12479,10 @@ planet_event = { #After 3 years, begin developping it based on specialization
 					modifier = {
 						factor = 0
 						event_target:gigaflusion = {
-							has_planet_flag = flusion_fully_built_up
+							AND = { #only if there's room
+								free_housing > 1000
+								free_jobs > 0
+							}
 						}
 					}
 				}
@@ -12029,7 +12520,7 @@ planet_event = { #After 3 years, begin developping it based on specialization
 					value > giga_katzen_planet_max_num_pops
 				}
 				event_target:gigaflusion = {
-					NOT = { has_planet_flag = flusion_fully_built_up }
+					NOT = { free_housing <= 100 }
 				}
 			}
 			while = {
@@ -12230,7 +12721,7 @@ planet_event = { #After 3 years, add fortresses (fun times)
 					modifier = {
 						factor = 0
 						event_target:gigaflusion = {
-							NOT = { has_planet_flag = flusion_fully_built_up }
+							NOT = { free_housing <= 100 }
 						}
 					}
 				}
@@ -12316,7 +12807,7 @@ planet_event = { #After 5 more years, turn it into a real siegfried world (do no
 					modifier = {
 						factor = 0
 						event_target:gigaflusion = {
-							NOT = { has_planet_flag = flusion_fully_built_up }
+							NOT = { free_housing <= 100 }
 						}
 					}
 				}
