@@ -11733,6 +11733,9 @@ country_event = { #- ezic res (message)
 	}
 
 	option = { #loyalist vassal glad
+		trigger = {
+			katzen_vassal = yes
+		}
 		name = "giga_katrebels.0102.b"
 		custom_tooltip = "giga_katrebels.ezic.decreases"
 	}
