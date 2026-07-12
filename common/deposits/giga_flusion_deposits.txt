@@ -209,7 +209,7 @@ d_flusion_katown_outer = {
 
 d_flusion_gardenwilds = {
 	is_for_colonizable = yes
-	icon = d_city
+	icon = d_rugged_woods
 	category = deposit_cat_rare
 	drop_weight = { weight = 0 }
 	potential = { always = no }
