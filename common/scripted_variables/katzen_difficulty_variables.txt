@@ -29,7 +29,7 @@
 @kaiser_bomber_cost = 1000
 @kaiser_cruiser_cost = 2000
 @kaiser_blimp_cost = 8000
-@kaiser_submarine_cost = 1000
+@kaiser_submarine_flotilla_cost = 2000 #effect spawns six submarines for this cost
 @kaiser_moon_cost = 0
 @kaiser_mega_cost = 2000
 @kaiser_terraform_cost = 100

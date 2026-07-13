@@ -10,12 +10,18 @@ d_solaktropa_project = {
 	is_for_colonizable = yes
 	category = deposit_cat_rare
 	
-	planet_modifier = { 
-		district_generator_max_add = 3
-		district_farming_max_add = 1
+	planet_modifier = {
 		planet_max_districts_add = 2
 		planet_housing_add = 2000
 		pop_environment_tolerance = -0.075
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_flusion_gaia_ecu }
+		}
+		district_generator_max_add = 3
+		district_farming_max_add = 1
 	}
 
 	resources = {
@@ -62,11 +68,17 @@ d_katlantropa_project = {
 	is_for_colonizable = yes
 	category = deposit_cat_rare
 	
-	planet_modifier = { 
-		district_farming_max_add = 3
+	planet_modifier = {
 		planet_max_districts_add = 1
 		planet_housing_add = 5000
 		pop_environment_tolerance = -0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			NOT = { is_planet_class = pc_flusion_gaia_ecu }
+		}
+		district_farming_max_add = 3
 	}
 
 	resources = {
