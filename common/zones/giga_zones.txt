@@ -912,11 +912,11 @@ zone_giga_flusion_fort = {
     # multiplied by 3 since it counts as an ecu
     inline_script = {
         script = jobs/zone_soldiers_add
-        AMOUNT = 125
+        AMOUNT = 100
     }
     inline_script = {
-        script = jobs/zone_clerks_add
-        AMOUNT = 25
+        script = jobs/zone_foundry_add
+        AMOUNT = 50
     }
 
     included_building_sets = {
@@ -985,14 +985,14 @@ zone_giga_flusion_fort_wilderness = {
     }
 
     # multiplied by 3 since it counts as an ecu
-    inline_script = {
-        script = jobs/zone_soldiers_add
-        AMOUNT = 125
-    }
-    inline_script = {
-        script = jobs/zone_clerks_add
-        AMOUNT = 25
-    }
+	inline_script = {
+		script = jobs/zone_soldiers_add
+		AMOUNT = 100
+	}
+	inline_script = {
+		script = jobs/zone_foundry_add
+		AMOUNT = 50
+	}
 
     included_building_sets = {
         fortress
