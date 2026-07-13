@@ -13034,6 +13034,20 @@ country_event = {
 	option = {
 		name = "giga_flusionunion.011.a"
 	}
+
+	option = {
+		trigger = {
+			is_authoritarian = yes
+		}
+		name = "giga_flusionunion.011.b"
+	}
+
+	option = {
+		trigger = {
+			is_egalitarian = yes
+		}
+		name = "giga_flusionunion.011.c"
+	}
 }
 
 country_event = {

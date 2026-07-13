@@ -331,7 +331,7 @@ planet_event = {
 			species = event_target:flusion_katzens
 			size = 800
 		}
-		planet_event = { id = giga_katzen.009 days = 3600 random = 360 } #CHANGE TO 3600 AND 360
+		planet_event = { id = giga_katzen.009 days = 3600 random = 360 } #check if Katzenartig Imperium can awaken
 		event_target:flusion_primitives_country = {
 			set_country_flag = protected_from_queen_storm
 			if = {
@@ -392,7 +392,7 @@ planet_event = {
 				immortal = yes
 			}
 			set_leader = last_created_leader
-			while = {
+			while = { #presumably to represent warmongering deaths
 				count = 6
 				random_owned_pop_group = {
 					kill_single_pop = yes
@@ -406,7 +406,7 @@ planet_event = {
 				limit = { army_type = flusion_army }
 				remove_army = yes
 			}
-			create_leader = { # TODO BACKGROUND
+			create_leader = {
 				class = commander
 				species = event_target:flusion_katzens
 				name = "Pawtton"
@@ -703,10 +703,6 @@ country_event = {
 		}
 		create_ship_design = { design = "Pawris" }
 		add_ship_design = last_created_design
-		event_target:gigaflusion = {
-			set_sector_capital = yes
-			assign_leader = event_target:flusion_loris
-		}
 		if = {
 			limit = {
 				NOT = {
@@ -1327,7 +1323,7 @@ country_event = {
 		country_event = { id = giga_katzen.070 days = 180 random = 30 } #Warforges
 		country_event = { id = giga_katzen.030 days = 30 } #Manage warforges and eco
 		# country_event = { id = giga_katzen.036 days = 30 } # Leader management
-		country_event = { id = giga_katzen.080 days = 360 } #Flusion expansion
+		country_event = { id = giga_katzen.080 days = 330 random = 60 } #Flusion expansion
 		# country_event = { id = giga_katzen.082 days = 7200 } #Second flusion expansion
 		# country_event = { id = giga_katzen.083 days = 10800 } #Third flusion expansion
 		country_event = { id = giga_katzen.9999 days = 5 } #Crisis counter
@@ -1347,7 +1343,7 @@ country_event = {
 					is_ai = no
 				}
 			}
-			country_event = { id = giga_katzen.2000 days = 3600 random = 200 } #katzen weaknesses
+			country_event = { id = giga_katzen.2000 days = 3600 random = 720 } #katzen weaknesses
 		}
 		if = {
 			limit = {
@@ -1364,7 +1360,7 @@ country_event = {
 					}
 					is_homicidal = no
 				}
-				country_event = { id = giga_katrebels.0001 days = 360 } #RESISTANCE
+				country_event = { id = giga_katrebels.0001 days = 720 random = 180 } #RESISTANCE
 			}
 		}
 		create_leader = {
@@ -1404,19 +1400,19 @@ country_event = {
 			planet_event = { id = giga_katzen.0401 days = 500 }
 		}
 		event_target:veene = { #terraform veene
-			planet_event = { id = giga_katzen.0401 days = 1000 }
+			planet_event = { id = giga_katzen.0401 days = 1000 random = 100 }
 		}
 		event_target:ledigen = { #terraform ledigen
-			planet_event = { id = giga_katzen.0401 days = 1000 }
+			planet_event = { id = giga_katzen.0401 days = 1500 random = 150 }
 		}
 		event_target:creeo = { #terraform creeo
-			planet_event = { id = giga_katzen.0401 days = 2000 }
+			planet_event = { id = giga_katzen.0401 days = 2000 random = 200 }
 		}
 		event_target:nesar = { #terraform nesar
-			planet_event = { id = giga_katzen.0401 days = 2500 }
+			planet_event = { id = giga_katzen.0401 days = 2500 random = 250 }
 		}
 		event_target:mlekane = { #terraform mlekane
-			planet_event = { id = giga_katzen.0401 days = 3000 }
+			planet_event = { id = giga_katzen.0401 days = 3000 random = 300 }
 		}
 		every_country = {
 			establish_communications_no_message = event_target:flusion_primitives_country
@@ -1469,24 +1465,44 @@ country_event = {
 				size = 200
 			}
 			clear_blockers = yes
-			add_district = district_generator
-			add_district = district_generator
-			add_district = district_mining
-			add_district = district_mining
-			add_district = district_mining
-			add_district = district_mining
-			add_district = district_mining
-			add_district = district_city_katzen
-			add_district = district_city_katzen
-			add_district = district_city_katzen
-			add_district = district_farming
-			add_district = district_farming
+			set_sector_capital = yes
+			set_colony_type = col_katzen_capital
+			assign_leader = event_target:flusion_loris
+
+			remove_building = building_giga_flusion_fusion_power_plant #just clear this out of the way to order the energy booster nicely
+
+			add_district = district_city
 			add_building = building_giga_katzen_capital
-			add_building = building_katzen_foundry
-			add_building = building_katzen_foundry
-			add_building = building_katzen_foundry
-			add_building = building_katzen_science
 			add_building = building_katzen_theater
+			add_zone = { district = district_city zone = zone_fortress zone_slot = 1 replace = yes }
+			add_building = { zone = zone_fortress building = building_fortress }
+			add_building = { zone = zone_fortress building = building_fortress }
+			add_building = { zone = zone_fortress building = building_fortress }
+			add_zone = { district = district_city zone = zone_research zone_slot = 2 replace = yes }
+			add_building = { zone = zone_research building = building_katzen_science }
+			add_building = { zone = zone_research building = building_katzen_science }
+			add_building = { zone = zone_research building = building_katzen_science }
+
+			add_district = district_generator
+			add_building = { zone = zone_energy building = building_energy_nexus }
+			add_building = { zone = zone_energy building = building_giga_flusion_fusion_power_plant }
+			add_building = { zone = zone_energy building = building_giga_flusion_fusion_power_plant }
+
+			add_district = district_mining
+			add_district = district_mining
+			add_district = district_mining
+			add_district = district_mining
+			add_zone = { district = district_mining zone = zone_minerals }
+			add_building = { zone = zone_minerals building = building_mineral_purification_hub }
+			add_building = { zone = zone_minerals building = building_mine_generic }
+			add_building = { zone = zone_minerals building = building_mine_generic }
+
+			add_district = district_farming
+			add_zone = { district = district_farming zone = zone_food }
+			add_building = { zone = zone_food building = building_food_processing_center }
+			add_building = { zone = zone_food building = building_hydroponics_farm }
+			add_building = { zone = zone_food building = building_hydroponics_farm }
+
 			solar_system = { #Transfer starbase
 				save_global_event_target_as = giga_jublio_system
 				if = {
@@ -1502,23 +1518,51 @@ country_event = {
 					limit = {
 						starbase = {
 							owner = {
-								is_ai = yes #ai always fold
+								is_ai = yes
 							}
 						}
 					}
 					random_list = {
-						5 = {
+						20 = {
 							starbase = { #AI folds
 								set_owner = event_target:flusion_primitives_country
 							}
+							modifier = { #prefers negotiation to violence
+								factor = 2
+								starbase = {
+									owner = {
+										OR = {
+											is_xenophile = yes
+											is_pacifist = yes
+											has_valid_civic = civic_diplomatic_corps
+											has_valid_civic = civic_public_relations_specialists
+											has_valid_civic = civic_hive_empath
+											has_valid_civic = civic_machine_exploration_protocol
+											is_sovereign_guardianship_empire = yes
+										}
+									}
+								}
+							}
+							modifier = { #would not negotiate
+								factor = 0
+								starbase = {
+									owner = {
+										OR = {
+											has_valid_civic = civic_nationalistic_zeal
+											has_valid_civic = civic_pompous_purists
+											is_homicidal = yes
+										}
+									}
+								}
+							}
 						}
-						95 = {
+						80 = {
 							starbase = {
 								owner = { #Kaiser attacks AI
 									country_event = { id = giga_katzen.013 }
 								}
 							}
-							modifier = {
+							modifier = { #don't get into a war with the player
 								factor = 0
 								starbase = {
 									owner = {
@@ -1545,7 +1589,7 @@ country_event = {
 						owner = {
 							country_event = { id = giga_katzen.011 }
 							set_country_flag = seen_katzenartig
-						} #Inform the player
+						}
 					}
 				}
 			}
@@ -1607,7 +1651,7 @@ country_event = {
 			generate_katzen_stellarite_platforms = yes
 			while = {
 				count = 40
-				country_event = { id = giga_katzen.040 }
+				country_event = { id = giga_katzen.040 } #Katzen expansion
 			}
 			change_country_flag = {
 				icon={
@@ -1671,7 +1715,7 @@ country_event = { #Inform everyone
 			location = event_target:giga_jublio_system
 		}
 		hidden_effect = {
-			country_event = { id = giga_katzen.0101 }
+			country_event = { id = giga_katzen.0101 } #diplo inform event
 		}
 	}
 }
@@ -1733,7 +1777,7 @@ country_event = { #Inform player that Flusion has reached space age
 			location = event_target:giga_jublio_system
 		}
 		hidden_effect = {
-			country_event = { id = giga_katzen.015 }
+			country_event = { id = giga_katzen.015 } #diplo inform event
 		}
 	}
 }
@@ -1910,13 +1954,13 @@ country_event = { #Inform player that Flusion is fighting
 			limit = {
 				is_ai = no
 			}
-			country_event = { id = giga_katzen.014 days = 120 }
+			country_event = { id = giga_katzen.014 days = 90 random = 60 }
 		}
 		else_if = {
 			limit = {
 				is_ai = yes
 			}
-			country_event = { id = giga_katzen.014 days = 720 }
+			country_event = { id = giga_katzen.014 days = 630 random = 180 }
 		}
 	}
 
@@ -2869,7 +2913,6 @@ country_event = { #hello
 			NOR = {
 				has_global_flag = katzenartig_stellarite
 				has_global_flag = katzenartig_improbable
-				has_global_flag = galcom_kaiser_crusade
 			}
 			katzen_vassal = no
 		}
@@ -2889,6 +2932,14 @@ country_event = { #hello
 			custom_tooltip = {
 				fail_text = "cant_submit_emperor"
 				is_galactic_emperor = no
+			}
+			custom_tooltip = {
+				fail_text = "cant_submit_crusade"
+				NOT = { has_global_flag = galcom_kaiser_crusade }
+			}
+			custom_tooltip = {
+				fail_text = "cant_submit_homicidal"
+				is_homicidal = no
 			}
 		}
 		hidden_effect = {
@@ -6473,10 +6524,10 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 					modifier = { factor = 1.25 has_valid_civic = civic_citizen_service } #militarism for citizenship sounds cool, let's join the Katzens
 					modifier = { factor = 1.25 OR = { has_valid_civic = civic_feudal_realm has_valid_civic = civic_franchising } } #culturally compatible with autonomous vassals
 					modifier = { factor = 0.75 has_valid_civic = civic_environmentalist } #save the trees from rampant industry
-					modifier = { factor = 0.25 has_valid_civic = civic_nationalistic_zeal } #save the trees from rampant industry
+					modifier = { factor = 0.25 has_valid_civic = civic_nationalistic_zeal } #militarist but too proud
 					modifier = { factor = 1.25 has_valid_civic = civic_warrior_culture } #likes Katzen ways
 					modifier = { factor = 1.25 has_valid_civic = civic_police_state } #Katzen surveillance machine sounds  good
-					modifier = { factor = 1.25 has_valid_civic = civic_police_state } #sellouts who want to be the new Katzen elites
+					modifier = { factor = 1.25 has_valid_civic = civic_shadow_council } #sellouts who want to be the new Katzen elites
 					modifier = { factor = 2 OR = { has_civic = civic_diplomatic_corps has_civic = civic_public_relations_specialists has_civic = civic_hive_empath has_civic = civic_hive_familiar_face } } #wants to work together nicely
 					modifier = { factor = 1.25 is_relentless_industrialist_empire = yes } #more rampant industrialism yay
 					modifier = { factor = 1.25 is_twisted_experimenters_empire = yes } #the Katzens do that too
@@ -6493,6 +6544,7 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 					modifier = { factor = 1.5 is_capitalist = yes } #submit early for favourable Katzen market access
 					modifier = { factor = 1.25 has_valid_civic = civic_private_military_companies } #mercs
 					modifier = { factor = 0.5 has_valid_civic = civic_worker_coop } #they know Katzens wouldn't like worker organisation
+					modifier = { factor = 0.5 owner_main_species = { has_trait = trait_humanoid_psychological_infertility } } #not suited to constant mobilisation
 
 					country_event = { id = giga_katzen.1031 } #make them and their subjects Katzprotektorts
 					every_country = { #inform others
@@ -6576,6 +6628,7 @@ country_event = {
 
 	immediate = {
 		every_country = {
+			limit = { is_ai = no }
 			country_event = { id = giga_katzen.8001 }
 		}
 		set_global_flag = galcom_kaiser_crusade
@@ -7246,7 +7299,7 @@ country_event = { #Inform countries of blimp rollout
 		trigger = {
 			katzen_vassal = yes
 		}
-		name = "giga_katzen.04009.a"
+		name = "giga_katzen.04009.b"
 		custom_tooltip = "giga_katzen.04009.tooltip"
 	}
 }
@@ -8370,6 +8423,22 @@ country_event = { #Kaiser demands land!
 				}
 			}
 			modifier = {
+				factor = 0.1 #If overwhelming
+				relative_power = {
+					who = event_target:flusion_primitives_country
+					category = fleet
+					value = overwhelming
+				}
+			}
+			modifier = {
+				factor = 0.25 #If superior
+				relative_power = {
+					who = event_target:flusion_primitives_country
+					category = fleet
+					value = superior
+				}
+			}
+			modifier = {
 				factor = 0.5 #If equivalent
 				relative_power = {
 					who = event_target:flusion_primitives_country
@@ -8429,7 +8498,7 @@ country_event = { #Kaiser demands land!
 						kaiser_opinion_range_friendly = yes #Diminishing returns
 					}
 					modifier = {
-						factor = 0.5
+						factor = 0.5 #to encourage Kaiesr to aggro AI presumably
 						is_ai = yes
 					}
 					modifier = {
@@ -8855,10 +8924,10 @@ planet_event = { #Every 6 months, warforges will randomly create a fleet
 				}
 			}
 			random_list = {
-				60 = {
+				50 = {
 					spawn_katzen_warforge_fleet = yes
 				}
-				10 = {
+				5 = {
 					spawn_katzen_troop_fleet = yes
 					subtract_variable = {
 						which = kaiser_resource_stockpile
@@ -8878,7 +8947,7 @@ planet_event = { #Every 6 months, warforges will randomly create a fleet
 					spawn_katzen_submarine_fleet = yes
 					subtract_variable = {
 						which = kaiser_resource_stockpile
-						value = value:katzen_cost|COST|@kaiser_submarine_cost|
+						value = value:katzen_cost|COST|@kaiser_submarine_flotilla_cost|
 					}
 					modifier = {
 						add = 5
@@ -8889,12 +8958,26 @@ planet_event = { #Every 6 months, warforges will randomly create a fleet
 						event_target:flusion_primitives_country = {
 							check_variable = {
 								which = kaiser_resource_stockpile
-								value < value:katzen_cost|COST|@kaiser_submarine_cost|
+								value < value:katzen_cost|COST|@kaiser_submarine_flotilla_cost|
 							}
 						}
 					}
-					modifier = {
-						factor = 0
+					modifier = { #slow down if nearing cap
+						factor = 0.5
+						event_target:flusion_primitives_country = {
+							count_owned_ship = {
+								limit = {
+									OR = {
+										is_ship_size = giga_katzen_submarine_submerged
+										is_ship_size = giga_katzen_submarine
+									}
+								}
+								count >= 40
+							}
+						}
+					}
+					modifier = { #slow down more if nearing cap
+						factor = 0.5
 						event_target:flusion_primitives_country = {
 							count_owned_ship = {
 								limit = {
@@ -8904,6 +8987,20 @@ planet_event = { #Every 6 months, warforges will randomly create a fleet
 									}
 								}
 								count >= 50
+							}
+						}
+					}
+					modifier = { #cap out here, that's enough
+						factor = 0
+						event_target:flusion_primitives_country = {
+							count_owned_ship = {
+								limit = {
+									OR = {
+										is_ship_size = giga_katzen_submarine_submerged
+										is_ship_size = giga_katzen_submarine
+									}
+								}
+								count >= 60
 							}
 						}
 					}
