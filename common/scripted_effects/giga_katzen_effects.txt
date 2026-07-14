@@ -283,27 +283,162 @@ spawn_katzen_submarine_fleet = {
 }
 
 rename_planet_katzen = {
-	if = {
+	if = { #rename special planets to certain things or their original Katzen name, just in case
 		limit = {
-			NOR = {
-				has_planet_flag = katzenland
-				has_carrier_flag = gigaflusion
-				solar_system = { has_star_flag = flusion_system }
-			}
+			has_carrier_flag = gigaflusion
+			has_planet_flag = katzenland
+			has_carrier_flag = giga_eawaf_planet
+			solar_system = { has_star_flag = flusion_system }
+			has_planet_flag = potradus
+			has_planet_flag = nienet
+			has_planet_flag = paluushia
+			has_planet_flag = forcinia
+			has_planet_flag = ruspiayama
+			has_planet_flag = vicke
+			has_planet_flag = teratre
+			has_planet_flag = vertrois
+			has_planet_flag = veene
+			has_planet_flag = doughland
+			has_planet_flag = xenon
+			has_planet_flag = merries
+			has_planet_flag = ledigen
+			has_planet_flag = magmoon
+			has_planet_flag = glaka
+			has_planet_flag = denerth
+			has_planet_flag = nesar
+			has_planet_flag = altaselon
+			has_planet_flag = folia
+			has_planet_flag = creeo
+			has_planet_flag = mlekane
+			has_planet_flag = corrona
+			has_planet_flag = jupitwo1
+			has_planet_flag = jupitwo2
+			has_planet_flag = jupitwo3
+			has_carrier_flag = cat_orbital_elysium
 		}
 		random_list = {
 			0 = {
-				set_name = "Reitsport-Bei-Krieg"
-				modifier = {
-					add = 999
-					has_carrier_flag = giga_eawaf_planet
-				}
+				set_name = "Katzenland"
+				modifier = { add = 1 has_planet_flag = katzenland }
 			}
+			0 = {
+				set_name = "Reitsport-Bei-Krieg"
+				modifier = { add = 1 has_carrier_flag = giga_eawaf_planet }
+			}
+			0 = {
+				set_name = "Potradus"
+				modifier = { add = 1 has_planet_flag = potradus }
+			}
+			0 = {
+				set_name = "Nienet"
+				modifier = { add = 1 has_planet_flag = nienet }
+			}
+			0 = {
+				set_name = "Paluushia"
+				modifier = { add = 1 has_planet_flag = paluushia}
+			}
+			0 = {
+				set_name = "Forcinia"
+				modifier = { add = 1 has_planet_flag = forcinia }
+			}
+			0 = {
+				set_name = "Ruspiayama"
+				modifier = { add = 1 has_planet_flag = ruspiayama }
+			}
+			0 = {
+				set_name = "Vicke"
+				modifier = { add = 1 has_planet_flag = vicke }
+			}
+			0 = {
+				set_name = "Teratre"
+				modifier = { add = 1 has_planet_flag = teratre }
+			}
+			0 = {
+				set_name = "Vertrois"
+				modifier = { add = 1 has_planet_flag = vertrois }
+			}
+			0 = {
+				set_name = "Veene"
+				modifier = { add = 1 has_planet_flag = veene }
+			}
+			0 = {
+				set_name = "Doughland"
+				modifier = { add = 1 has_planet_flag = doughland }
+			}
+			0 = {
+				set_name = "Xenon"
+				modifier = { add = 1 has_planet_flag = xenon }
+			}
+			0 = {
+				set_name = "Merries"
+				modifier = { add = 1 has_planet_flag = merries }
+			}
+			0 = {
+				set_name = "Ledigen"
+				modifier = { add = 1 has_planet_flag = ledigen }
+			}
+			0 = {
+				set_name = "Magmoon"
+				modifier = { add = 1 has_planet_flag = magmoon }
+			}
+			0 = {
+				set_name = "Glaka"
+				modifier = { add = 1 has_planet_flag = glaka }
+			}
+			0 = {
+				set_name = "Denerth"
+				modifier = { add = 1 has_planet_flag = denerth }
+			}
+			0 = {
+				set_name = "Nesar"
+				modifier = { add = 1 has_planet_flag = nesar }
+			}
+			0 = {
+				set_name = "Altaselon"
+				modifier = { add = 1 has_planet_flag = altaselon }
+			}
+			0 = {
+				set_name = "Folia"
+				modifier = { add = 1 has_planet_flag = folia }
+			}
+			0 = {
+				set_name = "Creeo"
+				modifier = { add = 1 has_planet_flag = creeo }
+			}
+			0 = {
+				set_name = "Mlekane"
+				modifier = { add = 1 has_planet_flag = mlekane }
+			}
+			0 = {
+				set_name = "Corrona"
+				modifier = { add = 1 has_planet_flag = corrona }
+			}
+			0 = {
+				set_name = "Regan"
+				modifier = { add = 1 has_planet_flag = jupitwo1 }
+			}
+			0 = {
+				set_name = "Tandra"
+				modifier = { add = 1 has_planet_flag = jupitwo2 }
+			}
+			0 = {
+				set_name = "Tuia"
+				modifier = { add = 1 has_planet_flag = jupitwo3 }
+			}
+			0 = {
+				set_name = "Tyaur"
+				modifier = { add = 1 has_carrier_flag = cat_orbital_elysium }
+			}
+		}
+	}
+
+	else = { #semirandomly name other planets
+		random_list = {
 			0 = {
 				set_name = "Steam-Kommentatortränensee"
 				event_target:flusion_primitives_country = { set_country_flag = steam_commenter_tears_planet }
 				modifier = {
-					add = 999
+					add = 20
 					is_planet_class = pc_ocean
 					NOT = { event_target:flusion_primitives_country = { has_country_flag = steam_commenter_tears_planet } }
 				}
@@ -312,7 +447,7 @@ rename_planet_katzen = {
 				set_name = "Steam-Kommentatorland"
 				event_target:flusion_primitives_country = { set_country_flag = steam_commenter_salt_planet }
 				modifier = {
-					add = 999
+					add = 20
 					has_modifier = pd_salt
 					NOT = { event_target:flusion_primitives_country = { has_country_flag = steam_commenter_salt_planet } }
 				}
@@ -320,6 +455,11 @@ rename_planet_katzen = {
 			1 = { set_name = "Cocoville" }
 			1 = { set_name = "Nova Flusionia" }
 			1 = { set_name = "Neu Katown" }
+			1 = { set_name = "Neu Bundengrad" }
+			1 = { set_name = "Neu Teho" }
+			1 = { set_name = "Neu Lutecien" }
+			1 = { set_name = "Neu Uranstadt" }
+			1 = { set_name = "Neu Großlaurendaar" }
 			1 = { set_name = "Felinida" }
 			1 = { set_name = "Kattail's Haven" }
 			1 = { set_name = "Minoulis" }
