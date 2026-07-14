@@ -23,7 +23,7 @@ col_katzen_foundry = {
 	icon = GFX_colony_type_foundry
 
 	potential = {
-		has_carrier_flag = giga_katzen_forge_world
+		has_carrier_flag = katzen_world_forge
 		has_carrier_flag = giga_katzen_planet_specialized
 		owner? = {
 			is_country_type = katzenartig_imperium
@@ -45,7 +45,7 @@ col_katzen_research = {
 	icon = GFX_colony_type_research
 
 	potential = {
-		has_carrier_flag = giga_katzen_research_world
+		has_carrier_flag = katzen_world_research
 		has_carrier_flag = giga_katzen_planet_specialized
 		owner? = {
 			is_country_type = katzenartig_imperium
@@ -67,7 +67,7 @@ col_katzen_fortress = {
 	icon = GFX_colony_type_fortress
 
 	potential = {
-		has_carrier_flag = giga_katzen_fortress_world
+		has_carrier_flag = katzen_world_fortress
 		has_carrier_flag = giga_katzen_planet_specialized
 		owner? = {
 			is_country_type = katzenartig_imperium

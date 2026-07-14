@@ -16,6 +16,7 @@ katzenartig_imperium = {
 	can_have_their_comms_shared = yes
 	observable = yes
 	default_ships = no
+	pop_growth = yes
 
 	ai = {
 		enabled = yes

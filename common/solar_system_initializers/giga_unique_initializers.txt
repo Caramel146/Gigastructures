@@ -776,7 +776,7 @@ giga_jupitwo_initializer = {
 
 # Scientist in orbital
 cat_orbital_initializer = {
-	name = Tyaur
+	name = "Tyaur"
 	class = "rl_standard_stars"
 	usage_odds = 0
 	flags = { pouchkinn_system }

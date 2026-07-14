@@ -402,17 +402,18 @@ district_city_katzen = { #For special countries
 	exempt_from_ai_planet_specialization = yes
 
 	show_on_uncolonized = {
-		exists = from
-		from = {
-			exists = event_target:flusion_primitives_country
-			is_country = event_target:flusion_primitives_country
-			is_regular_empire = no
-			NOT = { is_country_type = primitive }
-		}
-		nor = {
-			is_planet_class = pc_flusion_gaia_ecu
-			uses_district_set = flusion_gaia_ecu
-		}
+        always = no #TODO borked for 4.0
+		# exists = from
+		# from = {
+		# 	exists = event_target:flusion_primitives_country
+		# 	is_country = event_target:flusion_primitives_country
+		# 	is_regular_empire = no
+		# 	NOT = { is_country_type = primitive }
+		# }
+		# nor = {
+		# 	is_planet_class = pc_flusion_gaia_ecu
+		# 	uses_district_set = flusion_gaia_ecu
+		# }
 	}
 
 	zone_slots = {
@@ -422,16 +423,17 @@ district_city_katzen = { #For special countries
 	}
 
 	potential = {
-		exists = owner
-		owner = {
-			exists = event_target:flusion_primitives_country
-			is_country = event_target:flusion_primitives_country
-			NOT = { is_country_type = primitive }
-		}
-		nor = {
-			is_planet_class = pc_flusion_gaia_ecu
-			uses_district_set = flusion_gaia_ecu
-		}
+        always = no #TODO borked for 4.0
+		# exists = owner
+		# owner = {
+		# 	exists = event_target:flusion_primitives_country
+		# 	is_country = event_target:flusion_primitives_country
+		# 	NOT = { is_country_type = primitive }
+		# }
+		# nor = {
+		# 	is_planet_class = pc_flusion_gaia_ecu
+		# 	uses_district_set = flusion_gaia_ecu
+		# }
 	}
 
 	resources = {
