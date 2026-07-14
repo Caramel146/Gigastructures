@@ -7709,7 +7709,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 						}
 						habitability = {
 							who = event_target:flusion_katzens
-							value > 0.2 #above 20% hab
+							value > 0.3 #above 30% hab
 						}
 					}
 					create_colony = {
@@ -7737,7 +7737,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 				}
 			}
 		}
-		country_event = { id = giga_katzen.040 days = 360 random = 60 } # Do it again
+		country_event = { id = giga_katzen.040 days = 330 random = 60 } # Do it again
 	}
 }
 
@@ -9787,158 +9787,158 @@ country_event = {
 # 	}
 # }
 
-country_event = { #20 years
-	id = giga_katzen.082
+# country_event = { #20 years Flusion expansion
+# 	id = giga_katzen.082
+#
+# 	is_triggered_only = yes
+# 	hide_window = yes
+#
+# 	trigger = {
+# 		any_country = {
+# 			is_country_type = katzenartig_imperium
+# 		}
+# 	}
+#
+# 	immediate = {
+# 		if = {
+# 			limit = {
+# 				event_target:giga_jublio_system = { starbase = { owner = { is_country_type = katzenartig_imperium } } }
+# 			}
+# 			create_fleet = { #Flusion defenses
+# 				name = "Katzenplanetenverteidigung"
+# 				settings = {
+# 					spawn_debris = no
+# 				}
+# 				effect = {
+# 					set_owner = event_target:flusion_primitives_country
+# 					create_ship = {
+# 						name = "Katzenplanetenverteidigung"
+# 						design = "Meoder"
+# 						upgradable = no
+# 					}
+# 					set_location = {
+# 						target = event_target:gigaflusion
+# 						distance = 10
+# 						angle = 90
+# 					}
+# 					set_fleet_flag = katzen_planet_platform
+# 				}
+# 			}
+# 			create_fleet = {
+# 				name = "Katzenplanetenverteidigung"
+# 				settings = {
+# 					spawn_debris = no
+# 				}
+# 				effect = {
+# 					set_owner = event_target:flusion_primitives_country
+# 					create_ship = {
+# 						name = "Katzenplanetenverteidigung"
+# 						design = "Meoder"
+# 						upgradable = no
+# 					}
+# 					set_location = {
+# 						target = event_target:gigaflusion
+# 						distance = 10
+# 						angle = 270
+# 					}
+# 					set_fleet_flag = katzen_planet_platform
+# 				}
+# 			}
+# 		}
+# 		set_update_modifiers_batch = begin
+# 		event_target:gigaflusion = {
+# 			create_pop_group = {
+# 				species = event_target:flusion_katzens
+# 				size = 1000
+# 			}
+# 			#The other flusion species move in
+# 			create_pop_group = {
+# 				species = event_target:solakians
+# 				size = 300
+# 			}
+# 			create_pop_group = {
+# 				species = event_target:flusionians
+# 				size = 300
+# 			}
+# 			create_pop_group = {
+# 				species = event_target:arcticezics
+# 				size = 200
+# 			}
+# 			create_pop_group = {
+# 				species = event_target:kronks
+# 				size = 300
+# 			}
+# 			add_district = district_city_katzen
+# 			add_district = district_city_katzen
+# 			add_district = district_city_katzen
+# 			add_district = district_farming
+# 			add_district = district_generator
+# 			add_district = district_mining
+# 			add_district = district_industrial
+# 		}
+# 		set_update_modifiers_batch = end
+# 	}
+# }
 
-	is_triggered_only = yes
-	hide_window = yes
-
-	trigger = {
-		any_country = {
-			is_country_type = katzenartig_imperium
-		}
-	}
-
-	immediate = {
-		if = {
-			limit = {
-				event_target:giga_jublio_system = { starbase = { owner = { is_country_type = katzenartig_imperium } } }
-			}
-			create_fleet = { #Flusion defenses
-				name = "Katzenplanetenverteidigung"
-				settings = {
-					spawn_debris = no
-				}
-				effect = {
-					set_owner = event_target:flusion_primitives_country
-					create_ship = {
-						name = "Katzenplanetenverteidigung"
-						design = "Meoder"
-						upgradable = no
-					}
-					set_location = {
-						target = event_target:gigaflusion
-						distance = 10
-						angle = 90
-					}
-					set_fleet_flag = katzen_planet_platform
-				}
-			}
-			create_fleet = {
-				name = "Katzenplanetenverteidigung"
-				settings = {
-					spawn_debris = no
-				}
-				effect = {
-					set_owner = event_target:flusion_primitives_country
-					create_ship = {
-						name = "Katzenplanetenverteidigung"
-						design = "Meoder"
-						upgradable = no
-					}
-					set_location = {
-						target = event_target:gigaflusion
-						distance = 10
-						angle = 270
-					}
-					set_fleet_flag = katzen_planet_platform
-				}
-			}
-		}
-		set_update_modifiers_batch = begin
-		event_target:gigaflusion = {
-			create_pop_group = {
-				species = event_target:flusion_katzens
-				size = 1000
-			}
-			#The other flusion species move in
-			create_pop_group = {
-				species = event_target:solakians
-				size = 300
-			}
-			create_pop_group = {
-				species = event_target:flusionians
-				size = 300
-			}
-			create_pop_group = {
-				species = event_target:arcticezics
-				size = 200
-			}
-			create_pop_group = {
-				species = event_target:kronks
-				size = 300
-			}
-			add_district = district_city_katzen
-			add_district = district_city_katzen
-			add_district = district_city_katzen
-			add_district = district_farming
-			add_district = district_generator
-			add_district = district_mining
-			add_district = district_industrial
-		}
-		set_update_modifiers_batch = end
-	}
-}
-
-country_event = { #30 years
-	id = giga_katzen.083
-
-	is_triggered_only = yes
-	hide_window = yes
-
-	trigger = {
-		any_country = {
-			is_country_type = katzenartig_imperium
-		}
-	}
-
-	immediate = {
-		set_update_modifiers_batch = begin
-		event_target:gigaflusion = {
-			if = {
-				limit = {
-					NOT = {
-						AND = {
-							has_planet_flag = solak_dam_blown
-							has_planet_flag = loris_dam_blown
-						}
-					}
-				}
-				change_pc = pc_gaia
-			}
-			create_pop_group = {
-				species = event_target:flusion_katzens
-				size = 1500
-			}
-			create_pop_group = {
-				species = event_target:flusionians
-				size = 700
-			}
-			#The other flusion species move in
-			create_pop_group = {
-				species = event_target:solakians
-				size = 300
-			}
-			create_pop_group = {
-				species = event_target:arcticezics
-				size = 500
-			}
-			create_pop_group = {
-				species = event_target:kronks
-				size = 500
-			}
-			add_district = district_city_katzen
-			add_district = district_city_katzen
-			add_district = district_city_katzen
-			add_district = district_city_katzen
-			add_district = district_farming
-			add_district = district_mining
-			add_district = district_generator
-			add_district = district_industrial
-		}
-		set_update_modifiers_batch = end
-	}
-}
+# country_event = { #30 years Flusion expansion
+# 	id = giga_katzen.083
+#
+# 	is_triggered_only = yes
+# 	hide_window = yes
+#
+# 	trigger = {
+# 		any_country = {
+# 			is_country_type = katzenartig_imperium
+# 		}
+# 	}
+#
+# 	immediate = {
+# 		set_update_modifiers_batch = begin
+# 		event_target:gigaflusion = {
+# 			if = {
+# 				limit = {
+# 					NOT = {
+# 						AND = {
+# 							has_planet_flag = solak_dam_blown
+# 							has_planet_flag = loris_dam_blown
+# 						}
+# 					}
+# 				}
+# 				change_pc = pc_gaia
+# 			}
+# 			create_pop_group = {
+# 				species = event_target:flusion_katzens
+# 				size = 1500
+# 			}
+# 			create_pop_group = {
+# 				species = event_target:flusionians
+# 				size = 700
+# 			}
+# 			#The other flusion species move in
+# 			create_pop_group = {
+# 				species = event_target:solakians
+# 				size = 300
+# 			}
+# 			create_pop_group = {
+# 				species = event_target:arcticezics
+# 				size = 500
+# 			}
+# 			create_pop_group = {
+# 				species = event_target:kronks
+# 				size = 500
+# 			}
+# 			add_district = district_city_katzen
+# 			add_district = district_city_katzen
+# 			add_district = district_city_katzen
+# 			add_district = district_city_katzen
+# 			add_district = district_farming
+# 			add_district = district_mining
+# 			add_district = district_generator
+# 			add_district = district_industrial
+# 		}
+# 		set_update_modifiers_batch = end
+# 	}
+# }
 
 
 country_event = { #Kaiser Moon destroyed :(
@@ -10677,7 +10677,7 @@ country_event = { #Collapse of Katzenartig
 		set_update_modifiers_batch = begin
 		clear_flusion_ezic_sabotage_modifiers = yes
 		clear_flusion_katown_shield_modifiers = yes
-		if = {
+		if = { #all remaining Siegfrieds blow up
 			limit = {
 				any_galaxy_planet = { is_planet_class = pc_giga_siegfried_world }
 			}
@@ -12035,263 +12035,263 @@ country_event = { #Message about collapse
 
 ###PLANET DEVELOPMENT (non flusion)###
 ###CONQUERED WORLD EXPANSION####
-planet_event = { #After a month
-	id = giga_katzen.1001
-	hide_window = yes
-	is_triggered_only = yes
+# planet_event = { #After a month
+# 	id = giga_katzen.1001
+# 	hide_window = yes
+# 	is_triggered_only = yes
+#
+# 	trigger = {
+# 		owner = {
+# 			is_country_type = katzenartig_imperium
+# 		}
+# 	}
+#
+# 	immediate = { #1 army
+# 		set_update_modifiers_batch = begin
+# 		rename_planet_katzen = yes
+# 		while = { count = 1	create_army = { name = NAME_katzenarmee	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
+# 		planet_event = { id = giga_katzen.102 days = 1800 random = 200 }
+# 		katzen_clear_capitals = yes #remove old capital
+# 		add_building = building_giga_katzen_capital
+# 		create_pop_group = { #Pop in some Katzens
+# 			species = event_target:flusion_katzens
+# 			size = 200
+# 		}
+# 		create_pop_group = { #Sprinkle in some ezics
+# 			species = event_target:arcticezics
+# 		}
+# 		create_pop_group = { #Sprinkle in some solakians
+# 			species = event_target:solakians
+# 		}
+# 		event_target:flusion_primitives_country = { #Defensive platform
+# 			create_fleet = {
+# 				name = "Katzenplanetenverteidigung"
+# 				settings = {
+# 					spawn_debris = no
+# 				}
+# 				effect = {
+# 					set_owner = event_target:flusion_primitives_country
+# 					create_ship = {
+# 						name = "Katzenplanetenverteidigung"
+# 						design = "Meoder"
+# 						upgradable = no
+# 					}
+# 					set_location = ROOT
+# 					set_fleet_flag = katzen_planet_platform
+# 				}
+# 			}
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOR = {
+# 					is_planet_class = pc_habitat
+# 					is_planet_class = pc_ringworld_habitable
+# 				}
+# 			}
+# 			add_district = district_city_katzen
+# 			add_district = district_farming
+# 			add_district = district_generator
+# 			add_district = district_mining
+# 			add_district = district_industrial
+# 		}
+# 		else_if = {
+# 			limit = { is_planet_class = pc_habitat }
+# 			add_district = district_hab_housing
+# 			add_district = district_hab_energy
+# 		}
+# 		else_if = {
+# 			limit = { is_planet_class = pc_ringworld_habitable }
+# 			add_district = district_rw_city
+# 			add_district = district_rw_farming
+# 		}
+# 		set_planet_flag = katzen_conquered_planet
+# 		set_update_modifiers_batch = end
+# 	}
+# }
 
-	trigger = {
-		owner = {
-			is_country_type = katzenartig_imperium
-		}
-	}
+# planet_event = { #After 5 years, add more pops + make arcology
+# 	id = giga_katzen.102
+# 	hide_window = yes
+# 	is_triggered_only = yes
+#
+# 	trigger = {
+# 		owner = {
+# 			is_country_type = katzenartig_imperium
+# 		}
+# 	}
+#
+# 	immediate = {
+# 		set_update_modifiers_batch = begin
+# 		clear_blockers = yes
+# 		planet_event = { id = giga_katzen.103 days = 1800 random = 200 }
+# 		# if = {
+# 		# 	limit = {
+# 		# 		NOR = {
+# 		# 			has_modifier = orbital_arcology_modifier_1
+# 		# 			has_modifier = orbital_arcology_modifier_2
+# 		# 			has_modifier = orbital_arcology_modifier_3
+# 		# 			habitable_structure = yes
+# 		# 		}
+# 		# 	}
+# 		# 	save_event_target_as = arcology_target #Running out of space, we require an orbital arcology
+# 		# 	solar_system = {
+# 		# 		spawn_megastructure = {
+# 		# 			type = orbital_arcology_0_l
+# 		# 			planet = event_target:arcology_target
+# 		# 			owner = event_target:flusion_primitives_country
+# 		# 		}
+# 		# 	}
+# 		# 	owner = {
+# 		# 		random_owned_megastructure = {
+# 		# 			limit = {
+# 		# 				is_megastructure_type = orbital_arcology_0_l
+# 		# 			}
+# 		# 			upgrade_megastructure_to = orbital_arcology_1_l
+# 		# 		}
+# 		# 	}
+# 		# }
+# 		create_pop_group = {
+# 			species = event_target:flusion_katzens
+# 			size = 300
+# 		}
+# 		create_pop_group = { #The other flusion species move in
+# 			species = event_target:solakians
+# 			size = 200
+# 		}
+#
+# 		create_pop_group = { #The other flusion species move in
+# 			species = event_target:flusionians
+# 			size = 200
+# 		}
+#
+# 		create_pop_group = { #The other flusion species move in
+# 			species = event_target:kronks
+# 			size = 200
+# 		}
+# 		create_pop_group = { #Sprinkle in some ezics
+# 			species = event_target:arcticezics
+# 		}
+# 		add_building = building_hyper_entertainment_forum #Fun
+# 		add_building = building_planetary_shield_generator #Shield
+# 		set_update_modifiers_batch = end
+# 	}
+# }
 
-	immediate = { #1 army
-		set_update_modifiers_batch = begin
-		rename_planet_katzen = yes
-		while = { count = 1	create_army = { name = NAME_katzenarmee	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
-		planet_event = { id = giga_katzen.102 days = 1800 random = 200 }
-		katzen_clear_capitals = yes #remove old capital
-		add_building = building_giga_katzen_capital
-		create_pop_group = { #Pop in some Katzens
-			species = event_target:flusion_katzens
-			size = 200
-		}
-		create_pop_group = { #Sprinkle in some ezics
-			species = event_target:arcticezics
-		}
-		create_pop_group = { #Sprinkle in some solakians
-			species = event_target:solakians
-		}
-		event_target:flusion_primitives_country = { #Defensive platform
-			create_fleet = {
-				name = "Katzenplanetenverteidigung"
-				settings = {
-					spawn_debris = no
-				}
-				effect = {
-					set_owner = event_target:flusion_primitives_country
-					create_ship = {
-						name = "Katzenplanetenverteidigung"
-						design = "Meoder"
-						upgradable = no
-					}
-					set_location = ROOT
-					set_fleet_flag = katzen_planet_platform
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOR = {
-					is_planet_class = pc_habitat
-					is_planet_class = pc_ringworld_habitable
-				}
-			}
-			add_district = district_city_katzen
-			add_district = district_farming
-			add_district = district_generator
-			add_district = district_mining
-			add_district = district_industrial
-		}
-		else_if = {
-			limit = { is_planet_class = pc_habitat }
-			add_district = district_hab_housing
-			add_district = district_hab_energy
-		}
-		else_if = {
-			limit = { is_planet_class = pc_ringworld_habitable }
-			add_district = district_rw_city
-			add_district = district_rw_farming
-		}
-		set_planet_flag = katzen_conquered_planet
-		set_update_modifiers_batch = end
-	}
-}
+# planet_event = { #After 5 more years, add even more pops + take advantage of new districts
+# 	id = giga_katzen.103
+# 	hide_window = yes
+# 	is_triggered_only = yes
+#
+# 	trigger = {
+# 		owner = {
+# 			is_country_type = katzenartig_imperium
+# 		}
+# 	}
+#
+# 	immediate = {
+# 		set_update_modifiers_batch = begin
+# 		planet_event = { id = giga_katzen.104 days = 1800 random = 200 }
+# 		create_pop_group = {
+# 			species = event_target:flusion_katzens
+# 			size = 300
+# 		}
+# 		create_pop_group = { #The other flusion species move in
+# 			species = event_target:flusionians
+# 			size = 200
+# 		}
+# 		create_pop_group = {
+# 			species = event_target:solakians
+# 		}
+# 		create_pop_group = { #The other flusion species move in
+# 			species = event_target:kronks
+# 		}
+# 		create_pop_group = { #Sprinkle in some ezics
+# 			species = event_target:arcticezics
+# 		}
+# 		add_building = building_foundry_3 #Fun
+# 		add_building = building_factory_3
+# 		if = {
+# 			limit = {
+# 				NOR = {
+# 					is_planet_class = pc_habitat
+# 					is_planet_class = pc_ringworld_habitable
+# 				}
+# 			}
+# 			add_district = district_city_katzen
+# 			add_district = district_farming
+# 			add_district = district_industrial
+# 		}
+# 		else_if = {
+# 			limit = { is_planet_class = pc_habitat }
+# 			add_district = district_hab_housing
+# 			add_district = district_hab_energy
+# 			add_district = district_hab_energy
+# 			# add_district = district_hab_cultural
+# 		}
+# 		else_if = {
+# 			limit = { is_planet_class = pc_ringworld_habitable }
+# 			add_district = district_rw_science
+# 		}
+# 		set_update_modifiers_batch = end
+# 	}
+# }
 
-planet_event = { #After 5 years, add more pops + make arcology
-	id = giga_katzen.102
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		owner = {
-			is_country_type = katzenartig_imperium
-		}
-	}
-
-	immediate = {
-		set_update_modifiers_batch = begin
-		clear_blockers = yes
-		planet_event = { id = giga_katzen.103 days = 1800 random = 200 }
-		# if = {
-		# 	limit = {
-		# 		NOR = {
-		# 			has_modifier = orbital_arcology_modifier_1
-		# 			has_modifier = orbital_arcology_modifier_2
-		# 			has_modifier = orbital_arcology_modifier_3
-		# 			habitable_structure = yes
-		# 		}
-		# 	}
-		# 	save_event_target_as = arcology_target #Running out of space, we require an orbital arcology
-		# 	solar_system = {
-		# 		spawn_megastructure = {
-		# 			type = orbital_arcology_0_l
-		# 			planet = event_target:arcology_target
-		# 			owner = event_target:flusion_primitives_country
-		# 		}
-		# 	}
-		# 	owner = {
-		# 		random_owned_megastructure = {
-		# 			limit = {
-		# 				is_megastructure_type = orbital_arcology_0_l
-		# 			}
-		# 			upgrade_megastructure_to = orbital_arcology_1_l
-		# 		}
-		# 	}
-		# }
-		create_pop_group = {
-			species = event_target:flusion_katzens
-			size = 300
-		}
-		create_pop_group = { #The other flusion species move in
-			species = event_target:solakians
-			size = 200
-		}
-
-		create_pop_group = { #The other flusion species move in
-			species = event_target:flusionians
-			size = 200
-		}
-
-		create_pop_group = { #The other flusion species move in
-			species = event_target:kronks
-			size = 200
-		}
-		create_pop_group = { #Sprinkle in some ezics
-			species = event_target:arcticezics
-		}
-		add_building = building_hyper_entertainment_forum #Fun
-		add_building = building_planetary_shield_generator #Shield
-		set_update_modifiers_batch = end
-	}
-}
-
-planet_event = { #After 5 more years, add even more pops + take advantage of new districts
-	id = giga_katzen.103
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		owner = {
-			is_country_type = katzenartig_imperium
-		}
-	}
-
-	immediate = {
-		set_update_modifiers_batch = begin
-		planet_event = { id = giga_katzen.104 days = 1800 random = 200 }
-		create_pop_group = {
-			species = event_target:flusion_katzens
-			size = 300
-		}
-		create_pop_group = { #The other flusion species move in
-			species = event_target:flusionians
-			size = 200
-		}
-		create_pop_group = {
-			species = event_target:solakians
-		}
-		create_pop_group = { #The other flusion species move in
-			species = event_target:kronks
-		}
-		create_pop_group = { #Sprinkle in some ezics
-			species = event_target:arcticezics
-		}
-		add_building = building_foundry_3 #Fun
-		add_building = building_factory_3
-		if = {
-			limit = {
-				NOR = {
-					is_planet_class = pc_habitat
-					is_planet_class = pc_ringworld_habitable
-				}
-			}
-			add_district = district_city_katzen
-			add_district = district_farming
-			add_district = district_industrial
-		}
-		else_if = {
-			limit = { is_planet_class = pc_habitat }
-			add_district = district_hab_housing
-			add_district = district_hab_energy
-			add_district = district_hab_energy
-			# add_district = district_hab_cultural
-		}
-		else_if = {
-			limit = { is_planet_class = pc_ringworld_habitable }
-			add_district = district_rw_science
-		}
-		set_update_modifiers_batch = end
-	}
-}
-
-planet_event = { #After 5 more years, add even more pops + take advantage of new districts
-	id = giga_katzen.104
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		owner = {
-			is_country_type = katzenartig_imperium
-		}
-	}
-
-	immediate = {
-		set_update_modifiers_batch = begin
-		create_pop_group = {
-			species = event_target:flusion_katzens
-			size = 300
-		}
-		create_pop_group = { #The other flusion species move in
-			species = event_target:flusionians
-			size = 200
-		}
-		create_pop_group = {
-			species = event_target:solakians
-		}
-		create_pop_group = { #The other flusion species move in
-			species = event_target:kronks
-		}
-		create_pop_group = { #Sprinkle in some ezics
-			species = event_target:arcticezics
-		}
-		add_building = building_giga_flusion_fusion_power_plant #Fun
-		if = {
-			limit = {
-				NOR = {
-					is_planet_class = pc_habitat
-					is_planet_class = pc_ringworld_habitable
-				}
-			}
-			add_district = district_city_katzen
-			add_district = district_farming
-			add_district = district_industrial
-		}
-		else_if = {
-			limit = { is_planet_class = pc_habitat }
-			add_district = district_hab_housing
-			add_district = district_hab_energy
-			add_district = district_hab_energy
-			# add_district = district_hab_cultural
-		}
-		else_if = {
-			limit = { is_planet_class = pc_ringworld_habitable }
-			add_district = district_rw_commercial
-		}
-		set_update_modifiers_batch = end
-	}
-}
+# planet_event = { #After 5 more years, add even more pops + take advantage of new districts
+# 	id = giga_katzen.104
+# 	hide_window = yes
+# 	is_triggered_only = yes
+#
+# 	trigger = {
+# 		owner = {
+# 			is_country_type = katzenartig_imperium
+# 		}
+# 	}
+#
+# 	immediate = {
+# 		set_update_modifiers_batch = begin
+# 		create_pop_group = {
+# 			species = event_target:flusion_katzens
+# 			size = 300
+# 		}
+# 		create_pop_group = { #The other flusion species move in
+# 			species = event_target:flusionians
+# 			size = 200
+# 		}
+# 		create_pop_group = {
+# 			species = event_target:solakians
+# 		}
+# 		create_pop_group = { #The other flusion species move in
+# 			species = event_target:kronks
+# 		}
+# 		create_pop_group = { #Sprinkle in some ezics
+# 			species = event_target:arcticezics
+# 		}
+# 		add_building = building_giga_flusion_fusion_power_plant #Fun
+# 		if = {
+# 			limit = {
+# 				NOR = {
+# 					is_planet_class = pc_habitat
+# 					is_planet_class = pc_ringworld_habitable
+# 				}
+# 			}
+# 			add_district = district_city_katzen
+# 			add_district = district_farming
+# 			add_district = district_industrial
+# 		}
+# 		else_if = {
+# 			limit = { is_planet_class = pc_habitat }
+# 			add_district = district_hab_housing
+# 			add_district = district_hab_energy
+# 			add_district = district_hab_energy
+# 			# add_district = district_hab_cultural
+# 		}
+# 		else_if = {
+# 			limit = { is_planet_class = pc_ringworld_habitable }
+# 			add_district = district_rw_commercial
+# 		}
+# 		set_update_modifiers_batch = end
+# 	}
+# }
 
 ###COLONIZED WORLD EXPANSION###
 #The first event determines what to do with the world.
@@ -12336,19 +12336,18 @@ carrier_event = {
 				50 = {
 					set_carrier_flag = giga_katzen_forge_world
 					#each alloy-boosting feature has a much higher weight than research ones since there are so few of them
-					modifier = { add = 30 has_deposit = d_nano_corpses }
-					modifier = { add = 30 has_deposit = d_bluelotus }
-					modifier = { add = 30 has_deposit = d_bluelotus2 }
-					modifier = { add = 30 has_deposit = d_magnetic_storm_2_alloys }
-					modifier = { add = 30 has_deposit = d_magnetic_storm_3_mix }
-					modifier = { add = 30 has_deposit = d_mountains_of_steel }
-					modifier = { add = 30 has_modifier = scavenger_trophy }
-					modifier = { add = 30 has_modifier = heavy_metal }
-					modifier = { add = 30 has_modifier = alloy_relic }
-					modifier = { add = 30 has_modifier = factorator_industrial_network }
-					modifier = { add = 30 has_modifier = pm_hemosymbiosis }
-					modifier = { add = 30 has_modifier = pm_catalytic_excrement }
-
+					modifier = { add = 50 has_deposit = d_nano_corpses }
+					modifier = { add = 50 has_deposit = d_bluelotus }
+					modifier = { add = 50 has_deposit = d_bluelotus2 }
+					modifier = { add = 50 has_deposit = d_magnetic_storm_2_alloys }
+					modifier = { add = 50 has_deposit = d_magnetic_storm_3_mix }
+					modifier = { add = 50 has_deposit = d_mountains_of_steel }
+					modifier = { add = 50 has_modifier = scavenger_trophy }
+					modifier = { add = 50 has_modifier = heavy_metal }
+					modifier = { add = 50 has_modifier = alloy_relic }
+					modifier = { add = 50 has_modifier = factorator_industrial_network }
+					modifier = { add = 50 has_modifier = pm_hemosymbiosis }
+					modifier = { add = 50 has_modifier = pm_catalytic_excrement }
 				}
 				50 = {
 					set_carrier_flag = giga_katzen_research_world
@@ -12544,7 +12543,12 @@ carrier_event = {
 					count_owned_pop_amount = { count < 1100 }
 					planet_size < 9 #Not worth the Kaiser's time if it's that small
 				}
-				solar_system = { NOT = { has_star_flag = flusion_system } }
+				solar_system = {
+					NOR = {
+						has_star_flag = flusion_system #build up Flusion!
+						has_star_flag = paluush_system #culturally important system for them to develop
+					}
+				}
 				NOT = { has_carrier_flag = katzen_planet_colonized }
 			}
 			every_owned_pop_group = {
@@ -12570,10 +12574,7 @@ carrier_event = {
 			destroy_colony = yes
 		}
 		else = {
-			if = { #Rename now
-				limit = { solar_system = { NOT = { has_star_flag = flusion_system } } }
-				rename_planet_katzen = yes
-			}
+			rename_planet_katzen = yes #Rename now
 			if = { #If the planet was conquered, add Katzens & Army
 				limit = { NOT = { has_carrier_flag = katzen_planet_colonized } }
 				while = { count = 1	create_army = { name = NAME_katzen_peacekeeper	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
@@ -12616,18 +12617,18 @@ carrier_event = {
 					has_carrier_flag = giga_katzen_forge_world
 					has_carrier_flag = giga_katzen_research_world
 				}
-				NOR = {
-					habitable_structure = yes
-					planet_size > 30
-				}
+				# NOR = {
+				# 	habitable_structure = yes
+				# 	planet_size > 30
+				# }
 			}
-			planet_event = { id = giga_katzen.112 days = 1080 } #expand again
+			planet_event = { id = giga_katzen.112 days = 1080 random = 720 } #expand again
 		}
 		if = {
 			limit = {
 				has_carrier_flag = giga_katzen_fortress_world
 			}
-			planet_event = { id = giga_katzen.1121 days = 1080 }
+			planet_event = { id = giga_katzen.1121 days = 1080 random = 720 }
 		}
 		# if = {
 		# 	limit = {
@@ -12675,17 +12676,22 @@ planet_event = { #After 3 years, begin developping it based on specialization
 		remove_all_buildings = yes
 		remove_all_districts = yes
 		add_building = building_giga_katzen_capital
-		if = {
-			limit = { has_carrier_flag = katzen_planet_colonized }
-			create_pop_group = { species = event_target:solakians }
-			create_pop_group = { species = event_target:kronks }
-			create_pop_group = { species = event_target:arcticezics }
-			create_pop_group = { species = event_target:flusion_katzens }
+		create_pop_group = {
+			species = event_target:solakians
+			size = 200
 		}
-		create_pop_group = { species = event_target:solakians }
-		create_pop_group = { species = event_target:kronks }
-		create_pop_group = { species = event_target:arcticezics }
-		create_pop_group = { species = event_target:flusion_katzens }
+		create_pop_group = {
+			species = event_target:kronks
+			size = 200
+		}
+		create_pop_group = {
+			species = event_target:arcticezics
+			size = 200
+		}
+		create_pop_group = {
+			species = event_target:flusion_katzens
+			size = 200
+		}
 
 		#How could I forget? The Flusion tax! 10% of pops go to Flusion (best planet)
 		every_owned_pop_group = {
@@ -12722,7 +12728,7 @@ planet_event = { #After 3 years, begin developping it based on specialization
 		}
 		multiply_variable = { #This is the max number of pops.
 			which = giga_katzen_planet_max_num_pops
-			value = 3
+			value = 300
 		}
 
 		set_variable = {
@@ -12734,14 +12740,14 @@ planet_event = { #After 3 years, begin developping it based on specialization
 			variable = giga_katzen_planet_num_pops
 		}
 
-		if = {
+		if = { #if more pops than allowed, resettle excess to Flusion
 			limit = {
 				check_variable = {
 					which = giga_katzen_planet_num_pops
 					value > giga_katzen_planet_max_num_pops
 				}
 				event_target:gigaflusion = {
-					NOT = { free_housing <= 100 }
+					NOT = { free_housing <= 100 } #don't resettle if Flusion is too full
 				}
 			}
 			while = {
@@ -12773,10 +12779,10 @@ planet_event = { #After 3 years, begin developping it based on specialization
 		ceiling_variable = giga_katzen_district_slots
 		while = {
 			count = giga_katzen_district_slots
-			add_district = district_city_katzen
+			add_district = district_city #district_city_katzen
 		}
 		add_building = building_planetary_shield_generator #Shield
-		#Each theater provides 24 amenities, so we need (Max pops)/24 buildings
+		#Each theater provides 2400 amenities, so we need (Max pops)/2400 buildings
 		set_variable = {
 			which = giga_katzen_theater_count
 			value = giga_katzen_planet_max_num_pops
@@ -12791,7 +12797,8 @@ planet_event = { #After 3 years, begin developping it based on specialization
 			add_building = building_katzen_theater
 		}
 		add_building = building_katzen_theater
-		#Now that amenities are solved, we just fill the rest with enough foundries to accodomate the population.
+
+		#Now that amenities are solved, we just fill the rest with enough foundries/labs to accodomate the population.
 		if = {
 			limit = { has_carrier_flag = giga_katzen_forge_world }
 			export_trigger_value_to_variable = {
@@ -12804,7 +12811,7 @@ planet_event = { #After 3 years, begin developping it based on specialization
 			}
 			divide_variable = {
 				which = giga_katzen_planet_foundry_count
-				value = 8
+				value = 800
 			}
 			ceiling_variable = giga_katzen_planet_foundry_count
 			if = { #If more to be built than build slots, equalize
@@ -12832,27 +12839,27 @@ planet_event = { #After 3 years, begin developping it based on specialization
 			}
 			export_trigger_value_to_variable = {
 				trigger = pop_amount
-				variable = giga_katzen_planet_foundry_count
+				variable = giga_katzen_planet_lab_count
 			}
 			divide_variable = {
-				which = giga_katzen_planet_foundry_count
-				value = 8
+				which = giga_katzen_planet_lab_count
+				value = 800
 			}
-			ceiling_variable = giga_katzen_planet_foundry_count
+			ceiling_variable = giga_katzen_planet_lab_count
 			if = { #If more to be built than build slots, equalize
 				limit = {
 					check_variable = {
-						which = giga_katzen_planet_foundry_count
+						which = giga_katzen_planet_lab_count
 						value > giga_katzen_building_slots
 					}
 				}
 				set_variable = {
-					which = giga_katzen_planet_foundry_count
+					which = giga_katzen_planet_lab_count
 					value = giga_katzen_building_slots
 				}
 			}
 			while = {
-				count = giga_katzen_planet_foundry_count
+				count = giga_katzen_planet_lab_count
 				add_building = building_katzen_science
 			}
 		}
@@ -12914,7 +12921,7 @@ planet_event = { #After 3 years, add fortresses (fun times)
 	}
 
 	immediate = {
-		planet_event = { id = giga_katzen.1131 days = 1800 random = 200 } #CHANGE MORE
+		planet_event = { id = giga_katzen.1131 days = 1800 random = 200 } #turn into full siegfried
 		if = {
 			limit = { NOT = { has_carrier_flag = giga_katzen_planet_specialized } }
 			set_carrier_flag = giga_katzen_planet_specialized
@@ -12970,7 +12977,7 @@ planet_event = { #After 3 years, add fortresses (fun times)
 		add_district = district_mining
 		add_district = district_farming
 		add_building = building_katzen_theater
-		#Now that amenities are solved, we just fill the rest with enough foundries to accodomate the population.
+		#Now that amenities are solved, we just fill the rest with enough fortresses to accodomate the population.
 		add_building = building_fortress
 		add_building = building_fortress
 		while = { count = 2	create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
@@ -13141,7 +13148,7 @@ planet_event = { #After 5 more years, turn it into a real siegfried world (do no
 		}
 
 		while = { count = 4	create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
-		planet_event = { id = giga_katzen.120 days = 10 }
+		planet_event = { id = giga_katzen.120 days = 10 } #monthly check to blow up if captured
 		solar_system.starbase = { #Lvl 2
 			set_starbase_size = starbase_starfortress
 			set_starbase_module = {
@@ -13369,8 +13376,8 @@ planet_event = {
 	immediate = {
 		if = {
       		limit = {
-				AND = {
-					is_colony = yes
+				OR = {
+					is_colony = no
 					owner = { NOT = { is_country_type = katzenartig_imperium } }
 				}
 			}
@@ -13400,7 +13407,7 @@ planet_event = {
 			}
 		}
 		else = {
-			planet_event = { id = giga_katzen.120 days = 30 }
+			planet_event = { id = giga_katzen.120 days = 30 } #run event again next month
 		}
 	}
 }
@@ -13490,7 +13497,7 @@ ship_event = {
 	}
 
 	immediate = {
-		destroy_ship = ROOT
+		destroy_ship = ROOT #pretend they got scuttled or something
 	}
 }
 

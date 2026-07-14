@@ -319,6 +319,10 @@ rename_planet_katzen = {
 		}
 		random_list = {
 			0 = {
+				set_name = "Flusion"
+				modifier = { add = 1 has_carrier_flag = gigaflusion }
+			}
+			0 = {
 				set_name = "Katzenland"
 				modifier = { add = 1 has_planet_flag = katzenland }
 			}
