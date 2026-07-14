@@ -271,6 +271,7 @@ giga_paluush_initializer = {
 			orbit_angle = 40
 			has_ring = no
 			init_effect = {
+				set_planet_flag = nienet
 				save_global_event_target_as = nienet
 			}
 		}
@@ -303,6 +304,7 @@ giga_paluush_initializer = {
 		has_ring = yes
 
 		init_effect = {
+			set_planet_flag = forcinia
 			save_global_event_target_as = forcinia
 		}
 
@@ -315,6 +317,10 @@ giga_paluush_initializer = {
 			orbit_distance = 7
 			orbit_angle = 40
 			has_ring = no
+
+			init_effect = {
+				set_planet_flag = ruspiayama
+			}
 		}
 	}
 
@@ -327,6 +333,7 @@ giga_paluush_initializer = {
 		has_ring = no
 
 		init_effect = {
+			set_planet_flag = vicke
 			save_global_event_target_as = vicke
 		}
 	}
@@ -340,6 +347,7 @@ giga_paluush_initializer = {
 		has_ring = no
 
 		init_effect = {
+			set_planet_flag = teratre
 			save_global_event_target_as = teratre
 		}
 
@@ -352,6 +360,11 @@ giga_paluush_initializer = {
 			orbit_distance = 10
 			orbit_angle = 110
 			has_ring = no
+
+			init_effect = {
+				set_planet_flag = vertrois
+			}
+
 		}
 	}
 
@@ -548,6 +561,7 @@ giga_flusion_initializer = {
 
 			init_effect = {
 				prevent_anomaly = yes
+				set_planet_flag = magmoon
 				set_planet_flag = forbid_guillis_planet_modifiers
 			}
 		}
@@ -579,6 +593,7 @@ giga_flusion_initializer = {
 			has_ring = no
 
 			init_effect = {
+				set_planet_flag = denerth
 				prevent_anomaly = yes
 				set_planet_flag = forbid_guillis_planet_modifiers
 			}
@@ -611,6 +626,7 @@ giga_flusion_initializer = {
 			has_ring = no
 
 			init_effect = {
+				set_planet_flag = altaselon
 				prevent_anomaly = yes
 				set_planet_flag = forbid_guillis_planet_modifiers
 			}
@@ -624,6 +640,7 @@ giga_flusion_initializer = {
 			has_ring = no
 
 			init_effect = {
+				set_planet_flag = folia
 				prevent_anomaly = yes
 				set_planet_flag = forbid_guillis_planet_modifiers
 			}
