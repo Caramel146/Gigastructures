@@ -426,7 +426,6 @@ district_city_katzen = { #For special countries
 		owner = {
 			exists = event_target:flusion_primitives_country
 			is_country = event_target:flusion_primitives_country
-			is_regular_empire = no
 			NOT = { is_country_type = primitive }
 		}
 		nor = {
