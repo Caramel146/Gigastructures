@@ -12331,12 +12331,136 @@ carrier_event = {
 			random_list = {
 				50 = {
 					set_carrier_flag = giga_katzen_forge_world
+					#each alloy-boosting feature has a much higher weight than research ones since there are so few of them
+					modifier = { add = 30 has_deposit = d_nano_corpses }
+					modifier = { add = 30 has_deposit = d_bluelotus }
+					modifier = { add = 30 has_deposit = d_bluelotus2 }
+					modifier = { add = 30 has_deposit = d_magnetic_storm_2_alloys }
+					modifier = { add = 30 has_deposit = d_magnetic_storm_3_mix }
+					modifier = { add = 30 has_deposit = d_mountains_of_steel }
+					modifier = { add = 30 has_modifier = scavenger_trophy }
+					modifier = { add = 30 has_modifier = heavy_metal }
+					modifier = { add = 30 has_modifier = alloy_relic }
+					modifier = { add = 30 has_modifier = factorator_industrial_network }
+					modifier = { add = 30 has_modifier = pm_hemosymbiosis }
+					modifier = { add = 30 has_modifier = pm_catalytic_excrement }
+
 				}
 				50 = {
 					set_carrier_flag = giga_katzen_research_world
+					modifier = { add = 10 has_deposit = d_metal_boneyard }
+					modifier = { add = 10 has_deposit = d_migrating_forest_reserve }
+					modifier = { add = 10 has_deposit = d_valley_of_zanaam }
+					modifier = { add = 10 has_deposit = d_abandoned_primitive_homesteads }
+					modifier = { add = 10 has_deposit = d_the_zone }
+					modifier = { add = 10 has_deposit = d_toy_factory_complex }
+					modifier = { add = 10 has_deposit = d_ancient_bombardment_craters }
+					modifier = { add = 10 has_deposit = d_ancient_battlefield }
+					modifier = { add = 10 has_deposit = d_irradiated_ruins }
+					modifier = { add = 10 has_deposit = d_ancient_particle_accelerator }
+					modifier = { add = 10 has_deposit = d_underground_vault }
+					modifier = { add = 10 has_deposit = d_underground_vault_2 }
+					modifier = { add = 10 has_deposit = d_flooded_mounds }
+					modifier = { add = 10 has_deposit = d_wetware_computer }
+					modifier = { add = 10 has_deposit = d_savage_wildlands }
+					modifier = { add = 10 has_deposit = d_organic_landfill }
+					modifier = { add = 10 has_deposit = d_portal_research_zone }
+					modifier = { add = 10 has_deposit = d_house_turtle }
+					modifier = { add = 10 has_deposit = d_turtle_corpse }
+					modifier = { add = 10 has_deposit = d_fungal_study_zone }
+					modifier = { add = 10 has_deposit = d_living_snow_reserve }
+					modifier = { add = 10 has_deposit = d_radiotrophic_preserve }
+					modifier = { add = 10 has_deposit = d_shroud_flora_deposit }
+					modifier = { add = 10 has_deposit = d_ancient_manufactorium_scrapyard }
+					modifier = { add = 10 has_deposit = d_alien_sanctuary }
+					modifier = { add = 10 has_deposit = d_central_spire }
+					modifier = { add = 10 has_deposit = d_relic_dense_ruins }
+					modifier = { add = 10 has_deposit = d_former_relic_world }
+					modifier = { add = 10 has_deposit = d_impossiblecorrie }
+					modifier = { add = 10 has_deposit = d_ruin_bluelotus }
+					modifier = { add = 10 has_deposit = d_technocracy_toxic_waste_blocker }
+					modifier = { add = 10 has_deposit = d_technocracy_barren_lands_blocker }
+					modifier = { add = 10 has_deposit = d_technocracy_toxic_ocean_blocker }
+					modifier = { add = 10 has_deposit = d_technocracy_molten_waste_blocker }
+					modifier = { add = 10 has_deposit = d_payback_habitat_research }
+					modifier = { add = 10 has_deposit = d_weapon_extraction_facility }
+					modifier = { add = 10 has_deposit = d_particle_storm_1_society }
+					modifier = { add = 10 has_deposit = d_celestial_storm_2_society }
+					modifier = { add = 10 has_deposit = d_gravity_storm_3_engineering }
+					modifier = { add = 10 has_deposit = d_shroud_storm_1_society }
+					modifier = { add = 10 has_deposit = d_genesis_preserve }
+					modifier = { add = 10 has_deposit = d_hive_dwelling }
+					modifier = { add = 10 has_deposit = d_ruined_hive_dwelling }
+					modifier = { add = 10 has_deposit = d_hydroactive_eggs }
+					modifier = { add = 10 has_deposit = d_bogplants }
+					modifier = { add = 10 has_deposit = d_liquid_dark_matter }
+					modifier = { add = 10 has_deposit = d_dark_matter_monolith }
+					modifier = { add = 10 has_modifier = dangerous_wildlife }
+					modifier = { add = 10 has_modifier = weak_magnetic_field }
+					modifier = { add = 10 has_modifier = unstable_tectonics }
+					modifier = { add = 10 has_modifier = wild_storms }
+					modifier = { add = 10 has_modifier = titanic_life }
+					modifier = { add = 10 has_modifier = atmospheric_hallucinogen }
+					modifier = { add = 10 has_modifier = atmospheric_hallucinogen_good }
+					modifier = { add = 10 has_modifier = volcanic_critters }
+					modifier = { add = 10 has_modifier = volcanic_oasis }
+					modifier = { add = 10 has_modifier = subterranean_civilization }
+					modifier = { add = 10 has_modifier = planet_uncertain_past }
+					modifier = { add = 10 has_modifier = magnetic_research_boost }
+					modifier = { add = 10 has_modifier = turtle_world_modifier }
+					modifier = { add = 10 has_modifier = turtle_world_modifier_alone }
+					modifier = { add = 10 has_modifier = turtle_world_slaves_modifier }
+					modifier = { add = 10 has_modifier = adopted_aliens }
+					modifier = { add = 10 has_modifier = acid_jungles }
+					modifier = { add = 10 has_modifier = irradiated_wasteland }
+					modifier = { add = 10 has_modifier = liquid_sands }
+					modifier = { add = 10 has_modifier = society_animal_life }
+					modifier = { add = 10 has_modifier = tamed_nanite_swarm_modifier }
+					modifier = { add = 10 has_modifier = sky_dragon_trophy }
+					modifier = { add = 10 has_modifier = horror_study_trophy }
+					modifier = { add = 10 has_modifier = horror_study_trophy2 }
+					modifier = { add = 10 has_modifier = horror_stabilized }
+					modifier = { add = 10 has_modifier = voidspawn_trophy }
+					modifier = { add = 10 has_modifier = stratovents }
+					modifier = { add = 10 has_modifier = stratovent_world_modifier_tourism }
+					modifier = { add = 10 has_modifier = stratovent_world_modifier_tourism_boost }
+					modifier = { add = 10 has_modifier = stratovent_world_modifier_refining }
+					modifier = { add = 10 has_modifier = stratovent_world_modifier_refining_upg }
+					modifier = { add = 10 has_modifier = stratovent_world_modifier_refining_minerals }
+					modifier = { add = 10 has_modifier = exofungus }
+					modifier = { add = 10 has_modifier = watery_grave }
+					modifier = { add = 10 has_modifier = predatory_plants }
+					modifier = { add = 10 has_modifier = living_sea }
+					modifier = { add = 10 has_modifier = seismological_phenomena }
+					modifier = { add = 10 has_modifier = seismological_phenomena_2 }
+					modifier = { add = 10 has_modifier = egg_rifts }
+					modifier = { add = 10 has_modifier = study_the_sentinels_modifier }
+					modifier = { add = 10 has_modifier = evermore_science }
+					modifier = { add = 10 has_modifier = astral_aficionados_modifier }
+					modifier = { add = 10 has_modifier = seeded_planet_1_modifier }
+					modifier = { add = 10 has_modifier = seeded_planet_2_modifier }
+					modifier = { add = 10 has_modifier = seeded_planet_3_modifier }
+					modifier = { add = 10 has_modifier = docile_fauna }
+					modifier = { add = 10 has_modifier = pm_dark_matter_statue }
+					modifier = { add = 10 has_modifier = pm_raining_corpses_no_ancrel }
+					modifier = { add = 10 has_modifier = crystal_lava_resort }
+					modifier = { add = 10 has_modifier = red_giant_exploded }
+					modifier = { add = 10 has_modifier = red_giant_exploded_mitigated }
+					modifier = { add = 10 has_modifier = red_giant_exploit_mod }
+					modifier = { add = 10 has_modifier = red_giant_calmed_mod }
+					modifier = { add = 10 has_modifier = pm_catalytic_excrement }
+					modifier = { add = 10 has_modifier = shroud_forged_guide_modifier }
+					modifier = { add = 10 has_modifier = pm_shroud_forged_shroud_pilgrimage }
 				}
-				0 = { #Siegfried World. All artificially terraformed planets surrounding Jublio will become Siegfried worlds, and terraformed planets themselves have a 40% chance of becoming one.
+				0 = { #Siegfried World. High chance of one in each system near Jublio, and terraformed planets themselves have a moderate chance of becoming one.
 					set_carrier_flag = giga_katzen_fortress_world
+					modifier = { factor = 1.5 has_deposit = d_black_needle_base }
+					modifier = { factor = 1.5 has_deposit = d_abandoned_black_needle_base }
+					modifier = { factor = 1.5 has_deposit = d_trophy_hall }
+					modifier = { factor = 0.5 has_deposit = d_seismic_bombing_crater } #BAD
+					modifier = { factor = 0.5 has_deposit = d_explosive_atmosphere } #BAD
+					modifier = { factor = 1.5 has_modifier = nascent_locust }
+					modifier = { add = 1000 has_modifier = death_world }
 					modifier = {
 						add = 50 #TODO CHANGE
 						has_carrier_flag = katzen_planet_colonized
