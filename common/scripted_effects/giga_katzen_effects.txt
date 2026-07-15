@@ -48,6 +48,19 @@ decrease_kaiser_opinion = {
 			country_event = { id = giga_katzen.050 days = 30 random = 5 } #Kaiser declares war
 		}
 	}
+
+	if = { #floor opinion at -100
+		limit = {
+			check_variable = {
+				which = kaiser_opinion
+				value < -100
+			}
+		}
+		set_variable = {
+			which = kaiser_opinion
+			value = -100
+		}
+	}
 }
 
 increase_kaiser_opinion = {
@@ -67,6 +80,18 @@ increase_kaiser_opinion = {
 		change_variable = {
 			which = kaiser_opinion
 			value = 20 #1 attitude range (roughly - indifferent is a double-span range)
+		}
+	}
+	if = { #cap opinion to 100
+		limit = {
+			check_variable = {
+				which = kaiser_opinion
+				value > 100
+			}
+		}
+		set_variable = {
+			which = kaiser_opinion
+			value = 100
 		}
 	}
 }

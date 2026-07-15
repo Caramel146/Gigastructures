@@ -2970,7 +2970,7 @@ country_event = { #hello
 			}
 			custom_tooltip = {
 				fail_text = "cant_katzen_imperium"
-				AND = {
+				NAND = {
 					is_galactic_community_member = yes
 					has_galactic_emperor = yes
 					is_galactic_emperor = no
@@ -2978,7 +2978,7 @@ country_event = { #hello
 			}
 			custom_tooltip = {
 				fail_text = "cant_katzen_custodian"
-				is_galactic_custodian = yes
+				is_galactic_custodian = no
 			}
 			custom_tooltip = {
 				fail_text = "cant_katzen_subject"
@@ -3525,9 +3525,6 @@ country_event = {
 		name = "giga_katzen.0033.a"
 		custom_tooltip = "giga_katzen.0033.a.tooltip"
 		remove_modifier = katzprotektorat_modifier
-		ai_chance = {
-			factor = 100
-		}
 		hidden_effect = {
 			katzen_free_protectorate = yes
 			set_kaiser_war_opinion = yes
@@ -3535,15 +3532,6 @@ country_event = {
 				target = event_target:flusion_primitives_country
 				attacker_war_goal = "wg_katzen_defence"
 				name = "Katzenkrieg"
-			}
-			every_country = {
-				limit = { is_in_federation_with = ROOT }
-				join_war = ROOT
-				set_kaiser_war_opinion = yes
-			}
-			every_subject = {
-				join_war = ROOT
-				set_kaiser_war_opinion = yes
 			}
 		}
 	}
@@ -6789,6 +6777,9 @@ country_event = { #Zuspri invasion denounced
 	is_triggered_only = yes
 
 	option = {
+		trigger = {
+			katzen_vassal = no
+		}
 		name = "giga_katzen.8003.a"
 		custom_tooltip = "giga_katzen.8003.a.tooltip"
 		add_resource = { influence = 50 }
@@ -6801,6 +6792,9 @@ country_event = { #Zuspri invasion denounced
 	}
 
 	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
 		name = "giga_katzen.8003.b"
 		custom_tooltip = "giga_katzen.8003.b.tooltip"
 		add_resource = { influence = -50 }
@@ -9289,15 +9283,9 @@ country_event = {
 							free_housing <= 1000
 							free_jobs <= 500
 						}
-						OR = {
-							num_free_districts = {
-								type = district_city
-								value > 0
-							}
-							num_free_districts = {
-								type = district_arcology_housing #district_flusion_city
-								value > 0
-							}
+						num_free_districts = {
+							type = any
+							value > 0
 						}
 					}
 					random_list = {
@@ -9388,10 +9376,22 @@ country_event = {
 
 				else_if = { #if there's no space for another district, maybe we need to clear a blocker
 					limit = {
-						any_deposit = { is_blocker = yes }
+						any_deposit = {
+							is_blocker = yes
+							NOR = {
+								is_deposit_type = d_solaktropa_project_wreck
+								is_deposit_type = d_katlantropa_project_wreck
+							}
+						}
 					}
 					random_deposit = {
-						limit = { is_blocker = yes }
+						limit = {
+							is_blocker = yes
+							NOR = {
+								is_deposit_type = d_solaktropa_project_wreck
+								is_deposit_type = d_katlantropa_project_wreck
+							}
+						}
 						remove_deposit = yes
 					}
 				}
@@ -11781,11 +11781,12 @@ country_event = { #Collapse of Katzenartig
 		}
 		every_system = {
 			every_fleet_in_system = {
-				limit = { has_fleet_flag = warforge_platform }
-				destroy_fleet = THIS
-			}
-			every_fleet_in_system = {
-				limit = { has_fleet_flag = katzen_planet_platform }
+				limit = {
+					OR = {
+						has_fleet_flag = warforge_platform
+						has_fleet_flag = katzen_planet_platform
+					}
+				}
 				destroy_fleet = THIS
 			}
 		}
@@ -12309,52 +12310,56 @@ carrier_event = {
 	hide_window = yes
 	is_triggered_only = yes
 
-	trigger = {
-		is_colony = yes
-		owner = {
-			is_country_type = katzenartig_imperium
-		}
-	}
-
 	immediate = {
-		# if = { #Empty it if not enough pops
-		# 	limit = {
-		# 		OR = {
-		# 			count_owned_pop_amount = { count < 1100 }
-		# 			planet_size < 9 #Not worth the Kaiser's time if it's that small
-		# 		}
-		# 		solar_system = {
-		# 			NOR = {
-		# 				has_star_flag = flusion_system #build up Flusion!
-		# 				has_star_flag = paluush_system #culturally important system for them to develop
-		# 			}
-		# 		}
-		# 		NOT = { has_carrier_flag = katzen_planet_colonized }
-		# 	}
-		# 	every_owned_pop_group = {
-		# 		resettle_pop_group = {
-		# 			POP_GROUP = this
-		# 			PLANET = event_target:gigaflusion
-		# 			AMOUNT = 100
-		# 		}
-		# 	}
-		# 	remove_carrier_flag = katzen_planet_set_up
-		# 	if = {
-		# 		limit = { has_carrier_flag = katzen_world_fortress }
-		# 		remove_carrier_flag = katzen_world_fortress
-		# 	}
-		# 	if = {
-		# 		limit = { has_carrier_flag = katzen_world_forge }
-		# 		remove_carrier_flag = katzen_world_forge
-		# 	}
-		# 	if = {
-		# 		limit = { has_carrier_flag = katzen_world_research }
-		# 		remove_carrier_flag = katzen_world_research
-		# 	}
-		# 	destroy_colony = yes
-		# }
+		if = { #must run prior to block below, which must NOT be an else_if so that the katzen_world_predeveloped stuff can run in the final block
+			limit = {
+				#assume it came pre-developed if it's this populous, so stay there and mark it to not demolish buildings
+				#could also be something like a birch so don't piss off the player by wiping it. Leave it to be recaptured.
+				count_owned_pop_amount = { count > 5000 }
+				NOR = {
+					has_carrier_flag = katzen_world_predeveloped
+					uses_district_set = habitat
+					uses_district_set = ring_world
+					uses_district_set = city_world
+					uses_district_set = standard
+					uses_district_set = volcanic_world
+					uses_district_set = giga_gas_giant_habitat
+				}
+			}
+			set_carrier_flag = katzen_world_predeveloped
+		}
+		if = { #otherwise, if it's a planet the Kaiser cannot use, abandon it
+			limit = {
+				NOR = {
+					has_carrier_flag = katzen_world_predeveloped
+					uses_district_set = habitat
+					uses_district_set = ring_world
+					uses_district_set = city_world
+					uses_district_set = standard
+					uses_district_set = volcanic_world
+					uses_district_set = giga_gas_giant_habitat
+				}
+			}
+			every_owned_pop_group = {
+				resettle_pop_group = {
+					POP_GROUP = this
+					PLANET = event_target:gigaflusion
+					AMOUNT = 100
+				}
+			}
+			destroy_colony = yes
+		}
 		else = {
 			set_update_modifiers_batch = begin
+			if = {
+				limit = {
+					NOT = {
+						has_carrier_flag = katzen_world_predeveloped
+					}
+				}
+				remove_all_buildings = yes #clean slate for Katzen development. May cause initial chaos.
+				planet_event = { id = giga_katzen.111 days = 330 random = 60 } #begin recurring annualish development event
+			}
 			set_controller = event_target:flusion_primitives_country
 			set_owner =	event_target:flusion_primitives_country
 			katzen_clear_capitals = yes
@@ -12395,10 +12400,6 @@ carrier_event = {
 					}
 				}
 
-				#Add some districts #TODO doesn't work for non-standard types. Check if necessary.
-				# add_district = district_city_katzen
-				# add_district = district_city_katzen
-
 				create_pop_group = { #Give an initial Flusion-species-set population
 					species = event_target:flusion_katzens
 					size = 200
@@ -12417,49 +12418,19 @@ carrier_event = {
 
 				#decide what the planet should be developed as
 				#uses district set then sets a flag for better compat than checking planet class
-				if = {
-					limit = {
-						uses_district_set = habitat
-					}
-					set_carrier_flag = katzen_habitat
+				switch = {
+					trigger = uses_district_set
+					habitat = { set_carrier_flag = katzen_habitat }
+					ring_world = { set_carrier_flag = katzen_ring_world }
+					city_world = { set_carrier_flag = katzen_city_world }
+					standard = { set_carrier_flag = katzen_standard }
+					volcanic_world = { set_carrier_flag = katzen_volcanic }
+					giga_gas_giant_habitat = { set_carrier_flag = katzen_gas_giant }
+					# giga_planetary_computer = {
+					# 	set_carrier_flag = katzen_planetary_computer
+					# 	set_carrier_flag = katzen_world_research
+					# }
 				}
-				else_if = {
-					limit = {
-						uses_district_set = ring_world
-					}
-					set_carrier_flag = katzen_ring_world
-				}
-				else_if = {
-					limit = {
-						uses_district_set = city_world
-					}
-					set_carrier_flag = katzen_city_world
-				}
-				else_if = {
-					limit = {
-						uses_district_set = standard
-					}
-					set_carrier_flag = katzen_standard
-				}
-				else_if = {
-					limit = {
-						uses_district_set = volcanic_world
-					}
-					set_carrier_flag = katzen_volcanic
-				}
-				else_if = {
-					limit = {
-						uses_district_set = giga_gas_giant_habitat
-					}
-					set_carrier_flag = katzen_gas_giant
-				}
-				# else_if = {
-				# 	limit = {
-				# 		uses_district_set = giga_planetary_computer
-				# 	}
-				# 	set_carrier_flag = katzen_planetary_computer
-				# 	set_carrier_flag = katzen_world_research
-				# }
 				if = {
 					limit = {
 						NOR = {
@@ -12471,8 +12442,9 @@ carrier_event = {
 					random_list = {
 						50 = {
 							set_carrier_flag = katzen_world_forge
+
 							#each alloy-boosting feature has a much higher weight than research ones since there are so few of them
-							modifier = { add = 100 has_carrier_flag = katzen_volcanic } #not guaranteed, but highly likely use of volcanic worlds
+							modifier = { add = 50 has_carrier_flag = katzen_volcanic }
 							modifier = { add = 50 has_deposit = d_nano_corpses }
 							modifier = { add = 50 has_deposit = d_bluelotus }
 							modifier = { add = 50 has_deposit = d_bluelotus2 }
@@ -12488,6 +12460,7 @@ carrier_event = {
 						}
 						50 = {
 							set_carrier_flag = katzen_world_research
+
 							modifier = { add = 10 has_deposit = d_metal_boneyard }
 							modifier = { add = 10 has_deposit = d_migrating_forest_reserve }
 							modifier = { add = 10 has_deposit = d_valley_of_zanaam }
@@ -12591,6 +12564,7 @@ carrier_event = {
 							modifier = { add = 10 has_modifier = pm_catalytic_excrement }
 							modifier = { add = 10 has_modifier = shroud_forged_guide_modifier }
 							modifier = { add = 10 has_modifier = pm_shroud_forged_shroud_pilgrimage }
+
 							#On to Gigas features
 							modifier = { add = 10 has_deposit = d_compound_boon_4 }
 							modifier = { add = 10 has_deposit = d_compound_boon_5 }
@@ -12604,16 +12578,34 @@ carrier_event = {
 							modifier = { add = 10 has_modifier = interstellar_habitat }
 							modifier = { add = 10 has_modifier = ruined_city_world }
 							modifier = { add = 10 has_modifier = megastructure_collision }
+
+							#less likely if there aren't enough special science districts
+							modifier = {
+								factor = 0.5
+								OR = {
+									AND = {
+										has_carrier_flag = katzen_habitat
+										num_free_districts = { type = district_hab_science value <= 5 }
+									}
+									AND = {
+										has_carrier_flag = katzen_volcanic
+										num_free_districts = { type = district_polytechnic value <= 5 }
+									}
+								}
+							}
 						}
 						0 = { #Siegfried World. High chance of one in each system near Jublio, and terraformed planets themselves have a moderate chance of becoming one.
 							set_carrier_flag = katzen_world_fortress
+
+							#these work on factors instead of adds due to the base of 0
 							modifier = { factor = 1.5 has_deposit = d_black_needle_base }
 							modifier = { factor = 1.5 has_deposit = d_abandoned_black_needle_base }
 							modifier = { factor = 1.5 has_deposit = d_trophy_hall }
-							modifier = { factor = 0.5 has_deposit = d_seismic_bombing_crater } #BAD
-							modifier = { factor = 0.5 has_deposit = d_explosive_atmosphere } #BAD
+							modifier = { factor = 0.25 has_deposit = d_seismic_bombing_crater } #BAD
+							modifier = { factor = 0.25 has_deposit = d_explosive_atmosphere } #BAD
 							modifier = { factor = 1.5 has_modifier = nascent_locust }
 							modifier = { add = 1000 has_modifier = death_world }
+
 							modifier = {
 								add = 50 #TODO CHANGE
 								has_carrier_flag = katzen_planet_colonized
@@ -12647,21 +12639,6 @@ carrier_event = {
 						}
 					}
 				}
-				if = {
-					limit = {
-						OR = {
-							has_carrier_flag = katzen_world_forge
-							has_carrier_flag = katzen_world_research
-						}
-					}
-					planet_event = { id = giga_katzen.112 days = 1080 random = 720 } #expand again
-				}
-				if = {
-					limit = {
-						has_carrier_flag = katzen_world_fortress
-					}
-					planet_event = { id = giga_katzen.1121 days = 1080 random = 720 } #expand again
-				}
 			}
 			else = { #Reconquered
 				while = { count = 1	create_army = { name = NAME_katzen_peacekeeper	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
@@ -12686,14 +12663,13 @@ carrier_event = {
 					}
 				}
 			}
-			carrier_event = { id = giga_katzen.080 days = 330 random = 60 } #begin recurring annualish development event
 			set_update_modifiers_batch = end
 		}
 	}
 }
 
 #Non-Flusion Katzen colony slowly expands
-carrier_event = {
+planet_event = {
 	id = giga_katzen.111
 
 	is_triggered_only = yes
@@ -12705,13 +12681,9 @@ carrier_event = {
 	}
 
 	immediate = {
-		carrier_event = { id = giga_katzen.080 days = 330 random = 60 } #run event again in approximately a year
+		planet_event = { id = giga_katzen.111 days = 330 random = 60 } #run event again in approximately a year
 
 		set_update_modifiers_batch = begin
-		change_variable = {
-			which = years_of_kaiser_rule #not strictly a year but it is on average
-			value = 1
-		}
 
 		if = {
 			limit = { #don't develop if the planet is in active conflict
@@ -12745,18 +12717,98 @@ carrier_event = {
 							trigger = has_carrier_flag
 							katzen_habitat = {
 								add_district = district_hab_housing
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry value < 2 }
+									}
+									add_zone = { district = district_hab_housing zone_slot = 1 zone = zone_foundry replace = yes }
+									add_zone = { district = district_hab_housing zone_slot = 2 zone = zone_foundry replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_habitat_research value < 2 }
+									}
+									add_zone = { district = district_hab_housing zone_slot = 1 zone = zone_habitat_research replace = yes }
+									add_zone = { district = district_hab_housing zone_slot = 2 zone = zone_habitat_research replace = yes }
+								}
 							}
 							katzen_ring_world = {
 								add_district = district_rw_city
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry_ring_world value < 2 }
+									}
+									add_zone = { district = district_rw_city zone_slot = 1 zone = zone_foundry_ring_world replace = yes }
+									add_zone = { district = district_rw_city zone_slot = 2 zone = zone_foundry_ring_world replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research_ring_world value < 2 }
+									}
+									add_zone = { district = district_rw_city zone_slot = 1 zone = zone_research_ring_world replace = yes }
+									add_zone = { district = district_rw_city zone_slot = 2 zone = zone_research_ring_world replace = yes }
+								}
 							}
 							katzen_city_world = {
 								add_district = district_arcology_housing
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry_arcology value < 2 }
+									}
+									add_zone = { district = district_arcology_housing zone_slot = 1 zone = zone_foundry_arcology replace = yes }
+									add_zone = { district = district_arcology_housing zone_slot = 2 zone = zone_foundry_arcology replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research_arcology value < 2 }
+									}
+									add_zone = { district = district_arcology_housing zone_slot = 1 zone = zone_research_arcology replace = yes }
+									add_zone = { district = district_arcology_housing zone_slot = 2 zone = zone_research_arcology replace = yes }
+								}
 							}
 							katzen_standard = {
 								add_district = district_city
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry value < 2 }
+									}
+									add_zone = { district = district_city zone_slot = 1 zone = zone_foundry replace = yes }
+									add_zone = { district = district_city zone_slot = 2 zone = zone_foundry replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research value < 2 }
+									}
+									add_zone = { district = district_city zone_slot = 1 zone = zone_research replace = yes }
+									add_zone = { district = district_city zone_slot = 2 zone = zone_research replace = yes }
+								}
 							}
 							katzen_volcanic = {
 								add_district = district_city
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry value < 2 }
+									}
+									add_zone = { district = district_city zone_slot = 1 zone = zone_foundry replace = yes }
+									add_zone = { district = district_city zone_slot = 2 zone = zone_foundry replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research value < 2 }
+									}
+									add_zone = { district = district_city zone_slot = 1 zone = zone_research replace = yes }
+									add_zone = { district = district_city zone_slot = 2 zone = zone_research replace = yes }
+								}
 							}
 							katzen_gas_giant = {
 								add_district = district_giga_planet_city
@@ -12772,6 +12824,10 @@ carrier_event = {
 							trigger = has_carrier_flag
 							katzen_habitat = {
 								add_district = district_hab_energy
+								if = {
+									limit = { NOT = { has_zone = { zone = zone_energy } } }
+									add_zone = { district = district_hab_energy zone = zone_energy }
+								}
 							}
 							katzen_ring_world = {
 								add_district = district_rw_urban_1
@@ -12783,25 +12839,35 @@ carrier_event = {
 								add_district = district_generator
 							}
 							katzen_volcanic = {
-								add_district = district_generator
+								add_district = district_geothermal
 							}
 							katzen_gas_giant = {
 								add_district = district_giga_gas_giant_habitat_science
 							}
 						}
-						# modifier = { #TODO more likely if colony has few districts of this type
-						# 	factor = 2
-						# 	AND = {
-						# 		NOT = { is_planet_class = pc_flusion_gaia_ecu }
-						# 		num_districts = { type = district_generator value < 4 }
-						# 	}
-						# }
+						modifier = { #don't waste the development cycle if capped on that district type
+							factor = 0
+							OR = {
+								AND = {
+									has_carrier_flag = katzen_habitat
+									num_free_districts = { type = district_hab_energy value <= 0 }
+								}
+								AND = {
+									has_carrier_flag = katzen_standard
+									num_free_districts = { type = district_generator value <= 0 }
+								}
+							}
+						}
 					}
 					5 = {
 						switch = {
 							trigger = has_carrier_flag
 							katzen_habitat = {
 								add_district = district_hab_mining
+								if = {
+									limit = { NOT = { has_zone = { zone = zone_minerals } } }
+									add_zone = { district = district_hab_mining zone = zone_minerals }
+								}
 							}
 							katzen_ring_world = {
 								add_district = district_rw_urban_2
@@ -12818,9 +12884,6 @@ carrier_event = {
 							katzen_gas_giant = {
 								add_district = district_giga_gas_giant_habitat_wind
 							}
-							katzen_gas_giant = {
-								add_district = district_giga_gas_giant_habitat_exotic
-							}
 						}
 						modifier = { #get more thermoforgers on foundry worlds
 							factor = 2
@@ -12829,19 +12892,33 @@ carrier_event = {
 								has_carrier_flag = katzen_volcanic
 							}
 						}
-						# modifier = { #TODO more likely if colony has few districts of this type
-						# 	factor = 2
-						# 	AND = {
-						# 		NOT = { is_planet_class = pc_flusion_gaia_ecu }
-						# 		num_districts = { type = district_mining value < 4 }
-						# 	}
-						# }
+						modifier = { #don't waste the development cycle if capped on that district type
+							factor = 0
+							OR = {
+								AND = {
+									has_carrier_flag = katzen_habitat
+									num_free_districts = { type = district_hab_mining value <= 0 }
+								}
+								AND = {
+									has_carrier_flag = katzen_standard
+									num_free_districts = { type = district_mining value <= 0 }
+								}
+								AND = {
+									has_carrier_flag = katzen_volcanic
+									num_free_districts = { type = district_melting value <= 0 }
+								}
+							}
+						}
 					}
 					5 = {
 						switch = {
 							trigger = has_carrier_flag
 							katzen_habitat = {
 								add_district = district_hab_science
+								if = {
+									limit = { NOT = { has_zone = { zone = zone_habitat_research } } }
+									add_zone = { district = district_hab_science zone = zone_habitat_research }
+								}
 							}
 							katzen_ring_world = {
 								add_district = district_rw_urban_3
@@ -12854,6 +12931,9 @@ carrier_event = {
 							}
 							katzen_volcanic = {
 								add_district = district_polytechnic
+							}
+							katzen_gas_giant = {
+								add_district = district_giga_gas_giant_habitat_exotic
 							}
 						}
 						modifier = { #fewer science districts as non-research world
@@ -12876,28 +12956,330 @@ carrier_event = {
 								}
 							}
 						}
-						# modifier = { #TODO more likely if colony has few districts of this type
-						# 	factor = 2
-						# 	AND = {
-						# 		NOT = { is_planet_class = pc_flusion_gaia_ecu }
-						# 		num_districts = { type = district_farming value < 4 }
-						# 	}
-						# }
+						modifier = { #don't waste the development cycle if capped on that district type
+							factor = 0
+							OR = {
+								AND = {
+									has_carrier_flag = katzen_habitat
+									num_free_districts = { type = district_hab_science value <= 0 }
+								}
+								AND = {
+									has_carrier_flag = katzen_standard
+									num_free_districts = { type = district_farming value <= 0 }
+								}
+								AND = {
+									has_carrier_flag = katzen_volcanic
+									num_free_districts = { type = district_polytechnic value <= 0 }
+								}
+							}
+						}
 					}
 				}
 			}
 
 			else_if = { #if there's no space for another district, maybe we need to clear a blocker
 				limit = {
-					any_deposit = { is_blocker = yes }
+					any_deposit = {
+						is_blocker = yes
+						NOT = { is_deposit_type = d_everfree_forest } #this is a good blocker
+					}
 				}
 				random_deposit = {
-					limit = { is_blocker = yes }
+					limit = {
+						is_blocker = yes
+						NOT = { is_deposit_type = d_everfree_forest } #this is a good blocker
+					}
 					remove_deposit = yes
 				}
 			}
 
-			#TODO orbital infrastructure?
+			else_if = { #amenities shortage! Build theatres
+				limit = {
+					free_building_slots > 0 #TODO may trigger even if buildings are wrong type for zones, blocking the final else from triggering
+					free_amenities < 500
+				}
+				add_building = building_katzen_theater
+			}
+
+			else_if = { #shield generator for Siegfrieds
+				limit = {
+					free_building_slots > 0 #TODO may trigger even if buildings are wrong type for zones, blocking the final else from triggering
+					has_carrier_flag = katzen_world_fortress
+					check_variable = { which = years_of_kaiser_rule value > 4 }
+				}
+				add_building = building_planetary_shield_generator
+			}
+
+			else_if = { #shield generator for Siegfrieds
+				limit = {
+					has_carrier_flag = katzen_world_fortress
+					check_variable = { which = years_of_kaiser_rule value > 4 }
+				}
+				add_building = building_planetary_shield_generator
+			}
+
+			else_if = { #starbase upgrade from Siegfrieds
+				limit = {
+					has_carrier_flag = katzen_world_fortress
+					solar_system.starbase = { #don't upgrade an occupied starbase
+						owner = { is_country_type = katzenartig_imperium }
+						fleet = { is_disabled = no }
+						has_starbase_size = starbase_outpost
+					}
+					check_variable = { which = years_of_kaiser_rule value > 8 }
+				}
+				solar_system.starbase = { #Lvl 1
+					set_starbase_size = starbase_starport
+					set_starbase_module = { slot = 1 module = detection_array }
+					set_starbase_module = { slot = 2 module = detection_array }
+					set_starbase_building = { slot = 1 building = listening_post }
+					fleet = {
+						remove_modifier = warforge_detection
+					}
+				}
+			}
+
+			else_if = { #become a proper siegfried world
+				limit = {
+					has_carrier_flag = katzen_world_fortress
+					NOT = { is_planet_class = pc_giga_siegfried_world }
+					solar_system.starbase = { #don't build orbital defences in an occupied system
+						owner = { is_country_type = katzenartig_imperium }
+						fleet = { is_disabled = no }
+					}
+					check_variable = { which = years_of_kaiser_rule value > 12 }
+				}
+				clear_deposits = yes
+				clear_planet_modifiers = yes
+				change_pc = {
+					class = pc_giga_siegfried_world
+					inherit_entity = yes
+				}
+				add_building = building_giga_siegfried_global_bunker
+				solar_system = {
+					set_star_flag = siegfried_anti_jump_star
+					every_neighbor_system = { set_star_flag = siegfried_anti_jump_star }
+				}
+				planet_event = { id = giga_katzen.120 days = 10 } #monthly check to blow up if captured
+
+				create_fleet = { #Siegfried defenses 1
+					name = "Siegfried Array"
+					settings = { spawn_debris = no }
+					effect = {
+						set_owner = event_target:flusion_primitives_country
+						create_ship = {
+							name = "Katzenplanetenverteidigung"
+							design = "Meoder"
+							upgradable = no
+						}
+						set_location = {
+							target = ROOT
+							distance = 15
+							angle = 0
+						}
+						set_fleet_flag = katzen_planet_platform
+					}
+				}
+
+				create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" }
+
+			}
+
+			else_if = { #starbase upgrade 2 from Siegfrieds
+				limit = {
+					has_carrier_flag = katzen_world_fortress
+					solar_system.starbase = { #don't upgrade an occupied starbase
+						owner = { is_country_type = katzenartig_imperium }
+						fleet = { is_disabled = no }
+						has_starbase_size = starbase_starport
+					}
+					check_variable = { which = years_of_kaiser_rule value > 16 }
+				}
+				solar_system.starbase = { #Lvl 1
+					set_starbase_size = starbase_starhold
+					set_starbase_module = { slot = 1 module = detection_array }
+					set_starbase_module = { slot = 2 module = detection_array }
+					set_starbase_module = { slot = 3 module = detection_array }
+					set_starbase_module = { slot = 4 module = detection_array }
+					set_starbase_building = { slot = 1 building = listening_post }
+					set_starbase_building = { slot = 2 building = communications_jammer }
+					fleet = {
+						remove_modifier = warforge_detection
+					}
+				}
+			}
+
+			else_if = { #Siegfried defences 2
+				limit = {
+					has_carrier_flag = katzen_world_fortress
+					solar_system.starbase = { #don't build orbital defences in an occupied system
+						owner = { is_country_type = katzenartig_imperium }
+						fleet = { is_disabled = no }
+					}
+					check_variable = { which = years_of_kaiser_rule value > 20 }
+				}
+
+				create_fleet = { #Siegfried defenses 2
+					name = "Siegfried Array"
+					settings = { spawn_debris = no }
+					effect = {
+						set_owner = event_target:flusion_primitives_country
+						create_ship = {
+							name = "Katzenplanetenverteidigung"
+							design = "Meoder"
+							upgradable = no
+						}
+						set_location = {
+							target = ROOT
+							distance = 15
+							angle = 90
+						}
+						set_fleet_flag = katzen_planet_platform
+					}
+				}
+
+				create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" }
+			}
+
+			else_if = { #starbase upgrade 3 from Siegfrieds
+				limit = {
+					has_carrier_flag = katzen_world_fortress
+					solar_system.starbase = { #don't upgrade an occupied starbase
+						owner = { is_country_type = katzenartig_imperium }
+						fleet = { is_disabled = no }
+						has_starbase_size = starbase_starhold
+					}
+					check_variable = { which = years_of_kaiser_rule value > 24 }
+				}
+				solar_system.starbase = { #Lvl 3
+					set_starbase_size = starbase_starfortress
+					set_starbase_module = { slot = 1 module = detection_array }
+					set_starbase_module = { slot = 2 module = detection_array }
+					set_starbase_module = { slot = 3 module = detection_array }
+					set_starbase_module = { slot = 4 module = detection_array }
+					set_starbase_module = { slot = 5 module = detection_array }
+					set_starbase_module = { slot = 6 module = detection_array }
+					set_starbase_building = { slot = 1 building = listening_post }
+					set_starbase_building = { slot = 2 building = communications_jammer }
+					set_starbase_building = { slot = 3 building = target_uplink_computer }
+					fleet = {
+						remove_modifier = warforge_detection
+					}
+				}
+			}
+
+			else_if = { #Siegfried defences 3
+				limit = {
+					has_carrier_flag = katzen_world_fortress
+					solar_system.starbase = { #don't build orbital defences in an occupied system
+						owner = { is_country_type = katzenartig_imperium }
+						fleet = { is_disabled = no }
+					}
+					check_variable = { which = years_of_kaiser_rule value > 28 }
+				}
+
+				create_fleet = { #Siegfried defenses 3
+					name = "Siegfried Array"
+					settings = { spawn_debris = no }
+					effect = {
+						set_owner = event_target:flusion_primitives_country
+						create_ship = {
+							name = "Katzenplanetenverteidigung"
+							design = "Meoder"
+							upgradable = no
+						}
+						set_location = {
+							target = ROOT
+							distance = 15
+							angle = 180
+						}
+						set_fleet_flag = katzen_planet_platform
+					}
+				}
+
+				create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" }
+			}
+
+			else_if = { #starbase upgrade 4 from Siegfrieds
+				limit = {
+					has_carrier_flag = katzen_world_fortress
+					solar_system.starbase = { #don't upgrade an occupied starbase
+						owner = { is_country_type = katzenartig_imperium }
+						fleet = { is_disabled = no }
+						has_starbase_size = starbase_starfortress
+					}
+					check_variable = { which = years_of_kaiser_rule value > 32 }
+				}
+				solar_system.starbase = { #Lvl 4
+					set_starbase_size = starbase_citadel
+					set_starbase_module = { slot = 1 module = detection_array }
+					set_starbase_module = { slot = 2 module = detection_array }
+					set_starbase_module = { slot = 3 module = detection_array }
+					set_starbase_module = { slot = 4 module = detection_array }
+					set_starbase_module = { slot = 5 module = detection_array }
+					set_starbase_module = { slot = 6 module = detection_array }
+					set_starbase_building = { slot = 1 building = listening_post }
+					set_starbase_building = { slot = 2 building = communications_jammer }
+					set_starbase_building = { slot = 3 building = target_uplink_computer }
+					set_starbase_building = { slot = 4 building = disruption_field }
+					fleet = {
+						remove_modifier = warforge_detection
+					}
+				}
+			}
+
+			else_if = { #Siegfried defences 4
+				limit = {
+					has_carrier_flag = katzen_world_fortress
+					solar_system.starbase = { #don't build orbital defences in an occupied system
+						owner = { is_country_type = katzenartig_imperium }
+						fleet = { is_disabled = no }
+					}
+					check_variable = { which = years_of_kaiser_rule value > 36 }
+				}
+
+				create_fleet = { #Siegfried defenses 4
+					name = "Siegfried Array"
+					settings = { spawn_debris = no }
+					effect = {
+						set_owner = event_target:flusion_primitives_country
+						create_ship = {
+							name = "Katzenplanetenverteidigung"
+							design = "Meoder"
+							upgradable = no
+						}
+						set_location = {
+							target = ROOT
+							distance = 15
+							angle = 270
+						}
+						set_fleet_flag = katzen_planet_platform
+					}
+				}
+
+				create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" }
+			}
+
+			#TODO orbital rings/arcologies?
+
+			else_if = { #build relevant building type
+				limit = {
+					free_building_slots > 0 #TODO may trigger even if buildings are wrong type for zones, blocking the final else from triggering
+					free_jobs < 250 #lower threshold than to make districts so that buildings actually spawn before districts cap out
+				}
+				switch = {
+					trigger = has_carrier_flag
+					katzen_world_forge = {
+						add_building = building_katzen_foundry
+					}
+					katzen_world_research = {
+						add_building = building_katzen_science
+					}
+					katzen_world_fortress = {
+						add_building = building_fortress
+					}
+				}
+			}
 
 			else = { #no need to build up yet. Run a minor pseudo-Nutritional Plenitude effect
 				random_owned_pop_group = {
@@ -12921,540 +13303,556 @@ carrier_event = {
 					ethos = random
 				}
 			}
+
+			# How could I forget? The Flusion tax! 5% of pops go to Flusion (best planet)
+			#yeah autoresettlement exists now but a little push from each colony will speed Flusion's development
+			if = {
+				limit = {
+					event_target:gigaflusion = {
+						AND = { #only if there's room
+							free_housing > 500
+							free_jobs > 0
+						}
+					}
+				}
+				every_owned_pop_group = {
+					resettle_pop_group = {
+						POP_GROUP = this
+						PLANET = event_target:gigaflusion
+						PERCENTAGE = 5
+					}
+				}
+			}
+		}
+		change_variable = {
+			which = years_of_kaiser_rule #not strictly a year but it is on average
+			value = 1
 		}
 		set_update_modifiers_batch = end
 	}
 }
 
-planet_event = { #After 3 years, begin developping it based on specialization
-	id = giga_katzen.112
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		owner = {
-			is_country_type = katzenartig_imperium
-		}
-	}
-
-	immediate = {
-		if = {
-			limit = { NOT = { has_carrier_flag = giga_katzen_planet_specialized } }
-			set_carrier_flag = giga_katzen_planet_specialized
-		}
-		clear_blockers = yes
-		remove_all_buildings = yes
-		remove_all_districts = yes
-		add_building = building_giga_katzen_capital
-		create_pop_group = {
-			species = event_target:solakians
-			size = 200
-		}
-		create_pop_group = {
-			species = event_target:kronks
-			size = 200
-		}
-		create_pop_group = {
-			species = event_target:arcticezics
-			size = 200
-		}
-		create_pop_group = {
-			species = event_target:flusion_katzens
-			size = 200
-		}
-
-		#How could I forget? The Flusion tax! 10% of pops go to Flusion (best planet)
-		every_owned_pop_group = {
-			random_list = {
-				90 = {}
-				10 = {
-					resettle_pop_group = {
-						POP_GROUP = this
-						PLANET = event_target:gigaflusion
-						AMOUNT = 100
-					}
-					modifier = {
-						factor = 0
-						event_target:gigaflusion = {
-							AND = { #only if there's room
-								free_housing > 1000
-								free_jobs > 0
-							}
-						}
-					}
-				}
-			}
-		}
-
-		#It is time for math.
-		#The amount of pops allowed to be on a Katzen planet that is not Flusion is equal to thrice the size of the planet.
-		set_variable = {
-			which = giga_katzen_planet_max_num_pops
-			value = 0
-		}
-		export_trigger_value_to_variable = {
-			trigger = planet_size
-			variable = giga_katzen_planet_max_num_pops
-		}
-		multiply_variable = { #This is the max number of pops.
-			which = giga_katzen_planet_max_num_pops
-			value = 300
-		}
-
-		set_variable = {
-			which = giga_katzen_planet_num_pops
-			value = 0
-		}
-		export_trigger_value_to_variable = {
-			trigger = pop_amount
-			variable = giga_katzen_planet_num_pops
-		}
-
-		if = { #if more pops than allowed, resettle excess to Flusion
-			limit = {
-				check_variable = {
-					which = giga_katzen_planet_num_pops
-					value > giga_katzen_planet_max_num_pops
-				}
-				event_target:gigaflusion = {
-					NOT = { free_housing <= 100 } #don't resettle if Flusion is too full
-				}
-			}
-			while = {
-				limit = { check_variable = { which = giga_katzen_planet_num_pops value > giga_katzen_planet_max_num_pops } }
-				random_owned_pop_group = {
-					resettle_pop_group = {
-						POP_GROUP = this
-						PLANET = event_target:gigaflusion
-						AMOUNT = 100
-					}
-				}
-				export_trigger_value_to_variable = {
-					trigger = pop_amount
-					variable = giga_katzen_planet_num_pops
-				}
-			}
-		}
-		#A Katzen planet is considered "built up" to the max if its pop is equal to thrice its planet size.
-		#Now we know there's going to be enough housing.
-		#Each housing district provides 6 housing, thus we need to fill half the planet with housing to ensure no overcrowding
-		export_trigger_value_to_variable = {
-			trigger = free_district_slots
-			variable = giga_katzen_district_slots
-		}
-		divide_variable = {
-			which = giga_katzen_district_slots
-			value = 2
-		}
-		ceiling_variable = giga_katzen_district_slots
-		while = {
-			count = giga_katzen_district_slots
-			add_district = district_city #district_city_katzen
-		}
-		add_building = building_planetary_shield_generator #Shield
-		#Each theater provides 2400 amenities, so we need (Max pops)/2400 buildings
-		set_variable = {
-			which = giga_katzen_theater_count
-			value = giga_katzen_planet_max_num_pops
-		}
-		divide_variable = {
-			which = giga_katzen_theater_count
-			value = 40
-		}
-		floor_variable = giga_katzen_theater_count
-		while = {
-			count = giga_katzen_theater_count
-			add_building = building_katzen_theater
-		}
-		add_building = building_katzen_theater
-
-		#Now that amenities are solved, we just fill the rest with enough foundries/labs to accodomate the population.
-		if = {
-			limit = { has_carrier_flag = katzen_world_forge }
-			export_trigger_value_to_variable = {
-				trigger = free_building_slots
-				variable = giga_katzen_building_slots
-			}
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = giga_katzen_planet_foundry_count
-			}
-			divide_variable = {
-				which = giga_katzen_planet_foundry_count
-				value = 800
-			}
-			ceiling_variable = giga_katzen_planet_foundry_count
-			if = { #If more to be built than build slots, equalize
-				limit = {
-					check_variable = {
-						which = giga_katzen_planet_foundry_count
-						value > giga_katzen_building_slots
-					}
-				}
-				set_variable = {
-					which = giga_katzen_planet_foundry_count
-					value = giga_katzen_building_slots
-				}
-			}
-			while = {
-				count = giga_katzen_planet_foundry_count
-				add_building = building_katzen_foundry
-			}
-		}
-		else_if = {
-			limit = { has_carrier_flag = katzen_world_research }
-			export_trigger_value_to_variable = {
-				trigger = free_building_slots
-				variable = giga_katzen_building_slots
-			}
-			export_trigger_value_to_variable = {
-				trigger = pop_amount
-				variable = giga_katzen_planet_lab_count
-			}
-			divide_variable = {
-				which = giga_katzen_planet_lab_count
-				value = 800
-			}
-			ceiling_variable = giga_katzen_planet_lab_count
-			if = { #If more to be built than build slots, equalize
-				limit = {
-					check_variable = {
-						which = giga_katzen_planet_lab_count
-						value > giga_katzen_building_slots
-					}
-				}
-				set_variable = {
-					which = giga_katzen_planet_lab_count
-					value = giga_katzen_building_slots
-				}
-			}
-			while = {
-				count = giga_katzen_planet_lab_count
-				add_building = building_katzen_science
-			}
-		}
-		while = { count = 2	create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
-		#Add 1 of each basic district
-		# add_district = district_generator
-		# add_district = district_mining
-		# add_district = district_farming
-		#If there is STILL unemployment, start adding basic districts
-		# if = {
-		# 	limit = { num_unemployed > 1 }
-		# 	export_trigger_value_to_variable = {
-		# 		trigger = num_unemployed
-		# 		variable = giga_katzen_extra_district_count_unemployed
-		# 	}
-		# 	divide_variable = {
-		# 		which = giga_katzen_extra_district_count_unemployed
-		# 		value = 2
-		# 	}
-		# 	ceiling_variable = giga_katzen_extra_district_count_unemployed
-		# 	export_trigger_value_to_variable = {
-		# 		trigger = free_district_slots
-		# 		variable = giga_katzen_district_slots
-		# 	}
-		# 	if = {
-		# 		limit = { #equalize if more districts than possible
-		# 			check_variable = {
-		# 				which = giga_katzen_extra_district_count_unemployed
-		# 				value > giga_katzen_district_slots
-		# 			}
-		# 		}
-		# 		set_variable = {
-		# 			which = giga_katzen_extra_district_count_unemployed
-		# 			value = giga_katzen_district_slots
-		# 		}
-		# 	}
-		# 	while = {
-		# 		count = giga_katzen_extra_district_count_unemployed
-		# 		random_list = {
-		# 			10 = { add_district = district_generator }
-		# 			10 = { add_district = district_farming }
-		# 			10 = { add_district = district_mining }
-		# 		}
-		# 	}
-		# }
-	}
-}
+# planet_event = { #After 3 years, begin developping it based on specialization
+# 	id = giga_katzen.112
+# 	hide_window = yes
+# 	is_triggered_only = yes
+#
+# 	trigger = {
+# 		owner = {
+# 			is_country_type = katzenartig_imperium
+# 		}
+# 	}
+#
+# 	immediate = {
+# 		clear_blockers = yes
+# 		remove_all_buildings = yes
+# 		remove_all_districts = yes
+# 		add_building = building_giga_katzen_capital
+# 		create_pop_group = {
+# 			species = event_target:solakians
+# 			size = 200
+# 		}
+# 		create_pop_group = {
+# 			species = event_target:kronks
+# 			size = 200
+# 		}
+# 		create_pop_group = {
+# 			species = event_target:arcticezics
+# 			size = 200
+# 		}
+# 		create_pop_group = {
+# 			species = event_target:flusion_katzens
+# 			size = 200
+# 		}
+#
+# 		#How could I forget? The Flusion tax! 10% of pops go to Flusion (best planet)
+# 		every_owned_pop_group = {
+# 			random_list = {
+# 				90 = {}
+# 				10 = {
+# 					resettle_pop_group = {
+# 						POP_GROUP = this
+# 						PLANET = event_target:gigaflusion
+# 						AMOUNT = 100
+# 					}
+# 					modifier = {
+# 						factor = 0
+# 						event_target:gigaflusion = {
+# 							AND = { #only if there's room
+# 								free_housing > 1000
+# 								free_jobs > 0
+# 							}
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+#
+# 		#It is time for math.
+# 		#The amount of pops allowed to be on a Katzen planet that is not Flusion is equal to thrice the size of the planet.
+# 		set_variable = {
+# 			which = giga_katzen_planet_max_num_pops
+# 			value = 0
+# 		}
+# 		export_trigger_value_to_variable = {
+# 			trigger = planet_size
+# 			variable = giga_katzen_planet_max_num_pops
+# 		}
+# 		multiply_variable = { #This is the max number of pops.
+# 			which = giga_katzen_planet_max_num_pops
+# 			value = 300
+# 		}
+#
+# 		set_variable = {
+# 			which = giga_katzen_planet_num_pops
+# 			value = 0
+# 		}
+# 		export_trigger_value_to_variable = {
+# 			trigger = pop_amount
+# 			variable = giga_katzen_planet_num_pops
+# 		}
+#
+# 		if = { #if more pops than allowed, resettle excess to Flusion
+# 			limit = {
+# 				check_variable = {
+# 					which = giga_katzen_planet_num_pops
+# 					value > giga_katzen_planet_max_num_pops
+# 				}
+# 				event_target:gigaflusion = {
+# 					NOT = { free_housing <= 100 } #don't resettle if Flusion is too full
+# 				}
+# 			}
+# 			while = {
+# 				limit = { check_variable = { which = giga_katzen_planet_num_pops value > giga_katzen_planet_max_num_pops } }
+# 				random_owned_pop_group = {
+# 					resettle_pop_group = {
+# 						POP_GROUP = this
+# 						PLANET = event_target:gigaflusion
+# 						AMOUNT = 100
+# 					}
+# 				}
+# 				export_trigger_value_to_variable = {
+# 					trigger = pop_amount
+# 					variable = giga_katzen_planet_num_pops
+# 				}
+# 			}
+# 		}
+# 		#A Katzen planet is considered "built up" to the max if its pop is equal to thrice its planet size.
+# 		#Now we know there's going to be enough housing.
+# 		#Each housing district provides 6 housing, thus we need to fill half the planet with housing to ensure no overcrowding
+# 		export_trigger_value_to_variable = {
+# 			trigger = free_district_slots
+# 			variable = giga_katzen_district_slots
+# 		}
+# 		divide_variable = {
+# 			which = giga_katzen_district_slots
+# 			value = 2
+# 		}
+# 		ceiling_variable = giga_katzen_district_slots
+# 		while = {
+# 			count = giga_katzen_district_slots
+# 			add_district = district_city #district_city_katzen
+# 		}
+# 		add_building = building_planetary_shield_generator #Shield
+# 		#Each theater provides 2400 amenities, so we need (Max pops)/2400 buildings
+# 		set_variable = {
+# 			which = giga_katzen_theater_count
+# 			value = giga_katzen_planet_max_num_pops
+# 		}
+# 		divide_variable = {
+# 			which = giga_katzen_theater_count
+# 			value = 40
+# 		}
+# 		floor_variable = giga_katzen_theater_count
+# 		while = {
+# 			count = giga_katzen_theater_count
+# 			add_building = building_katzen_theater
+# 		}
+# 		add_building = building_katzen_theater
+#
+# 		#Now that amenities are solved, we just fill the rest with enough foundries/labs to accodomate the population.
+# 		if = {
+# 			limit = { has_carrier_flag = katzen_world_forge }
+# 			export_trigger_value_to_variable = {
+# 				trigger = free_building_slots
+# 				variable = giga_katzen_building_slots
+# 			}
+# 			export_trigger_value_to_variable = {
+# 				trigger = pop_amount
+# 				variable = giga_katzen_planet_foundry_count
+# 			}
+# 			divide_variable = {
+# 				which = giga_katzen_planet_foundry_count
+# 				value = 800
+# 			}
+# 			ceiling_variable = giga_katzen_planet_foundry_count
+# 			if = { #If more to be built than build slots, equalize
+# 				limit = {
+# 					check_variable = {
+# 						which = giga_katzen_planet_foundry_count
+# 						value > giga_katzen_building_slots
+# 					}
+# 				}
+# 				set_variable = {
+# 					which = giga_katzen_planet_foundry_count
+# 					value = giga_katzen_building_slots
+# 				}
+# 			}
+# 			while = {
+# 				count = giga_katzen_planet_foundry_count
+# 				add_building = building_katzen_foundry
+# 			}
+# 		}
+# 		else_if = {
+# 			limit = { has_carrier_flag = katzen_world_research }
+# 			export_trigger_value_to_variable = {
+# 				trigger = free_building_slots
+# 				variable = giga_katzen_building_slots
+# 			}
+# 			export_trigger_value_to_variable = {
+# 				trigger = pop_amount
+# 				variable = giga_katzen_planet_lab_count
+# 			}
+# 			divide_variable = {
+# 				which = giga_katzen_planet_lab_count
+# 				value = 800
+# 			}
+# 			ceiling_variable = giga_katzen_planet_lab_count
+# 			if = { #If more to be built than build slots, equalize
+# 				limit = {
+# 					check_variable = {
+# 						which = giga_katzen_planet_lab_count
+# 						value > giga_katzen_building_slots
+# 					}
+# 				}
+# 				set_variable = {
+# 					which = giga_katzen_planet_lab_count
+# 					value = giga_katzen_building_slots
+# 				}
+# 			}
+# 			while = {
+# 				count = giga_katzen_planet_lab_count
+# 				add_building = building_katzen_science
+# 			}
+# 		}
+# 		while = { count = 2	create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
+# 		#Add 1 of each basic district
+# 		# add_district = district_generator
+# 		# add_district = district_mining
+# 		# add_district = district_farming
+# 		#If there is STILL unemployment, start adding basic districts
+# 		# if = {
+# 		# 	limit = { num_unemployed > 1 }
+# 		# 	export_trigger_value_to_variable = {
+# 		# 		trigger = num_unemployed
+# 		# 		variable = giga_katzen_extra_district_count_unemployed
+# 		# 	}
+# 		# 	divide_variable = {
+# 		# 		which = giga_katzen_extra_district_count_unemployed
+# 		# 		value = 2
+# 		# 	}
+# 		# 	ceiling_variable = giga_katzen_extra_district_count_unemployed
+# 		# 	export_trigger_value_to_variable = {
+# 		# 		trigger = free_district_slots
+# 		# 		variable = giga_katzen_district_slots
+# 		# 	}
+# 		# 	if = {
+# 		# 		limit = { #equalize if more districts than possible
+# 		# 			check_variable = {
+# 		# 				which = giga_katzen_extra_district_count_unemployed
+# 		# 				value > giga_katzen_district_slots
+# 		# 			}
+# 		# 		}
+# 		# 		set_variable = {
+# 		# 			which = giga_katzen_extra_district_count_unemployed
+# 		# 			value = giga_katzen_district_slots
+# 		# 		}
+# 		# 	}
+# 		# 	while = {
+# 		# 		count = giga_katzen_extra_district_count_unemployed
+# 		# 		random_list = {
+# 		# 			10 = { add_district = district_generator }
+# 		# 			10 = { add_district = district_farming }
+# 		# 			10 = { add_district = district_mining }
+# 		# 		}
+# 		# 	}
+# 		# }
+# 	}
+# }
 
 #Develop Siegfried World
-planet_event = { #After 3 years, add fortresses (fun times)
-	id = giga_katzen.1121
-	hide_window = yes
-	is_triggered_only = yes
+# planet_event = { #After 3 years, add fortresses (fun times)
+# 	id = giga_katzen.1121
+# 	hide_window = yes
+# 	is_triggered_only = yes
+#
+# 	trigger = {
+# 		owner = {
+# 			is_country_type = katzenartig_imperium
+# 		}
+# 	}
+#
+# 	immediate = {
+# 		planet_event = { id = giga_katzen.1131 days = 1800 random = 200 } #turn into full siegfried
+# 		clear_blockers = yes
+# 		remove_all_buildings = yes
+# 		remove_all_districts = yes
+# 		add_building = building_giga_katzen_capital
+# 		#8 Katzens
+# 		create_pop_group = {
+# 			species = event_target:flusion_katzens
+# 			size = 800
+# 		}
+#
+# 		#How could I forget? The Flusion tax! 10% of pops go to Flusion (best planet)
+# 		every_owned_pop_group = {
+# 			random_list = {
+# 				90 = {}
+# 				10 = {
+# 					resettle_pop_group = {
+# 						POP_GROUP = this
+# 						PLANET = event_target:gigaflusion
+# 						AMOUNT = 100
+# 					}
+# 					modifier = {
+# 						factor = 0
+# 						event_target:gigaflusion = {
+# 							NOT = { free_housing <= 100 }
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+# 		#A Katzen planet is considered "built up" to the max if its pop is equal to thrice its planet size.
+# 		#Now we know there's going to be enough housing.
+# 		#Each housing district provides 6 housing, thus we need to fill half the planet with housing to ensure no overcrowding
+# 		export_trigger_value_to_variable = {
+# 			trigger = free_district_slots
+# 			variable = giga_katzen_district_slots
+# 		}
+# 		divide_variable = {
+# 			which = giga_katzen_district_slots
+# 			value = 2
+# 		}
+# 		ceiling_variable = giga_katzen_district_slots
+# 		while = {
+# 			count = giga_katzen_district_slots
+# 			add_district = district_city #district_city_katzen
+# 		}
+# 		add_building = building_planetary_shield_generator #Shield
+# 		#Add 1 of each basic district
+# 		add_district = district_generator
+# 		add_district = district_mining
+# 		add_district = district_farming
+# 		add_building = building_katzen_theater
+# 		#Now that amenities are solved, we just fill the rest with enough fortresses to accodomate the population.
+# 		add_building = building_fortress
+# 		add_building = building_fortress
+# 		while = { count = 2	create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
+# 		if = {
+# 			limit = {
+# 				NOT = { has_planet_flag = siegfried_world}
+# 			}
+# 			set_planet_flag = siegfried_world
+# 		}
+# 		solar_system.starbase = { #Lvl 1
+# 			set_starbase_size = starbase_starport
+# 			set_starbase_module = {
+# 				slot = 1
+# 				module = detection_array
+# 			}
+# 			set_starbase_module = {
+# 				slot = 2
+# 				module = detection_array
+# 			}
+# 			fleet = {
+# 				remove_modifier = warforge_detection
+# 			}
+# 		}
+# 	}
+# }
 
-	trigger = {
-		owner = {
-			is_country_type = katzenartig_imperium
-		}
-	}
-
-	immediate = {
-		planet_event = { id = giga_katzen.1131 days = 1800 random = 200 } #turn into full siegfried
-		if = {
-			limit = { NOT = { has_carrier_flag = giga_katzen_planet_specialized } }
-			set_carrier_flag = giga_katzen_planet_specialized
-		}
-		clear_blockers = yes
-		remove_all_buildings = yes
-		remove_all_districts = yes
-		add_building = building_giga_katzen_capital
-		#8 Katzens
-		create_pop_group = {
-			species = event_target:flusion_katzens
-			size = 800
-		}
-
-		#How could I forget? The Flusion tax! 10% of pops go to Flusion (best planet)
-		every_owned_pop_group = {
-			random_list = {
-				90 = {}
-				10 = {
-					resettle_pop_group = {
-						POP_GROUP = this
-						PLANET = event_target:gigaflusion
-						AMOUNT = 100
-					}
-					modifier = {
-						factor = 0
-						event_target:gigaflusion = {
-							NOT = { free_housing <= 100 }
-						}
-					}
-				}
-			}
-		}
-		#A Katzen planet is considered "built up" to the max if its pop is equal to thrice its planet size.
-		#Now we know there's going to be enough housing.
-		#Each housing district provides 6 housing, thus we need to fill half the planet with housing to ensure no overcrowding
-		export_trigger_value_to_variable = {
-			trigger = free_district_slots
-			variable = giga_katzen_district_slots
-		}
-		divide_variable = {
-			which = giga_katzen_district_slots
-			value = 2
-		}
-		ceiling_variable = giga_katzen_district_slots
-		while = {
-			count = giga_katzen_district_slots
-			add_district = district_city #district_city_katzen
-		}
-		add_building = building_planetary_shield_generator #Shield
-		#Add 1 of each basic district
-		add_district = district_generator
-		add_district = district_mining
-		add_district = district_farming
-		add_building = building_katzen_theater
-		#Now that amenities are solved, we just fill the rest with enough fortresses to accodomate the population.
-		add_building = building_fortress
-		add_building = building_fortress
-		while = { count = 2	create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
-		if = {
-			limit = {
-				NOT = { has_planet_flag = siegfried_world}
-			}
-			set_planet_flag = siegfried_world
-		}
-		solar_system.starbase = { #Lvl 1
-			set_starbase_size = starbase_starport
-			set_starbase_module = {
-				slot = 1
-				module = detection_array
-			}
-			set_starbase_module = {
-				slot = 2
-				module = detection_array
-			}
-			fleet = {
-				remove_modifier = warforge_detection
-			}
-		}
-	}
-}
-
-planet_event = { #After 5 more years, turn it into a real siegfried world (do not hang the washing on it please)
-	id = giga_katzen.1131
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		owner = {
-			is_country_type = katzenartig_imperium
-		}
-	}
-
-	immediate = {
-		#2 Katzens
-		create_pop_group = {
-			species = event_target:flusion_katzens
-			size = 200
-		}
-
-		#How could I forget? The Flusion tax! 10% of pops go to Flusion (best planet)
-		every_owned_pop_group = {
-			random_list = {
-				90 = {}
-				10 = {
-					resettle_pop_group = {
-						POP_GROUP = this
-						PLANET = event_target:gigaflusion
-						AMOUNT = 100
-					}
-					modifier = {
-						factor = 0
-						event_target:gigaflusion = {
-							NOT = { free_housing <= 100 }
-						}
-					}
-				}
-			}
-		}
-
-		clear_deposits = yes
-		clear_planet_modifiers = yes
-
-		change_pc = {
-			class = pc_giga_siegfried_world
-			inherit_entity = yes
-		}
-
-		#TODO hey what is going on here with these two? They were one of each
-		add_district = district_city #district_city_katzen
-		add_district = district_city
-
-		add_building = building_giga_siegfried_global_bunker
-
-		add_building = building_fortress
-
-		solar_system = {
-			set_star_flag = siegfried_anti_jump_star
-			every_neighbor_system = { set_star_flag = siegfried_anti_jump_star }
-		}
-
-		create_fleet = { #Siegfried defenses
-			name = "Siegfried Array"
-			settings = {
-				spawn_debris = no
-			}
-			effect = {
-				set_owner = event_target:flusion_primitives_country
-				create_ship = {
-					name = "Katzenplanetenverteidigung"
-					design = "Meoder"
-					upgradable = no
-				}
-				set_location = {
-					target = ROOT
-					distance = 15
-					angle = 0
-				}
-				set_fleet_flag = katzen_planet_platform
-			}
-		}
-
-		create_fleet = { #Siegfried defenses
-			name = "Siegfried Array"
-			settings = {
-				spawn_debris = no
-			}
-			effect = {
-				set_owner = event_target:flusion_primitives_country
-				create_ship = {
-					name = "Katzenplanetenverteidigung"
-					design = "Meoder"
-					upgradable = no
-				}
-				set_location = {
-					target = ROOT
-					distance = 15
-					angle = 90
-				}
-				set_fleet_flag = katzen_planet_platform
-			}
-		}
-
-		create_fleet = { #Siegfried defenses
-			name = "Siegfried Array"
-			settings = {
-				spawn_debris = no
-			}
-			effect = {
-				set_owner = event_target:flusion_primitives_country
-				create_ship = {
-					name = "Katzenplanetenverteidigung"
-					design = "Meoder"
-					upgradable = no
-				}
-				set_location = {
-					target = ROOT
-					distance = 15
-					angle = 180
-				}
-				set_fleet_flag = katzen_planet_platform
-			}
-		}
-
-		create_fleet = { #Siegfried defenses
-			name = "Siegfried Array"
-			settings = {
-				spawn_debris = no
-			}
-			effect = {
-				set_owner = event_target:flusion_primitives_country
-				create_ship = {
-					name = "Katzenplanetenverteidigung"
-					design = "Meoder"
-					upgradable = no
-				}
-				set_location = {
-					target = ROOT
-					distance = 15
-					angle = 270
-				}
-				set_fleet_flag = katzen_planet_platform
-			}
-		}
-
-		while = { count = 4	create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
-		planet_event = { id = giga_katzen.120 days = 10 } #monthly check to blow up if captured
-		solar_system.starbase = { #Lvl 2
-			set_starbase_size = starbase_starfortress
-			set_starbase_module = {
-				slot = 1
-				module = detection_array
-			}
-			set_starbase_module = {
-				slot = 2
-				module = detection_array
-			}
-			set_starbase_module = {
-				slot = 3
-				module = detection_array
-			}
-			set_starbase_module = {
-				slot = 4
-				module = detection_array
-			}
-			set_starbase_module = {
-				slot = 5
-				module = detection_array
-			}
-			set_starbase_building = {
-				slot = 1
-				building = listening_post
-			}
-			set_starbase_building = {
-				slot = 2
-				building = communications_jammer
-			}
-			fleet = {
-				remove_modifier = warforge_detection
-			}
-		}
-	}
-}
+# planet_event = { #After 5 more years, turn it into a real siegfried world (do not hang the washing on it please)
+# 	id = giga_katzen.1131
+# 	hide_window = yes
+# 	is_triggered_only = yes
+#
+# 	trigger = {
+# 		owner = {
+# 			is_country_type = katzenartig_imperium
+# 		}
+# 	}
+#
+# 	immediate = {
+# 		#2 Katzens
+# 		create_pop_group = {
+# 			species = event_target:flusion_katzens
+# 			size = 200
+# 		}
+#
+# 		#How could I forget? The Flusion tax! 10% of pops go to Flusion (best planet)
+# 		every_owned_pop_group = {
+# 			random_list = {
+# 				90 = {}
+# 				10 = {
+# 					resettle_pop_group = {
+# 						POP_GROUP = this
+# 						PLANET = event_target:gigaflusion
+# 						AMOUNT = 100
+# 					}
+# 					modifier = {
+# 						factor = 0
+# 						event_target:gigaflusion = {
+# 							NOT = { free_housing <= 100 }
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+#
+# 		clear_deposits = yes
+# 		clear_planet_modifiers = yes
+#
+# 		change_pc = {
+# 			class = pc_giga_siegfried_world
+# 			inherit_entity = yes
+# 		}
+#
+# 		#TODO hey what is going on here with these two? They were one of each
+# 		add_district = district_city #district_city_katzen
+# 		add_district = district_city
+#
+# 		add_building = building_giga_siegfried_global_bunker
+#
+# 		add_building = building_fortress
+#
+# 		solar_system = {
+# 			set_star_flag = siegfried_anti_jump_star
+# 			every_neighbor_system = { set_star_flag = siegfried_anti_jump_star }
+# 		}
+#
+# 		create_fleet = { #Siegfried defenses
+# 			name = "Siegfried Array"
+# 			settings = {
+# 				spawn_debris = no
+# 			}
+# 			effect = {
+# 				set_owner = event_target:flusion_primitives_country
+# 				create_ship = {
+# 					name = "Katzenplanetenverteidigung"
+# 					design = "Meoder"
+# 					upgradable = no
+# 				}
+# 				set_location = {
+# 					target = ROOT
+# 					distance = 15
+# 					angle = 0
+# 				}
+# 				set_fleet_flag = katzen_planet_platform
+# 			}
+# 		}
+#
+# 		create_fleet = { #Siegfried defenses
+# 			name = "Siegfried Array"
+# 			settings = {
+# 				spawn_debris = no
+# 			}
+# 			effect = {
+# 				set_owner = event_target:flusion_primitives_country
+# 				create_ship = {
+# 					name = "Katzenplanetenverteidigung"
+# 					design = "Meoder"
+# 					upgradable = no
+# 				}
+# 				set_location = {
+# 					target = ROOT
+# 					distance = 15
+# 					angle = 90
+# 				}
+# 				set_fleet_flag = katzen_planet_platform
+# 			}
+# 		}
+#
+# 		create_fleet = { #Siegfried defenses
+# 			name = "Siegfried Array"
+# 			settings = {
+# 				spawn_debris = no
+# 			}
+# 			effect = {
+# 				set_owner = event_target:flusion_primitives_country
+# 				create_ship = {
+# 					name = "Katzenplanetenverteidigung"
+# 					design = "Meoder"
+# 					upgradable = no
+# 				}
+# 				set_location = {
+# 					target = ROOT
+# 					distance = 15
+# 					angle = 180
+# 				}
+# 				set_fleet_flag = katzen_planet_platform
+# 			}
+# 		}
+#
+# 		create_fleet = { #Siegfried defenses
+# 			name = "Siegfried Array"
+# 			settings = {
+# 				spawn_debris = no
+# 			}
+# 			effect = {
+# 				set_owner = event_target:flusion_primitives_country
+# 				create_ship = {
+# 					name = "Katzenplanetenverteidigung"
+# 					design = "Meoder"
+# 					upgradable = no
+# 				}
+# 				set_location = {
+# 					target = ROOT
+# 					distance = 15
+# 					angle = 270
+# 				}
+# 				set_fleet_flag = katzen_planet_platform
+# 			}
+# 		}
+#
+# 		while = { count = 4	create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
+# 		planet_event = { id = giga_katzen.120 days = 10 } #monthly check to blow up if captured
+# 		solar_system.starbase = { #Lvl 2
+# 			set_starbase_size = starbase_starfortress
+# 			set_starbase_module = {
+# 				slot = 1
+# 				module = detection_array
+# 			}
+# 			set_starbase_module = {
+# 				slot = 2
+# 				module = detection_array
+# 			}
+# 			set_starbase_module = {
+# 				slot = 3
+# 				module = detection_array
+# 			}
+# 			set_starbase_module = {
+# 				slot = 4
+# 				module = detection_array
+# 			}
+# 			set_starbase_module = {
+# 				slot = 5
+# 				module = detection_array
+# 			}
+# 			set_starbase_building = {
+# 				slot = 1
+# 				building = listening_post
+# 			}
+# 			set_starbase_building = {
+# 				slot = 2
+# 				building = communications_jammer
+# 			}
+# 			fleet = {
+# 				remove_modifier = warforge_detection
+# 			}
+# 		}
+# 	}
+# }
 
 # planet_event = { #After 5 more years, add even more pops + take advantage of new districts
 # 	id = giga_katzen.113
