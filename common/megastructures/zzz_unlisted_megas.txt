@@ -199,10 +199,7 @@ katzen_forge_1 = {
 				limit = { 
 					NOR = {
 						any_system_planet = {
-							OR = {
-								has_planet_flag = siegfried_world
-								is_planet_class = pc_giga_siegfried_world
-							}
+							is_planet_class = pc_giga_siegfried_world
 						}
 						starbase = {
 							fleet = {
