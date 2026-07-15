@@ -24,14 +24,13 @@ col_katzen_foundry = {
 
 	potential = {
 		has_carrier_flag = katzen_world_forge
-		has_carrier_flag = giga_katzen_planet_specialized
 		owner? = {
 			is_country_type = katzenartig_imperium
 		}
 	}
 
 	planet_modifier = {
-		planet_metallurgists_alloys_produces_add = 1
+		planet_jobs_alloys_produces_mult = 0.25 #mult so volcanic world miners also get the boost
 		pop_environment_tolerance = -0.10
 	}
 
@@ -46,7 +45,6 @@ col_katzen_research = {
 
 	potential = {
 		has_carrier_flag = katzen_world_research
-		has_carrier_flag = giga_katzen_planet_specialized
 		owner? = {
 			is_country_type = katzenartig_imperium
 		}
@@ -68,7 +66,6 @@ col_katzen_fortress = {
 
 	potential = {
 		has_carrier_flag = katzen_world_fortress
-		has_carrier_flag = giga_katzen_planet_specialized
 		owner? = {
 			is_country_type = katzenartig_imperium
 		}
