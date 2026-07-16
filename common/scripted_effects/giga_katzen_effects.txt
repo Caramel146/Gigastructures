@@ -310,10 +310,10 @@ rename_planet_katzen = {
 			has_planet_flag = folia
 			has_planet_flag = creeo
 			has_planet_flag = mlekane
-			has_planet_flag = corrona
-			has_planet_flag = jupitwo1
-			has_planet_flag = jupitwo2
-			has_planet_flag = jupitwo3
+			# has_planet_flag = corrona
+			# has_planet_flag = jupitwo1
+			# has_planet_flag = jupitwo2
+			# has_planet_flag = jupitwo3
 			has_carrier_flag = cat_orbital_elysium
 		}
 		random_list = {
@@ -413,22 +413,22 @@ rename_planet_katzen = {
 				set_name = "Mlekane"
 				modifier = { add = 1 has_planet_flag = mlekane }
 			}
-			0 = {
-				set_name = "Corrona"
-				modifier = { add = 1 has_planet_flag = corrona }
-			}
-			0 = {
-				set_name = "Regan"
-				modifier = { add = 1 has_planet_flag = jupitwo1 }
-			}
-			0 = {
-				set_name = "Tandra"
-				modifier = { add = 1 has_planet_flag = jupitwo2 }
-			}
-			0 = {
-				set_name = "Tuia"
-				modifier = { add = 1 has_planet_flag = jupitwo3 }
-			}
+			# 0 = {
+			# 	set_name = "Corrona"
+			# 	modifier = { add = 1 has_planet_flag = corrona }
+			# }
+			# 0 = {
+			# 	set_name = "Regan"
+			# 	modifier = { add = 1 has_planet_flag = jupitwo1 }
+			# }
+			# 0 = {
+			# 	set_name = "Tandra"
+			# 	modifier = { add = 1 has_planet_flag = jupitwo2 }
+			# }
+			# 0 = {
+			# 	set_name = "Tuia"
+			# 	modifier = { add = 1 has_planet_flag = jupitwo3 }
+			# }
 			0 = {
 				set_name = "Tyaur"
 				modifier = { add = 1 has_carrier_flag = cat_orbital_elysium }
@@ -443,7 +443,10 @@ rename_planet_katzen = {
 				event_target:flusion_primitives_country = { set_country_flag = steam_commenter_tears_planet }
 				modifier = {
 					add = 20
-					is_planet_class = pc_ocean
+					OR = {
+						is_planet_class = pc_ocean
+						is_planet_class = pc_giga_edge_of_eternity
+					}
 					NOT = { event_target:flusion_primitives_country = { has_country_flag = steam_commenter_tears_planet } }
 				}
 			}
@@ -455,6 +458,40 @@ rename_planet_katzen = {
 					has_modifier = pd_salt
 					NOT = { event_target:flusion_primitives_country = { has_country_flag = steam_commenter_salt_planet } }
 				}
+			}
+			0 = {
+				set_name = "Temland"
+				event_target:flusion_primitives_country = { set_country_flag = temland_planet }
+				modifier = {
+					add = 20
+					is_planet_class = pc_nuked
+					NOT = { event_target:flusion_primitives_country = { has_country_flag = temland_planet } }
+				}
+			}
+			0 = {
+				set_name = "Meopaholzen"
+				event_target:flusion_primitives_country = { set_country_flag = meopa_planet }
+				modifier = {
+					add = 20
+					is_planet_class = pc_katzenland
+					NOT = { event_target:flusion_primitives_country = { has_country_flag = meopa_planet } }
+				}
+			}
+			0 = {
+				set_name = "Meowriana"
+				modifier = { add = 5 OR = { is_planet_class = pc_ocean is_planet_class = pc_giga_edge_of_eternity } }
+			}
+			0 = {
+				set_name = "Fliegenhafen"
+				modifier = { add = 5 is_planet_class = pc_habitable_gas_giant }
+			}
+			0 = {
+				set_name = "Großbrandenpurr"
+				modifier = { add = 2 has_carrier_flag = katzen_world_forge }
+			}
+			0 = {
+				set_name = "Weltraumkatzhaus"
+				modifier = { add = 5 is_planet_class = pc_habitat }
 			}
 			1 = { set_name = "Cocoville" }
 			1 = { set_name = "Nova Flusionia" }
@@ -527,6 +564,23 @@ rename_planet_katzen = {
 			1 = { set_name = "Weimiau" }
 			1 = { set_name = "Weimeow" }
 			1 = { set_name = "Schnurrfurt" }
+			1 = { set_name = "Laurnfeld" }
+			1 = { set_name = "Gundurstadt" }
+			1 = { set_name = "Growlziwiesen" }
+			1 = { set_name = "Clawtzfeld" }
+			1 = { set_name = "Strobeldorf" }
+			1 = { set_name = "Feliningen" }
+			1 = { set_name = "Bismeowrk" }
+			1 = { set_name = "Furrburg" }
+			1 = { set_name = "Katzsburg" }
+			1 = { set_name = "Gortburg" }
+			1 = { set_name = "Kattingsburg" }
+			1 = { set_name = "Meownich" }
+			1 = { set_name = "Furrmund" }
+			1 = { set_name = "Puffienzwei" }
+			1 = { set_name = "Kleinjublien" }
+			1 = { set_name = "Katzausbau" }
+			1 = { set_name = "Hochrokalien" }
 		}
 	}
 }
