@@ -6516,7 +6516,7 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 					modifier = { factor = 0.75 has_valid_civic = civic_environmentalist } #save the trees from rampant industry
 					modifier = { factor = 0.25 has_valid_civic = civic_nationalistic_zeal } #militarist but too proud
 					modifier = { factor = 1.25 has_valid_civic = civic_warrior_culture } #likes Katzen ways
-					modifier = { factor = 1.25 has_valid_civic = civic_police_state } #Katzen surveillance machine sounds  good
+					modifier = { factor = 1.25 has_valid_civic = civic_police_state } #Katzen surveillance machine sounds good
 					modifier = { factor = 1.25 has_valid_civic = civic_shadow_council } #sellouts who want to be the new Katzen elites
 					modifier = { factor = 2 OR = { has_civic = civic_diplomatic_corps has_civic = civic_public_relations_specialists has_civic = civic_hive_empath has_civic = civic_hive_familiar_face } } #wants to work together nicely
 					modifier = { factor = 1.25 is_relentless_industrialist_empire = yes } #more rampant industrialism yay
@@ -12831,6 +12831,22 @@ planet_event = {
 							}
 							katzen_gas_giant = {
 								add_district = district_giga_planet_city
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry value < 2 }
+									}
+									add_zone = { district = district_giga_planet_city zone_slot = 1 zone = zone_foundry replace = yes }
+									add_zone = { district = district_giga_planet_city zone_slot = 2 zone = zone_foundry replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research value < 2 }
+									}
+									add_zone = { district = district_giga_planet_city zone_slot = 1 zone = zone_research replace = yes }
+									add_zone = { district = district_giga_planet_city zone_slot = 2 zone = zone_research replace = yes }
+								}
 							}
 						}
 						modifier = { #much more likely if colony desperately needs housing
@@ -12850,18 +12866,64 @@ planet_event = {
 							}
 							katzen_ring_world = {
 								add_district = district_rw_urban_1
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry_ring_world value < 1 }
+									}
+									add_zone = { district = district_rw_urban_1 zone = zone_foundry_ring_world replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research_ring_world value < 1 }
+									}
+									add_zone = { district = district_rw_urban_1 zone = zone_research_ring_world replace = yes }
+								}
 							}
 							katzen_city_world = {
 								add_district = district_arcology_urban_1
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry_arcology value < 1 }
+									}
+									add_zone = { district = district_arcology_urban_1 zone = zone_foundry_arcology replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research_arcology value < 1 }
+									}
+									add_zone = { district = district_arcology_urban_1 zone = zone_research_arcology replace = yes }
+								}
 							}
 							katzen_standard = {
 								add_district = district_generator
+								if = {
+									limit = {
+										num_zones = { type = zone_energy value < 1 }
+									}
+									add_zone = { district = district_generator zone = zone_energy replace = yes }
+								}
 							}
 							katzen_volcanic = {
 								add_district = district_geothermal
+								if = {
+									limit = {
+										num_zones = { type = zone_energy value < 1 }
+									}
+									add_zone = { district = district_geothermal zone = zone_energy replace = yes }
+								}
 							}
 							katzen_gas_giant = {
 								add_district = district_giga_gas_giant_habitat_science
+								if = {
+									limit = {
+										num_zones = { type = zone_research value < 1 }
+									}
+									add_zone = { district = district_giga_gas_giant_habitat_science zone = zone_research replace = yes }
+								}
 							}
 						}
 						modifier = { #don't waste the development cycle if capped on that district type
@@ -12890,18 +12952,64 @@ planet_event = {
 							}
 							katzen_ring_world = {
 								add_district = district_rw_urban_2
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry_ring_world value < 1 }
+									}
+									add_zone = { district = district_rw_urban_2 zone = zone_foundry_ring_world replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research_ring_world value < 1 }
+									}
+									add_zone = { district = district_rw_urban_2 zone = zone_research_ring_world replace = yes }
+								}
 							}
 							katzen_city_world = {
 								add_district = district_arcology_urban_2
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry_arcology value < 1 }
+									}
+									add_zone = { district = district_arcology_urban_2 zone = zone_foundry_arcology replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research_arcology value < 1 }
+									}
+									add_zone = { district = district_arcology_urban_2 zone = zone_research_arcology replace = yes }
+								}
 							}
 							katzen_standard = {
 								add_district = district_mining
+								if = {
+									limit = {
+										num_zones = { type = zone_minerals value < 1 }
+									}
+									add_zone = { district = district_mining zone = zone_minerals replace = yes }
+								}
 							}
 							katzen_volcanic = {
 								add_district = district_melting
+								if = {
+									limit = {
+										num_zones = { type = zone_minerals value < 1 }
+									}
+									add_zone = { district = district_melting zone = zone_minerals replace = yes }
+								}
 							}
 							katzen_gas_giant = {
 								add_district = district_giga_gas_giant_habitat_wind
+								if = {
+									limit = {
+										num_zones = { type = zone_energy value < 1 }
+									}
+									add_zone = { district = district_giga_gas_giant_habitat_wind zone = zone_energy replace = yes }
+								}
 							}
 						}
 						modifier = { #get more thermoforgers on foundry worlds
@@ -12941,18 +13049,72 @@ planet_event = {
 							}
 							katzen_ring_world = {
 								add_district = district_rw_urban_3
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry_ring_world value < 1 }
+									}
+									add_zone = { district = district_rw_urban_3 zone = zone_foundry_ring_world replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research_ring_world value < 1 }
+									}
+									add_zone = { district = district_rw_urban_3 zone = zone_research_ring_world replace = yes }
+								}
 							}
 							katzen_city_world = {
 								add_district = district_arcology_urban_3
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry_arcology value < 1 }
+									}
+									add_zone = { district = district_arcology_urban_3 zone = zone_foundry_arcology replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research_arcology value < 1 }
+									}
+									add_zone = { district = district_arcology_urban_3 zone = zone_research_arcology replace = yes }
+								}
 							}
 							katzen_standard = {
 								add_district = district_farming
+								if = {
+									limit = {
+										num_zones = { type = zone_food value < 1 }
+									}
+									add_zone = { district = district_farming zone = zone_food replace = yes }
+								}
 							}
 							katzen_volcanic = {
 								add_district = district_polytechnic
+								if = {
+									limit = {
+										num_zones = { type = zone_research value < 1 }
+									}
+									add_zone = { district = district_polytechnic zone = zone_research replace = yes }
+								}
 							}
 							katzen_gas_giant = {
 								add_district = district_giga_gas_giant_habitat_exotic
+								if = {
+									limit = {
+										has_carrier_flag = katzen_world_forge
+										num_zones = { type = zone_foundry value < 1 }
+									}
+									add_zone = { district = district_giga_gas_giant_habitat_exotic zone = zone_foundry replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_research
+										num_zones = { type = zone_research value < 1 }
+									}
+									add_zone = { district = district_giga_gas_giant_habitat_exotic zone = zone_research replace = yes }
+								}
 							}
 						}
 						modifier = { #fewer science districts as non-research world
