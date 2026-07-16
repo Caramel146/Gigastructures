@@ -512,12 +512,20 @@ rename_planet_katzen = {
 				modifier = { add = 5 is_planet_class = pc_habitable_gas_giant }
 			}
 			0 = {
+				set_name = "Augedessturm"
+				modifier = { add = 5 is_planet_class = pc_habitable_gas_giant }
+			}
+			0 = {
 				set_name = "Großbrandenpurr"
 				modifier = { add = 2 has_carrier_flag = katzen_world_forge }
 			}
 			0 = {
 				set_name = "Weltraumkatzhaus"
 				modifier = { add = 5 is_planet_class = pc_habitat }
+			}
+			0 = {
+				set_name = "Eispfoteburg"
+				modifier = { add = 3 has_climate = cold }
 			}
 			1 = { set_name = "Cocoville" }
 			1 = { set_name = "Nova Flusionia" }
@@ -607,6 +615,21 @@ rename_planet_katzen = {
 			1 = { set_name = "Kleinjublien" }
 			1 = { set_name = "Katzausbau" }
 			1 = { set_name = "Hochrokalien" }
+			1 = { set_name = "Tigerinsburg" }
+			1 = { set_name = "Katrisien" }
+			1 = { set_name = "Katzewut" }
+			1 = { set_name = "Miaukajak" }
+			1 = { set_name = "Kauenmi" }
+			1 = { set_name = "Schnurrenstadt" }
+			1 = { set_name = "Binichpelzigia" }
+			1 = { set_name = "Katzeinbindung" }
+			1 = { set_name = "Kattrand" }
+			1 = { set_name = "Rattenweiteroben" }
+			1 = { set_name = "Soldatenheim" }
+			1 = { set_name = "Karamellisiert" }
+			1 = { set_name = "Dasdingausdemschrankunterdertreppe" }
+			1 = { set_name = "Lüttentempestien" }
+			1 = { set_name = "Mitternachtsstrahl" }
 		}
 	}
 }

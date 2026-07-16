@@ -5660,31 +5660,31 @@ country_event = { #Manage war forges and the Kaiser's eco
 						giga_katzen_panzer = {
 							change_variable = {
 								which = kaiser_resource_stockpile
-								value = 85
+								value = 100 #20% of kaiser_panzer_cost
 							}
 						}
 						giga_katzen_bomber = {
 							change_variable = {
 								which = kaiser_resource_stockpile
-								value = 165
+								value = 200 #20% of kaiser_bomber_cost
 							}
 						}
 						giga_katzen_cruiser = {
 							change_variable = {
 								which = kaiser_resource_stockpile
-								value = 375
+								value = 400 #20% of kaiser_cruiser_cost
 							}
 						}
 						giga_katzen_blimp = {
 							change_variable = {
 								which = kaiser_resource_stockpile
-								value = 1400
+								value = 1600 #20% of kaiser_blimp_cost
 							}
 						}
 						giga_katzen_submarine = {
 							change_variable = {
 								which = kaiser_resource_stockpile
-								value = 100
+								value = 70 #roughly 20% of one submarine's cost (kaiser_submarine_flotilla_cost)
 							}
 						}
 					}
@@ -8779,14 +8779,56 @@ country_event = {
 	desc = {
 		trigger = {
 			katzen_vassal = no
+			event_target:kaiser_attack_target = { is_fallen_empire = no }
 		}
-		text = "giga_katzen.051.desc"
+		text = "giga_katzen.051.normal.desc"
 	}
 	desc = {
 		trigger = {
 			katzen_vassal = yes
+			event_target:kaiser_attack_target = { is_fallen_empire = no }
 		}
-		text = "giga_katzen.051.protectorate.desc"
+		text = "giga_katzen.051.normal.protectorate.desc"
+	}
+	desc = {
+		trigger = {
+			katzen_vassal = no
+			event_target:kaiser_attack_target = {
+				is_fallen_empire = yes
+				has_country_flag = giga_meopa_fe
+			}
+		}
+		text = "giga_katzen.051.precursor_katzen.desc"
+	}
+	desc = {
+		trigger = {
+			katzen_vassal = yes
+			event_target:kaiser_attack_target = {
+				is_fallen_empire = yes
+				has_country_flag = giga_meopa_fe
+			}
+		}
+		text = "giga_katzen.051.precursor_katzen.protectorate.desc"
+	}
+	desc = {
+		trigger = {
+			katzen_vassal = no
+			event_target:kaiser_attack_target = {
+				is_fallen_empire = yes
+				NOT = { has_country_flag = giga_meopa_fe }
+			}
+		}
+		text = "giga_katzen.051.precursor_nonkatzen.desc"
+	}
+	desc = {
+		trigger = {
+			katzen_vassal = yes
+			event_target:kaiser_attack_target = {
+				is_fallen_empire = yes
+				NOT = { has_country_flag = giga_meopa_fe }
+			}
+		}
+		text = "giga_katzen.051.precursor_nonkatzen.protectorate.desc"
 	}
 
 	is_triggered_only = yes
@@ -10797,7 +10839,7 @@ country_event = { #Collapse of Katzenartig
 		event_target:global_event_country = {
 			random_list = {
 				50 = {
-					country_event = { id = giga_hke.001 days = 2520 } #HKE
+					country_event = { id = giga_hke.001 days = 2520 random = 360 } #HKE in 7-8 years
 				}
 				50 = {}
 			}
