@@ -9794,10 +9794,10 @@
 
   giga_aeternum.4121.name:0 "Aeternite Databanks"
   giga_aeternum.4121.desc:0 "Surprisingly, yes! The Kaiser has stated that he would be more than happy to share some of this data with you, for a slight price, of course.\n\nFrom what I've seen, he seems to have some contempt towards the Aeternites, so I'm pretty sure he would be glad to help your kind fight Aeternum if it ever becomes necessary."
-  giga_aeternum.4121.protectorate.desc:0 "Certainly, yes! The Kaiser has stated that he would be more than happy to share some of this data with you, for a slight administrative fee, of course.\n\nFrom what I've seen, he seems to have some contempt towards the Aeternites, so it's possible we'll have to fight them together in the future."
+  giga_aeternum.4121.protectorate.desc:0 "Certainly, yes! The Kaiser has stated that he would be more than happy to share some of this data with you, for a slight administrative fee, of course.\n\nFrom what I've seen, he seems to have some contempt towards the Aeternites, so we'll need to be prepared if it ever becomes necessary to fight them together."
 
   giga_aeternum.4121.a:0 "It's a deal! | §Y25000§! £trade£"
-  giga_aeternum.4121.a.tooltip:0 "$giga_aeternum_4_intel_tooltip$\nThe §YKaiser Opinion's§! of us will §Bincrease§! by §G1§!."
+  giga_aeternum.4121.a.tooltip:0 "$giga_aeternum_4_intel_tooltip$\nThe §YKaiser Opinion's§! of us will §Bincrease§! by §G20§!."
   giga_aeternum.4121.a.response:0 "Delightful! We shall transfer the data to your own databanks now."
 
   giga_aeternum.4121.b:0 "It is too expensive."

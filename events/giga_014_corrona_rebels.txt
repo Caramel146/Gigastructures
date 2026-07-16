@@ -4705,11 +4705,11 @@ country_event = { #corrona start
 
 	immediate = {
 		event_target:global_event_country = {
-			country_event = { id = giga_corrona.006 days = 30 }
+			country_event = { id = giga_corrona.006 days = 30 } #actually awaken the Corronians
 		}
 		every_country = {
 			limit = { is_ai = no }
-			country_event = { id = giga_corrona.005 }
+			country_event = { id = giga_corrona.005 } #inform players of sussy energies
 		}
 	}
 }
@@ -4907,6 +4907,7 @@ country_event = { #Corrona Moon destroyed :(
 
 	immediate = {
 		set_country_flag = corrona_moon_slayer
+		set_global_flag = corrona_moon_destroyed #lets Katzens terraform Jupitwo
 		save_global_event_target_as = corrona_moon_slayer
 		every_country = {
 			limit = {

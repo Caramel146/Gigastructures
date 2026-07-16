@@ -4756,7 +4756,7 @@ country_event = { #Trading with Kaiser
 					}
 					set_owner = event_target:flusion_primitives_country
 				}
-				event_target:katzenland = { carrier_event = { id = giga_katzen.110 } }
+				event_target:katzenland = { carrier_event = { id = giga_katzen.110 } } #colonise
 			}
 		}
 	}
@@ -5379,6 +5379,7 @@ country_event = { #Manage war forges and the Kaiser's eco
 			limit = {
 				NOR = {
 					has_carrier_flag = katzen_planet_set_up
+					has_carrier_flag = katzen_world_predeveloped #see explanation where this flag is set
 					has_carrier_flag = gigaflusion
 				}
 			}
@@ -7412,8 +7413,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 				}
 				any_planet_within_border = { #Good candidates
 					has_modifier = terraforming_candidate
-					planet_size > 16
-					is_moon = no
+					planet_size > 14
 					NOR = {
 						has_carrier_flag = megastructure
 						has_carrier_flag = has_megastructure
@@ -7427,10 +7427,11 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 			random_planet_within_border = {
 				limit = {
 					has_modifier = terraforming_candidate
-					planet_size > 16
-					is_moon = no
-					NOT = { has_carrier_flag = megastructure }
-					NOT = { has_carrier_flag = has_megastructure }
+					planet_size > 14
+					NOR = {
+						has_carrier_flag = megastructure
+						has_carrier_flag = has_megastructure
+					}
 				}
 				start_terraform_process = pc_continental
 				event_target:flusion_primitives_country = {
@@ -7452,10 +7453,9 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 				any_planet_within_border = { #Good candidates
 					habitability = {
 						who = event_target:flusion_katzens
-						value <= 0.2 #above 20% hab
+						value <= 0.2 #below 20% hab
 					}
-					planet_size > 16
-					is_moon = no
+					planet_size > 14
 					is_colony = no
 					NOR = {
 						has_carrier_flag = megastructure
@@ -7474,8 +7474,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 						who = event_target:flusion_katzens
 						value <= 0.2 #above 20% hab
 					}
-					planet_size > 16
-					is_moon = no
+					planet_size > 14
 					is_colony = no
 					NOR = {
 						has_carrier_flag = megastructure
@@ -7587,7 +7586,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 								value > value:katzen_cost|COST|@kaiser_mega_cost|
 							}
 						}
-						planet_size > 16
+						planet_size > 18 #expensive way to terraform so only go for larger planets
 						OR = {
 							giga_is_barren_cn = yes
 							giga_is_toxic = yes
@@ -7596,7 +7595,6 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 						NOR = {
 							has_carrier_flag = has_megastructure
 							has_carrier_flag = megastructure
-							is_moon = yes
 							solar_system = { has_star_flag = flusion_system }
 						}
 					}
@@ -7672,11 +7670,21 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 		}
 		random_planet_within_border = { #locate brown dwarf
 			limit = {
-				is_planet_class = pc_gigabrown_dwarf
+				OR = {
+					giga_brown_dwarf = yes
+					AND = {
+						has_modifier = helioforming_candidate
+						giga_is_gas_giant = yes
+					}
+				}
 				NOR = {
 					has_carrier_flag = has_megastructure
 					has_carrier_flag = megastructure
 					solar_system = { has_star_flag = flusion_system }
+					AND = { #don't ignite Jupitwo before the Corronians are out of the way
+						solar_system = { has_star_flag = jupitwo_system }
+						NOT = { has_global_flag = corrona_moon_destroyed }
+					}
 				}
 			}
 			solar_system = {
@@ -7693,12 +7701,21 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 			75 = {
 				random_planet_within_border = { #colonize a planet
 					limit = {
-						is_planet_habitable = yes
+						is_colonizable = yes
 						is_colony = no
+						OR = { #only colonise ones the Katzens know how to handle
+							uses_district_set = habitat
+							uses_district_set = ring_world
+							uses_district_set = city_world
+							uses_district_set = standard
+							uses_district_set = volcanic_world
+							uses_district_set = giga_gas_giant_habitat
+						}
 						NOR = {
 							is_holy_world = yes
 							has_planet_flag = paluushia
 							has_planet_flag = corrona
+							has_modifier = beacon_shrouded_habitable_structure #psuedo-uninhabitable
 							solar_system = {
 								any_fleet_in_system = { #no hostiles
 									controller = {
@@ -7712,7 +7729,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 						}
 						habitability = {
 							who = event_target:flusion_katzens
-							value > 0.3 #above 30% hab
+							value > 0.2 #above 20% hab (terraformer adds an additional 20%)
 						}
 					}
 					create_colony = {
@@ -12330,14 +12347,17 @@ carrier_event = {
 		}
 		if = { #otherwise, if it's a planet the Kaiser cannot use, abandon it
 			limit = {
-				NOR = {
-					has_carrier_flag = katzen_world_predeveloped
-					uses_district_set = habitat
-					uses_district_set = ring_world
-					uses_district_set = city_world
-					uses_district_set = standard
-					uses_district_set = volcanic_world
-					uses_district_set = giga_gas_giant_habitat
+				OR = {
+					has_modifier = beacon_shrouded_habitable_structure
+					NOR = {
+						has_carrier_flag = katzen_world_predeveloped
+						uses_district_set = habitat
+						uses_district_set = ring_world
+						uses_district_set = city_world
+						uses_district_set = standard
+						uses_district_set = volcanic_world
+						uses_district_set = giga_gas_giant_habitat
+					}
 				}
 			}
 			every_owned_pop_group = {
@@ -12364,20 +12384,13 @@ carrier_event = {
 			set_owner =	event_target:flusion_primitives_country
 			katzen_clear_capitals = yes
 			add_building = building_giga_katzen_capital
+			set_carrier_flag = katzen_planet_set_up
 			if = {
-				limit = { NOT = { has_carrier_flag = katzen_planet_set_up } }
+				limit = { has_carrier_flag = katzen_planet_colonized } #AKA if it was not conquered
 				set_carrier_flag = katzen_planet_set_up
 
-				rename_planet_katzen = yes #Rename now
-
-				if = { #Colonized
-					limit = { has_carrier_flag = katzen_planet_colonized }
-					while = { count = 1	create_army = { name = NAME_katzencolonial_army	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
-					add_building = building_giga_katzen_terraformer #The terraformer
-				}
-				else = { #if not colonised, it was likely conquered
-					while = { count = 1	create_army = { name = NAME_katzen_peacekeeper	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
-				}
+				while = { count = 1	create_army = { name = NAME_katzencolonial_army	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
+				add_building = building_giga_katzen_terraformer #boosts habitability #TODO no need on worlds like gaias
 
 				event_target:flusion_primitives_country = { #Make a defensive platform
 					create_fleet = {
@@ -12418,6 +12431,7 @@ carrier_event = {
 
 				#decide what the planet should be developed as
 				#uses district set then sets a flag for better compat than checking planet class
+				#NOTE: if any new worlds get Katzen development support, add them to the giga_katzen.040 colonisation whitelist
 				switch = {
 					trigger = uses_district_set
 					habitat = { set_carrier_flag = katzen_habitat }
@@ -12640,7 +12654,7 @@ carrier_event = {
 					}
 				}
 			}
-			else = { #Reconquered
+			else = { #Not colonised, AKA conquered or reconquered
 				while = { count = 1	create_army = { name = NAME_katzen_peacekeeper	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
 				event_target:flusion_primitives_country = { #Make a defensive platform
 					create_fleet = {
@@ -12663,6 +12677,7 @@ carrier_event = {
 					}
 				}
 			}
+			rename_planet_katzen = yes #Rename at end because some names check for Katzen world specialisation
 			set_update_modifiers_batch = end
 		}
 	}
@@ -13010,12 +13025,28 @@ planet_event = {
 				add_building = building_planetary_shield_generator
 			}
 
-			else_if = { #shield generator for Siegfrieds
+			else_if = { #non-Siegfried army development 1
 				limit = {
-					has_carrier_flag = katzen_world_fortress
-					check_variable = { which = years_of_kaiser_rule value > 4 }
+					check_variable = { which = years_of_kaiser_rule value > 15 }
+					NOR = {
+						has_carrier_flag = katzen_world_fortress
+						has_carrier_flag = katzen_nonfortress_army_1
+					}
 				}
-				add_building = building_planetary_shield_generator
+				while = { count = 1	create_army = { name = NAME_katzencolonial_army	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
+				set_carrier_flag = katzen_nonfortress_army_1
+			}
+
+			else_if = { #non-Siegfried army development 2
+				limit = {
+					check_variable = { which = years_of_kaiser_rule value > 30 }
+					NOR = {
+						has_carrier_flag = katzen_world_fortress
+						has_carrier_flag = katzen_nonfortress_army_2
+					}
+				}
+				while = { count = 1	create_army = { name = NAME_katzencolonial_army	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
+				set_carrier_flag = katzen_nonfortress_army_2
 			}
 
 			else_if = { #starbase upgrade from Siegfrieds
