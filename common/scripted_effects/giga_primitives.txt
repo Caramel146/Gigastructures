@@ -379,6 +379,7 @@ generate_flusion_primitives_on_planet = {
 				effect = {
 					set_leader_flag = flusiondouclaw
 					save_global_event_target_as = flusion_douclaw
+					set_council_position = councilor_defense
 				}
 			}
 		}

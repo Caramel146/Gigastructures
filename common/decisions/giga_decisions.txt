@@ -1018,6 +1018,8 @@ decision_take_solakia_back = {
 							species = event_target:solakians
 							name = "Dofus Tequenik Machina"
 							gender = male
+							background_ethic = ethic_egalitarian
+							background_job = politician
 							effect = { save_event_target_as = solakia_ruler set_dofus_real_portrait = yes }
 						}
 						set_leader = event_target:solakia_ruler
@@ -1119,6 +1121,8 @@ decision_give_flusion_to_solakia = {
 							species = event_target:solakians
 							name = "Dofus Tequenik Machina"
 							gender = male
+							background_ethic = ethic_egalitarian
+							background_job = politician
 							effect = { save_event_target_as = solakia_ruler set_dofus_real_portrait = yes }
 						}
 						set_leader = event_target:solakia_ruler

@@ -14,7 +14,7 @@ building_giga_flusion_home = {
 	planet_modifier = {
 		planet_amenities_add = 500
 		planet_housing_add = 500
-		planet_crime_add = -5
+		planet_crime_add = -20
 	}
 
 	destroy_trigger = {
@@ -191,7 +191,6 @@ building_giga_katzen_terraformer = {
 	can_be_ruined = no
 	base_buildtime = 360
 	ai_weight = { weight = 0 }
-	potential = { always = no }
 	category = amenity
 	building_sets = {
 		urban

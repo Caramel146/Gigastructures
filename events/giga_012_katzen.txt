@@ -703,6 +703,7 @@ country_event = {
 		}
 		create_ship_design = { design = "Pawris" }
 		add_ship_design = last_created_design
+		unlock_council_slots = 1 #so that Douclaw can become Minister of Defense for naval cap reasons
 		if = {
 			limit = {
 				NOT = {
@@ -726,6 +727,7 @@ country_event = {
 				effect = {
 					save_global_event_target_as = flusion_douclaw
 					set_douclaw_real_portrait = yes
+					set_council_position = councilor_defense
 				}
 			}
 		}
@@ -989,7 +991,7 @@ country_event = {
 				set_fleet_flag = katzen_submarine_fleet
 			}
 		}
-		create_leader = { # TODO BACKGROUND
+		create_leader = {
 			class = commander
 			species = event_target:dietrich_portrait
 			name = "Dietrich Videafurr"
@@ -1369,6 +1371,8 @@ country_event = {
 			name = "Dofus Tequenik Machina"
 			skill = 4
 			gender = male
+			background_ethic = ethic_egalitarian
+			background_job = politician
 			traits = {
 				trait = katzen_trait_elite
 			}
@@ -1384,6 +1388,8 @@ country_event = {
 			name = "Tyukl Kaau"
 			skill = 4
 			gender = male
+			background_ethic = ethic_pacifist
+			background_job = noble
 			traits = {
 				trait = katzen_trait_elite
 			}
@@ -6987,6 +6993,8 @@ country_event = { #Flusion is INVADED
 						species = event_target:solakians
 						name = "Dofus Tequenik Machina"
 						gender = male
+						background_ethic = ethic_egalitarian
+						background_job = politician
 						effect = { save_event_target_as = solakia_ruler set_dofus_real_portrait = yes }
 					}
 					set_leader = event_target:solakia_ruler
@@ -7727,9 +7735,12 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 								}
 							}
 						}
-						habitability = {
-							who = event_target:flusion_katzens
-							value > 0.2 #above 20% hab (terraformer adds an additional 20%)
+						OR = {
+							has_planet_flag = katzenland #colonise this anyway for cultural reasons
+							habitability = {
+								who = event_target:flusion_katzens
+								value > 0.2 #above 20% hab (remember terraformer adds an additional 20%)
+							}
 						}
 					}
 					create_colony = {
@@ -10773,6 +10784,8 @@ country_event = { #Collapse of Katzenartig
 						gender = male
 						set_age = 41
 						name = "Dofus Tequenik Machina"
+						background_ethic = ethic_egalitarian
+						background_job = politician
 						traits = {
 							trait = katzen_trait_elite
 						}
@@ -12429,272 +12442,8 @@ carrier_event = {
 			set_carrier_flag = katzen_planet_set_up
 			if = {
 				limit = { has_carrier_flag = katzen_planet_colonized } #AKA if it was not conquered
-				set_carrier_flag = katzen_planet_set_up
 
 				while = { count = 1	create_army = { name = NAME_katzencolonial_army	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
-				add_building = building_giga_katzen_terraformer #boosts habitability #TODO no need on worlds like gaias
-
-				event_target:flusion_primitives_country = { #Make a defensive platform
-					create_fleet = {
-						name = "Katzenplanetenverteidigung"
-						settings = { spawn_debris = no }
-						effect = {
-							set_owner = event_target:flusion_primitives_country
-							create_ship = {
-								name = "Katzenplanetenverteidigung"
-								design = "Meoder"
-								upgradable = no
-							}
-							set_location = {
-								target = ROOT
-								distance = 0
-								angle = 0
-							}
-							set_fleet_flag = katzen_planet_platform
-						}
-					}
-				}
-
-				create_pop_group = { #Give an initial Flusion-species-set population
-					species = event_target:flusion_katzens
-					size = 200
-					random = 100
-				}
-				create_pop_group = {
-					species = event_target:kronks
-					size = 100
-					random = 50
-				}
-				create_pop_group = {
-					species = event_target:arcticezics
-					size = 50
-					random = 25
-				}
-
-				#decide what the planet should be developed as
-				#uses district set then sets a flag for better compat than checking planet class
-				#NOTE: if any new worlds get Katzen development support, add them to the giga_katzen.040 colonisation whitelist
-				switch = {
-					trigger = uses_district_set
-					habitat = { set_carrier_flag = katzen_habitat }
-					ring_world = { set_carrier_flag = katzen_ring_world }
-					city_world = { set_carrier_flag = katzen_city_world }
-					standard = { set_carrier_flag = katzen_standard }
-					volcanic_world = { set_carrier_flag = katzen_volcanic }
-					giga_gas_giant_habitat = { set_carrier_flag = katzen_gas_giant }
-					# giga_planetary_computer = {
-					# 	set_carrier_flag = katzen_planetary_computer
-					# 	set_carrier_flag = katzen_world_research
-					# }
-				}
-				if = {
-					limit = {
-						NOR = {
-							has_carrier_flag = katzen_world_forge
-							has_carrier_flag = katzen_world_research
-							has_carrier_flag = katzen_world_fortress
-						}
-					}
-					random_list = {
-						50 = {
-							set_carrier_flag = katzen_world_forge
-
-							#each alloy-boosting feature has a much higher weight than research ones since there are so few of them
-							modifier = { add = 50 has_carrier_flag = katzen_volcanic }
-							modifier = { add = 50 has_deposit = d_nano_corpses }
-							modifier = { add = 50 has_deposit = d_bluelotus }
-							modifier = { add = 50 has_deposit = d_bluelotus2 }
-							modifier = { add = 50 has_deposit = d_magnetic_storm_2_alloys }
-							modifier = { add = 50 has_deposit = d_magnetic_storm_3_mix }
-							modifier = { add = 50 has_deposit = d_mountains_of_steel }
-							modifier = { add = 50 has_modifier = scavenger_trophy }
-							modifier = { add = 50 has_modifier = heavy_metal }
-							modifier = { add = 50 has_modifier = alloy_relic }
-							modifier = { add = 50 has_modifier = factorator_industrial_network }
-							modifier = { add = 50 has_modifier = pm_hemosymbiosis }
-							modifier = { add = 50 has_modifier = pm_catalytic_excrement }
-						}
-						50 = {
-							set_carrier_flag = katzen_world_research
-
-							modifier = { add = 10 has_deposit = d_metal_boneyard }
-							modifier = { add = 10 has_deposit = d_migrating_forest_reserve }
-							modifier = { add = 10 has_deposit = d_valley_of_zanaam }
-							modifier = { add = 10 has_deposit = d_abandoned_primitive_homesteads }
-							modifier = { add = 10 has_deposit = d_the_zone }
-							modifier = { add = 10 has_deposit = d_toy_factory_complex }
-							modifier = { add = 10 has_deposit = d_ancient_bombardment_craters }
-							modifier = { add = 10 has_deposit = d_ancient_battlefield }
-							modifier = { add = 10 has_deposit = d_irradiated_ruins }
-							modifier = { add = 10 has_deposit = d_ancient_particle_accelerator }
-							modifier = { add = 10 has_deposit = d_underground_vault }
-							modifier = { add = 10 has_deposit = d_underground_vault_2 }
-							modifier = { add = 10 has_deposit = d_flooded_mounds }
-							modifier = { add = 10 has_deposit = d_wetware_computer }
-							modifier = { add = 10 has_deposit = d_savage_wildlands }
-							modifier = { add = 10 has_deposit = d_organic_landfill }
-							modifier = { add = 10 has_deposit = d_portal_research_zone }
-							modifier = { add = 10 has_deposit = d_house_turtle }
-							modifier = { add = 10 has_deposit = d_turtle_corpse }
-							modifier = { add = 10 has_deposit = d_fungal_study_zone }
-							modifier = { add = 10 has_deposit = d_living_snow_reserve }
-							modifier = { add = 10 has_deposit = d_radiotrophic_preserve }
-							modifier = { add = 10 has_deposit = d_shroud_flora_deposit }
-							modifier = { add = 10 has_deposit = d_ancient_manufactorium_scrapyard }
-							modifier = { add = 10 has_deposit = d_alien_sanctuary }
-							modifier = { add = 10 has_deposit = d_central_spire }
-							modifier = { add = 10 has_deposit = d_relic_dense_ruins }
-							modifier = { add = 10 has_deposit = d_former_relic_world }
-							modifier = { add = 10 has_deposit = d_impossiblecorrie }
-							modifier = { add = 10 has_deposit = d_ruin_bluelotus }
-							modifier = { add = 10 has_deposit = d_technocracy_toxic_waste_blocker }
-							modifier = { add = 10 has_deposit = d_technocracy_barren_lands_blocker }
-							modifier = { add = 10 has_deposit = d_technocracy_toxic_ocean_blocker }
-							modifier = { add = 10 has_deposit = d_technocracy_molten_waste_blocker }
-							modifier = { add = 10 has_deposit = d_payback_habitat_research }
-							modifier = { add = 10 has_deposit = d_weapon_extraction_facility }
-							modifier = { add = 10 has_deposit = d_particle_storm_1_society }
-							modifier = { add = 10 has_deposit = d_celestial_storm_2_society }
-							modifier = { add = 10 has_deposit = d_gravity_storm_3_engineering }
-							modifier = { add = 10 has_deposit = d_shroud_storm_1_society }
-							modifier = { add = 10 has_deposit = d_genesis_preserve }
-							modifier = { add = 10 has_deposit = d_hive_dwelling }
-							modifier = { add = 10 has_deposit = d_ruined_hive_dwelling }
-							modifier = { add = 10 has_deposit = d_hydroactive_eggs }
-							modifier = { add = 10 has_deposit = d_bogplants }
-							modifier = { add = 10 has_deposit = d_liquid_dark_matter }
-							modifier = { add = 10 has_deposit = d_dark_matter_monolith }
-							modifier = { add = 10 has_modifier = dangerous_wildlife }
-							modifier = { add = 10 has_modifier = weak_magnetic_field }
-							modifier = { add = 10 has_modifier = unstable_tectonics }
-							modifier = { add = 10 has_modifier = wild_storms }
-							modifier = { add = 10 has_modifier = titanic_life }
-							modifier = { add = 10 has_modifier = atmospheric_hallucinogen }
-							modifier = { add = 10 has_modifier = atmospheric_hallucinogen_good }
-							modifier = { add = 10 has_modifier = volcanic_critters }
-							modifier = { add = 10 has_modifier = volcanic_oasis }
-							modifier = { add = 10 has_modifier = subterranean_civilization }
-							modifier = { add = 10 has_modifier = planet_uncertain_past }
-							modifier = { add = 10 has_modifier = magnetic_research_boost }
-							modifier = { add = 10 has_modifier = turtle_world_modifier }
-							modifier = { add = 10 has_modifier = turtle_world_modifier_alone }
-							modifier = { add = 10 has_modifier = turtle_world_slaves_modifier }
-							modifier = { add = 10 has_modifier = adopted_aliens }
-							modifier = { add = 10 has_modifier = acid_jungles }
-							modifier = { add = 10 has_modifier = irradiated_wasteland }
-							modifier = { add = 10 has_modifier = liquid_sands }
-							modifier = { add = 10 has_modifier = society_animal_life }
-							modifier = { add = 10 has_modifier = tamed_nanite_swarm_modifier }
-							modifier = { add = 10 has_modifier = sky_dragon_trophy }
-							modifier = { add = 10 has_modifier = horror_study_trophy }
-							modifier = { add = 10 has_modifier = horror_study_trophy2 }
-							modifier = { add = 10 has_modifier = horror_stabilized }
-							modifier = { add = 10 has_modifier = voidspawn_trophy }
-							modifier = { add = 10 has_modifier = stratovents }
-							modifier = { add = 10 has_modifier = stratovent_world_modifier_tourism }
-							modifier = { add = 10 has_modifier = stratovent_world_modifier_tourism_boost }
-							modifier = { add = 10 has_modifier = stratovent_world_modifier_refining }
-							modifier = { add = 10 has_modifier = stratovent_world_modifier_refining_upg }
-							modifier = { add = 10 has_modifier = stratovent_world_modifier_refining_minerals }
-							modifier = { add = 10 has_modifier = exofungus }
-							modifier = { add = 10 has_modifier = watery_grave }
-							modifier = { add = 10 has_modifier = predatory_plants }
-							modifier = { add = 10 has_modifier = living_sea }
-							modifier = { add = 10 has_modifier = seismological_phenomena }
-							modifier = { add = 10 has_modifier = seismological_phenomena_2 }
-							modifier = { add = 10 has_modifier = egg_rifts }
-							modifier = { add = 10 has_modifier = study_the_sentinels_modifier }
-							modifier = { add = 10 has_modifier = evermore_science }
-							modifier = { add = 10 has_modifier = astral_aficionados_modifier }
-							modifier = { add = 10 has_modifier = seeded_planet_1_modifier }
-							modifier = { add = 10 has_modifier = seeded_planet_2_modifier }
-							modifier = { add = 10 has_modifier = seeded_planet_3_modifier }
-							modifier = { add = 10 has_modifier = docile_fauna }
-							modifier = { add = 10 has_modifier = pm_dark_matter_statue }
-							modifier = { add = 10 has_modifier = pm_raining_corpses_no_ancrel }
-							modifier = { add = 10 has_modifier = crystal_lava_resort }
-							modifier = { add = 10 has_modifier = red_giant_exploded }
-							modifier = { add = 10 has_modifier = red_giant_exploded_mitigated }
-							modifier = { add = 10 has_modifier = red_giant_exploit_mod }
-							modifier = { add = 10 has_modifier = red_giant_calmed_mod }
-							modifier = { add = 10 has_modifier = pm_catalytic_excrement }
-							modifier = { add = 10 has_modifier = shroud_forged_guide_modifier }
-							modifier = { add = 10 has_modifier = pm_shroud_forged_shroud_pilgrimage }
-
-							#On to Gigas features
-							modifier = { add = 10 has_deposit = d_compound_boon_4 }
-							modifier = { add = 10 has_deposit = d_compound_boon_5 }
-							modifier = { add = 10 has_deposit = d_compound_boon_6 }
-							modifier = { add = 10 has_deposit = d_everfree_forest }
-							modifier = { add = 10 has_deposit = d_small_natural_tunnel }
-							modifier = { add = 10 has_modifier = strange_pouchkinn_lab }
-							modifier = { add = 10 has_modifier = strange_pouchkinn_lab_activated }
-							modifier = { add = 10 has_modifier = the_repository2 }
-							modifier = { add = 10 has_modifier = flat_world }
-							modifier = { add = 10 has_modifier = interstellar_habitat }
-							modifier = { add = 10 has_modifier = ruined_city_world }
-							modifier = { add = 10 has_modifier = megastructure_collision }
-
-							#less likely if there aren't enough special science districts
-							modifier = {
-								factor = 0.5
-								OR = {
-									AND = {
-										has_carrier_flag = katzen_habitat
-										num_free_districts = { type = district_hab_science value <= 5 }
-									}
-									AND = {
-										has_carrier_flag = katzen_volcanic
-										num_free_districts = { type = district_polytechnic value <= 5 }
-									}
-								}
-							}
-						}
-						0 = { #Siegfried World. High chance of one in each system near Jublio, and terraformed planets themselves have a moderate chance of becoming one.
-							set_carrier_flag = katzen_world_fortress
-
-							#these work on factors instead of adds due to the base of 0
-							modifier = { factor = 1.5 has_deposit = d_black_needle_base }
-							modifier = { factor = 1.5 has_deposit = d_abandoned_black_needle_base }
-							modifier = { factor = 1.5 has_deposit = d_trophy_hall }
-							modifier = { factor = 0.25 has_deposit = d_seismic_bombing_crater } #BAD
-							modifier = { factor = 0.25 has_deposit = d_explosive_atmosphere } #BAD
-							modifier = { factor = 1.5 has_modifier = nascent_locust }
-							modifier = { add = 1000 has_modifier = death_world }
-
-							modifier = {
-								add = 50 #TODO CHANGE
-								has_carrier_flag = katzen_planet_colonized
-							}
-							modifier = {
-								add = 200
-								has_carrier_flag = katzen_planet_colonized
-								solar_system = {
-									OR = {
-										has_star_flag = flusion_system
-										any_system = {
-											distance = {
-												source = prev
-												use_bypasses = no
-												min_jumps = 1
-												max_jumps = 2
-											}
-											has_star_flag = flusion_system
-										}
-									}
-								}
-							}
-							modifier = {
-								factor = 0
-								solar_system = { any_system_planet = { has_carrier_flag = katzen_world_fortress } }
-							}
-							modifier = {
-								factor = 0
-								NOT = { has_carrier_flag = katzen_standard } #only normal planets
-							}
-						}
-					}
-				}
 			}
 			else = { #Not colonised, AKA conquered or reconquered
 				while = { count = 1	create_army = { name = NAME_katzen_peacekeeper	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" } }
@@ -12719,8 +12468,293 @@ carrier_event = {
 					}
 				}
 			}
+			if = {
+				limit = {
+					habitability = {
+						who = event_target:flusion_katzens
+						value < 0.7 #below 70% hab (remember terraformer adds an additional 20%)
+					}
+				}
+			}
+			add_building = building_giga_katzen_terraformer #boosts habitability #TODO no need on worlds like gaias
+
+			event_target:flusion_primitives_country = { #Make a defensive platform
+				create_fleet = {
+					name = "Katzenplanetenverteidigung"
+					settings = { spawn_debris = no }
+					effect = {
+						set_owner = event_target:flusion_primitives_country
+						create_ship = {
+							name = "Katzenplanetenverteidigung"
+							design = "Meoder"
+							upgradable = no
+						}
+						set_location = {
+							target = ROOT
+							distance = 0
+							angle = 0
+						}
+						set_fleet_flag = katzen_planet_platform
+					}
+				}
+			}
+
+			create_pop_group = { #Give an initial Flusion-species-set population
+				species = event_target:flusion_katzens
+				size = 200
+				random = 100
+			}
+			create_pop_group = {
+				species = event_target:kronks
+				size = 100
+				random = 50
+			}
+			create_pop_group = {
+				species = event_target:arcticezics
+				size = 50
+				random = 25
+			}
+
+			#decide what the planet should be developed as
+			#uses district set then sets a flag for better compat than checking planet class
+			#NOTE: if any new worlds get Katzen development support, add them to the giga_katzen.040 colonisation whitelist
+			switch = {
+				trigger = uses_district_set
+				habitat = { set_carrier_flag = katzen_habitat }
+				ring_world = { set_carrier_flag = katzen_ring_world }
+				city_world = { set_carrier_flag = katzen_city_world }
+				standard = { set_carrier_flag = katzen_standard }
+				volcanic_world = { set_carrier_flag = katzen_volcanic }
+				giga_gas_giant_habitat = { set_carrier_flag = katzen_gas_giant }
+				# giga_planetary_computer = {
+				# 	set_carrier_flag = katzen_planetary_computer
+				# 	set_carrier_flag = katzen_world_research
+				# }
+			}
+			if = {
+				limit = {
+					NOR = {
+						has_carrier_flag = katzen_world_forge
+						has_carrier_flag = katzen_world_research
+						has_carrier_flag = katzen_world_fortress
+					}
+				}
+				random_list = {
+					50 = {
+						set_carrier_flag = katzen_world_forge
+
+						#each alloy-boosting feature has a much higher weight than research ones since there are so few of them
+						modifier = { add = 50 has_carrier_flag = katzen_volcanic }
+						modifier = { add = 50 has_deposit = d_nano_corpses }
+						modifier = { add = 50 has_deposit = d_bluelotus }
+						modifier = { add = 50 has_deposit = d_bluelotus2 }
+						modifier = { add = 50 has_deposit = d_magnetic_storm_2_alloys }
+						modifier = { add = 50 has_deposit = d_magnetic_storm_3_mix }
+						modifier = { add = 50 has_deposit = d_mountains_of_steel }
+						modifier = { add = 50 has_modifier = scavenger_trophy }
+						modifier = { add = 50 has_modifier = heavy_metal }
+						modifier = { add = 50 has_modifier = alloy_relic }
+						modifier = { add = 50 has_modifier = factorator_industrial_network }
+						modifier = { add = 50 has_modifier = pm_hemosymbiosis }
+						modifier = { add = 50 has_modifier = pm_catalytic_excrement }
+					}
+					50 = {
+						set_carrier_flag = katzen_world_research
+
+						modifier = { add = 10 has_deposit = d_metal_boneyard }
+						modifier = { add = 10 has_deposit = d_migrating_forest_reserve }
+						modifier = { add = 10 has_deposit = d_valley_of_zanaam }
+						modifier = { add = 10 has_deposit = d_abandoned_primitive_homesteads }
+						modifier = { add = 10 has_deposit = d_the_zone }
+						modifier = { add = 10 has_deposit = d_toy_factory_complex }
+						modifier = { add = 10 has_deposit = d_ancient_bombardment_craters }
+						modifier = { add = 10 has_deposit = d_ancient_battlefield }
+						modifier = { add = 10 has_deposit = d_irradiated_ruins }
+						modifier = { add = 10 has_deposit = d_ancient_particle_accelerator }
+						modifier = { add = 10 has_deposit = d_underground_vault }
+						modifier = { add = 10 has_deposit = d_underground_vault_2 }
+						modifier = { add = 10 has_deposit = d_flooded_mounds }
+						modifier = { add = 10 has_deposit = d_wetware_computer }
+						modifier = { add = 10 has_deposit = d_savage_wildlands }
+						modifier = { add = 10 has_deposit = d_organic_landfill }
+						modifier = { add = 10 has_deposit = d_portal_research_zone }
+						modifier = { add = 10 has_deposit = d_house_turtle }
+						modifier = { add = 10 has_deposit = d_turtle_corpse }
+						modifier = { add = 10 has_deposit = d_fungal_study_zone }
+						modifier = { add = 10 has_deposit = d_living_snow_reserve }
+						modifier = { add = 10 has_deposit = d_radiotrophic_preserve }
+						modifier = { add = 10 has_deposit = d_shroud_flora_deposit }
+						modifier = { add = 10 has_deposit = d_ancient_manufactorium_scrapyard }
+						modifier = { add = 10 has_deposit = d_alien_sanctuary }
+						modifier = { add = 10 has_deposit = d_central_spire }
+						modifier = { add = 10 has_deposit = d_relic_dense_ruins }
+						modifier = { add = 10 has_deposit = d_former_relic_world }
+						modifier = { add = 10 has_deposit = d_impossiblecorrie }
+						modifier = { add = 10 has_deposit = d_ruin_bluelotus }
+						modifier = { add = 10 has_deposit = d_technocracy_toxic_waste_blocker }
+						modifier = { add = 10 has_deposit = d_technocracy_barren_lands_blocker }
+						modifier = { add = 10 has_deposit = d_technocracy_toxic_ocean_blocker }
+						modifier = { add = 10 has_deposit = d_technocracy_molten_waste_blocker }
+						modifier = { add = 10 has_deposit = d_payback_habitat_research }
+						modifier = { add = 10 has_deposit = d_weapon_extraction_facility }
+						modifier = { add = 10 has_deposit = d_particle_storm_1_society }
+						modifier = { add = 10 has_deposit = d_celestial_storm_2_society }
+						modifier = { add = 10 has_deposit = d_gravity_storm_3_engineering }
+						modifier = { add = 10 has_deposit = d_shroud_storm_1_society }
+						modifier = { add = 10 has_deposit = d_genesis_preserve }
+						modifier = { add = 10 has_deposit = d_hive_dwelling }
+						modifier = { add = 10 has_deposit = d_ruined_hive_dwelling }
+						modifier = { add = 10 has_deposit = d_hydroactive_eggs }
+						modifier = { add = 10 has_deposit = d_bogplants }
+						modifier = { add = 10 has_deposit = d_liquid_dark_matter }
+						modifier = { add = 10 has_deposit = d_dark_matter_monolith }
+						modifier = { add = 10 has_modifier = dangerous_wildlife }
+						modifier = { add = 10 has_modifier = weak_magnetic_field }
+						modifier = { add = 10 has_modifier = unstable_tectonics }
+						modifier = { add = 10 has_modifier = wild_storms }
+						modifier = { add = 10 has_modifier = titanic_life }
+						modifier = { add = 10 has_modifier = atmospheric_hallucinogen }
+						modifier = { add = 10 has_modifier = atmospheric_hallucinogen_good }
+						modifier = { add = 10 has_modifier = volcanic_critters }
+						modifier = { add = 10 has_modifier = volcanic_oasis }
+						modifier = { add = 10 has_modifier = subterranean_civilization }
+						modifier = { add = 10 has_modifier = planet_uncertain_past }
+						modifier = { add = 10 has_modifier = magnetic_research_boost }
+						modifier = { add = 10 has_modifier = turtle_world_modifier }
+						modifier = { add = 10 has_modifier = turtle_world_modifier_alone }
+						modifier = { add = 10 has_modifier = turtle_world_slaves_modifier }
+						modifier = { add = 10 has_modifier = adopted_aliens }
+						modifier = { add = 10 has_modifier = acid_jungles }
+						modifier = { add = 10 has_modifier = irradiated_wasteland }
+						modifier = { add = 10 has_modifier = liquid_sands }
+						modifier = { add = 10 has_modifier = society_animal_life }
+						modifier = { add = 10 has_modifier = tamed_nanite_swarm_modifier }
+						modifier = { add = 10 has_modifier = sky_dragon_trophy }
+						modifier = { add = 10 has_modifier = horror_study_trophy }
+						modifier = { add = 10 has_modifier = horror_study_trophy2 }
+						modifier = { add = 10 has_modifier = horror_stabilized }
+						modifier = { add = 10 has_modifier = voidspawn_trophy }
+						modifier = { add = 10 has_modifier = stratovents }
+						modifier = { add = 10 has_modifier = stratovent_world_modifier_tourism }
+						modifier = { add = 10 has_modifier = stratovent_world_modifier_tourism_boost }
+						modifier = { add = 10 has_modifier = stratovent_world_modifier_refining }
+						modifier = { add = 10 has_modifier = stratovent_world_modifier_refining_upg }
+						modifier = { add = 10 has_modifier = stratovent_world_modifier_refining_minerals }
+						modifier = { add = 10 has_modifier = exofungus }
+						modifier = { add = 10 has_modifier = watery_grave }
+						modifier = { add = 10 has_modifier = predatory_plants }
+						modifier = { add = 10 has_modifier = living_sea }
+						modifier = { add = 10 has_modifier = seismological_phenomena }
+						modifier = { add = 10 has_modifier = seismological_phenomena_2 }
+						modifier = { add = 10 has_modifier = egg_rifts }
+						modifier = { add = 10 has_modifier = study_the_sentinels_modifier }
+						modifier = { add = 10 has_modifier = evermore_science }
+						modifier = { add = 10 has_modifier = astral_aficionados_modifier }
+						modifier = { add = 10 has_modifier = seeded_planet_1_modifier }
+						modifier = { add = 10 has_modifier = seeded_planet_2_modifier }
+						modifier = { add = 10 has_modifier = seeded_planet_3_modifier }
+						modifier = { add = 10 has_modifier = docile_fauna }
+						modifier = { add = 10 has_modifier = pm_dark_matter_statue }
+						modifier = { add = 10 has_modifier = pm_raining_corpses_no_ancrel }
+						modifier = { add = 10 has_modifier = crystal_lava_resort }
+						modifier = { add = 10 has_modifier = red_giant_exploded }
+						modifier = { add = 10 has_modifier = red_giant_exploded_mitigated }
+						modifier = { add = 10 has_modifier = red_giant_exploit_mod }
+						modifier = { add = 10 has_modifier = red_giant_calmed_mod }
+						modifier = { add = 10 has_modifier = pm_catalytic_excrement }
+						modifier = { add = 10 has_modifier = shroud_forged_guide_modifier }
+						modifier = { add = 10 has_modifier = pm_shroud_forged_shroud_pilgrimage }
+
+						#On to Gigas features
+						modifier = { add = 10 has_deposit = d_compound_boon_4 }
+						modifier = { add = 10 has_deposit = d_compound_boon_5 }
+						modifier = { add = 10 has_deposit = d_compound_boon_6 }
+						modifier = { add = 10 has_deposit = d_everfree_forest }
+						modifier = { add = 10 has_deposit = d_small_natural_tunnel }
+						modifier = { add = 10 has_modifier = strange_pouchkinn_lab }
+						modifier = { add = 10 has_modifier = strange_pouchkinn_lab_activated }
+						modifier = { add = 10 has_modifier = the_repository2 }
+						modifier = { add = 10 has_modifier = flat_world }
+						modifier = { add = 10 has_modifier = interstellar_habitat }
+						modifier = { add = 10 has_modifier = ruined_city_world }
+						modifier = { add = 10 has_modifier = megastructure_collision }
+
+						#less likely if there aren't enough special science districts
+						modifier = {
+							factor = 0.5
+							OR = {
+								AND = {
+									has_carrier_flag = katzen_habitat
+									num_free_districts = { type = district_hab_science value <= 5 }
+								}
+								AND = {
+									has_carrier_flag = katzen_volcanic
+									num_free_districts = { type = district_polytechnic value <= 5 }
+								}
+							}
+						}
+					}
+					0 = { #Siegfried World. High chance of one in each system near Jublio, and terraformed planets themselves have a moderate chance of becoming one.
+						set_carrier_flag = katzen_world_fortress
+
+						#these work on factors instead of adds due to the base of 0
+						modifier = { factor = 1.5 has_deposit = d_black_needle_base }
+						modifier = { factor = 1.5 has_deposit = d_abandoned_black_needle_base }
+						modifier = { factor = 1.5 has_deposit = d_trophy_hall }
+						modifier = { factor = 0.25 has_deposit = d_seismic_bombing_crater } #BAD
+						modifier = { factor = 0.25 has_deposit = d_explosive_atmosphere } #BAD
+						modifier = { factor = 1.5 has_modifier = nascent_locust }
+						modifier = { add = 1000 has_modifier = death_world }
+
+						modifier = {
+							add = 50 #TODO CHANGE
+							has_carrier_flag = katzen_planet_colonized
+						}
+						modifier = {
+							add = 200
+							has_carrier_flag = katzen_planet_colonized
+							solar_system = {
+								OR = {
+									has_star_flag = flusion_system
+									any_system = {
+										distance = {
+											source = prev
+											use_bypasses = no
+											min_jumps = 1
+											max_jumps = 2
+										}
+										has_star_flag = flusion_system
+									}
+								}
+							}
+						}
+						modifier = {
+							factor = 0
+							solar_system = { any_system_planet = { has_carrier_flag = katzen_world_fortress } }
+						}
+						modifier = {
+							factor = 0
+							NOT = { has_carrier_flag = katzen_standard } #only normal planets
+						}
+					}
+				}
+			}
 			rename_planet_katzen = yes #Rename at end because some names check for Katzen world specialisation
 			set_update_modifiers_batch = end
+		}
+
+		#set colony designation manually because conquered worlds with force-set designations won't autoswap
+		switch = {
+			trigger = has_carrier_flag
+			katzen_world_forge = {
+				set_colony_type = col_katzen_foundry
+			}
+			katzen_world_research = {
+				set_colony_type = col_katzen_research
+			}
+			katzen_world_fortress = {
+				set_colony_type = col_katzen_fortress
+			}
 		}
 	}
 }
@@ -12761,7 +12795,7 @@ planet_event = {
 				limit = {
 					OR = { #only if near capacity
 						free_housing <= 1000
-						free_jobs <= 500
+						free_jobs <= 400
 					}
 					num_free_districts = {
 						type = any
@@ -12798,16 +12832,16 @@ planet_event = {
 										has_carrier_flag = katzen_world_forge
 										num_zones = { type = zone_foundry_ring_world value < 2 }
 									}
-									add_zone = { district = district_rw_city zone_slot = 1 zone = zone_foundry_ring_world replace = yes }
-									add_zone = { district = district_rw_city zone_slot = 2 zone = zone_foundry_ring_world replace = yes }
+									add_zone = { district = district_rw_city zone_slot = 1 zone = zone_foundry replace = yes }
+									add_zone = { district = district_rw_city zone_slot = 2 zone = zone_foundry replace = yes }
 								}
 								else_if = {
 									limit = {
 										has_carrier_flag = katzen_world_research
 										num_zones = { type = zone_research_ring_world value < 2 }
 									}
-									add_zone = { district = district_rw_city zone_slot = 1 zone = zone_research_ring_world replace = yes }
-									add_zone = { district = district_rw_city zone_slot = 2 zone = zone_research_ring_world replace = yes }
+									add_zone = { district = district_rw_city zone_slot = 1 zone = zone_research replace = yes }
+									add_zone = { district = district_rw_city zone_slot = 2 zone = zone_research replace = yes }
 								}
 							}
 							katzen_city_world = {
@@ -12817,16 +12851,16 @@ planet_event = {
 										has_carrier_flag = katzen_world_forge
 										num_zones = { type = zone_foundry_arcology value < 2 }
 									}
-									add_zone = { district = district_arcology_housing zone_slot = 1 zone = zone_foundry_arcology replace = yes }
-									add_zone = { district = district_arcology_housing zone_slot = 2 zone = zone_foundry_arcology replace = yes }
+									add_zone = { district = district_arcology_housing zone_slot = 1 zone = zone_foundry replace = yes }
+									add_zone = { district = district_arcology_housing zone_slot = 2 zone = zone_foundry replace = yes }
 								}
 								else_if = {
 									limit = {
 										has_carrier_flag = katzen_world_research
 										num_zones = { type = zone_research_arcology value < 2 }
 									}
-									add_zone = { district = district_arcology_housing zone_slot = 1 zone = zone_research_arcology replace = yes }
-									add_zone = { district = district_arcology_housing zone_slot = 2 zone = zone_research_arcology replace = yes }
+									add_zone = { district = district_arcology_housing zone_slot = 1 zone = zone_research replace = yes }
+									add_zone = { district = district_arcology_housing zone_slot = 2 zone = zone_research replace = yes }
 								}
 							}
 							katzen_standard = {
@@ -13500,7 +13534,7 @@ planet_event = {
 			else_if = { #build relevant building type
 				limit = {
 					free_building_slots > 0 #TODO may trigger even if buildings are wrong type for zones, blocking the final else from triggering
-					free_jobs < 250 #lower threshold than to make districts so that buildings actually spawn before districts cap out
+					free_jobs < 500 #higher threshold than to make districts so that buildings actually spawn before districts cap out
 				}
 				switch = {
 					trigger = has_carrier_flag

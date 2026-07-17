@@ -2520,6 +2520,8 @@ country_event = {
 					species = event_target:solakians
 					name = "Dofus Tequenik Machina"
 					gender = male
+					background_ethic = ethic_egalitarian
+					background_job = politician
 					effect = {
 						save_event_target_as = solakia_ruler
 						set_dofus_real_portrait = yes
@@ -4514,6 +4516,7 @@ country_event = {
 				effect = {
 					save_global_event_target_as = flusion_douclaw
 					set_douclaw_real_portrait = yes
+					set_council_position = councilor_defense
 				}
 			}
 		}
@@ -12400,6 +12403,8 @@ country_event = { #UFS gets FTL
 			gender = male
 			set_age = 41
 			name = "Dofus Tequenik Machina"
+			background_ethic = ethic_egalitarian
+			background_job = politician
 			traits = {
 				trait = katzen_trait_elite
 			}
