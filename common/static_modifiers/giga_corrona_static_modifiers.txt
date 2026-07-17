@@ -369,7 +369,8 @@ katzen_rebel_got_support = {
 katzen_economy_modifier = {
 	ships_upkeep_mult = -100 #does not work for some reason...
 	armies_upkeep_mult = -100
-	# starbase_buildings_upkeep_mult = -100
+	country_starbase_capacity_add = 1000
+	starbases_upkeep_mult = -100
 	megastructures_upkeep_mult = -100
 	planet_jobs_upkeep_mult = -100
 	planet_structures_upkeep_mult = -100
@@ -495,6 +496,13 @@ flusion_arcology_modifier = {
 	planet_jobs_food_produces_mult = 0.10
 	planet_jobs_produces_mult = 0.30
 	icon = "gfx/interface/icons/planet_modifiers/pm_flusion_arcology.dds"
+	icon_frame = 1
+}
+
+flusion_consolidation_instability = {
+	planet_stability_add = -20
+	pop_bonus_workforce_mult = -0.5 #job efficiency instead of output so hopefully job upkeep doesn't make him actually go broke
+	icon = "gfx/interface/icons/planet_modifiers/pm_unrest.dds"
 	icon_frame = 1
 }
 
