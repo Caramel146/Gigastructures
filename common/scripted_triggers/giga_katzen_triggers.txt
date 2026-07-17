@@ -308,6 +308,7 @@ kaiser_can_wardec = { #should be run in target country scope
 		overlord? = { is_ai = no } #not subject of player
 		is_at_war_with = root #is already at war
 	}
+	katzen_vassal = no
 	is_ai = yes
 	NAND = { #not in fed with player
 		exists = federation

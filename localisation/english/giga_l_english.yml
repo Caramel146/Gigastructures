@@ -10703,6 +10703,7 @@
   giga_corrona.002.a:0 "Fascinating!"
 
   giga_corrona_planetcraft:0 "Esoteric Planetcraft"
+  giga_corrona_planetcraft_cap:0 "$giga_corrona_planetcraft$"
   giga_corrona_planetcraft_plural:0 "Esoteric Planetcrafts"
   CORRONA_MOON:0 "Core"
 
@@ -10722,6 +10723,7 @@
   GIGA_CORRONA_DRAGON_BREATH_DESC:0 "A fiery magic-infused stream of draconic fire."
 
   giga_corrona_dragon:0 "Corronian Dragon"
+  giga_corrona_dragon_cap:0 "$giga_corrona_dragon$"
   giga_corrona_dragon_plural:0 "Corronian Dragons"
 
   giga_corrona.005.name:0 "Esoteric Energy Spike"
