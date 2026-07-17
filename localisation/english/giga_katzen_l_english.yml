@@ -1,0 +1,14 @@
+﻿l_english:
+ giga_katzen.05000:0 "Flusion Shifting Strategy"
+ giga_katzen.05000.desc:0 "Recent reports from the Katzenartig Imperium all suggest that a strategic and political shift is underway. The Kaiser seems to believe that Flusion's rule has expanded far enough for the time being, and is ordering his aides to draft an array of plans for substantial political restructuring.\n\nWhile we shouldn't expect anything like a renunciation of Katzen militarism, it seems a respite is on the horizon for free nations on the Imperium's borders - and a tighter grip is closing for those who are already exposed to the Kaiser's rule.\n\nPractically, this means the Kaiser is seeking to wind down ongoing conflicts in the coming years. We should review the galactic situation with our new intel in case this provides any opportunities."
+ giga_katzen.05000:0 "Katzenartig Restructuring Begins"
+ giga_katzen.05000.desc:0 "Increasingly public information from the Katzenartig Imperium confirms that the Kaiser has gone ahead with his once-clandestine reformation plans. According to our best intel, we should expect the Kaiser to spend upwards of two decades enacting a range of far-reaching administrative reforms designed to consolidate Flusion's local and imperial authority.\n\nReform is, of course, risky business, with programs such as accelerating Katzenification and reshuffling regional political privileges particularly likely to cause backlash. Whether the Kaiser can come out of this era with his reign strengthened will depend heavily on whether his citizens and subordinates feel he has fulfilled his promises..."
+ giga_katzen.05000:0 "Instability in Katzenartig Imperium!"
+ giga_katzen.05000.desc:0 "It appears that the Katzenartig citizenry don't feel that the Kaiser is delivering his utopian vision. Open unrest has broken out on the capital itself, and while the Kaiser has responded with a heavy hand to reassert his authority, a spike in high-profile treason convictions suggests that not all in the Imperium's upper echelons are still willing to enforce the Kaiser's decrees.\n\nDespite this test to the Kaiser's rule, it's still too soon to say whether the Kaiserist government will collapse, or reassert itself for another generation - and with the crisis playing out on numerous societal battlefields, it may be a few years before we have an answer.\n\nRegardless, during this period, the Katzenartig Imperium may not have the capacity to handle further threats, and a war could help stretch the Katzen government too far..."
+ giga_katzen.05000:0 "Flusiocracy Reasserts!"
+ giga_katzen.05000.desc:0 ""
+ giga_katzen.05000:0 "Flusiocracy Collapses!"
+ giga_katzen.05000.desc:0 ""
+
+ flusion_consolidation_instability:0 "Reformation Woes"
+ flusion_consolidation_instability_desc:0 "Dissatisfied with the Kaiser's broken promises, the population is agitating for change."

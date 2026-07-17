@@ -1325,7 +1325,7 @@ country_event = {
 		country_event = { id = giga_katzen.070 days = 180 random = 30 } #Warforges
 		country_event = { id = giga_katzen.030 days = 30 } #Manage warforges and eco
 		# country_event = { id = giga_katzen.036 days = 30 } # Leader management
-		country_event = { id = giga_katzen.080 days = 330 random = 60 } #Flusion expansion
+		country_event = { id = giga_katzen.080 days = 300 random = 60 } #Flusion expansion
 		# country_event = { id = giga_katzen.082 days = 7200 } #Second flusion expansion
 		# country_event = { id = giga_katzen.083 days = 10800 } #Third flusion expansion
 		country_event = { id = giga_katzen.9999 days = 5 } #Crisis counter
@@ -9097,7 +9097,7 @@ country_event = {
 	}
 
 	immediate = {
-		country_event = { id = giga_katzen.080 days = 330 random = 60 } #run event again in approximately a year
+		country_event = { id = giga_katzen.080 days = 300 random = 60 } #run event again in approximately a year (Flusion needs to be able to develop a little faster than normal colonies)
 		
 		# event_target:gigaflusion = {
 		# 	change_variable = {
@@ -12472,15 +12472,6 @@ carrier_event = {
 					}
 				}
 			}
-			if = {
-				limit = {
-					habitability = {
-						who = event_target:flusion_katzens
-						value < 0.7 #below 70% hab (remember terraformer adds an additional 20%)
-					}
-				}
-			}
-			add_building = building_giga_katzen_terraformer #boosts habitability #TODO no need on worlds like gaias
 
 			event_target:flusion_primitives_country = { #Make a defensive platform
 				create_fleet = {
@@ -12743,6 +12734,16 @@ carrier_event = {
 					}
 				}
 			}
+
+			if = { #check hab after the Katzen forge colony designation is set
+				limit = {
+					habitability = {
+						who = event_target:flusion_katzens
+						value < 0.7 #below 70% hab (remember terraformer adds an additional 20%)
+					}
+				}
+				add_building = building_giga_katzen_terraformer #boosts habitability
+			}
 			rename_planet_katzen = yes #Rename at end because some names check for Katzen world specialisation
 			set_update_modifiers_batch = end
 		}
@@ -12884,6 +12885,14 @@ planet_event = {
 									}
 									add_zone = { district = district_city zone_slot = 1 zone = zone_research replace = yes }
 									add_zone = { district = district_city zone_slot = 2 zone = zone_research replace = yes }
+								}
+								else_if = {
+									limit = {
+										has_carrier_flag = katzen_world_fortress
+										num_zones = { type = zone_fortress value < 2 }
+									}
+									add_zone = { district = district_city zone_slot = 1 zone = zone_fortress replace = yes }
+									add_zone = { district = district_city zone_slot = 2 zone = zone_fortress replace = yes }
 								}
 							}
 							katzen_volcanic = {
@@ -13252,7 +13261,7 @@ planet_event = {
 
 			else_if = { #amenities shortage! Build theatres
 				limit = {
-					free_building_slots > 0 #TODO may trigger even if buildings are wrong type for zones, blocking the final else from triggering
+					free_building_slots > 0 #TODO triggers even if buildings are wrong type for zones, blocking later elses from triggering
 					free_amenities < 500
 				}
 				add_building = building_katzen_theater
@@ -13260,7 +13269,8 @@ planet_event = {
 
 			else_if = { #shield generator for Siegfrieds
 				limit = {
-					free_building_slots > 0 #TODO may trigger even if buildings are wrong type for zones, blocking the final else from triggering
+					free_building_slots > 0 #TODO triggers even if buildings are wrong type for zones, blocking later elses from triggering
+					NOT = { has_building = building_planetary_shield_generator }
 					has_carrier_flag = katzen_world_fortress
 					check_variable = { which = years_of_kaiser_rule value > 4 }
 				}
@@ -13294,6 +13304,7 @@ planet_event = {
 			else_if = { #starbase upgrade from Siegfrieds
 				limit = {
 					has_carrier_flag = katzen_world_fortress
+					NOT = { has_carrier_flag = siegfried_starbase_upgrade_1 }
 					solar_system.starbase = { #don't upgrade an occupied starbase
 						owner = { is_country_type = katzenartig_imperium }
 						fleet = { is_disabled = no }
@@ -13310,6 +13321,7 @@ planet_event = {
 						remove_modifier = warforge_detection
 					}
 				}
+				set_carrier_flag = siegfried_starbase_upgrade_1
 			}
 
 			else_if = { #become a proper siegfried world
@@ -13361,6 +13373,8 @@ planet_event = {
 			else_if = { #starbase upgrade 2 from Siegfrieds
 				limit = {
 					has_carrier_flag = katzen_world_fortress
+					has_carrier_flag = siegfried_starbase_upgrade_1
+					NOT = { has_carrier_flag = siegfried_starbase_upgrade_2 }
 					solar_system.starbase = { #don't upgrade an occupied starbase
 						owner = { is_country_type = katzenartig_imperium }
 						fleet = { is_disabled = no }
@@ -13380,11 +13394,14 @@ planet_event = {
 						remove_modifier = warforge_detection
 					}
 				}
+				set_carrier_flag = siegfried_starbase_upgrade_2
 			}
 
 			else_if = { #Siegfried defences 2
 				limit = {
 					has_carrier_flag = katzen_world_fortress
+					is_planet_class = pc_giga_siegfried_world #also effectively a check for siegfried_platform_upgrade_1
+					NOT = { has_carrier_flag = siegfried_platform_upgrade_2 }
 					solar_system.starbase = { #don't build orbital defences in an occupied system
 						owner = { is_country_type = katzenartig_imperium }
 						fleet = { is_disabled = no }
@@ -13410,13 +13427,15 @@ planet_event = {
 						set_fleet_flag = katzen_planet_platform
 					}
 				}
-
 				create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" }
+				set_carrier_flag = siegfried_platform_upgrade_2
 			}
 
 			else_if = { #starbase upgrade 3 from Siegfrieds
 				limit = {
 					has_carrier_flag = katzen_world_fortress
+					has_carrier_flag = siegfried_starbase_upgrade_2
+					NOT = { has_carrier_flag = siegfried_starbase_upgrade_3 }
 					solar_system.starbase = { #don't upgrade an occupied starbase
 						owner = { is_country_type = katzenartig_imperium }
 						fleet = { is_disabled = no }
@@ -13439,11 +13458,14 @@ planet_event = {
 						remove_modifier = warforge_detection
 					}
 				}
+				set_carrier_flag = siegfried_starbase_upgrade_3
 			}
 
 			else_if = { #Siegfried defences 3
 				limit = {
 					has_carrier_flag = katzen_world_fortress
+					has_carrier_flag = siegfried_platform_upgrade_2
+					NOT = { has_carrier_flag = siegfried_platform_upgrade_3 }
 					solar_system.starbase = { #don't build orbital defences in an occupied system
 						owner = { is_country_type = katzenartig_imperium }
 						fleet = { is_disabled = no }
@@ -13469,13 +13491,15 @@ planet_event = {
 						set_fleet_flag = katzen_planet_platform
 					}
 				}
-
 				create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" }
+				set_carrier_flag = siegfried_platform_upgrade_3
 			}
 
 			else_if = { #starbase upgrade 4 from Siegfrieds
 				limit = {
 					has_carrier_flag = katzen_world_fortress
+					has_carrier_flag = siegfried_starbase_upgrade_3
+					NOT = { has_carrier_flag = siegfried_starbase_upgrade_4 }
 					solar_system.starbase = { #don't upgrade an occupied starbase
 						owner = { is_country_type = katzenartig_imperium }
 						fleet = { is_disabled = no }
@@ -13499,11 +13523,14 @@ planet_event = {
 						remove_modifier = warforge_detection
 					}
 				}
+				set_carrier_flag = siegfried_starbase_upgrade_4
 			}
 
 			else_if = { #Siegfried defences 4
 				limit = {
 					has_carrier_flag = katzen_world_fortress
+					has_carrier_flag = siegfried_platform_upgrade_3
+					NOT = { has_carrier_flag = siegfried_platform_upgrade_4 }
 					solar_system.starbase = { #don't build orbital defences in an occupied system
 						owner = { is_country_type = katzenartig_imperium }
 						fleet = { is_disabled = no }
@@ -13529,15 +13556,15 @@ planet_event = {
 						set_fleet_flag = katzen_planet_platform
 					}
 				}
-
 				create_army = { name = NAME_katzen_garrison	owner = event_target:flusion_primitives_country species = event_target:flusion_katzens type = "flusion_army" }
+				set_carrier_flag = siegfried_platform_upgrade_4
 			}
 
 			#TODO orbital rings/arcologies?
 
 			else_if = { #build relevant building type
 				limit = {
-					free_building_slots > 0 #TODO may trigger even if buildings are wrong type for zones, blocking the final else from triggering
+					free_building_slots > 0 #TODO triggers even if buildings are wrong type for zones, blocking later elses from triggering
 					free_jobs < 500 #higher threshold than to make districts so that buildings actually spawn before districts cap out
 				}
 				switch = {
@@ -13592,7 +13619,7 @@ planet_event = {
 					resettle_pop_group = {
 						POP_GROUP = this
 						PLANET = event_target:gigaflusion
-						PERCENTAGE = 5
+						PERCENTAGE = 0.05
 					}
 				}
 			}
@@ -16130,6 +16157,52 @@ country_event = { #KAISER IS HERE (text)
 	}
 }
 
+
+
+### KATZEN CONSOLIDATION AND POST-CONSOLIDATION ARC
+#Consolidation gatekeeper. Called by giga_katzen.030.
+# country_event = {
+# 	id = giga_katzen.05000
+# 	title = "giga_katzen.04009.name"
+# 	desc = "giga_katzen.04009.desc"
+# 	picture = GFX_evt_hangar_bay
+# 	show_sound = event_construction
+#
+# 	is_triggered_only = yes
+#
+# 	option = {
+# 		name = "giga_katzen.04009.a"
+# 		custom_tooltip = "giga_katzen.04009.tooltip"
+# 	}
+#
+# 	option = {
+# 		trigger = {
+# 			katzen_vassal = yes
+# 		}
+# 		name = "giga_katzen.04009.b"
+# 		custom_tooltip = "giga_katzen.04009.tooltip"
+# 	}
+#
+# 	immediate = {
+# 		#
+# 	}
+# }
+
+#Nearing consolidation notif
+
+#Begin consolidation notif
+
+#Consolidation failing notif
+
+#Consolidation collapses notif
+
+#Kaiserplanet construction begins notif
+
+#Kaiserplanet and consolidation over, second conquest begins notif
+
+
+
+
 ###DEBUG###
 planet_event = {
 	id = giga_katzen.992
@@ -16380,6 +16453,11 @@ country_event = { # Stealing this ID to spawn one of each ship then
 				create_ship = {
 					name = "Projekt Mondkanone"
 					design = "Lunar Defence System"
+					prefix = no
+				}
+				create_ship = {
+					name = "Kaiserübermacht"
+					design = "Kaiser Planetcraft"
 					prefix = no
 				}
 			}
