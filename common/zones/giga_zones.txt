@@ -909,6 +909,14 @@ zone_giga_flusion_fort = {
         zone_building_slots_add = 3
     }
 
+	triggered_district_planet_modifier = {
+		potential = {
+			owner? = { is_country_type = katzenartig_imperium }
+		}
+		job_entertainer_add = 150 #this lets their amenities and thus happiness and crime scale as Flusion develops. They become duelists but still this is ugly - the consequences of Flusioarc using ecu districts now
+		job_enforcer_add = 100 #similar here. They need to keep crime down
+	}
+
     # multiplied by 3 since it counts as an ecu
     inline_script = {
         script = jobs/zone_soldiers_add

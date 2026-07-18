@@ -703,7 +703,7 @@ country_event = {
 		}
 		create_ship_design = { design = "Pawris" }
 		add_ship_design = last_created_design
-		unlock_council_slots = 1 #so that Douclaw can become Minister of Defense for naval cap reasons
+		unlock_council_slots = 2 #so that Douclaw can become Minister of Defense for naval cap / ship upkeep reasons
 		if = {
 			limit = {
 				NOT = {
@@ -1095,6 +1095,7 @@ country_event = {
 		force_add_civic = civic_warrior_culture
 		set_country_type = katzenartig_imperium
 		give_technology = { tech = tech_detection_array message = no }
+		give_technology = { tech = giga_tech_orbital_arcologies message = no }
 		change_government = {
 			authority = auth_imperial
 		}
@@ -6159,6 +6160,60 @@ country_event = { #Manage war forges and the Kaiser's eco
 				save_event_target_as = kaiser_moon_destroyed_system
 			}
 			space_owner = { country_event = { id = giga_katmoons.007 } }
+		}
+
+		#count his Kaiser Score and check to trigger Consolidation
+		set_variable = {
+			which = kaiser_size
+			value = value:kaiser_size #1% of systems owned, 2 colonies or 10,000 pops is 1 score
+		}
+
+		if = {
+			limit = {
+				NOT = { is_variable_set = kaiser_months_present }
+			}
+			set_variable = {
+				which = kaiser_months_present
+				value = 0
+			}
+		}
+		else = {
+			change_variable = {
+				which = kaiser_months_present
+				value = 1
+			}
+		}
+		set_variable = {
+			which = kaiser_consolidation_trigger
+			value = kaiser_months_present
+		}
+		multiply_variable = {
+			which = kaiser_consolidation_trigger
+			value = 3 #each year is equivalent to 0.25 kaiser_size
+		}
+		change_variable = {
+			which = kaiser_consolidation_trigger
+			value = trigger:end_game_years_passed
+			#he should really be thinking about reformation once we're in endgame, so we kick the time factor up a notch here, and if his score is that low he can just die ig
+		}
+		change_variable = {
+			which = kaiser_consolidation_trigger
+			value = kaiser_size
+		}
+
+		if = {
+			limit = {
+				NOT = { has_country_flag = katzen_reformation_begun }
+				check_variable = {
+					which = kaiser_consolidation_trigger
+					value >= 100
+				}
+			}
+			set_country_flag = katzen_reformation_begun #changes numerous aspects of Katzen behaviour
+			every_country = {
+				limit = { is_ai = no }
+				country_event = { id = giga_katzen.05000 } #notify of strategic shift
+			}
 		}
 	}
 }
@@ -13334,8 +13389,6 @@ planet_event = {
 					}
 					check_variable = { which = years_of_kaiser_rule value > 12 }
 				}
-				clear_deposits = yes
-				clear_planet_modifiers = yes
 				change_pc = {
 					class = pc_giga_siegfried_world
 					inherit_entity = yes
@@ -16160,33 +16213,191 @@ country_event = { #KAISER IS HERE (text)
 
 
 ### KATZEN CONSOLIDATION AND POST-CONSOLIDATION ARC
-#Consolidation gatekeeper. Called by giga_katzen.030.
-# country_event = {
-# 	id = giga_katzen.05000
-# 	title = "giga_katzen.04009.name"
-# 	desc = "giga_katzen.04009.desc"
-# 	picture = GFX_evt_hangar_bay
-# 	show_sound = event_construction
-#
-# 	is_triggered_only = yes
-#
-# 	option = {
-# 		name = "giga_katzen.04009.a"
-# 		custom_tooltip = "giga_katzen.04009.tooltip"
-# 	}
-#
-# 	option = {
-# 		trigger = {
-# 			katzen_vassal = yes
-# 		}
-# 		name = "giga_katzen.04009.b"
-# 		custom_tooltip = "giga_katzen.04009.tooltip"
-# 	}
-#
-# 	immediate = {
-# 		#
-# 	}
-# }
+country_event = {
+	id = giga_katzen.05000
+	title = "giga_katzen.05000.name"
+	desc = "giga_katzen.05000.desc"
+
+	show_sound = event_vote
+	picture = GFX_evt_galactic_senate
+
+	is_triggered_only = yes
+
+	immediate = {
+		#Shift from size to score (for clarity) so we can account for some special factors
+		#Because a high-size Imperium is still liable to collapse if partisans are rampant
+		set_variable = {
+			which = kaiser_score
+			value = kaiser_size
+		}
+
+		#modify Kaiser Score accounting for some special things
+		if = {
+			limit = {
+				event_target:giga_flusion = { has_planet_flag = sonya_rescued }
+			}
+			change_variable = { which = kaiser_score value = -1 }
+		}
+		if = {
+			limit = {
+				event_target:giga_flusion = { has_planet_flag = loris_dam_blown }
+			}
+			change_variable = { which = kaiser_score value = -1 }
+		}
+		if = {
+			limit = {
+				event_target:giga_flusion = { has_planet_flag = solak_dam_blown }
+			}
+			change_variable = { which = kaiser_score value = -1 }
+		}
+		if = {
+			limit = {
+				has_country_flag = katzen_agri_crisis_started #even if it's ended, it happened and people remember
+			}
+			change_variable = { which = kaiser_score value = -1 }
+		}
+		#katzen_panzers_stolen but they don't necessarily know that happened
+		if = {
+			limit = {
+				event_target:giga_flusion = { has_planet_flag = loris_removed }
+			}
+			change_variable = { which = kaiser_score value = -1 }
+		}
+
+		#0-10 score reduction based on Flusionian resistance percentage
+		set_variable = {
+			which = kaiser_score_from_resistance
+			value = flusion_total_res_perc
+		}
+		multiply_variable = {
+			which = kaiser_score_from_resistance
+			value = -0.1
+		}
+		change_variable = {
+			which = kaiser_score
+			value = kaiser_score_from_resistance
+		}
+
+		#0-5 score reduction based on Zuspri resistance level
+		if = {
+			limit = { check_variable = { which = ezic_resistance_value value = 1 } }
+			change_variable = { which = kaiser_score value = -1 }
+		}
+		else_if = {
+			limit = { check_variable = { which = ezic_resistance_value value = 2 } }
+			change_variable = { which = kaiser_score value = -2 }
+		}
+		else_if = {
+			limit = { check_variable = { which = ezic_resistance_value value = 3 } }
+			change_variable = { which = kaiser_score value = -3 }
+		}
+		else_if = {
+			limit = { check_variable = { which = ezic_resistance_value value = 4 } }
+			change_variable = { which = kaiser_score value = -4 }
+		}
+		else_if = {
+			limit = { check_variable = { which = ezic_resistance_value value = 5 } }
+			change_variable = { which = kaiser_score value = -5 }
+		}
+
+		if = {
+			limit = {
+				event_target:gigaflusion = {
+					is_planet_class = pc_flusion_gaia_ecu #yay, he finished the grand capital!
+				}
+			}
+			change_variable = { which = kaiser_score value = 2 }
+		}
+
+		#roll -3 to +3 randomisation
+		random_list = {
+			1 = { change_variable = { which = kaiser_score value = -3 } }
+			1 = { change_variable = { which = kaiser_score value = -2 } }
+			1 = { change_variable = { which = kaiser_score value = -1 } }
+			1 = { }
+			1 = { change_variable = { which = kaiser_score value = 1 } }
+			1 = { change_variable = { which = kaiser_score value = 2 } }
+			1 = { change_variable = { which = kaiser_score value = 3 } }
+		}
+	}
+}
+
+country_event = {
+	id = giga_katzen.05001
+	title = "giga_katzen.05001.name"
+	desc = "giga_katzen.05001.desc"
+
+	show_sound = event_administrative_work
+	picture = GFX_evt_news_room
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+}
+
+country_event = {
+	id = giga_katzen.05010
+	title = "giga_katzen.05010.name"
+	desc = "giga_katzen.05010.desc"
+
+	show_sound = event_public_unrest
+	picture = GFX_evt_civil_action
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+}
+
+country_event = {
+	id = giga_katzen.05011
+	title = "giga_katzen.05011.name"
+	desc = "giga_katzen.05011.desc"
+
+	show_sound = event_factions
+	picture = GFX_evt_legendary_leader
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+}
+
+country_event = {
+	id = giga_katzen.05012
+	title = "giga_katzen.05012.name"
+	desc = {
+		text = "giga_katzen.05012.loris.desc"
+		trigger = { always = yes }
+	}
+	desc = {
+		text = "giga_katzen.05012.douclaw.desc"
+		trigger = { always = no }
+	}
+
+	show_sound = event_space_battle
+	picture = GFX_evt_partition
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+}
+
+country_event = {
+	id = giga_katzen.05013
+	title = "giga_katzen.05013.name"
+	desc = "giga_katzen.05013.desc"
+	show_sound = event_screams
+	picture = GFX_evt_burning_city
+
+	is_triggered_only = yes
+
+	immediate = {
+	}
+}
+
 
 #Nearing consolidation notif
 

@@ -123,11 +123,12 @@ building_giga_flusion_capital = {
 	}
 
 	planet_modifier = {
-		job_politician_add = 400
+		job_politician_add = 600
+		job_enforcer_add = 600
 		planet_max_districts_add = 1
 		planet_housing_add = 1000
-		planet_amenities_add = 2500
-		planet_crime_add = -25
+		pop_amenities_usage_mult = -0.25
+		planet_crime_mult = -0.25
 		planet_orbital_bombardment_damage = -0.1
 	}
 }
