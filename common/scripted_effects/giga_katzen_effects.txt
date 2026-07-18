@@ -3102,9 +3102,9 @@ giga_make_flusio_arcology = {
 	# in the government zone
 	add_building = building_katzen_theater
 	add_building = building_katzen_theater
+	add_building = building_katzen_theater
 	add_building = building_katzen_foundry
 	add_building = building_katzen_foundry
-	add_building = building_katzen_science
 }
 
 katzen_set_protectorate = {
