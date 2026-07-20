@@ -8691,6 +8691,12 @@
   origin_katzen_splinter:0 "Katzen Splinter State"
   origin_katzen_splinter_desc:0 "This nation was originally part of the greater §YKatzenartig Imperium§!, and seceded upon the Imperium's catastrophic collapse following the fall of §YFlusion§!."
 
+  origin_katzen_collapse:0 "Katzen Collapse Survivors"
+  origin_katzen_collapse_desc:0 "This nation is populated by survivors of the §YKatzenartig Imperium§!'s catastrophic collapse following unrest on §YFlusion§!."
+
+  origin_katzen_collapse_flusion:0 "Kaiser's Wake"
+  origin_katzen_collapse_flusion_desc:0 "This nation was once at the heart of the §YKatzenartig Imperium§!, but was devastated by conflict following the Imperium's violent breakdown."
+
   origin_katzen_rebels:0 "Katzen Rebels"
   origin_katzen_rebels_desc:0 "This nation has rebelled from the §YKatzenartig Imperium§!, in an attempt to end the §YKaiser§!'s rule over their people."
 
