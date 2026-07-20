@@ -1890,6 +1890,52 @@ count_katzen_planets_and_systems = {
 	}
 }
 
+count_katzen_planets_and_systems_sans_flusiosector = {
+	event_target:flusion_primitives_country = {
+		set_variable = { #count katzen systems, used to determine how the empire will collapse
+			which = "katzen_total_system_count"
+			value = value:katzen_systems
+		}
+		every_system_within_border = { #subtract Flusion and direct neighbours from system count
+			limit = {
+				OR = {
+					has_star_flag = giga_system_jublio
+					any_neighbor_system = {
+						has_star_flag = giga_system_jublio
+					}
+				}
+			}
+			change_variable = {
+				which = "katzen_total_system_count"
+				value = -1
+			}
+		}
+
+		set_variable = { #count katzen planets, used to determine how the empire will collapse
+			which = "katzen_total_planet_count"
+			value = 0
+		}
+		every_owned_planet = { #count katzen planets
+			limit = { #exclude any planets in Jublio or direct neighbours for the Flusion Emergency Government
+				solar_system = {
+					NOR = {
+						has_star_flag = giga_system_jublio
+						any_neighbor_system = {
+							has_star_flag = giga_system_jublio
+						}
+					}
+				}
+			}
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "katzen_total_planet_count"
+					value = 1
+				}
+			}
+		}
+	}
+}
+
 create_solakia = {
 	create_pop_group = {
 		species = event_target:solakians
@@ -3205,5 +3251,113 @@ katzen_free_protectorate = {
 	set_name = {
 		key = "katzen_ex_protektorat_name" #this should be but refuses to work with GetStarName
 		variable_string = "[this.Capital.GetName]"
+	}
+}
+
+katzen_calculate_score = { #to be run on Katzenartig country scope
+	#Shift from size to score (for clarity) so we can account for some special factors
+	#Because a high-size Imperium is still liable to collapse if partisans are rampant
+	set_variable = {
+		which = kaiser_score
+		value = kaiser_size
+	}
+
+	#modify Kaiser Score accounting for some special things
+	if = {
+		limit = {
+			event_target:giga_flusion = { has_planet_flag = sonya_rescued }
+		}
+		change_variable = { which = kaiser_score value = -1 }
+	}
+	if = {
+		limit = {
+			event_target:giga_flusion = { has_planet_flag = loris_dam_blown }
+		}
+		change_variable = { which = kaiser_score value = -1 }
+	}
+	if = {
+		limit = {
+			event_target:giga_flusion = { has_planet_flag = solak_dam_blown }
+		}
+		change_variable = { which = kaiser_score value = -1 }
+	}
+	if = {
+		limit = {
+			has_country_flag = katzen_agri_crisis_started #even if it's ended, it happened and people remember
+		}
+		change_variable = { which = kaiser_score value = -1 }
+	}
+	#katzen_panzers_stolen is the other operation but they don't necessarily know that happened
+	if = {
+		limit = {
+			event_target:giga_flusion = { has_planet_flag = loris_removed }
+		}
+		change_variable = { which = kaiser_score value = -1 }
+	}
+
+	#0-5 score reduction based on Flusionian resistance percentage
+	set_variable = {
+		which = kaiser_score_from_resistance
+		value = flusion_total_res_perc
+	}
+	multiply_variable = {
+		which = kaiser_score_from_resistance
+		value = -0.05
+	}
+	change_variable = {
+		which = kaiser_score
+		value = kaiser_score_from_resistance
+	}
+
+	#0-5 score reduction based on Zuspri resistance level
+	if = {
+		limit = { check_variable = { which = ezic_resistance_value value = 1 } }
+		change_variable = { which = kaiser_score value = -1 }
+	}
+	else_if = {
+		limit = { check_variable = { which = ezic_resistance_value value = 2 } }
+		change_variable = { which = kaiser_score value = -2 }
+	}
+	else_if = {
+		limit = { check_variable = { which = ezic_resistance_value value = 3 } }
+		change_variable = { which = kaiser_score value = -3 }
+	}
+	else_if = {
+		limit = { check_variable = { which = ezic_resistance_value value = 4 } }
+		change_variable = { which = kaiser_score value = -4 }
+	}
+	else_if = {
+		limit = { check_variable = { which = ezic_resistance_value value = 5 } }
+		change_variable = { which = kaiser_score value = -5 }
+	}
+
+	if = {
+		limit = {
+			event_target:gigaflusion = {
+				is_planet_class = pc_flusion_gaia_ecu #yay, he finished the grand capital!
+			}
+		}
+		change_variable = { which = kaiser_score value = 2 }
+	}
+
+	if = {
+		limit = {
+			has_modifier = katzenartig_disarray #no Kaiser Moon?
+		}
+		change_variable = { which = kaiser_score value = -2 }
+	}
+
+	#TODO additional -2 if the Kaiser Moon was destroyed at any point in the past (so -4 total without it)
+
+
+	#roll -3 to +3 randomisation
+	random_list = {
+		1 = { change_variable = { which = kaiser_score value = -3 } }
+		1 = { change_variable = { which = kaiser_score value = -2 } }
+		1 = { change_variable = { which = kaiser_score value = -1 } }
+		1 = { }
+		1 = { change_variable = { which = kaiser_score value = 1 } }
+		1 = { change_variable = { which = kaiser_score value = 2 } }
+		1 = { change_variable = { which = kaiser_score value = 3 } }
 	}
 }

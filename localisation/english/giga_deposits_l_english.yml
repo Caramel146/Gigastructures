@@ -135,6 +135,8 @@
   d_flusio_arcology_wreck_desc:0 "Cities partially or completely destroyed in the fighting that occurred on the Flusio-Arcology."
   d_flusio_arcology_anarchy:0 "Flusionian Anarchy"
   d_flusio_arcology_anarchy_desc:0 "Large swathes of Flusion have fallen into complete anarchy as a result of collateral damage from the devastating fighting to dislodge the Kaiser from the planet."
+  d_flusio_arcology_anarchy_collapse:0 "Flusionian Anarchy"
+  d_flusio_arcology_anarchy_collapse_desc:0 "Large swathes of Flusion have fallen into complete anarchy as a result of brutal warlord conflicts over the power vacuum left by the Kaiser."
 
   d_flusio_arcology_administration: "Flusio-Arcology Administration"
   d_flusio_arcology_administration_desc: "Administering the logistical nightmare that surrounds Flusion is no easy task. Due to the immense number of districts the Flusio-Arcology can support, more care must be taken to manage it properly."
