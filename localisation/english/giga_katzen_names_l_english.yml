@@ -92,7 +92,6 @@
   KZSN_43:0 "Emewlie"
   KZSN_44:0 "Katzenson"
   KZSN_45:0 "Fischer"
-  KZSN_45:0 "Clawtz"
   KZSN_46:0 "Purrsher"
   KZSN_47:0 "Myiler"
   KZSN_48:0 "Cattster"
@@ -136,6 +135,7 @@
   KZSN_86:0 "Purrsian"
   KZSN_87:0 "Elgato"
   KZSN_88:0 "Clawrith"
+  KZSN_89:0 "Clawtz"
 
 #First Names 
   #Male
@@ -218,6 +218,8 @@
   KZFIN_M_76:0 "Clawitz"
   KZFIN_M_77:0 "Gunfurr"
   KZFIN_M_78:0 "Katfred"
+  KZFIN_M_79:0 "Clawgustus"
+  KZFIN_M_80:0 "Meoseph"
 
   #Female
   KZFIN_F_1:0 "Katherine"
