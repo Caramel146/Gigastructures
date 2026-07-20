@@ -1321,7 +1321,7 @@ country_event = {
 			country_event = { id = giga_katehof.010 days = 450 } #Wormholes
 			country_event = { id = giga_katzen.04006 days = 90 } #THERE IS ONLY WAR
 		}
-		country_event = { id = giga_katzen.040 days = 360 random = 60 } #Katzen expansion, runs every year
+		country_event = { id = giga_katzen.040 days = 330 random = 60 } #Katzen expansion, runs every year or so
 		country_event = { id = giga_katzen.041 days = 540 random = 60 } #Kaiser demands stuff, runs every 1.5 years
 		country_event = { id = giga_katzen.070 days = 180 random = 30 } #Warforges
 		country_event = { id = giga_katzen.030 days = 30 } #Manage warforges and eco
@@ -6163,10 +6163,11 @@ country_event = { #Manage war forges and the Kaiser's eco
 			space_owner = { country_event = { id = giga_katmoons.007 } }
 		}
 
+
 		#count his Kaiser Score and check to trigger Consolidation
 		set_variable = {
 			which = kaiser_size
-			value = value:kaiser_size #1% of systems owned, 2 colonies or 10,000 pops is 1 score
+			value = value:kaiser_size #1% of systems owned (including vassals), or 2 colonies or 10,000 pops (excluding vassals) is 1 score
 		}
 
 		if = {
@@ -6188,14 +6189,21 @@ country_event = { #Manage war forges and the Kaiser's eco
 			which = kaiser_consolidation_trigger
 			value = kaiser_months_present
 		}
-		multiply_variable = {
+		divide_variable = {
 			which = kaiser_consolidation_trigger
-			value = 3 #each year is equivalent to 0.25 kaiser_size
+			value = 48 #each year is equivalent to 0.25 kaiser_size, so survivng from 2320 to standard endgame would give 20% of necessary consolidation trigger by itself
+		}
+		set_variable = {
+			which = kaiser_consolidation_trigger_endgame
+			value = trigger:end_game_years_passed
+		}
+		divide_variable = {
+			which = kaiser_consolidation_trigger_endgame
+			value = 4 #he should really be nearing reformation in endgame. This gives an additional 0.25-per-year, effectively kicking time-factor up to double the rate
 		}
 		change_variable = {
 			which = kaiser_consolidation_trigger
-			value = trigger:end_game_years_passed
-			#he should really be thinking about reformation once we're in endgame, so we kick the time factor up a notch here, and if his score is that low he can just die ig
+			value = kaiser_consolidation_trigger_endgame
 		}
 		change_variable = {
 			which = kaiser_consolidation_trigger
@@ -6204,17 +6212,18 @@ country_event = { #Manage war forges and the Kaiser's eco
 
 		if = {
 			limit = {
-				NOT = { has_country_flag = katzen_reformation_begun }
+				NOT = { has_global_flag = katzen_reformation_begun }
 				check_variable = {
 					which = kaiser_consolidation_trigger
 					value >= 100
 				}
 			}
-			set_country_flag = katzen_reformation_begun #changes numerous aspects of Katzen behaviour
+			set_global_flag = katzen_reformation_begun #changes numerous aspects of Katzen behaviour
 			every_country = {
 				limit = { is_ai = no }
-				country_event = { id = giga_katzen.05000 } #notify of strategic shift
+				country_event = { id = giga_katzen.7000 } #notify of strategic shift
 			}
+			country_event = { id = giga_katzen.7002 days = 720 random = 720 } #roll for Instability
 		}
 	}
 }
@@ -10852,7 +10861,7 @@ country_event = { #Collapse of Katzenartig
 				}
 			}
 		}
-		every_system = {
+		every_system = { #scuttle all submarines
 			every_ship_in_system = {
 				limit = {
 					OR = {
@@ -16262,202 +16271,554 @@ country_event = { #KAISER IS HERE (text)
 
 ### KATZEN CONSOLIDATION AND POST-CONSOLIDATION ARC
 country_event = {
-	id = giga_katzen.05000
-	title = "giga_katzen.05000.name"
-	desc = "giga_katzen.05000.desc"
+	id = giga_katzen.7000
+	title = "giga_katzen.7000.name"
+	desc = "giga_katzen.7000.desc"
+	location = event_target:gigaflusion
 
 	show_sound = event_vote
 	picture = GFX_evt_galactic_senate
 
 	is_triggered_only = yes
 
-	immediate = {
-		#Shift from size to score (for clarity) so we can account for some special factors
-		#Because a high-size Imperium is still liable to collapse if partisans are rampant
-		set_variable = {
-			which = kaiser_score
-			value = kaiser_size
+	option = {
+		trigger = {
+			katzen_vassal = no
 		}
+		name = giga_katzen.7000.a
+	}
 
-		#modify Kaiser Score accounting for some special things
-		if = {
-			limit = {
-				event_target:giga_flusion = { has_planet_flag = sonya_rescued }
-			}
-			change_variable = { which = kaiser_score value = -1 }
+	option = {
+		trigger = {
+			katzen_vassal = yes
 		}
-		if = {
-			limit = {
-				event_target:giga_flusion = { has_planet_flag = loris_dam_blown }
-			}
-			change_variable = { which = kaiser_score value = -1 }
-		}
-		if = {
-			limit = {
-				event_target:giga_flusion = { has_planet_flag = solak_dam_blown }
-			}
-			change_variable = { which = kaiser_score value = -1 }
-		}
-		if = {
-			limit = {
-				has_country_flag = katzen_agri_crisis_started #even if it's ended, it happened and people remember
-			}
-			change_variable = { which = kaiser_score value = -1 }
-		}
-		#katzen_panzers_stolen but they don't necessarily know that happened
-		if = {
-			limit = {
-				event_target:giga_flusion = { has_planet_flag = loris_removed }
-			}
-			change_variable = { which = kaiser_score value = -1 }
-		}
+		name = giga_katzen.7000.b
+	}
 
-		#0-10 score reduction based on Flusionian resistance percentage
-		set_variable = {
-			which = kaiser_score_from_resistance
-			value = flusion_total_res_perc
+	option = {
+		trigger = {
+			katzen_vassal = yes
 		}
-		multiply_variable = {
-			which = kaiser_score_from_resistance
-			value = -0.1
-		}
-		change_variable = {
-			which = kaiser_score
-			value = kaiser_score_from_resistance
-		}
-
-		#0-5 score reduction based on Zuspri resistance level
-		if = {
-			limit = { check_variable = { which = ezic_resistance_value value = 1 } }
-			change_variable = { which = kaiser_score value = -1 }
-		}
-		else_if = {
-			limit = { check_variable = { which = ezic_resistance_value value = 2 } }
-			change_variable = { which = kaiser_score value = -2 }
-		}
-		else_if = {
-			limit = { check_variable = { which = ezic_resistance_value value = 3 } }
-			change_variable = { which = kaiser_score value = -3 }
-		}
-		else_if = {
-			limit = { check_variable = { which = ezic_resistance_value value = 4 } }
-			change_variable = { which = kaiser_score value = -4 }
-		}
-		else_if = {
-			limit = { check_variable = { which = ezic_resistance_value value = 5 } }
-			change_variable = { which = kaiser_score value = -5 }
-		}
-
-		if = {
-			limit = {
-				event_target:gigaflusion = {
-					is_planet_class = pc_flusion_gaia_ecu #yay, he finished the grand capital!
-				}
-			}
-			change_variable = { which = kaiser_score value = 2 }
-		}
-
-		#roll -3 to +3 randomisation
-		random_list = {
-			1 = { change_variable = { which = kaiser_score value = -3 } }
-			1 = { change_variable = { which = kaiser_score value = -2 } }
-			1 = { change_variable = { which = kaiser_score value = -1 } }
-			1 = { }
-			1 = { change_variable = { which = kaiser_score value = 1 } }
-			1 = { change_variable = { which = kaiser_score value = 2 } }
-			1 = { change_variable = { which = kaiser_score value = 3 } }
-		}
+		name = giga_katzen.7000.c
 	}
 }
 
 country_event = {
-	id = giga_katzen.05001
-	title = "giga_katzen.05001.name"
-	desc = "giga_katzen.05001.desc"
+	id = giga_katzen.7001
+	title = "giga_katzen.7001.name"
+	desc = "giga_katzen.7001.desc"
+	location = event_target:gigaflusion
 
 	show_sound = event_administrative_work
 	picture = GFX_evt_news_room
 
 	is_triggered_only = yes
 
+	option = {
+		trigger = {
+			katzen_vassal = no
+		}
+		name = giga_katzen.7001.a
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7001.b
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7001.c
+	}
+}
+
+country_event = { #Roll for Instability
+	id = giga_katzen.7002
+	hide_window = yes
+
+	is_triggered_only = yes
+
+
 	immediate = {
+		katzen_calculate_score = yes
+
+		#if he consolidates at the standard endgame date, we can assume he has 80 kaiser_size, and 20 consolidation_trigger is from time passed 2320-2400
+		#80 kaiser_size could look something like 30% of galaxy owned (30 size) with 50 colonies (25 size) and 5000 pops per colony (25 size)
+		#let's assume as a baseline he has -10 score from ~two-thirds partisan activity, so 70 kaiser_score here is a decent performance
+		#let him roll for instability below score 65, roll for collapse below score 60 (yes, some leeway), guarantee instability below 55, and guarantee collapse below score 40
+		#40 score means we assume he had ~50 consolidation_trigger from time passed - AKA didn't trigger consolidation till sixty years past endgame
+		if = {
+			limit = {
+				check_variable = {
+					which = kaiser_score
+					value <= 65
+				}
+			}
+			random_list = {
+				50 = { #suffers instability
+					every_country = {
+						limit = { is_ai = no }
+						country_event = { id = giga_katzen.7010 } #inform others
+					}
+					country_event = { id = giga_katzen.7003 days = 1440 random = 360 } #roll to restabilise or collapse
+					capital_scope = {
+						add_modifier = {
+							modifier = flusion_consolidation_instability #heavy economic debuff
+							days = -1
+						}
+					}
+				}
+				50 = { #no instability
+					modifier = {
+						factor = 0
+						check_variable = {
+							which = kaiser_score
+							value <= 55
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = { #roll to restabilise or collapse during instability
+	id = giga_katzen.7003
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		katzen_calculate_score = yes #calculate what score is currently in case it changed
+
+		if = {
+			limit = {
+				check_variable = {
+					which = kaiser_score
+					value <= 60 #see number design comments in giga_katzen.7002
+				}
+			}
+			random_list = {
+				40 = { #Imperium collapses, Kaiser malds
+					set_update_modifiers_batch = begin
+					if = {
+						limit = { has_global_flag = giga_storming_pyramid_prep }
+						remove_global_flag = giga_storming_pyramid_prep
+					}
+					if = {
+						limit = { has_global_flag = giga_storming_pyramid }
+						remove_global_flag = giga_storming_pyramid
+					}
+					if = {
+						limit = { has_global_flag = giga_storming_pyramid_active }
+						remove_global_flag = giga_storming_pyramid_active
+					}
+					set_global_flag = katzenartig_imperium_defeated
+					if = {
+						limit = { NOT = { any_country = { is_country_type = katzenartig_imperium } } }
+						create_country = {
+							type = katzenartig_imperium_defeated
+							name = "Defeated Katzens"
+							effect = { save_global_event_target_as = flusion_primitives_country }
+						}
+					}
+					clear_flusion_ezic_sabotage_modifiers = yes
+					clear_flusion_katown_shield_modifiers = yes
+					if = { #all remaining Siegfrieds blow up
+						limit = {
+							any_galaxy_planet = { is_planet_class = pc_giga_siegfried_world }
+						}
+						event_target:global_event_country = {
+							country_event = { id = giga_katzen.123 days = 15 }
+						}
+					}
+					every_system = { #scuttle all submarines
+						every_ship_in_system = {
+							limit = {
+								OR = {
+									is_ship_size = giga_katzen_submarine
+									is_ship_size = giga_katzen_submarine_submerged
+								}
+							}
+							destroy_ship = THIS
+						}
+					}
+					if = {
+						limit = { exists = event_target:katzen_submarine_country }
+						event_target:katzen_submarine_country = { destroy_country = yes }
+					}
+					every_country = {
+						limit = { has_event_chain = "katzenartig_chain" }
+						end_event_chain = "katzenartig_chain"
+					}
+					every_country = {
+						limit = { has_modifier = galcom_mobilizes_against_kaiser }
+						remove_modifier = galcom_mobilizes_against_kaiser
+					}
+					if = {
+						limit = { has_global_flag = galcom_kaiser_crusade }
+						remove_global_flag = galcom_kaiser_crusade
+					}
+					every_playable_country = {
+						limit = { has_modifier = katzen_attache }
+						remove_modifier = katzen_attache
+					}
+					every_country = {
+						clear_contribute_ezic_modifiers = yes
+					}
+					if = {
+						limit = {
+							exists = event_target:flusion_douclaw
+						}
+						event_target:flusion_douclaw = {
+							unassign_leader = this
+						}
+					}
+					every_system_within_border = {
+						set_star_flag = former_katzen_system
+					}
+					every_owned_planet = {
+						set_planet_flag = former_katzen_planet
+					}
+					if = {
+						limit = { has_global_flag = generating_katzen_wormhole }
+						remove_global_flag = generating_katzen_wormhole
+					}
+					clear_global_event_target = katzen_wormhole_target
+					every_megastructure = {
+						limit = {
+							is_megastructure_type = katzen_ehof_wormhole
+						}
+						delete_megastructure = THIS
+					}
+					every_megastructure = { #Delete any in building kaiser moons in system with ONLY hostile ships
+						limit = {
+							is_megastructure_type = kaiser_moon_1
+							owner = { is_country_type = katzenartig_imperium }
+						}
+						delete_megastructure = THIS
+					}
+					every_megastructure = {
+						limit = {
+							OR = {
+								is_megastructure_type = kaiser_ehof_0
+								is_megastructure_type = kaiser_ehof_1
+							}
+						}
+						solar_system = {
+							star = {
+								giga_clear_has_mega_flag = { MEGA = prev }
+							}
+						}
+						delete_megastructure = THIS
+					}
+					every_subject = {
+						katzen_free_protectorate = yes
+					}
+
+					set_variable = { #count katzen systems, used to determine how the empire will collapse
+						which = "katzen_total_system_count"
+						value = 0
+					}
+					set_variable = { #count katzen planets, used to determine how the empire will collapse
+						which = "katzen_total_planet_count"
+						value = 0
+					}
+					count_katzen_planets_and_systems_sans_flusiosector = yes
+
+					if = { #Civil War between ideological splinters (modified Reformation version) if there are enough systems
+						limit = {
+							check_variable = {
+								which = katzen_total_planet_count #excludes planets in Jublio and direct neighbours
+								value >= 12 #at least three colonies for each splinter
+							}
+							check_variable = {
+								which = katzen_total_system_count #excludes Jublio and direct neighbours
+								value >= 20 #at least five systems for each splinter
+							}
+						}
+						#TODO Civil War effects - search between Katlinin, Kibbles, Kitti Luft and Elwin
+						every_country = {
+							limit = { is_ai = no }
+							country_event = { id = giga_katzen.7012 } #inform that Imperium has fractured
+						}
+					}
+
+					else = { #not enough space for Civil War (Reformation version), so the country explodes (it speaks for itself the country explodes)
+						every_galaxy_planet = { #blow up Siegfreids
+							limit = { is_planet_class = pc_giga_siegfried_world }
+							if = {
+								limit = { is_colony = yes }
+								destroy_colony = yes
+							}
+							remove_all_buildings = yes
+							remove_all_districts = yes
+							change_pc = pc_katzenland
+							set_planet_entity = {
+								entity = katzenland_01_entity
+							}
+							add_modifier = {
+								modifier = "irradiated_desert_planet"
+								days = -1
+							}
+							while = {
+								count = 12
+								create_katzenland_deposits = yes
+							}
+							solar_system = {
+								remove_star_flag = siegfried_anti_jump_star
+								every_neighbor_system = { remove_star_flag = siegfried_anti_jump_star }
+							}
+						}
+						every_owned_planet = { #damage or destroy other colonies
+							if = {
+								limit = {
+									has_carrier_flag = gigaflusion
+								}
+								add_deposit = d_flusio_arcology_wreck
+								add_deposit = d_flusio_arcology_wreck
+								add_deposit = d_flusio_arcology_wreck
+								add_deposit = d_flusio_arcology_wreck
+								add_deposit = d_flusio_arcology_wreck
+								add_deposit = d_flusio_arcology_anarchy_collapse
+								add_deposit = d_flusio_arcology_anarchy_collapse
+								add_deposit = d_flusio_arcology_anarchy_collapse
+								add_deposit = d_flusio_arcology_anarchy_collapse
+								add_deposit = d_flusio_arcology_anarchy_collapse
+							}
+							else = {
+								random_list = {
+									50 = { #wipe the colony
+										every_owned_pop_group = { kill_all_pop = yes }
+										destroy_colony = yes
+										remove_all_buildings = yes
+										remove_all_districts = yes
+										if = {
+											limit = {
+												habitable_planet_not_urban = yes
+											}
+											random = {
+												chance = 50
+												change_pc = pc_katzenland
+												set_planet_entity = {
+													entity = katzenland_01_entity
+												}
+												add_modifier = {
+													modifier = "irradiated_desert_planet"
+													days = -1
+												}
+												while = {
+													count = 12
+													create_katzenland_deposits = yes
+												}
+											}
+										}
+										else_if = {
+											limit = {
+												is_planet_class = pc_city
+											}
+											change_pc = pc_relic
+											relic_world_deposits = yes
+											validate_planet_buildings_and_districts = yes
+										}
+										# else_if = {
+										# 	limit = {
+										# 		is_planet_class = pc_ringworld_habitable
+										# 	}
+										# 	#TODO ideally would set 50% to be ruined ringworld segments
+										# }
+									}
+									50 = { #return to the stone age
+										
+										nuke_pre_ftls_stone_age_effect = yes
+									}
+								}
+							}
+						}
+						every_country = {
+							limit = { is_ai = no }
+							country_event = { id = giga_katzen.7013 } #inform that Imperium has fucking killed itself
+						}
+					}
+				}
+				60 = { #Kaiser retains power
+					every_country = {
+						limit = { is_ai = no }
+						country_event = { id = giga_katzen.7011 } #inform that instability has ended
+					}
+					capital_scope = {
+						remove_modifier = flusion_consolidation_instability
+					}
+				}
+			}
+		}
 	}
 }
 
 country_event = {
-	id = giga_katzen.05010
-	title = "giga_katzen.05010.name"
-	desc = "giga_katzen.05010.desc"
+	id = giga_katzen.7010
+	title = "giga_katzen.7010.name"
+	desc = "giga_katzen.7010.desc"
+	location = event_target:gigaflusion
 
 	show_sound = event_public_unrest
 	picture = GFX_evt_civil_action
 
 	is_triggered_only = yes
 
-	immediate = {
+	option = {
+		trigger = {
+			katzen_vassal = no
+		}
+		name = giga_katzen.7010.a
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = no
+			NOT = {
+				is_at_war_with = event_target:flusion_primitives_country
+			}
+		}
+		name = giga_katzen.7010.b
+		custom_tooltip = giga_katzen.7010.b.tooltip
+
+		hidden_effect = {
+			set_kaiser_war_opinion = yes
+			declare_war = {
+				target = event_target:flusion_primitives_country
+				attacker_war_goal = "wg_katzen_defence"
+				name = "Katzenkrieg"
+			}
+			every_country = {
+				limit = { is_in_federation_with = ROOT }
+				join_war = ROOT
+				set_kaiser_war_opinion = yes
+			}
+			every_subject = {
+				join_war = ROOT
+				set_kaiser_war_opinion = yes
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = no
+		}
+		name = giga_katzen.7010.c
+		custom_tooltip = giga_katzen.7010.c.tooltip
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7010.d
+		custom_tooltip = giga_katzen.7010.d.tooltip
+
+		hidden_effect = {
+			katzen_free_protectorate = yes
+		}
 	}
 }
 
 country_event = {
-	id = giga_katzen.05011
-	title = "giga_katzen.05011.name"
-	desc = "giga_katzen.05011.desc"
+	id = giga_katzen.7011
+	title = "giga_katzen.7011.name"
+	desc = "giga_katzen.7011.desc"
+	location = event_target:gigaflusion
 
 	show_sound = event_factions
 	picture = GFX_evt_legendary_leader
 
 	is_triggered_only = yes
 
-	immediate = {
+	option = {
+		trigger = {
+			katzen_vassal = no
+		}
+		name = giga_katzen.7011.a
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7011.b #yay Kaiser
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7011.c #darnit, still a vassal
 	}
 }
 
 country_event = {
-	id = giga_katzen.05012
-	title = "giga_katzen.05012.name"
+	id = giga_katzen.7012
+	title = "giga_katzen.7012.name"
 	desc = {
-		text = "giga_katzen.05012.loris.desc"
+		text = "giga_katzen.7012.loris.desc"
 		trigger = { always = yes }
 	}
 	desc = {
-		text = "giga_katzen.05012.douclaw.desc"
+		text = "giga_katzen.7012.douclaw.desc"
 		trigger = { always = no }
 	}
+	location = event_target:jublio
 
 	show_sound = event_space_battle
 	picture = GFX_evt_partition
 
 	is_triggered_only = yes
 
-	immediate = {
+	option = {
+		trigger = {
+			katzen_vassal = no
+		}
+		name = giga_katcivilwar.1001.a
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7012.b
+		custom_tooltip = giga_katzen.7012.b.tooltip
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7012.c
+		custom_tooltip = giga_katzen.7012.c.tooltip
 	}
 }
 
 country_event = {
-	id = giga_katzen.05013
-	title = "giga_katzen.05013.name"
-	desc = "giga_katzen.05013.desc"
+	id = giga_katzen.7013
+	title = "giga_katzen.7013.name"
+	desc = "giga_katzen.7013.desc"
+	location = event_target:jublio
 	show_sound = event_screams
 	picture = GFX_evt_burning_city
 
 	is_triggered_only = yes
 
-	immediate = {
+	option = {
+		name = giga_katzen.7013.a
 	}
 }
 
+#TODO Kaiserplanet construction begins
 
-#Nearing consolidation notif
-
-#Begin consolidation notif
-
-#Consolidation failing notif
-
-#Consolidation collapses notif
-
-#Kaiserplanet construction begins notif
-
-#Kaiserplanet and consolidation over, second conquest begins notif
+#TODO Kaiserplanet and consolidation over, second conquest begins
 
 
 
