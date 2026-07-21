@@ -7542,7 +7542,7 @@
 	giga_tech_repeatable_increased_katzen_damage:0 "Katzen Weakpoint Analysis"
 	giga_tech_repeatable_increased_katzen_damage_desc:0 "By further studying Katzen ship engineering, we can locate weakpoints within their designs, which can then be exploited to facilitate their destruction. §BEnigmatic Engineering§! will completely nullify any risks of the Kaiser finding out about our plans."
 
-	might_anger_kaiser_title:0 "§Y50%§! chance of §Rdecreasing§! the §YKaiser's Opinion§!\n§BEnigmatic Engineering§! prevents opinion drop"
+	might_anger_kaiser_title:0 "§Y50%§! chance of §Rdecreasing§! the §YKaiser's Opinion§! by 20\n§BEnigmatic Engineering§! prevents opinion drop"
 	might_anger_kaiser_desc:0 "Understandably, he isn't too fond of people trying to find out ways to blow up his stuff."
 
 	##MOON DESTROYED##
@@ -7983,7 +7983,7 @@
   giga_katrebels.2003.b:0 "Give them weaponry. | §Y1500§! £alloys£"
   giga_katrebels.2003.b.tooltip:0 "We will smuggle weaponry to the Roqualians, granting 1 §BResistance Resource§!."
   giga_katrebels.2003.c:0 "Exert our influence. | §Y75§! £influence£"
-  giga_katrebels.2003.c.tooltip:0 "We will exert our influence within the Imperium with propaganda and illegal speeches, which will turn more members to the Roqualian cause, granting 1 §BResistance Resource§!.\nThis has a §Y15%§! chance of §Rdecreasing§! the §YKaiser's Opinion§! of us.\n\nWill grant an extra §BResistance Resource§! if the §YGalactic Recognition of the Roqualian Republic§! Resolution has been passed."
+  giga_katrebels.2003.c.tooltip:0 "We will exert our influence within the Imperium with propaganda and illegal speeches, which will turn more members to the Roqualian cause, granting 1 §BResistance Resource§!.\nThis has a §Y15%§! chance of §Rdecreasing§! the §YKaiser's Opinion§! of us by 20.\n\nWill grant an extra §BResistance Resource§! if the §YGalactic Recognition of the Roqualian Republic§! Resolution has been passed."
   giga_katrebels.2003.d:0 "Raid Warehouses. | §Y65%§! Chance of Success"
   giga_katrebels.2003.d.tooltip:0 "The Roqualians will organize a §Yraid§! on §YKatzen Warehouses§!.\nThis has a §Y65%§! chance of granting §Y2§! §BResistance Resources§!, and a §Y35%§! chance of §Rfailing§! and increasing §HKatzen Wariness§! by §R1§!.\n\nIf the §YInternational Support for Laurandar§! Resolution was passed, they will gain §Y2§! extra."
   giga_katrebels.2003.e:0 "Forget it."
@@ -8692,7 +8692,7 @@
   origin_katzen_splinter_desc:0 "This nation was originally part of the greater §YKatzenartig Imperium§!, and seceded upon the Imperium's catastrophic collapse following the fall of §YFlusion§!."
 
   origin_katzen_collapse:0 "Katzen Collapse Survivors"
-  origin_katzen_collapse_desc:0 "This nation is populated by survivors of the §YKatzenartig Imperium§!'s catastrophic collapse following unrest on §YFlusion§!."
+  origin_katzen_collapse_desc:0 "This nation was founded by survivors of the §YKatzenartig Imperium§!'s catastrophic collapse following unrest on §YFlusion§!."
 
   origin_katzen_collapse_flusion:0 "Kaiser's Wake"
   origin_katzen_collapse_flusion_desc:0 "This nation was once at the heart of the §YKatzenartig Imperium§!, but was devastated by conflict following the Imperium's violent breakdown."
