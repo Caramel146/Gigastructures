@@ -703,3 +703,20 @@ define_text = {
 		localization_key = giga_galactic_wonders_tooltip_ring_world_no_habitables_bio
 	}
 }
+
+define_text = {
+	name = GigaFlusionProvisionalGovernmentName
+	default = giga_katzen.7021.name.loris
+	text = {
+		trigger = {
+			has_global_flag = flusion_provisional_gov_loris
+		}
+		localization_key = giga_katzen.7021.name.loris
+	}
+	text = {
+		trigger = {
+			has_global_flag = flusion_provisional_gov_douclaw
+		}
+		localization_key = giga_katzen.7021.name.douclaw
+	}
+}
