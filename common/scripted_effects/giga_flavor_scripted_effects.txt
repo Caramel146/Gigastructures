@@ -1445,7 +1445,6 @@ collapse_test = {
 					value >= 20 #at least five systems for each splinter
 				}
 			}
-			#TODO Civil War effects - search between Katlinin, Kibbles, Kitti Luft and Elwin
 
 			#Spawn socialist splinter
 			random_owned_planet = { #designate one planet as the capital
@@ -1872,8 +1871,10 @@ collapse_test = {
 			}
 
 			#turn the Imperium into the Flusionian sector provisional government
+			set_global_flag = giga_douclaw_stayed_behind #prevents him turning up on Aiondia when he should be ruling or diplomatting
 			event_target:flusion_primitives_country = {
-				set_country_flag = flusion_provisional_gov
+				set_country_type = katzenartig_imperium_provisional
+				set_country_flag = katzen_civil_war_faction
 				random_list = {
 					55 = { #Loris-led civilian government
 						#higher base chance to account for the added prereq of "Loris isn't dead"
@@ -1883,26 +1884,35 @@ collapse_test = {
 						}
 						set_leader = flusion_loris
 						set_global_flag = flusion_provisional_gov_loris
-						set_name = "Flusionian Provisional Authority"
+						set_name = giga_katzen.7021.name.loris
 					}
-					45 = { #Douclaw-led military government
+					50 = { #Douclaw-led military government
 						set_leader = flusion_douclaw
 						set_global_flag = flusion_provisional_gov_douclaw
-						set_name = "Katzenartig Emergency Command"
+						set_name = giga_katzen.7021.name.douclaw
 					}
 				}
 			}
 
+			event_target:kaiser_kattail = {
+				kill_leader = { show_notification = no } #he's GONE Loris, stop pretending he's on your council
+			}
+
 			every_country = {
 				limit = { is_ai = no }
-				country_event = { id = giga_katzen.7012 } #inform that Imperium has fractured
+				country_event = { id = giga_katzen.7020 } #inform that Imperium has fractured
+			}
+
+			set_global_flag = katzen_civil_war_reformation_version
+			event_target:global_event_country = {
+				country_event = { id = giga_katcivilwar.1000 }
 			}
 		}
 
-		else = { #not enough space for Civil War (Reformation version), so the country explodes (it speaks for itself the country explodes)
+		else = { #not enough space for Civil War (Reformation version), so the Imperium just explodes
 			every_country = {
 				limit = { is_ai = no }
-				country_event = { id = giga_katzen.7013 } #inform that Imperium has fucking killed itself
+				country_event = { id = giga_katzen.7014 } #inform that Imperium has fucking killed itself
 			}
 			every_galaxy_planet = { #blow up Siegfreids
 				limit = { is_planet_class = pc_giga_siegfried_world }
@@ -1939,27 +1949,45 @@ collapse_test = {
 					}
 
 					create_country = {
-						name = random
-						authority = random
+						name = "Flusionian Warring States"
+						authority = auth_oligarchic
 						civics = {
-							civic = civic_nationalistic_zeal
+							civic = civic_scavengers
 							civic = civic_warrior_culture
 						}
 						species = event_target:flusion_katzens
 						ethos = {
 							ethic = ethic_fanatic_militarist
-							ethic = ethic_xenophile
+							ethic = ethic_materialist
 						}
-						flag = random
+						flag = {
+							icon = {
+								category="domination"
+								file="domination_8.dds"
+							}
+							background = {
+								category="backgrounds"
+								file="katzen.dds"
+							}
+							colors = {
+								"burgundy"
+								"light_blue"
+								"yellow"
+								"null"
+							}
+						}
 						origin = "origin_katzen_collapse_flusion"
 						type = primitive
 						effect = {
 							set_graphical_culture = mammalian_01
-							set_country_flag = stone_age
-							set_pre_ftl_age = stone_age
+							set_country_flag = tech_frozen
+							set_country_flag = custom_preftl_diplomacy
+							set_country_flag = custom_preftl_espionage
+							set_country_flag = fusion_age
+							set_pre_ftl_age = giga_fusion_age
 						}
 					}
-					add_pre_ftl_buildings = yes
+					set_colony_type = col_giga_pre_ftl_fusion
 					set_owner = last_created_country
 					set_capital = yes
 
@@ -2000,6 +2028,7 @@ collapse_test = {
 					}
 
 					giga_field_debris = yes
+					set_surveyed = { surveyed = yes surveyor = root }
 				}
 				else = {
 					random_list = {
@@ -2046,6 +2075,7 @@ collapse_test = {
 								chance = 50
 								giga_field_debris = yes
 							}
+							set_surveyed = { surveyed = yes surveyor = root }
 						}
 						50 = { #return to the stone age
 							create_country = {
@@ -2069,9 +2099,9 @@ collapse_test = {
 									set_pre_ftl_age = stone_age
 								}
 							}
-							add_pre_ftl_buildings = yes
 							set_owner = last_created_country
 							set_capital = yes
+							add_pre_ftl_buildings = yes
 
 							while = {
 								count = 4
@@ -2095,12 +2125,13 @@ collapse_test = {
 
 							every_owned_pop_group = { #robots need complex infrastructure so even more die
 								limit = { is_robotic_species = yes }
-								kill_pop_group = { pop_group = this percentage = 0.9 }
+								kill_pop_group = { pop_group = this percentage = 0.85 }
 							}
 							random = {
 								chance = 25
 								giga_field_debris = yes
 							}
+							set_surveyed = { surveyed = yes surveyor = root }
 						}
 					}
 				}

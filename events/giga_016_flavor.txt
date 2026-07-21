@@ -6,28 +6,36 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		every_playable_country = {
-			country_event = { id = giga_katcivilwar.1001 days = 2 }
+		if = {
+			limit = {
+				NOT = { has_global_flag = katzen_civil_war_reformation_version }
+			}
+			every_playable_country = {
+				country_event = { id = giga_katcivilwar.1001 days = 2 }
+			}
 		}
 		random_country = {
 			limit = {
 				is_ai = no
 			}
-			country_event = { id = giga_katcivilwar.1003 days = 720 random = 360 } #CHANGE TO A FEW YEARS
+			country_event = { id = giga_katcivilwar.1003 days = 720 random = 360 } #Kibbles requests support
 		}
 		# event_target:global_event_country = {
-		# 	country_event = { id = giga_katcivilwar.1004 days = 360 random = 720 } #CHANGE TO A FEW YEARS
+		# 	country_event = { id = giga_katcivilwar.1004 days = 360 random = 720 } #Katlinin seeks egalitarian allies #TODO fix up
 		# }
 		set_global_flag = katzen_civil_war_ongoing
 		set_global_flag = katzen_civil_war_happened
 		event_target:giga_jublio_system = {
 			if = {
-				limit = { has_owner = yes }
+				limit = {
+					has_owner = yes
+					NOT = { has_global_flag = katzen_civil_war_reformation_version }
+				}
 				if = {
 					limit = { owner = { NOT = { is_country = event_target:katzen_civil_war_socialist } } }
 					add_claims = {
 						who = event_target:katzen_civil_war_socialist
-						num_of_claims = 3
+						num_of_claims = 10
 						show_notification = yes
 					}
 				}
@@ -35,7 +43,7 @@ country_event = {
 					limit = { owner = { NOT = { is_country = event_target:katzen_civil_war_junta } } }
 					add_claims = {
 						who = event_target:katzen_civil_war_junta
-						num_of_claims = 3
+						num_of_claims = 10
 						show_notification = yes
 					}
 				}
@@ -43,7 +51,7 @@ country_event = {
 					limit = { owner = { NOT = { is_country = event_target:katzen_civil_war_republic } } }
 					add_claims = {
 						who = event_target:katzen_civil_war_republic
-						num_of_claims = 3
+						num_of_claims = 10
 						show_notification = yes
 					}
 				}
@@ -157,6 +165,8 @@ event = {
 		if = {
 			limit = { event_target:katzen_civil_war_junta = { exists = THIS } }
 			event_target:katzen_civil_war_junta = {
+				set_male_ruler_title = "Kaiser"
+				set_female_ruler_title = "Kaiserin"
 				if = {
 					limit = {
 						ruler = { NOT = { has_leader_flag = elwin } }
@@ -625,7 +635,7 @@ country_event = {
 			starbase = { set_owner = from }
 		}
 		event_target:global_event_country = {
-			country_event = { id = giga_katcivilwar.1011 days = 10 } #check
+			country_event = { id = giga_katcivilwar.1011 days = 10 } #check if war should end
 		}
 	}
 }
@@ -639,7 +649,12 @@ country_event = {
 		if = {
 			limit = { #only 1 left
 				count_country = {
-					limit = { has_country_flag = katzen_civil_war_faction }
+					limit = {
+						has_country_flag = katzen_civil_war_faction
+						NOT = {
+							is_country_type = katzenartig_imperium_provisional
+						}
+					}
 					count = 1
 				}
 				has_global_flag = katzen_civil_war_ongoing
@@ -656,6 +671,7 @@ country_event = {
 					}
 				}
 				every_country = {
+					limit = { is_ai = no }
 					country_event = { id = giga_katcivilwar.1012 }
 				}
 				event_target:katzen_civil_war_socialist = {
@@ -715,6 +731,7 @@ country_event = {
 					}
 				}
 				every_country = {
+					limit = { is_ai = no }
 					country_event = { id = giga_katcivilwar.1013 }
 				}
 				event_target:katzen_civil_war_republic = {
@@ -753,6 +770,7 @@ country_event = {
 					}
 				}
 				every_country = {
+					limit = { is_ai = no }
 					country_event = { id = giga_katcivilwar.1014 }
 				}
 				event_target:katzen_civil_war_junta = {
@@ -828,8 +846,20 @@ country_event = {
 						has_country_flag = katzen_civil_war_realm
 					}
 				}
-				every_country = {
-					country_event = { id = giga_katcivilwar.1015 }
+				if = {
+					limit = {
+						has_global_flag = katzen_civil_war_reformation_version
+					}
+					every_country = {
+						limit = { is_ai = no }
+						country_event = { id = giga_katcivilwar.1015 }
+					}
+				}
+				else = {
+					every_country = {
+						limit = { is_ai = no }
+						country_event = { id = giga_katcivilwar.1015 }
+					}
 				}
 				event_target:katzen_civil_war_realm = {
 					set_name = "Katzenländer"
