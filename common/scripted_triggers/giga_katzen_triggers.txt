@@ -325,3 +325,8 @@ kaiser_can_wardec = { #should be run in target country scope
 		}
 	}
 }
+
+katzen_reformation_active = {
+	has_global_flag = katzen_reformation_begun
+	NOT = { has_global_flag = katzen_reformation_complete }
+}
