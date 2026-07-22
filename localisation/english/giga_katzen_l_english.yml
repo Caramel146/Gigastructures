@@ -5,11 +5,17 @@
  giga_katzen.7000.b:0 "An opportunity to grow closer to Flusion?"
  giga_katzen.7000.c:0 "We're running out of time to escape Flusion's control..."
 
- giga_katzen.7001.name:0 "Katzenartig Reformation Begins"
- giga_katzen.7001.desc:0 "Increasingly public information from the Katzenartig Imperium confirms that the Kaiser has gone ahead with his once-clandestine reformation plans. According to our best intel, we should expect the Kaiser to spend upwards of two decades occupied with enacting a range of far-reaching administrative reforms designed to consolidate Flusion's local and imperial authority.\n\nReform is, of course, risky business, with programs such as accelerating Katzenification and reshuffling regional political privileges particularly likely to cause backlash. Whether the Kaiser can come out of this era with his reign strengthened will depend heavily on whether his citizens and subordinates feel he has fulfilled his promises..."
- giga_katzen.7001.a:0 "Let's hope they stay this way..."
- giga_katzen.7001.b:0 "Order and we will obey."
- giga_katzen.7001.c:0 "We can only hope it all unravels."
+ giga_katzen.7001.name:0 "Katzens Propose Peace"
+ giga_katzen.7001.desc:0 "High-level incoming communications from the Katzenartig Imperium are proposing that we end our war with them, leaving the borders as they currently stand. While this is an unusual proposal from the notoriously violent and expansionistic Katzens, it isn't entirely surprising in light of their recent shift from external to internal affairs.\n\nThe peace offer seems genuine, but the Katzens have made it clear that they aren't just going soft, and are prepared to continue the war with their full effort should we refuse. Of course, if we're feeling confident, we could continue fighting for now, and ask them for peace when we're in a more favourable position..."
+ giga_katzen.7001.a:0 "Continue fighting."
+ giga_katzen.7001.b:0 "Begin the ceasefire."
+
+ giga_katzen.7002.name:0 "Katzenartig Reformation Begins"
+ giga_katzen.7002.desc:0 "Increasingly public information from the Katzenartig Imperium confirms that the Kaiser has gone ahead with his once-clandestine reformation plans. According to our best intel, we should expect the Kaiser to spend upwards of two decades occupied with enacting a range of far-reaching administrative reforms designed to consolidate Flusion's local and imperial authority.\n\nReform is, of course, risky business, with programs such as accelerating Katzenification and reshuffling regional political privileges particularly likely to cause backlash. Whether the Kaiser can come out of this era with his reign strengthened will depend heavily on whether his citizens and subordinates feel he has fulfilled his promises..."
+ giga_katzen.7002.a:0 "Let's hope they stay this way..."
+ giga_katzen.7002.a.tooltip:0 "The Katzens are too preoccupied to give external diplomacy as much attention, §Rhalving§! the likelihood of §YKatzen Attachés§! increasing opinion during the §BKatzen Reformation§!."
+ giga_katzen.7002.b:0 "Order and we will obey."
+ giga_katzen.7002.c:0 "We can only hope it all unravels."
 
  giga_katzen.7012.name:0 "Instability in Katzenartig Imperium!"
  giga_katzen.7012.desc:0 "It appears that the Katzenartig citizenry don't feel the Kaiser is delivering his utopian vision. Open unrest has broken out on the capital itself, and while the Kaiser has responded with a heavy hand to reassert his authority, a spike in high-profile treason convictions suggests that not all in the Imperium's upper echelons are enthusiastic about enforcing the Kaiser's will.\n\nDespite this test to the Kaiser's rule, it's still too soon to say whether the Kaiserist government will collapse, or reassert itself for another generation - and with the crisis playing out on numerous societal battlefields, it may be a few years before we have an answer.\n\nRegardless, during this period, the Katzenartig Imperium may not have the capacity to handle further threats, and a war could help stretch the Katzen government too far..."

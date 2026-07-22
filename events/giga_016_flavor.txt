@@ -17,6 +17,12 @@ country_event = {
 		random_country = {
 			limit = {
 				is_ai = no
+				NOR = {
+					is_homicidal = yes
+					is_fanatic_authoritarian = yes
+					is_at_war_with = event_target:katzen_civil_war_republic
+					has_valid_civic = civic_pompous_purists
+				}
 			}
 			country_event = { id = giga_katcivilwar.1003 days = 720 random = 360 } #Kibbles requests support
 		}
@@ -165,8 +171,8 @@ event = {
 		if = {
 			limit = { event_target:katzen_civil_war_junta = { exists = THIS } }
 			event_target:katzen_civil_war_junta = {
-				set_male_ruler_title = "Kaiser"
-				set_female_ruler_title = "Kaiserin"
+				set_male_ruler_title = "Katzenmarshall"
+				set_female_ruler_title = "Katzenmarshall"
 				if = {
 					limit = {
 						ruler = { NOT = { has_leader_flag = elwin } }
@@ -396,12 +402,12 @@ country_event = {
 				value >= 2500
 			}
 			resource_stockpile_compare = {
-				resource = energy
+				resource = trade
 				value >= 7500
 			}
 		}
 		add_resource = {
-			energy = -7500
+			trade = -7500
 			alloys = -2500
 		}
 		event_target:katzen_civil_war_republic = {
@@ -775,6 +781,8 @@ country_event = {
 				}
 				event_target:katzen_civil_war_junta = {
 					set_name = "Neu-Katzimperium"
+					set_male_ruler_title = "Kaiser" #rename leader
+					set_female_ruler_title = "Kaiserin"
 					set_leader = event_target:katzen_junta_ruler
 					every_owned_planet = {
 						katzen_clear_capitals = yes

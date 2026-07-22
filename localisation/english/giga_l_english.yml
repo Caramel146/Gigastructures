@@ -7318,16 +7318,17 @@
 	giga_katzen.02011.protectorate.desc:0 "Of course the Kaiser would be willing to support the defence of a loyal Imperium government! We have several ship classes available, so make your choice. Of course, the newest designs are reserved for our flagship forces, so you needn't worry about leaking our engineering.\n\n...\n\nAnd no, the Kaiser Moon is not for sale."
 
 	giga_katzen.02011.a:0 "5 §BKatzenweltraumpanzers§! | §Y5000§! £trade£"
-	giga_katzen.02011.a.tooltip:0 "We will purchase a fleet of 5 §BKatzenweltraumpanzers§!, nimble and swift armored combat vessels.\nThere is a 15% chance the §YKaiser's Opinion§! of us will §Gincrease§!.$attache_boost_chance$"
+	giga_katzen.02011.a.tooltip:0 "We will purchase a fleet of 5 §BKatzenweltraumpanzers§!, nimble and swift armored combat vessels.\nThere is a 15% chance the §YKaiser's Opinion§! of us will §Gincrease§!.$attache_boost_chance$\n$reformation_ship_purchase_opinion_chance$"
+	reformation_ship_purchase_opinion_chance:0 "If the §BKatzen Reformation§! is underway, the chance of gaining an opinion boost is §Rhalved§!."
 
 	giga_katzen.02011.b:0 "3 §BLeerekatzenbombers§! | §Y10000§! £trade£"
-	giga_katzen.02011.b.tooltip:0 "We will purchase a fleet of 3 §BLeerekatzenbombers§!, mobile bomber crafts equipped with long-range missiles.\nThere is a 20% chance the §YKaiser's Opinion§! of us will §Gincrease§!.$attache_boost_chance$"
+	giga_katzen.02011.b.tooltip:0 "We will purchase a fleet of 3 §BLeerekatzenbombers§!, mobile bomber crafts equipped with long-range missiles.\nThere is a 20% chance the §YKaiser's Opinion§! of us will §Gincrease§!.$attache_boost_chance$\n$reformation_ship_purchase_opinion_chance$"
 
 	giga_katzen.02011.c:0 "1 §BKatzenkreuzer§! | §Y15000§! £trade£"
-	giga_katzen.02011.c.tooltip:0 "We will purchase a single §BKatzenkreuzers§!, a large and well-rounded warship to pummel the enemy from afar.\nThere is a 25% chance the §YKaiser's Opinion§! of us will §Gincrease§!.$attache_boost_chance$"
+	giga_katzen.02011.c.tooltip:0 "We will purchase a single §BKatzenkreuzers§!, a large and well-rounded warship to pummel the enemy from afar.\nThere is a 25% chance the §YKaiser's Opinion§! of us will §Gincrease§!.$attache_boost_chance$\n$reformation_ship_purchase_opinion_chance$"
 
     giga_katzen.02011.d:0 "1 §BGepanzerterluftschiffträger§! | §Y50000§! £trade£"
-    giga_katzen.02011.d.tooltip:0 "We will purchase a single §BGepanzerterluftschiffträger§!, a heavily-armoured strikecraft carrier with a powerful main gun.\nThere is a 30% chance the §YKaiser's Opinion§! of us will §Gincrease§!.$attache_boost_chance$"
+    giga_katzen.02011.d.tooltip:0 "We will purchase a single §BGepanzerterluftschiffträger§!, a heavily-armoured strikecraft carrier with a powerful main gun.\nThere is a 30% chance the §YKaiser's Opinion§! of us will §Gincrease§!.$attache_boost_chance$\n$reformation_ship_purchase_opinion_chance$"
     katzen_reserved_for_allies:0 "The Katzens reserve these capital ships for close allies (Katzprotektorats or Flusionian Treaty Organisation members)."
 
 	giga_katzen.02011.response.plural:0 "An excellent choice! We'll have the crafts delivered to your capital within the next month."
@@ -8415,6 +8416,7 @@
 
   giga_katzen.5002.name:0 "Kaiser's Opinion Increases!"
   giga_katzen.5002.desc:0 "Great news! Our diplomatic attaché in the §YKatzenartig Imperium§! reports that their efforts have been successful in increasing the §YKaiser's Opinion§! of us.\n\nThis has brought much satisfaction to those who wish to avoid conflict with the Katzens..."
+  giga_katzen.5002.reformation.desc:0 "Great news! Our diplomatic attaché in the §YKatzenartig Imperium§! reports that their efforts have been successful in increasing the §YKaiser's Opinion§! of us.\n\nThis has brought much satisfaction to those who wish to avoid conflict with the Katzens...\n\nThe Katzens haven't been paying much attention to our diplomatic overtures due to preoccupation with their ongoing Reformation, so this is a particularly impressive achievement."
   giga_katzen.5002.a:0 "Great!"
   giga_katzen.5002.a.tooltip:0 "The §YKaiser's Opinion§! of us §Bincreases§! by §G20§!."
 
