@@ -1325,7 +1325,7 @@ country_event = {
 			country_event = { id = giga_katzen.04006 days = 90 } #THERE IS ONLY WAR
 		}
 		country_event = { id = giga_katzen.040 days = 330 random = 60 } #Katzen expansion, runs every year or so
-		country_event = { id = giga_katzen.041 days = 540 random = 60 } #Kaiser demands stuff, runs every 1.5 years
+		country_event = { id = giga_katzen.041 days = 540 random = 60 } #Kaiser demands stuff, runs every year or so
 		country_event = { id = giga_katzen.070 days = 180 random = 30 } #Warforges
 		country_event = { id = giga_katzen.030 days = 30 } #Manage warforges and eco
 		# country_event = { id = giga_katzen.036 days = 30 } # Leader management
@@ -2023,14 +2023,11 @@ country_event = { #Kaiser offers peace
 				}
 				every_war_participant = {
 					limit = { NOT = { is_country = ROOT } }
-					increase_kaiser_opinion = yes
-					increase_kaiser_opinion = yes
-					increase_kaiser_opinion = yes
+					while = { count = 3 increase_kaiser_opinion = yes }
 				}
 				end_war_effect = yes
 			}
-			increase_kaiser_opinion = yes
-			increase_kaiser_opinion = yes
+			while = { count = 2 increase_kaiser_opinion = yes }
 		}
 	}
 
@@ -2817,8 +2814,7 @@ country_event = { #hello
 			}
 		}
 		hidden_effect = {
-			increase_kaiser_opinion = yes
-			increase_kaiser_opinion = yes
+			while = { count = 2 increase_kaiser_opinion = yes }
 			random_war = { #Status quo
 				limit = {
 					any_war_participant = {
@@ -2830,9 +2826,7 @@ country_event = { #hello
 				}
 				every_war_participant = {
 					limit = { NOT = { is_country = ROOT } }
-					increase_kaiser_opinion = yes
-					increase_kaiser_opinion = yes
-					increase_kaiser_opinion = yes
+					while = { count = 3 increase_kaiser_opinion = yes }
 				}
 				end_war_effect = yes
 			}
@@ -3350,7 +3344,15 @@ country_event = {
 	id = giga_katzen.5002
 	title = "giga_katzen.5002.name"
 
-	desc = "giga_katzen.5002.desc"
+	desc = {
+		text = "giga_katzen.5002.desc"
+		trigger = { katzen_reformation_active = no }
+	}
+
+	desc = {
+		text = "giga_katzen.5002.reformation.desc"
+		trigger = { katzen_reformation_active = yes }
+	}
 
 	picture = GFX_evt_arguing_senate
 	show_sound = event_celebration
@@ -4174,7 +4176,7 @@ country_event = { #katzen admirals leave
 		is_at_war_with = event_target:flusion_primitives_country
 	}
 
-	option = { #WHY WOULD YOU EVER PICK THAT
+	option = {
 		name = "giga_katzen.3015.a"
 		custom_tooltip = "giga_katzen.3015.a.tooltip"
 		hidden_effect = {
@@ -4334,6 +4336,7 @@ country_event = { #Trading with Kaiser
 				15 = {
 					increase_kaiser_opinion = yes
 					modifier = { add = 20 has_modifier = katzen_attache }
+					modifier = { factor = 0.5 katzen_reformation_active = yes }
 				}
 				85 = {
 					modifier = { add = -20 has_modifier = katzen_attache }
@@ -4364,6 +4367,7 @@ country_event = { #Trading with Kaiser
 				20 = {
 					increase_kaiser_opinion = yes
 					modifier = { add = 20 has_modifier = katzen_attache }
+					modifier = { factor = 0.5 katzen_reformation_active = yes }
 				}
 				80 = {
 					modifier = { add = -20 has_modifier = katzen_attache }
@@ -4394,6 +4398,7 @@ country_event = { #Trading with Kaiser
 				25 = {
 					increase_kaiser_opinion = yes
 					modifier = { add = 20 has_modifier = katzen_attache }
+					modifier = { factor = 0.5 katzen_reformation_active = yes }
 				}
 				75 = {
 					modifier = { add = -20 has_modifier = katzen_attache }
@@ -4436,6 +4441,7 @@ country_event = { #Trading with Kaiser
 				30 = {
 					increase_kaiser_opinion = yes
 					modifier = { add = 20 has_modifier = katzen_attache }
+					modifier = { factor = 0.5 katzen_reformation_active = yes }
 				}
 				70 = {
 					modifier = { add = -20 has_modifier = katzen_attache }
@@ -4739,8 +4745,7 @@ country_event = { #Trading with Kaiser
 				days = 360 #CHANGE TO 3 YEARS
 			}
 			set_country_flag = sold_gatzo
-			increase_kaiser_opinion = yes
-			increase_kaiser_opinion = yes
+			while = { count = 2 increase_kaiser_opinion = yes }
 			event_target:paluushia.solar_system = {
 				starbase = { #Transfer land
 					set_owner = event_target:flusion_primitives_country
@@ -5922,7 +5927,7 @@ country_event = { #Manage war forges and the Kaiser's eco
 						has_ship_flag = kaiser_moon_ship
 					}
 				}
-				fleet_event = { id = giga_katzenai.012 days = 20 }
+				fleet_event = { id = giga_katzenai.012 days = 20 } #move Kaiser Moon to Jublio
 			}
 		}
 		every_country = { #if a country allied to kaiser somehow ends up at war with him, end the war
@@ -5941,10 +5946,7 @@ country_event = { #Manage war forges and the Kaiser's eco
 				}
 				end_war_effect = yes
 			}
-			while = {
-				count = 8
-				increase_kaiser_opinion = yes
-			}
+			while = { count = 8 increase_kaiser_opinion = yes }
 		}
 		every_country = {
 			limit = {
@@ -5957,9 +5959,7 @@ country_event = { #Manage war forges and the Kaiser's eco
 		}
 		every_country = { #sets Kaiser as neutral with non-genocidals if opinion is unset
 			limit = {
-				NOT = {
-					is_variable_set = kaiser_opinion
-				}
+				NOT = { is_variable_set = kaiser_opinion }
 				is_homicidal = no
 			}
 			set_variable = {
@@ -5970,9 +5970,7 @@ country_event = { #Manage war forges and the Kaiser's eco
 		}
 		every_country = { #sets Kaiser as unhappy with genocidals if opinion is unset
 			limit = {
-				NOT = {
-					is_variable_set = kaiser_opinion
-				}
+				NOT = { is_variable_set = kaiser_opinion }
 				is_homicidal = yes
 			}
 			set_variable = {
@@ -6227,6 +6225,29 @@ country_event = { #Manage war forges and the Kaiser's eco
 			}
 			country_event = { id = giga_katzen.7010 days = 720 random = 720 } #roll for Instability
 		}
+
+		#if Katzens are winding down expansionism for Reformation, roll for peace with opponents
+		if = {
+			limit = {
+				katzen_reformation_active = yes
+			}
+			every_war = {
+				limit = {
+					any_war_participant = {
+						ehof_default_country = yes
+						NOT = { has_country_flag = recent_katzenartig_war }
+					}
+					any_war_participant = { #ensure the AI has the right to end the war
+						is_ai = yes
+						is_war_leader = yes
+					}
+				}
+				random = {
+					chance = 5
+					end_war_effect = yes
+				}
+			}
+		}
 	}
 }
 
@@ -6454,165 +6475,170 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 		else = {
 			country_event = { id = giga_katzen.04003 days = 2880 random = 1440  } #run event again in 8-12 years
 		}
-		random_country = {
+		if = {
 			limit = {
-				kaiser_can_wardec = yes
-				OR = {
-					AND = {
-						NOT = { exists = federation }
-						giga_is_standard_country_type = yes
-						OR = {
-							relative_power = {
-								who = event_target:flusion_primitives_country
-								category = fleet
-								value <= equivalent
+				katzen_reformation_active = no #don't start wars during the inwards-focus era
+			}
+			random_country = {
+				limit = {
+					kaiser_can_wardec = yes
+					OR = {
+						AND = {
+							NOT = { exists = federation }
+							giga_is_standard_country_type = yes
+							OR = {
+								relative_power = {
+									who = event_target:flusion_primitives_country
+									category = fleet
+									value <= equivalent
+								}
 							}
 						}
-					}
-					AND = {
-						giga_is_standard_country_type = yes
-						OR = {
-							relative_power = {
-								who = event_target:flusion_primitives_country
-								category = fleet
-								value <= inferior
+						AND = {
+							giga_is_standard_country_type = yes
+							OR = {
+								relative_power = {
+									who = event_target:flusion_primitives_country
+									category = fleet
+									value <= inferior
+								}
 							}
-						}
-						exists = federation
-						NOT = {
-							federation = {
-								any_member = {
-									OR = {
-										relative_power = {
-											who = event_target:flusion_primitives_country
-											category = fleet
-											value >= equivalent
+							exists = federation
+							NOT = {
+								federation = {
+									any_member = {
+										OR = {
+											relative_power = {
+												who = event_target:flusion_primitives_country
+												category = fleet
+												value >= equivalent
+											}
 										}
 									}
 								}
 							}
 						}
-					}
-					AND = {
-						is_fallen_empire = yes
-						mid_game_years_passed > 50
-						relative_power = {
-							who = event_target:flusion_primitives_country
-							category = fleet
-							value = pathetic
-						}
-					}
-				}
-			}
-			save_global_event_target_as = kaiser_attack_target
-			random_list = { #roll whether the target fights or surrenders to vassalisation
-				80 = { #FIGHT
-					event_target:flusion_primitives_country = {
-						declare_war = {
-							target = event_target:kaiser_attack_target
-							attacker_war_goal = "wg_katzen_conquest"
-							name = "Katzenkrieg"
-						}
-					}
-					every_country = {
-						limit = { has_country_flag = allied_to_kaiser }
-						join_war = event_target:flusion_primitives_country
-					}
-					set_kaiser_war_opinion = yes
-					every_country = {
-						limit = { is_in_federation_with = event_target:kaiser_random_war_target }
-						join_war = event_target:kaiser_attack_target
-						set_kaiser_war_opinion = yes
-						set_timed_country_flag = {
-							flag = recent_katzenartig_war
-							days = 900
-						}
-					}
-					every_subject = {
-						join_war = event_target:kaiser_attack_target
-						set_kaiser_war_opinion = yes
-						set_timed_country_flag = {
-							flag = recent_katzenartig_war
-							days = 900
-						}
-					}
-					every_country = { #inform others
-						limit = { is_ai = no }
-						country_event = { id = giga_katzen.051 }
-					}
-				}
-				20 = { #surrender. Weak, diplomacy-leaning and Katzenartig-culturally-aligned empires generally more likely.
-					modifier = { factor = 0.25 has_ethic = ethic_fanatic_xenophobe } #xenophobes really don't want to be forcibly culturally assimilated in a xeno society
-					modifier = { factor = 0.5 has_ethic = ethic_xenophobe }
-					modifier = { factor = 1.5 has_ethic = ethic_xenophile }
-					modifier = { factor = 2 has_ethic = ethic_fanatic_xenophile }
-
-					modifier = { factor = 0.25 has_ethic = ethic_fanatic_pacifist } #pacifists despise the idea of joining a rampant war machine
-					modifier = { factor = 0.5 has_ethic = ethic_pacifist }
-					modifier = { factor = 1.5 has_ethic = ethic_militarist }
-					modifier = { factor = 2 has_ethic = ethic_fanatic_militarist }
-
-					modifier = { factor = 0.75 has_ethic = ethic_egalitarian } #ideologically oppose Kaiser's autocracy
-					modifier = { factor = 0.5 has_ethic = ethic_fanatic_egalitarian }
-
-					modifier = { factor = 2 relative_power = { who = event_target:flusion_primitives_country category = fleet value = pathetic } } #surrender if fighting is hopeless
-
-					modifier = { #things that should be blocked for mechanical or lore reasons
-						factor = 0
-						OR = {
-							has_valid_civic = civic_pompous_purists
-							has_valid_civic = civic_inwards_perfection
-							has_valid_civic = civic_shared_burden
-							NOT = { is_country_type = default } #ZOFE ascended empires wouldn't submit out of arrogance honestly
-							has_origin = origin_fear_of_the_dark
-							has_origin = origin_heirs_of_the_khan
-							has_origin = origin_endbringers
-							has_origin = origin_nomadic_purger
-							is_homicidal = yes
-							is_player_crisis = yes
-							is_galactic_custodian = yes
-							is_galactic_emperor = yes
-							has_federation = yes
+						AND = {
+							is_fallen_empire = yes
+							mid_game_years_passed > 50
 							relative_power = {
 								who = event_target:flusion_primitives_country
 								category = fleet
-								value = equivalent
+								value = pathetic
 							}
 						}
 					}
+				}
+				save_global_event_target_as = kaiser_attack_target
+				random_list = { #roll whether the target fights or surrenders to vassalisation
+					80 = { #FIGHT
+						event_target:flusion_primitives_country = {
+							declare_war = {
+								target = event_target:kaiser_attack_target
+								attacker_war_goal = "wg_katzen_conquest"
+								name = "Katzenkrieg"
+							}
+						}
+						every_country = {
+							limit = { has_country_flag = allied_to_kaiser }
+							join_war = event_target:flusion_primitives_country
+						}
+						set_kaiser_war_opinion = yes
+						every_country = {
+							limit = { is_in_federation_with = event_target:kaiser_random_war_target }
+							join_war = event_target:kaiser_attack_target
+							set_kaiser_war_opinion = yes
+							set_timed_country_flag = {
+								flag = recent_katzenartig_war
+								days = 900
+							}
+						}
+						every_subject = {
+							join_war = event_target:kaiser_attack_target
+							set_kaiser_war_opinion = yes
+							set_timed_country_flag = {
+								flag = recent_katzenartig_war
+								days = 900
+							}
+						}
+						every_country = { #inform others
+							limit = { is_ai = no }
+							country_event = { id = giga_katzen.051 }
+						}
+					}
+					20 = { #surrender. Weak, diplomacy-leaning and Katzenartig-culturally-aligned empires generally more likely.
+						modifier = { factor = 0.25 has_ethic = ethic_fanatic_xenophobe } #xenophobes really don't want to be forcibly culturally assimilated in a xeno society
+						modifier = { factor = 0.5 has_ethic = ethic_xenophobe }
+						modifier = { factor = 1.5 has_ethic = ethic_xenophile }
+						modifier = { factor = 2 has_ethic = ethic_fanatic_xenophile }
 
-					modifier = { factor = 0.75 has_valid_civic = civic_agrarian_idyll } #pls don't military-industrial my happy ways
-					modifier = { factor = 0.75 has_valid_civic = civic_beacon_of_liberty } #betray our role as protectors? Never
-					modifier = { factor = 1.25 has_valid_civic = civic_aristocratic_elite } #sellouts who want to be the new Katzen elites
-					modifier = { factor = 1.25 has_valid_civic = civic_citizen_service } #militarism for citizenship sounds cool, let's join the Katzens
-					modifier = { factor = 1.25 OR = { has_valid_civic = civic_feudal_realm has_valid_civic = civic_franchising } } #culturally compatible with autonomous vassals
-					modifier = { factor = 0.75 has_valid_civic = civic_environmentalist } #save the trees from rampant industry
-					modifier = { factor = 0.25 has_valid_civic = civic_nationalistic_zeal } #militarist but too proud
-					modifier = { factor = 1.25 has_valid_civic = civic_warrior_culture } #likes Katzen ways
-					modifier = { factor = 1.25 has_valid_civic = civic_police_state } #Katzen surveillance machine sounds good
-					modifier = { factor = 1.25 has_valid_civic = civic_shadow_council } #sellouts who want to be the new Katzen elites
-					modifier = { factor = 2 OR = { has_civic = civic_diplomatic_corps has_civic = civic_public_relations_specialists has_civic = civic_hive_empath has_civic = civic_hive_familiar_face } } #wants to work together nicely
-					modifier = { factor = 1.25 is_relentless_industrialist_empire = yes } #more rampant industrialism yay
-					modifier = { factor = 1.25 is_twisted_experimenters_empire = yes } #the Katzens do that too
-					modifier = { factor = 1.25 is_hired_guns_empire = yes } #fight for the highest bidder
-					modifier = { factor = 0.5 OR = { is_sovereign_guardianship_empire = yes has_valid_civic = civic_machine_stalwart_network } } #ready to fight defensively
-					modifier = { factor = 0.75 is_secret_societies_empire = yes } #thinks they could manipulate from within just fine
-					modifier = { factor = 0.25 is_galactic_community_member = yes has_galactic_emperor = yes is_galactic_emperor = no } #loyalty to the Galactic Imperium
-					modifier = { factor = 0.75 has_origin = origin_legendary_leader } #we have our own leader
-					modifier = { factor = 0.75 is_gestalt = yes } #less compatible with following outside orders
-					modifier = { factor = 1.25 has_origin = origin_common_ground } #diplomatically inclined
-					modifier = { factor = 0.5 OR = { has_origin = origin_broken_shackles has_origin = origin_payback } } #not falling for xeno domination again
-					modifier = { factor = 0.5 has_valid_civic = civic_machine_servitor } #objects to Katzen warmongering
-					modifier = { factor = 1.5 has_valid_civic = civic_machine_tactical_algorithms } #mercs
-					modifier = { factor = 1.5 is_capitalist = yes } #submit early for favourable Katzen market access
-					modifier = { factor = 1.25 has_valid_civic = civic_private_military_companies } #mercs
-					modifier = { factor = 0.5 has_valid_civic = civic_worker_coop } #they know Katzens wouldn't like worker organisation
-					modifier = { factor = 0.5 owner_main_species = { has_trait = trait_humanoid_psychological_infertility } } #not suited to constant mobilisation
+						modifier = { factor = 0.25 has_ethic = ethic_fanatic_pacifist } #pacifists despise the idea of joining a rampant war machine
+						modifier = { factor = 0.5 has_ethic = ethic_pacifist }
+						modifier = { factor = 1.5 has_ethic = ethic_militarist }
+						modifier = { factor = 2 has_ethic = ethic_fanatic_militarist }
 
-					country_event = { id = giga_katzen.1031 } #make them and their subjects Katzprotektorts
-					every_country = { #inform others
-						limit = { is_ai = no }
-						country_event = { id = giga_katzen.052 }
+						modifier = { factor = 0.75 has_ethic = ethic_egalitarian } #ideologically oppose Kaiser's autocracy
+						modifier = { factor = 0.5 has_ethic = ethic_fanatic_egalitarian }
+
+						modifier = { factor = 2 relative_power = { who = event_target:flusion_primitives_country category = fleet value = pathetic } } #surrender if fighting is hopeless
+
+						modifier = { #things that should be blocked for mechanical or lore reasons
+							factor = 0
+							OR = {
+								has_valid_civic = civic_pompous_purists
+								has_valid_civic = civic_inwards_perfection
+								has_valid_civic = civic_shared_burden
+								NOT = { is_country_type = default } #ZOFE ascended empires wouldn't submit out of arrogance honestly
+								has_origin = origin_fear_of_the_dark
+								has_origin = origin_heirs_of_the_khan
+								has_origin = origin_endbringers
+								has_origin = origin_nomadic_purger
+								is_homicidal = yes
+								is_player_crisis = yes
+								is_galactic_custodian = yes
+								is_galactic_emperor = yes
+								has_federation = yes
+								relative_power = {
+									who = event_target:flusion_primitives_country
+									category = fleet
+									value = equivalent
+								}
+							}
+						}
+
+						modifier = { factor = 0.75 has_valid_civic = civic_agrarian_idyll } #pls don't military-industrial my happy ways
+						modifier = { factor = 0.75 has_valid_civic = civic_beacon_of_liberty } #betray our role as protectors? Never
+						modifier = { factor = 1.25 has_valid_civic = civic_aristocratic_elite } #sellouts who want to be the new Katzen elites
+						modifier = { factor = 1.25 has_valid_civic = civic_citizen_service } #militarism for citizenship sounds cool, let's join the Katzens
+						modifier = { factor = 1.25 OR = { has_valid_civic = civic_feudal_realm has_valid_civic = civic_franchising } } #culturally compatible with autonomous vassals
+						modifier = { factor = 0.75 has_valid_civic = civic_environmentalist } #save the trees from rampant industry
+						modifier = { factor = 0.25 has_valid_civic = civic_nationalistic_zeal } #militarist but too proud
+						modifier = { factor = 1.25 has_valid_civic = civic_warrior_culture } #likes Katzen ways
+						modifier = { factor = 1.25 has_valid_civic = civic_police_state } #Katzen surveillance machine sounds good
+						modifier = { factor = 1.25 has_valid_civic = civic_shadow_council } #sellouts who want to be the new Katzen elites
+						modifier = { factor = 2 OR = { has_civic = civic_diplomatic_corps has_civic = civic_public_relations_specialists has_civic = civic_hive_empath has_civic = civic_hive_familiar_face } } #wants to work together nicely
+						modifier = { factor = 1.25 is_relentless_industrialist_empire = yes } #more rampant industrialism yay
+						modifier = { factor = 1.25 is_twisted_experimenters_empire = yes } #the Katzens do that too
+						modifier = { factor = 1.25 is_hired_guns_empire = yes } #fight for the highest bidder
+						modifier = { factor = 0.5 OR = { is_sovereign_guardianship_empire = yes has_valid_civic = civic_machine_stalwart_network } } #ready to fight defensively
+						modifier = { factor = 0.75 is_secret_societies_empire = yes } #thinks they could manipulate from within just fine
+						modifier = { factor = 0.25 is_galactic_community_member = yes has_galactic_emperor = yes is_galactic_emperor = no } #loyalty to the Galactic Imperium
+						modifier = { factor = 0.75 has_origin = origin_legendary_leader } #we have our own leader
+						modifier = { factor = 0.75 is_gestalt = yes } #less compatible with following outside orders
+						modifier = { factor = 1.25 has_origin = origin_common_ground } #diplomatically inclined
+						modifier = { factor = 0.5 OR = { has_origin = origin_broken_shackles has_origin = origin_payback } } #not falling for xeno domination again
+						modifier = { factor = 0.5 has_valid_civic = civic_machine_servitor } #objects to Katzen warmongering
+						modifier = { factor = 1.5 has_valid_civic = civic_machine_tactical_algorithms } #mercs
+						modifier = { factor = 1.5 is_capitalist = yes } #submit early for favourable Katzen market access
+						modifier = { factor = 1.25 has_valid_civic = civic_private_military_companies } #mercs
+						modifier = { factor = 0.5 has_valid_civic = civic_worker_coop } #they know Katzens wouldn't like worker organisation
+						modifier = { factor = 0.5 owner_main_species = { has_trait = trait_humanoid_psychological_infertility } } #not suited to constant mobilisation
+
+						country_event = { id = giga_katzen.1031 } #make them and their subjects Katzprotektorts
+						every_country = { #inform others
+							limit = { is_ai = no }
+							country_event = { id = giga_katzen.052 }
+						}
 					}
 				}
 			}
@@ -7393,9 +7419,12 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 				has_modifier = katzen_attache
 				kaiser_opinion_range_elated = no
 			}
-			random = {
-				chance = 25
-				country_event = { id = giga_katzen.5002 random = 90 } #increase in opinion!
+			random_list = {
+				25 = {
+					country_event = { id = giga_katzen.5002 random = 90 } #increase in opinion!
+					modifier = { factor = 0.5 katzen_reformation_active = yes } #since he doesn't make demands during the Reformation, make sure it isn't trivial to max out his opinion
+				}
+				75 = {}
 			}
 		}
 
@@ -7931,485 +7960,17 @@ country_event = {
 	}
 
 	immediate = {
-		every_country = {
-			limit = {
-				has_country_flag = kaiser_demand_target
-			}
-			remove_country_flag = kaiser_demand_target
-		}
-		every_system = { #REMOVE FLAGS
-			limit = { has_star_flag = kaiser_demands_system }
-			remove_star_flag = kaiser_demands_system
-		}
-		every_system = {
-			limit = { has_star_flag = kaiser_demands_system_root }
-			remove_star_flag = kaiser_demands_system_root
-		}
-		set_variable = { #Reset the value of the Kaiser's deal to 0
-			which = "kaiser_trade_value"
-			value = 0
-		}
-		set_variable = {
-			which = "kaiser_system_demanded"
-			value = 0
-		}
-		every_system_within_border = { #Attempt to locate a suitable system to demand :KaiserWoke:
-			random_neighbor_system = {
-				limit = {
-					is_capital_system = no #Can't demand if its a capital
-					exists = owner #can't demand unowned systems from you
-					owner = {
-						giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
-						NOR = {
-							is_at_war_with = event_target:flusion_primitives_country #Not at war
-							has_country_flag = allied_to_kaiser
-							has_country_flag = recent_kaiser_demand #short cd
-							has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
-							has_country_flag = kaiser_demand_target #kaiser isn't currently demanding stuff
-							katzen_vassal = yes
-							AND = { #don't demand from friendly AI
-								is_ai = yes
-								OR = {
-									kaiser_opinion_range_elated = yes
-									kaiser_opinion_range_very_friendly = yes
-									kaiser_opinion_range_friendly = yes
-								}
-							}
-							AND = { #don't demand from subjects of FTO members
-								is_subject = yes
-								overlord = {
-									has_country_flag = allied_to_kaiser
-								}
-							}
-							AND = {
-								is_subject = yes
-								is_at_war = yes
-							}
-						}
-					}
-				}
-				save_global_event_target_as = kaiser_system_1 #First system demanded
-				set_star_flag = kaiser_demands_system
-				calculate_system_value_kaiser = yes
-				owner = {
-					set_country_flag = kaiser_demand_target
-					save_event_target_as = kaiser_system_demand_target
-				}
-				event_target:flusion_primitives_country = {
-					set_variable = {
-						which = "kaiser_system_demanded"
-						value = 1
-					}
-				}
-				random_neighbor_system = {
-					limit = {
-						owner = { is_country_type = katzenartig_imperium } #The root system
-					}
-					save_global_event_target_as = kaiser_system_0
-					set_star_flag = kaiser_demands_system_root
-				}
-			}
-		}
-		if = { #Check if Kaiser did find a suitable system
-			limit = {
-				check_variable = {
-					which = "kaiser_system_demanded"
-					value = 1
-				}
-			}
-			random_system = { #Attempt to find a second one neighboring the first one, and calculate the deal's total value
-				limit = {
-					has_star_flag = kaiser_demands_system
-				}
-				random_neighbor_system = {
-					limit = {
-						is_capital_system = no #Can't demand if its a capital
-						exists = owner #can't demand unowned systems from you
-						owner = {
-							giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
-							NOR = {
-								is_at_war_with = event_target:flusion_primitives_country #Not at war
-								has_country_flag = allied_to_kaiser #Not allied (kaiser isn't THAT cocky)
-								has_country_flag = recent_kaiser_demand #short cd
-								has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
-								katzen_vassal = yes
-							}
-							has_country_flag = kaiser_demand_target #Same guy as before
-							is_country = event_target:kaiser_system_demand_target
-						}
-					}
-					save_global_event_target_as = kaiser_system_2 #Second system demanded
-					set_star_flag = kaiser_demands_system
-					calculate_system_value_kaiser = yes
-					event_target:flusion_primitives_country = {
-						set_variable = {
-							which = "kaiser_system_demanded"
-							value = 2
-						}
-					}
-				}
-			}
-		}
-		else = {
-			clear_kaiser_demanded_systems = yes
-		}
-		if = { #3rd system
-			limit = {
-				check_variable = {
-					which = "kaiser_system_demanded"
-					value = 2
-				}
-			}
-			random_system = { #Attempt to find a third one neighboring either demanded systems OR the root
-				limit = {
-					OR = {
-						has_star_flag = kaiser_demands_system
-						has_star_flag = kaiser_demands_system_root
-					}
-					any_neighbor_system = {
-						NOT = { has_star_flag = kaiser_demands_system} #Not already demanded
-						is_capital_system = no #Can't demand if its a capital
-						exists = owner #can't demand unowned systems from you
-						owner = {
-							giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
-							NOR = {
-								is_at_war_with = event_target:flusion_primitives_country #Not at war
-								is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
-								has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
-								has_country_flag = recent_kaiser_demand #short cd
-								katzen_vassal = yes
-							}
-							has_country_flag = kaiser_demand_target #Same guy as before
-							is_country = event_target:kaiser_system_demand_target
-						}
-					}
-				}
-				random_neighbor_system = {
-					limit = {
-						NOT = { has_star_flag = kaiser_demands_system} #Not already demanded
-						is_capital_system = no #Can't demand if its a capital
-						exists = owner
-						owner = {
-							giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
-							NOR = {
-								is_at_war_with = event_target:flusion_primitives_country #Not at war
-								is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
-								has_country_flag = recent_kaiser_demand #short cd
-								has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
-								katzen_vassal = yes
-							}
-							has_country_flag = kaiser_demand_target #Same guy as before
-							is_country = event_target:kaiser_system_demand_target
-						}
-					}
-					save_global_event_target_as = kaiser_system_3 #Third system demanded
-					set_star_flag = kaiser_demands_system
-					calculate_system_value_kaiser = yes
-					event_target:flusion_primitives_country = {
-						set_variable = {
-							which = "kaiser_system_demanded"
-							value = 3
-						}
-					}
-				}
-			}
-		}
-		else = {
-			clear_kaiser_demanded_systems = yes
-		}
-		random_list = {
-			#Kaiser will always demand at least 3 systems, with diminishing chances of 4 and 5.
-			#A more pissed Kaiser is more likely to demand extra!
-			#On the other hand, a friendly Kaiser will generally ask for less.
-			60 = {
-				modifier = {
-					factor = 0.2
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_elated = yes
-					}
-				}
-				modifier = {
-					factor = 0.4
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_very_friendly = yes
-					}
-				}
-				modifier = {
-					factor = 0.6
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_friendly = yes
-					}
-				}
-				modifier = {
-					factor = 0.8
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_cordial = yes
-					}
-				}
-				modifier = {
-					factor = 1.2
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_terse = yes
-					}
-				}
-				modifier = {
-					factor = 1.4
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_displeased = yes
-					}
-				}
-				modifier = {
-					factor = 1.6
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_angered = yes
-					}
-				}
-				if = { #Check if Kaiser did find a third suitable system
-					limit = {
-						event_target:flusion_primitives_country = {
-							check_variable = {
-								which = "kaiser_system_demanded"
-								value = 3
-							}
-						}
-					}
-					random_system = { #Attempt to find a fourth one neighboring any demanded systems
-						limit = {
-							OR = {
-								has_star_flag = kaiser_demands_system
-								has_star_flag = kaiser_demands_system_root
-							}
-							any_neighbor_system = {
-								NOT = { has_star_flag = kaiser_demands_system} #Not already demanded
-								is_capital_system = no #Can't demand if its a capital
-								exists = owner
-								owner = {
-									giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
-									NOR = {
-										is_at_war_with = event_target:flusion_primitives_country #Not at war
-										is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
-										has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
-										has_country_flag = recent_kaiser_demand #short cd
-										katzen_vassal = yes
-									}
-									has_country_flag = kaiser_demand_target #Same guy as before
-									is_country = event_target:kaiser_system_demand_target
-								}
-							}
-						}
-						random_neighbor_system = {
-							limit = {
-								NOT = { has_star_flag = kaiser_demands_system } #Not already demanded
-								is_capital_system = no  #Can't demand if its a capital
-								exists = owner
-								owner = {
-									giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
-									NOR = {
-										is_at_war_with = event_target:flusion_primitives_country #Not at war
-										is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
-										has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
-										has_country_flag = recent_kaiser_demand #short cd
-									}
-									has_country_flag = kaiser_demand_target #Same guy as before
-									is_country = event_target:kaiser_system_demand_target
-								}
-							}
-							save_global_event_target_as = kaiser_system_4 #Fourth system demanded
-							set_star_flag = kaiser_demands_system
-							calculate_system_value_kaiser = yes
-							event_target:flusion_primitives_country = {
-								set_variable = {
-									which = "kaiser_system_demanded"
-									value = 4
-								}
-							}
-						}
-					}
-				}
-				else = {
-					clear_kaiser_demanded_systems = yes
-				}
-			}
-			40 = {}
-		}
-		random_list = { #5th system
-			60 = {
-				modifier = {
-					factor = 0.2
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_elated = yes
-					}
-				}
-				modifier = {
-					factor = 0.4
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_very_friendly = yes
-					}
-				}
-				modifier = {
-					factor = 0.6
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_friendly = yes
-					}
-				}
-				modifier = {
-					factor = 0.8
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_cordial = yes
-					}
-				}
-				modifier = {
-					factor = 1.2
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_terse = yes
-					}
-				}
-				modifier = {
-					factor = 1.4
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_displeased = yes
-					}
-				}
-				modifier = {
-					factor = 1.6
-					exists = event_target:kaiser_system_demand_target
-					event_target:kaiser_system_demand_target = {
-						kaiser_opinion_range_angered = yes
-					}
-				}
-				if = { #Check if Kaiser did find a fourth suitable system
-					limit = {
-						event_target:flusion_primitives_country = {
-							check_variable = {
-								which = "kaiser_system_demanded"
-								value = 4
-							}
-						}
-					}
-					random_system = { #Attempt to find a fifth one neighboring any demanded systems
-						limit = {
-							OR = {
-								has_star_flag = kaiser_demands_system
-								has_star_flag = kaiser_demands_system_root
-							}
-							any_neighbor_system = {
-								NOT = { has_star_flag = kaiser_demands_system } #Not already demanded
-								is_capital_system = no  #Can't demand if its a capital
-								exists = owner
-								owner = {
-									giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
-									NOR = {
-										is_at_war_with = event_target:flusion_primitives_country #Not at war
-										is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
-										has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
-										has_country_flag = recent_kaiser_demand #short cd
-										katzen_vassal = yes
-									}
-									has_country_flag = kaiser_demand_target #Same guy as before
-									is_country = event_target:kaiser_system_demand_target
-								}
-							}
-						}
-						random_neighbor_system = {
-							limit = {
-								NOT = { has_star_flag = kaiser_demands_system } #Not already demanded
-								is_capital_system = no  #Can't demand if its a capital
-								owner = {
-									giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
-									NOR = {
-										is_at_war_with = event_target:flusion_primitives_country #Not at war
-										is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
-										has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
-										has_country_flag = recent_kaiser_demand #short cd
-										katzen_vassal = yes
-									}
-									has_country_flag = kaiser_demand_target #Same guy as before
-									is_country = event_target:kaiser_system_demand_target
-								}
-							}
-							save_global_event_target_as = kaiser_system_5 #Fifth system demanded
-							set_star_flag = kaiser_demands_system
-							calculate_system_value_kaiser = yes
-							event_target:flusion_primitives_country = {
-								set_variable = {
-									which = "kaiser_system_demanded"
-									value = 5
-								}
-							}
-						}
-					}
-				}
-				else = {
-					clear_kaiser_demanded_systems = yes
-				}
-			}
-			40 = {}
-		}
+		country_event = { id = giga_katzen.041 days = 330 random = 60 } #Kaiser demands stuff again in about a year
+		#country_event = { id = giga_katzen.041 days = 180 random = 60 } #Kaiser tries again in only 8 months if no eligible land grabs #TODO this alternate interval needs to be reworked due to the katzen_reformation_active check
 		if = {
 			limit = {
-				any_system = {
-					has_star_flag = kaiser_demands_system
-				}
+				katzen_reformation_active = no #don't demand land during reformation
 			}
-			#Calculate how many alloys Kaiser will give.
-			country_event = { id = giga_katzen.041 days = 330 random = 60 } #Kaiser demands stuff again in about a year
-			calculate_system_trade_offer_from_kaiser = yes
-			if = { #send the actual demand
+			every_country = {
 				limit = {
-					event_target:kaiser_system_demand_target = {
-						OR = {
-							is_subject = no
-							AND = {
-								is_subject = yes
-								is_ai = yes
-								overlord = {
-									is_ai = yes
-								}
-							}
-							AND = {
-								is_subject = yes
-								is_ai = no
-							}
-						}
-					}
+					has_country_flag = kaiser_demand_target
 				}
-				event_target:kaiser_system_demand_target = {
-					country_event = { id = giga_katzen.042 }
-				}
-			}
-			else_if = {
-				limit = {
-					event_target:kaiser_system_demand_target = {
-						is_subject = yes
-						is_ai = yes
-						overlord = {
-							is_ai = no
-						}
-					}
-				}
-				event_target:kaiser_system_demand_target = {
-					overlord = {
-						country_event = { id = giga_katzen.042 }
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOT = { any_system = { has_star_flag = kaiser_demands_system } }
+				remove_country_flag = kaiser_demand_target
 			}
 			every_system = { #REMOVE FLAGS
 				limit = { has_star_flag = kaiser_demands_system }
@@ -8419,13 +7980,486 @@ country_event = {
 				limit = { has_star_flag = kaiser_demands_system_root }
 				remove_star_flag = kaiser_demands_system_root
 			}
-			every_country = {
-				limit = {
-					has_country_flag = kaiser_demand_target
-				}
-				remove_country_flag = kaiser_demand_target
+			set_variable = { #Reset the value of the Kaiser's deal to 0
+				which = "kaiser_trade_value"
+				value = 0
 			}
-			country_event = { id = giga_katzen.041 days = 180 random = 60 } #Kaiser tries again in only 8 months if no eligible land grabs
+			set_variable = {
+				which = "kaiser_system_demanded"
+				value = 0
+			}
+			every_system_within_border = { #Attempt to locate a suitable system to demand :KaiserWoke:
+				random_neighbor_system = {
+					limit = {
+						is_capital_system = no #Can't demand if its a capital
+						exists = owner #can't demand unowned systems from you
+						owner = {
+							giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
+							NOR = {
+								is_at_war_with = event_target:flusion_primitives_country #Not at war
+								has_country_flag = allied_to_kaiser
+								has_country_flag = recent_kaiser_demand #short cd
+								has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
+								has_country_flag = kaiser_demand_target #kaiser isn't currently demanding stuff
+								katzen_vassal = yes
+								AND = { #don't demand from friendly AI
+									is_ai = yes
+									OR = {
+										kaiser_opinion_range_elated = yes
+										kaiser_opinion_range_very_friendly = yes
+										kaiser_opinion_range_friendly = yes
+									}
+								}
+								AND = { #don't demand from subjects of FTO members
+									is_subject = yes
+									overlord = {
+										has_country_flag = allied_to_kaiser
+									}
+								}
+								AND = {
+									is_subject = yes
+									is_at_war = yes
+								}
+							}
+						}
+					}
+					save_global_event_target_as = kaiser_system_1 #First system demanded
+					set_star_flag = kaiser_demands_system
+					calculate_system_value_kaiser = yes
+					owner = {
+						set_country_flag = kaiser_demand_target
+						save_event_target_as = kaiser_system_demand_target
+					}
+					event_target:flusion_primitives_country = {
+						set_variable = {
+							which = "kaiser_system_demanded"
+							value = 1
+						}
+					}
+					random_neighbor_system = {
+						limit = {
+							owner = { is_country_type = katzenartig_imperium } #The root system
+						}
+						save_global_event_target_as = kaiser_system_0
+						set_star_flag = kaiser_demands_system_root
+					}
+				}
+			}
+			if = { #Check if Kaiser did find a suitable system
+				limit = {
+					check_variable = {
+						which = "kaiser_system_demanded"
+						value = 1
+					}
+				}
+				random_system = { #Attempt to find a second one neighboring the first one, and calculate the deal's total value
+					limit = {
+						has_star_flag = kaiser_demands_system
+					}
+					random_neighbor_system = {
+						limit = {
+							is_capital_system = no #Can't demand if its a capital
+							exists = owner #can't demand unowned systems from you
+							owner = {
+								giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
+								NOR = {
+									is_at_war_with = event_target:flusion_primitives_country #Not at war
+									has_country_flag = allied_to_kaiser #Not allied (kaiser isn't THAT cocky)
+									has_country_flag = recent_kaiser_demand #short cd
+									has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
+									katzen_vassal = yes
+								}
+								has_country_flag = kaiser_demand_target #Same guy as before
+								is_country = event_target:kaiser_system_demand_target
+							}
+						}
+						save_global_event_target_as = kaiser_system_2 #Second system demanded
+						set_star_flag = kaiser_demands_system
+						calculate_system_value_kaiser = yes
+						event_target:flusion_primitives_country = {
+							set_variable = {
+								which = "kaiser_system_demanded"
+								value = 2
+							}
+						}
+					}
+				}
+			}
+			else = {
+				clear_kaiser_demanded_systems = yes
+			}
+			if = { #3rd system
+				limit = {
+					check_variable = {
+						which = "kaiser_system_demanded"
+						value = 2
+					}
+				}
+				random_system = { #Attempt to find a third one neighboring either demanded systems OR the root
+					limit = {
+						OR = {
+							has_star_flag = kaiser_demands_system
+							has_star_flag = kaiser_demands_system_root
+						}
+						any_neighbor_system = {
+							NOT = { has_star_flag = kaiser_demands_system} #Not already demanded
+							is_capital_system = no #Can't demand if its a capital
+							exists = owner #can't demand unowned systems from you
+							owner = {
+								giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
+								NOR = {
+									is_at_war_with = event_target:flusion_primitives_country #Not at war
+									is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
+									has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
+									has_country_flag = recent_kaiser_demand #short cd
+									katzen_vassal = yes
+								}
+								has_country_flag = kaiser_demand_target #Same guy as before
+								is_country = event_target:kaiser_system_demand_target
+							}
+						}
+					}
+					random_neighbor_system = {
+						limit = {
+							NOT = { has_star_flag = kaiser_demands_system} #Not already demanded
+							is_capital_system = no #Can't demand if its a capital
+							exists = owner
+							owner = {
+								giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
+								NOR = {
+									is_at_war_with = event_target:flusion_primitives_country #Not at war
+									is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
+									has_country_flag = recent_kaiser_demand #short cd
+									has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
+									katzen_vassal = yes
+								}
+								has_country_flag = kaiser_demand_target #Same guy as before
+								is_country = event_target:kaiser_system_demand_target
+							}
+						}
+						save_global_event_target_as = kaiser_system_3 #Third system demanded
+						set_star_flag = kaiser_demands_system
+						calculate_system_value_kaiser = yes
+						event_target:flusion_primitives_country = {
+							set_variable = {
+								which = "kaiser_system_demanded"
+								value = 3
+							}
+						}
+					}
+				}
+			}
+			else = {
+				clear_kaiser_demanded_systems = yes
+			}
+			random_list = {
+				#Kaiser will always demand at least 3 systems, with diminishing chances of 4 and 5.
+				#A more pissed Kaiser is more likely to demand extra!
+				#On the other hand, a friendly Kaiser will generally ask for less.
+				60 = {
+					modifier = {
+						factor = 0.2
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_elated = yes
+						}
+					}
+					modifier = {
+						factor = 0.4
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_very_friendly = yes
+						}
+					}
+					modifier = {
+						factor = 0.6
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_friendly = yes
+						}
+					}
+					modifier = {
+						factor = 0.8
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_cordial = yes
+						}
+					}
+					modifier = {
+						factor = 1.2
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_terse = yes
+						}
+					}
+					modifier = {
+						factor = 1.4
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_displeased = yes
+						}
+					}
+					modifier = {
+						factor = 1.6
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_angered = yes
+						}
+					}
+					if = { #Check if Kaiser did find a third suitable system
+						limit = {
+							event_target:flusion_primitives_country = {
+								check_variable = {
+									which = "kaiser_system_demanded"
+									value = 3
+								}
+							}
+						}
+						random_system = { #Attempt to find a fourth one neighboring any demanded systems
+							limit = {
+								OR = {
+									has_star_flag = kaiser_demands_system
+									has_star_flag = kaiser_demands_system_root
+								}
+								any_neighbor_system = {
+									NOT = { has_star_flag = kaiser_demands_system} #Not already demanded
+									is_capital_system = no #Can't demand if its a capital
+									exists = owner
+									owner = {
+										giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
+										NOR = {
+											is_at_war_with = event_target:flusion_primitives_country #Not at war
+											is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
+											has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
+											has_country_flag = recent_kaiser_demand #short cd
+											katzen_vassal = yes
+										}
+										has_country_flag = kaiser_demand_target #Same guy as before
+										is_country = event_target:kaiser_system_demand_target
+									}
+								}
+							}
+							random_neighbor_system = {
+								limit = {
+									NOT = { has_star_flag = kaiser_demands_system } #Not already demanded
+									is_capital_system = no  #Can't demand if its a capital
+									exists = owner
+									owner = {
+										giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
+										NOR = {
+											is_at_war_with = event_target:flusion_primitives_country #Not at war
+											is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
+											has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
+											has_country_flag = recent_kaiser_demand #short cd
+										}
+										has_country_flag = kaiser_demand_target #Same guy as before
+										is_country = event_target:kaiser_system_demand_target
+									}
+								}
+								save_global_event_target_as = kaiser_system_4 #Fourth system demanded
+								set_star_flag = kaiser_demands_system
+								calculate_system_value_kaiser = yes
+								event_target:flusion_primitives_country = {
+									set_variable = {
+										which = "kaiser_system_demanded"
+										value = 4
+									}
+								}
+							}
+						}
+					}
+					else = {
+						clear_kaiser_demanded_systems = yes
+					}
+				}
+				40 = {}
+			}
+			random_list = { #5th system
+				60 = {
+					modifier = {
+						factor = 0.2
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_elated = yes
+						}
+					}
+					modifier = {
+						factor = 0.4
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_very_friendly = yes
+						}
+					}
+					modifier = {
+						factor = 0.6
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_friendly = yes
+						}
+					}
+					modifier = {
+						factor = 0.8
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_cordial = yes
+						}
+					}
+					modifier = {
+						factor = 1.2
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_terse = yes
+						}
+					}
+					modifier = {
+						factor = 1.4
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_displeased = yes
+						}
+					}
+					modifier = {
+						factor = 1.6
+						exists = event_target:kaiser_system_demand_target
+						event_target:kaiser_system_demand_target = {
+							kaiser_opinion_range_angered = yes
+						}
+					}
+					if = { #Check if Kaiser did find a fourth suitable system
+						limit = {
+							event_target:flusion_primitives_country = {
+								check_variable = {
+									which = "kaiser_system_demanded"
+									value = 4
+								}
+							}
+						}
+						random_system = { #Attempt to find a fifth one neighboring any demanded systems
+							limit = {
+								OR = {
+									has_star_flag = kaiser_demands_system
+									has_star_flag = kaiser_demands_system_root
+								}
+								any_neighbor_system = {
+									NOT = { has_star_flag = kaiser_demands_system } #Not already demanded
+									is_capital_system = no  #Can't demand if its a capital
+									exists = owner
+									owner = {
+										giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
+										NOR = {
+											is_at_war_with = event_target:flusion_primitives_country #Not at war
+											is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
+											has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
+											has_country_flag = recent_kaiser_demand #short cd
+											katzen_vassal = yes
+										}
+										has_country_flag = kaiser_demand_target #Same guy as before
+										is_country = event_target:kaiser_system_demand_target
+									}
+								}
+							}
+							random_neighbor_system = {
+								limit = {
+									NOT = { has_star_flag = kaiser_demands_system } #Not already demanded
+									is_capital_system = no  #Can't demand if its a capital
+									owner = {
+										giga_is_standard_country_type = yes #Only demand from regular empires (kaiser isn't suicidal)
+										NOR = {
+											is_at_war_with = event_target:flusion_primitives_country #Not at war
+											is_in_federation_with = event_target:flusion_primitives_country #Not allied (kaiser isn't THAT cocky)
+											has_country_flag = recently_gave_kaiser_land #didn't already give land to the Kaiser
+											has_country_flag = recent_kaiser_demand #short cd
+											katzen_vassal = yes
+										}
+										has_country_flag = kaiser_demand_target #Same guy as before
+										is_country = event_target:kaiser_system_demand_target
+									}
+								}
+								save_global_event_target_as = kaiser_system_5 #Fifth system demanded
+								set_star_flag = kaiser_demands_system
+								calculate_system_value_kaiser = yes
+								event_target:flusion_primitives_country = {
+									set_variable = {
+										which = "kaiser_system_demanded"
+										value = 5
+									}
+								}
+							}
+						}
+					}
+					else = {
+						clear_kaiser_demanded_systems = yes
+					}
+				}
+				40 = {}
+			}
+			if = {
+				limit = {
+					any_system = {
+						has_star_flag = kaiser_demands_system
+					}
+				}
+				#Calculate how many alloys Kaiser will give.
+				calculate_system_trade_offer_from_kaiser = yes
+				if = { #send the actual demand
+					limit = {
+						event_target:kaiser_system_demand_target = {
+							OR = {
+								is_subject = no
+								AND = {
+									is_subject = yes
+									is_ai = yes
+									overlord = {
+										is_ai = yes
+									}
+								}
+								AND = {
+									is_subject = yes
+									is_ai = no
+								}
+							}
+						}
+					}
+					event_target:kaiser_system_demand_target = {
+						country_event = { id = giga_katzen.042 }
+					}
+				}
+				else_if = {
+					limit = {
+						event_target:kaiser_system_demand_target = {
+							is_subject = yes
+							is_ai = yes
+							overlord = {
+								is_ai = no
+							}
+						}
+					}
+					event_target:kaiser_system_demand_target = {
+						overlord = {
+							country_event = { id = giga_katzen.042 }
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = { any_system = { has_star_flag = kaiser_demands_system } }
+				}
+				every_system = { #REMOVE FLAGS
+					limit = { has_star_flag = kaiser_demands_system }
+					remove_star_flag = kaiser_demands_system
+				}
+				every_system = {
+					limit = { has_star_flag = kaiser_demands_system_root }
+					remove_star_flag = kaiser_demands_system_root
+				}
+				every_country = {
+					limit = {
+						has_country_flag = kaiser_demand_target
+					}
+					remove_country_flag = kaiser_demand_target
+				}
+			}
 		}
 	}
 }
@@ -16264,6 +16298,52 @@ country_event = {
 	desc = "giga_katzen.7001.desc"
 	location = event_target:gigaflusion
 
+	show_sound = event_radio_chatter
+	picture = GFX_evt_partition
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = galcom_kaiser_crusade }
+		NOT = { has_global_flag = giga_storming_pyramid }
+	}
+
+	option = {
+		name = giga_katzen.7001.a
+	}
+
+	option = {
+		name = giga_katzen.7001.b
+		custom_tooltip = giga_katzen.020.peace.tooltip
+		hidden_effect = {
+			hidden_effect = {
+				while = { count = 2 increase_kaiser_opinion = yes }
+				random_war = { #Status quo
+					limit = {
+						any_war_participant = {
+							is_country_type = katzenartig_imperium
+						}
+						any_war_participant = {
+							is_country = ROOT
+						}
+					}
+					every_war_participant = {
+						limit = { NOT = { is_country = ROOT } }
+						while = { count = 3 increase_kaiser_opinion = yes }
+					}
+					end_war_effect = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = giga_katzen.7002
+	title = "giga_katzen.7002.name"
+	desc = "giga_katzen.7002.desc"
+	location = event_target:gigaflusion
+
 	show_sound = event_administrative_work
 	picture = GFX_evt_news_room
 
@@ -16273,21 +16353,22 @@ country_event = {
 		trigger = {
 			katzen_vassal = no
 		}
-		name = giga_katzen.7001.a
+		name = giga_katzen.7002.a
+		custom_tooltip = giga_katzen.7002.a.tooltip
 	}
 
 	option = {
 		trigger = {
 			katzen_vassal = yes
 		}
-		name = giga_katzen.7001.b
+		name = giga_katzen.7002.b
 	}
 
 	option = {
 		trigger = {
 			katzen_vassal = yes
 		}
-		name = giga_katzen.7001.c
+		name = giga_katzen.7002.c
 	}
 }
 
