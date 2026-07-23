@@ -391,7 +391,7 @@ planet_event = {
 				name = "Kaiser Kattail"
 				immortal = yes
 				effect = {
-					save_global_event_target_as = kaiser_kattail
+					set_leader_flag = kaiser_kattail
 				}
 			}
 			set_leader = last_created_leader
@@ -2759,10 +2759,8 @@ country_event = { #hello
 			event_target:flusion_primitives_country = {
 				every_owned_fleet = {
 					limit = {
-						exists = solar_system # Mid transit between stars should not be relocated
-						solar_system = {
-							exists = space_owner
-							space_owner = { is_country = ROOT }
+						solar_system? = { # Mid transit between stars should not be relocated
+							space_owner? = { is_country = ROOT }
 						}
 					}
 					set_location = event_target:gigaflusion
@@ -6222,6 +6220,8 @@ country_event = { #Manage war forges and the Kaiser's eco
 			every_country = {
 				limit = { is_ai = no }
 				country_event = { id = giga_katzen.7000 } #notify of strategic shift
+				country_event = { id = giga_katzen.7002 days = 270 random = 90 } #Reformation formally begins
+				country_event = { id = giga_katzen.7001 days = 90 random = 90 } #Katzens offer peace in any ongoing war
 			}
 			country_event = { id = giga_katzen.7010 days = 720 random = 720 } #roll for Instability
 		}
@@ -16275,6 +16275,7 @@ country_event = {
 			katzen_vassal = no
 		}
 		name = giga_katzen.7000.a
+		custom_tooltip = giga_katzen.7000.a.tooltip
 	}
 
 	option = {
@@ -16303,9 +16304,17 @@ country_event = {
 
 	is_triggered_only = yes
 
-	trigger = {
+	trigger = { #any player who has the authority to end a war against the Kaiser
 		NOT = { has_global_flag = galcom_kaiser_crusade }
 		NOT = { has_global_flag = giga_storming_pyramid }
+		katzen_vassal = no
+		NOT = { has_country_flag = allied_to_kaiser }
+		any_war = {
+			root = { is_war_leader = yes }
+			any_war_participant = {
+				is_country_type = katzenartig_imperium
+			}
+		}
 	}
 
 	option = {
@@ -16316,23 +16325,21 @@ country_event = {
 		name = giga_katzen.7001.b
 		custom_tooltip = giga_katzen.020.peace.tooltip
 		hidden_effect = {
-			hidden_effect = {
-				while = { count = 2 increase_kaiser_opinion = yes }
-				random_war = { #Status quo
-					limit = {
-						any_war_participant = {
-							is_country_type = katzenartig_imperium
-						}
-						any_war_participant = {
-							is_country = ROOT
-						}
+			while = { count = 2 increase_kaiser_opinion = yes }
+			random_war = { #Status quo
+				limit = {
+					any_war_participant = {
+						is_country_type = katzenartig_imperium
 					}
-					every_war_participant = {
-						limit = { NOT = { is_country = ROOT } }
-						while = { count = 3 increase_kaiser_opinion = yes }
+					any_war_participant = {
+						is_country = ROOT
 					}
-					end_war_effect = yes
 				}
+				every_war_participant = {
+					limit = { NOT = { is_country = ROOT } }
+					while = { count = 3 increase_kaiser_opinion = yes }
+				}
+				end_war_effect = yes
 			}
 		}
 	}
@@ -16354,7 +16361,6 @@ country_event = {
 			katzen_vassal = no
 		}
 		name = giga_katzen.7002.a
-		custom_tooltip = giga_katzen.7002.a.tooltip
 	}
 
 	option = {
