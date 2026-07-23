@@ -1880,6 +1880,9 @@ count_katzen_planets_and_systems = {
 			value = 0
 		}
 		every_owned_planet = { #count katzen planets
+			limit = {
+				NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+			}
 			event_target:flusion_primitives_country = {
 				change_variable = {
 					which = "katzen_total_planet_count"
@@ -1925,6 +1928,7 @@ count_katzen_planets_and_systems_sans_flusiosector = {
 						}
 					}
 				}
+				NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 			}
 			event_target:flusion_primitives_country = {
 				change_variable = {

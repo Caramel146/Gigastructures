@@ -2,6 +2,7 @@
  giga_katzen.7000.name:0 "Strategic Shifts on Flusion"
  giga_katzen.7000.desc:0 "Recent reports from the Katzenartig Imperium all suggest that a strategic and political shift is underway. The Kaiser seems to believe that Flusion's rule has expanded far enough for the time being, and is ordering his aides to draft an array of plans for substantial administrative restructuring.\n\nWhile we shouldn't expect anything like a renunciation of Katzen militarism, it seems a respite is on the horizon for free nations on the Imperium's borders - and a tighter grip is closing for those who are already under the Kaiser's thumb.\n\nPractically, this means the Kaiser is seeking to wind down ongoing conflicts in the coming years, and will reign in his relentless expansionism. We should review the galactic situation with our new intel in case this provides any opportunities."
  giga_katzen.7000.a:0 "Very welcome news."
+ giga_katzen.7000.a.tooltip:0 "The Katzens are too preoccupied to give external diplomacy as much attention, §Rhalving§! the likelihood of §YKatzen Attachés§! increasing opinion during the §BKatzen Reformation§!."
  giga_katzen.7000.b:0 "An opportunity to grow closer to Flusion?"
  giga_katzen.7000.c:0 "We're running out of time to escape Flusion's control..."
 
@@ -13,7 +14,6 @@
  giga_katzen.7002.name:0 "Katzenartig Reformation Begins"
  giga_katzen.7002.desc:0 "Increasingly public information from the Katzenartig Imperium confirms that the Kaiser has gone ahead with his once-clandestine reformation plans. According to our best intel, we should expect the Kaiser to spend upwards of two decades occupied with enacting a range of far-reaching administrative reforms designed to consolidate Flusion's local and imperial authority.\n\nReform is, of course, risky business, with programs such as accelerating Katzenification and reshuffling regional political privileges particularly likely to cause backlash. Whether the Kaiser can come out of this era with his reign strengthened will depend heavily on whether his citizens and subordinates feel he has fulfilled his promises..."
  giga_katzen.7002.a:0 "Let's hope they stay this way..."
- giga_katzen.7002.a.tooltip:0 "The Katzens are too preoccupied to give external diplomacy as much attention, §Rhalving§! the likelihood of §YKatzen Attachés§! increasing opinion during the §BKatzen Reformation§!."
  giga_katzen.7002.b:0 "Order and we will obey."
  giga_katzen.7002.c:0 "We can only hope it all unravels."
 
@@ -26,6 +26,8 @@
  giga_katzen.7012.c.tooltip:0 "§YSupporting or opposing the Kaiser will affect his chances of maintaining power.§!"
  giga_katzen.7012.d:0 "This may be our last chance for rebellion!"
  giga_katzen.7012.d.tooltip:0 "$giga_katzen.0033.a.tooltip$\n\n$giga_katzen.7012.c.tooltip$"
+ giga_katzen.7012.e:0 "We'll overthrow the Kaiser from within!"
+ giga_katzen.7012.e.tooltip:0 "$giga_katzen.0033.a.tooltip$\n\n$giga_katzen.7012.c.tooltip$"
 
  giga_katzen.7013.name:0 "Kaiser Maintains Power"
  giga_katzen.7013.desc:0 "Recent unrest in the Katzenartig Imperium has wound down, with the Kaiser's grip on power emerging tested yet unbroken. Through an uncannily lucky series of apparent gambles on when to make concessions and when to crack down brutally, the Kaiserist regime successfully neutralised most flashpoint issues.\n\nThough this episode has dealt a hefty blow to the Kaiser's quasi-divine image, the Katzenartig Imperium appears to be back on track with its reforms, albeit behind schedule."
@@ -54,7 +56,7 @@
  giga_katzen.7021.whatareyou.response:0 "We, the [GigaFlusionProvisionalGovernmentName], continue to run the direct successors of the Katzenartig Imperium's institutions. Our mandate is to ensure the ongoing civil war doesn't wreck our civilisation's capital here on Flusion."
  giga_katzen.7021.howalive:0 "How did the [GigaFlusionProvisionalGovernmentName] come to be?"
  giga_katzen.7021.howalive.loris.response:0 "We barely rode out the chaos in the days after the Kaiser disappeared, but Loris von Kattensbach is widely respected by Flusion's diverse races, and by treating them well he's kept us all from turning on one another."
- giga_katzen.7021.howalive.douclaw.response:0 "Things were grim when the Kaiser disappeared, but I gained plenty of experience by his side, and that came in handy. I quickly gathered loyal officers, and we moved in to hold things together."
+ giga_katzen.7021.howalive.douclaw.response:0 "Things were grim when the Kaiser disappeared, but I gained plenty of experience by his side, and that came in handy. I quickly gathered fellow officers who recognised the name Douclaw MacCathur as a loyal aide of the Kaiser, and we moved in to hold things together."
  giga_katzen.7021.futureplans:0 "What do you intend to do?"
  giga_katzen.7021.futureplans.response:0 "When the civil war is resolved, we'll begin the process of reunification. Flusion will be transferred from the custodianship of our stable institutions to the incoming leadership - with our advice, of course."
  giga_katzen.7021.whoseside:0 " Whose side are you on in the civil war?"
@@ -75,10 +77,10 @@
  giga_katzen.7021.war.c:0 "From Projekt Mondkanone to fighting you, nothing brings Flusionians together like a common threat."
  giga_katzen.7021.diplowar:0 "§RYou've clung on to Flusion long enough!§!"
  giga_katzen.7021.diplowar.response:0 "If we must... Come at us!"
- giga_katzen.7021.diplowar.tooltip:0 "We will §Rdeclare war§! on the [GigaFlusionProvisionalGovernmentName]. They will accept peace at any time."
+ giga_katzen.7021.diplowar.tooltip:0 "We will §Rdeclare war§! on the §Y[GigaFlusionProvisionalGovernmentName]§!. They will accept peace at any time."
  giga_katzen.7021.diplopeace:0 "§BLet's end this fighting, Flusionians.§!"
  giga_katzen.7021.diplopeace.response:0 "Excellent. An end to this pointless bickering."
- giga_katzen.7021.diplopeace.tooltip:0 "We will §Bend the war§! with the [GigaFlusionProvisionalGovernmentName]. All current borders will be kept."
+ giga_katzen.7021.diplopeace.tooltip:0 "We will §Bend the war§! with the §Y[GigaFlusionProvisionalGovernmentName]§!. All current borders will be kept."
 
  giga_katzencollapse_age:0 "Collapsed Age"
  giga_katzencollapse_age_desc:0 "This civilization has lost much of its technology in a catastrophic collapse. Various warlord factions still control advanced pre-Collapse technology, but the planetary technological and industrial base is shattered. Wracked by infighting over what's left, the planet's inhabitants may continue to decline in the coming era."
@@ -87,5 +89,11 @@
  col_giga_pre_ftl_katzencollapse_desc:0 "$giga_katzencollapse_age_desc$"
  col_giga_pre_ftl_katzencollapse_tt:0 "$col_giga_pre_ftl_katzencollapse_desc$"
 
+ KATZEN_COUNTRY_PROVISIONAL:0 "Katzen Rump State"
+ KATZEN_COUNTRY_PROVISIONAL_DESC:0 "The [GigaFlusionProvisionalGovernmentName] is a heavily-armed sector centralised around Flusion, committed to maintaining stability in their territory."
+
  flusion_consolidation_instability:0 "Reformation Woes"
  flusion_consolidation_instability_desc:0 "Dissatisfied with the Kaiser's broken promises, the population is agitating for change."
+
+ katzen_splinter_starter_boost:0 "Nationbuilding Spirit"
+ katzen_civil_war_navy_boost:0 "Civilwarpilled navymaxxing"

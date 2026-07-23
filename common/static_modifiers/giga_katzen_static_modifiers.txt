@@ -274,3 +274,14 @@ sudden_flusion_rebellion = {
 solakian_ability_morale_debuff = {
 	army_damage_mult = -0.075
 }
+
+katzen_splinter_starter_boost = {
+	country_leader_pool_size = 5
+	country_naval_cap_mult = 1
+	country_starbase_capacity_mult = 0.5
+	planet_building_build_speed_mult = 1
+}
+
+katzen_civil_war_navy_boost = {
+	ships_upkeep_mult = -0.5
+}

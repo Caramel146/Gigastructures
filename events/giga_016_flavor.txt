@@ -676,6 +676,21 @@ country_event = {
 						has_country_flag = katzen_civil_war_socialist
 					}
 				}
+				if = { #integrate Flusionian Provisional Gov if it exists
+					limit = {
+						has_global_flag = katzen_civil_war_reformation_version
+					}
+					set_global_flag = flusion_provisional_gov_integrated
+					event_target:flusion_primitives_country = {
+						every_owned_fleet = {    set_owner = event_target:katzen_civil_war_socialist }
+						every_owned_leader = {    set_owner = event_target:katzen_civil_war_socialist }
+						every_owned_army = {    set_owner = event_target:katzen_civil_war_socialist }
+						every_owned_planet = {    set_owner = event_target:katzen_civil_war_socialist }
+					}
+					event_target:gigaflusion = {
+						set_capital = yes
+					}
+				}
 				every_country = {
 					limit = { is_ai = no }
 					country_event = { id = giga_katcivilwar.1012 }
@@ -691,6 +706,7 @@ country_event = {
 						modifier = pangalactic_federation
 					}
 					force_add_civic = civic_reunited_imperium_socialist
+					remove_modifier = katzen_civil_war_navy_boost
 					change_country_flag = {
 						icon={
 							category="flusionian"
@@ -736,6 +752,21 @@ country_event = {
 						has_country_flag = katzen_civil_war_republic
 					}
 				}
+				if = { #integrate Flusionian Provisional Gov if it exists
+					limit = {
+						has_global_flag = katzen_civil_war_reformation_version
+					}
+					set_global_flag = flusion_provisional_gov_integrated
+					event_target:flusion_primitives_country = {
+						every_owned_fleet = {    set_owner = event_target:katzen_civil_war_republic }
+						every_owned_leader = {    set_owner = event_target:katzen_civil_war_republic }
+						every_owned_army = {    set_owner = event_target:katzen_civil_war_republic }
+						every_owned_planet = {    set_owner = event_target:katzen_civil_war_republic }
+					}
+					event_target:gigaflusion = {
+						set_capital = yes
+					}
+				}
 				every_country = {
 					limit = { is_ai = no }
 					country_event = { id = giga_katcivilwar.1013 }
@@ -751,6 +782,7 @@ country_event = {
 						modifier = pangalactic_federation
 					}
 					force_add_civic = civic_reunited_imperium_republic
+					remove_modifier = katzen_civil_war_navy_boost
 					change_country_flag = {
 						icon={
 							category="flusionian"
@@ -773,6 +805,21 @@ country_event = {
 				limit = {
 					any_country = { #elwin won (oh no)
 						has_country_flag = katzen_civil_war_junta
+					}
+				}
+				if = { #integrate Flusionian Provisional Gov if it exists
+					limit = {
+						has_global_flag = katzen_civil_war_reformation_version
+					}
+					set_global_flag = flusion_provisional_gov_integrated
+					event_target:flusion_primitives_country = {
+						every_owned_fleet = {    set_owner = event_target:katzen_civil_war_junta }
+						every_owned_leader = {    set_owner = event_target:katzen_civil_war_junta }
+						every_owned_army = {    set_owner = event_target:katzen_civil_war_junta }
+						every_owned_planet = {    set_owner = event_target:katzen_civil_war_junta }
+					}
+					event_target:gigaflusion = {
+						set_capital = yes
 					}
 				}
 				every_country = {
@@ -810,6 +857,7 @@ country_event = {
 						}
 					}
 					force_add_civic = civic_reunited_imperium_junta
+					remove_modifier = katzen_civil_war_navy_boost
 					change_country_flag = {
 						icon={
 							category="flusionian"
@@ -854,20 +902,24 @@ country_event = {
 						has_country_flag = katzen_civil_war_realm
 					}
 				}
-				if = {
+				if = { #integrate Flusionian Provisional Gov if it exists
 					limit = {
 						has_global_flag = katzen_civil_war_reformation_version
 					}
-					every_country = {
-						limit = { is_ai = no }
-						country_event = { id = giga_katcivilwar.1015 }
+					set_global_flag = flusion_provisional_gov_integrated
+					event_target:flusion_primitives_country = {
+						every_owned_fleet = {    set_owner = event_target:katzen_civil_war_realm }
+						every_owned_leader = {    set_owner = event_target:katzen_civil_war_realm }
+						every_owned_army = {    set_owner = event_target:katzen_civil_war_realm }
+						every_owned_planet = {    set_owner = event_target:katzen_civil_war_realm }
+					}
+					event_target:gigaflusion = {
+						set_capital = yes
 					}
 				}
-				else = {
-					every_country = {
-						limit = { is_ai = no }
-						country_event = { id = giga_katcivilwar.1015 }
-					}
+				every_country = {
+					limit = { is_ai = no }
+					country_event = { id = giga_katcivilwar.1015 }
 				}
 				event_target:katzen_civil_war_realm = {
 					set_name = "Katzenländer"
@@ -880,6 +932,7 @@ country_event = {
 						modifier = pangalactic_federation
 					}
 					force_add_civic = civic_reunited_imperium_realm
+					remove_modifier = katzen_civil_war_navy_boost
 					change_country_flag = {
 						icon={
 							category="flusionian"
@@ -905,7 +958,24 @@ country_event = {
 country_event = {
 	id = giga_katcivilwar.1012
 	title = "giga_katcivilwar.1012.name"
-	desc = "giga_katcivilwar.1012.desc"
+	desc = {
+		text = "giga_katcivilwar.1012.desc"
+		trigger = { NOT = { has_global_flag = flusion_provisional_gov_integrated } }
+	}
+	desc = {
+		text = "giga_katcivilwar.1012.annexflusion.loris.desc"
+		trigger = {
+			has_global_flag = flusion_provisional_gov_integrated
+			has_global_flag = flusion_provisional_gov_loris
+		}
+	}
+	desc = {
+		text = "giga_katcivilwar.1012.annexflusion.douclaw.desc"
+		trigger = {
+			has_global_flag = flusion_provisional_gov_integrated
+			has_global_flag = flusion_provisional_gov_douclaw
+		}
+	}
 
 	picture = GFX_evt_alien_propaganda
 	show_sound = event_celebration
@@ -932,7 +1002,24 @@ country_event = {
 country_event = {
 	id = giga_katcivilwar.1013
 	title = "giga_katcivilwar.1013.name"
-	desc = "giga_katcivilwar.1013.desc"
+	desc = {
+		text = "giga_katcivilwar.1013.desc"
+		trigger = { NOT = { has_global_flag = flusion_provisional_gov_integrated } }
+	}
+	desc = {
+		text = "giga_katcivilwar.1013.annexflusion.loris.desc"
+		trigger = {
+			has_global_flag = flusion_provisional_gov_integrated
+			has_global_flag = flusion_provisional_gov_loris
+		}
+	}
+	desc = {
+		text = "giga_katcivilwar.1013.annexflusion.douclaw.desc"
+		trigger = {
+			has_global_flag = flusion_provisional_gov_integrated
+			has_global_flag = flusion_provisional_gov_douclaw
+		}
+	}
 
 	picture = GFX_evt_voting
 	show_sound = event_celebration
@@ -961,7 +1048,24 @@ country_event = {
 country_event = {
 	id = giga_katcivilwar.1014
 	title = "giga_katcivilwar.1014.name"
-	desc = "giga_katcivilwar.1014.desc"
+	desc = {
+		text = "giga_katcivilwar.1014.desc"
+		trigger = { NOT = { has_global_flag = flusion_provisional_gov_integrated } }
+	}
+	desc = {
+		text = "giga_katcivilwar.1014.annexflusion.loris.desc"
+		trigger = {
+			has_global_flag = flusion_provisional_gov_integrated
+			has_global_flag = flusion_provisional_gov_loris
+		}
+	}
+	desc = {
+		text = "giga_katcivilwar.1014.annexflusion.douclaw.desc"
+		trigger = {
+			has_global_flag = flusion_provisional_gov_integrated
+			has_global_flag = flusion_provisional_gov_douclaw
+		}
+	}
 
 	picture = GFX_evt_victorious_army
 	show_sound = event_celebration
@@ -996,7 +1100,24 @@ country_event = {
 country_event = {
 	id = giga_katcivilwar.1015
 	title = "giga_katcivilwar.1015.name"
-	desc = "giga_katcivilwar.1015.desc"
+	desc = {
+		text = "giga_katcivilwar.1015.desc"
+		trigger = { NOT = { has_global_flag = flusion_provisional_gov_integrated } }
+	}
+	desc = {
+		text = "giga_katcivilwar.1015.annexflusion.loris.desc"
+		trigger = {
+			has_global_flag = flusion_provisional_gov_integrated
+			has_global_flag = flusion_provisional_gov_loris
+		}
+	}
+	desc = {
+		text = "giga_katcivilwar.1015.annexflusion.douclaw.desc"
+		trigger = {
+			has_global_flag = flusion_provisional_gov_integrated
+			has_global_flag = flusion_provisional_gov_douclaw
+		}
+	}
 
 	picture = GFX_evt_diplomatic_visit
 	show_sound = event_celebration
