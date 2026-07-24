@@ -18,6 +18,7 @@ create_katzen_socialist = {
 		civics = {
 			civic = civic_shared_burden
 			civic = civic_citizen_service
+			#later adds civic_crusader_spirit
 		}
 		flag = {
 			icon={
@@ -43,6 +44,7 @@ create_katzen_socialist = {
 				species = event_target:flusion_katzens
 				name = "Meowkhail Katlinin"
 				gender = male
+				background_ethic = ethic_militarist
 				skill = 5
 				traits = {
 					trait = katzen_trait_elite
@@ -59,7 +61,7 @@ create_katzen_socialist = {
 			apply_katzen_difficulty = yes
 			add_modifier = { #mixed boosts to help transition from abstract to actual economy
 				modifier = katzen_splinter_starter_boost
-				years = 5
+				years = 10
 			}
 			add_modifier = { #halves ship upkeep until Civil War ends to increase DRAMA (and help them not go broke instantly)
 				modifier = katzen_civil_war_navy_boost
@@ -72,6 +74,7 @@ create_katzen_socialist = {
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
 			}
+			force_add_civic = civic_crusader_spirit #add third civic now that we have the third civic tech
 		}
 	}
 	set_owner = event_target:katzen_civil_war_socialist
@@ -110,8 +113,7 @@ create_katzen_socialist = {
 				species = event_target:flusion_katzens
 				size = 200
 			}
-			add_building = building_factory_1 #the Kaiser may not need consumer goods but splinters do...
-		}	
+		}
 		add_resource = {
 			minerals = 100000
 			alloys = 20000
@@ -155,6 +157,7 @@ create_katzen_republic = {
 		civics = {
 			civic = civic_free_haven
 			civic = civic_beacon_of_liberty
+			#later adds civic_diplomatic_corps
 		}
 		flag = {
 			icon={
@@ -180,6 +183,7 @@ create_katzen_republic = {
 				species = event_target:flusion_katzens
 				name = "Kibbles"
 				gender = male
+				background_ethic = ethic_egalitarian
 				skill = 4
 				traits = {
 					trait = katzen_trait_elite
@@ -196,7 +200,7 @@ create_katzen_republic = {
 			apply_katzen_difficulty = yes
 			add_modifier = { #mixed boosts to help transition from abstract to actual economy
 				modifier = katzen_splinter_starter_boost
-				years = 5
+				years = 10
 			}
 			add_modifier = { #halves ship upkeep until Civil War ends to increase DRAMA (and help them not go broke instantly)
 				modifier = katzen_civil_war_navy_boost
@@ -209,6 +213,7 @@ create_katzen_republic = {
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
 			}
+			force_add_civic = civic_diplomatic_corps #add third civic now that we have the third civic tech
 		}
 	}
 	set_owner = event_target:katzen_civil_war_republic
@@ -247,7 +252,6 @@ create_katzen_republic = {
 				species = event_target:flusion_katzens
 				size = 200
 			}
-			add_building = building_factory_1 #the Kaiser may not need consumer goods but splinters do...
 		}
 		add_resource = {
 			minerals = 100000
@@ -292,6 +296,7 @@ create_katzen_realm = {
 		civics = {
 			civic = civic_environmentalist
 			civic = civic_agrarian_idyll
+			#later adds civic_ascensionists
 		}
 		flag = {
 			icon={
@@ -317,6 +322,7 @@ create_katzen_realm = {
 				species = event_target:flusion_katzens
 				name = "Kitti Luft"
 				gender = female
+				background_ethic = ethic_pacifist
 				skill = 4
 				traits = {
 					trait = katzen_trait_elite
@@ -333,7 +339,7 @@ create_katzen_realm = {
 			apply_katzen_difficulty = yes
 			add_modifier = { #mixed boosts to help transition from abstract to actual economy
 				modifier = katzen_splinter_starter_boost
-				years = 5
+				years = 10
 			}
 			add_modifier = { #halves ship upkeep until Civil War ends to increase DRAMA (and help them not go broke instantly)
 				modifier = katzen_civil_war_navy_boost
@@ -346,6 +352,7 @@ create_katzen_realm = {
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
 			}
+			force_add_civic = civic_ascensionists #add third civic now that we have the third civic tech
 		}
 	}
 	set_owner = event_target:katzen_civil_war_realm
@@ -384,7 +391,6 @@ create_katzen_realm = {
 				species = event_target:flusion_katzens
 				size = 200
 			}
-			add_building = building_factory_1 #the Kaiser may not need consumer goods but splinters do...
 		}
 		add_resource = {
 			minerals = 100000
@@ -419,7 +425,7 @@ create_katzen_junta = {
 	create_country = {
 		species = event_target:flusion_katzens
 		name = "Katzen Militärjunta"
-		authority = auth_imperial
+		authority = auth_dictatorial
 		ethos = {
 			ethic = ethic_authoritarian
 			ethic = ethic_xenophobe
@@ -429,6 +435,7 @@ create_katzen_junta = {
 		civics = {
 			civic = civic_nationalistic_zeal
 			civic = civic_corvee_system
+			#later adds civic_merchant_guilds
 		}
 		flag = {
 			icon={
@@ -454,6 +461,7 @@ create_katzen_junta = {
 				species = event_target:flusion_katzens
 				name = "Elwin"
 				gender = female
+				background_ethic = ethic_xenophobe
 				skill = 5
 				traits = {
 					trait = katzen_trait_elite
@@ -470,7 +478,7 @@ create_katzen_junta = {
 			apply_katzen_difficulty = yes
 			add_modifier = { #mixed boosts to help transition from abstract to actual economy
 				modifier = katzen_splinter_starter_boost
-				years = 5
+				years = 10
 			}
 			add_modifier = { #halves ship upkeep until Civil War ends to increase DRAMA (and help them not go broke instantly)
 				modifier = katzen_civil_war_navy_boost
@@ -483,6 +491,7 @@ create_katzen_junta = {
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
 			}
+			force_add_civic = civic_merchant_guilds #add third civic now that we have the third civic tech
 		}
 	}
 	set_owner = event_target:katzen_civil_war_junta
@@ -521,7 +530,6 @@ create_katzen_junta = {
 				species = event_target:flusion_katzens
 				size = 200
 			}
-			add_building = building_factory_1 #the Kaiser may not need consumer goods but splinters do...
 		}
 		add_resource = {
 			minerals = 100000
@@ -613,7 +621,7 @@ create_katzen_douclaw = {
 			apply_katzen_difficulty = yes
 			add_modifier = { #mixed boosts to help transition from abstract to actual economy
 				modifier = katzen_splinter_starter_boost
-				years = 5
+				years = 10
 			}
 			
 			every_country = {
@@ -660,7 +668,6 @@ create_katzen_douclaw = {
 				species = event_target:flusion_katzens
 				size = 200
 			}
-			add_building = building_factory_1 #the Kaiser may not need consumer goods but splinters do...
 		}
 		add_resource = {
 			minerals = 100000
@@ -780,7 +787,7 @@ create_katzen_loris = {
 			apply_katzen_difficulty = yes
 			add_modifier = { #mixed boosts to help transition from abstract to actual economy
 				modifier = katzen_splinter_starter_boost
-				years = 5
+				years = 10
 			}
 			
 			every_country = {
@@ -827,7 +834,6 @@ create_katzen_loris = {
 				species = event_target:flusion_katzens
 				size = 200
 			}
-			add_building = building_factory_1 #the Kaiser may not need consumer goods but splinters do...
 		}
 		add_resource = {
 			minerals = 100000
@@ -943,7 +949,7 @@ create_katzen_dietrich = {
 			apply_katzen_difficulty = yes
 			add_modifier = { #mixed boosts to help transition from abstract to actual economy
 				modifier = katzen_splinter_starter_boost
-				years = 5
+				years = 10
 			}
 			
 			every_country = {
@@ -990,7 +996,6 @@ create_katzen_dietrich = {
 				species = event_target:flusion_katzens
 				size = 200
 			}
-			add_building = building_factory_1 #the Kaiser may not need consumer goods but splinters do...
 		}
 		add_resource = {
 			minerals = 100000
@@ -1473,12 +1478,6 @@ collapse_test = {
 				unassign_leader = this
 			}
 		}
-		every_system_within_border = {
-			set_star_flag = former_katzen_system
-		}
-		every_owned_planet = {
-			set_planet_flag = former_katzen_planet
-		}
 		if = {
 			limit = { has_global_flag = generating_katzen_wormhole }
 			remove_global_flag = generating_katzen_wormhole
@@ -1921,6 +1920,14 @@ collapse_test = {
 							limit = { owner = { is_country_type = katzenartig_imperium } }
 							set_owner = event_target:katzen_civil_war_socialist
 						}
+						every_ship_in_system = {
+							limit = { is_ship_size = katzen_warforge_platform }
+							delete_ship = this
+						}
+						every_fleet_in_system = {
+							limit = { is_space_citadel_ship_size = yes }
+							set_owner = event_target:katzen_civil_war_socialist
+						}
 					}
 					else_if = {
 						limit = {
@@ -1939,6 +1946,14 @@ collapse_test = {
 						set_star_flag = katzen_junta_system
 						every_system_megastructure = {
 							limit = { owner = { is_country_type = katzenartig_imperium } }
+							set_owner = event_target:katzen_civil_war_junta
+						}
+						every_ship_in_system = {
+							limit = { is_ship_size = katzen_warforge_platform }
+							delete_ship = this
+						}
+						every_fleet_in_system = {
+							limit = { is_space_citadel_ship_size = yes }
 							set_owner = event_target:katzen_civil_war_junta
 						}
 					}
@@ -1961,6 +1976,14 @@ collapse_test = {
 							limit = { owner = { is_country_type = katzenartig_imperium } }
 							set_owner = event_target:katzen_civil_war_republic
 						}
+						every_ship_in_system = {
+							limit = { is_ship_size = katzen_warforge_platform }
+							delete_ship = this
+						}
+						every_fleet_in_system = {
+							limit = { is_space_citadel_ship_size = yes }
+							set_owner = event_target:katzen_civil_war_republic
+						}
 					}
 					else_if = {
 						limit = {
@@ -1981,6 +2004,14 @@ collapse_test = {
 							limit = { owner = { is_country_type = katzenartig_imperium } }
 							set_owner = event_target:katzen_civil_war_realm
 						}
+						every_ship_in_system = {
+							limit = { is_ship_size = katzen_warforge_platform }
+							delete_ship = this
+						}
+						every_fleet_in_system = {
+							limit = { is_space_citadel_ship_size = yes }
+							set_owner = event_target:katzen_civil_war_realm
+						}
 					}
 					else = {
 						random_list = {
@@ -1998,6 +2029,14 @@ collapse_test = {
 									limit = { owner = { is_country_type = katzenartig_imperium } }
 									set_owner = event_target:katzen_civil_war_socialist
 								}
+								every_ship_in_system = {
+									limit = { is_ship_size = katzen_warforge_platform }
+									delete_ship = this
+								}
+								every_fleet_in_system = {
+									limit = { is_space_citadel_ship_size = yes }
+									set_owner = event_target:katzen_civil_war_socialist
+								}
 							}
 							1 = {
 								starbase = { set_owner = event_target:katzen_civil_war_junta }
@@ -2011,6 +2050,14 @@ collapse_test = {
 								set_star_flag = katzen_junta_system
 								every_system_megastructure = {
 									limit = { owner = { is_country_type = katzenartig_imperium } }
+									set_owner = event_target:katzen_civil_war_junta
+								}
+								every_ship_in_system = {
+									limit = { is_ship_size = katzen_warforge_platform }
+									delete_ship = this
+								}
+								every_fleet_in_system = {
+									limit = { is_space_citadel_ship_size = yes }
 									set_owner = event_target:katzen_civil_war_junta
 								}
 							}
@@ -2028,6 +2075,14 @@ collapse_test = {
 									limit = { owner = { is_country_type = katzenartig_imperium } }
 									set_owner = event_target:katzen_civil_war_republic
 								}
+								every_ship_in_system = {
+									limit = { is_ship_size = katzen_warforge_platform }
+									delete_ship = this
+								}
+								every_fleet_in_system = {
+									limit = { is_space_citadel_ship_size = yes }
+									set_owner = event_target:katzen_civil_war_republic
+								}
 							}
 							1 = {
 								starbase = { set_owner = event_target:katzen_civil_war_realm }
@@ -2043,6 +2098,91 @@ collapse_test = {
 									limit = { owner = { is_country_type = katzenartig_imperium } }
 									set_owner = event_target:katzen_civil_war_realm
 								}
+								every_ship_in_system = {
+									limit = { is_ship_size = katzen_warforge_platform }
+									delete_ship = this
+								}
+								every_fleet_in_system = {
+									limit = { is_space_citadel_ship_size = yes }
+									set_owner = event_target:katzen_civil_war_realm
+								}
+							}
+						}
+					}
+				}
+			}
+
+			#jumpstart the shift from the Kaiser's fake economy to a real one
+			every_country = {
+				limit = {
+					has_country_flag = katzen_civil_war_faction
+				}
+				every_owned_planet = {
+					limit = {
+						has_carrier_flag = katzen_world_forge
+					}
+					switch = {
+						trigger = has_carrier_flag
+						katzen_habitat = {
+							add_zone = { district = district_hab_housing zone_slot = 2 zone = zone_factory replace = yes }
+							if = {
+								limit = { num_free_districts = { type = district_hab_mining value > 0 } }
+								add_district = district_hab_mining
+							}
+						}
+						katzen_ring_world = {
+							add_zone = { district = district_rw_city zone_slot = 2 zone = zone_factory replace = yes }
+						}
+						katzen_city_world = {
+							add_zone = { district = district_arcology_housing zone_slot = 2 zone = zone_factory replace = yes }
+						}
+						katzen_standard = {
+							add_zone = { district = district_city zone_slot = 2 zone = zone_factory replace = yes }
+							if = {
+								limit = { num_free_districts = { type = district_mining value > 0 } }
+								add_district = district_mining
+							}
+						}
+						katzen_volcanic = {
+							add_zone = { district = district_city zone_slot = 2 zone = zone_factory replace = yes }
+							if = {
+								limit = { num_free_districts = { type = district_melting value > 0 } }
+								add_district = district_melting
+							}
+						}
+					}
+				}
+				every_owned_planet = {
+					limit = {
+						has_carrier_flag = katzen_world_research
+					}
+					switch = {
+						trigger = has_carrier_flag
+						katzen_habitat = {
+							add_zone = { district = district_hab_housing zone_slot = 2 zone = zone_research_unity replace = yes }
+							if = {
+								limit = { num_free_districts = { type = district_hab_mining value > 0 } }
+								add_district = district_hab_mining
+							}
+						}
+						katzen_ring_world = {
+							add_zone = { district = district_rw_city zone_slot = 2 zone = zone_research_unity replace = yes }
+						}
+						katzen_city_world = {
+							add_zone = { district = district_arcology_housing zone_slot = 2 zone = zone_research_unity replace = yes }
+						}
+						katzen_standard = {
+							add_zone = { district = district_city zone_slot = 2 zone = zone_research_unity replace = yes }
+							if = {
+								limit = { num_free_districts = { type = district_mining value > 0 } }
+								add_district = district_mining
+							}
+						}
+						katzen_volcanic = {
+							add_zone = { district = district_city zone_slot = 2 zone = zone_research_unity replace = yes }
+							if = {
+								limit = { num_free_districts = { type = district_melting value > 0 } }
+								add_district = district_melting
 							}
 						}
 					}
@@ -2170,11 +2310,11 @@ collapse_test = {
 
 			set_global_flag = katzen_civil_war_reformation_version
 			event_target:global_event_country = {
-				country_event = { id = giga_katcivilwar.1000 }
+				country_event = { id = giga_katcivilwar.1000 } #begins Katzen Civil War
 			}
 		}
 
-		else = { #not enough space for Civil War (Reformation version), so the Imperium just explodes
+		else = { #not enough space for Civil War (Reformation version), so the Imperium just implodes
 			every_galaxy_planet = { #blow up Siegfreids
 				limit = { is_planet_class = pc_giga_siegfried_world }
 				if = {
@@ -2468,7 +2608,7 @@ collapse_test = {
 							}
 							set_owner = last_created_country
 							set_capital = yes
-							add_pre_ftl_buildings = yes
+							last_created_country = { add_pre_ftl_buildings = yes }
 
 							while = {
 								count = 4
