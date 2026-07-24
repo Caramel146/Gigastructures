@@ -630,6 +630,16 @@ spriteTypes = {
 		textureFile = gfx/interface/icons/megastructures/giga_wormhole.dds
 	}
 
+	# War forges
+	spriteType = {
+		name = GFX_katzen_forge_0_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/asteroid_industry_alloys.dds
+	}
+	spriteType = {
+		name = GFX_katzen_forge_1_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/asteroid_industry_alloys.dds
+	}
+
 	# primordial pillars
 	spriteType = {
 		name = GFX_ehof_pgate_unknown_outliner_icon

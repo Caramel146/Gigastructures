@@ -10940,12 +10940,6 @@ country_event = { #Collapse of Katzenartig
 				unassign_leader = this
 			}
 		}
-		every_system_within_border = {
-			set_star_flag = former_katzen_system
-		}
-		every_owned_planet = {
-			set_planet_flag = former_katzen_planet
-		}
 		event_target:global_event_country = {
 			random_list = {
 				50 = {
@@ -16570,12 +16564,6 @@ country_event = { #roll to restabilise or collapse during instability
 							unassign_leader = this
 						}
 					}
-					every_system_within_border = {
-						set_star_flag = former_katzen_system
-					}
-					every_owned_planet = {
-						set_planet_flag = former_katzen_planet
-					}
 					if = {
 						limit = { has_global_flag = generating_katzen_wormhole }
 						remove_global_flag = generating_katzen_wormhole
@@ -17118,7 +17106,10 @@ country_event = { #roll to restabilise or collapse during instability
 											chance = 50
 											giga_field_debris = yes
 										}
-										set_surveyed = { surveyed = yes surveyor = root }
+										every_country = {
+											limit = { has_communications = root }
+											prev = { set_surveyed = { surveyed = yes surveyor = prev } }
+										}
 									}
 									50 = { #return to the stone age
 										create_country = {
@@ -17144,7 +17135,7 @@ country_event = { #roll to restabilise or collapse during instability
 										}
 										set_owner = last_created_country
 										set_capital = yes
-										add_pre_ftl_buildings = yes
+										last_created_country = { add_pre_ftl_buildings = yes }
 
 										while = {
 											count = 4
@@ -17174,7 +17165,10 @@ country_event = { #roll to restabilise or collapse during instability
 											chance = 25
 											giga_field_debris = yes
 										}
-										set_surveyed = { surveyed = yes surveyor = root }
+										every_country = {
+											limit = { has_communications = root }
+											prev = { set_surveyed = { surveyed = yes surveyor = prev } }
+										}
 									}
 								}
 							}
@@ -17635,6 +17629,7 @@ country_event = { #hello
 				}
 				every_war_participant = {
 					limit = { NOT = { is_country = ROOT } }
+					while = { count = 3 increase_kaiser_opinion = yes }
 				}
 				end_war_effect = yes
 			}

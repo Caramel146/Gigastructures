@@ -41,7 +41,7 @@ decrease_kaiser_opinion = {
 		value = -20 #1 attitude range (roughly - indifferent is a double-span range)
 	}
 
-	else_if = {
+	if = { #must be if rather than elif because the block above runs first
 		limit = { kaiser_opinion_range_enraged = yes }
 		if = {
 			limit = { NOT = { has_country_flag = katzenartig_war_declaration_forbidden } } #flag is for ACE

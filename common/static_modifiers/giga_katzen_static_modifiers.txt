@@ -277,11 +277,14 @@ solakian_ability_morale_debuff = {
 
 katzen_splinter_starter_boost = {
 	country_leader_pool_size = 5
-	country_naval_cap_mult = 1
+	country_naval_cap_mult = 0.5
 	country_starbase_capacity_mult = 0.5
-	planet_building_build_speed_mult = 1
+	planet_building_build_speed_mult = 0.5
+	planet_pops_upkeep_mult = -0.25
+	planet_jobs_upkeep_mult = -0.25
 }
 
 katzen_civil_war_navy_boost = {
 	ships_upkeep_mult = -0.5
+	country_naval_cap_add = 1000
 }
