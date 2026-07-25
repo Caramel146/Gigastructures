@@ -1433,7 +1433,7 @@ giga_spawn_new_wrecked_titan = {
 	}
 }
 
-collapse_test = {
+katzen_reformation_collapse = {
 	event_target:flusion_primitives_country = {
 		set_update_modifiers_batch = begin
 		if = {
@@ -1551,7 +1551,22 @@ collapse_test = {
 			delete_megastructure = THIS
 		}
 		every_subject = {
+			limit = { is_ai = yes } #players get giga_katzen.7022 instead
 			katzen_free_protectorate = yes
+		}
+
+		#withdraw a portion of fleets (so the splinters don't take them) to defend Flusion and prevent splinter economic collapse from upkeep
+		every_owned_fleet = {
+			random = {
+				chance = 10
+				set_location = event_target:gigaflusion
+			}
+			if = { #take the OG Kaiser Moon back
+				limit = {
+					has_fleet_flag = kaiser_moon_fleet
+				}
+				set_location = event_target:gigaflusion
+			}
 		}
 
 		set_variable = { #count katzen systems, used to determine how the empire will collapse
@@ -1564,24 +1579,6 @@ collapse_test = {
 		}
 		count_katzen_planets_and_systems_sans_flusiosector = yes
 
-		#withdraw a portion of fleets (so the splinters don't take them) to defend Flusion and prevent splinter economic collapse from upkeep
-		every_owned_fleet = {
-			limit = {
-				solar_system? = { # Mid transit between stars should not be relocated
-					space_owner? = { is_country = ROOT }
-				}
-			}
-			random = {
-				chance = 10
-				set_location = event_target:gigaflusion
-			}
-			if = { #take the OG Kaiser Moon back
-				limit = {
-					has_fleet_flag = kaiser_moon_fleet
-				}
-				set_location = event_target:gigaflusion
-			}
-		}
 
 		if = { #Civil War between ideological splinters (modified Reformation version) if there are enough systems
 			limit = {
@@ -1912,6 +1909,7 @@ collapse_test = {
 			}
 
 			#divvy up leftover not-near-Flusion Katzenartig systems to splinters
+			#see comment on scripted effect - this weird setup is deliberate
 			while = {
 				limit = {
 					any_system_within_border = {
@@ -1923,224 +1921,7 @@ collapse_test = {
 						}
 					}
 				}
-				random_system_within_border = {
-					limit = {
-						NOR = {
-							has_star_flag = flusion_system
-							any_neighbor_system = {
-								has_star_flag = flusion_system
-							}
-						}
-					}
-					if = {
-						limit = {
-							any_neighbor_system = {
-								has_star_flag = katzen_socialist_system
-							}
-						}
-						starbase = { set_owner = event_target:katzen_civil_war_socialist }
-						every_system_planet_colony = {
-							limit = {
-								is_katzen_colony = yes
-								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
-							}
-							set_owner = event_target:katzen_civil_war_socialist
-						}
-						set_star_flag = katzen_socialist_system
-						every_system_megastructure = {
-							limit = { owner = { is_country_type = katzenartig_imperium } }
-							set_owner = event_target:katzen_civil_war_socialist
-						}
-						every_ship_in_system = {
-							limit = { is_ship_size = katzen_warforge_platform }
-							delete_ship = this
-						}
-						every_fleet_in_system = {
-							limit = { is_space_citadel_ship_size = yes }
-							set_owner = event_target:katzen_civil_war_socialist
-						}
-					}
-					else_if = {
-						limit = {
-							any_neighbor_system = {
-								has_star_flag = katzen_junta_system
-							}
-						}
-						starbase = { set_owner = event_target:katzen_civil_war_junta }
-						every_system_planet_colony = {
-							limit = {
-								is_katzen_colony = yes
-								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
-							}
-							set_owner = event_target:katzen_civil_war_junta
-						}
-						set_star_flag = katzen_junta_system
-						every_system_megastructure = {
-							limit = { owner = { is_country_type = katzenartig_imperium } }
-							set_owner = event_target:katzen_civil_war_junta
-						}
-						every_ship_in_system = {
-							limit = { is_ship_size = katzen_warforge_platform }
-							delete_ship = this
-						}
-						every_fleet_in_system = {
-							limit = { is_space_citadel_ship_size = yes }
-							set_owner = event_target:katzen_civil_war_junta
-						}
-					}
-					else_if = {
-						limit = {
-							any_neighbor_system = {
-								has_star_flag = katzen_republic_system
-							}
-						}
-						starbase = { set_owner = event_target:katzen_civil_war_republic }
-						every_system_planet_colony = {
-							limit = {
-								is_katzen_colony = yes
-								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
-							}
-							set_owner = event_target:katzen_civil_war_republic
-						}
-						set_star_flag = katzen_republic_system
-						every_system_megastructure = {
-							limit = { owner = { is_country_type = katzenartig_imperium } }
-							set_owner = event_target:katzen_civil_war_republic
-						}
-						every_ship_in_system = {
-							limit = { is_ship_size = katzen_warforge_platform }
-							delete_ship = this
-						}
-						every_fleet_in_system = {
-							limit = { is_space_citadel_ship_size = yes }
-							set_owner = event_target:katzen_civil_war_republic
-						}
-					}
-					else_if = {
-						limit = {
-							any_neighbor_system = {
-								has_star_flag = katzen_realm_system
-							}
-						}
-						starbase = { set_owner = event_target:katzen_civil_war_realm }
-						every_system_planet_colony = {
-							limit = {
-								is_katzen_colony = yes
-								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
-							}
-							set_owner = event_target:katzen_civil_war_realm
-						}
-						set_star_flag = katzen_realm_system
-						every_system_megastructure = {
-							limit = { owner = { is_country_type = katzenartig_imperium } }
-							set_owner = event_target:katzen_civil_war_realm
-						}
-						every_ship_in_system = {
-							limit = { is_ship_size = katzen_warforge_platform }
-							delete_ship = this
-						}
-						every_fleet_in_system = {
-							limit = { is_space_citadel_ship_size = yes }
-							set_owner = event_target:katzen_civil_war_realm
-						}
-					}
-					else = {
-						random_list = {
-							1 = {
-								starbase = { set_owner = event_target:katzen_civil_war_socialist }
-								every_system_planet_colony = {
-									limit = {
-										is_katzen_colony = yes
-										NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
-									}
-									set_owner = event_target:katzen_civil_war_socialist
-								}
-								set_star_flag = katzen_socialist_system
-								every_system_megastructure = {
-									limit = { owner = { is_country_type = katzenartig_imperium } }
-									set_owner = event_target:katzen_civil_war_socialist
-								}
-								every_ship_in_system = {
-									limit = { is_ship_size = katzen_warforge_platform }
-									delete_ship = this
-								}
-								every_fleet_in_system = {
-									limit = { is_space_citadel_ship_size = yes }
-									set_owner = event_target:katzen_civil_war_socialist
-								}
-							}
-							1 = {
-								starbase = { set_owner = event_target:katzen_civil_war_junta }
-								every_system_planet_colony = {
-									limit = {
-										is_katzen_colony = yes
-										NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
-									}
-									set_owner = event_target:katzen_civil_war_junta
-								}
-								set_star_flag = katzen_junta_system
-								every_system_megastructure = {
-									limit = { owner = { is_country_type = katzenartig_imperium } }
-									set_owner = event_target:katzen_civil_war_junta
-								}
-								every_ship_in_system = {
-									limit = { is_ship_size = katzen_warforge_platform }
-									delete_ship = this
-								}
-								every_fleet_in_system = {
-									limit = { is_space_citadel_ship_size = yes }
-									set_owner = event_target:katzen_civil_war_junta
-								}
-							}
-							1 = {
-								starbase = { set_owner = event_target:katzen_civil_war_republic }
-								every_system_planet_colony = {
-									limit = {
-										is_katzen_colony = yes
-										NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
-									}
-									set_owner = event_target:katzen_civil_war_republic
-								}
-								set_star_flag = katzen_republic_system
-								every_system_megastructure = {
-									limit = { owner = { is_country_type = katzenartig_imperium } }
-									set_owner = event_target:katzen_civil_war_republic
-								}
-								every_ship_in_system = {
-									limit = { is_ship_size = katzen_warforge_platform }
-									delete_ship = this
-								}
-								every_fleet_in_system = {
-									limit = { is_space_citadel_ship_size = yes }
-									set_owner = event_target:katzen_civil_war_republic
-								}
-							}
-							1 = {
-								starbase = { set_owner = event_target:katzen_civil_war_realm }
-								every_system_planet_colony = {
-									limit = {
-										is_katzen_colony = yes
-										NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
-									}
-									set_owner = event_target:katzen_civil_war_realm
-								}
-								set_star_flag = katzen_realm_system
-								every_system_megastructure = {
-									limit = { owner = { is_country_type = katzenartig_imperium } }
-									set_owner = event_target:katzen_civil_war_realm
-								}
-								every_ship_in_system = {
-									limit = { is_ship_size = katzen_warforge_platform }
-									delete_ship = this
-								}
-								every_fleet_in_system = {
-									limit = { is_space_citadel_ship_size = yes }
-									set_owner = event_target:katzen_civil_war_realm
-								}
-							}
-						}
-					}
-				}
+				katzen_splinter_system_division = yes
 			}
 
 			#jumpstart the shift from the Kaiser's fake economy to a real one
@@ -2251,11 +2032,6 @@ collapse_test = {
 
 			#Return all Provisional Gov-owned fleets to Flusion
 			every_owned_fleet = {
-				limit = {
-					solar_system? = { # Mid transit between stars should not be relocated
-						space_owner? = { is_country = ROOT }
-					}
-				}
 				set_location = event_target:gigaflusion
 			}
 
@@ -2739,5 +2515,239 @@ collapse_test = {
 			}
 		}
 		set_update_modifiers_batch = end
+	}
+}
+
+#separate scripted effect to bypass the default 100-while-loop limit that can prevent a full partitioning of Katzen territory
+katzen_splinter_system_division = {
+	while = {
+		limit = {
+			any_system_within_border = {
+				NOR = {
+					has_star_flag = flusion_system
+					any_neighbor_system = {
+						has_star_flag = flusion_system
+					}
+				}
+			}
+		}
+		random_system_within_border = {
+			limit = {
+				NOR = {
+					has_star_flag = flusion_system
+					any_neighbor_system = {
+						has_star_flag = flusion_system
+					}
+				}
+			}
+			if = {
+				limit = {
+					any_neighbor_system = {
+						has_star_flag = katzen_socialist_system
+					}
+				}
+				starbase = { set_owner = event_target:katzen_civil_war_socialist }
+				every_system_planet_colony = {
+					limit = {
+						is_katzen_colony = yes
+						NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					}
+					set_owner = event_target:katzen_civil_war_socialist
+				}
+				set_star_flag = katzen_socialist_system
+				every_system_megastructure = {
+					limit = { owner = { is_country_type = katzenartig_imperium } }
+					set_owner = event_target:katzen_civil_war_socialist
+				}
+				every_ship_in_system = {
+					limit = { is_ship_size = katzen_warforge_platform }
+					delete_ship = this
+				}
+				every_fleet_in_system = {
+					limit = { is_space_citadel_ship_size = yes }
+					set_owner = event_target:katzen_civil_war_socialist
+				}
+			}
+			else_if = {
+				limit = {
+					any_neighbor_system = {
+						has_star_flag = katzen_junta_system
+					}
+				}
+				starbase = { set_owner = event_target:katzen_civil_war_junta }
+				every_system_planet_colony = {
+					limit = {
+						is_katzen_colony = yes
+						NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					}
+					set_owner = event_target:katzen_civil_war_junta
+				}
+				set_star_flag = katzen_junta_system
+				every_system_megastructure = {
+					limit = { owner = { is_country_type = katzenartig_imperium } }
+					set_owner = event_target:katzen_civil_war_junta
+				}
+				every_ship_in_system = {
+					limit = { is_ship_size = katzen_warforge_platform }
+					delete_ship = this
+				}
+				every_fleet_in_system = {
+					limit = { is_space_citadel_ship_size = yes }
+					set_owner = event_target:katzen_civil_war_junta
+				}
+			}
+			else_if = {
+				limit = {
+					any_neighbor_system = {
+						has_star_flag = katzen_republic_system
+					}
+				}
+				starbase = { set_owner = event_target:katzen_civil_war_republic }
+				every_system_planet_colony = {
+					limit = {
+						is_katzen_colony = yes
+						NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					}
+					set_owner = event_target:katzen_civil_war_republic
+				}
+				set_star_flag = katzen_republic_system
+				every_system_megastructure = {
+					limit = { owner = { is_country_type = katzenartig_imperium } }
+					set_owner = event_target:katzen_civil_war_republic
+				}
+				every_ship_in_system = {
+					limit = { is_ship_size = katzen_warforge_platform }
+					delete_ship = this
+				}
+				every_fleet_in_system = {
+					limit = { is_space_citadel_ship_size = yes }
+					set_owner = event_target:katzen_civil_war_republic
+				}
+			}
+			else_if = {
+				limit = {
+					any_neighbor_system = {
+						has_star_flag = katzen_realm_system
+					}
+				}
+				starbase = { set_owner = event_target:katzen_civil_war_realm }
+				every_system_planet_colony = {
+					limit = {
+						is_katzen_colony = yes
+						NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					}
+					set_owner = event_target:katzen_civil_war_realm
+				}
+				set_star_flag = katzen_realm_system
+				every_system_megastructure = {
+					limit = { owner = { is_country_type = katzenartig_imperium } }
+					set_owner = event_target:katzen_civil_war_realm
+				}
+				every_ship_in_system = {
+					limit = { is_ship_size = katzen_warforge_platform }
+					delete_ship = this
+				}
+				every_fleet_in_system = {
+					limit = { is_space_citadel_ship_size = yes }
+					set_owner = event_target:katzen_civil_war_realm
+				}
+			}
+			else = {
+				random_list = {
+					1 = {
+						starbase = { set_owner = event_target:katzen_civil_war_socialist }
+						every_system_planet_colony = {
+							limit = {
+								is_katzen_colony = yes
+								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+							}
+							set_owner = event_target:katzen_civil_war_socialist
+						}
+						set_star_flag = katzen_socialist_system
+						every_system_megastructure = {
+							limit = { owner = { is_country_type = katzenartig_imperium } }
+							set_owner = event_target:katzen_civil_war_socialist
+						}
+						every_ship_in_system = {
+							limit = { is_ship_size = katzen_warforge_platform }
+							delete_ship = this
+						}
+						every_fleet_in_system = {
+							limit = { is_space_citadel_ship_size = yes }
+							set_owner = event_target:katzen_civil_war_socialist
+						}
+					}
+					1 = {
+						starbase = { set_owner = event_target:katzen_civil_war_junta }
+						every_system_planet_colony = {
+							limit = {
+								is_katzen_colony = yes
+								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+							}
+							set_owner = event_target:katzen_civil_war_junta
+						}
+						set_star_flag = katzen_junta_system
+						every_system_megastructure = {
+							limit = { owner = { is_country_type = katzenartig_imperium } }
+							set_owner = event_target:katzen_civil_war_junta
+						}
+						every_ship_in_system = {
+							limit = { is_ship_size = katzen_warforge_platform }
+							delete_ship = this
+						}
+						every_fleet_in_system = {
+							limit = { is_space_citadel_ship_size = yes }
+							set_owner = event_target:katzen_civil_war_junta
+						}
+					}
+					1 = {
+						starbase = { set_owner = event_target:katzen_civil_war_republic }
+						every_system_planet_colony = {
+							limit = {
+								is_katzen_colony = yes
+								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+							}
+							set_owner = event_target:katzen_civil_war_republic
+						}
+						set_star_flag = katzen_republic_system
+						every_system_megastructure = {
+							limit = { owner = { is_country_type = katzenartig_imperium } }
+							set_owner = event_target:katzen_civil_war_republic
+						}
+						every_ship_in_system = {
+							limit = { is_ship_size = katzen_warforge_platform }
+							delete_ship = this
+						}
+						every_fleet_in_system = {
+							limit = { is_space_citadel_ship_size = yes }
+							set_owner = event_target:katzen_civil_war_republic
+						}
+					}
+					1 = {
+						starbase = { set_owner = event_target:katzen_civil_war_realm }
+						every_system_planet_colony = {
+							limit = {
+								is_katzen_colony = yes
+								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+							}
+							set_owner = event_target:katzen_civil_war_realm
+						}
+						set_star_flag = katzen_realm_system
+						every_system_megastructure = {
+							limit = { owner = { is_country_type = katzenartig_imperium } }
+							set_owner = event_target:katzen_civil_war_realm
+						}
+						every_ship_in_system = {
+							limit = { is_ship_size = katzen_warforge_platform }
+							delete_ship = this
+						}
+						every_fleet_in_system = {
+							limit = { is_space_citadel_ship_size = yes }
+							set_owner = event_target:katzen_civil_war_realm
+						}
+					}
+				}
+			}
+		}
 	}
 }

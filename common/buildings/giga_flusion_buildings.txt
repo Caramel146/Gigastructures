@@ -116,7 +116,7 @@ building_giga_flusion_capital = {
 		owner = {
 			NOR = {
 				is_country_type = primitive
-				is_country_type = katzenartig_imperium
+				katzen_country_type = yes
 				has_country_flag = hke_federated
 			}
 		}
@@ -148,7 +148,7 @@ building_giga_katzen_capital = {
 		exists = owner
 		owner = {
 			NOR = {
-				is_country_type = katzenartig_imperium
+				katzen_country_type = yes
 				has_country_flag = hke_federated
 				has_country_flag = katzen_civil_war_faction
 			}
