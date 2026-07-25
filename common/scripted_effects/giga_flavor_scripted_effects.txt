@@ -68,8 +68,12 @@ create_katzen_socialist = {
 				days = -1
 			}
 			
-			every_country = {
+			every_playable_country = {
 				establish_communications_no_message = event_target:katzen_civil_war_socialist
+				add_intel = {
+					amount = 40
+					who = event_target:katzen_civil_war_socialist
+				}
 			}
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
@@ -206,9 +210,13 @@ create_katzen_republic = {
 				modifier = katzen_civil_war_navy_boost
 				days = -1
 			}
-			
-			every_country = {
+
+			every_playable_country = {
 				establish_communications_no_message = event_target:katzen_civil_war_republic
+				add_intel = {
+					amount = 40
+					who = event_target:katzen_civil_war_republic
+				}
 			}
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
@@ -345,9 +353,13 @@ create_katzen_realm = {
 				modifier = katzen_civil_war_navy_boost
 				days = -1
 			}
-			
-			every_country = {
+
+			every_playable_country = {
 				establish_communications_no_message = event_target:katzen_civil_war_realm
+				add_intel = {
+					amount = 40
+					who = event_target:katzen_civil_war_realm
+				}
 			}
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
@@ -484,9 +496,13 @@ create_katzen_junta = {
 				modifier = katzen_civil_war_navy_boost
 				days = -1
 			}
-			
-			every_country = {
+
+			every_playable_country = {
 				establish_communications_no_message = event_target:katzen_civil_war_junta
+				add_intel = {
+					amount = 40
+					who = event_target:katzen_civil_war_junta
+				}
 			}
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
@@ -623,9 +639,13 @@ create_katzen_douclaw = {
 				modifier = katzen_splinter_starter_boost
 				years = 10
 			}
-			
-			every_country = {
+
+			every_playable_country = {
 				establish_communications_no_message = event_target:katzen_succession_douclaw
+				add_intel = {
+					amount = 40
+					who = event_target:katzen_succession_douclaw
+				}
 			}
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
@@ -737,6 +757,7 @@ create_katzen_loris = {
 				create_species = {
 					name = "Katzen"
 					plural = "Katzens"
+					adjective = "Katzen"
 					class = POUCHKINN
 					portrait = loris
 					homeworld = event_target:gigaflusion
@@ -789,9 +810,13 @@ create_katzen_loris = {
 				modifier = katzen_splinter_starter_boost
 				years = 10
 			}
-			
-			every_country = {
+
+			every_playable_country = {
 				establish_communications_no_message = event_target:katzen_succession_loris
+				add_intel = {
+					amount = 40
+					who = event_target:katzen_succession_loris
+				}
 			}
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
@@ -906,6 +931,7 @@ create_katzen_dietrich = {
 				create_species = {
 					name = "Katzen"
 					plural = "Katzens"
+					adjective = "Katzen"
 					class = POUCHKINN
 					portrait = dietrich
 					homeworld = event_target:gigaflusion
@@ -951,9 +977,13 @@ create_katzen_dietrich = {
 				modifier = katzen_splinter_starter_boost
 				years = 10
 			}
-			
-			every_country = {
+
+			every_playable_country = {
 				establish_communications_no_message = event_target:katzen_succession_dietrich
+				add_intel = {
+					amount = 40
+					who = event_target:katzen_succession_dietrich
+				}
 			}
 			copy_techs_from = {
 				target = event_target:flusion_primitives_country
@@ -1110,6 +1140,7 @@ setup_real_flusion_portraits = {
 			create_species = {
 				name = "Katzen"
 				plural = "Katzens"
+				adjective = "Katzen"
 				class = POUCHKINN
 				portrait = douclawreal
 				homeworld = THIS
@@ -2228,6 +2259,16 @@ collapse_test = {
 				set_location = event_target:gigaflusion
 			}
 
+			#Kickstart a population ethics shift so that Elwin doesn't embrace xenophilia again (okay this doesn't work but I hope it helps...)
+			# every_playable_country = {
+			# 	limit = { has_country_flag = katzen_civil_war_faction }
+			# 	every_owned_planet = {
+			# 		every_owned_pop_group = {
+			# 			force_faction_evaluation = yes
+			# 		}
+			# 	}
+			# }
+
 			event_target:gigaflusion = {
 				create_fleet = {
 					name = "Orbital Defence Platform"
@@ -2303,7 +2344,7 @@ collapse_test = {
 				}
 			}
 
-			every_country = {
+			every_playable_country = {
 				limit = { is_ai = no }
 				country_event = { id = giga_katzen.7020 } #inform that Imperium has fractured
 			}
@@ -2438,6 +2479,8 @@ collapse_test = {
 
 					giga_field_debris = yes
 
+					set_carrier_flag = katzen_collapsed_primitive_planet
+
 					create_fleet = {
 						name = "Orbital Defence Platform"
 						effect = {
@@ -2512,10 +2555,6 @@ collapse_test = {
 					}
 				}
 				else = {
-					last_created_country = {
-						set_country_flag = planetary_computer_rogue_ai_country
-						save_global_event_target_as = planetary_computer_rogue_ai_country
-					}
 					random_list = {
 						50 = { #wipe the colony
 							every_owned_pop_group = { kill_all_pop = yes }
@@ -2560,6 +2599,20 @@ collapse_test = {
 								chance = 50
 								giga_field_debris = yes
 							}
+							set_carrier_flag = katzen_collapsed_primitive_planet
+
+							every_country = {
+								limit = {
+									ehof_default_country = yes
+								}
+								prevprev = {
+									set_surveyed = {
+										surveyed = yes
+										surveyor = prev
+									}
+								}
+							}
+
 							random = {
 								chance = 50
 								create_fleet = {
@@ -2602,7 +2655,15 @@ collapse_test = {
 									set_country_flag = stone_age
 									set_pre_ftl_age = stone_age
 									every_country = {
-										establish_communications_no_message = prev
+										limit = {
+											ehof_default_country = yes
+										}
+										prevprev = {
+											set_surveyed = {
+												surveyed = yes
+												surveyor = prev
+											}
+										}
 									}
 								}
 							}
@@ -2638,6 +2699,7 @@ collapse_test = {
 								chance = 25
 								giga_field_debris = yes
 							}
+							set_carrier_flag = katzen_collapsed_primitive_planet
 							create_fleet = {
 								name = "Orbital Defence Platform"
 								effect = {
@@ -2656,6 +2718,18 @@ collapse_test = {
 								}
 							}
 						}
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					ehof_default_country = yes
+				}
+				every_galaxy_planet = {
+					limit = { has_carrier_flag = katzen_collapsed_primitive_planet }
+					set_surveyed = {
+						surveyed = yes
+						surveyor = prev
 					}
 				}
 			}

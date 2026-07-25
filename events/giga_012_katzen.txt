@@ -17547,8 +17547,25 @@ country_event = { #hello
 			declare_war = {
 				target = event_target:flusion_primitives_country
 				attacker_war_goal = "wg_katzen_defence"
-				name = "Katzenkrieg"
+				name = "Flusiokrieg"
 			}
+
+			#Bring all the surviving splinter states in to defend Flusion!
+			every_playable_country = {
+				limit = {
+					has_country_flag = katzen_civil_war_faction
+					NOT = { is_same_value = event_target:flusion_primitives_country }
+				}
+				declare_war = {
+					target = root
+					attacker_war_goal = "wg_katzen_conquest"
+					name = "Flusiokrieg Intervention"
+					effect = {
+						set_war_flag = katzen_flusiokrieg_intervention
+					}
+				}
+			}
+
 			every_country = {
 				limit = { is_in_federation_with = ROOT }
 				join_war = ROOT
@@ -17579,9 +17596,11 @@ country_event = { #hello
 						is_country = ROOT
 					}
 				}
-				every_war_participant = {
-					limit = { NOT = { is_country = ROOT } }
-					while = { count = 3 increase_kaiser_opinion = yes }
+				end_war_effect = yes
+			}
+			every_war = {
+				limit = {
+					has_war_flag = katzen_flusiokrieg_intervention
 				}
 				end_war_effect = yes
 			}
