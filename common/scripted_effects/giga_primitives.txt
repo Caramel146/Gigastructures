@@ -172,6 +172,7 @@ generate_flusion_primitives_on_planet = {
 	create_species = { #create Katzen species even if flusion_no_katzens in case someone wants to force-spawn them later
 		name = "Katzen"
 		plural = "Katzens"
+		adjective = "Katzen"
 		class = POUCHKINN
 		portrait = douclaw
 		homeworld = THIS
@@ -193,6 +194,7 @@ generate_flusion_primitives_on_planet = {
 	create_species = {
 		name = "Katzen"
 		plural = "Katzens"
+		adjective = "Katzen"
 		class = POUCHKINN
 		portrait = loris
 		namelist = MAM1
@@ -215,6 +217,7 @@ generate_flusion_primitives_on_planet = {
 	create_species = {
 		name = "Katzen"
 		plural = "Katzens"
+		adjective = "Katzen"
 		class = POUCHKINN
 		portrait = dietrich
 		namelist = MAM1
@@ -237,6 +240,7 @@ generate_flusion_primitives_on_planet = {
 	create_species = {
 		name = "Katzen"
 		plural = "Katzens"
+		adjective = "Katzen"
 		class = MAM
 		portrait = mam14
 		homeworld = THIS
@@ -286,11 +290,29 @@ generate_flusion_primitives_on_planet = {
 		}
 		type = primitive
 	}
+	create_country = {
+		name = "kaiserbleh"
+		type = giga_t2_tech_dump
+		effect = {
+			save_global_event_target_as = flusion_tech_dump_t2
+		}
+	}
+	create_country = {
+		name = "kaiserbluh"
+		type = giga_t3_tech_dump
+		effect = {
+			save_global_event_target_as = flusion_tech_dump_t3
+		}
+	}
 	last_created_country = {
 		set_graphical_culture = industrial_01
 		set_country_flag = flusion_primitives
 		save_global_event_target_as = flusion_primitives_country
+		copy_techs_from = { target = event_target:flusion_tech_dump_t2 }
+		copy_techs_from = { target = event_target:flusion_tech_dump_t3 }
 	}
+	event_target:flusion_tech_dump_t2 = { destroy_country = yes }
+	event_target:flusion_tech_dump_t3 = { destroy_country = yes }
 
 	remove_all_buildings = yes
 

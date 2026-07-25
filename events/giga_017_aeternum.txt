@@ -6633,6 +6633,7 @@ country_event = {
 				create_species = {
 					name = "Katzen"
 					plural = "Katzens"
+					adjective = "Katzen"
 					class = POUCHKINN
 					portrait = douclaw
 					homeworld = THIS

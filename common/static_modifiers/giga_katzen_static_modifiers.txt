@@ -287,4 +287,5 @@ katzen_splinter_starter_boost = {
 katzen_civil_war_navy_boost = {
 	ships_upkeep_mult = -0.5
 	country_naval_cap_add = 1000
+	pop_government_ethic_attraction = 1 #can Elwin stop turning xenophile and Kitti Luft stop becoming a warmonger please?
 }

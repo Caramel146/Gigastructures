@@ -651,6 +651,7 @@ pouchkinn_engine_2 = {
 			create_species = {
 				name = "Katzen"
 				plural = "Katzens"
+				adjective = "Katzen"
 				class = POUCHKINN
 				portrait = pouchkinnascended
 				traits = {
