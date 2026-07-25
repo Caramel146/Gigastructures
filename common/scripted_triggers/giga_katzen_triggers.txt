@@ -131,13 +131,13 @@ has_katzen_colony = {
 }
 
 is_katzen_colony = {
-	owner = { is_country_type = katzenartig_imperium }
+	owner = { katzen_country_type = yes }
 	is_colony = yes
 }
 
 katzen_jump_blocked_system = {
 	exists = owner
-	owner = { is_country_type = katzenartig_imperium }
+	owner = { katzen_country_type = yes }
 	any_system_planet = { #Must have a colony
 		is_katzen_colony = yes
 		has_carrier_flag = gigaflusion
@@ -329,4 +329,12 @@ kaiser_can_wardec = { #should be run in target country scope
 katzen_reformation_active = {
 	has_global_flag = katzen_reformation_begun
 	NOT = { has_global_flag = katzen_reformation_complete }
+}
+
+#NOTE: this should be used on a case-by-case basis alongside is_country_type katzenartig_imperium depending on whether the Provisional Government should be included
+katzen_country_type = {
+	OR = {
+		is_country_type = katzenartig_imperium
+		is_country_type = katzenartig_imperium_provisional
+	}
 }
