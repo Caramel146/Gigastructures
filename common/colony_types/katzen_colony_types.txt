@@ -5,7 +5,7 @@ col_katzen_capital = {
 	potential = {
 		has_carrier_flag = gigaflusion
 		owner? = {
-			is_country_type = katzenartig_imperium
+			katzen_country_type = yes
 		}
 	}
 
@@ -25,7 +25,7 @@ col_katzen_foundry = {
 	potential = {
 		has_carrier_flag = katzen_world_forge
 		owner? = {
-			is_country_type = katzenartig_imperium
+			katzen_country_type = yes
 		}
 	}
 
@@ -46,7 +46,7 @@ col_katzen_research = {
 	potential = {
 		has_carrier_flag = katzen_world_research
 		owner? = {
-			is_country_type = katzenartig_imperium
+			katzen_country_type = yes
 		}
 	}
 
@@ -67,7 +67,7 @@ col_katzen_fortress = {
 	potential = {
 		has_carrier_flag = katzen_world_fortress
 		owner? = {
-			is_country_type = katzenartig_imperium
+			katzen_country_type = yes
 		}
 	}
 

@@ -2758,11 +2758,6 @@ country_event = { #hello
 			}
 			event_target:flusion_primitives_country = {
 				every_owned_fleet = {
-					limit = {
-						solar_system? = { # Mid transit between stars should not be relocated
-							space_owner? = { is_country = ROOT }
-						}
-					}
 					set_location = event_target:gigaflusion
 				}
 			}
@@ -3047,10 +3042,7 @@ country_event = { #hello
 						has_modifier = fto_member_1
 					}
 				}
-				while = {
-					count = 4
-					decrease_kaiser_opinion = yes
-				}
+				while = { count = 4 decrease_kaiser_opinion = yes }
 			}
 			else_if = {
 				limit = {
@@ -3059,19 +3051,13 @@ country_event = { #hello
 						has_modifier = fto_member_3
 					}
 				}
-				while = {
-					count = 6
-					decrease_kaiser_opinion = yes
-				}
+				while = { count = 6 decrease_kaiser_opinion = yes }
 			}
 			else_if = {
 				limit = {
 					has_modifier = fto_member_4
 				}
-				while = {
-					count = 8
-					decrease_kaiser_opinion = yes
-				}
+				while = { count = 8 decrease_kaiser_opinion = yes }
 			}
 			if = {
 				limit = {
@@ -3846,9 +3832,7 @@ country_event = { #hmm yes give us ur anchorages i dont want to puppet you i swe
 		name = "giga_katzen.3010.b"
 		custom_tooltip = "giga_katzen.3010.b.tooltip"
 		hidden_effect = {
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
+			while = { count = 3 decrease_kaiser_opinion = yes }
 		}
 	}
 }
@@ -3892,10 +3876,7 @@ country_event = { #hmm yes give us ur anchorages
 		name = "giga_katzen.3011.b"
 		custom_tooltip = "giga_katzen.3011.b.tooltip"
 		hidden_effect = {
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
+			while = { count = 4 decrease_kaiser_opinion = yes }
 		}
 	}
 }
@@ -3971,11 +3952,7 @@ country_event = { #hmm yes give us ur anchorages
 			days = 360
 		}
 		hidden_effect = {
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
+			while = { count = 5 decrease_kaiser_opinion = yes }
 		}
 	}
 }
@@ -4091,12 +4068,7 @@ country_event = { #hmm yes give us ur anchorages
 		name = "giga_katzen.3013.b"
 		custom_tooltip = "giga_katzen.3013.b.tooltip"
 		hidden_effect = {
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
+			while = { count = 6 decrease_kaiser_opinion = yes }
 		}
 	}
 }
@@ -4133,15 +4105,7 @@ country_event = { #join us or die lol
 		hidden_effect = {
 			remove_country_flag = allied_to_kaiser
 			remove_fto_modifiers = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
+			while = { count = 9 decrease_kaiser_opinion = yes }
 		}
 	}
 
@@ -4252,9 +4216,7 @@ country_event = {
 			NOT = { has_ascension_perk = ap_enigmatic_engineering }
 		}
 		hidden_effect = {
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
+			while = { count = 3 decrease_kaiser_opinion = yes }
 		}
 	}
 
@@ -5205,8 +5167,7 @@ country_event = {
 		custom_tooltip = "giga_katzen.2004.b.tooltip"
 		response_text = "giga_katzen.2004.b.response"
 		hidden_effect = {
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
+			while = { count = 2 decrease_kaiser_opinion = yes }
 		}
 	}
 }
@@ -6931,8 +6892,7 @@ country_event = { #laurandar recognized
 		hidden_effect = {
 			if = {
 				limit = { is_ai = no }
-				decrease_kaiser_opinion = yes
-				decrease_kaiser_opinion = yes
+				while = { count = 2 decrease_kaiser_opinion = yes }
 			}
 		}
 	}
@@ -15344,8 +15304,7 @@ country_event = {
 		}
 		hidden_effect = {
 			set_country_flag = studied_katzen_subs
-			decrease_kaiser_opinion = yes
-			decrease_kaiser_opinion = yes
+			while = { count = 2 decrease_kaiser_opinion = yes }
 		}
 	}
 
@@ -16490,691 +16449,7 @@ country_event = { #roll to restabilise or collapse during instability
 			}
 			random_list = {
 				40 = { #Imperium collapses, Kaiser malds
-					set_update_modifiers_batch = begin
-					if = {
-						limit = { has_global_flag = giga_storming_pyramid_prep }
-						remove_global_flag = giga_storming_pyramid_prep
-					}
-					if = {
-						limit = { has_global_flag = giga_storming_pyramid }
-						remove_global_flag = giga_storming_pyramid
-					}
-					if = {
-						limit = { has_global_flag = giga_storming_pyramid_active }
-						remove_global_flag = giga_storming_pyramid_active
-					}
-					set_global_flag = katzenartig_imperium_defeated
-					if = {
-						limit = { NOT = { any_country = { is_country_type = katzenartig_imperium } } }
-						create_country = {
-							type = katzenartig_imperium_defeated
-							name = "Defeated Katzens"
-							effect = { save_global_event_target_as = flusion_primitives_country }
-						}
-					}
-					clear_flusion_ezic_sabotage_modifiers = yes
-					clear_flusion_katown_shield_modifiers = yes
-					if = { #all remaining Siegfrieds blow up
-						limit = {
-							any_galaxy_planet = { is_planet_class = pc_giga_siegfried_world }
-						}
-						event_target:global_event_country = {
-							country_event = { id = giga_katzen.123 days = 15 }
-						}
-					}
-					every_system = { #scuttle all submarines
-						every_ship_in_system = {
-							limit = {
-								OR = {
-									is_ship_size = giga_katzen_submarine
-									is_ship_size = giga_katzen_submarine_submerged
-								}
-							}
-							destroy_ship = THIS
-						}
-					}
-					if = {
-						limit = { exists = event_target:katzen_submarine_country }
-						event_target:katzen_submarine_country = { destroy_country = yes }
-					}
-					every_country = {
-						limit = { has_event_chain = "katzenartig_chain" }
-						end_event_chain = "katzenartig_chain"
-					}
-					every_country = {
-						limit = { has_modifier = galcom_mobilizes_against_kaiser }
-						remove_modifier = galcom_mobilizes_against_kaiser
-					}
-					if = {
-						limit = { has_global_flag = galcom_kaiser_crusade }
-						remove_global_flag = galcom_kaiser_crusade
-					}
-					every_playable_country = {
-						limit = { has_modifier = katzen_attache }
-						remove_modifier = katzen_attache
-					}
-					every_country = {
-						clear_contribute_ezic_modifiers = yes
-					}
-					if = {
-						limit = {
-							exists = event_target:flusion_douclaw
-						}
-						event_target:flusion_douclaw = {
-							unassign_leader = this
-						}
-					}
-					if = {
-						limit = { has_global_flag = generating_katzen_wormhole }
-						remove_global_flag = generating_katzen_wormhole
-					}
-					clear_global_event_target = katzen_wormhole_target
-					every_megastructure = {
-						limit = {
-							is_megastructure_type = katzen_ehof_wormhole
-						}
-						delete_megastructure = THIS
-					}
-					every_megastructure = { #Delete any in building kaiser moons in system with ONLY hostile ships
-						limit = {
-							is_megastructure_type = kaiser_moon_1
-							owner = { is_country_type = katzenartig_imperium }
-						}
-						delete_megastructure = THIS
-					}
-					every_megastructure = {
-						limit = {
-							OR = {
-								is_megastructure_type = kaiser_ehof_0
-								is_megastructure_type = kaiser_ehof_1
-							}
-						}
-						solar_system = {
-							star = {
-								giga_clear_has_mega_flag = { MEGA = prev }
-							}
-						}
-						delete_megastructure = THIS
-					}
-					every_subject = {
-						katzen_free_protectorate = yes
-					}
-
-					set_variable = { #count katzen systems, used to determine how the empire will collapse
-						which = "katzen_total_system_count"
-						value = 0
-					}
-					set_variable = { #count katzen planets, used to determine how the empire will collapse
-						which = "katzen_total_planet_count"
-						value = 0
-					}
-					count_katzen_planets_and_systems_sans_flusiosector = yes
-
-					if = { #Civil War between ideological splinters (modified Reformation version) if there are enough systems
-						limit = {
-							check_variable = {
-								which = katzen_total_planet_count #excludes planets in Jublio and direct neighbours
-								value >= 12 #at least three colonies for each splinter
-							}
-							check_variable = {
-								which = katzen_total_system_count #excludes Jublio and direct neighbours
-								value >= 20 #at least five systems for each splinter
-							}
-						}
-
-						#Spawn socialist splinter
-						random_owned_planet = { #designate one planet as the capital
-							limit = {
-								solar_system = {
-									NOR = {
-										has_star_flag = flusion_system
-										any_neighbor_system = {
-											has_star_flag = flusion_system
-										}
-									}
-								}
-							}
-							save_global_event_target_as = katzen_socialist_capital
-							solar_system = { set_star_flag = katzen_socialist_system }
-							#socialists gets 20% of the katzen empire
-							count_katzen_planets_and_systems_sans_flusiosector = yes
-							event_target:flusion_primitives_country = {
-								set_variable = {
-									which = "katzen_socialist_system_count"
-									value = 0
-								}
-								set_variable = {
-									which = "katzen_socialist_system_count"
-									value = "katzen_total_system_count"
-								}
-								divide_variable = {
-									which = "katzen_socialist_system_count"
-									value = 4
-								}
-								set_variable = {
-									which = "katzen_socialist_current_system_count"
-									value = 0
-								}
-							}
-							while = {
-								limit = { #stop when current socialist systems surpass 25% of katzen systems
-									event_target:flusion_primitives_country = {
-										check_variable = {
-											which = "katzen_socialist_current_system_count"
-											value < katzen_socialist_system_count
-										}
-									}
-								}
-								every_system = { #claim all neighbor systems
-									limit = { has_star_flag = katzen_socialist_system }
-									every_neighbor_system = {
-										limit = {
-											owner = { is_country_type = katzenartig_imperium }
-											NOR = {
-												has_star_flag = flusion_system
-												any_neighbor_system = {
-													has_star_flag = flusion_system
-												}
-												has_star_flag = katzen_socialist_system
-											}
-										}
-										set_star_flag = katzen_socialist_system
-									}
-								}
-								event_target:flusion_primitives_country = {
-									set_variable = {
-										which = "katzen_socialist_current_system_count"
-										value = 0
-									}
-								}
-								every_system = { #count current socialist systems
-									limit = { has_star_flag = katzen_socialist_system }
-									event_target:flusion_primitives_country = {
-										change_variable = {
-											which = "katzen_socialist_current_system_count"
-											value = 1
-										}
-									}
-								}
-							}
-							create_katzen_socialist = yes
-						}
-
-						#Spawn junta splinter
-						random_owned_planet = { #designate one planet as the capital
-							limit = {
-								solar_system = {
-									NOR = {
-										has_star_flag = flusion_system
-										any_neighbor_system = {
-											has_star_flag = flusion_system
-										}
-									}
-								}
-							}
-							save_global_event_target_as = katzen_junta_capital
-							solar_system = { set_star_flag = katzen_junta_system }
-							#junta gets 20% of the katzen empire
-							count_katzen_planets_and_systems_sans_flusiosector = yes
-							event_target:flusion_primitives_country = {
-								set_variable = {
-									which = "katzen_junta_system_count"
-									value = 0
-								}
-								set_variable = {
-									which = "katzen_junta_system_count"
-									value = "katzen_total_system_count"
-								}
-								divide_variable = {
-									which = "katzen_junta_system_count"
-									value = 4
-								}
-								set_variable = {
-									which = "katzen_junta_current_system_count"
-									value = 0
-								}
-							}
-							while = {
-								limit = { #stop when current junta systems surpass 25% of katzen systems
-									event_target:flusion_primitives_country = {
-										check_variable = {
-											which = "katzen_junta_current_system_count"
-											value < katzen_junta_system_count
-										}
-									}
-								}
-								every_system = { #claim all neighbor systems
-									limit = { has_star_flag = katzen_junta_system }
-									every_neighbor_system = {
-										limit = {
-											owner = { is_country_type = katzenartig_imperium }
-											NOR = {
-												has_star_flag = flusion_system
-												any_neighbor_system = {
-													has_star_flag = flusion_system
-												}
-												has_star_flag = katzen_junta_system
-											}
-										}
-										set_star_flag = katzen_junta_system
-									}
-								}
-								event_target:flusion_primitives_country = {
-									set_variable = {
-										which = "katzen_junta_current_system_count"
-										value = 0
-									}
-								}
-								every_system = { #count current junta systems
-									limit = { has_star_flag = katzen_junta_system }
-									event_target:flusion_primitives_country = {
-										change_variable = {
-											which = "katzen_junta_current_system_count"
-											value = 1
-										}
-									}
-								}
-							}
-							create_katzen_junta = yes
-						}
-
-						#Spawn republic splinter
-						random_owned_planet = { #designate one planet as the capital
-							limit = {
-								solar_system = {
-									NOR = {
-										has_star_flag = flusion_system
-										any_neighbor_system = {
-											has_star_flag = flusion_system
-										}
-									}
-								}
-							}
-							save_global_event_target_as = katzen_republic_capital
-							solar_system = { set_star_flag = katzen_republic_system }
-							#solakia gets 20% of the katzen empire
-							count_katzen_planets_and_systems_sans_flusiosector = yes
-							event_target:flusion_primitives_country = {
-								set_variable = {
-									which = "katzen_republic_system_count"
-									value = 0
-								}
-								set_variable = {
-									which = "katzen_republic_system_count"
-									value = "katzen_total_system_count"
-								}
-								divide_variable = {
-									which = "katzen_republic_system_count"
-									value = 4
-								}
-								set_variable = {
-									which = "katzen_republic_current_system_count"
-									value = 0
-								}
-							}
-							while = {
-								limit = { #stop when current socialist systems surpass 25% of katzen systems
-									event_target:flusion_primitives_country = {
-										check_variable = {
-											which = "katzen_republic_current_system_count"
-											value < katzen_republic_system_count
-										}
-									}
-								}
-								every_system = { #claim all neighbor systems
-									limit = { has_star_flag = katzen_republic_system }
-									every_neighbor_system = {
-										limit = {
-											owner = { is_country_type = katzenartig_imperium }
-											NOR = {
-												has_star_flag = flusion_system
-												any_neighbor_system = {
-													has_star_flag = flusion_system
-												}
-												has_star_flag = katzen_republic_system
-											}
-										}
-										set_star_flag = katzen_republic_system
-									}
-								}
-								event_target:flusion_primitives_country = {
-									set_variable = {
-										which = "katzen_republic_current_system_count"
-										value = 0
-									}
-								}
-								every_system = { #count current republic systems
-									limit = { has_star_flag = katzen_republic_system }
-									event_target:flusion_primitives_country = {
-										change_variable = {
-											which = "katzen_republic_current_system_count"
-											value = 1
-										}
-									}
-								}
-							}
-							create_katzen_republic = yes
-						}
-
-						#Spawn realm splinter
-						random_owned_planet = { #designate one planet as the capital
-							limit = {
-								solar_system = {
-									NOR = {
-										has_star_flag = flusion_system
-										any_neighbor_system = {
-											has_star_flag = flusion_system
-										}
-									}
-								}
-							}
-							save_global_event_target_as = katzen_realm_capital
-							solar_system = { set_star_flag = katzen_realm_system }
-							#realm gets 20% of the katzen empire
-							count_katzen_planets_and_systems_sans_flusiosector = yes
-							event_target:flusion_primitives_country = {
-								set_variable = {
-									which = "katzen_realm_system_count"
-									value = 0
-								}
-								set_variable = {
-									which = "katzen_realm_system_count"
-									value = "katzen_total_system_count"
-								}
-								divide_variable = {
-									which = "katzen_realm_system_count"
-									value = 4
-								}
-								set_variable = {
-									which = "katzen_realm_current_system_count"
-									value = 0
-								}
-							}
-							while = {
-								limit = { #stop when current realm systems surpass 25% of katzen systems
-									event_target:flusion_primitives_country = {
-										check_variable = {
-											which = "katzen_realm_current_system_count"
-											value < katzen_realm_system_count
-										}
-									}
-								}
-								every_system = { #claim all neighbor systems
-									limit = { has_star_flag = katzen_realm_system }
-									every_neighbor_system = {
-										limit = {
-											owner = { is_country_type = katzenartig_imperium }
-											NOR = {
-												has_star_flag = flusion_system
-												any_neighbor_system = {
-													has_star_flag = flusion_system
-												}
-												has_star_flag = katzen_realm_system
-											}
-										}
-										set_star_flag = katzen_realm_system
-									}
-								}
-								event_target:flusion_primitives_country = {
-									set_variable = {
-										which = "katzen_realm_current_system_count"
-										value = 0
-									}
-								}
-								every_system = { #count current realm systems
-									limit = { has_star_flag = katzen_realm_system }
-									event_target:flusion_primitives_country = {
-										change_variable = {
-											which = "katzen_realm_current_system_count"
-											value = 1
-										}
-									}
-								}
-							}
-							create_katzen_realm = yes
-						}
-
-						every_country = {
-							limit = { is_ai = no }
-							country_event = { id = giga_katzen.7020 } #inform that Imperium has fractured
-						}
-					}
-
-					else = { #not enough space for Civil War (Reformation version), so the Imperium just explodes
-						every_country = {
-							limit = { is_ai = no }
-							country_event = { id = giga_katzen.7014 } #inform that Imperium has fucking killed itself
-						}
-						every_galaxy_planet = { #blow up Siegfreids
-							limit = { is_planet_class = pc_giga_siegfried_world }
-							if = {
-								limit = { is_colony = yes }
-								destroy_colony = yes
-							}
-							remove_all_buildings = yes
-							remove_all_districts = yes
-							change_pc = pc_katzenland
-							set_planet_entity = {
-								entity = katzenland_01_entity
-							}
-							add_modifier = {
-								modifier = "irradiated_desert_planet"
-								days = -1
-							}
-							while = {
-								count = 12
-								create_katzenland_deposits = yes
-							}
-							solar_system = {
-								remove_star_flag = siegfried_anti_jump_star
-								every_neighbor_system = { remove_star_flag = siegfried_anti_jump_star }
-							}
-						}
-						every_owned_fleet = {
-							delete_fleet = this
-						}
-						every_owned_planet = { #damage or destroy other colonies
-							if = { #Flusion becomes a little like FSRP4
-								limit = {
-									has_carrier_flag = gigaflusion
-								}
-
-								create_country = {
-									name = "Flusionian Warring States"
-									authority = auth_oligarchic
-									civics = {
-										civic = civic_scavengers
-										civic = civic_warrior_culture
-									}
-									species = event_target:flusion_katzens
-									ethos = {
-										ethic = ethic_fanatic_militarist
-										ethic = ethic_materialist
-									}
-									flag = {
-										icon = {
-											category="domination"
-											file="domination_8.dds"
-										}
-										background = {
-											category="backgrounds"
-											file="katzen.dds"
-										}
-										colors = {
-											"burgundy"
-											"light_blue"
-											"yellow"
-											"null"
-										}
-									}
-									origin = "origin_katzen_collapse_flusion"
-									type = primitive
-									effect = {
-										set_graphical_culture = mammalian_01
-										set_country_flag = tech_frozen
-										set_country_flag = custom_preftl_diplomacy
-										set_country_flag = custom_preftl_espionage
-										set_country_flag = fusion_age
-										set_pre_ftl_age = giga_fusion_age
-									}
-								}
-								set_colony_type = col_giga_pre_ftl_fusion
-								set_owner = last_created_country
-								set_capital = yes
-
-								add_deposit = d_flusio_arcology_wreck
-								add_deposit = d_flusio_arcology_wreck
-								add_deposit = d_flusio_arcology_wreck
-								add_deposit = d_flusio_arcology_wreck
-								add_deposit = d_flusio_arcology_anarchy_collapse
-								add_deposit = d_flusio_arcology_anarchy_collapse
-								add_deposit = d_flusio_arcology_anarchy_collapse
-								add_deposit = d_flusio_arcology_anarchy_collapse
-								add_deposit = d_flusio_arcology_anarchy_collapse
-								add_deposit = d_flusio_arcology_anarchy_collapse
-
-								if = {
-									limit = {
-										has_deposit = d_katlantropa_project
-									}
-									remove_deposit = d_katlantropa_project
-									add_deposit = d_katlantropa_project_wreck
-								}
-								if = {
-									limit = {
-										has_deposit = d_solaktropa_project
-									}
-									remove_deposit = d_solaktropa_project
-									add_deposit = d_solaktropa_project_wreck
-								}
-
-								every_owned_pop_group = { #some die in the violence
-									limit = { is_robotic_species = no }
-									kill_pop_group = { pop_group = this percentage = 0.2 }
-								}
-
-								every_owned_pop_group = { #robots need complex infrastructure so even more die
-									limit = { is_robotic_species = yes }
-									kill_pop_group = { pop_group = this percentage = 0.4 }
-								}
-
-								giga_field_debris = yes
-								set_surveyed = { surveyed = yes surveyor = root }
-							}
-							else = {
-								random_list = {
-									50 = { #wipe the colony
-										every_owned_pop_group = { kill_all_pop = yes }
-										destroy_colony = yes
-										remove_all_buildings = yes
-										remove_all_districts = yes
-										if = {
-											limit = {
-												habitable_planet_not_urban = yes
-											}
-											random = {
-												chance = 50
-												change_pc = pc_katzenland
-												set_planet_entity = {
-													entity = katzenland_01_entity
-												}
-												add_modifier = {
-													modifier = "irradiated_desert_planet"
-													days = -1
-												}
-												while = {
-													count = 12
-													create_katzenland_deposits = yes
-												}
-											}
-										}
-										else_if = {
-											limit = {
-												is_planet_class = pc_city
-											}
-											change_pc = pc_relic
-											relic_world_deposits = yes
-											validate_planet_buildings_and_districts = yes
-										}
-										# else_if = {
-										# 	limit = {
-										# 		is_planet_class = pc_ringworld_habitable
-										# 	}
-										# 	#TODO ideally would set 50% to be ruined ringworld segments, 50% of habitats would be ruined etc
-										# }
-										random = {
-											chance = 50
-											giga_field_debris = yes
-										}
-										every_country = {
-											limit = { has_communications = root }
-											prev = { set_surveyed = { surveyed = yes surveyor = prev } }
-										}
-									}
-									50 = { #return to the stone age
-										create_country = {
-											name = random
-											authority = random
-											civics = {
-												civic = civic_nationalistic_zeal
-												civic = civic_warrior_culture
-											}
-											species = event_target:flusion_katzens
-											ethos = {
-												ethic = ethic_fanatic_militarist
-												ethic = ethic_xenophile
-											}
-											flag = random
-											origin = "origin_katzen_collapse"
-											type = primitive
-											effect = {
-												set_graphical_culture = mammalian_01
-												set_country_flag = stone_age
-												set_pre_ftl_age = stone_age
-											}
-										}
-										set_owner = last_created_country
-										set_capital = yes
-										last_created_country = { add_pre_ftl_buildings = yes }
-
-										while = {
-											count = 4
-											random_list = {
-												1 = {
-													add_deposit = d_metal_boneyard
-													modifier = { factor = 0 has_deposit = d_metal_boneyard }
-												}
-												1 = { add_deposit = d_bomb_crater }
-												1 = { add_deposit = d_radioactive_wasteland }
-												1 = { add_deposit = d_decrepit_dwellings }
-												1 = { add_deposit = d_ruined_district }
-												1 = { add_deposit = d_failing_infrastructure }
-											}
-										}
-
-										every_owned_pop_group = { #lots die in the violence
-											limit = { is_robotic_species = no }
-											kill_pop_group = { pop_group = this percentage = 0.7 }
-										}
-
-										every_owned_pop_group = { #robots need complex infrastructure so even more die
-											limit = { is_robotic_species = yes }
-											kill_pop_group = { pop_group = this percentage = 0.85 }
-										}
-										random = {
-											chance = 25
-											giga_field_debris = yes
-										}
-										every_country = {
-											limit = { has_communications = root }
-											prev = { set_surveyed = { surveyed = yes surveyor = prev } }
-										}
-									}
-								}
-							}
-						}
-					}
-					set_update_modifiers_batch = end
+					katzen_reformation_collapse = yes #separate scripted effect for ease of testing
 				}
 				60 = { #Kaiser retains power
 					every_country = {
@@ -17335,6 +16610,7 @@ country_event = {
 
 ##### giga_katzen.702x is Alternate Civil War stuff #####
 
+#Katzenartig Imperium Fractures info event
 country_event = {
 	id = giga_katzen.7020
 	title = "giga_katzen.7020.name"
@@ -17377,7 +16653,7 @@ country_event = {
 	}
 }
 
-###CONTACTING KAISER###
+###CONTACTING PROVISIONAL GOVERNMENT###
 country_event = { #hello
 	id = giga_katzen.7021
 	title = "giga_katzen.7021.name"
@@ -17658,6 +16934,41 @@ country_event = { #hello
 	option = { #bye!
 		default_hide_option = yes
 		name = "giga_katzen.020.a"
+	}
+}
+
+
+country_event = {
+	id = giga_katzen.7022
+	title = "giga_katzen.7022.name"
+	desc = "giga_katzen.7022.desc"
+	location = event_target:jublio
+
+	show_sound = event_space_battle
+	picture = GFX_evt_partition
+
+	is_triggered_only = yes
+
+	option = {
+		name = giga_katzen.7022.a
+		custom_tooltip = giga_katzen.7022.a.tooltip
+		allow = {
+			resource_stockpile_compare = {
+				resource = influence
+				value >= 250
+			}
+		}
+		add_resource = {
+			influence = -250
+		}
+	}
+
+	option = {
+		name = giga_katzen.7022.b
+		custom_tooltip = giga_katzen.7022.b.tooltip
+		add_resource = {
+			influence = 250
+		}
 	}
 }
 

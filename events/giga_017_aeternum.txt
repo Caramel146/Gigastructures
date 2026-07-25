@@ -1254,7 +1254,7 @@ country_event = {
 			limit = {
 				OR = {
 					ehof_default_country = yes
-					is_country_type = katzenartig_imperium
+					katzen_country_type = yes
 				}
 				NOT = { is_at_war_with = event_target:birch_aeternum }
 			}
@@ -1290,7 +1290,7 @@ country_event = {
 				any_country = {
 					OR = {
 						ehof_default_country = yes
-						is_country_type = katzenartig_imperium
+						katzen_country_type = yes
 					}
 					NOT = { is_at_war_with = event_target:birch_aeternum }
 				}

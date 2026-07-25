@@ -643,7 +643,7 @@ country_event = {
 			country_event = { id = giga_katcivilwar.1011 days = 10 } #check if war should end
 		}
 
-		#sort out the other splinters
+		#sort out the other splinters if the Provisional Government is destroyed
 		if = {
 			limit = {
 				is_country_type = katzenartig_imperium_provisional
@@ -667,9 +667,7 @@ country_event = {
 						has_owner = yes
 					}
 					if = {
-						limit = {
-							exists = event_target:katzen_civil_war_socialist
-						}
+						limit = { exists = event_target:katzen_civil_war_socialist }
 						add_claims = {
 							who = event_target:katzen_civil_war_socialist
 							num_of_claims = 10
@@ -683,9 +681,7 @@ country_event = {
 						}
 					}
 					if = {
-						limit = {
-							exists = event_target:katzen_civil_war_junta
-						}
+						limit = { exists = event_target:katzen_civil_war_junta }
 						add_claims = {
 							who = event_target:katzen_civil_war_junta
 							num_of_claims = 10
@@ -699,9 +695,7 @@ country_event = {
 						}
 					}
 					if = {
-						limit = {
-							exists = event_target:katzen_civil_war_republic
-						}
+						limit = { exists = event_target:katzen_civil_war_republic }
 						add_claims = {
 							who = event_target:katzen_civil_war_republic
 							num_of_claims = 10
@@ -715,9 +709,7 @@ country_event = {
 						}
 					}
 					if = {
-						limit = {
-							exists = event_target:katzen_civil_war_realm
-						}
+						limit = { exists = event_target:katzen_civil_war_realm }
 						event_target:katzen_civil_war_realm = {
 							add_opinion_modifier = {
 								who = from
