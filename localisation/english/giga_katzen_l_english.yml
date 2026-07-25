@@ -77,10 +77,10 @@
  giga_katzen.7021.war.c:0 "From Projekt Mondkanone to fighting you, nothing brings Flusionians together like a common threat."
  giga_katzen.7021.diplowar:0 "§RYou've clung on to Flusion long enough!§!"
  giga_katzen.7021.diplowar.response:0 "If we must... Come at us!"
- giga_katzen.7021.diplowar.tooltip:0 "We will §Rdeclare war§! on the §Y[GigaFlusionProvisionalGovernmentName]§!. They will accept peace at any time."
+ giga_katzen.7021.diplowar.tooltip:0 "We will §Rdeclare war§! on the §Y[GigaFlusionProvisionalGovernmentName]§!. They will accept peace at any time. Any existing Katzen Splinter States will §Rjoin the war§! against us to defend Flusion."
  giga_katzen.7021.diplopeace:0 "§BLet's end this fighting, Flusionians.§!"
  giga_katzen.7021.diplopeace.response:0 "Excellent. An end to this pointless bickering."
- giga_katzen.7021.diplopeace.tooltip:0 "We will §Bend the war§! with the §Y[GigaFlusionProvisionalGovernmentName]§!. All current borders will be kept."
+ giga_katzen.7021.diplopeace.tooltip:0 "We will §Bend the war§! with the §Y[GigaFlusionProvisionalGovernmentName]§! and any Katzen Splinter States that are currently intervening in their defence. All current borders will be kept."
 
  giga_katzencollapse_age:0 "Collapsed Age"
  giga_katzencollapse_age_desc:0 "This civilization has lost much of its technology in a catastrophic collapse. Various warlord factions still control advanced pre-Collapse technology, but the planetary technological and industrial base is shattered. Wracked by infighting over what's left, the planet's inhabitants may continue to decline in the coming era."

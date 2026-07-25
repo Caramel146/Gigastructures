@@ -642,6 +642,92 @@ country_event = {
 		event_target:global_event_country = {
 			country_event = { id = giga_katcivilwar.1011 days = 10 } #check if war should end
 		}
+
+		#sort out the other splinters
+		if = {
+			limit = {
+				is_country_type = katzenartig_imperium_provisional
+			}
+
+			#end protect-Flusion with other splinters
+			every_playable_country = {
+				limit = {
+					any_war = { has_war_flag = katzen_flusiokrieg_intervention }
+				}
+				every_war = {
+					limit = { has_war_flag = katzen_flusiokrieg_intervention }
+					end_war_effect = yes
+				}
+			}
+
+			#but get those splinters (except for the pacifists) to claim Flusion and (including pacifists) get angry
+			event_target:giga_jublio_system = {
+				if = {
+					limit = {
+						has_owner = yes
+					}
+					if = {
+						limit = {
+							exists = event_target:katzen_civil_war_socialist
+						}
+						add_claims = {
+							who = event_target:katzen_civil_war_socialist
+							num_of_claims = 10
+							show_notification = yes
+						}
+						event_target:katzen_civil_war_socialist = {
+							add_opinion_modifier = {
+								who = from
+								modifier = opinion_reformation_civil_war_stole_flusion
+							}
+						}
+					}
+					if = {
+						limit = {
+							exists = event_target:katzen_civil_war_junta
+						}
+						add_claims = {
+							who = event_target:katzen_civil_war_junta
+							num_of_claims = 10
+							show_notification = yes
+						}
+						event_target:katzen_civil_war_junta = {
+							add_opinion_modifier = {
+								who = from
+								modifier = opinion_reformation_civil_war_stole_flusion
+							}
+						}
+					}
+					if = {
+						limit = {
+							exists = event_target:katzen_civil_war_republic
+						}
+						add_claims = {
+							who = event_target:katzen_civil_war_republic
+							num_of_claims = 10
+							show_notification = yes
+						}
+						event_target:katzen_civil_war_republic = {
+							add_opinion_modifier = {
+								who = from
+								modifier = opinion_reformation_civil_war_stole_flusion
+							}
+						}
+					}
+					if = {
+						limit = {
+							exists = event_target:katzen_civil_war_realm
+						}
+						event_target:katzen_civil_war_realm = {
+							add_opinion_modifier = {
+								who = from
+								modifier = opinion_reformation_civil_war_stole_flusion
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -652,7 +738,7 @@ country_event = {
 
 	immediate = {
 		if = {
-			limit = { #only 1 left
+			limit = { #only 1 contender left
 				count_country = {
 					limit = {
 						has_country_flag = katzen_civil_war_faction
@@ -678,6 +764,7 @@ country_event = {
 				if = { #integrate Flusionian Provisional Gov if it exists
 					limit = {
 						has_global_flag = katzen_civil_war_reformation_version
+						any_country = { is_country_type = katzenartig_imperium_provisional }
 					}
 					set_global_flag = flusion_provisional_gov_integrated
 					event_target:flusion_primitives_country = {
@@ -754,6 +841,7 @@ country_event = {
 				if = { #integrate Flusionian Provisional Gov if it exists
 					limit = {
 						has_global_flag = katzen_civil_war_reformation_version
+						any_country = { is_country_type = katzenartig_imperium_provisional }
 					}
 					set_global_flag = flusion_provisional_gov_integrated
 					event_target:flusion_primitives_country = {
@@ -809,6 +897,7 @@ country_event = {
 				if = { #integrate Flusionian Provisional Gov if it exists
 					limit = {
 						has_global_flag = katzen_civil_war_reformation_version
+						any_country = { is_country_type = katzenartig_imperium_provisional }
 					}
 					set_global_flag = flusion_provisional_gov_integrated
 					event_target:flusion_primitives_country = {
@@ -904,6 +993,7 @@ country_event = {
 				if = { #integrate Flusionian Provisional Gov if it exists
 					limit = {
 						has_global_flag = katzen_civil_war_reformation_version
+						any_country = { is_country_type = katzenartig_imperium_provisional }
 					}
 					set_global_flag = flusion_provisional_gov_integrated
 					event_target:flusion_primitives_country = {
