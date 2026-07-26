@@ -97,7 +97,7 @@ kaiser_opinion_range_enraged = {
 
 katzen_vassal = {
 	overlord? = {
-		is_country_type = katzenartig_imperium
+		katzen_country_type = yes
 	}
 }
 
