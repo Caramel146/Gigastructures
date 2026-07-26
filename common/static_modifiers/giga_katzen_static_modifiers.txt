@@ -280,3 +280,18 @@ katzen_civil_war_navy_boost = {
 	country_naval_cap_add = 1000
 	pop_government_ethic_attraction = 1 #can Elwin stop turning xenophile and Kitti Luft stop becoming a warmonger please?
 }
+
+katzen_renounced_succession = {
+	icon = "gfx/interface/icons/modifiers/mod_unity_loss_mult.dds"
+	planet_stability_add = -20 #yes, it's brutal - you're not getting the civil war rewards without risk
+	pop_government_ethic_attraction = -1
+	country_influence_produces_mult = -0.5
+	country_unity_produces_mult = -0.5
+}
+
+katzen_renounced_succession_gestalt = {
+	icon = "gfx/interface/icons/modifiers/mod_unity_loss_mult.dds"
+	planet_stability_add = -20 #yes, it's brutal - you're not getting the civil war rewards without risk
+	country_influence_produces_mult = -0.5
+	country_unity_produces_mult = -0.5
+}

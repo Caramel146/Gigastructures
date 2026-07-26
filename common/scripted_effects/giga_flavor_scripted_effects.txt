@@ -1551,7 +1551,7 @@ katzen_reformation_collapse = {
 			delete_megastructure = THIS
 		}
 		every_subject = {
-			limit = { is_ai = yes } #players get giga_katzen.7022 instead
+			limit = { is_ai = yes } #players get giga_katzen.7020 instead
 			katzen_free_protectorate = yes
 		}
 
