@@ -2938,6 +2938,10 @@ country_event = { #hello
 				fail_text = "cant_submit_homicidal"
 				is_homicidal = no
 			}
+			custom_tooltip = {
+				fail_text = "cant_submit_reformation" #this is to block players opportunistically joining when they see reformation instability just to join the succession war
+				katzen_reformation_active = no
+			}
 		}
 		hidden_effect = {
 			country_event = { id = giga_katzen.1030 }
@@ -6176,6 +6180,10 @@ country_event = { #Manage war forges and the Kaiser's eco
 				check_variable = {
 					which = kaiser_consolidation_trigger
 					value >= 100
+				}
+				check_variable = {
+					which = kaiser_months_present
+					value >= 600 #Kaiser must have been active for a minimum of 50 years
 				}
 			}
 			set_global_flag = katzen_reformation_begun #changes numerous aspects of Katzen behaviour
@@ -16642,6 +16650,8 @@ country_event = {
 		}
 		name = giga_katzen.7020.b
 		custom_tooltip = giga_katzen.7020.b.tooltip
+		hidden_effect = { katzen_free_protectorate = yes }
+		country_event = { id = giga_katzen.7022 } #option to join the succession war. Deliberately not hidden_effect.
 	}
 
 	option = {
@@ -16650,6 +16660,8 @@ country_event = {
 		}
 		name = giga_katzen.7020.c
 		custom_tooltip = giga_katzen.7020.c.tooltip
+		hidden_effect = { katzen_free_protectorate = yes }
+		country_event = { id = giga_katzen.7022 } #option to join the succession war. Deliberately not hidden_effect.
 	}
 }
 
@@ -16942,10 +16954,10 @@ country_event = {
 	id = giga_katzen.7022
 	title = "giga_katzen.7022.name"
 	desc = "giga_katzen.7022.desc"
-	location = event_target:jublio
+	location = event_target:gigaflusion
 
-	show_sound = event_space_battle
-	picture = GFX_evt_partition
+	show_sound = event_factions
+	picture = GFX_evt_imperial_vassal
 
 	is_triggered_only = yes
 
@@ -16961,6 +16973,7 @@ country_event = {
 		add_resource = {
 			influence = -250
 		}
+		set_country_flag = katzen_civil_war_faction
 	}
 
 	option = {
@@ -16969,6 +16982,151 @@ country_event = {
 		add_resource = {
 			influence = 250
 		}
+	}
+}
+
+#You won the civil war
+country_event = {
+	id = giga_katzen.7023
+	title = "giga_katzen.7023.name"
+	desc = {
+		text = "giga_katzen.7023.loris.desc"
+		trigger = {
+			any_country = {
+				is_country_type = katzenartig_imperium_provisional
+				has_global_flag = flusion_provisional_gov_loris
+			}
+		}
+	}
+	desc = {
+		text = "giga_katzen.7023.douclaw.desc"
+		trigger = {
+			any_country = {
+				is_country_type = katzenartig_imperium_provisional
+				has_global_flag = flusion_provisional_gov_douclaw
+			}
+		}
+	}
+	desc = {
+		text = "giga_katzen.7023.noprovisional.desc"
+		trigger = {
+			NOT = { any_country = { is_country_type = katzenartig_imperium_provisional } }
+		}
+	}
+	location = event_target:jublio
+
+	show_sound = event_factions
+	picture = GFX_evt_galactic_empire
+
+	is_triggered_only = yes
+
+	option = {
+		name = giga_katzen.7023.a
+		custom_tooltip = giga_katzen.7023.a.tooltip
+		force_add_civic = civic_reunited_imperium_player
+		add_resource = {
+			influence = 250
+		}
+		hidden_effect = {
+			if = { #integrate Flusionian Provisional Gov if it exists
+				limit = {
+					any_country = { is_country_type = katzenartig_imperium_provisional }
+				}
+				set_global_flag = flusion_provisional_gov_integrated
+				event_target:flusion_primitives_country = {
+					every_owned_fleet = {    set_owner = root }
+					#don't give them all 500 leaders
+					every_owned_army = {    set_owner = root }
+					every_owned_planet = {    set_owner = root }
+				}
+
+				#but do give them Loris and Douclaw
+				if = {
+					limit = {
+						is_gestalt = no
+					}
+					if = {
+						limit = { exists = event_target:flusion_loris }
+						event_target:flusion_loris = { set_owner = root }
+					}
+					if = {
+						limit = { exists = event_target:flusion_douclaw }
+						event_target:flusion_douclaw = { set_owner = root }
+					}
+				}
+			}
+			set_name = {
+				key = "katzen_new_imperium_name"
+				variable_string = "[root.GetAdj]"
+			}
+			change_country_flag = {
+				icon = {
+					category="flusionian"
+					file="katzen_new.dds"
+				}
+				background = {
+					category="backgrounds"
+					file="katzen.dds"
+				}
+				colors = {
+					"blue"
+					"burgundy"
+					"orange"
+					"null"
+				}
+			}
+		}
+	}
+}
+
+#a player (not you) won the civil war
+country_event = {
+	id = giga_katzen.7024
+	title = "giga_katzen.7024.name"
+	desc = {
+		text = "giga_katzen.7024.loris.desc"
+		trigger = {
+			any_country = {
+				is_country_type = katzenartig_imperium_provisional
+				has_global_flag = flusion_provisional_gov_loris
+			}
+		}
+	}
+	desc = {
+		text = "giga_katzen.7024.douclaw.desc"
+		trigger = {
+			any_country = {
+				is_country_type = katzenartig_imperium_provisional
+				has_global_flag = flusion_provisional_gov_douclaw
+			}
+		}
+	}
+	desc = {
+		text = "giga_katzen.7024.noprovisional.desc"
+		trigger = {
+			NOT = { any_country = { is_country_type = katzenartig_imperium_provisional } }
+		}
+	}
+
+	picture = GFX_evt_galactic_empire
+	show_sound = event_factions
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_global_flag = katzen_civil_war_ongoing }
+	}
+
+	option = {
+		name = "giga_katzen.7024.a"
+	}
+
+	option = {
+		name = "giga_katzen.7024.b"
+	}
+
+	option = {
+		name = "giga_katzen.7024.c"
 	}
 }
 
