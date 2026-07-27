@@ -89,7 +89,13 @@ generate_flusion_primitives_on_planet = {
 			set_global_flag = flusion_no_katzens
 			modifier = {
 				factor = 0 #Katzen crisis needs Katzens
-				has_global_flag = katzenartig_always
+				OR = { #TODO please delink difficulty and guaranteed someone please
+					has_global_flag = katzenartig_always
+					has_global_flag = katzenartig_deathwish
+					has_global_flag = katzenartig_stellarite
+					has_global_flag = katzenartig_improbable
+					has_global_flag = katzenartig_easy
+				}
 			}
 		}
 		75 = {

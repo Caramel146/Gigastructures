@@ -3,7 +3,6 @@ namespace = giga_hke
 country_event = { #summon HKE
 	id = giga_hke.001
 	hide_window = yes
-	location = from
 	is_triggered_only = yes
 
 	immediate = {

@@ -92,3 +92,48 @@ kaiser_size = {
         mode = add
     }
 }
+
+kaiser_subversion_bureaucratic_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_bureaucratic
+            }
+        }
+        mode = subtract
+    }
+    mult = 4
+}
+
+kaiser_subversion_heavyhanded_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_heavyhanded
+            }
+        }
+        mode = subtract
+    }
+    mult = 4
+}
+
+kaiser_subversion_unrest_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_unrest
+            }
+        }
+        mode = subtract
+    }
+    mult = 4
+}
