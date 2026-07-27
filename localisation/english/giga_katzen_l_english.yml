@@ -5,6 +5,8 @@
  giga_katzen.7000.a.tooltip:0 "The Katzens are too preoccupied to give external diplomacy as much attention, §Rhalving§! the likelihood of §YKatzen Attachés§! increasing opinion during the §BKatzen Reformation§!."
  giga_katzen.7000.b:0 "An opportunity to grow closer to Flusion?"
  giga_katzen.7000.c:0 "We're running out of time to escape Flusion's control..."
+ giga_katzen.7000.d:0 "Fudge numbers to undermine their bureaucracy's planning."
+ giga_katzen.7000.d.tooltip:0 "§GThis will increase the chance of the Imperium destabilising in the near future.§!" #\nThe §YKaiser's Opinion§! of us will §Rdecrease§! by 5.
 
  giga_katzen.7001.name:0 "Katzens Propose Peace"
  giga_katzen.7001.desc:0 "High-level incoming communications from the Katzenartig Imperium are proposing that we end our war with them, leaving the borders as they currently stand. While this is an unusual proposal from the notoriously violent and expansionistic Katzens, it isn't entirely surprising in light of their recent shift from external to internal affairs.\n\nThe peace offer seems genuine, but the Katzens have made it clear that they aren't just going soft, and are prepared to continue the war with their full effort should we refuse. Of course, if we're feeling confident, we could continue fighting for now, and ask them for peace when we're in a more favourable position..."
@@ -16,6 +18,8 @@
  giga_katzen.7002.a:0 "Let's hope they stay this way..."
  giga_katzen.7002.b:0 "Order and we will obey."
  giga_katzen.7002.c:0 "We can only hope it all unravels."
+ giga_katzen.7002.d:0 "I'm sure we could mishandle implementing a few reforms..."
+ giga_katzen.7002.d.tooltip:0 "§GThis will increase the chance of the Imperium destabilising in the near future.§!" #\nThe §YKaiser's Opinion§! of us will §Rdecrease§! by 5.
 
  giga_katzen.7012.name:0 "Instability in Katzenartig Imperium!"
  giga_katzen.7012.desc:0 "It appears that the Katzenartig citizenry don't feel the Kaiser is delivering his utopian vision. Open unrest has broken out on the capital itself, and while the Kaiser has responded with a heavy hand to reassert his authority, a spike in high-profile treason convictions suggests that not all in the Imperium's upper echelons are enthusiastic about enforcing the Kaiser's will.\n\nDespite this test to the Kaiser's rule, it's still too soon to say whether the Kaiserist government will collapse, or reassert itself for another generation - and with the crisis playing out on numerous societal battlefields, it may be a few years before we have an answer.\n\nRegardless, during this period, the Katzenartig Imperium may not have the capacity to handle further threats, and a war could help stretch the Katzen government too far..."
@@ -26,8 +30,8 @@
  giga_katzen.7012.c.tooltip:0 "§YSupporting or opposing the Kaiser will affect his chances of maintaining power.§!"
  giga_katzen.7012.d:0 "This may be our last chance for rebellion!"
  giga_katzen.7012.d.tooltip:0 "$giga_katzen.0033.a.tooltip$\n\n$giga_katzen.7012.c.tooltip$"
- giga_katzen.7012.e:0 "We'll overthrow the Kaiser from within!"
- giga_katzen.7012.e.tooltip:0 "$giga_katzen.0033.a.tooltip$\n\n$giga_katzen.7012.c.tooltip$"
+ giga_katzen.7012.e:0 "Our population will overthrow Flusion from within!"
+ giga_katzen.7012.e.tooltip:0 "§GThis will increase the chance of the Imperium further destabilising in the near future.§!" #\nThe §YKaiser's Opinion§! of us will §Rdecrease§! by 5.
 
  giga_katzen.7013.name:0 "Kaiser Maintains Power"
  giga_katzen.7013.desc:0 "Recent unrest in the Katzenartig Imperium has wound down, with the Kaiser's grip on power emerging tested yet unbroken. Through an uncannily lucky series of apparent gambles on when to make concessions and when to crack down brutally, the Kaiserist regime successfully neutralised most flashpoint issues.\n\nThough this episode has dealt a hefty blow to the Kaiser's quasi-divine image, the Katzenartig Imperium appears to be back on track with its reforms, albeit behind schedule."
@@ -78,20 +82,21 @@
  giga_katzen.7021.diplowar:0 "§RYou've clung on to Flusion long enough!§!"
  giga_katzen.7021.diplowar.response:0 "If we must... Come at us!"
  giga_katzen.7021.diplowar.tooltip:0 "We will §Rdeclare war§! on the §Y[GigaFlusionProvisionalGovernmentName]§!. They will accept peace at any time. Any existing Katzen Splinter States will §Rjoin the war§! against us to defend Flusion."
+ cant_flusiokrieg_contender:0 "We have committed to reunifying with Flusion only through winning the Katzen Civil War."
  giga_katzen.7021.diplopeace:0 "§BLet's end this fighting, Flusionians.§!"
  giga_katzen.7021.diplopeace.response:0 "Excellent. An end to this pointless bickering."
  giga_katzen.7021.diplopeace.tooltip:0 "We will §Bend the war§! with the §Y[GigaFlusionProvisionalGovernmentName]§! and any Katzen Splinter States that are currently intervening in their defence. All current borders will be kept."
 
  giga_katzen.7022.name:0 "Succession"
- giga_katzen.7022.desc:0 "The Kaiser is gone, the Imperium is shattered, and the future of Katzenkind is uncertain. But we are still standing. And just a few short years ago, the word of the Kaiser was that we, too, are \"Katzens\". Katlinin, Elwin, Kibbles and Kitti Luft have made their claims of succession, but why are we any less worthy?\n\nWe are faced with a choice that will define our civilisation's history: do we walk away from the ruins of the Kaiser's project, or do we stake our claim in reunifying the Katzen state? Should we enter the §YKatzen Civil War§! and emerge victorious, the [GigaFlusionProvisionalGovernmentName]'s assets will be ours: perhaps most important among them, the legacy of Kattail will belong to our name and be clay in our [root.species.GetHandName]." #legacy of Kattail haha what could that be
+ giga_katzen.7022.desc:0 "The Kaiser is gone, the Imperium is shattered, and the future of Katzenkind is uncertain. But we are still standing. And just a few short years ago, the word of the Kaiser was that we, too, are \"Katzens\". Katlinin, Elwin, Kibbles and Kitti Luft have made their claims of succession, but why are we any less worthy?\n\nWe are faced with a choice that will define our civilisation's history: do we walk away from the ruins of the Kaiser's project, or do we stake our claim in reunifying the Katzen state? Should we enter the §YKatzen Civil War§! and emerge victorious, the [GigaFlusionProvisionalGovernmentName]'s assets will be ours: perhaps most important among them, the legacy of Kattail will belong to our name and be clay in our [root.species.GetHandNamePlural]." #legacy of Kattail haha what could that be
  giga_katzen.7022.a:0 "We will reforge the Katzenartig Imperium."
- giga_katzen.7022.a.tooltip:0 "We will §Rjoin the§! §YKatzen Civil War§!, and should we defeat all other succession rivals, we will annex the §Y[GigaFlusionProvisionalGovernmentName]§! and become the §B[root.GetAdj] Katzimperium§!. However, leaving the Katzen Civil War will only be possible by renouncing our claim, incurring §Rimmense societal penalties§!!"
+ giga_katzen.7022.a.tooltip:0 "We will §Rjoin the§! §YKatzen Civil War§!, and should we defeat all other succession rivals, we will annex the §Y[GigaFlusionProvisionalGovernmentName]§! and become the §B[root.GetAdj] Katzimperium§!. Leaving the war will §Rnot be possible§!." # However, leaving the Katzen Civil War will only be possible by renouncing our claim, incurring §Rimmense societal penalties§!!
  giga_katzen.7022.b:0 "No. No more."
  giga_katzen.7022.b.tooltip:0 "§YThis opportunity will not come again.§!"
 
  giga_katzen.7023.name:0 "Assuming the Mantle"
- giga_katzen.7023.loris.desc:0 "At long last, the Katzen Civil War has come to an end. First came the chaos after the Kaiser disappeared, then years of brutal conflict, and then silence - now displaced by a thunderous roar of triumph. The visionary cries of Katlinin, Elwin, Kibbles and Kitti Luft have been drowned out in history - for with only us left standing on the battlefield, no rivals remain to contest our claims of legitimate inheritance.\n\n§YLoris von Kattensbach§! has surrendered the custodianship of the §YFlusionian Provisional Authority§!, entrusting the heart of Katzen civilisation to us and our vision for the future. With this, the Katzen state is reborn: the galaxy now knows the §B$katzen_new_imperium_name$§!."
- giga_katzen.7023.douclaw.desc:0 "At long last, the Katzen Civil War has come to an end. First came the chaos after the Kaiser disappeared, then years of brutal conflict, and then silence - now displaced by a thunderous roar of triumph. The visionary cries of Katlinin, Elwin, Kibbles and Kitti Luft have been drowned out in history - for with only us left standing on the battlefield, no rivals remain to contest our claims of legitimate inheritance.\n\n§YDouclaw MacCathur§! has surrendered the custodianship of the §YKatzenartig Emergency Command§!, entrusting the heart of Katzen civilisation to us and our vision for the future. With this, the Katzen state is reborn: the galaxy now knows the §B$katzen_new_imperium_name$§!."
+ giga_katzen.7023.loris.desc:0 "At long last, the Katzen Civil War has come to an end. First came the chaos after the Kaiser disappeared, then years of brutal conflict, and then silence - now displaced by a thunderous roar of triumph. The visionary cries of Katlinin, Elwin, Kibbles and Kitti Luft have been drowned out in history - for with only us left standing on the battlefield, no rivals remain to contest our claims of legitimate inheritance.\n\n§YLoris von Kattensbach§! has now surrendered the custodianship of the §YFlusionian Provisional Authority§!, entrusting the heart of Katzen civilisation to us and our vision for the future. With this, the Katzen state is reborn: the galaxy now knows the §B$katzen_new_imperium_name$§!."
+ giga_katzen.7023.douclaw.desc:0 "At long last, the Katzen Civil War has come to an end. First came the chaos after the Kaiser disappeared, then years of brutal conflict, and then silence - now displaced by a thunderous roar of triumph. The visionary cries of Katlinin, Elwin, Kibbles and Kitti Luft have been drowned out in history - for with only us left standing on the battlefield, no rivals remain to contest our claims of legitimate inheritance.\n\n§YDouclaw MacCathur§! has now surrendered the custodianship of the §YKatzenartig Emergency Command§!, entrusting the heart of Katzen civilisation to us and our vision for the future. With this, the Katzen state is reborn: the galaxy now knows the §B$katzen_new_imperium_name$§!."
  giga_katzen.7023.noprovisional.desc:0 "At long last, the Katzen Civil War has come to an end. First came the chaos after the Kaiser disappeared, then years of brutal conflict, and then silence - now displaced by a thunderous roar of triumph. The visionary cries of Katlinin, Elwin, Kibbles and Kitti Luft have been drowned out in history - for with only us left standing on the battlefield, no rivals remain to contest our claims of legitimate inheritance.\n\nA joyous reunion with the [GigaFlusionProvisionalGovernmentName] may have been stolen from us, but nonetheless, Katzenkind has been united again under our vision for the future. With this, the Katzen state is reborn: the galaxy now knows the §B$katzen_new_imperium_name$§!."
  giga_katzen.7023.a:0 "The Kaiser is gone, but the Imperium stands."
  giga_katzen.7023.a.tooltip:0 "We will §Gintegrate§! the §Y[GigaFlusionProvisionalGovernmentName]§! and become the §B[root.GetAdj] Katzimperium§!."
@@ -109,10 +114,25 @@
  councilor_katzen_colonial_chief_female:0 "$councilor_katzen_colonial_chief$"
  councilor_katzen_colonial_chief_desc:1 "The $TITLE$ upholds relations between our central government and most far-flung administrations."
 
- katzen_renounced_succession:0 "Renounced Katzen Succession"
- katzen_renounced_succession_desc:0 "We have, with great pain, renounced our claim as rightful successor to the Katzenartig Imperium."
- katzen_renounced_succession_gestalt:0 "$katzen_renounced_succession$"
- katzen_renounced_succession_gestalt_desc:0 "$katzen_renounced_succession_desc$"
+ # katzen_renounced_succession:0 "Renounced Katzen Succession"
+ # katzen_renounced_succession_desc:0 "We have, with great pain, renounced our claim as rightful successor to the Katzenartig Imperium."
+ # katzen_renounced_succession_gestalt:0 "$katzen_renounced_succession$"
+ # katzen_renounced_succession_gestalt_desc:0 "$katzen_renounced_succession_desc$"
+
+ katzen_subversion_bureaucratic:0 "Bureaucratic Subversion"
+ katzen_subversion_bureaucratic_desc:0 "We are feeding the Flusionian government disinformation about our economy. Of course, our own management also suffers."
+
+ katzen_subversion_heavyhanded:0 "Clumsy Communications"
+ katzen_subversion_heavyhanded_desc:0 "An abrasive information campaign here and a cultural blunder there can ensure the Kaiser's reforms go down like a lead balloon in the public eye."
+
+ katzen_subversion_heavyhanded_gestalt:0 "Clumsy Communications"
+ katzen_subversion_heavyhanded_gestalt_desc:0 "Filtering contradictory orders about the Kaiser's ordered reforms down to our drones will impede their productivity, but also burden Flusion's administrative liaisons."
+
+ katzen_subversion_unrest:0 "Apathetic Crackdown"
+ katzen_subversion_unrest_desc:0 "Intentionally-incompetent security forces are only exacerbating protests against Katzen rule."
+
+ katzen_subversion_unrest_gestalt:0 "Unhampered Deviancy"
+ katzen_subversion_unrest_gestalt_desc:0 "We are deliberately failing to rein in deviant cells who think that overthrowing Katzen rule will protect the collective."
 
  giga_katzencollapse_age:0 "Collapsed Age"
  giga_katzencollapse_age_desc:0 "This civilization has lost much of its technology in a catastrophic collapse. Various warlord factions still control advanced pre-Collapse technology, but the planetary technological and industrial base is shattered. Wracked by infighting over what's left, the planet's inhabitants may continue to decline in the coming era."

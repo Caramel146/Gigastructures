@@ -310,8 +310,7 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		exists = owner
-		owner = { has_country_flag = flusion_primitives } #Flusion still exists
+		owner? = { has_country_flag = flusion_primitives } #Flusion still exists
 		solar_system = {
 			count_ship_in_system = { limit = { is_ship_size = giga_war_moon_flusion }	count >= 1 } #Mondkanone is still a thing
 		}
@@ -3531,7 +3530,7 @@ country_event = {
 			declare_war = {
 				target = event_target:flusion_primitives_country
 				attacker_war_goal = "wg_katzen_defence"
-				name = "Katzenkrieg"
+				name = "Freiheitkrieg"
 			}
 		}
 	}
@@ -6189,10 +6188,10 @@ country_event = { #Manage war forges and the Kaiser's eco
 			every_country = {
 				limit = { is_ai = no }
 				country_event = { id = giga_katzen.7000 } #notify of strategic shift
-				country_event = { id = giga_katzen.7002 days = 270 random = 90 } #Reformation formally begins
+				country_event = { id = giga_katzen.7002 days = 360 random = 180 } #Reformation formally begins
 				country_event = { id = giga_katzen.7001 days = 90 random = 90 } #Katzens offer peace in any ongoing war
 			}
-			country_event = { id = giga_katzen.7010 days = 720 random = 720 } #roll for Instability
+			country_event = { id = giga_katzen.7010 days = 1080 random = 540 } #roll for Instability
 		}
 
 		#if Katzens are winding down expansionism for Reformation, roll for peace with opponents
@@ -10308,19 +10307,25 @@ country_event = { #IF MOON IS GONE
 			if = {
 				limit = { katzen_vassal = yes }
 				katzen_free_protectorate = yes
+				declare_war = {
+					target = event_target:flusion_primitives_country
+					attacker_war_goal = "wg_katzen_defence"
+					name = "Freiheitkrieg"
+				}
+			}
+			else = {
+				declare_war = {
+					target = event_target:flusion_primitives_country
+					attacker_war_goal = "wg_katzen_defence"
+					name = "Katzenkrieg"
+				}
 			}
 			set_kaiser_war_opinion = yes
-			declare_war = {
-				target = event_target:flusion_primitives_country
-				attacker_war_goal = "wg_katzen_defence"
-				name = "Katzenkrieg"
-			}
 			event_target:flusion_primitives_country = {
 				every_owned_fleet = {
 					limit = {
 						solar_system = {
-							exists = space_owner
-							space_owner = { is_country = ROOT }
+							space_owner? = { is_country = ROOT }
 						}
 					}
 					set_location = event_target:gigaflusion
@@ -16252,6 +16257,19 @@ country_event = {
 		}
 		name = giga_katzen.7000.c
 	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7000.d
+		custom_tooltip = giga_katzen.7000.d.tooltip
+		add_modifier = {
+			modifier = katzen_subversion_bureaucratic
+			years = 3
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_bureaucratic }
+	}
 }
 
 country_event = {
@@ -16337,6 +16355,29 @@ country_event = {
 		}
 		name = giga_katzen.7002.c
 	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7002.d
+		custom_tooltip = giga_katzen.7002.d.tooltip
+		if = {
+			limit = { is_gestalt = no }
+			add_modifier = {
+				modifier = katzen_subversion_heavyhanded
+				years = 3
+			}
+		}
+		if = {
+			limit = { is_gestalt = yes }
+			add_modifier = {
+				modifier = katzen_subversion_heavyhanded_gestalt
+				years = 3
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_heavyhanded }
+	}
 }
 
 
@@ -16370,7 +16411,7 @@ country_event = { #Roll for Instability
 						limit = { is_ai = no }
 						country_event = { id = giga_katzen.7012 } #inform others
 					}
-					country_event = { id = giga_katzen.7011 days = 1440 random = 360 } #roll to restabilise or collapse
+					country_event = { id = giga_katzen.7011 days = 1080 random = 360 } #roll to restabilise or collapse
 					capital_scope = {
 						add_modifier = {
 							modifier = flusion_consolidation_instability #heavy economic debuff
@@ -16465,7 +16506,7 @@ country_event = {
 			declare_war = {
 				target = event_target:flusion_primitives_country
 				attacker_war_goal = "wg_katzen_defence"
-				name = "Katzenkrieg"
+				name = "Freiheitkrieg"
 			}
 			every_country = {
 				limit = { is_in_federation_with = ROOT }
@@ -16481,7 +16522,7 @@ country_event = {
 
 	option = {
 		trigger = {
-			katzen_vassal = no
+			katzen_vassal = yes
 		}
 		name = giga_katzen.7012.c
 		custom_tooltip = giga_katzen.7012.c.tooltip
@@ -16497,6 +16538,29 @@ country_event = {
 		hidden_effect = {
 			katzen_free_protectorate = yes
 		}
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7012.e
+		custom_tooltip = giga_katzen.7012.e.tooltip
+		if = {
+			limit = { is_gestalt = no }
+			add_modifier = {
+				modifier = katzen_subversion_unrest
+				years = 3
+			}
+		}
+		if = {
+			limit = { is_gestalt = yes }
+			add_modifier = {
+				modifier = katzen_subversion_unrest_gestalt
+				years = 3
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
 	}
 }
 
@@ -16830,6 +16894,12 @@ country_event = { #hello
 		response_text = "giga_katzen.7021.diplowar.response"
 		trigger = {
 			NOT = { is_at_war_with = event_target:flusion_primitives_country }
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = "cant_flusiokrieg_contender"
+				NOT = { has_country_flag = katzen_civil_war_faction }
+			}
 		}
 		hidden_effect = {
 			declare_war = {

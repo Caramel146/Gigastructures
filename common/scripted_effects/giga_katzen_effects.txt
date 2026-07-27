@@ -3353,6 +3353,20 @@ katzen_calculate_score = { #to be run on Katzenartig country scope
 
 	#TODO additional -2 if the Kaiser Moon was destroyed at any point in the past (so -4 total without it)
 
+	#account for vassals that are sabotaging from within
+	#yeah these are some hefty modifiers but consider that vassals can't access partisans which give an even higher potential score deduction
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_bureaucratic_count #-4 per country that subverted the Kaiser at the first option
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_heavyhanded_count #-4 per country that subverted the Kaiser at the second option
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_unrest_count #-4 per country that subverted the Kaiser at the third option
+	}
 
 	#roll -3 to +3 randomisation
 	random_list = {
