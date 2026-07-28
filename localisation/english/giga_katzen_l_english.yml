@@ -110,6 +110,14 @@
  giga_katzen.7024.b:0 "We shall see what path they take."
  giga_katzen.7024.c:0 "A righteous day in history."
 
+ giga_katzen.7031.name:0 "Katzen Planetcraft Construction on Nesar!"
+ giga_katzen.7031.desc:0 "The latest child of the Kaiser's love for engineering megaprojects is now gestating on the magmatic world of §YNesar§! in the Jublio system. We already know what it is, as does the rest of the galaxy; after all, it's hard to hide turning an entire planet into a warship. Therefore, the Katzenartig Imperium has instead been loudly using this new megaproject as a unifying ambition, promising that the under-construction planetary warship - the \"§YKaiserübermacht§!\" - will be a leap forwards in Katzen history comparable to the completion of the old Kaiser Moon.\n\nOnce the Kaiser's new flagship comes online, the Kaiser Moon will become a second-rate ship, but the model won't be obsolete - rather, Kaiser Moons will §Renter general production§! in the Katzen armada, signifying new heights of Katzen military industry. Moreso, there is one key distinction between the future role of the Kaiserübermacht and the outgoing role of the Kaiser Moon: a theoretical defeat of the Kaiserübermacht §Rwill not plunge the Imperium into chaos§!. Indeed, we expect that thanks to the administrative resilience brought about by the §BReformation§!, nothing short of losing Flusion could decapitate the Kaiser's machine after that point.\n\nIf we aim to defeat the Katzen threat, we likely §Ronly have a decade§! before the Kaiserübermacht is functional and the Kaiser's galactic conquest begins anew..."
+ giga_katzen.7031.ally.desc:0 "The latest child of the Kaiser's love for engineering megaprojects is now gestating on the magmatic world of §YNesar§! in the Jublio system. We already know what it is, as does the rest of the galaxy; after all, it's hard to hide turning an entire planet into a warship. Therefore, the Katzenartig Imperium has instead been loudly using this new megaproject as a unifying ambition, promising that the under-construction planetary warship - the \"§YKaiserübermacht§!\" - will be a leap forwards in Katzen history comparable to the completion of the old Kaiser Moon.\n\nOnce the Kaiser's new flagship comes online, the Kaiser Moon will become a second-rate ship, but the model won't be obsolete - rather, Kaiser Moons will §Renter general production§! in the Katzen armada, signifying new heights of Katzen military industry. Moreso, there is one key distinction between the future role of the Kaiserübermacht and the outgoing role of the Kaiser Moon: a theoretical defeat of the Kaiserübermacht §Rwill not plunge the Imperium into chaos§!. Indeed, we expect that thanks to the administrative resilience brought about by the §BReformation§!, nothing short of losing Flusion could decapitate the Kaiser's machine after that point.\n\nFor those who aim to defeat the Imperium, they likely §Ronly have a decade§! before the Kaiserübermacht is functional and the Kaiser's galactic conquest begins anew..."
+ giga_katzen.7031.a:0 "Oh no..."
+ giga_katzen.7031.b:0 "Stop them now, while we still have time!"
+ giga_katzen.7031.b.tooltip:0 "We will §Rdeclare war§! on the Katzenartig Imperium."
+ giga_katzen.7031.c:0 "Glory to the Kaiser."
+
  councilor_katzen_colonial_chief:0 "Colonial Consul-General"
  councilor_katzen_colonial_chief_female:0 "$councilor_katzen_colonial_chief$"
  councilor_katzen_colonial_chief_desc:1 "The $TITLE$ upholds relations between our central government and most far-flung administrations."
@@ -133,6 +141,9 @@
 
  katzen_subversion_unrest_gestalt:0 "Unhampered Deviancy"
  katzen_subversion_unrest_gestalt_desc:0 "We are deliberately failing to rein in deviant cells who think that overthrowing Katzen rule will protect the collective."
+
+ katzen_planetcraft_intervention:0 "Anti-Planetcraft Interventionism"
+ katzen_planetcraft_intervention_desc:0 "Mobilise the fleet! The Katzens cannot be allowed to complete their new flagship."
 
  giga_katzencollapse_age:0 "Collapsed Age"
  giga_katzencollapse_age_desc:0 "This civilization has lost much of its technology in a catastrophic collapse. Various warlord factions still control advanced pre-Collapse technology, but the planetary technological and industrial base is shattered. Wracked by infighting over what's left, the planet's inhabitants may continue to decline in the coming era."

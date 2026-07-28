@@ -27,7 +27,6 @@ planet_event = {
 		solar_system = {
 			count_ship_in_system = { limit = { is_ship_size = giga_war_moon_flusion }	count >= 1 } #Mondkanone is still a thing
 		}
-		has_planet_flag = kaiser_update #only in new saves
 		NOR = {
 			has_planet_flag = kaiser_going_on_wc
 			has_planet_flag = checked_for_wc
@@ -43,12 +42,12 @@ planet_event = {
 					has_global_flag = katzenartig_always
 				}
 			}
-			planet_event = { id = giga_katzen.003 days = 3600 random = 360 }
+			planet_event = { id = giga_katzen.003 days = 3600 random = 360 } #Kaiser begins unification war
 			set_planet_flag = kaiser_going_on_wc
 			if = {
 				limit = { solar_system = { exists = owner } }
 				solar_system = {
-					owner = { country_event = { id = giga_katzen.002 days = 1 random = 359 } }
+					owner = { country_event = { id = giga_katzen.002 days = 1 random = 359 } } #inform system owner
 				}
 			}
 		}
@@ -56,12 +55,12 @@ planet_event = {
 			limit = {
 				has_global_flag = katzenartig_improbable
 			}
-			planet_event = { id = giga_katzen.003 days = 10 }
+			planet_event = { id = giga_katzen.003 days = 10 } #Kaiser begins unification war
 			set_planet_flag = kaiser_going_on_wc
 			if = {
 				limit = { solar_system = { exists = owner } }
 				solar_system = {
-					owner = { country_event = { id = giga_katzen.002 } }
+					owner = { country_event = { id = giga_katzen.002 } } #inform system owner
 				}
 			}
 		}
@@ -72,12 +71,12 @@ planet_event = {
 					has_global_flag = katzenartig_stellarite
 				}
 			}
-			planet_event = { id = giga_katzen.003 days = 360 random = 120 }
+			planet_event = { id = giga_katzen.003 days = 360 random = 120 } #Kaiser begins unification war
 			set_planet_flag = kaiser_going_on_wc
 			if = {
 				limit = { solar_system = { exists = owner } }
 				solar_system = {
-					owner = { country_event = { id = giga_katzen.002 days = 1 random = 359 } }
+					owner = { country_event = { id = giga_katzen.002 days = 1 random = 359 } } #informs system owner
 				}
 			}
 		}
@@ -85,12 +84,12 @@ planet_event = {
 			limit = {
 				has_global_flag = katzenartig_disabled
 			}
-			planet_event = { id = giga_flusionunion.001 days = 1800 random = 360 }
+			planet_event = { id = giga_flusionunion.001 days = 1800 random = 360 } #awaken United Flusionian States
 			set_planet_flag = kaiser_going_on_wc
 			if = {
 				limit = { solar_system = { exists = owner } }
 				solar_system = {
-					owner = { country_event = { id = giga_katzen.002 days = 1 random = 359 } }
+					owner = { country_event = { id = giga_katzen.002 days = 1 random = 359 } } #informs system owner
 				}
 			}
 		}
@@ -10183,6 +10182,7 @@ country_event = { #Kaiser Moon destroyed :(
 					any_owned_ship = {
 						has_ship_flag = kaiser_moon_ship
 					}
+					exists = leader
 				}
 				leader = { unassign_leader = this } #So Douclaw doesn't die
 			}
@@ -16211,6 +16211,7 @@ country_event = { #KAISER IS HERE (text)
 
 
 ### KATZEN CONSOLIDATION AND POST-CONSOLIDATION ARC
+##### giga_katzen.700x is Reformation Begins #####
 country_event = {
 	id = giga_katzen.7000
 	title = "giga_katzen.7000.name"
@@ -17138,7 +17139,64 @@ country_event = {
 	}
 }
 
+##### giga_katzen.700x is Reformation Ends #####
 #TODO Kaiserplanet construction begins
+country_event = {
+	id = giga_katzen.7031
+	title = "giga_katzen.7031.name"
+	desc = "giga_katzen.7031.desc"
+	location = event_target:nesar
+
+	show_sound = event_machinery
+	picture = GFX_evt_event_planetcraft
+
+	is_triggered_only = yes
+
+	option = {
+		name = giga_katzen.7031.a
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = no
+			NOT = {
+				is_at_war_with = event_target:flusion_primitives_country
+			}
+		}
+		name = giga_katzen.7031.b
+		custom_tooltip = giga_katzen.7031.b.tooltip
+
+		add_modifier = {
+			modifier = katzen_planetcraft_intervention
+			days = 3600
+		}
+
+		hidden_effect = {
+			set_kaiser_war_opinion = yes
+			declare_war = {
+				target = event_target:flusion_primitives_country
+				attacker_war_goal = "wg_katzen_defence"
+				name = "Katzenkrieg"
+			}
+			every_country = {
+				limit = { is_in_federation_with = ROOT }
+				join_war = ROOT
+				set_kaiser_war_opinion = yes
+			}
+			every_subject = {
+				join_war = ROOT
+				set_kaiser_war_opinion = yes
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7031.c
+	}
+}
 
 #TODO Kaiserplanet and consolidation over, second conquest begins
 
