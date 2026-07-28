@@ -207,7 +207,6 @@ kaiser_moon_2 = {
 		if = {
 			limit = { from = { NOT = { is_country_type = katzenartig_imperium } } }
 			from = {
-				save_event_target_as = kaiser_moon_builder
 				country_event = { id = giga_katzen.0904 }				# Notification
 				set_country_flag = has_built_or_repaired_megastructure	# Triggers Galactic Wonders
 				create_fleet = {
@@ -216,14 +215,14 @@ kaiser_moon_2 = {
 						spawn_debris = no
 					}
 					effect = {
-						set_owner = event_target:kaiser_moon_builder
+						set_owner = from
 						create_ship = {
 							name = "Kaiser Moon"
 							design = "Kaiser Moon"
 							upgradable = no
 							effect = {
 								if = {
-									limit = { event_target:kaiser_moon_builder = { has_origin = origin_eawafkaiser } }
+									limit = { from = { has_origin = origin_eawafkaiser } }
 									add_modifier = {
 										modifier = kaiser_moon_upkeep_reduction
 									}

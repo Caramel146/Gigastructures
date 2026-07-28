@@ -117,12 +117,12 @@ kaiser_can_demand_system = {
 	}
 }
 
-is_small_katzen_fleet = {
-	OR = {
-		has_fleet_flag = katzen_panzer_fleet
-		has_fleet_flag = katzen_bomber_fleet
-	}
-}
+# is_small_katzen_fleet = {
+# 	OR = {
+# 		has_fleet_flag = katzen_panzer_fleet
+# 		has_fleet_flag = katzen_bomber_fleet
+# 	}
+# }
 
 has_katzen_colony = {
 	any_system_planet = {
@@ -136,8 +136,7 @@ is_katzen_colony = {
 }
 
 katzen_jump_blocked_system = {
-	exists = owner
-	owner = { katzen_country_type = yes }
+	owner? = { katzen_country_type = yes }
 	any_system_planet = { #Must have a colony
 		is_katzen_colony = yes
 		has_carrier_flag = gigaflusion
@@ -211,10 +210,7 @@ is_allowed_for_kaiser_spawn = {
 		has_star_flag = mem_severance_relic_system
 
 		# is_fe_cluster = yes
-		AND = {
-			exists = space_owner
-			space_owner = { is_fallen_empire = yes }
-		}
+		space_owner? = { is_fallen_empire = yes }
 		any_system = {
 			distance = {
 				source = this
@@ -226,10 +222,7 @@ is_allowed_for_kaiser_spawn = {
 				has_star_flag = empire_home_system
 				has_star_flag = empire_cluster
 				# is_fe_cluster = yes
-				AND = {
-					exists = space_owner
-					space_owner = { is_fallen_empire = yes }
-				}
+				space_owner? = { is_fallen_empire = yes }
 			}
 		}
 	}
@@ -280,8 +273,7 @@ is_forbidden_for_kaiser_starbase = {
 
 	# kaiser shouldn't anger the xenophobe fallen empire unless he's at war with them
 	any_neighbor_system = {
-		exists = owner
-		owner = {
+		owner? = {
 			is_fallen_empire = yes
 			has_ai_personality = fallen_empire_xenophobe
 			not = { is_at_war_with = root }
