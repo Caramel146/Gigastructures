@@ -325,3 +325,8 @@ katzen_subversion_unrest_gestalt = {
 	planet_crime_add = 30
 	planet_crime_mult = 0.25
 }
+
+katzen_planetcraft_intervention = {
+	icon = "gfx/interface/icons/modifiers/mod_damage_vs_country_type.dds"
+	damage_vs_country_type_katzenartig_imperium_mult = 0.25
+}

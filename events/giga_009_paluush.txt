@@ -1781,12 +1781,9 @@ planet_event = { #trigger the Mondkanone immediately if guaranteed
 		NOT = { has_planet_flag = muno_project_event }
 		NOT = { has_global_flag = flusion_muno_event_happened }
 		event_target:gigamuno = {
-			AND = {
-				exists = THIS
-				NOR = {
-					has_carrier_flag = has_megastructure
-					is_colony = yes
-				}
+			NOR = {
+				has_carrier_flag = has_megastructure
+				is_colony = yes
 			}
 		}
 	}
