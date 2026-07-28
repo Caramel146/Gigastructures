@@ -5755,12 +5755,9 @@ country_event = { #Manage war forges and the Kaiser's eco
 		if = {
 			limit = {
 				NOR = {
+					has_global_flag = katzen_reformation_complete #fortified Katzen administration can survive losing the Moon
 					any_owned_fleet = {
 						any_owned_ship = {
-							OR = {
-								is_ship_size = giga_war_moon
-								is_ship_size = giga_kaiser_moon_flusion
-							}
 							has_ship_flag = kaiser_moon_ship
 						}
 					}
@@ -5803,7 +5800,6 @@ country_event = { #Manage war forges and the Kaiser's eco
 			}
 			#make a new one
 			country_event = { id = giga_katmoons.001 days = 3600 }
-			set_country_flag = kaiser_moon_destroyed
 			#to avoid spamfiring these events every month
 			set_country_flag = kaiser_moon_destroyed_events_done
 		}
@@ -5882,10 +5878,6 @@ country_event = { #Manage war forges and the Kaiser's eco
 			random_owned_fleet = {
 				limit = {
 					any_owned_ship = {
-						OR = {
-							is_ship_size = giga_war_moon
-							is_ship_size = giga_kaiser_moon_flusion
-						}
 						has_ship_flag = kaiser_moon_ship
 					}
 				}
@@ -10177,12 +10169,9 @@ country_event = { #Kaiser Moon destroyed :(
 	show_sound = event_structural_collapse
 
 	trigger = {
+		NOT = { has_global_flag = katzen_reformation_complete } #fortified Katzen administration can survive losing the Moon
 		from = { is_country_type = katzenartig_imperium }
 		fromfromfrom = {
-			OR = {
-				is_ship_size = giga_war_moon
-				is_ship_size = giga_kaiser_moon_flusion
-			}
 			has_ship_flag = kaiser_moon_ship
 		}
 	}
@@ -10192,10 +10181,6 @@ country_event = { #Kaiser Moon destroyed :(
 			random_owned_fleet = {
 				limit = {
 					any_owned_ship = {
-						OR = {
-							is_ship_size = giga_war_moon
-							is_ship_size = giga_kaiser_moon_flusion
-						}
 						has_ship_flag = kaiser_moon_ship
 					}
 				}
@@ -10206,6 +10191,7 @@ country_event = { #Kaiser Moon destroyed :(
 		save_global_event_target_as = kaiser_moon_slayer
 		every_country = {
 			limit = {
+				is_ai = no
 				NOT = { has_country_flag = kaiser_moon_slayer }
 			}
 			country_event = { id = giga_katzen.091 }
