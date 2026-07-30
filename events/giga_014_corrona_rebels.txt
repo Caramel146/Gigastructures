@@ -3964,9 +3964,12 @@ country_event = { #check for systems the Kaiser cannot access
 	hide_window = yes
 	is_triggered_only = yes
 
-	trigger ={
+	trigger = {
 		event_target:flusion_primitives_country = {
-			NOT = { has_country_flag = kaiser_moon_destroyed }
+			OR = {
+				NOT = { has_country_flag = kaiser_moon_destroyed }
+				has_global_flag = katzen_reformation_complete
+			}
 		}
 		NOT = { has_global_flag = ehof_disabled }
 	}
@@ -3996,7 +3999,10 @@ country_event = { #check for systems the Kaiser cannot access
 			limit = {
 				any_system = { has_star_flag = kaiser_cannot_reach }
 				event_target:flusion_primitives_country = {
-					NOT = { has_country_flag = kaiser_moon_destroyed }
+					OR = {
+						NOT = { has_country_flag = kaiser_moon_destroyed }
+						has_global_flag = katzen_reformation_complete
+					}
 					any_owned_megastructure = {
 						is_megastructure_type = kaiser_ehof_1
 					}
@@ -4024,7 +4030,10 @@ country_event = { #check for systems the Kaiser cannot access
 					has_global_flag = generating_katzen_wormhole
 				}
 				event_target:flusion_primitives_country = {
-					NOT = { has_country_flag = kaiser_moon_destroyed }
+					OR = {
+						NOT = { has_country_flag = kaiser_moon_destroyed }
+						has_global_flag = katzen_reformation_complete
+					}
 					any_owned_megastructure = {
 						is_megastructure_type = kaiser_ehof_1
 					}
@@ -4485,7 +4494,10 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		has_country_flag = kaiser_moon_destroyed
+		OR = {
+			has_country_flag = kaiser_moon_destroyed
+			has_global_flag = katzen_reformation_complete
+		}
 		NOT = { has_global_flag = katzenartig_imperium_defeated }
 	}
 
@@ -4494,83 +4506,111 @@ country_event = {
 			limit = { has_fleet_flag = kaisermoon_platform }
 			delete_fleet = THIS
 		}
-		if = {
+		if = { #building A nother Kaiser Moon
 			limit = {
-				NOT = {
-					any_owned_leader = { has_leader_flag = flusiondouclaw }
-				}
+				has_global_flag = katzen_reformation_complete
 			}
-			create_leader = {
-				class = commander
-				species = event_target:flusion_katzens
-				name = "Douclaw MacCathur"
-				skill = 4
-				gender = male
-				background_ethic = ethic_materialist
-				background_job = soldier
-				background_planet = event_target:flusion
-				traits = {
-					trait = katzen_trait_elite
-					trait = katzen_trait_nukelad
-					trait = katzen_trait_blitzkrieg
+			create_fleet = {
+				name = "Mondflotte"
+				settings = {
+					spawn_debris = no
+					can_upgrade = no
+					can_change_composition = yes
+					uses_naval_capacity = yes
 				}
 				effect = {
-					save_global_event_target_as = flusion_douclaw
-					set_douclaw_real_portrait = yes
-					set_council_position = councilor_defense
+					set_owner = event_target:flusion_primitives_country
+					create_ship = {
+						name = "Katzenmond"
+						design = "Kaiser Moon"
+						upgradable = no
+						effect = {
+							set_ship_flag = kaiser_moon_ship
+							save_global_event_target_as = target_kaiser_moon_ship
+						}
+					}
+					set_location = event_target:giga_planet
+					set_fleet_stance = aggressive
 				}
 			}
 		}
-		create_fleet = { #Spawn the cooler attack moon and an escort fleet.
-			name = "Kaiservorherrschaft"
-			settings = {
-				spawn_debris = no
-				can_upgrade = no
-				can_change_composition = yes
-				uses_naval_capacity = yes
-			}
-			effect = {
-				set_owner = event_target:flusion_primitives_country
-				create_ship = {
-					name = "Kaiservorherrschaft"
-					design = "Kaiser Moon"
-					upgradable = no
-					effect = {
-						set_ship_flag = kaiser_moon_ship
-						save_global_event_target_as = target_kaiser_moon_ship
+		else = { #rebuilding the singular Kaiser Moon when it's the flagship
+			if = {
+				limit = {
+					NOT = {
+						any_owned_leader = { has_leader_flag = flusiondouclaw }
 					}
 				}
-				while = {
-					count = 4 #4 escort ships
-					spawn_katzen_cruiser = yes
+				create_leader = {
+					class = commander
+					species = event_target:flusion_katzens
+					name = "Douclaw MacCathur"
+					skill = 4
+					gender = male
+					background_ethic = ethic_materialist
+					background_job = soldier
+					background_planet = event_target:flusion
+					traits = {
+						trait = katzen_trait_elite
+						trait = katzen_trait_nukelad
+						trait = katzen_trait_blitzkrieg
+					}
+					effect = {
+						save_global_event_target_as = flusion_douclaw
+						set_douclaw_real_portrait = yes
+						set_council_position = councilor_defense
+					}
 				}
-				while = {
-					count = 12 #12 bombers
-					spawn_katzen_bomber = yes
-				}
-				while = {
-					count = 24 #24 panzers
-					spawn_katzen_panzer = yes
-				}
-				assign_leader = event_target:flusion_douclaw
-				set_location = event_target:giga_planet
-				set_fleet_flag = kaiser_moon_fleet
-				save_global_event_target_as = target_kaiser_moon_fleet
-				set_fleet_stance = aggressive
 			}
-		}
-		remove_country_flag = kaiser_moon_destroyed
-		remove_country_flag = kaiser_moon_destroyed_events_done
-		remove_modifier = katzenartig_disarray
-		every_ambient_object = {
-			limit = {
-				is_ambient_object_type = kaiser_moon_broken_object
+			create_fleet = { #Spawn the cooler attack moon and an escort fleet.
+				name = "Kaiservorherrschaft"
+				settings = {
+					spawn_debris = no
+					can_upgrade = no
+					can_change_composition = yes
+					uses_naval_capacity = yes
+				}
+				effect = {
+					set_owner = event_target:flusion_primitives_country
+					create_ship = {
+						name = "Kaiservorherrschaft"
+						design = "Kaiser Moon"
+						upgradable = no
+						effect = {
+							set_ship_flag = kaiser_moon_ship
+							save_global_event_target_as = target_kaiser_moon_ship
+						}
+					}
+					while = {
+						count = 4 #4 escort ships
+						spawn_katzen_cruiser = yes
+					}
+					while = {
+						count = 12 #12 bombers
+						spawn_katzen_bomber = yes
+					}
+					while = {
+						count = 24 #24 panzers
+						spawn_katzen_panzer = yes
+					}
+					assign_leader = event_target:flusion_douclaw
+					set_location = event_target:giga_planet
+					set_fleet_stance = aggressive
+				}
 			}
-			destroy_ambient_object = THIS
-		}
-		every_country = {
-			limit = { is_ai = no }
-			country_event = { id = giga_katmoons.006 }
+			remove_country_flag = kaiser_moon_destroyed
+			remove_country_flag = kaiser_moon_destroyed_events_done
+			remove_modifier = katzenartig_disarray
+			every_ambient_object = {
+				limit = {
+					is_ambient_object_type = kaiser_moon_broken_object
+				}
+				destroy_ambient_object = THIS
+			}
+			every_country = {
+				limit = { is_ai = no }
+				country_event = { id = giga_katmoons.006 }
+			}
 		}
 	}
 }
@@ -4594,7 +4634,14 @@ country_event = { #OH NO
 country_event = {
 	id = giga_katmoons.007
 	title = "giga_katmoons.007.name"
-	desc = "giga_katmoons.007.desc"
+	desc = {
+		trigger = { NOT = { has_global_flag = katzen_reformation_complete } }
+		text = "giga_katmoons.007.desc"
+	}
+	desc = {
+		trigger = { has_global_flag = katzen_reformation_complete }
+		text = "giga_katmoons.007.postreformation.desc"
+	}
 	is_triggered_only = yes
 	picture = GFX_evt_large_explosion
 	show_sound = event_ship_explosion
@@ -10002,6 +10049,7 @@ country_event = {
 					is_ship_size = giga_kaiser_moon_flusion
 				}
 			}
+			NOT = { has_global_flag = katzen_reformation_complete }
 		}
 		allow = {
 			custom_tooltip = {

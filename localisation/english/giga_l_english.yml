@@ -4973,7 +4973,7 @@
 
   war_planet_0:0 "$gc_giga$$name_war_planet$ Construction Site"
   war_planet_0_DESC:0 "The construction site for a future $name_war_planet$, a literally insane spacecraft built around an entire planet. Lots of work lie ahead."
-  war_planet_0_MEGASTRUCTURE_DETAILS:0 "$giga_list_category_gigastructure$ - $giga_list_category_celestial_warship$ - $giga_list_category_ship_production$\nConverts a §YMolten§!, §YBarren§!, §YToxic§! or §YFrozen World§! above §YSize 24§! into a §YCelestial Warship§!\n§LThe Behemoth Planetcraft is equipped with even more powerful weaponry than its lunar brethren and should be capable of fending off most threats by itself." #gigalistentry BEHEMOTH PLANETCRAFT
+  war_planet_0_MEGASTRUCTURE_DETAILS:0 "$giga_list_category_gigastructure$ - $giga_list_category_celestial_warship$ - $giga_list_category_ship_production$\nConverts a §YMolten§!, §YBarren§!, §YToxic§! or §YFrozen World§! at or above §YSize 24§! into a §YCelestial Warship§!\n§LThe Behemoth Planetcraft is equipped with even more powerful weaponry than its lunar brethren and should be capable of fending off most threats by itself." #gigalistentry BEHEMOTH PLANETCRAFT
 
   war_planet_1:0 "Planetcraft Crust"
   war_planet_1_DESC:0 "The Planetcraft's external and internal systems have been installed within the planet's crust. A gigantically gigantic reactor is installed within this world's core, capable of powering the most powerful weapons."
@@ -7260,19 +7260,23 @@
  giga_katzen.020dwar.desc:0 "The Kaiser shall send the [Root.GetName] where it belongs: Into the dustbin of history."
  giga_katzen.020ewar.desc:0 "The [Root.GetSpeciesNamePlural] will soon join the myriad nations of Flusion."
  giga_katzen.020fwar.desc:0 "Where will your people hide when the Weltraumpanzers breach your hulls? All of space belongs to Katzenkind, and vagrants are unwelcome."
- giga_katzen.020gwar.desc:0 " Soon, your self-proclaimed "Galactic Imperium" will realise its mistake: this galaxy belongs to the Katzenartig Imperium."
+ giga_katzen.020gwar.desc:0 "Soon, your self-proclaimed "Galactic Imperium" will realise its mistake: this galaxy belongs to the Katzenartig Imperium."
+ giga_katzen.020hwar.desc:0 "Don't think our inwards focus means we've lost our edge, [Root.GetSpeciesNamePlural]. We will still crush you."
 
  giga_katzen.020aprot.desc:0 "Ah! Our dear [Root.GetName]. How goes things?"
  giga_katzen.020bprot.desc:0 "I assure you that [Root.GetRulerName] is an exceptionally competent leader, dear Katzprotektorat."
  giga_katzen.020cprot.desc:0 "You made the right choice submitting to us. We shall protect you forever."
  giga_katzen.020dprot.desc:0 "The Kaiser is more than happy to share our glory with your kind."
  giga_katzen.020eprot.desc:0 "We shall conquer the galaxy together, [Root.GetName]!"
+ giga_katzen.020fprot.desc:0 "How are you going with the latest reforms? It's extremely important that you stay on top of our communiques."
+ giga_katzen.020gprot.desc:0 "When the Reformation is over, the benefits of the Kaiser's rule will be more evident than ever."
 
  giga_katzen.020amisc.desc:0 "The Blokkats want to harvest every last star in the sky, and some want to squabble over minutiae like sovereignty. No. Only the Kaiser can protect us."
  giga_katzen.020bmisc.desc:0 "Meopa, the great Katzenlandian king and destroyer of old... in your ranks. Stunning. I hope you understand what you've gotten yourselves into."
  giga_katzen.020cmisc.desc:0 "How are your... experiments going, [Root.GetSpeciesNamePlural]? Safely? The Kaiser seems convinced that they could be quite dangerous for Flusion."
  giga_katzen.020dmisc.desc:0 "Ah, the [Root.GetName]. You're dabbling with some dangerous things, which makes your affairs Katzenartig business. Some barriers shouldn't be broken."
  giga_katzen.020emisc.desc:0 "The Kaiser has personally told me to convey that you're on the wrong path with your thermal obsession. I don't understand the science, but the Kaiser assures me he's been consulting with our top astrophysicists. Turn down the heat."
+ giga_katzen.020fmisc.desc:0 "Have you heard of our latest reforms? The prosperity coming to Flusion will be the model for the galaxy."
 
     giga_katzen.020.kaiserhappy4:0 "§YKaiser's Opinion§!: Elated | Current attitude range: 80 to 100"
 	giga_katzen.020.kaiserhappy3:0 "§YKaiser's Opinion§!: Very Friendly | Current attitude range: 60 to 80"
@@ -7284,7 +7288,7 @@
 	giga_katzen.020.kaiserangry3:0 "§YKaiser's Opinion§!: Angered | Current attitude range: -60 to -80"
 	giga_katzen.020.kaiserangry4:0 "§YKaiser's Opinion§!: Enraged | Current attitude range: -80 to -100"
 
-	giga_katzen.020.kaiseropinion:0 "§TThe §YKaiser's Opinion§! of us can vary between §E100|Elated§! and §R0|Enraged§!.\n\nDoing specific actions for or against the Katzenartig Imperium can alter his opinion.\n\nAn enraged Kaiser will automatically §Rdeclare war§! on us, while we might be able to seek an §Ealliance§! with an elated Kaiser.§!"
+	giga_katzen.020.kaiseropinion:0 "§TThe §YKaiser's Opinion§! of us can vary between §E100|Elated§! and §R-100|Enraged§!.\n\nDoing specific actions for or against the Katzenartig Imperium can alter his opinion.\n\nAn enraged Kaiser will automatically §Rdeclare war§! on us, while we might be able to seek an §Ealliance§! with an elated Kaiser.§!"
 
 	giga_katzen.020.war:0 "We've had enough of you, §Rthis is war!§!"
 	giga_katzen.020.war.tooltip:0 "§T§RWE WILL DECLARE TOTAL WAR ON THE KATZENARTIG IMPERIUM.§!\n\nThe §YKaiser's Opinion§! will §Rdecrease§! to §Renraged§!.\n\nPeace will only be possible after at least §Y2.5 years of fighting§!.\n\n§YFlusion§! must be §Ycaptured§! or §Ydestroyed§! to defeat the Imperium for good.§T"
@@ -7700,7 +7704,6 @@
 	giga_katzen.04002.a:0 "This does not bode well."
 	giga_katzen.04002.b:0 "A galaxy united! Three cheers for the Kaiser!"
 	giga_katzen.04002.c:0 "Is there no-one who can free us?"
-	giga_katzen.04002.tooltip:0 "§YThe Katzen Navy will begin fielding upgraded Mark II ships.§!"
 
     ###KAISER VERSUS BLOKKATS###
     katzen_antiblokkat_tech:0 "katzen_antiblokkat_tech"
@@ -7972,6 +7975,7 @@
 
   giga_katmoons.007.name:0 "Kaiser Moon Construction Site Destroyed!"
   giga_katmoons.007.desc:0 "Our military reports that they have managed to successfully capture the §Y[kaiser_moon_destroyed_system.GetName]§! system, in which the Katzens intended to build a new §YKaiser Moon§!.\n\nUpon clearing all Katzen forces from the system, our fleets proceeded to bombard the site, destroying it completely. This came as a great relief to the rest of our empire, as the destruction of this project is a great setback in the §YKatzenartig Imperium§!'s plan to rebuild their flagship."
+  giga_katmoons.007.postreformation.desc:0 "Our military reports that they have managed to successfully capture the §Y[kaiser_moon_destroyed_system.GetName]§! system, in which the Katzens intended to build a new §YKaiser Moon§!.\n\nUpon clearing all Katzen forces from the system, our fleets proceeded to bombard the site, destroying it completely. This came as a great relief to the rest of our empire, as the destruction of this project is a sizeable setback in the §YKatzenartig Imperium§!'s plan to expand their navy."
   giga_katmoons.007.a:0 "Excellent!"
 
   #Roqual

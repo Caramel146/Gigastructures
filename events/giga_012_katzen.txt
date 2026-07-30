@@ -780,8 +780,6 @@ country_event = {
 					}
 					assign_leader = event_target:flusion_douclaw
 					set_location = event_target:gigaflusion
-					set_fleet_flag = kaiser_moon_fleet
-					save_global_event_target_as = target_kaiser_moon_fleet
 					set_fleet_stance = aggressive
 				}
 			}
@@ -825,8 +823,6 @@ country_event = {
 					}
 					assign_leader = event_target:flusion_douclaw
 					set_location = event_target:gigaflusion
-					set_fleet_flag = kaiser_moon_fleet
-					save_global_event_target_as = target_kaiser_moon_fleet
 					set_fleet_stance = aggressive
 				}
 			}
@@ -869,8 +865,6 @@ country_event = {
 					}
 					assign_leader = event_target:flusion_douclaw
 					set_location = event_target:gigaflusion
-					set_fleet_flag = kaiser_moon_fleet
-					save_global_event_target_as = target_kaiser_moon_fleet
 					set_fleet_stance = aggressive
 				}
 			}
@@ -916,8 +910,6 @@ country_event = {
 					}
 					assign_leader = event_target:flusion_douclaw
 					set_location = event_target:gigaflusion
-					set_fleet_flag = kaiser_moon_fleet
-					save_global_event_target_as = target_kaiser_moon_fleet
 					set_fleet_stance = aggressive
 				}
 			}
@@ -2552,6 +2544,15 @@ country_event = { #hello
 			is_galactic_emperor = yes
 		}
 	}
+	desc = {
+		text = "giga_katzen.020hwar.desc" #at war
+		trigger = {
+			kaiser_opinion_range_enraged = yes
+			NOT = { has_country_flag = kaiser_loris_meme }
+			has_country_flag = first_katzen_diplomacy
+			katzen_reformation_active = yes
+		}
+	}
 
 	### Protectorate
 	desc = {
@@ -2587,6 +2588,22 @@ country_event = { #hello
 		trigger = {
 			katzen_vassal = yes
 			NOT = { has_country_flag = kaiser_loris_meme }
+		}
+	}
+	desc = {
+		text = "giga_katzen.020fprot.desc" #protek
+		trigger = {
+			katzen_vassal = yes
+			NOT = { has_country_flag = kaiser_loris_meme }
+			katzen_reformation_active = yes
+		}
+	}
+	desc = {
+		text = "giga_katzen.020gprot.desc" #protek
+		trigger = {
+			katzen_vassal = yes
+			NOT = { has_country_flag = kaiser_loris_meme }
+			katzen_reformation_active = yes
 		}
 	}
 
@@ -2676,6 +2693,23 @@ country_event = { #hello
 		}
 	}
 
+	desc = {
+		text = "giga_katzen.020fmisc.desc" #Katzen Reformation
+		trigger = {
+			OR = {
+				kaiser_opinion_range_elated = yes
+				kaiser_opinion_range_very_friendly = yes
+				kaiser_opinion_range_friendly = yes
+				kaiser_opinion_range_cordial = yes
+				kaiser_opinion_range_indifferent = yes
+				kaiser_opinion_range_terse = yes
+			}
+			NOT = { has_country_flag = kaiser_loris_meme }
+			has_country_flag = first_katzen_diplomacy
+			katzen_reformation_active = yes
+		}
+	}
+
 	diplomatic = yes
 	location = from
 	is_triggered_only = yes
@@ -2683,8 +2717,9 @@ country_event = { #hello
 	trigger = {
 		from = {
 			is_country_type = katzenartig_imperium
-			NOT = {
-				has_country_flag = kaiser_moon_destroyed
+			OR = {
+				NOT = { has_country_flag = kaiser_moon_destroyed }
+				has_global_flag = katzen_reformation_complete
 			}
 		}
 		has_active_kaiser_diplo = no
@@ -5772,6 +5807,7 @@ country_event = { #Manage war forges and the Kaiser's eco
 			limit = {
 				has_country_flag = kaiser_moon_destroyed
 				NOT = { has_country_flag = kaiser_moon_destroyed_events_done }
+				NOT = { has_global_flag = katzen_reformation_complete } #government is too stable to collapse from losing the new planetary flagship
 			}
 			# set modifier
 			add_modifier = {
@@ -6119,71 +6155,79 @@ country_event = { #Manage war forges and the Kaiser's eco
 
 
 		#count his Kaiser Score and check to trigger Consolidation
-		set_variable = {
-			which = kaiser_size
-			value = value:kaiser_size #1% of systems owned (including vassals), or 2 colonies or 10,000 pops (excluding vassals) is 1 score
-		}
-
 		if = {
 			limit = {
-				NOT = { is_variable_set = kaiser_months_present }
+				NOT = {
+					has_global_flag = katzen_reformation_begun
+				}
+			}
+
+			set_variable = {
+				which = kaiser_size
+				value = value:kaiser_size #1% of systems owned (including vassals), or 2 colonies or 10,000 pops (excluding vassals) is 1 score
+			}
+
+			if = {
+				limit = {
+					NOT = { is_variable_set = kaiser_months_present }
+				}
+				set_variable = {
+					which = kaiser_months_present
+					value = 0
+				}
+			}
+			else = {
+				change_variable = {
+					which = kaiser_months_present
+					value = 1
+				}
 			}
 			set_variable = {
-				which = kaiser_months_present
-				value = 0
+				which = kaiser_consolidation_trigger
+				value = kaiser_months_present
 			}
-		}
-		else = {
+			divide_variable = {
+				which = kaiser_consolidation_trigger
+				value = 48 #each year is equivalent to 0.25 kaiser_size, so survivng from 2320 to standard endgame would give 20% of necessary consolidation trigger by itself
+			}
+			set_variable = {
+				which = kaiser_consolidation_trigger_endgame
+				value = trigger:end_game_years_passed
+			}
+			divide_variable = {
+				which = kaiser_consolidation_trigger_endgame
+				value = 4 #he should really be nearing reformation in endgame. This gives an additional 0.25-per-year, effectively kicking time-factor up to double the rate
+			}
 			change_variable = {
-				which = kaiser_months_present
-				value = 1
+				which = kaiser_consolidation_trigger
+				value = kaiser_consolidation_trigger_endgame
 			}
-		}
-		set_variable = {
-			which = kaiser_consolidation_trigger
-			value = kaiser_months_present
-		}
-		divide_variable = {
-			which = kaiser_consolidation_trigger
-			value = 48 #each year is equivalent to 0.25 kaiser_size, so survivng from 2320 to standard endgame would give 20% of necessary consolidation trigger by itself
-		}
-		set_variable = {
-			which = kaiser_consolidation_trigger_endgame
-			value = trigger:end_game_years_passed
-		}
-		divide_variable = {
-			which = kaiser_consolidation_trigger_endgame
-			value = 4 #he should really be nearing reformation in endgame. This gives an additional 0.25-per-year, effectively kicking time-factor up to double the rate
-		}
-		change_variable = {
-			which = kaiser_consolidation_trigger
-			value = kaiser_consolidation_trigger_endgame
-		}
-		change_variable = {
-			which = kaiser_consolidation_trigger
-			value = kaiser_size
-		}
+			change_variable = {
+				which = kaiser_consolidation_trigger
+				value = kaiser_size
+			}
 
-		if = {
-			limit = {
-				NOT = { has_global_flag = katzen_reformation_begun }
-				check_variable = {
-					which = kaiser_consolidation_trigger
-					value >= 100
+			if = {
+				limit = {
+					NOT = { has_global_flag = katzen_reformation_begun }
+					check_variable = {
+						which = kaiser_consolidation_trigger
+						value >= 100
+					}
+					check_variable = {
+						which = kaiser_months_present
+						value >= 600 #Kaiser must have been active for a minimum of 50 years
+					}
 				}
-				check_variable = {
-					which = kaiser_months_present
-					value >= 600 #Kaiser must have been active for a minimum of 50 years
+				set_global_flag = katzen_reformation_begun #changes numerous aspects of Katzen behaviour
+				every_country = {
+					limit = { is_ai = no }
+					country_event = { id = giga_katzen.7000 } #notify of strategic shift
+					country_event = { id = giga_katzen.7002 days = 360 random = 180 } #Reformation formally begins
+					country_event = { id = giga_katzen.7001 days = 90 random = 90 } #Katzens offer peace in any ongoing war
 				}
+				country_event = { id = giga_katzen.7010 days = 1080 random = 360 } #roll for Instability
 			}
-			set_global_flag = katzen_reformation_begun #changes numerous aspects of Katzen behaviour
-			every_country = {
-				limit = { is_ai = no }
-				country_event = { id = giga_katzen.7000 } #notify of strategic shift
-				country_event = { id = giga_katzen.7002 days = 360 random = 180 } #Reformation formally begins
-				country_event = { id = giga_katzen.7001 days = 90 random = 90 } #Katzens offer peace in any ongoing war
-			}
-			country_event = { id = giga_katzen.7010 days = 1080 random = 540 } #roll for Instability
 		}
 
 		#if Katzens are winding down expansionism for Reformation, roll for peace with opponents
@@ -6205,6 +6249,90 @@ country_event = { #Manage war forges and the Kaiser's eco
 				random = {
 					chance = 5
 					end_war_effect = yes
+				}
+			}
+		}
+
+		#Reformation timer
+		if = {
+			limit = {
+				katzen_reformation_active = yes
+			}
+
+			#count down Reformation remaining duration
+			if = { #unless suffering Instability! So that the Reformation is prolonged even if the Imperium doesn't collapse
+				limit = {
+					NOT = {
+						capital_scope = {
+							has_modifier = flusion_consolidation_instability #effectively a check for Reformation Instability
+						}
+					}
+				}
+				if = {
+					limit = {
+						NOT = { is_variable_set = kaiser_reformation_months_left }
+					}
+					switch = {
+						trigger = has_global_flag
+						katzenartig_easy = {
+							set_variable = {
+								which = kaiser_reformation_months_left
+								value = 252 #21 (+1) year Reformation
+							}
+						}
+						default = { #AKA normal diff
+							set_variable = {
+								which = kaiser_reformation_months_left
+								value = 240 #20 (default) year Reformation
+							}
+						}
+						katzenartig_deathwish = {
+							set_variable = {
+								which = kaiser_reformation_months_left
+								value = 228 #19 (-1) year Reformation
+							}
+						}
+						katzenartig_stellarite = {
+							set_variable = {
+								which = kaiser_reformation_months_left
+								value = 216 #18 (-2) year Reformation
+							}
+						}
+						katzenartig_improbable = {
+							set_variable = {
+								which = kaiser_reformation_months_left
+								value = 204 #17 (-3) year Reformation
+							}
+						}
+						#note to anyone changing numbers: make sure the planetcraft doesn't start construction prior to Instability-then-collapse and mess things up
+					}
+				}
+				else = {
+					change_variable = {
+						which = kaiser_reformation_months_left
+						value = -1
+					}
+				}
+
+				#begin planetcraft construction halfway through (halfway on default timing)
+				if = {
+					limit = {
+						check_variable = {
+							which = kaiser_reformation_months_left
+							value <= 120
+						}
+					}
+					capital_scope.solar_system = {
+						spawn_megastructure = {
+							type = kaiser_planetcraft_1
+							planet = event_target:nesar
+							owner = root
+						}
+						random_system_megastructure = {
+							limit = { is_megastructure_type = kaiser_planetcraft_1 }
+							upgrade_megastructure_to = kaiser_planetcraft_2
+						}
+					}
 				}
 			}
 		}
@@ -6254,8 +6382,6 @@ country_event = { #Warforge destroyed
 # 			event_target:target_kaiser_moon_ship = {
 # 				fleet = {
 # 					assign_leader = event_target:flusion_douclaw
-# 					set_fleet_flag = kaiser_moon_fleet
-# 					save_global_event_target_as = target_kaiser_moon_fleet
 # 					set_name = "Kaiservorherrschaft"
 # 					set_fleet_settings = {
 # 						can_change_leader = no
@@ -6349,7 +6475,12 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 	is_triggered_only = yes
 
 	trigger = {
-		event_target:flusion_primitives_country = { NOT = { has_country_flag = kaiser_moon_destroyed } }
+		event_target:flusion_primitives_country = {
+			OR = {
+				NOT = { has_country_flag = kaiser_moon_destroyed }
+				has_global_flag = katzen_reformation_complete
+			}
+		}
 		OR = {
 			AND = {
 				is_at_war = yes #only wardec weak and alone countries when already bogged in wars elsewhere
@@ -7459,7 +7590,6 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 				}
 			}
 			set_name = "Galaktisches Katzimperium"
-			set_global_flag = katzen_mkii_deployed #roll out the Mark II ship designs!
 			every_playable_country = {
 				limit = { is_ai = no }
 				country_event = { id = giga_katzen.04002 }
@@ -7868,6 +7998,7 @@ planet_event = { #Expand the Jublio System
 		else_if = {
 			limit = {
 				giga_is_molten = yes
+				NOT = { has_carrier_flag = nesar } #we need this for the Kaiser Planetcraft
 			}
 			solar_system = {
 				spawn_megastructure = {
@@ -7914,7 +8045,10 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		NOT = { has_country_flag = kaiser_moon_destroyed }
+		OR = {
+			NOT = { has_country_flag = kaiser_moon_destroyed }
+			has_global_flag = katzen_reformation_complete
+		}
 		is_country_type = katzenartig_imperium # Don't check any other countries, none of them should ever be imperium.
 	}
 
@@ -10271,6 +10405,7 @@ country_event = { #IF MOON IS GONE
 			is_country_type = katzenartig_imperium
 			has_country_flag = kaiser_moon_destroyed
 		}
+		NOT = { has_global_flag = katzen_reformation_complete }
 	}
 
 	picture_event_data = {
@@ -16404,7 +16539,7 @@ country_event = {
 				years = 3
 			}
 		}
-		if = {
+		else_if = {
 			limit = { is_gestalt = yes }
 			add_modifier = {
 				modifier = katzen_subversion_heavyhanded_gestalt
@@ -16424,8 +16559,11 @@ country_event = { #Roll for Instability
 
 	is_triggered_only = yes
 
-
 	immediate = {
+		set_variable = {
+			which = kaiser_size
+			value = value:kaiser_size #1% of systems owned (including vassals), or 2 colonies or 10,000 pops (excluding vassals) is 1 score
+		}
 		katzen_calculate_score = yes
 
 		#if he consolidates at the standard endgame date, we can assume he has 80 kaiser_size, and 20 consolidation_trigger is from time passed 2320-2400
@@ -16474,6 +16612,10 @@ country_event = { #roll to restabilise or collapse during instability
 	is_triggered_only = yes
 
 	immediate = {
+		set_variable = {
+			which = kaiser_size
+			value = value:kaiser_size #1% of systems owned (including vassals), or 2 colonies or 10,000 pops (excluding vassals) is 1 score
+		}
 		katzen_calculate_score = yes #calculate what score is currently in case it changed
 
 		if = {
@@ -16588,7 +16730,7 @@ country_event = {
 				years = 3
 			}
 		}
-		if = {
+		else_if = {
 			limit = { is_gestalt = yes }
 			add_modifier = {
 				modifier = katzen_subversion_unrest_gestalt
@@ -17081,6 +17223,7 @@ country_event = {
 		name = giga_katzen.7023.a
 		custom_tooltip = giga_katzen.7023.a.tooltip
 		force_add_civic = civic_reunited_imperium_player
+		add_research_option = giga_tech_kaiser_moon
 		add_resource = {
 			influence = 250
 		}
@@ -17092,7 +17235,7 @@ country_event = {
 				set_global_flag = flusion_provisional_gov_integrated
 				event_target:flusion_primitives_country = {
 					every_owned_fleet = {    set_owner = root }
-					#don't give them all 500 leaders
+					#don't give players all 500 leaders - no every_owned_leader here
 					every_owned_army = {    set_owner = root }
 					every_owned_planet = {    set_owner = root }
 				}
@@ -17188,7 +17331,6 @@ country_event = {
 }
 
 ##### giga_katzen.700x is Reformation Ends #####
-#TODO Kaiserplanet construction begins
 country_event = {
 	id = giga_katzen.7031
 	title = "giga_katzen.7031.name"
@@ -17196,7 +17338,7 @@ country_event = {
 	location = event_target:nesar
 
 	show_sound = event_machinery
-	picture = GFX_evt_event_planetcraft
+	picture = GFX_evt_planetcraft
 
 	is_triggered_only = yes
 
@@ -17246,8 +17388,30 @@ country_event = {
 	}
 }
 
-#TODO Kaiserplanet and consolidation over, second conquest begins
+country_event = {
+	id = giga_katzen.7032
+	title = "giga_katzen.7032.name"
+	desc = "giga_katzen.7032.desc"
+	location = event_target:jublio
 
+	show_sound = event_air_raid_siren
+	picture = GFX_evt_fallen_empire_awakes
+
+	is_triggered_only = yes
+
+	option = {
+		name = giga_katzen.7032.a
+		custom_tooltip = giga_katzen.7032.a.tooltip
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.7032.b
+		custom_tooltip = giga_katzen.7032.a.tooltip
+	}
+}
 
 
 
