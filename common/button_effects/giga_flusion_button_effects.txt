@@ -1116,7 +1116,7 @@ giga_contact_ezic = {
 
 #Moon
 giga_kaiser_moon_barrel = {
-	potential = { exists = from NOT = { has_global_flag = kaiser_moon_barrel_sabotaged } event_target:flusion_primitives_country = { NOT = { has_country_flag = kaiser_moon_destroyed } } }
+	potential = { exists = from NOR = { has_global_flag = kaiser_moon_barrel_sabotaged has_global_flag = katzen_reformation_complete } event_target:flusion_primitives_country = { NOT = { has_country_flag = kaiser_moon_destroyed } } }
 	allow = {
 		custom_tooltip = "kaiser_moon_barrel_tooltip"
 		hidden_trigger = {
@@ -1130,7 +1130,7 @@ giga_kaiser_moon_barrel = {
 }
 
 giga_kaiser_moon_moon = {
-	potential = { exists = from NOT = { has_global_flag = kaiser_moon_moon_sabotaged } event_target:flusion_primitives_country = { NOT = { has_country_flag = kaiser_moon_destroyed } } }
+	potential = { exists = from NOR = { has_global_flag = kaiser_moon_moon_sabotaged has_global_flag = katzen_reformation_complete } event_target:flusion_primitives_country = { NOT = { has_country_flag = kaiser_moon_destroyed } } }
 	allow = {
 		custom_tooltip = "kaiser_moon_moon_tooltip"
 		hidden_trigger = {
@@ -1144,7 +1144,7 @@ giga_kaiser_moon_moon = {
 }
 
 giga_kaiser_moon_thrusters = {
-	potential = { exists = from NOT = { has_global_flag = kaiser_moon_thrusters_sabotaged } event_target:flusion_primitives_country = { NOT = { has_country_flag = kaiser_moon_destroyed } } }
+	potential = { exists = from NOR = { has_global_flag = kaiser_moon_thrusters_sabotaged has_global_flag = katzen_reformation_complete } event_target:flusion_primitives_country = { NOT = { has_country_flag = kaiser_moon_destroyed } } }
 	allow = {
 		custom_tooltip = "kaiser_moon_thrusters_tooltip"
 		hidden_trigger = {
@@ -1158,7 +1158,7 @@ giga_kaiser_moon_thrusters = {
 }
 
 giga_kaiser_moon_wings = {
-	potential = { exists = from NOT = { has_global_flag = kaiser_moon_wings_sabotaged } event_target:flusion_primitives_country = { NOT = { has_country_flag = kaiser_moon_destroyed } } }
+	potential = { exists = from NOR = { has_global_flag = kaiser_moon_wings_sabotaged has_global_flag = katzen_reformation_complete } event_target:flusion_primitives_country = { NOT = { has_country_flag = kaiser_moon_destroyed } } }
 	allow = {
 		custom_tooltip = "kaiser_moon_wings_tooltip"
 		hidden_trigger = {
