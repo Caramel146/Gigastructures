@@ -1563,7 +1563,9 @@ katzen_reformation_collapse = {
 			}
 			if = { #take the OG Kaiser Moon back
 				limit = {
-					has_fleet_flag = kaiser_moon_fleet
+					any_owned_ship = {
+						is_ship_size = giga_war_moon
+					}
 				}
 				set_location = event_target:gigaflusion
 			}
