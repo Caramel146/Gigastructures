@@ -4316,7 +4316,10 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		has_country_flag = kaiser_moon_destroyed
+		OR = {
+			has_country_flag = kaiser_moon_destroyed #rebuild the flagship Kaiser Moon
+			has_global_flag = katzen_reformation_complete #mass produce Kaiser Moons
+		}
 		NOR = {
 			has_global_flag = katzenartig_imperium_defeated
 			has_global_flag = katzenartig_stellarite
@@ -4325,7 +4328,14 @@ country_event = {
 	}
 
 	immediate = { #locate a suitable candidate for the Kaiser Moon:tm:, searching outwards from Jublio
-		country_event = { id = giga_katmoons.001 days = 1080 } #try again in 2 years
+		if = {
+			limit = {
+				NOT = { #rolled-for monthly instead of repeat-until-fulfilled after Reformation
+					has_global_flag = katzen_reformation_complete
+				}
+			}
+			country_event = { id = giga_katmoons.001 days = 1080 } #try again in 2 years
+		}
 		if = {
 			limit = {
 				NOT = { any_owned_megastructure = { is_megastructure_type = kaiser_moon_1 } }
@@ -4351,6 +4361,17 @@ country_event = {
 								}
 								any_system_planet = {
 									is_valid_kaiser_moon_candidate = yes
+								}
+							}
+							if = {
+								limit = {
+									has_global_flag = katzen_reformation_complete #don't ask where the funds come from before the Reformation
+								}
+								event_target:flusion_primitives_country = {
+									subtract_variable = {
+										which = kaiser_resource_stockpile
+										value = value:katzen_cost|COST|@kaiser_moon_cost|
+									}
 								}
 							}
 							random_system_planet = {
@@ -4444,21 +4465,39 @@ country_event = {
 										}
 									}
 									save_global_event_target_as = new_kaiser_moon_system
-								}
-							}
-							event_target:flusion_primitives_country = {
-								random_owned_megastructure = {
-									limit = { is_megastructure_type = kaiser_moon_1 }
-									add_modifier = {
-										modifier = kaiser_moon_build_speed #slow it down
-										days = -1
+									random_system_megastructure = {
+										limit = {
+											is_megastructure_type = kaiser_moon_1
+										}
+										if = {
+											limit = {
+												has_global_flag = katzen_reformation_complete
+											}
+											add_modifier = {
+												modifier = kaiser_moon_build_speed_reformation #slow it down less because we want them pumping out by now
+												days = -1
+											}
+										}
+										else = {
+											add_modifier = {
+												modifier = kaiser_moon_build_speed #slow it down
+												days = -1
+											}
+										}
+										upgrade_megastructure_to = kaiser_moon_2
 									}
-									upgrade_megastructure_to = kaiser_moon_2
 								}
 							}
-							every_country = {
-								limit = { is_ai = no }
-								country_event = { id = giga_katmoons.002 }
+							if = {
+								limit = {
+									NOT = { #don't inform player of every new moon being produced at this point
+										has_global_flag = katzen_reformation_complete
+									}
+								}
+								every_country = {
+									limit = { is_ai = no }
+									country_event = { id = giga_katmoons.002 } #inform of moon reconstruction
+								}
 							}
 						}
 						else = { set_star_flag = checked_for_kaiser_moon }
@@ -4484,134 +4523,6 @@ country_event = { #OH NO
 
 	option = {
 		name = "giga_katmoons.002.a"
-	}
-}
-
-#Kaiser Moon mega completed by the Imperium
-country_event = {
-	id = giga_katmoons.005
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
-		OR = {
-			has_country_flag = kaiser_moon_destroyed
-			has_global_flag = katzen_reformation_complete
-		}
-		NOT = { has_global_flag = katzenartig_imperium_defeated }
-	}
-
-	immediate = {
-		every_owned_fleet = {
-			limit = { has_fleet_flag = kaisermoon_platform }
-			delete_fleet = THIS
-		}
-		if = { #building A nother Kaiser Moon
-			limit = {
-				has_global_flag = katzen_reformation_complete
-			}
-			create_fleet = {
-				name = "Mondflotte"
-				settings = {
-					spawn_debris = no
-					can_upgrade = no
-					can_change_composition = yes
-					uses_naval_capacity = yes
-				}
-				effect = {
-					set_owner = event_target:flusion_primitives_country
-					create_ship = {
-						name = "Katzenmond"
-						design = "Kaiser Moon"
-						upgradable = no
-						effect = {
-							set_ship_flag = kaiser_moon_ship
-							save_global_event_target_as = target_kaiser_moon_ship
-						}
-					}
-					set_location = event_target:giga_planet
-					set_fleet_stance = aggressive
-				}
-			}
-		}
-		else = { #rebuilding the singular Kaiser Moon when it's the flagship
-			if = {
-				limit = {
-					NOT = {
-						any_owned_leader = { has_leader_flag = flusiondouclaw }
-					}
-				}
-				create_leader = {
-					class = commander
-					species = event_target:flusion_katzens
-					name = "Douclaw MacCathur"
-					skill = 4
-					gender = male
-					background_ethic = ethic_materialist
-					background_job = soldier
-					background_planet = event_target:flusion
-					traits = {
-						trait = katzen_trait_elite
-						trait = katzen_trait_nukelad
-						trait = katzen_trait_blitzkrieg
-					}
-					effect = {
-						save_global_event_target_as = flusion_douclaw
-						set_douclaw_real_portrait = yes
-						set_council_position = councilor_defense
-					}
-				}
-			}
-			create_fleet = { #Spawn the cooler attack moon and an escort fleet.
-				name = "Kaiservorherrschaft"
-				settings = {
-					spawn_debris = no
-					can_upgrade = no
-					can_change_composition = yes
-					uses_naval_capacity = yes
-				}
-				effect = {
-					set_owner = event_target:flusion_primitives_country
-					create_ship = {
-						name = "Kaiservorherrschaft"
-						design = "Kaiser Moon"
-						upgradable = no
-						effect = {
-							set_ship_flag = kaiser_moon_ship
-							save_global_event_target_as = target_kaiser_moon_ship
-						}
-					}
-					while = {
-						count = 4 #4 escort ships
-						spawn_katzen_cruiser = yes
-					}
-					while = {
-						count = 12 #12 bombers
-						spawn_katzen_bomber = yes
-					}
-					while = {
-						count = 24 #24 panzers
-						spawn_katzen_panzer = yes
-					}
-					assign_leader = event_target:flusion_douclaw
-					set_location = event_target:giga_planet
-					set_fleet_stance = aggressive
-				}
-			}
-			remove_country_flag = kaiser_moon_destroyed
-			remove_country_flag = kaiser_moon_destroyed_events_done
-			remove_modifier = katzenartig_disarray
-			every_ambient_object = {
-				limit = {
-					is_ambient_object_type = kaiser_moon_broken_object
-				}
-				destroy_ambient_object = THIS
-			}
-			every_country = {
-				limit = { is_ai = no }
-				country_event = { id = giga_katmoons.006 }
-			}
-		}
 	}
 }
 
@@ -12485,7 +12396,7 @@ country_event = { #UFS gets FTL
 		create_fleet = { #Spawn 2 fleets
 			name = "Task Force Sonya"
 			settings = {
-				uses_naval_capacity = no
+				uses_naval_capacity = yes
 			}
 			effect = {
 				set_owner = event_target:flusion_primitives_country
@@ -12543,7 +12454,7 @@ country_event = { #UFS gets FTL
 		create_fleet = {
 			name = "Task Force Fritze"
 			settings = {
-				uses_naval_capacity = no
+				uses_naval_capacity = yes
 			}
 			effect = {
 				set_owner = event_target:flusion_primitives_country
@@ -12599,7 +12510,7 @@ country_event = { #UFS gets FTL
 		create_fleet = { #Spawn 2 fleets
 			name = "Task Force Mercuria"
 			settings = {
-				uses_naval_capacity = no
+				uses_naval_capacity = yes
 			}
 			effect = {
 				set_owner = event_target:flusion_primitives_country
@@ -12657,7 +12568,7 @@ country_event = { #UFS gets FTL
 		create_fleet = {
 			name = "Task Force Tyukl"
 			settings = {
-				uses_naval_capacity = no
+				uses_naval_capacity = yes
 			}
 			effect = {
 				set_owner = event_target:flusion_primitives_country
@@ -12715,7 +12626,7 @@ country_event = { #UFS gets FTL
 			settings = {
 				spawn_debris = no
 				can_upgrade = no
-				uses_naval_capacity = no
+				uses_naval_capacity = yes
 			}
 			effect = {
 				set_owner = event_target:flusion_primitives_country
