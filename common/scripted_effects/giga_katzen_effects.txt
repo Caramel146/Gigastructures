@@ -175,7 +175,12 @@ spawn_katzen_troop_fleet = {
 					species = event_target:flusion_katzens
 				}
 			}
-			assign_leader = event_target:katzen_general
+			if = {
+				limit = {
+					exists = event_target:katzen_general
+				}
+				assign_leader = event_target:katzen_general
+			}
 			set_fleet_flag = katzen_troop_fleet
 			set_location = {
 				target = event_target:katzen_war_forge
@@ -2697,7 +2702,7 @@ spawn_katzen_warforge_fleet = {
 						}
 						check_variable = {
 							which = kaiser_resource_balance
-							value > value:katzen_upkeep #|UPKEEP|@min_kaiser_ship_upkeep|
+							value > 10 #value:katzen_upkeep|UPKEEP|@min_kaiser_ship_upkeep|
 						}
 					}
 				}

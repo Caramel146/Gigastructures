@@ -333,6 +333,10 @@ kaiser_moon_build_speed = {
 	megastructure_build_speed_mult = -1.5
 }
 
+kaiser_moon_build_speed_reformation = {
+	megastructure_build_speed_mult = -0.75
+}
+
 katzen_soulbot_research_busted = {
 	army_damage_mult = -0.15
 	army_health = -0.15

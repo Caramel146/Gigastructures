@@ -87,7 +87,7 @@ kaiser_planetcraft_2 = {
 				}
 			}
 			create_fleet = { #Spawn the cooler attack moon and an escort fleet.
-				name = "Kaiservorherrschaft"
+				name = "Kaiserübermachtflotte"
 				settings = {
 					spawn_debris = no
 					can_upgrade = no
@@ -96,25 +96,24 @@ kaiser_planetcraft_2 = {
 				}
 				effect = {
 					set_owner = event_target:flusion_primitives_country
+					assign_leader = event_target:flusion_douclaw
+					set_location = fromfrom.planet
+					set_fleet_stance = aggressive
 					create_ship = {
-						name = "Kaiservorherrschaft"
-						design = "Kaiser Moon"
-						upgradable = no
-						effect = {
-							set_ship_flag = kaiser_moon_ship
-							save_global_event_target_as = target_kaiser_moon_ship
-						}
+						name = "Kaiserübermacht"
+						design = "Kaiser Planetcraft"
+						prefix = no
 					}
 					while = {
-						count = 8 #twice as much as the Moon
+						count = 6 #1.5x as much as the Moon
 						spawn_katzen_cruiser = yes
 					}
 					while = {
-						count = 24 ##twice as much as the Moon
+						count = 18 #1.5x as much as the Moon
 						spawn_katzen_bomber = yes
 					}
 					while = {
-						count = 48 ##twice as much as the Moon
+						count = 36 #1.5x as much as the Moon
 						spawn_katzen_panzer = yes
 					}
 					if = {
@@ -126,14 +125,6 @@ kaiser_planetcraft_2 = {
 							spawn_katzen_blimp = yes
 						}
 					}
-					create_ship = {
-						name = "Kaiserübermacht"
-						design = "Kaiser Planetcraft"
-						prefix = no
-					}
-					assign_leader = event_target:flusion_douclaw
-					set_location = fromfrom.planet
-					set_fleet_stance = aggressive
 				}
 			}
 			if = {
@@ -152,7 +143,13 @@ kaiser_planetcraft_2 = {
 			set_global_flag = katzen_mkii_deployed #roll out the Mark II ship designs!
 			every_playable_country = {
 				limit = { is_ai = no }
-				country_event = { id = giga_katzen.7032 }
+				country_event = { id = giga_katzen.7032 } #informative event
+				if = {
+					limit = {
+						has_modifier = katzen_planetcraft_intervention
+					}
+					remove_modifier = katzen_planetcraft_intervention
+				}
 			}
 		}
 

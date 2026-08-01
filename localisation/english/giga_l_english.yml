@@ -6897,9 +6897,9 @@
   KATZEN_CRUISER_STERN:0 "Stern"
   KATZEN_ADVANCED_CRUISER_STERN:0 "$KATZEN_CRUISER_STERN$"
 
-  district_city_katzen:0 "Katzen Housing Complex"
-  district_city_katzen_plural:0 "Katzen Housing Complexes"
-  district_city_katzen_desc:0 "Vast stretches of Katzen-made urban housing, designed to sustain planetary infrastructure and accommodate the needs of its population while ensuring loyalty to Flusion."
+  # district_city_katzen:0 "Katzen Housing Complex"
+  # district_city_katzen_plural:0 "Katzen Housing Complexes"
+  # district_city_katzen_desc:0 "Vast stretches of Katzen-made urban housing, designed to sustain planetary infrastructure and accommodate the needs of its population while ensuring loyalty to Flusion."
 
 	giga_flusion.405.name:0 "Primitive Attack Moon"
 	giga_flusion.405.desc:0 "Our explorers in the §YJublio§! system have made a fascinating discovery.\n\nIt seems that, despite lacking FTL, primitives living on one of the system's planets, §YFlusion§!, have managed to transform one of their moons into a large defensive superweapon, equipped with a colossal relativistic railgun!\n\nThis monstruous construct seems to be intended to deter any potential invasions by aggressive spacefaring civilization, and judging by its sheer size and scope, it is probably quite good at doing so."
