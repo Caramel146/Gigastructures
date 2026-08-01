@@ -751,7 +751,7 @@ country_event = {
 					spawn_debris = no
 					can_upgrade = no
 					can_change_composition = no # no
-					uses_naval_capacity = no
+					uses_naval_capacity = yes
 					is_boss = yes
 					can_change_leader = no
 				}
@@ -883,7 +883,7 @@ country_event = {
 					spawn_debris = no
 					can_upgrade = no
 					can_change_composition = yes # no Its a surprise tool that will help us later
-					uses_naval_capacity = yes # no
+					uses_naval_capacity = yes
 				}
 				effect = {
 					set_owner = event_target:flusion_primitives_country
@@ -965,7 +965,7 @@ country_event = {
 			settings = {
 				spawn_debris = no
 				can_upgrade = no
-				uses_naval_capacity = no
+				uses_naval_capacity = yes
 				can_change_composition = no
 			}
 			effect = {
@@ -1316,7 +1316,7 @@ country_event = {
 		}
 		country_event = { id = giga_katzen.040 days = 330 random = 60 } #Katzen expansion, runs every year or so
 		country_event = { id = giga_katzen.041 days = 540 random = 60 } #Kaiser demands stuff, runs every year or so
-		country_event = { id = giga_katzen.070 days = 180 random = 30 } #Warforges
+		country_event = { id = giga_katzen.070 days = 180 random = 30 } #Warforges spawn fleets
 		country_event = { id = giga_katzen.030 days = 30 } #Manage warforges and eco
 		# country_event = { id = giga_katzen.036 days = 30 } # Leader management
 		country_event = { id = giga_katzen.080 days = 300 random = 60 } #Flusion expansion
@@ -4745,13 +4745,15 @@ country_event = { #Trading with Kaiser
 			set_country_flag = sold_gatzo
 			while = { count = 2 increase_kaiser_opinion = yes }
 			event_target:paluushia.solar_system = {
-				starbase = { #Transfer land
-					set_owner = event_target:flusion_primitives_country
-				}
 				if = {
 					limit = {
-						NOT = { exists = starbase } #No starbase, kaiser makes one
+						exists = starbase
 					}
+					starbase = { #Transfer land
+						set_owner = event_target:flusion_primitives_country
+					}
+				}
+				else = { #No starbase, kaiser makes one
 					create_starbase = {
 						size = starbase_outpost
 						owner = event_target:flusion_primitives_country
@@ -4759,9 +4761,7 @@ country_event = { #Trading with Kaiser
 				}
 				every_system_planet = {
 					limit = {
-						OR = {
-							is_colony = yes
-						}
+						is_colony = yes
 						owner = {
 							NOT = { is_country_type = primitive }
 						}
@@ -5699,6 +5699,7 @@ country_event = { #Manage war forges and the Kaiser's eco
 								value = 70 #roughly 20% of one submarine's cost (kaiser_submarine_flotilla_cost)
 							}
 						}
+						#no we're not scrapping Kaiser Moons. Too big an investment.
 					}
 
 					delete_ship = this
@@ -5789,7 +5790,7 @@ country_event = { #Manage war forges and the Kaiser's eco
 		# set country flag, backup incase on action doesnt fire
 		if = {
 			limit = {
-				NOR = {
+				NOT = {
 					has_global_flag = katzen_reformation_complete #fortified Katzen administration can survive losing the Moon
 					any_owned_fleet = {
 						any_owned_ship = {
@@ -5862,7 +5863,10 @@ country_event = { #Manage war forges and the Kaiser's eco
 		}
 		if = { #Flusion being in ground combat will recall the kaiser moon
 			limit = {
-				NOT = { has_country_flag = kaiser_moon_destroyed }
+				NOR = {
+					has_country_flag = kaiser_moon_destroyed
+					has_global_flag = katzen_reformation_complete #TODO make the planet recall instead ig
+				}
 				event_target:gigaflusion = {
 					OR = {
 						has_ground_combat = yes
@@ -5883,8 +5887,6 @@ country_event = { #Manage war forges and the Kaiser's eco
 							}
 						}
 					}
-				}
-				event_target:gigaflusion = {
 					NOT = { has_planet_flag = kaiser_moon_recall_cooldown }
 				}
 			}
@@ -6321,6 +6323,7 @@ country_event = { #Manage war forges and the Kaiser's eco
 							which = kaiser_reformation_months_left
 							value <= 120
 						}
+						NOT = { has_country_flag = kaiser_planetcraft_begun }
 					}
 					capital_scope.solar_system = {
 						spawn_megastructure = {
@@ -6330,10 +6333,38 @@ country_event = { #Manage war forges and the Kaiser's eco
 						}
 						random_system_megastructure = {
 							limit = { is_megastructure_type = kaiser_planetcraft_1 }
+							add_modifier = {
+								modifier = kaiser_moon_build_speed #slow it down
+								days = -1
+							}
 							upgrade_megastructure_to = kaiser_planetcraft_2
 						}
 					}
+					every_playable_country = {
+						limit = { is_ai = no }
+						country_event = { id = giga_katzen.7031 }
+					}
+					set_country_flag = kaiser_planetcraft_begun
 				}
+			}
+		}
+
+		#roll to build another Kaiser Moon after the Reformation is complete
+		if = {
+			limit = {
+				has_global_flag = katzen_reformation_complete
+				check_variable = {
+					which = kaiser_resource_balance
+					value > @kaiser_moon_upkeep
+				}
+				check_variable = {
+					which = kaiser_resource_stockpile
+					value > value:katzen_cost|COST|@kaiser_moon_cost|
+				}
+			}
+			random = {
+				chance = 10 #don't need a new one literally instantly after the last one finishes
+				country_event = { id = giga_katmoons.001 random = 29 } #begin a construction site (aborts if one already exists)
 			}
 		}
 	}
@@ -6447,7 +6478,6 @@ country_event = { #galactic
 
 	option = { #aw
 		name = "giga_katzen.04002.a"
-		custom_tooltip = giga_katzen.04002.tooltip
 	}
 
 	option = { #yay for the Kaiser!
@@ -6455,7 +6485,6 @@ country_event = { #galactic
 			katzen_vassal = yes
 		}
 		name = "giga_katzen.04002.b"
-		custom_tooltip = giga_katzen.04002.tooltip
 	}
 
 	option = { #uh oh, we're stuck as a vassal...
@@ -6463,7 +6492,6 @@ country_event = { #galactic
 			katzen_vassal = yes
 		}
 		name = "giga_katzen.04002.c"
-		custom_tooltip = giga_katzen.04002.tooltip
 	}
 }
 
@@ -6557,14 +6585,23 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 	}
 
 	immediate = {
-		if = {
-			limit = {
-				has_global_flag = katzenartig_stellarite
+		switch = { #not too sharp a delay variation across difficulty so Reformation doesn't kick in too fast on high diffs
+			trigger = has_global_flag
+			katzenartig_easy = {
+				country_event = { id = giga_katzen.04003 days = 3240 random = 1440 } #+180 days
 			}
-			country_event = { id = giga_katzen.04003 days = 1440 random = 720 } #run event again in 4-6 years
-		}
-		else = {
-			country_event = { id = giga_katzen.04003 days = 2880 random = 1440  } #run event again in 8-12 years
+			default = {
+				country_event = { id = giga_katzen.04003 days = 2880 random = 1440  } #run event again in 8-12 years
+			}
+			katzenartig_deathwish = {
+				country_event = { id = giga_katzen.04003 days = 2700 random = 1440 } #-180 days
+			}
+			katzenartig_stellarite = {
+				country_event = { id = giga_katzen.04003 days = 2520 random = 1440 } #-360 days
+			}
+			katzenartig_improbable = {
+				country_event = { id = giga_katzen.04003 days = 2340 random = 1440 } #-540 days
+			}
 		}
 		if = {
 			limit = {
@@ -7423,7 +7460,7 @@ country_event = { #Kaiser rolls out his blimps after becoming theGroßkatzenarti
 						event_target:flusion_primitives_country = {
 							check_variable = {
 								which = kaiser_resource_balance
-								value > value:katzen_upkeep #|UPKEEP|@min_kaiser_ship_upkeep|
+								value > 24 #value:katzen_upkeep #|UPKEEP|@min_kaiser_ship_upkeep|
 							}
 						}
 					}
@@ -9134,7 +9171,7 @@ country_event = { #Clear out hostiles in nearby systems
 }
 
 ###WAR FORGES###
-country_event = { #Every 6 months, ship-producing structures will randomly create a fleet provided sufficient resources.
+country_event = { #Every 8-10 months, ship-producing structures will randomly create a fleet provided sufficient resources.
 	id = giga_katzen.070
 
 	is_triggered_only = yes
@@ -9147,7 +9184,7 @@ country_event = { #Every 6 months, ship-producing structures will randomly creat
 	}
 
 	immediate = {
-		country_event = { id = giga_katzen.070 days = 230 random = 30 }
+		country_event = { id = giga_katzen.070 days = 240 random = 60 }
 		if = {
 			limit = { NOT = { has_country_flag = giga_kaiser_stockpiling_resources } }
 			every_owned_megastructure = {
@@ -9157,7 +9194,7 @@ country_event = { #Every 6 months, ship-producing structures will randomly creat
 				solar_system = {
 					random_system_planet = {
 						limit = { has_planet_flag = has_katzen_warform }
-						planet_event = { id = giga_katzen.071 days = 5 random = 5 }
+						planet_event = { id = giga_katzen.071 random = 240 } #spread it out over MOST of the allowed time
 					}
 				}
 			}
@@ -9165,7 +9202,7 @@ country_event = { #Every 6 months, ship-producing structures will randomly creat
 	}
 }
 
-planet_event = { #Every 6 months, warforges will randomly create a fleet
+planet_event = { #Every 8-10 months, warforges will randomly create a fleet
 	id = giga_katzen.071
 
 	is_triggered_only = yes
@@ -9185,7 +9222,7 @@ planet_event = { #Every 6 months, warforges will randomly create a fleet
 				event_target:flusion_primitives_country = {
 					check_variable = {
 						which = kaiser_resource_stockpile
-						value > value:katzen_upkeep #|UPKEEP|@min_kaiser_ship_upkeep|
+						value > 10 #value:katzen_upkeep #|UPKEEP|@min_kaiser_ship_upkeep|
 					}
 				}
 			}
@@ -9228,34 +9265,34 @@ planet_event = { #Every 6 months, warforges will randomly create a fleet
 							}
 						}
 					}
-					modifier = { #slow down if nearing cap
-						factor = 0.5
-						event_target:flusion_primitives_country = {
-							count_owned_ship = {
-								limit = {
-									OR = {
-										is_ship_size = giga_katzen_submarine_submerged
-										is_ship_size = giga_katzen_submarine
-									}
-								}
-								count >= 40
-							}
-						}
-					}
-					modifier = { #slow down more if nearing cap
-						factor = 0.5
-						event_target:flusion_primitives_country = {
-							count_owned_ship = {
-								limit = {
-									OR = {
-										is_ship_size = giga_katzen_submarine_submerged
-										is_ship_size = giga_katzen_submarine
-									}
-								}
-								count >= 50
-							}
-						}
-					}
+					# modifier = { #slow down if nearing cap #not awfully laggy but more laggy than the benefit is worth so... commented out you go
+					# 	factor = 0.5
+					# 	event_target:flusion_primitives_country = {
+					# 		count_owned_ship = {
+					# 			limit = {
+					# 				OR = {
+					# 					is_ship_size = giga_katzen_submarine_submerged
+					# 					is_ship_size = giga_katzen_submarine
+					# 				}
+					# 			}
+					# 			count >= 40
+					# 		}
+					# 	}
+					# }
+					# modifier = { #slow down more if nearing cap
+					# 	factor = 0.5
+					# 	event_target:flusion_primitives_country = {
+					# 		count_owned_ship = {
+					# 			limit = {
+					# 				OR = {
+					# 					is_ship_size = giga_katzen_submarine_submerged
+					# 					is_ship_size = giga_katzen_submarine
+					# 				}
+					# 			}
+					# 			count >= 50
+					# 		}
+					# 	}
+					# }
 					modifier = { #cap out here, that's enough
 						factor = 0
 						event_target:flusion_primitives_country = {
@@ -11688,325 +11725,325 @@ country_event = { #Collapse of Katzenartig
 				}
 			}
 			#We can have: Douclaw/Loris/Dietrich, Douclaw/Dietrich or just Dietrich (very bad outcome)
-			0 = { #Succession crisis between Douclaw, Loris and Dietrich
-				modifier = { #does not occur if there are less than 5 katzen planets left
-					factor = 0
-					event_target:flusion_primitives_country = {
-						check_variable = {
-							which = katzen_total_planet_count
-							value < 5
-						}
-						check_variable = {
-							which = katzen_total_system_count
-							value < 10
-						}
-					}
-				}
-				# event_target:global_event_country = {
-				# 	country_event = { id = giga_katcivilwar.1000 days = 180 }
-				# }
-				#Douclaw might flee if Loris is dead
-				if = {
-					limit = {
-						any_country = { has_country_flag = dormant_aeternum }
-						has_global_flag = loris_removed
-					}
-					random_list = {
-						50 = { set_global_flag = giga_douclaw_stayed_behind }
-						5000 = {} #CHANGE
-					}
-				}
-				count_katzen_planets_and_systems = yes #ATTEMPT TO SPAWN DOUCLAW, HE GETS 40% OF THE EMPIRE
-				if = {
-					limit = {
-						has_global_flag = giga_douclaw_stayed_behind #He didn't flee
-						check_variable = { #More than 10 systems left, Douclaw can spawn
-							which = "katzen_total_system_count"
-							value > 4
-						}
-						check_variable = { #More than 2 planets left, Douclaw can spawn
-							which = "katzen_total_planet_count"
-							value > 0
-						}
-					}
-					random_owned_planet = { #designate one planet as the capital
-						limit = {
-							solar_system = {
-								NOT = { has_star_flag = flusion_system }
-							}
-						}
-						save_global_event_target_as = katzen_douclaw_capital
-						solar_system = { set_star_flag = katzen_douclaw_system }
-						count_katzen_planets_and_systems = yes
-						event_target:flusion_primitives_country = {
-							set_variable = {
-								which = "katzen_douclaw_system_count"
-								value = 0
-							}
-							set_variable = {
-								which = "katzen_douclaw_system_count"
-								value = "katzen_total_system_count"
-							}
-							if = {
-								limit = { NOT = { has_global_flag = loris_removed } }
-								divide_variable = {
-									which = "katzen_douclaw_system_count"
-									value = 2.5
-								}
-							}
-							else = {
-								divide_variable = {
-									which = "katzen_douclaw_system_count"
-									value = 1.67
-								}
-							}
-							round_variable = katzen_douclaw_system_count
-							set_variable = {
-								which = "katzen_douclaw_current_system_count"
-								value = 0
-							}
-						}
-						while = {
-							limit = { #stop when current douclaw systems surpass 25% of katzen systems
-								event_target:flusion_primitives_country = {
-									check_variable = {
-										which = "katzen_douclaw_current_system_count"
-										value < katzen_douclaw_system_count
-									}
-								}
-							}
-							every_system = { #claim all neighbor systems
-								limit = { has_star_flag = katzen_douclaw_system }
-								every_neighbor_system = {
-									limit = {
-										owner = { is_country_type = katzenartig_imperium }
-										NOR = {
-											has_star_flag = flusion_system
-											has_star_flag = katzen_douclaw_system
-										}
-									}
-									set_star_flag = katzen_douclaw_system
-								}
-							}
-							event_target:flusion_primitives_country = {
-								set_variable = {
-									which = "katzen_douclaw_current_system_count"
-									value = 0
-								}
-							}
-							every_system = { #count current douclaw systems
-								limit = { has_star_flag = katzen_douclaw_system }
-								event_target:flusion_primitives_country = {
-									change_variable = {
-										which = "katzen_douclaw_current_system_count"
-										value = 1
-									}
-								}
-							}
-						}
-						create_katzen_douclaw = yes
-					}
-				}
-				count_katzen_planets_and_systems = yes #ATTEMPT TO SPAWN LORIS IF HE'S NOT DEAD, HE GETS ANOTHER 40%
-				if = {
-					limit = {
-						NOT = { has_global_flag = loris_removed }
-						check_variable = { #More than 4 systems left, loris can spawn
-							which = "katzen_total_system_count"
-							value > 4
-						}
-						check_variable = { #More than 2 planets left, loris can spawn
-							which = "katzen_total_planet_count"
-							value > 0
-						}
-					}
-					random_owned_planet = { #designate one planet as the capital
-						limit = {
-							solar_system = {
-								NOT = { has_star_flag = flusion_system }
-							}
-						}
-						save_global_event_target_as = katzen_loris_capital
-						solar_system = { set_star_flag = katzen_loris_system }
-						count_katzen_planets_and_systems = yes
-						event_target:flusion_primitives_country = {
-							set_variable = {
-								which = "katzen_loris_system_count"
-								value = 0
-							}
-							set_variable = {
-								which = "katzen_loris_system_count"
-								value = "katzen_total_system_count"
-							}
-							if = {
-								limit = { NOT = { has_global_flag = loris_removed } }
-								divide_variable = {
-									which = "katzen_loris_system_count"
-									value = 2.5
-								}
-							}
-							else = {
-								divide_variable = {
-									which = "katzen_loris_system_count"
-									value = 1.67
-								}
-							}
-							round_variable = katzen_loris_system_count
-							set_variable = {
-								which = "katzen_loris_current_system_count"
-								value = 0
-							}
-						}
-						while = {
-							limit = { #stop when current loris systems surpass 25% of katzen systems
-								event_target:flusion_primitives_country = {
-									check_variable = {
-										which = "katzen_loris_current_system_count"
-										value < katzen_loris_system_count
-									}
-								}
-							}
-							every_system = { #claim all neighbor systems
-								limit = { has_star_flag = katzen_loris_system }
-								every_neighbor_system = {
-									limit = {
-										owner = { is_country_type = katzenartig_imperium }
-										NOR = {
-											has_star_flag = flusion_system
-											has_star_flag = katzen_loris_system
-										}
-									}
-									set_star_flag = katzen_loris_system
-								}
-							}
-							event_target:flusion_primitives_country = {
-								set_variable = {
-									which = "katzen_loris_current_system_count"
-									value = 0
-								}
-							}
-							every_system = { #count current loris systems
-								limit = { has_star_flag = katzen_loris_system }
-								event_target:flusion_primitives_country = {
-									change_variable = {
-										which = "katzen_loris_current_system_count"
-										value = 1
-									}
-								}
-							}
-						}
-						create_katzen_loris = yes
-					}
-				}
-				count_katzen_planets_and_systems = yes #ATTEMPT TO SPAWN DIETRICH, HE GETS 12% AND 40% IF LORIS IS DEAD
-				if = {
-					limit = {
-						check_variable = { #More than 4 systems left, dietrich can spawn
-							which = "katzen_total_system_count"
-							value > 4
-						}
-						check_variable = { #More than 2 planets left, dietrich can spawn
-							which = "katzen_total_planet_count"
-							value > 0
-						}
-					}
-					random_owned_planet = { #designate one planet as the capital
-						limit = {
-							solar_system = {
-								NOT = { has_star_flag = flusion_system }
-							}
-						}
-						save_global_event_target_as = katzen_dietrich_capital
-						solar_system = { set_star_flag = katzen_dietrich_system }
-						count_katzen_planets_and_systems = yes
-						event_target:flusion_primitives_country = {
-							set_variable = {
-								which = "katzen_dietrich_system_count"
-								value = 0
-							}
-							set_variable = {
-								which = "katzen_dietrich_system_count"
-								value = "katzen_total_system_count"
-							}
-							if = { #Douclaw is there, Loris isn't dead
-								limit = {
-									NOT = { has_global_flag = loris_removed }
-									has_global_flag = giga_douclaw_stayed_behind
-								}
-								divide_variable = {
-									which = "katzen_dietrich_system_count"
-									value = 8
-								}
-							}
-							else_if = { #Douclaw is there, Loris is dead
-								limit = {
-									has_global_flag = loris_removed
-									has_global_flag = giga_douclaw_stayed_behind
-								}
-								divide_variable = {
-									which = "katzen_dietrich_system_count"
-									value = 2.5
-								}
-							}
-							else_if = { #Douclaw left, Loris is dead
-								limit = {
-									has_global_flag = loris_removed
-									NOT = { has_global_flag = giga_douclaw_stayed_behind }
-								}
-								divide_variable = {
-									which = "katzen_dietrich_system_count"
-									value = 1.2
-								}
-								set_global_flag = giga_big_dietrich
-							}
-							round_variable = katzen_dietrich_system_count
-							set_variable = {
-								which = "katzen_dietrich_current_system_count"
-								value = 0
-							}
-						}
-						while = {
-							limit = { #stop when current dietrich systems surpass 25% of katzen systems
-								event_target:flusion_primitives_country = {
-									check_variable = {
-										which = "katzen_dietrich_current_system_count"
-										value < katzen_dietrich_system_count
-									}
-								}
-							}
-							every_system = { #claim all neighbor systems
-								limit = { has_star_flag = katzen_dietrich_system }
-								every_neighbor_system = {
-									limit = {
-										owner = { is_country_type = katzenartig_imperium }
-										NOR = {
-											has_star_flag = flusion_system
-											has_star_flag = katzen_dietrich_system
-										}
-									}
-									set_star_flag = katzen_dietrich_system
-								}
-							}
-							event_target:flusion_primitives_country = {
-								set_variable = {
-									which = "katzen_dietrich_current_system_count"
-									value = 0
-								}
-							}
-							every_system = { #count current dietrich systems
-								limit = { has_star_flag = katzen_dietrich_system }
-								event_target:flusion_primitives_country = {
-									change_variable = {
-										which = "katzen_dietrich_current_system_count"
-										value = 1
-									}
-								}
-							}
-						}
-						create_katzen_dietrich = yes
-					}
-				}
-			}
+			# 0 = { #Succession crisis between Douclaw, Loris and Dietrich
+			# 	modifier = { #does not occur if there are less than 5 katzen planets left
+			# 		factor = 0
+			# 		event_target:flusion_primitives_country = {
+			# 			check_variable = {
+			# 				which = katzen_total_planet_count
+			# 				value < 5
+			# 			}
+			# 			check_variable = {
+			# 				which = katzen_total_system_count
+			# 				value < 10
+			# 			}
+			# 		}
+			# 	}
+			# 	# event_target:global_event_country = {
+			# 	# 	country_event = { id = giga_katcivilwar.1000 days = 180 }
+			# 	# }
+			# 	#Douclaw might flee if Loris is dead
+			# 	if = {
+			# 		limit = {
+			# 			any_country = { has_country_flag = dormant_aeternum }
+			# 			has_global_flag = loris_removed
+			# 		}
+			# 		random_list = {
+			# 			50 = { set_global_flag = giga_douclaw_stayed_behind }
+			# 			5000 = {} #CHANGE
+			# 		}
+			# 	}
+			# 	count_katzen_planets_and_systems = yes #ATTEMPT TO SPAWN DOUCLAW, HE GETS 40% OF THE EMPIRE
+			# 	if = {
+			# 		limit = {
+			# 			has_global_flag = giga_douclaw_stayed_behind #He didn't flee
+			# 			check_variable = { #More than 10 systems left, Douclaw can spawn
+			# 				which = "katzen_total_system_count"
+			# 				value > 4
+			# 			}
+			# 			check_variable = { #More than 2 planets left, Douclaw can spawn
+			# 				which = "katzen_total_planet_count"
+			# 				value > 0
+			# 			}
+			# 		}
+			# 		random_owned_planet = { #designate one planet as the capital
+			# 			limit = {
+			# 				solar_system = {
+			# 					NOT = { has_star_flag = flusion_system }
+			# 				}
+			# 			}
+			# 			save_global_event_target_as = katzen_douclaw_capital
+			# 			solar_system = { set_star_flag = katzen_douclaw_system }
+			# 			count_katzen_planets_and_systems = yes
+			# 			event_target:flusion_primitives_country = {
+			# 				set_variable = {
+			# 					which = "katzen_douclaw_system_count"
+			# 					value = 0
+			# 				}
+			# 				set_variable = {
+			# 					which = "katzen_douclaw_system_count"
+			# 					value = "katzen_total_system_count"
+			# 				}
+			# 				if = {
+			# 					limit = { NOT = { has_global_flag = loris_removed } }
+			# 					divide_variable = {
+			# 						which = "katzen_douclaw_system_count"
+			# 						value = 2.5
+			# 					}
+			# 				}
+			# 				else = {
+			# 					divide_variable = {
+			# 						which = "katzen_douclaw_system_count"
+			# 						value = 1.67
+			# 					}
+			# 				}
+			# 				round_variable = katzen_douclaw_system_count
+			# 				set_variable = {
+			# 					which = "katzen_douclaw_current_system_count"
+			# 					value = 0
+			# 				}
+			# 			}
+			# 			while = {
+			# 				limit = { #stop when current douclaw systems surpass 25% of katzen systems
+			# 					event_target:flusion_primitives_country = {
+			# 						check_variable = {
+			# 							which = "katzen_douclaw_current_system_count"
+			# 							value < katzen_douclaw_system_count
+			# 						}
+			# 					}
+			# 				}
+			# 				every_system = { #claim all neighbor systems
+			# 					limit = { has_star_flag = katzen_douclaw_system }
+			# 					every_neighbor_system = {
+			# 						limit = {
+			# 							owner = { is_country_type = katzenartig_imperium }
+			# 							NOR = {
+			# 								has_star_flag = flusion_system
+			# 								has_star_flag = katzen_douclaw_system
+			# 							}
+			# 						}
+			# 						set_star_flag = katzen_douclaw_system
+			# 					}
+			# 				}
+			# 				event_target:flusion_primitives_country = {
+			# 					set_variable = {
+			# 						which = "katzen_douclaw_current_system_count"
+			# 						value = 0
+			# 					}
+			# 				}
+			# 				every_system = { #count current douclaw systems
+			# 					limit = { has_star_flag = katzen_douclaw_system }
+			# 					event_target:flusion_primitives_country = {
+			# 						change_variable = {
+			# 							which = "katzen_douclaw_current_system_count"
+			# 							value = 1
+			# 						}
+			# 					}
+			# 				}
+			# 			}
+			# 			create_katzen_douclaw = yes
+			# 		}
+			# 	}
+			# 	count_katzen_planets_and_systems = yes #ATTEMPT TO SPAWN LORIS IF HE'S NOT DEAD, HE GETS ANOTHER 40%
+			# 	if = {
+			# 		limit = {
+			# 			NOT = { has_global_flag = loris_removed }
+			# 			check_variable = { #More than 4 systems left, loris can spawn
+			# 				which = "katzen_total_system_count"
+			# 				value > 4
+			# 			}
+			# 			check_variable = { #More than 2 planets left, loris can spawn
+			# 				which = "katzen_total_planet_count"
+			# 				value > 0
+			# 			}
+			# 		}
+			# 		random_owned_planet = { #designate one planet as the capital
+			# 			limit = {
+			# 				solar_system = {
+			# 					NOT = { has_star_flag = flusion_system }
+			# 				}
+			# 			}
+			# 			save_global_event_target_as = katzen_loris_capital
+			# 			solar_system = { set_star_flag = katzen_loris_system }
+			# 			count_katzen_planets_and_systems = yes
+			# 			event_target:flusion_primitives_country = {
+			# 				set_variable = {
+			# 					which = "katzen_loris_system_count"
+			# 					value = 0
+			# 				}
+			# 				set_variable = {
+			# 					which = "katzen_loris_system_count"
+			# 					value = "katzen_total_system_count"
+			# 				}
+			# 				if = {
+			# 					limit = { NOT = { has_global_flag = loris_removed } }
+			# 					divide_variable = {
+			# 						which = "katzen_loris_system_count"
+			# 						value = 2.5
+			# 					}
+			# 				}
+			# 				else = {
+			# 					divide_variable = {
+			# 						which = "katzen_loris_system_count"
+			# 						value = 1.67
+			# 					}
+			# 				}
+			# 				round_variable = katzen_loris_system_count
+			# 				set_variable = {
+			# 					which = "katzen_loris_current_system_count"
+			# 					value = 0
+			# 				}
+			# 			}
+			# 			while = {
+			# 				limit = { #stop when current loris systems surpass 25% of katzen systems
+			# 					event_target:flusion_primitives_country = {
+			# 						check_variable = {
+			# 							which = "katzen_loris_current_system_count"
+			# 							value < katzen_loris_system_count
+			# 						}
+			# 					}
+			# 				}
+			# 				every_system = { #claim all neighbor systems
+			# 					limit = { has_star_flag = katzen_loris_system }
+			# 					every_neighbor_system = {
+			# 						limit = {
+			# 							owner = { is_country_type = katzenartig_imperium }
+			# 							NOR = {
+			# 								has_star_flag = flusion_system
+			# 								has_star_flag = katzen_loris_system
+			# 							}
+			# 						}
+			# 						set_star_flag = katzen_loris_system
+			# 					}
+			# 				}
+			# 				event_target:flusion_primitives_country = {
+			# 					set_variable = {
+			# 						which = "katzen_loris_current_system_count"
+			# 						value = 0
+			# 					}
+			# 				}
+			# 				every_system = { #count current loris systems
+			# 					limit = { has_star_flag = katzen_loris_system }
+			# 					event_target:flusion_primitives_country = {
+			# 						change_variable = {
+			# 							which = "katzen_loris_current_system_count"
+			# 							value = 1
+			# 						}
+			# 					}
+			# 				}
+			# 			}
+			# 			create_katzen_loris = yes
+			# 		}
+			# 	}
+			# 	count_katzen_planets_and_systems = yes #ATTEMPT TO SPAWN DIETRICH, HE GETS 12% AND 40% IF LORIS IS DEAD
+			# 	if = {
+			# 		limit = {
+			# 			check_variable = { #More than 4 systems left, dietrich can spawn
+			# 				which = "katzen_total_system_count"
+			# 				value > 4
+			# 			}
+			# 			check_variable = { #More than 2 planets left, dietrich can spawn
+			# 				which = "katzen_total_planet_count"
+			# 				value > 0
+			# 			}
+			# 		}
+			# 		random_owned_planet = { #designate one planet as the capital
+			# 			limit = {
+			# 				solar_system = {
+			# 					NOT = { has_star_flag = flusion_system }
+			# 				}
+			# 			}
+			# 			save_global_event_target_as = katzen_dietrich_capital
+			# 			solar_system = { set_star_flag = katzen_dietrich_system }
+			# 			count_katzen_planets_and_systems = yes
+			# 			event_target:flusion_primitives_country = {
+			# 				set_variable = {
+			# 					which = "katzen_dietrich_system_count"
+			# 					value = 0
+			# 				}
+			# 				set_variable = {
+			# 					which = "katzen_dietrich_system_count"
+			# 					value = "katzen_total_system_count"
+			# 				}
+			# 				if = { #Douclaw is there, Loris isn't dead
+			# 					limit = {
+			# 						NOT = { has_global_flag = loris_removed }
+			# 						has_global_flag = giga_douclaw_stayed_behind
+			# 					}
+			# 					divide_variable = {
+			# 						which = "katzen_dietrich_system_count"
+			# 						value = 8
+			# 					}
+			# 				}
+			# 				else_if = { #Douclaw is there, Loris is dead
+			# 					limit = {
+			# 						has_global_flag = loris_removed
+			# 						has_global_flag = giga_douclaw_stayed_behind
+			# 					}
+			# 					divide_variable = {
+			# 						which = "katzen_dietrich_system_count"
+			# 						value = 2.5
+			# 					}
+			# 				}
+			# 				else_if = { #Douclaw left, Loris is dead
+			# 					limit = {
+			# 						has_global_flag = loris_removed
+			# 						NOT = { has_global_flag = giga_douclaw_stayed_behind }
+			# 					}
+			# 					divide_variable = {
+			# 						which = "katzen_dietrich_system_count"
+			# 						value = 1.2
+			# 					}
+			# 					set_global_flag = giga_big_dietrich
+			# 				}
+			# 				round_variable = katzen_dietrich_system_count
+			# 				set_variable = {
+			# 					which = "katzen_dietrich_current_system_count"
+			# 					value = 0
+			# 				}
+			# 			}
+			# 			while = {
+			# 				limit = { #stop when current dietrich systems surpass 25% of katzen systems
+			# 					event_target:flusion_primitives_country = {
+			# 						check_variable = {
+			# 							which = "katzen_dietrich_current_system_count"
+			# 							value < katzen_dietrich_system_count
+			# 						}
+			# 					}
+			# 				}
+			# 				every_system = { #claim all neighbor systems
+			# 					limit = { has_star_flag = katzen_dietrich_system }
+			# 					every_neighbor_system = {
+			# 						limit = {
+			# 							owner = { is_country_type = katzenartig_imperium }
+			# 							NOR = {
+			# 								has_star_flag = flusion_system
+			# 								has_star_flag = katzen_dietrich_system
+			# 							}
+			# 						}
+			# 						set_star_flag = katzen_dietrich_system
+			# 					}
+			# 				}
+			# 				event_target:flusion_primitives_country = {
+			# 					set_variable = {
+			# 						which = "katzen_dietrich_current_system_count"
+			# 						value = 0
+			# 					}
+			# 				}
+			# 				every_system = { #count current dietrich systems
+			# 					limit = { has_star_flag = katzen_dietrich_system }
+			# 					event_target:flusion_primitives_country = {
+			# 						change_variable = {
+			# 							which = "katzen_dietrich_current_system_count"
+			# 							value = 1
+			# 						}
+			# 					}
+			# 				}
+			# 			}
+			# 			create_katzen_dietrich = yes
+			# 		}
+			# 	}
+			# }
 		}
 		event_target:flusion_primitives_country = {
 			every_system_within_border = {
@@ -13446,7 +13483,7 @@ planet_event = {
 
 			else_if = { #amenities shortage! Build theatres
 				limit = {
-					free_building_slots > 0 #TODO triggers even if buildings are wrong type for zones, blocking later elses from triggering
+					free_building_slots > 0 #TODO triggers even if buildings are wrong type for zones, blocking later elses from triggering and clogging error log
 					free_amenities < 500
 				}
 				add_building = building_katzen_theater
@@ -13454,7 +13491,7 @@ planet_event = {
 
 			else_if = { #shield generator for Siegfrieds
 				limit = {
-					free_building_slots > 0 #TODO triggers even if buildings are wrong type for zones, blocking later elses from triggering
+					free_building_slots > 0 #TODO triggers even if buildings are wrong type for zones, blocking later elses from triggering and clogging error log
 					NOT = { has_building = building_planetary_shield_generator }
 					has_carrier_flag = katzen_world_fortress
 					check_variable = { which = years_of_kaiser_rule value > 4 }
@@ -13747,7 +13784,7 @@ planet_event = {
 
 			else_if = { #build relevant building type
 				limit = {
-					free_building_slots > 0 #TODO triggers even if buildings are wrong type for zones, blocking later elses from triggering
+					free_building_slots > 0 #TODO triggers even if buildings are wrong type for zones, blocking later elses from triggering and clogging error log
 					free_jobs < 500 #higher threshold than to make districts so that buildings actually spawn before districts cap out
 				}
 				switch = {
@@ -14201,9 +14238,8 @@ planet_event = {
 # 			inherit_entity = yes
 # 		}
 #
-# 		#TODO hey what is going on here with these two? They were one of each
-# 		add_district = district_city #district_city_katzen
-# 		add_district = district_city
+# 		add_district = district_city_katzen
+# 		add_district = district_city_katzen
 #
 # 		add_building = building_giga_siegfried_global_bunker
 #
@@ -14782,7 +14818,7 @@ country_event = {
 					settings = {
 						spawn_debris = no
 						can_upgrade = no
-						uses_naval_capacity = no
+						uses_naval_capacity = yes
 						can_change_composition = no
 					}
 					effect = {
@@ -14853,7 +14889,7 @@ country_event = {
 				settings = {
 					spawn_debris = no
 					can_upgrade = no
-					uses_naval_capacity = no
+					uses_naval_capacity = yes
 					can_change_composition = no
 				}
 				effect = {
@@ -14891,7 +14927,7 @@ country_event = {
 				settings = {
 					spawn_debris = no
 					can_upgrade = no
-					uses_naval_capacity = no
+					uses_naval_capacity = yes
 					can_change_composition = no
 				}
 				effect = {
@@ -15060,7 +15096,7 @@ fleet_event = {
 			settings = {
 				spawn_debris = no
 				can_upgrade = no
-				uses_naval_capacity = no
+				uses_naval_capacity = yes
 				can_change_composition = no
 			}
 			effect = {
@@ -17234,7 +17270,12 @@ country_event = {
 				}
 				set_global_flag = flusion_provisional_gov_integrated
 				event_target:flusion_primitives_country = {
-					every_owned_fleet = {    set_owner = root }
+					every_owned_fleet = {
+						set_owner = root
+						# set_fleet_settings = {
+						# 	uses_naval_capacity = yes #you don't get to cheat that hard sorry
+						# }
+					}
 					#don't give players all 500 leaders - no every_owned_leader here
 					every_owned_army = {    set_owner = root }
 					every_owned_planet = {    set_owner = root }

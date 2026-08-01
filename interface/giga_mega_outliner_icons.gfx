@@ -739,6 +739,16 @@ spriteTypes = {
 		textureFile = gfx/interface/icons/megastructures/attack_moon.dds
 	}
 
+	# kaiser planetcraft
+	spriteType = {
+		name = GFX_kaiser_planetcraft_0_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/planetcraft.dds
+	}
+	spriteType = {
+		name = GFX_kaiser_planetcraft_1_outliner_icon
+		textureFile = gfx/interface/icons/megastructures/planetcraft.dds
+	}
+
 	# kugelblitz X
 	spriteType = {
 		name = GFX_kugelblitz_0_outliner_icon

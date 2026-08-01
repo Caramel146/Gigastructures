@@ -2808,10 +2808,10 @@ calculate_kaiser_spending = {
 					value = @kaiser_moon_upkeep #value:katzen_upkeep|UPKEEP|@kaiser_moon_upkeep|
 				}
 			}
-			giga_katzen_submarine = { #TODO uhh are these supposed to have the same upkeep as the Kaiser Moon?
+			giga_katzen_submarine = {
 				change_variable = {
 					which = kaiser_resource_spending
-					value = @kaiser_moon_upkeep #value:katzen_upkeep|UPKEEP|@kaiser_moon_upkeep|
+					value = @kaiser_submarine_upkeep #value:katzen_upkeep|UPKEEP|@kaiser_moon_upkeep|
 				}
 			}
 		}
