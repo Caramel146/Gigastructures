@@ -1080,8 +1080,6 @@ country_event = {
 		remove_country_flag = tech_frozen
 		remove_country_flag = custom_preftl_diplomacy
 		remove_country_flag = custom_preftl_espionage
-		remove_country_flag = tech_frozen
-		set_country_flag = space_flusion_country
 		force_remove_civic = civic_atmospheric_pollution
 		force_remove_civic = civic_increasing_urbanization
 		force_add_civic = civic_distinguished_admiralty
@@ -10381,7 +10379,6 @@ country_event = { #Kaiser Moon destroyed :(
 			set_country_flag = kaiser_moon_destroyed
 		}
 		# most events handled in the pulse event
-		## removed the call to giga_katzen.3003, giga_katzen.0033, and giga_katmoons.001, the pulse (giga_katzen.030) already calls them
 	}
 
 	option = { #RIP

@@ -1291,12 +1291,6 @@ country_event = {
 	show_sound = event_alien_signal
 	is_triggered_only = yes
 
-	immediate = {
-		owner = {
-			set_country_flag = found_all_katzens
-		}
-	}
-
 	specimen = meopian_expedition_chunk
 
 	option = {
