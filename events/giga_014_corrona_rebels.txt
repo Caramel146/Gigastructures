@@ -12334,7 +12334,6 @@ country_event = { #UFS gets FTL
 			destroy_country = yes
 		}
 		remove_country_flag = fusion_age
-		set_country_flag = space_flusion_country
 		set_graphical_culture = reptilian_01
 		force_remove_civic = civic_atmospheric_pollution
 		force_remove_civic = civic_increasing_urbanization
