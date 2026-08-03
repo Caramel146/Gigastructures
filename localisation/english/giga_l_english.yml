@@ -6941,10 +6941,10 @@
 	### Katzen Stuff ############################################################################################################################
 	#############################################################################################################################################
 
-  giga_katzen.04005.name:0 "The Galaktischerkatzenkreuzzug"
-  giga_katzen.04005.desc:0 "Alarming news! §YKaiser Kattail§!, bolstered by his immensely powerful Stellarite weaponry, has today proclaimed the start of the §YGalaktischerkreuzzug§!, or \"Galactic Katzen Crusade\".\n\nHe has stated that it was time the Katzens finally seized what was rightfully theirs, and has subsequently §Rdeclared war§! on the entire galaxy.\n\nThe Kaiser is now unwilling to accept peace, and it now seems the only outcomes are either victory, or total annihilation."
-  giga_katzen.04005.a:0 "The Final Showdown."
-  giga_katzen.04005.a.tooltip:0 "The §YKatzenartig Imperium§! has §Rdeclared war§! on everyone.\n§RPeace will not be possible.§!"
+  # giga_katzen.04005.name:0 "The Galaktischerkatzenkreuzzug"
+  # giga_katzen.04005.desc:0 "Alarming news! §YKaiser Kattail§!, bolstered by his immensely powerful Stellarite weaponry, has today proclaimed the start of the §YGalaktischerkreuzzug§!, or \"Galactic Katzen Crusade\".\n\nHe has stated that it was time the Katzens finally seized what was rightfully theirs, and has subsequently §Rdeclared war§! on the entire galaxy.\n\nThe Kaiser is now unwilling to accept peace, and it now seems the only outcomes are either victory, or total annihilation."
+  # giga_katzen.04005.a:0 "The Final Showdown."
+  # giga_katzen.04005.a.tooltip:0 "The §YKatzenartig Imperium§! has §Rdeclared war§! on everyone.\n§RPeace will not be possible.§!"
 
 	katzen_trait_martial:0 "Martial Discipline"
 	katzen_trait_martial_desc:0 "This species is incredibly disciplined, thanks to long-standing martial traditions. They will fight like no other on the battlefield and vow absolute loyalty to their nation, defending it to the very end."
@@ -6984,14 +6984,19 @@
 
 	giga_katzenartig_enabled_never:0 "£menu_disabled£Katzenartig Imperium (§RNonexistent§!)\nThe §YKatzenartig Imperium§!, the §YUFS§! and the §YCorronian Magocracy§! will §RNOT§! spawn.\n\nFlusion will be an §YIrradiated Desert World§!, devoid of civilisation and life. Corrona will be a §YShrouded world§!.\n\nNo events related to the Katzenartig Imperium or Flusion will fire, everything associated to them is effectively gone.\n\nTo completely remove both systems, get the §YNo Katzenartig Imperium§! submod."
 
-	giga_katzenartig_enabled:0 "£menu_enabled£Katzenartig Imperium\nThe militaristic Katzenartig Imperium might appear after midgame and attempt to expand into the galaxy.\n\nThe Katzens will use orbital arcologies, the three terraforming megastructures, the EHOF, and substellar compressors, regardless of whether or not they are enabled.\n\n§YCan be a challenging crisis.§!"
+	giga_katzenartig_enabled:0 "£menu_enabled£Katzenartig Imperium\nThe militaristic Katzenartig Imperium might appear after midgame and attempt to expand into the galaxy.\n\nThe Katzens will use orbital arcologies, the three terraforming megastructures, the EHOF, and substellar compressors, regardless of whether or not they are enabled."
 	giga_katzenartig_disabled:0 "£menu_disabled£Katzenartig Imperium\nThe Katzenartig Imperium will not appear.\n\n§BFlusion will still build the primitive Attack Moon, and the Kaiser will still attempt his world conquest, but will always fail and lead to a democratic united Flusion appearing as a normal empire instead.\n\nIf you wish to completely get rid of FTL Flusion, select the §YNonexistent§! option."
 
 	giga_katzenartig_enabled_default:0 "£menu_o£Katzenartig Imperium (§GDefault§!)\nThe Katzenartig Imperium has a roughly §Y~40%§! chance of appearing."
 	giga_katzenartig_enabled_always:0 "£menu_katzen_a£Katzenartig Imperium (§EGuaranteed§!)\nThe Katzenartig Imperium will §Galways§! spawn after midgame, provided their moon is not destroyed."
-	giga_katzenartig_enabled_deathwish:0 "£menu_katzen_d£Katzenartig Imperium (§RKaiser's Wild Ride§!)\nThe Katzenartig Imperium will §Galways§! spawn after midgame, and will be §Rimmensely§! more powerful, receiving the following buffs:\n§Y+200% Weapons Damage\n+200% Shield HP\n+200% Armor HP\n+200% Hull HP\n+200% Army Damage\n+200% Army Health\n+100% Megastructure Build Speed\n+50% Fire Rate\n+50% Ship Speed§!\n§Y+2 Cloaking Detection on Starbases§!\n§Y-25% Ship/Megastructure Cost§!\n§YKatzen Research will scale faster than usual§!\n\n§RExtremely challenging.§!"
 
-	giga_katzenartig_enabled_stellarite:0 "£menu_katzen_s£Katzenartig Imperium\n(§YThe Stellarite Kaiser§!)\nThe Katzenartig Imperium will §Galways§! spawn after midgame, and will be §RMONTROUSLY§! more powerful, receiving the following buffs:\n§Y+1200% Weapons Damage\n+1200% Shield HP\n+1200% Armor HP\n+1200% Hull HP\n+800% Army Damage\n+800% Army Health\n+200% Megastructure Build Speed\n+300% Fire Rate\n+100% Ship Speed\n+500% Orbital Bombardment Damage§!\n§Y+5 Cloaking Detection on Starbases§!\n§Y-50% Ship/Megastructure Cost§!\n§YKatzen Research will scale much faster than usual§!\n\n§RTHE KAISER WILL DECLARE WAR ON THE ENTIRE GALAXY 10 YEARS AFTER APPEARING§!\n§RPARTISANS WILL NOT APPEAR.§!\n§RIMPOSSIBLY CHALLENGING.\nTHIS IS NOT BALANCED.\nFOR USE WITH POWERFUL MODS!§!"
+    giga_katzenartig_enabled_easy:0 "Katzenartig Imperium (§GRelaxed Kaiser§!)\nThe Katzenartig Imperium will §Galways§! spawn after midgame (but will §RNOT§! get the moon at game start), and will be §Gless§! powerful than normal, receiving the following debuffs:\n§Y-30% Weapons Damage\n-40% Shield HP\n-40% Armor HP\n-40% Hull HP\n-40% Army Damage\n-40% Army Health\n-20% Fire Rate\n-20% Ship Speed§!\n§Y-2 Cloaking Detection on Starbases§!\n§Y+25% Ship/Megastructure Cost§!\n§YKatzen Research will not scale at all, providing no buffs.§!"
+    giga_katzenartig_enabled_deathwish:0 "£menu_katzen_d£Katzenartig Imperium (§RKaiser's Wild Ride§!)\nThe Katzenartig Imperium will §Galways§! spawn after midgame, and will be §Rimmensely§! more powerful, receiving the following buffs:\n§Y+200% Weapons Damage\n+200% Shield HP\n+200% Armor HP\n+200% Hull HP\n+200% Army Damage\n+200% Army Health\n+100% Megastructure Build Speed\n+50% Fire Rate\n+50% Ship Speed§!\n§Y+2 Cloaking Detection on Starbases§!\n§Y-25% Ship/Megastructure Cost§!\n§YKatzen Research will scale faster than usual§!\n\n§RExtremely challenging.§!"
+	giga_katzenartig_enabled_stellarite:0 "£menu_katzen_s£Katzenartig Imperium\n(§YThe Stellarite Kaiser§!)\nThe Katzenartig Imperium will §Galways§! spawn after midgame, and will be §RMONTROUSLY§! more powerful, receiving the following buffs:\n§Y+1200% Weapons Damage\n+1200% Shield HP\n+1200% Armor HP\n+1200% Hull HP\n+800% Army Damage\n+800% Army Health\n+200% Megastructure Build Speed\n+300% Fire Rate\n+100% Ship Speed\n+500% Orbital Bombardment Damage§!\n§Y+5 Cloaking Detection on Starbases§!\n§Y-50% Ship/Megastructure Cost§!\n§YKatzen Research will scale much faster than usual§!\n\n§RPARTISANS WILL NOT APPEAR.§!\n§RIMPOSSIBLY CHALLENGING.\nTHIS IS NOT BALANCED.\nFOR USE WITH POWERFUL MODS!§!"
+    giga_katzenartig_enabled_improbable:0 "£menu_katzen_i£Katzenartig Imperium\n(§BThe Infinite Improbability Kaiser§!)\nThe Katzenartig Imperium will §Galways§! spawn after midgame, and will be §RINFINITELY§! more powerful, receiving the following buffs:\n§Y+6000% Weapons Damage\n+6000% Shield HP\n+6000% Armor HP\n+6000% Hull HP\n+4000% Army Damage\n+4000% Army Health\n+4000% Army Morale\n+500% Megastructure Build Speed\n+800% Fire Rate\n+800% Ship Speed\n+30 Base Evasion\n+150% Evasion\n+1000% Orbital Bombardment Damage\n-200% Planet Orbital Bombardment Damage§!\n§YStarbases always see through Cloaking§!\n§Y-75% Ship/Megastructure Cost§!\n§YKatzen Research will scale much, much faster than usual§!\n\n§RPARTISANS WILL NOT APPEAR.§!\n§RBASICALLY IMPOSSIBLE.\nTHIS IS ABSOLUTELY NOT BALANCED.\nFOR USE WITH EXTREMELY POWERFUL MODS!§!"
+
+    katzen_easy:0 "Relaxed Kaiser"
+    katzen_easy_desc:0 "It ain't easy to conquer the galaxy."
 
 	initial_flusion_buff:0 "Initial Flusion Buff"
 	initial_flusion_buff_desc:0 "Kaiser OP plz nerf"
@@ -7010,7 +7015,13 @@
 
 	KATZEN_PLANET_PLATFORM_STELLARITE:0 "Defensive Station Hull"
 
-	katzen_mega_build_speed_instant:0 "Hyperboost"
+    initial_flusion_buff_improbable:0 "Improbable Kaiser"
+    initial_flusion_buff_improbable_desc:0 "The Kaiser wills it."
+
+    improbable_kaiser:0 "Infinite Improbability Kaiser"
+    improbable_kaiser_desc:0 "The Kaiser wills it."
+
+    katzen_mega_build_speed_instant:0 "Hyperboost"
 	katzen_mega_build_speed_instant_desc:0 "The Kaiser wills it."
 
 	name_list_katzens:0 "Katzen"
@@ -7825,21 +7836,14 @@
 
   FLAG_CATEGORY_flusionian:0 "Miscellaneous"
 
-  initial_flusion_buff_improbable:0 "Improbable Kaiser"
-  initial_flusion_buff_improbable_desc:0 "The Kaiser wills it."
-
-	giga_katzenartig_enabled_improbable:0 "£menu_katzen_i£Katzenartig Imperium\n(§BThe Infinite Improbability Kaiser§!)\nThe Katzenartig Imperium will §Galways§! spawn after midgame, and will be §RINFINITELY§! more powerful, receiving the following buffs:\n§Y+6000% Weapons Damage\n+6000% Shield HP\n+6000% Armor HP\n+6000% Hull HP\n+4000% Army Damage\n+4000% Army Health\n+4000% Army Morale\n+500% Megastructure Build Speed\n+800% Fire Rate\n+800% Ship Speed\n+30 Base Evasion\n+150% Evasion\n+1000% Orbital Bombardment Damage\n-200% Planet Orbital Bombardment Damage§!\n§YStarbases always see through Cloaking§!\n§Y-75% Ship/Megastructure Cost§!\n§YKatzen Research will scale much, much faster than usual§!\n\n§RTHE KAISER WILL DECLARE WAR ON THE ENTIRE GALAXY IMMEDIATELY AFTER APPEARING.§!\n§RPARTISANS WILL NOT APPEAR.§!\n§RBASICALLY IMPOSSIBLE.\nTHIS IS ABSOLUTELY NOT BALANCED.\nFOR USE WITH EXTREMELY POWERFUL MODS!§!"
-
-  improbable_kaiser:0 "Infinite Improbability Kaiser"
-  improbable_kaiser_desc:0 "The Kaiser wills it."
-
-  giga_katzen.04007.name:0 "The Galaktischerkatzenkreuzzug"
-  giga_katzen.04007.desc:0 "Alarming news! §YKaiser Kattail§!, bolstered by his immensely powerful eternal weaponry, has today proclaimed the start of the §YGalaktischerkreuzzug§!, or \"Galactic Katzen Crusade\".\n\nHe has stated that it was time the Katzens finally seized what was rightfully theirs, and has subsequently §Rdeclared war§! on the entire galaxy.\n\nThe Kaiser is now unwilling to accept peace, and it now seems the only outcomes are either victory, or total annihilation."
+  # giga_katzen.04007.name:0 "The Galaktischerkatzenkreuzzug"
+  # giga_katzen.04007.desc:0 "Alarming news! §YKaiser Kattail§!, bolstered by his immensely powerful eternal weaponry, has today proclaimed the start of the §YGalaktischerkreuzzug§!, or \"Galactic Katzen Crusade\".\n\nHe has stated that it was time the Katzens finally seized what was rightfully theirs, and has subsequently §Rdeclared war§! on the entire galaxy.\n\nThe Kaiser is now unwilling to accept peace, and it now seems the only outcomes are either victory, or total annihilation."
 
   giga_katzen.04009.name:0 "Katzen Navy Unveils $giga_katzen_blimp_plural$!"
   giga_katzen.04009.desc:0 "Shortly after the proclamation of the Großkatzenartig Imperium, the Katzen Navy held a grand space parade in Flusion's orbit showcasing the first of its new Pawris-class carriers. These hulking ships are the strongest yet in the Katzen armada - other than the Kaiser Moon itself, of course - and seem poised to be its new capital-class ships.\n\nTheir timely rollout following the expansion of the Imperium is undoubtedly intended to send a clear message of Katzen martial and industrial might to the galaxy. The open showcase of cutting-edge technology is also a powerful statement in itself: the Imperium is confident in its ambition to rule the galaxy."
+  giga_katzen.04009.highdiff.desc:0 "To commemorate the growing size of the Katzenartig Imperium, the Katzen Navy held a grand space parade in Flusion's orbit showcasing the first of its new Pawris-class carriers. These hulking ships are the strongest yet in the Katzen armada - other than the Kaiser Moon itself, of course - and seem poised to be its new capital-class ships.\n\nTheir timely rollout following the expansion of the Imperium is undoubtedly intended to send a clear message of Katzen martial and industrial might to the galaxy. The open showcase of cutting-edge technology is also a powerful statement in itself: the Imperium is confident in its ambition to rule the galaxy."
   giga_katzen.04009.a:0 "Their ambition isn't satisfied yet."
-  giga_katzen.04009.b:0 "As it should be! These vessels will lead the Großkatzenartig Imperium onwards!"
+  giga_katzen.04009.b:0 "As it should be! These vessels will lead the Imperium onwards!"
   giga_katzen.04009.tooltip:0 "Katzenartig fleets will begin using $giga_katzen_blimp_plural$."
 
   giga_contact_solak_tooltip:0 "§HContact the §YRoqualian Freedom Fighters§! and the rest of §YFlusionian§! partisans...§!"
@@ -8349,11 +8353,12 @@
 
   giga_katzen.0034.name:0 "The Katzgouverneur"
   giga_katzen.0034.desc:0 "With our newfound independence, [Root.GetRulerName]'s legitimacy as our ruler has become... questionable, as we are no longer ruled by the Katzens.\n\nShould we dispose of [Root.leader.GetHerHim] and reinstate a [Root.GetSpeciesName] as the ruler of our empire?"
-
+  giga_katzen.0034.succession.desc:0 "With our newfound self-governance, we have room to... renegotiate [Root.GetRulerName]'s legitimacy as our ruler, as we are no longer ruled from Flusion.\n\nShould we dispose of [Root.leader.GetHerHim] and reinstate a [Root.GetSpeciesName] as the ruler of our empire?"
   giga_katzen.0034.a:0 "Away [Root.leader.GetSheHe] goes!"
   giga_katzen.0034.b:0 "[Root.GetRulerName] has served us well. They shall remain our leader."
+  giga_katzen.0034.succession.b:0 "[Root.GetRulerName] legitimises our succession claim. They shall remain our leader."
 
-  giga_katzen.0035.name:0 "What's in a Flag?"
+ giga_katzen.0035.name:0 "What's in a Flag?"
   giga_katzen.0035.desc:0 "The Katzens had changed our flag to better reflect our status as a §YKatzprotektorat§!. Should we bring back our old flag, now that we are once again independent?"
   giga_katzen.0035.a:0 "Absolutely!"
   giga_katzen.0035.b:0 "No, Katzen Blue is all the hip nowadays!"
@@ -13220,8 +13225,6 @@
   giga_katzen.8001.a.tooltip:0 "Peace with the Kaiser will §RNOT§! be possible."
   giga_katzen.8001.b.tooltip:0 "We are at war with the entire [global_event_country.GetGalCommunityOrGalImperium]. Peace will §RNOT§! be possible."
 
-  katzenartig_imperium_governor:0 "Katzgouverneur"
-
   giga_katzen.8003.name:0 "[global_event_country.GetGalCommunityOrGalImperium] Denounces Invasion of the §YZuspri Intermarium§!"
   giga_katzen.8003.desc:0 "§L\"By decree of the Galactic Senate, as of [global_event_country.ezics_denounced_date], the Katzen invasion and subsequent despoiling of Zuspri lands on Flusion is now recognized as a crime against sapience and a blatant violation of the Zuspris' right to self-determination.\"§!\n\nA joint declaration by every free member of the [global_event_country.GetGalCommunityOrGalImperium] has officially declared the occupation of the §YZuspri Intermarium§! and the destruction of the Zuspri habitats to be a war crime, thus vilifying the Kaiser's rule over Flusion.\n\nThe §YKaiser§! has declared these accusations to be \"completely devoid of meaning\", calling them \"blatant lies intended to erode the legitimacy of Flusion's rightful government\", while §YTyukl Kaau§! has expressed his approval of the [global_event_country.GetGalCommunityOrGalImperium]'s support for his cause."
   giga_katzen.8003.a:0 "Excellent."
@@ -13960,11 +13963,6 @@
   giga_flusionoperations.6035.name:0 "The Flusionian Crisis"
   giga_flusionoperations.6035.desc:0 "While the Kaiser's rule over Flusion has finally ended, the planet and its inhabitants aren't in the clear yet.\n\nThe fighting to wrestle the §YFlusio-Arcology§! away from the Katzens has caused significant damage to the planet's surface, further aggravated by the fact that Katzen soldiers sometimes refused to surrender, choosing instead to inflict as much damage as possible on surrounding infrastructure to prevent capture.\n\nAs such, large parts of the planet's megacities lay in ruin, destroyed in the fighting, and entire swathes of the planet have collapsed into lawless anarchy as the planetary government is not able to properly reach and supply the populations trapped in highly radioactive or devastated areas.\n\nIt is evident that much work will have to be done if we are to restore the §YFlusio-Arcology§! to its former glory and at last enjoy its infinite potential."
   giga_flusionoperations.6035.a:0 "Unfortunate."
-
-  katzen_easy:0 "Relaxed Kaiser"
-  katzen_easy_desc:0 "It ain't easy to conquer the galaxy."
-
-  giga_katzenartig_enabled_easy:0 "Katzenartig Imperium (§GRelaxed Kaiser§!)\nThe Katzenartig Imperium will §Galways§! spawn after midgame (but will §RNOT§! get the moon at game start), and will be §Gless§! powerful than normal, receiving the following debuffs:\n§Y-30% Weapons Damage\n-40% Shield HP\n-40% Armor HP\n-40% Hull HP\n-40% Army Damage\n-40% Army Health\n-20% Fire Rate\n-20% Ship Speed§!\n§Y-2 Cloaking Detection on Starbases§!\n§Y+25% Ship/Megastructure Cost§!\n§YKatzen Research will not scale at all, providing no buffs.§!"
 
   giga_katzen.122.name:0 "Siegfried Worlds Detonate!"
   giga_katzen.122.desc:0 "In response to the collapse of the §YKatzenartig Imperium§!, the loyal Katzens manning all remaining §YSiegfried Worlds§! have, in a final act of defiance, triggered the complete detonation of the worlds' surface, transforming any such remaining planets into bleak irradiated deserts."

@@ -4320,10 +4320,13 @@ country_event = {
 			has_country_flag = kaiser_moon_destroyed #rebuild the flagship Kaiser Moon
 			has_global_flag = katzen_reformation_complete #mass produce Kaiser Moons
 		}
-		NOR = {
-			has_global_flag = katzenartig_imperium_defeated
-			has_global_flag = katzenartig_stellarite
-			has_global_flag = katzenartig_improbable
+		OR = { #something something higher diffs don't repair moons but let them build multiple idk it works
+			has_global_flag = katzen_reformation_complete
+			NOR = {
+				has_global_flag = katzenartig_imperium_defeated
+				has_global_flag = katzenartig_stellarite
+				has_global_flag = katzenartig_improbable
+			}
 		}
 	}
 
