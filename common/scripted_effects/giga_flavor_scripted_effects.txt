@@ -1573,7 +1573,6 @@ katzen_reformation_collapse = {
 
 		count_katzen_planets_and_systems_sans_flusiosector = yes
 
-
 		if = { #Civil War between ideological splinters (modified Reformation version) if there are enough systems
 			limit = {
 				check_variable = {
