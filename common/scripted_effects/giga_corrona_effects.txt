@@ -1910,74 +1910,72 @@ create_ezic_revolt = {
 		starbase = {
 			set_owner = event_target:ezic_rebels_country
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
+		every_system_planet_colony = { #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:ezic_rebels_country
-				save_global_event_target_as = ezic_ship_planet
-				event_target:ezic_rebels_country = {
-					create_leader = {
-						class = commander
-						species = event_target:arcticezics
-						name = random
-						skill = 3
-						effect = {
-							save_event_target_as = rebel_ezic_admiral
-						}
-					}
-				}
-				create_fleet = { #Spawn a simple task force of panzers & bombers
-					name = "Anti-Katzen Squadron"
-					settings = {
-						spawn_debris = no
-						can_upgrade = no
-						uses_naval_capacity = no
-					}
+			}
+			set_owner = event_target:ezic_rebels_country
+			save_global_event_target_as = ezic_ship_planet
+			event_target:ezic_rebels_country = {
+				create_leader = {
+					class = commander
+					species = event_target:arcticezics
+					name = random
+					skill = 3
 					effect = {
-						set_owner = event_target:ezic_rebels_country
-						while = {
-							count = 12
-							create_ship = {
-								name = random
-								design = "Prime"
-								prefix = no
-								graphical_culture = arthropoid_01
-							}
-						}
-						assign_leader = event_target:rebel_ezic_admiral
-						set_location = {
-							target = event_target:ezic_ship_planet
-							distance = 15
-							angle = random
-						}
+						save_event_target_as = rebel_ezic_admiral
 					}
 				}
-				create_fleet = { #Spawn a simple task force of panzers & bombers
-					name = "Zuspri Hunters"
-					settings = {
-						spawn_debris = no
-						can_upgrade = no
-						uses_naval_capacity = no
+			}
+			create_fleet = { #Spawn a simple task force of panzers & bombers
+				name = "Anti-Katzen Squadron"
+				settings = {
+					spawn_debris = no
+					can_upgrade = no
+					uses_naval_capacity = no
+				}
+				effect = {
+					set_owner = event_target:ezic_rebels_country
+					while = {
+						count = 12
+						create_ship = {
+							name = random
+							design = "Prime"
+							prefix = no
+							graphical_culture = arthropoid_01
+						}
 					}
-					effect = {
-						set_owner = event_target:ezic_rebels_country
-						while = {
-							count = 3 #5 transports
-							create_army_transport = {
-								army_type = ezic_assault_army
-								species = event_target:arcticezics
-							}
+					assign_leader = event_target:rebel_ezic_admiral
+					set_location = {
+						target = event_target:ezic_ship_planet
+						distance = 15
+						angle = random
+					}
+				}
+			}
+			create_fleet = { #Spawn a simple task force of panzers & bombers
+				name = "Zuspri Hunters"
+				settings = {
+					spawn_debris = no
+					can_upgrade = no
+					uses_naval_capacity = no
+				}
+				effect = {
+					set_owner = event_target:ezic_rebels_country
+					while = {
+						count = 3 #5 transports
+						create_army_transport = {
+							army_type = ezic_assault_army
+							species = event_target:arcticezics
 						}
-						set_location = {
-							target = event_target:ezic_ship_planet
-							distance = 15
-							angle = random
-						}
+					}
+					set_location = {
+						target = event_target:ezic_ship_planet
+						distance = 15
+						angle = random
 					}
 				}
 			}
@@ -2128,6 +2126,7 @@ create_katzen_governor = {
 		species = event_target:flusion_katzens
 		name = random
 		skill = 5
+		background_planet = event_target:flusion
 		traits = {
 			trait = trait_ruler_warlike
 			trait = trait_ruler_from_the_ranks
@@ -2150,7 +2149,7 @@ set_katzen_ruler_name = {
 		1 = { set_name = "Audrikat" }
 		1 = { set_name = "Kibbles" }
 		1 = { set_name = "Atar" }
-		1 = { set_name = "Catlinin" }
+		1 = { set_name = "Katlinin" }
 		1 = { set_name = "Elowini" }
 		1 = { set_name = "Kibbli" }
 		1 = { set_name = "Pawldrin" }
@@ -2365,16 +2364,14 @@ create_katzen_splinter_state_agri_crisis = {
 		}
 		remove_star_flag = splinter_state_claim
 	}
-	solar_system = { #claim all other habitable planets in system
-		every_system_planet_colony = {
-			limit = {
-				is_capital = no
-				owner = {
-					is_country_type = katzenartig_imperium
-				}
+	every_system_planet_colony = { #claim all other habitable planets in system
+		limit = {
+			is_capital = no
+			owner = {
+				is_country_type = katzenartig_imperium
 			}
-			set_owner = event_target:katzen_splinter_country
 		}
+		set_owner = event_target:katzen_splinter_country
 	}
 	event_target:katzen_splinter_country = {
 		save_event_target_as = giga_katzen_agri_crisis_country

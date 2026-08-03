@@ -1290,7 +1290,7 @@ country_event = {
 				has_global_flag = katzenartig_stellarite
 			}
 			event_target:gigaflusion = { solar_system = { while = { count = 4 giga_generate_hyperlane = yes } } }
-			country_event = { id = giga_katzen.04004 days = 3600 } #THERE IS ONLY WAR
+			#country_event = { id = giga_katzen.04004 days = 3600 } #THERE IS ONLY WAR
 		}
 		if = {
 			limit = {
@@ -1310,7 +1310,7 @@ country_event = {
 			}
 			country_event = { id = giga_katehof.001 days = 10 } #EHOF
 			country_event = { id = giga_katehof.010 days = 450 } #Wormholes
-			country_event = { id = giga_katzen.04006 days = 90 } #THERE IS ONLY WAR
+			#country_event = { id = giga_katzen.04006 days = 90 } #THERE IS ONLY WAR
 		}
 		country_event = { id = giga_katzen.040 days = 330 random = 60 } #Katzen expansion, runs every year or so
 		country_event = { id = giga_katzen.041 days = 540 random = 60 } #Kaiser demands stuff, runs every year or so
@@ -1987,11 +1987,11 @@ country_event = { #Kaiser offers peace
 				is_country_type = katzenartig_imperium
 			}
 		}
-		NOT = { has_country_flag = stellarite_kaiser_war }
-		NOR = {
-			has_global_flag = katzenartig_stellarite
-			has_global_flag = katzenartig_improbable
-		}
+		# NOT = { has_country_flag = stellarite_kaiser_war }
+		# NOR = {
+		# 	has_global_flag = katzenartig_stellarite
+		# 	has_global_flag = katzenartig_improbable
+		# }
 	}
 
 	option = { #Accept
@@ -2004,9 +2004,6 @@ country_event = { #Kaiser offers peace
 				limit = {
 					any_war_participant = {
 						is_country_type = katzenartig_imperium
-					}
-					any_war_participant = {
-						is_country = ROOT
 					}
 				}
 				every_war_participant = {
@@ -2825,9 +2822,9 @@ country_event = { #hello
 		response_text = "giga_katzen.020.peace.response"
 		trigger = {
 			is_at_war_with = event_target:flusion_primitives_country
-			NOT = {
-				has_country_flag = stellarite_kaiser_war
-			}
+			# NOT = {
+			# 	has_country_flag = stellarite_kaiser_war
+			# }
 			NOT = { has_global_flag = galcom_kaiser_crusade }
 			NOT = { has_global_flag = giga_storming_pyramid }
 		}
@@ -2843,9 +2840,6 @@ country_event = { #hello
 				limit = {
 					any_war_participant = {
 						is_country_type = katzenartig_imperium
-					}
-					any_war_participant = {
-						is_country = ROOT
 					}
 				}
 				every_war_participant = {
@@ -2938,10 +2932,10 @@ country_event = { #hello
 		name = "giga_katzen.020.submit"
 		custom_tooltip = "giga_katzen.020.submit.tooltip"
 		trigger = {
-			NOR = {
-				has_global_flag = katzenartig_stellarite
-				has_global_flag = katzenartig_improbable
-			}
+			# NOR = {
+			# 	has_global_flag = katzenartig_stellarite
+			# 	has_global_flag = katzenartig_improbable
+			# }
 			katzen_vassal = no
 		}
 		allow = {
@@ -3580,7 +3574,14 @@ country_event = {
 country_event = {
 	id = giga_katzen.0034
 	title = "giga_katzen.0034.name"
-	desc = "giga_katzen.0034.desc"
+	desc = {
+		trigger = { NOT = { has_country_flag = katzen_civil_war_faction } }
+		text = "giga_katzen.0034.desc"
+	}
+	desc = {
+		trigger = { has_country_flag = katzen_civil_war_faction }
+		text = "giga_katzen.0034.succession.desc"
+	}
 
 	is_triggered_only = yes
 	picture = GFX_evt_alien_propaganda
@@ -3604,7 +3605,14 @@ country_event = {
 	}
 
 	option = {
+		trigger = { NOT = { has_country_flag = katzen_civil_war_faction } }
 		name = "giga_katzen.0034.b"
+		add_resource = { influence = 100 }
+	}
+
+	option = {
+		trigger = { has_country_flag = katzen_civil_war_faction }
+		name = "giga_katzen.0034.succession.b"
 		add_resource = { influence = 100 }
 	}
 }
@@ -5930,9 +5938,6 @@ country_event = { #Manage war forges and the Kaiser's eco
 					any_war_participant = {
 						is_country_type = katzenartig_imperium
 					}
-					any_war_participant = {
-						is_country = THIS
-					}
 				}
 				end_war_effect = yes
 			}
@@ -6772,68 +6777,68 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 	}
 }
 
-country_event = { #stellarite kaiser declares war on literally everyone
-	id = giga_katzen.04004
-	hide_window = yes
+# country_event = { #stellarite kaiser declares war on literally everyone
+# 	id = giga_katzen.04004
+# 	hide_window = yes
+#
+# 	is_triggered_only = yes
+#
+# 	trigger = {
+# 		any_country = {
+# 			is_country_type = katzenartig_imperium #Only occurs if katzens are around
+# 		}
+# 	}
+#
+# 	immediate = {
+# 		every_country = {
+# 			limit = {
+# 				has_country_flag = allied_to_kaiser
+# 			}
+# 			remove_country_flag = allied_to_kaiser
+# 			remove_fto_modifiers = yes
+# 		}
+# 		every_country = {
+# 			limit = {
+# 				OR = {
+# 					giga_is_standard_country_type = yes #specifically not FEs
+# 					is_ai = no
+# 				}
+# 				NOR = {
+# 					is_at_war_with = event_target:flusion_primitives_country
+# 					is_country_type = katzenartig_imperium
+# 				}
+# 			}
+# 			set_country_flag = stellarite_kaiser_war #NO PEACE
+# 			set_kaiser_war_opinion = yes
+# 			if = {
+# 				limit = { is_ai = no }
+# 				country_event = { id = giga_katzen.04005 }
+# 			}
+# 			event_target:flusion_primitives_country = {
+# 				declare_war = {
+# 					target = PREV
+# 					attacker_war_goal = "wg_katzen_conquest"
+# 					name = "Galaktischerkatzenkreuzzug"
+# 				}
+# 			}
+# 		}
+# 	}
+# }
 
-	is_triggered_only = yes
-
-	trigger = {
-		any_country = {
-			is_country_type = katzenartig_imperium #Only occurs if katzens are around
-		}
-	}
-
-	immediate = {
-		every_country = {
-			limit = {
-				has_country_flag = allied_to_kaiser
-			}
-			remove_country_flag = allied_to_kaiser
-			remove_fto_modifiers = yes
-		}
-		every_country = {
-			limit = {
-				OR = {
-					giga_is_standard_country_type = yes #specifically not FEs
-					is_ai = no
-				}
-				NOR = {
-					is_at_war_with = event_target:flusion_primitives_country
-					is_country_type = katzenartig_imperium
-				}
-			}
-			set_country_flag = stellarite_kaiser_war #NO PEACE
-			set_kaiser_war_opinion = yes
-			if = {
-				limit = { is_ai = no }
-				country_event = { id = giga_katzen.04005 }
-			}
-			event_target:flusion_primitives_country = {
-				declare_war = {
-					target = PREV
-					attacker_war_goal = "wg_katzen_conquest"
-					name = "Galaktischerkatzenkreuzzug"
-				}
-			}
-		}
-	}
-}
-
-country_event = { #stellarite kaiser declares war on literally everyone
-	id = giga_katzen.04005
-	title = "giga_katzen.04005.name"
-	desc = "giga_katzen.04005.desc"
-	picture = GFX_evt_fallen_empire_awakes
-	show_sound = event_air_raid_siren
-
-	is_triggered_only = yes
-
-	option = {
-		name = "giga_katzen.04005.a"
-		custom_tooltip = "giga_katzen.04005.a.tooltip"
-	}
-}
+# country_event = { #stellarite kaiser declares war on literally everyone
+# 	id = giga_katzen.04005
+# 	title = "giga_katzen.04005.name"
+# 	desc = "giga_katzen.04005.desc"
+# 	picture = GFX_evt_fallen_empire_awakes
+# 	show_sound = event_air_raid_siren
+#
+# 	is_triggered_only = yes
+#
+# 	option = {
+# 		name = "giga_katzen.04005.a"
+# 		custom_tooltip = "giga_katzen.04005.a.tooltip"
+# 	}
+# }
 
 #GALCON WAR
 country_event = {
@@ -7377,64 +7382,64 @@ country_event = {
 }
 
 #improbable kaiser go to war
-country_event = { #infinite kaiser declares war on literally everyone
-	id = giga_katzen.04006
-	hide_window = yes
+# country_event = { #infinite kaiser declares war on literally everyone
+# 	id = giga_katzen.04006
+# 	hide_window = yes
+#
+# 	is_triggered_only = yes
+#
+# 	trigger = {
+# 		any_country = {
+# 			is_country_type = katzenartig_imperium #Only occurs if katzens are around
+# 		}
+# 	}
+#
+# 	immediate = {
+# 		every_country = {
+# 			limit = {
+# 				has_country_flag = allied_to_kaiser
+# 			}
+# 			remove_country_flag = allied_to_kaiser
+# 			remove_fto_modifiers = yes
+# 		}
+# 		every_country = {
+# 			limit = {
+# 				OR = {
+# 					ehof_default_country = yes
+# 					is_ai = no
+# 				}
+# 			}
+# 			set_country_flag = stellarite_kaiser_war #NO PEACE
+# 			set_kaiser_war_opinion = yes
+# 			if = {
+# 				limit = { is_ai = no }
+# 				country_event = { id = giga_katzen.04007 }
+# 			}
+# 			event_target:flusion_primitives_country = {
+# 				declare_war = {
+# 					target = PREV
+# 					attacker_war_goal = "wg_katzen_conquest"
+# 					name = "Galaktischerkatzenkreuzzug"
+# 				}
+# 			}
+# 		}
+# 	}
+# }
 
-	is_triggered_only = yes
-
-	trigger = {
-		any_country = {
-			is_country_type = katzenartig_imperium #Only occurs if katzens are around
-		}
-	}
-
-	immediate = {
-		every_country = {
-			limit = {
-				has_country_flag = allied_to_kaiser
-			}
-			remove_country_flag = allied_to_kaiser
-			remove_fto_modifiers = yes
-		}
-		every_country = {
-			limit = {
-				OR = {
-					ehof_default_country = yes
-					is_ai = no
-				}
-			}
-			set_country_flag = stellarite_kaiser_war #NO PEACE
-			set_kaiser_war_opinion = yes
-			if = {
-				limit = { is_ai = no }
-				country_event = { id = giga_katzen.04007 }
-			}
-			event_target:flusion_primitives_country = {
-				declare_war = {
-					target = PREV
-					attacker_war_goal = "wg_katzen_conquest"
-					name = "Galaktischerkatzenkreuzzug"
-				}
-			}
-		}
-	}
-}
-
-country_event = { #improbable kaiser declares war on literally everyone
-	id = giga_katzen.04007
-	title = "giga_katzen.04007.name"
-	desc = "giga_katzen.04007.desc"
-	picture = GFX_evt_fallen_empire_awakes
-	show_sound = event_air_raid_siren
-
-	is_triggered_only = yes
-
-	option = {
-		name = "giga_katzen.04005.a"
-		custom_tooltip = "giga_katzen.04005.a.tooltip"
-	}
-}
+# country_event = { #improbable kaiser declares war on literally everyone
+# 	id = giga_katzen.04007
+# 	title = "giga_katzen.04007.name"
+# 	desc = "giga_katzen.04007.desc"
+# 	picture = GFX_evt_fallen_empire_awakes
+# 	show_sound = event_air_raid_siren
+#
+# 	is_triggered_only = yes
+#
+# 	option = {
+# 		name = "giga_katzen.04005.a"
+# 		custom_tooltip = "giga_katzen.04005.a.tooltip"
+# 	}
+# }
 
 country_event = { #Kaiser rolls out his blimps after becoming theGroßkatzenartig Imperium
 	id = giga_katzen.04008
@@ -7512,7 +7517,24 @@ country_event = { #Kaiser rolls out his blimps after becoming theGroßkatzenarti
 country_event = { #Inform countries of blimp rollout
 	id = giga_katzen.04009
 	title = "giga_katzen.04009.name"
-	desc = "giga_katzen.04009.desc"
+	desc = {
+		trigger = {
+			NOR = {
+				has_global_flag = katzenartig_stellarite
+				has_global_flag = katzenartig_improbable
+			}
+		}
+		text = "giga_katzen.04009.desc"
+	}
+	desc = {
+		trigger = {
+			OR = {
+				has_global_flag = katzenartig_stellarite
+				has_global_flag = katzenartig_improbable
+			}
+		}
+		text = "giga_katzen.04009.highdiff.desc" #slight tweak since Stellarite and Improbable don't get the Grobkatzenartig etc renamings
+	}
 	picture = GFX_evt_hangar_bay
 	show_sound = event_construction
 
@@ -7561,7 +7583,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 		if = {
 			limit = {
 				NOR = {
-					has_global_flag = katzenartig_stellarite
+					has_global_flag = katzenartig_stellarite #Stellarite and Improbable get special names already
 					has_global_flag = katzenartig_improbable
 					has_country_flag = big_katzen_empire_formed
 				}
@@ -7592,6 +7614,21 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 				limit = { is_ai = no }
 				country_event = { id = giga_katzen.04001 }
 			}
+			country_event = { id = giga_katzen.04008 days = 180 random = 180 } #begin blimp rollout
+		}
+		if = { #quieter version of the rebrandings just to let the higher diffs get blimps
+			limit = {
+				NOT = { has_country_flag = big_katzen_empire_formed }
+				OR = {
+					has_global_flag = katzenartig_stellarite
+					has_global_flag = katzenartig_improbable
+				}
+				check_variable = {
+					which = "katzen_percent_galaxy_owned"
+					value >= 0.45 #the limit to form greater imperium is 45% the total systems
+				}
+			}
+			set_country_flag = big_katzen_empire_formed
 			country_event = { id = giga_katzen.04008 days = 180 random = 180 } #begin blimp rollout
 		}
 
@@ -7966,7 +8003,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 						owner = event_target:flusion_primitives_country
 					}
 					set_carrier_flag = katzen_planet_colonized
-					carrier_event = { id = giga_katzen.110 }
+					carrier_event = { id = giga_katzen.110 } #handle newly-colonised planet
 				}
 			}
 		}
@@ -7980,7 +8017,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 				}
 				random = {
 					chance = 50
-						create_starbase = { #Make a starbase
+					create_starbase = { #Make a starbase
 						size = starbase_outpost
 						owner = event_target:flusion_primitives_country
 					}
@@ -8757,7 +8794,7 @@ country_event = { #Kaiser demands land!
 						kaiser_opinion_range_friendly = yes #Diminishing returns
 					}
 					modifier = {
-						factor = 0.5 #to encourage Kaiesr to aggro AI presumably
+						factor = 0.5 #to encourage Kaiser to aggro AI presumably
 						is_ai = yes
 					}
 					modifier = {
@@ -11081,11 +11118,6 @@ country_event = { #Collapse of Katzenartig
 			set_global_flag = katzenartig_imperium_defeated
 		}
 		every_war = { #Status quo
-			limit = {
-				any_war_participant = {
-					is_country_type = katzenartig_imperium
-				}
-			}
 			end_war_effect = yes
 		}
 		if = {
@@ -14562,7 +14594,7 @@ planet_event = {
       		limit = {
 				OR = {
 					is_colony = no
-					owner = { NOT = { is_country_type = katzenartig_imperium } }
+					owner = { katzen_country_type = no }
 				}
 			}
 			if = {
@@ -16513,9 +16545,6 @@ country_event = {
 					any_war_participant = {
 						is_country_type = katzenartig_imperium
 					}
-					any_war_participant = {
-						is_country = ROOT
-					}
 				}
 				every_war_participant = {
 					limit = { NOT = { is_country = ROOT } }
@@ -16819,14 +16848,14 @@ country_event = {
 
 	option = {
 		trigger = {
-			katzen_vassal = no
+			NOT = { has_country_flag = katzen_previous_vassal }
 		}
 		name = DOTDOTDOT
 	}
 
 	option = {
 		trigger = {
-			katzen_vassal = no
+			NOT = { has_country_flag = katzen_previous_vassal }
 			is_pacifist = yes
 		}
 		name = giga_katzen.7014.b
@@ -16834,7 +16863,7 @@ country_event = {
 
 	option = {
 		trigger = {
-			katzen_vassal = yes
+			has_country_flag = katzen_previous_vassal
 		}
 		name = DOTDOTDOT
 		custom_tooltip = giga_katzen.7020.c.tooltip
@@ -16898,18 +16927,40 @@ country_event = { #hello
 	desc = {
 		text = "giga_katzen.7021.intro.loris.desc" #intro (Loris rules)
 		trigger = {
+			NOR = {
+				has_country_flag = first_katzen_provisional_diplomacy
+				has_country_flag = katzen_civil_war_faction
+			}
+			has_global_flag = flusion_provisional_gov_loris
+		}
+	}
+	desc = {
+		text = "giga_katzen.7021.intro.loris.succession.desc" #intro (Loris rules) (Succession path)
+		trigger = {
 			NOT = {
 				has_country_flag = first_katzen_provisional_diplomacy
 			}
+			has_country_flag = katzen_civil_war_faction
 			has_global_flag = flusion_provisional_gov_loris
 		}
 	}
 	desc = {
 		text = "giga_katzen.7021.intro.douclaw.desc" #intro (Douclaw rules)
 		trigger = {
+			NOR = {
+				has_country_flag = first_katzen_provisional_diplomacy
+				has_country_flag = katzen_civil_war_faction
+			}
+			has_global_flag = flusion_provisional_gov_douclaw
+		}
+	}
+	desc = {
+		text = "giga_katzen.7021.intro.douclaw.succession.desc" #intro (Douclaw rules) (Succession path)
+		trigger = {
 			NOT = {
 				has_country_flag = first_katzen_provisional_diplomacy
 			}
+			has_country_flag = katzen_civil_war_faction
 			has_global_flag = flusion_provisional_gov_douclaw
 		}
 	}
@@ -16991,6 +17042,7 @@ country_event = { #hello
 		trigger = {
 			NOT = { is_at_war_with = event_target:flusion_primitives_country }
 			has_country_flag = first_katzen_provisional_diplomacy
+			NOT = { has_country_flag = katzen_civil_war_faction } #doesn't make sense to say to Succession claimants
 		}
 	}
 
@@ -17160,9 +17212,6 @@ country_event = { #hello
 					any_war_participant = {
 						is_country_type = katzenartig_imperium_provisional
 					}
-					any_war_participant = {
-						is_country = ROOT
-					}
 				}
 				end_war_effect = yes
 			}
@@ -17206,6 +17255,48 @@ country_event = {
 			influence = -250
 		}
 		set_country_flag = katzen_civil_war_faction
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = event_target:katzen_civil_war_socialist
+				}
+				declare_war = {
+					target = event_target:katzen_civil_war_socialist
+					attacker_war_goal = "wg_katzen_conquest"
+					name = "Katzenburgerkrieg"
+				}
+			}
+			if = {
+				limit = {
+					exists = event_target:katzen_civil_war_junta
+				}
+				declare_war = {
+					target = event_target:katzen_civil_war_junta
+					attacker_war_goal = "wg_katzen_conquest"
+					name = "Katzenburgerkrieg"
+				}
+			}
+			if = {
+				limit = {
+					exists = event_target:katzen_civil_war_republic
+				}
+				declare_war = {
+					target = event_target:katzen_civil_war_republic
+					attacker_war_goal = "wg_katzen_conquest"
+					name = "Katzenburgerkrieg"
+				}
+			}
+			if = {
+				limit = {
+					exists = event_target:katzen_civil_war_realm
+				}
+				declare_war = {
+					target = event_target:katzen_civil_war_realm
+					attacker_war_goal = "wg_katzen_conquest"
+					name = "Katzenburgerkrieg"
+				}
+			}
+		}
 	}
 
 	option = {
@@ -17454,6 +17545,15 @@ country_event = {
 
 
 ###DEBUG###
+country_event = {
+	id = giga_katzen.991
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		katzen_reformation_collapse = yes #in a whole testing event so it error logs properly
+	}
+}
 planet_event = {
 	id = giga_katzen.992
 	is_triggered_only = yes

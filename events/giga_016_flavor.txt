@@ -11,12 +11,14 @@ country_event = {
 				NOT = { has_global_flag = katzen_civil_war_reformation_version }
 			}
 			every_playable_country = {
+				limit = { is_ai = no }
 				country_event = { id = giga_katcivilwar.1001 days = 2 }
 			}
 		}
 		random_country = {
 			limit = {
 				is_ai = no
+				katzen_vassal = no #in case they join the Civil War against Kibbles
 				NOR = {
 					is_homicidal = yes
 					is_fanatic_authoritarian = yes
@@ -465,6 +467,7 @@ country_event = {
 # 			limit = {
 # 				any_country = { #A player matches the criteria!
 # 					is_ai = no
+#					NOT = { has_country_flag = katzen_civil_war_faction } #not fighting Katlinin
 # 					NOR = {
 # 						has_country_flag = rejected_katlinin_alliance
 # 						is_at_war_with = event_target:katzen_civil_war_socialist
@@ -483,6 +486,7 @@ country_event = {
 # 			random_country = {
 # 				limit = {
 # 					is_ai = no
+#					NOT = { has_country_flag = katzen_civil_war_faction } #not fighting Katlinin
 # 					NOR = {
 # 						has_country_flag = rejected_katlinin_alliance
 # 						is_at_war_with = event_target:katzen_civil_war_socialist

@@ -91,17 +91,15 @@ create_katzen_socialist = {
 		starbase = {
 			set_owner = event_target:katzen_civil_war_socialist
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+		every_system_planet_colony = {  #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:katzen_civil_war_socialist
+				#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 			}
+			set_owner = event_target:katzen_civil_war_socialist
 		}
 		every_system_megastructure = {
 			limit = { owner = { is_country_type = katzenartig_imperium } }
@@ -234,17 +232,15 @@ create_katzen_republic = {
 		starbase = {
 			set_owner = event_target:katzen_civil_war_republic
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+		every_system_planet_colony = { #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:katzen_civil_war_republic
+				#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 			}
+			set_owner = event_target:katzen_civil_war_republic
 		}
 		every_system_megastructure = {
 			limit = { owner = { is_country_type = katzenartig_imperium } }
@@ -377,17 +373,15 @@ create_katzen_realm = {
 		starbase = {
 			set_owner = event_target:katzen_civil_war_realm
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+		every_system_planet_colony = { #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:katzen_civil_war_realm
+				#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 			}
+			set_owner = event_target:katzen_civil_war_realm
 		}
 		every_system_megastructure = {
 			limit = { owner = { is_country_type = katzenartig_imperium } }
@@ -520,17 +514,15 @@ create_katzen_junta = {
 		starbase = {
 			set_owner = event_target:katzen_civil_war_junta
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+		every_system_planet_colony = { #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:katzen_civil_war_junta
+				#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 			}
+			set_owner = event_target:katzen_civil_war_junta
 		}
 		every_system_megastructure = {
 			limit = { owner = { is_country_type = katzenartig_imperium } }
@@ -662,17 +654,15 @@ create_katzen_douclaw = {
 		starbase = {
 			set_owner = event_target:katzen_succession_douclaw
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+		every_system_planet_colony = { #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:katzen_succession_douclaw
+				#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 			}
+			set_owner = event_target:katzen_succession_douclaw
 		}
 		every_system_megastructure = {
 			limit = { owner = { is_country_type = katzenartig_imperium } }
@@ -833,17 +823,15 @@ create_katzen_loris = {
 		starbase = {
 			set_owner = event_target:katzen_succession_loris
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+		every_system_planet_colony = { #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:katzen_succession_loris
+				#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 			}
+			set_owner = event_target:katzen_succession_loris
 		}
 		every_system_megastructure = {
 			limit = { owner = { is_country_type = katzenartig_imperium } }
@@ -1000,17 +988,15 @@ create_katzen_dietrich = {
 		starbase = {
 			set_owner = event_target:katzen_succession_dietrich
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+		every_system_planet_colony = { #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:katzen_succession_dietrich
+				#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 			}
+			set_owner = event_target:katzen_succession_dietrich
 		}
 		every_system_megastructure = {
 			limit = { owner = { is_country_type = katzenartig_imperium } }
@@ -1551,12 +1537,26 @@ katzen_reformation_collapse = {
 			delete_megastructure = THIS
 		}
 		every_subject = {
-			limit = { is_ai = yes } #players get giga_katzen.7020 instead
+			limit = { is_ai = yes } #players get this in other places
 			katzen_free_protectorate = yes
 		}
 
 		#withdraw a portion of fleets (so the splinters don't take them) to defend Flusion and prevent splinter economic collapse from upkeep
 		every_owned_fleet = {
+			limit = {
+				is_mobile = yes
+				NOR = {
+					any_owned_ship = { is_ship_size = katzen_warforge_platform }
+					solar_system = { #no need if they're already in the FPA territory
+						OR = {
+							has_star_flag = flusion_system
+							any_neighbor_system = {
+								has_star_flag = flusion_system
+							}
+						}
+					}
+				}
+			}
 			random = {
 				chance = 10
 				set_location = event_target:gigaflusion
@@ -1605,7 +1605,7 @@ katzen_reformation_collapse = {
 							}
 						}
 					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 				}
 				save_global_event_target_as = katzen_socialist_capital
 				solar_system = { set_star_flag = katzen_socialist_system }
@@ -1684,7 +1684,7 @@ katzen_reformation_collapse = {
 							}
 						}
 					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 				}
 				save_global_event_target_as = katzen_junta_capital
 				solar_system = { set_star_flag = katzen_junta_system }
@@ -1763,7 +1763,7 @@ katzen_reformation_collapse = {
 							}
 						}
 					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 				}
 				save_global_event_target_as = katzen_republic_capital
 				solar_system = { set_star_flag = katzen_republic_system }
@@ -1842,7 +1842,7 @@ katzen_reformation_collapse = {
 							}
 						}
 					}
-					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 				}
 				save_global_event_target_as = katzen_realm_capital
 				solar_system = { set_star_flag = katzen_realm_system }
@@ -1924,6 +1924,20 @@ katzen_reformation_collapse = {
 					}
 				}
 				katzen_splinter_system_division = yes
+			}
+
+			every_owned_ship = {
+				limit = {
+					is_ship_size = katzen_warforge_platform
+					solar_system = {
+						NOR = {
+							has_star_flag = flusion_system
+							any_neighbor_system = {
+								has_star_flag = flusion_system
+							}
+						}
+					}
+				}
 			}
 
 			#jumpstart the shift from the Kaiser's fake economy to a real one
@@ -2134,6 +2148,11 @@ katzen_reformation_collapse = {
 		}
 
 		else = { #not enough space for Civil War (Reformation version), so the Imperium just implodes
+			every_subject = {
+				limit = { is_ai = no } #players get custom events instead
+				katzen_free_protectorate = yes
+				set_country_flag = katzen_previous_vassal #used for event options in giga_katzen.7014
+			}
 			every_galaxy_planet = { #blow up Siegfreids
 				limit = { is_planet_class = pc_giga_siegfried_world }
 				if = {
@@ -2548,11 +2567,20 @@ katzen_splinter_system_division = {
 						has_star_flag = katzen_socialist_system
 					}
 				}
-				starbase = { set_owner = event_target:katzen_civil_war_socialist }
+				if = {
+					limit = { exists = starbase }
+					starbase = { set_owner = event_target:katzen_civil_war_socialist }
+				}
+				else = {
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:katzen_civil_war_socialist
+					}
+				}
 				every_system_planet_colony = {
 					limit = {
 						is_katzen_colony = yes
-						NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+						#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 					}
 					set_owner = event_target:katzen_civil_war_socialist
 				}
@@ -2576,11 +2604,20 @@ katzen_splinter_system_division = {
 						has_star_flag = katzen_junta_system
 					}
 				}
-				starbase = { set_owner = event_target:katzen_civil_war_junta }
+				if = {
+					limit = { exists = starbase }
+					starbase = { set_owner = event_target:katzen_civil_war_junta }
+				}
+				else = {
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:katzen_civil_war_junta
+					}
+				}
 				every_system_planet_colony = {
 					limit = {
 						is_katzen_colony = yes
-						NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+						#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 					}
 					set_owner = event_target:katzen_civil_war_junta
 				}
@@ -2604,11 +2641,20 @@ katzen_splinter_system_division = {
 						has_star_flag = katzen_republic_system
 					}
 				}
-				starbase = { set_owner = event_target:katzen_civil_war_republic }
+				if = {
+					limit = { exists = starbase }
+					starbase = { set_owner = event_target:katzen_civil_war_republic }
+				}
+				else = {
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:katzen_civil_war_republic
+					}
+				}
 				every_system_planet_colony = {
 					limit = {
 						is_katzen_colony = yes
-						NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+						#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 					}
 					set_owner = event_target:katzen_civil_war_republic
 				}
@@ -2632,11 +2678,20 @@ katzen_splinter_system_division = {
 						has_star_flag = katzen_realm_system
 					}
 				}
-				starbase = { set_owner = event_target:katzen_civil_war_realm }
+				if = {
+					limit = { exists = starbase }
+					starbase = { set_owner = event_target:katzen_civil_war_realm }
+				}
+				else = {
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:katzen_civil_war_realm
+					}
+				}
 				every_system_planet_colony = {
 					limit = {
 						is_katzen_colony = yes
-						NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+						#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 					}
 					set_owner = event_target:katzen_civil_war_realm
 				}
@@ -2661,7 +2716,7 @@ katzen_splinter_system_division = {
 						every_system_planet_colony = {
 							limit = {
 								is_katzen_colony = yes
-								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+								#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 							}
 							set_owner = event_target:katzen_civil_war_socialist
 						}
@@ -2684,7 +2739,7 @@ katzen_splinter_system_division = {
 						every_system_planet_colony = {
 							limit = {
 								is_katzen_colony = yes
-								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+								#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 							}
 							set_owner = event_target:katzen_civil_war_junta
 						}
@@ -2707,7 +2762,7 @@ katzen_splinter_system_division = {
 						every_system_planet_colony = {
 							limit = {
 								is_katzen_colony = yes
-								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+								#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 							}
 							set_owner = event_target:katzen_civil_war_republic
 						}
@@ -2730,7 +2785,7 @@ katzen_splinter_system_division = {
 						every_system_planet_colony = {
 							limit = {
 								is_katzen_colony = yes
-								NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+								#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 							}
 							set_owner = event_target:katzen_civil_war_realm
 						}

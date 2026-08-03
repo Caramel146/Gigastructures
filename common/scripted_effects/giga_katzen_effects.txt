@@ -635,6 +635,8 @@ rename_planet_katzen = {
 			1 = { set_name = "Dasdingausdemschrankunterdertreppe" }
 			1 = { set_name = "Lüttentempestien" }
 			1 = { set_name = "Mitternachtsstrahl" }
+			1 = { set_name = "Eisernefront" }
+			1 = { set_name = "Bohemeowa" }
 		}
 	}
 }
@@ -2032,16 +2034,14 @@ create_solakia = {
 		starbase = {
 			set_owner = event_target:solakia
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
+		every_system_planet_colony = { #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:solakia
 			}
+			set_owner = event_target:solakia
 		}
 	}
 	event_target:solakia = {
@@ -2162,16 +2162,14 @@ create_laurandar = {
 		starbase = {
 			set_owner = event_target:laurandar
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
+		every_system_planet_colony = { #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:laurandar
 			}
+			set_owner = event_target:laurandar
 		}
 	}
 	event_target:laurandar = {
@@ -2287,16 +2285,14 @@ create_kronk = {
 		starbase = {
 			set_owner = event_target:kronkcountry
 		}
-		solar_system = { #claim all other habitable planets in system
-			every_system_planet_colony = {
-				limit = {
-					is_capital = no
-					owner = {
-						is_country_type = katzenartig_imperium
-					}
+		every_system_planet_colony = { #claim all other habitable planets in system
+			limit = {
+				is_capital = no
+				owner = {
+					is_country_type = katzenartig_imperium
 				}
-				set_owner = event_target:kronkcountry
 			}
+			set_owner = event_target:kronkcountry
 		}
 	}
 	event_target:kronkcountry = {
@@ -3174,9 +3170,6 @@ katzen_set_protectorate = {
 		limit = {
 			any_war_participant = {
 				is_country_type = katzenartig_imperium
-			}
-			any_war_participant = {
-				is_country = THIS
 			}
 		}
 		end_war_effect = yes
