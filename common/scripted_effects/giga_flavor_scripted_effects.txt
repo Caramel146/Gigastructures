@@ -1573,6 +1573,7 @@ katzen_reformation_collapse = {
 
 		count_katzen_planets_and_systems_sans_flusiosector = yes
 
+
 		if = { #Civil War between ideological splinters (modified Reformation version) if there are enough systems
 			limit = {
 				check_variable = {
@@ -1583,6 +1584,15 @@ katzen_reformation_collapse = {
 					which = katzen_total_system_count #excludes Jublio and direct neighbours
 					value >= 20 #at least five systems for each splinter
 				}
+			}
+
+			set_variable = {
+				which = "katzen_splinter_system_count"
+				value = "katzen_total_system_count"
+			}
+			divide_variable = {
+				which = "katzen_splinter_system_count"
+				value = 4
 			}
 
 			#Spawn socialist splinter
@@ -1603,14 +1613,6 @@ katzen_reformation_collapse = {
 				count_katzen_planets_and_systems_sans_flusiosector = yes
 				event_target:flusion_primitives_country = {
 					set_variable = {
-						which = "katzen_socialist_system_count"
-						value = "katzen_total_system_count"
-					}
-					divide_variable = {
-						which = "katzen_socialist_system_count"
-						value = 4
-					}
-					set_variable = {
 						which = "katzen_socialist_current_system_count"
 						value = 0
 					}
@@ -1620,7 +1622,7 @@ katzen_reformation_collapse = {
 						event_target:flusion_primitives_country = {
 							check_variable = {
 								which = "katzen_socialist_current_system_count"
-								value < katzen_socialist_system_count
+								value < katzen_splinter_system_count
 							}
 						}
 					}
@@ -1677,14 +1679,6 @@ katzen_reformation_collapse = {
 				count_katzen_planets_and_systems_sans_flusiosector = yes
 				event_target:flusion_primitives_country = {
 					set_variable = {
-						which = "katzen_junta_system_count"
-						value = "katzen_total_system_count"
-					}
-					divide_variable = {
-						which = "katzen_junta_system_count"
-						value = 4
-					}
-					set_variable = {
 						which = "katzen_junta_current_system_count"
 						value = 0
 					}
@@ -1694,7 +1688,7 @@ katzen_reformation_collapse = {
 						event_target:flusion_primitives_country = {
 							check_variable = {
 								which = "katzen_junta_current_system_count"
-								value < katzen_junta_system_count
+								value < katzen_splinter_system_count
 							}
 						}
 					}
@@ -1751,14 +1745,6 @@ katzen_reformation_collapse = {
 				count_katzen_planets_and_systems_sans_flusiosector = yes
 				event_target:flusion_primitives_country = {
 					set_variable = {
-						which = "katzen_republic_system_count"
-						value = "katzen_total_system_count"
-					}
-					divide_variable = {
-						which = "katzen_republic_system_count"
-						value = 4
-					}
-					set_variable = {
 						which = "katzen_republic_current_system_count"
 						value = 0
 					}
@@ -1768,7 +1754,7 @@ katzen_reformation_collapse = {
 						event_target:flusion_primitives_country = {
 							check_variable = {
 								which = "katzen_republic_current_system_count"
-								value < katzen_republic_system_count
+								value < katzen_splinter_system_count
 							}
 						}
 					}
@@ -1825,14 +1811,6 @@ katzen_reformation_collapse = {
 				count_katzen_planets_and_systems_sans_flusiosector = yes
 				event_target:flusion_primitives_country = {
 					set_variable = {
-						which = "katzen_realm_system_count"
-						value = "katzen_total_system_count"
-					}
-					divide_variable = {
-						which = "katzen_realm_system_count"
-						value = 4
-					}
-					set_variable = {
 						which = "katzen_realm_current_system_count"
 						value = 0
 					}
@@ -1842,7 +1820,7 @@ katzen_reformation_collapse = {
 						event_target:flusion_primitives_country = {
 							check_variable = {
 								which = "katzen_realm_current_system_count"
-								value < katzen_realm_system_count
+								value < katzen_splinter_system_count
 							}
 						}
 					}
@@ -2523,6 +2501,7 @@ katzen_splinter_system_division = {
 				}
 			}
 		}
+
 		random_system_within_border = {
 			limit = {
 				NOR = {
@@ -2532,7 +2511,191 @@ katzen_splinter_system_division = {
 					}
 				}
 			}
+
+			#first, give the system to whatever splinter has the least territory
 			if = {
+				limit = {
+					event_target:flusion_primitives_country = {
+						check_variable = {
+							which = katzen_socialist_current_system_count
+							value < katzen_junta_current_system_count
+						}
+						check_variable = {
+							which = katzen_socialist_current_system_count
+							value < katzen_republic_current_system_count
+						}
+						check_variable = {
+							which = katzen_socialist_current_system_count
+							value < katzen_realm_current_system_count
+						}
+					}
+				}
+				starbase = { set_owner = event_target:katzen_civil_war_socialist }
+				every_system_planet_colony = {
+					limit = {
+						is_katzen_colony = yes
+						#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					}
+					set_owner = event_target:katzen_civil_war_socialist
+				}
+				set_star_flag = katzen_socialist_system
+				every_system_megastructure = {
+					limit = { owner = { is_country_type = katzenartig_imperium } }
+					set_owner = event_target:katzen_civil_war_socialist
+				}
+				every_ship_in_system = {
+					limit = { is_ship_size = katzen_warforge_platform }
+					delete_ship = this
+				}
+				every_fleet_in_system = {
+					limit = { is_space_citadel_ship_size = yes }
+					set_owner = event_target:katzen_civil_war_socialist
+				}
+				event_target:flusion_primitives_country = {
+					change_variable = {
+						which = "katzen_socialist_current_system_count"
+						value = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					event_target:flusion_primitives_country = {
+						check_variable = {
+							which = katzen_junta_current_system_count
+							value < katzen_socialist_current_system_count
+						}
+						check_variable = {
+							which = katzen_junta_current_system_count
+							value < katzen_republic_current_system_count
+						}
+						check_variable = {
+							which = katzen_junta_current_system_count
+							value < katzen_realm_current_system_count
+						}
+					}
+				}
+				starbase = { set_owner = event_target:katzen_civil_war_junta }
+				every_system_planet_colony = {
+					limit = {
+						is_katzen_colony = yes
+						#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					}
+					set_owner = event_target:katzen_civil_war_junta
+				}
+				set_star_flag = katzen_junta_system
+				every_system_megastructure = {
+					limit = { owner = { is_country_type = katzenartig_imperium } }
+					set_owner = event_target:katzen_civil_war_junta
+				}
+				every_ship_in_system = {
+					limit = { is_ship_size = katzen_warforge_platform }
+					delete_ship = this
+				}
+				every_fleet_in_system = {
+					limit = { is_space_citadel_ship_size = yes }
+					set_owner = event_target:katzen_civil_war_junta
+				}
+				event_target:flusion_primitives_country = {
+					change_variable = {
+						which = "katzen_junta_current_system_count"
+						value = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					event_target:flusion_primitives_country = {
+						check_variable = {
+							which = katzen_republic_current_system_count
+							value < katzen_socialist_current_system_count
+						}
+						check_variable = {
+							which = katzen_republic_current_system_count
+							value < katzen_junta_current_system_count
+						}
+						check_variable = {
+							which = katzen_republic_current_system_count
+							value < katzen_realm_current_system_count
+						}
+					}
+				}
+				starbase = { set_owner = event_target:katzen_civil_war_republic }
+				every_system_planet_colony = {
+					limit = {
+						is_katzen_colony = yes
+						#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					}
+					set_owner = event_target:katzen_civil_war_republic
+				}
+				set_star_flag = katzen_republic_system
+				every_system_megastructure = {
+					limit = { owner = { is_country_type = katzenartig_imperium } }
+					set_owner = event_target:katzen_civil_war_republic
+				}
+				every_ship_in_system = {
+					limit = { is_ship_size = katzen_warforge_platform }
+					delete_ship = this
+				}
+				every_fleet_in_system = {
+					limit = { is_space_citadel_ship_size = yes }
+					set_owner = event_target:katzen_civil_war_republic
+				}
+				event_target:flusion_primitives_country = {
+					change_variable = {
+						which = "katzen_republic_current_system_count"
+						value = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					event_target:flusion_primitives_country = {
+						check_variable = {
+							which = katzen_realm_current_system_count
+							value < katzen_socialist_current_system_count
+						}
+						check_variable = {
+							which = katzen_realm_current_system_count
+							value < katzen_junta_current_system_count
+						}
+						check_variable = {
+							which = katzen_realm_current_system_count
+							value < katzen_republic_current_system_count
+						}
+					}
+				}
+				starbase = { set_owner = event_target:katzen_civil_war_realm }
+				every_system_planet_colony = {
+					limit = {
+						is_katzen_colony = yes
+						#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					}
+					set_owner = event_target:katzen_civil_war_realm
+				}
+				set_star_flag = katzen_realm_system
+				every_system_megastructure = {
+					limit = { owner = { is_country_type = katzenartig_imperium } }
+					set_owner = event_target:katzen_civil_war_realm
+				}
+				every_ship_in_system = {
+					limit = { is_ship_size = katzen_warforge_platform }
+					delete_ship = this
+				}
+				every_fleet_in_system = {
+					limit = { is_space_citadel_ship_size = yes }
+					set_owner = event_target:katzen_civil_war_realm
+				}
+				event_target:flusion_primitives_country = {
+					change_variable = {
+						which = "katzen_realm_current_system_count"
+						value = 1
+					}
+				}
+			}
+
+			#secondly, give the system to the nearest splinter to have reduced border gore
+			else_if = {
 				limit = {
 					any_neighbor_system = {
 						has_star_flag = katzen_socialist_system
@@ -2567,6 +2730,12 @@ katzen_splinter_system_division = {
 				every_fleet_in_system = {
 					limit = { is_space_citadel_ship_size = yes }
 					set_owner = event_target:katzen_civil_war_socialist
+				}
+				event_target:flusion_primitives_country = {
+					change_variable = {
+						which = "katzen_socialist_current_system_count"
+						value = 1
+					}
 				}
 			}
 			else_if = {
@@ -2605,6 +2774,12 @@ katzen_splinter_system_division = {
 					limit = { is_space_citadel_ship_size = yes }
 					set_owner = event_target:katzen_civil_war_junta
 				}
+				event_target:flusion_primitives_country = {
+					change_variable = {
+						which = "katzen_junta_current_system_count"
+						value = 1
+					}
+				}
 			}
 			else_if = {
 				limit = {
@@ -2641,6 +2816,12 @@ katzen_splinter_system_division = {
 				every_fleet_in_system = {
 					limit = { is_space_citadel_ship_size = yes }
 					set_owner = event_target:katzen_civil_war_republic
+				}
+				event_target:flusion_primitives_country = {
+					change_variable = {
+						which = "katzen_republic_current_system_count"
+						value = 1
+					}
 				}
 			}
 			else_if = {
@@ -2679,7 +2860,15 @@ katzen_splinter_system_division = {
 					limit = { is_space_citadel_ship_size = yes }
 					set_owner = event_target:katzen_civil_war_realm
 				}
+				event_target:flusion_primitives_country = {
+					change_variable = {
+						which = "katzen_realm_current_system_count"
+						value = 1
+					}
+				}
 			}
+
+			#finally, give it to a random splinter
 			else = {
 				random_list = {
 					1 = {
@@ -2704,6 +2893,12 @@ katzen_splinter_system_division = {
 							limit = { is_space_citadel_ship_size = yes }
 							set_owner = event_target:katzen_civil_war_socialist
 						}
+						event_target:flusion_primitives_country = {
+							change_variable = {
+								which = "katzen_socialist_current_system_count"
+								value = 1
+							}
+						}
 					}
 					1 = {
 						starbase = { set_owner = event_target:katzen_civil_war_junta }
@@ -2726,6 +2921,12 @@ katzen_splinter_system_division = {
 						every_fleet_in_system = {
 							limit = { is_space_citadel_ship_size = yes }
 							set_owner = event_target:katzen_civil_war_junta
+						}
+						event_target:flusion_primitives_country = {
+							change_variable = {
+								which = "katzen_junta_current_system_count"
+								value = 1
+							}
 						}
 					}
 					1 = {
@@ -2750,6 +2951,12 @@ katzen_splinter_system_division = {
 							limit = { is_space_citadel_ship_size = yes }
 							set_owner = event_target:katzen_civil_war_republic
 						}
+						event_target:flusion_primitives_country = {
+							change_variable = {
+								which = "katzen_republic_current_system_count"
+								value = 1
+							}
+						}
 					}
 					1 = {
 						starbase = { set_owner = event_target:katzen_civil_war_realm }
@@ -2772,6 +2979,12 @@ katzen_splinter_system_division = {
 						every_fleet_in_system = {
 							limit = { is_space_citadel_ship_size = yes }
 							set_owner = event_target:katzen_civil_war_realm
+						}
+						event_target:flusion_primitives_country = {
+							change_variable = {
+								which = "katzen_realm_current_system_count"
+								value = 1
+							}
 						}
 					}
 				}

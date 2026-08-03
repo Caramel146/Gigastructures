@@ -127,9 +127,9 @@ gigas_kilostructure_list = {
 		$CONDITION$ = habitat_central_complex
 		$CONDITION$ = habitat_central_complex_ruined
 		$CONDITION$ = habitat_central_complex_restored
-		$CONDITION$ = major_orbital
+		#$CONDITION$ = major_orbital
 		#$CONDITION$ = major_orbital_knights
-		$CONDITION$ = minor_orbital
+		#$CONDITION$ = minor_orbital
 
 		# macroatmospheric stabilizer
 		$CONDITION$ = macro_stabilizer_0
