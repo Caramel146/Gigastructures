@@ -176,3 +176,6 @@
  kaiser_planetcraft_2_DESC:0 "hi can anyone read this bloop blup woppity"
 
  mod_giga_katzen_ship_cost_mult:0 "mod_giga_katzen_ship_cost_mult name"
+
+ origin_eawafkaiser:0 "submod compat placeholder"
+ origin_eawafkaiser_desc:0 "submod compat placeholder"
