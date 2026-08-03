@@ -1571,14 +1571,6 @@ katzen_reformation_collapse = {
 			}
 		}
 
-		set_variable = { #count katzen systems, used to determine how the empire will collapse
-			which = "katzen_total_system_count"
-			value = 0
-		}
-		set_variable = { #count katzen planets, used to determine how the empire will collapse
-			which = "katzen_total_planet_count"
-			value = 0
-		}
 		count_katzen_planets_and_systems_sans_flusiosector = yes
 
 
@@ -1605,17 +1597,12 @@ katzen_reformation_collapse = {
 							}
 						}
 					}
-					#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 				}
-				save_global_event_target_as = katzen_socialist_capital
 				solar_system = { set_star_flag = katzen_socialist_system }
-				#socialists gets 20% of the katzen empire
+				#socialists gets 25% of the katzen empire
 				count_katzen_planets_and_systems_sans_flusiosector = yes
 				event_target:flusion_primitives_country = {
-					set_variable = {
-						which = "katzen_socialist_system_count"
-						value = 0
-					}
 					set_variable = {
 						which = "katzen_socialist_system_count"
 						value = "katzen_total_system_count"
@@ -1684,17 +1671,12 @@ katzen_reformation_collapse = {
 							}
 						}
 					}
-					#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 				}
-				save_global_event_target_as = katzen_junta_capital
 				solar_system = { set_star_flag = katzen_junta_system }
-				#junta gets 20% of the katzen empire
+				#junta gets 25% of the katzen empire
 				count_katzen_planets_and_systems_sans_flusiosector = yes
 				event_target:flusion_primitives_country = {
-					set_variable = {
-						which = "katzen_junta_system_count"
-						value = 0
-					}
 					set_variable = {
 						which = "katzen_junta_system_count"
 						value = "katzen_total_system_count"
@@ -1763,17 +1745,12 @@ katzen_reformation_collapse = {
 							}
 						}
 					}
-					#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 				}
-				save_global_event_target_as = katzen_republic_capital
 				solar_system = { set_star_flag = katzen_republic_system }
-				#solakia gets 20% of the katzen empire
+				#republic gets 25% of the katzen empire
 				count_katzen_planets_and_systems_sans_flusiosector = yes
 				event_target:flusion_primitives_country = {
-					set_variable = {
-						which = "katzen_republic_system_count"
-						value = 0
-					}
 					set_variable = {
 						which = "katzen_republic_system_count"
 						value = "katzen_total_system_count"
@@ -1842,17 +1819,12 @@ katzen_reformation_collapse = {
 							}
 						}
 					}
-					#NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
+					NOT = { is_planet_class = pc_giga_siegfried_world } #no point inheriting worlds that will explode
 				}
-				save_global_event_target_as = katzen_realm_capital
 				solar_system = { set_star_flag = katzen_realm_system }
-				#realm gets 20% of the katzen empire
+				#realm gets 25% of the katzen empire
 				count_katzen_planets_and_systems_sans_flusiosector = yes
 				event_target:flusion_primitives_country = {
-					set_variable = {
-						which = "katzen_realm_system_count"
-						value = 0
-					}
 					set_variable = {
 						which = "katzen_realm_system_count"
 						value = "katzen_total_system_count"
