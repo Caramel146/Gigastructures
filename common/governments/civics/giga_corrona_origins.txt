@@ -5,6 +5,20 @@ origin_katzen_splinter = {
 	description = origin_no_effect
 }
 
+origin_katzen_collapse = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_post_apocalyptic.dds"
+	playable = { always = no }
+	description = origin_no_effect
+}
+
+origin_katzen_collapse_flusion = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_post_apocalyptic.dds"
+	playable = { always = no }
+	description = origin_no_effect
+}
+
 origin_katzen_rebels = {
 	is_origin = yes
 	icon = "gfx/interface/icons/origins/origins_separatists.dds"
@@ -17,4 +31,13 @@ origin_hke = {
 	icon = "gfx/interface/icons/origins/origins_hegemon.dds"
 	playable = { always = no }
 	description = origin_no_effect
+}
+
+origin_katzen_civil_war = {
+	is_origin = yes
+	icon = "gfx/interface/icons/origins/origins_hegemon.dds"
+	playable = { always = no }
+	modifier = {
+		pop_government_ethic_attraction = 0.5
+	}
 }

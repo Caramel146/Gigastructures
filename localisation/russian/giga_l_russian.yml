@@ -168,6 +168,14 @@
   allow_particle_accel:0 "§HОткрывает мегаструктуру:§! $name_particle_accel$"
   desc_particle_accel:0 "Очень большой ускоритель частиц, построенный вокруг звезды, способный ускорять частицы почти до скорости света."
   
+  name_giga_dsc:99 "Deep Space Citadel"
+  allow_giga_dsc:99 "§HUnlocks Megastructure:§! $name_giga_dsc$"
+  desc_giga_dsc:99 "An armored Starbase designed for maximum defense within a stellar gravity well."
+  
+  name_giga_stellar_cannon:99 "Stellar Cannon"
+  allow_giga_stellar_cannon:99 "§HUnlocks Megastructure:§! $name_giga_stellar_cannon$"
+  desc_giga_stellar_cannon:99 "Allows us to shoot our energy stockpile at targeted systems with potentially devastating effects."
+  
   name_starlifter:0 "Звездный подъемник"
   allow_starlifter:0 "§HОткрывает мегаструктуру:§! $name_starlifter$"
   desc_starlifter:0 "Конструкция, окружающая звезду, напрямую перерабатывающая ее недра и превращающая их в минералы."
@@ -432,7 +440,7 @@
   giga_menu.2.refresh.tooltip:0 "Здесь вы можете повтроно проверить свои активные настройки."
   
   giga_menu.1.name:99 ""
-  giga_menu.1.desc:99 "v 3.38.4"
+  giga_menu.1.desc:99 "v 3.39.1"
   
   giga_menu.10.title:99 "Select your preferred style of play"
   giga_menu.10.confirm:99 "Start Game with Configuration"
@@ -4226,8 +4234,6 @@
   edict_giga_psionic_beacon_menu:0 "Активация §MПсионического маяка§!"
   edict_giga_psionic_beacon_menu_desc:0 "Потратьте немного §MПсионического сублимата§! для питания нашего Псионического маяка.\n\n§МПсионический сублимат§! можно получить, пожертвовав §YТелепат§! используя §YРешение§!, или §YСублимацию§! населения (требует башню истребления)."
   
-  cant_sublimate_soulless_machines:0 "Машины не имеют души, и поэтому не могут быть сублимированы."
-  
   must_be_at_war_and_own_systems:0 "Мы должны находиться в состоянии войны с империей и контролировать или владеть планетой в системе, которой она владеет."
   must_be_at_war:0 "Нет доступных враждебных целей."
   beacon_shroud_army_defensive:99 "$shroud_army$"
@@ -5001,12 +5007,14 @@
   
   war_system_ship_name:99 "[event_target:giga_planet.GetName] Ascendant"
   
-  giga_dialog.2801.name:0 "Сборка $name_war_system$"
-  giga_dialog.2801.desc:0 "$name_war_system$.\n\nВооружение всей солнечной системы - задача не из легких, и для постройки этого гигантского корабля сначала потребуется построить несколько $name_war_planet$ и $name_war_moon$, поскольку они будут включены в гигантский корпус Systemcraft. Хотя настоящая мегаструктура потребует исследования нескольких передовых технологий, было бы разумно сделать необходимые компоненты заранее, поскольку они потребуются для завершения строительства Systemcraft.\n\nТребуемые небесные тела:\n4$name_war_planet$\n5$name_war_moon$\nПланета, на которой проживает не менее 40 жителей.\n\nНа ней также есть не менее 20 верфей и возможность уничтожать планеты, как Колосс.\n\n§RДля правильного отображения Systemcraft в редакторе кораблей потребуется мод UI Overhaul.§!"
-  giga_dialog.2801.a:0 "Принято."
+  # giga_dialog.2801.name:0 "Assembling the $name_war_system$"
+  # giga_dialog.2801.nonvirtual.desc:0 "The $name_war_system$.\n\nWeaponizing an entire solar system is no small task, and constructing this gargantuan vessel will first require building some $name_war_planet$s and $name_war_moon$s, as they will be incorporated into the Systemcraft's gargantuan hull. Although the actual megastructure is going to require researching several advanced technologies, it would be wise to make the required components in advance, as they will be needed in order to complete the Systemcraft's construction.\n\nRequired celestial bodies:\n4 $name_war_planet$s\n5 $name_war_moon$s\nA planet with at least 4,000 pops, to serve as the crew\n\nIt also features the ability to destroy planets like a Colossus.\n\n§RThe use of an UI Overhaul mod will be required for the Systemcraft to properly display in the ship editor.§!"
+  # giga_dialog.2801.virtual.desc:0 "The $name_war_system$.\n\nWeaponizing an entire solar system is no small task, and constructing this gargantuan vessel will first require building some $name_war_planet$s and $name_war_moon$s, as they will be incorporated into the Systemcraft's gargantuan hull. Although the actual megastructure is going to require researching several advanced technologies, it would be wise to make the required components in advance, as they will be needed in order to complete the Systemcraft's construction.\n\nRequired celestial bodies:\n4 $name_war_planet$s\n5 $name_war_moon$s\n\nIt also features the ability to destroy planets like a Colossus.\n\n§RThe use of an UI Overhaul mod will be required for the Systemcraft to properly display in the ship editor.§!"
+  # giga_dialog.2801.a:0 "Understood."
   
   giga_dialog.2802.name:0 "Строительная площадка Systemcraft построена"
-  giga_dialog.2802.desc:0 "Строительная площадка для нашей будущей $name_war_system$ завершена! На этом платформе мы соберем величайший военный корабль, который когда-либо видела эта галактика. Состоящий из нескольких планетарных кораблей и $name_war_moon$, связанных вместе, это грозное судно сможет победить что угодно.\n\nПомните, что для сборки Systemcraft необходимо будет перенести $name_war_planet$ и $name_war_moon$ в эту систему!"
+  giga_dialog.2802.nonvirtual.desc:99 "The construction site for our future $name_war_system$ has now been completed! Upon this scaffold, we shall assemble the greatest warship this galaxy has ever seen. Consisting of several planetcrafts and $name_war_moon$s linked together, this fearsome vessel will be able to defeat anything.\n\nRequired celestial bodies:\n4 $name_war_planet$s\n5 $name_war_moon$s\nA colony with at least 4,000 pops, to serve as the crew\n§Y(The planet will not be lost when the pops are taken.)§!\n\nIt also features the ability to destroy planets like a Colossus if the Apocalypse DLC is active.\n\n§RThe use of an UI Overhaul mod will be required for the Systemcraft to properly display in the ship editor.§!"
+  giga_dialog.2802.virtual.desc:99 "The construction site for our future $name_war_system$ has now been completed! Upon this scaffold, we shall assemble the greatest warship this galaxy has ever seen. Consisting of several planetcrafts and $name_war_moon$s linked together, this fearsome vessel will be able to defeat anything.\n\nRequired celestial bodies:\n4 $name_war_planet$s\n5 $name_war_moon$s\n\nIt also features the ability to destroy planets like a Colossus if the Apocalypse DLC is active.\n\n§RThe use of an UI Overhaul mod will be required for the Systemcraft to properly display in the ship editor.§!"
   giga_dialog.2802.a:0 "Все только начинается."
   
   giga_dialog.2803.name:0 "Солнечный компрессор Systemcraft построен"
@@ -5022,7 +5030,8 @@
   giga_dialog.2805.a:0 "Приближаемся."
   
   giga_dialog.2806.name:0 "Небесные стиратели Systemcraft построены"
-  giga_dialog.2806.desc:0 "Основное оружие нашего Systemcraft готово! Эти два планетарных корабля, прикрепленные к носу корабля, способны обрушить неисчислимое количество огневой мощи на любую цель, которой не повезло пересечь ее путь. Остается только один шаг, и он потребует собрать 40 жителей по решению любого из наших миров, чтобы служить в качестве команды.\n\n§YНе забудьте спроектировать $name_war_system$ в конструкторе кораблей.§!"
+  giga_dialog.2806.nonvirtual.desc:99 "Our Systemcraft's main weapons are now finished! These two planetcrafts attached to the vessel's bow are capable of unleashing an untold amount of firepower on any target unlucky enough to cross its path. Only one step remains now, and it will require gathering 4,000 pops through a decision from any of our worlds in order to serve as the crew.\n\n§YDo not forget to design the $name_war_system$ in the ship designer§!\n\n§YThis will not destroy the world its used on - it only takes 4,000 pops§!"
+  giga_dialog.2806.virtual.desc:99 "Our Systemcraft's main weapons are now finished! These two planetcrafts attached to the vessel's bow are capable of unleashing an untold amount of firepower on any target unlucky enough to cross its path. We have already begun transferring the virtual minds necessary to crew the mighty vessel. Only one step remains now...\n\n§YDo not forget to design the $name_war_system$ in the ship designer§!"
   giga_dialog.2806.a:0 "Еще один шаг."
   
   giga_dialog.2807.name:0 "$name_war_system$ построено!"
@@ -5342,6 +5351,7 @@
   giga_dialog.3205.name:0 "$name_ndb$ завершен!"
   giga_dialog.3205.desc:0 "Сегодня великий день для нашего вида и нашей империи. Наш $name_ndb$ завершен. Это абсолютно массивное гипероружие может стерилизовать планеты издалека и потенциально разрушать целые системы. Вероятно, это одна из самых мощных конструкций, когда-либо построенных в галактической истории, и ее абсолютная мощь обеспечит наше галактическое господство."
   giga_dialog.3205.a:0 "Пусть наши враги съежатся от страха."
+  giga_dialog.3205.b:99 "Speak softly and carry a planetkilling hyperweapon."
   
   giga_ndb.002.name:99 "$name_ndb$"
   giga_ndb.002.desc:0 "$name_ndb$ готова к работе. Куда мы должны сделать пиу-пиу?"
@@ -5566,7 +5576,7 @@
   
   giga_dialog.1202.name:0 "Каркас $name_penrose$ построен"
   giga_dialog.1202.desc:0 "Каркас для будущей $name_penrose$ построен около [giga_system.GetName]. Этот каркас-скелет однажды будет содержать массивные зеркала, построенные из самых отражающих материалов, о которых мы только можем подумать. Когда мы закончим строительство этих зеркал, у нас будет выбор: превратить структуру в массивную бомбу или использовать ее для сбора энергии."
-  giga_dialog.1202.a:0 "Великолепно."
+  giga_dialog.1202.a:99 "Such a weapon could be of great use to us if used wisely."
   giga_dialog.1202.b:99 "A bomb? What a preposterous idea."
   
   giga_dialog.1203.name:0 "Бомба подпространственного искажения заряжена!"
@@ -5612,9 +5622,9 @@
   #########################################
   ### Ringworld Ecumenopolis ##############
   #########################################
-  giga_dialog.2401.name:0 "§H$name_ringworld_city$§!: покрыл [root.GetName]"
-  giga_dialog.2401.desc:0 "Слои за слоями городской пейзаж покрывает поверхность мира-кольца, и это готово.\n\nНаша собственная искусственная планета, сегмент мира-кольца, была полностью покрыта огромным городом, простирающимся на тысячи и тысячи километров во всех направлениях. Чтобы пересечь этот огромный город, способный вместить триллионы душ, потребуются десятилетия."
-  giga_dialog.2401.a:0 "Поразительно."
+  # giga_dialog.2401.name:0 "§H$name_ringworld_city$§!: [root.GetName] Covered"
+  # giga_dialog.2401.desc:0 "Layers upon layers of cityscape cover the ringworld's surface, and it is done.\n\nOur very own artificial planet, a ringworld segment, has been fully covered by a massive city, spanning thousands upon thousands of kilometers in every direction. It would take decades to trek across this vast city, capable of holding trillions of souls."
+  # giga_dialog.2401.a:0 "Impressive."
   
   #########################################
   ### Titanic Ringworld ###################
@@ -6323,7 +6333,7 @@
   giga_pouchkinn.101.c.tooltip:0 "Подготовьте небольшую боеголовку, чтобы уничтожить лабораторию."
   
   giga_pouchkinn.102.name:0 "Катастрофический взрыв!"
-  giga_pouchkinn.102.desc:0 "Ужасные новости из недавно колонизированного $name_orb_elysium$! Наши колонисты подготовили небольшую ядерную боеголовку и запустили ее в Древнюю лабораторию, чтобы навсегда избавиться от нее.\nОднако похоже, что разрушение здания активировало какой-то протокол, который, в свою очередь, привел к одновременному взрыву несколько тысяч ядерных боеголовок вокруг $name_orb_elysium$.\nНаша колония была полностью уничтожена, а конструкция стала непригодной для проживания. Возможно, его удастся восстановить, если у нас будут правильные технологии."
+  giga_pouchkinn.102.desc:0 "Ужасные новости из недавно колонизированного $name_orb_elysium$! Наши колонисты подготовили небольшую ядерную боеголовку и запустили ее в Древнюю лабораторию, чтобы навсегда избавиться от нее.\nОднако похоже, что разрушение здания активировало какой-то протокол, который, в свою очередь, привел к одновременному взрыву несколько тысяч ядерных боеголовок вокруг $name_orb_elysium$.\nНаша колония была полностью уничтожена, а конструкция стала непригодной для проживания. Возможно, его удастся восстановить, если у нас будут правильные технологии." #final line removed since you can't repair stellar rings anymore:  It might be possible to restore it if we possess the right technologies.
   giga_pouchkinn.102.a:0 "Проклятье!"
   
   giga_pouchkinn.103.name:0 "Защитные дроны!"
@@ -6430,10 +6440,17 @@
   giga_fallen_empire_moons.101.name:99 "Celestial Body Movement Detected!"
   giga_fallen_empire_moons.101.desc:99 "Alarming news! Shortly after the awakening of the [giga_fe_activating_celestials.GetName], long-range sensors have detected that multiple bodies within their territory have left their orbits. Massive hidden weapons and thrusters emerged from their crusts, and they have now transformed into fearsome weaponized planetoids. It appears this ancient civilization had more hidden weaponry than previously thought..."
   giga_fallen_empire_moons.101.a:99 "Battlestations!"
+  giga_fallen_empire_moons.101.b:99 "We may have been hasty."
+  giga_fallen_empire_moons.101.c:99 "Stunning. And terrifying."
+  giga_fallen_empire_moons.101.d:99 "Our historic masters clearly still have some tricks at hand."
   
   giga_fallen_empire_moons.102.name:99 "The Holy Behemoth"
   giga_fallen_empire_moons.102.desc:99 "It is no secret that the Awakened Empires possess many kind of ancient weapons that have laid dormant for millennia. But nobody could predict that one of the Holy Guardians' Holy Worlds wasn't actually a regular world, but rather, a gigantic and inactive planet-sized spaceship. And with their recent awakening, this colossal spaceship has re-activated and the once pristine Gaia World has transformed into a colossal weaponized planet, capable of obliterating anything standing in its way. It seems they are more prepared to defend their faith than we anticipated..."
   giga_fallen_empire_moons.102.a:99 "This is bad."
+  giga_fallen_empire_moons.102.b:99 "Their faith will fail them. It must."
+  giga_fallen_empire_moons.102.c:99 "What militant piety..."
+  giga_fallen_empire_moons.102.d:99 "A great guardian of the faith has come."
+  giga_fallen_empire_moons.102.e:99 "A decrepit construct of a decrepit religion."
   
   #########################################
   ### Paluushia ###########################
@@ -6496,26 +6513,32 @@
   giga_dialog.10101.name:0 "Античная столица"
   giga_dialog.10101.desc:0 "Команда, которой было поручено исследовать систему Corinth, сделала потрясающее открытие! Похоже, что указанная система - это §BСистема древних предтеч§! или, точнее, бывшая столица давно умершей империи, которая превратилась в руины после тысячелетий заброшенности.\n\nВ системе были обнаружены две разрушенные мегаструктуры: разрушенный Комплекс орхидей Иггдрасиль и разрушенный объект $name_kugelblitz$. Кроме того, две разрушенные среды обитания $name_orb_elysium$ также были обнаружены на орбите некоторых планет.\n\nСудя по состоянию планет системы, похоже, что здесь произошло много вещей. Это наверняка заинтересует наших археологов."
   giga_dialog.10101.a:0 "Невероятно!"
+  giga_dialog.10101.b:99 "A bustling galactic heart... in a past age."
   
   giga_dialog.10201.name:0 "Затерянный зверинец"
   giga_dialog.10201.desc:0 "Наш научный корабль, похоже, наткнулся на какую-то §BСистема древних предтеч§!. Похоже, что архаическая космическая цивилизация создала эту систему как своего рода заповедник для различных видов животных, обитающих по всей галактике.\n\nВ системе, в частности, есть две разрушенные мегаструктуры: разрушенный $name_yggdrasil$, предположительно используемый для кормления плененных особей, и разрушенный дом $name_orbital_artificial_eco$, который, вероятно, использовался для размещения некоторых экзотических видов животных. Две пригодные для жизни планеты, кажется, выполняют роль заповедников, хотя тот, кто их построил, давно покинул это место. Это, безусловно, будет очень ценно для наших биологов и археологов."
   giga_dialog.10201.a:0 "Фантастика."
+  giga_dialog.10201.b:99 "What a grand project this must have been!"
   
   giga_dialog.10301.name:0 "Колыбель Титанов"
   giga_dialog.10301.desc:0 "§BСистема древних предтеч§! была обнаружена научным кораблем! Система, получившая название «Колыбель Титанов», кажется, когда-то была огромным заводом по производству кораблей. Гигантская, хотя и испорченная, $name_neut_gigaforge$ вращается вокруг нейтронной звезды системы. Разрушенный $name_eng_test_site$ также вращается вокруг одной из планет системы. Сами планеты в прошлом получили серьезные повреждения.\n\nОднако систему охраняет большой флот древних военных кораблей, предположительно построенных в этой самой системе. Похоже, борьба будет необходима, если мы хотим захватить эту систему..."
   giga_dialog.10301.a:0 "Невероятно."
+  giga_dialog.10301.b:99 "An inspirational naval industry."
   
   giga_dialog.10401.name:0 "Древняя кузница"
   giga_dialog.10401.desc:0 "Научный корабль наткнулся на что-то вроде §BСистема древних предтеч§! Сканирование показывает, что какой-то древний предшественник превратил эту систему в огромный промышленный центр, способный добывать невероятное количество минералов, предположительно, для питания своей военной машины. Некоторые планеты системы лишены коры и мантии, осталось только открытое внутреннее ядро.\n\nИнтересно, что разрушенный $name_eng_test_site$ тихо парит над планетой, заброшенной тысячелетия назад. Анализ первичной обмотки системы показал, что когда-то вокруг звезды была массивная мегаструктура (скорее всего, огромный звездоподъемный комплекс), но с тех пор она была разрушена в результате расширения звезды."
   giga_dialog.10401.a:0 "Чудесно."
+  giga_dialog.10401.b:99 "A testament to industrial might."
   
   giga_dialog.10501.name:0 "Триплет карликов"
   giga_dialog.10501.desc:0 "Система [from.GetName] является домом для невероятно необычного звездного устройства. Не один, а три коричневых карлика L-класса вращаются вокруг центральной звезды класса F. Каждая из этих несостоявшихся звезд представляет собой обширную лунную систему, почти как миниатюрную солнечную систему. Наши ученые озадачены тем, как возникла эта странная система, и предполагают, что можно зажечь коричневых карликов, если мы будем обладать правильными технологиями.\n\nКоричневые карлики будут добавлены в планировщик расширения, как только они будут обследованы."
   giga_dialog.10501.a:0 "Какая находка!"
+  giga_dialog.10501.b:99 "Surely a one-in-the-galaxy sight!"
   
   giga_dialog.10701.name:0 "Заброшенный $name_orb_elysium$"
   giga_dialog.10701.desc:0 "При входе в систему [from.GetName] наш научный корабль обнаружил, казалось бы, пустую среду обитания в форме кольца. Этот '$name_orb_elysium$' кажется заброшенным, и мы можем его колонизировать. Однако возле Элизиума находится несколько кораблей неизвестного происхождения, по всей видимости охраняющих среду обитания. Если мы хотим уладить это, нам придется бороться..."
   giga_dialog.10701.a:0 "Кто мог построить эти корабли?"
+  giga_dialog.10701.b:99 "It's in suspiciously good condition. Be vigilant."
   
   ##########################################
   ### Katzenland ###########################
@@ -6523,6 +6546,9 @@
   giga_katzenland.001.name:0 "Облученный некрополь"
   giga_katzenland.001.desc:0 "Система Gatzo никогда не разочаровывает. После исследования одной из крупнейших планет системы, Katzenland, наша научная группа сообщила, что они обнаружили огромное количество руин, погребенных под песками планеты. Кажется, этот мир когда-то был населен процветающей цивилизацией, возможно, той, которая построила Врата системы, но ее обитатели, судя по текущему состоянию планеты, очевидно, встретили жестокий конец несколько тысячелетий назад.\n\nНаша научная группа стремится узнать, что именно привело к падению этой цивилизации, поскольку изучение этого мира, несомненно, даст невероятные научные данные, и поэтому на планете было создано место раскопок."
   giga_katzenland.001.a:0 "Интересно."
+  giga_katzenland.001.scavengers:99 "Imagine the riches in that rubble."
+  giga_katzenland.001.curators:99 "Surely many artifacts remain."
+  giga_katzenland.001.prospectors:99 "This place would be an... ambitious investment."
   
   site_katzenland:0 "Погребенный некрополь"
   site_katzenland_intro:0 "Целая мертвая цивилизация похоронена под песчаными дюнами Katzenland. Что могло случиться с их миром, чтобы все закончилось так?"
@@ -6566,6 +6592,7 @@
   giga_katzenland.007.a.tooltip:0 "Джеймза становится 78-летним (биологический возраст) Адмиралом Уровня 4. Нам еще предстоит изучить ее биологию, но в меньшей степени."
   giga_katzenland.007.b:0 "Препарируйте ее."
   giga_katzenland.007.c:0 "Убейте ее."
+  giga_katzenland.007.d:99 "Send her on her way with supplies."
   
   giga_katzenland.008.name:0 "Меопа"
   giga_katzenland.008.desc:0 "Проанализировав сказанное Джеймзой, наша команда продолжила исследование колоссальной пирамиды в поисках ключей к разгадке причин войны Sobaki-Katzen. В конце концов они нашли массивную, почти разрушенную комнату с троном, на котором сидел несколько невысокий скелет Катцена, сжимая в одной руке небольшое устройство.\n\nХотя поначалу они были сбиты с толку, они обнаружили, что это был не кто иной, как сам Меопа! По всей комнате было разбросано несколько кешей данных, предположительно, устройства регистрации, используемые Меопа для записи своих действий. Аппараты старые и поврежденные. Чтобы их правильно расшифровать и проанализировать, потребуются огромные усилия.\n\nОни также обнаружили несколько ценных драгоценных камней, которые будут продаваться по довольно хорошей цене."
@@ -6574,7 +6601,18 @@
   giga_katzenland.009.name:0 "Ядерная глупость"
   giga_katzenland.009.desc:0 "Кеши данных были, к сожалению, испорчены тысячелетиями пренебрежения и давали лишь частичную информацию, поэтому потребовалось больше экспедиций в глубины пирамиды, чтобы собрать все воедино. Но после долгих поисков мы наконец узнали ужасающую правду...\n\nМеопа действительно запустил проект Katzenform, цель которого - превратить Potradus в обитаемый мир. Однако у Katzen было лишь ограниченное количество сверхсветовых кораблей и очень мало колоний за пределами их родной системы, что сделало проект чрезвычайно дорогостоящим для их цивилизации. Хотя терраформирующая структура была на удивление хорошо сделана, ее высокая стоимость привела к экономическому коллапсу. Из-за этого Sobakis из Nienet, цивилизация, которая разделяла систему Gatzo и когда-то были близкими союзниками Katzen, решили нанести удар по Katzenland, пытаясь завоевать его, пока он был ослаблен, что противоречит нашей первоначальной теории о том, что Katzen нанесли удар первыми.\n\nМеопа нанес ответный удар «яростью тысячи солнц», полностью опустошив поверхность Nienet. Этот непропорциональный геноцид привел к резкому падению стабильности нации, что привело к восстанию всей империи против режима Меопы. Меопа, не желал уйти в отставку, и его рассудок быстро ухудшался, он совершил немыслимое:\nОн обрушил остальной ядерный арсенал Katzen... на сам Katzenland. Он разрушил свой собственный мир, убив миллиарды Katzen и Zuspri. Затем относительно небольшая космическая империя Katzen рухнула, и несколько колоний не смогли выжить без своей столицы.\n\nХотя записи говорят о большом колонизационном судне под названием §YМеопская экспедиция 1§!, запущенном до войны Sobaki-Katzen на неизвестную далекую планету, на котором и Katzen, и Zuspri находились в криосне, а это означает, что существует небольшая вероятность того, что вид все еще где-то там.\n\n С другой стороны, нам удалось восстановить удивительно неповрежденные и подробные схемы Проекта Katzenform, которые, несомненно, улучшат наши знания о терраформировании."
   giga_katzenland.009.a:0 "Ужасно."
-  giga_katzenland.009.b:0 "Мы знаем этот мир!"
+  giga_katzenland.009.knowflusion:99 "We know of this world!"
+  giga_katzenland.009.wiseleader:99 "Not a great leader at all..."
+  giga_katzenland.009.nomadic:99 "These planetdwellers are mad."
+  giga_katzenland.009.forevercruise:99 "What a sight to see."
+  giga_katzenland.009.postapocalyptic:99 "Familiar devastation - except we endured."
+  giga_katzenland.009.egalitarian:99 "So many lost to a mad tyrant."
+  giga_katzenland.009.authoritarian:99 "An entire civilisation killed by rampant protests."
+  giga_katzenland.009.genocidal:99 "Meopa did the job for us."
+  giga_katzenland.009.scorched:99 "They were weak, and burnt in the flames."
+  giga_katzenland.009.servitors:99 "Organic self-determination and its consequences."
+  giga_katzenland.009.memorialists:99 "We will remember them."
+  giga_katzenland.009.xenophobe:99 "Multispecies harmony was bound to backfire."
   
   katzenland_terraform_knowledge:0 "Методы терраформирования Katzenland"
   katzenland_terraform_knowledge_desc:0 "Теории Katzen о терраформировании оказались чрезвычайно эффективными для их технологического развития."
@@ -6853,8 +6891,11 @@
   giga_katzen_cruiser_cap:99 "$giga_katzen_cruiser$"
   giga_katzen_cruiser_plural:99 "Katzenkreuzers"
   KATZEN_CRUISER_BOW:0 "Нос корабля"
+  KATZEN_ADVANCED_CRUISER_BOW:99 "$KATZEN_CRUISER_BOW$"
   KATZEN_CRUISER_MID:0 "Середина"
+  KATZEN_ADVANCED_CRUISER_MID:99 "$KATZEN_CRUISER_MID$"
   KATZEN_CRUISER_STERN:0 "Корма"
+  KATZEN_ADVANCED_CRUISER_STERN:99 "$KATZEN_CRUISER_STERN$"
   
   district_city_katzen:0 "$district_city$"
   district_city_katzen_plural:0 "$district_city_plural$"
@@ -6864,6 +6905,7 @@
   giga_flusion.405.desc:0 "Наш научный корабль исследуя систему §YJublio§! сделал захватывающее открытие.\n\nПохоже, что, несмотря на отсутствие сверхсветовой скорости, примитивы, живущие на одной из планет системы, §YFlusion§!, сумели превратить одну из своих лун в большое защитное супероружие, оснащенное колоссальным релятивитским рельсотроном!\n\nЭта чудовищная конструкция, похоже, предназначена для сдерживания любых потенциальных вторжений агрессивной космической цивилизации, и, судя по ее размеру и размаху, она, вероятно, вполне справляется с этим."
   giga_flusion.405.a:0 "Настоящий подвиг."
   giga_flusion.405.b:0 "Проблемно."
+  giga_flusion.405.c:99 "A wise approach to survival."
   
   giga_flusion.406.name:0 "Проект Mondgewehr разрушен!"
   giga_flusion.406.desc:0 "После упорной битвы, нашим флотам в системе Jublio удались уничтожить грозную флузионскую Лунную систему Защиты!\n\nЛунное супероружие подверглось суровому наказанию и больше не действует, флузианцы эвакуируются и отступают в свой родной мир. Теперь, когда его основной защитный аппарат уничтожен, Flusion теперь должен быть уязвим для прямого наземного вторжения, если мы захотим захватить их мир.\n\nМы также смогли спасти из него некоторые ресурсы. Однако внутренняя структура супероружия кажется удивительно неповрежденной, а это означает, что мы потенциально могли бы восстановить ее в полноценную Боевую Луну, если у нас будет надлежащая технология."
@@ -7007,11 +7049,13 @@
   giga_katzen_panzer_cap:99 "$giga_katzen_panzer$"
   giga_katzen_panzer_plural:99 "Katzenweltraumpanzers"
   KATZEN_SPACE_PANZER:0 "Корпус космического танка"
+  KATZEN_ADVANCED_SPACE_PANZER:99 "Space Panzer Hull Mk. II"
   
   giga_katzen_bomber:99 "Leerekatzenbomber"
   giga_katzen_bomber_cap:99 "$giga_katzen_bomber$"
   giga_katzen_bomber_plural:99 "Leerekatzenbombers"
   KATZEN_SPACE_BOMBER:0 "Планер космического бомбардировщика"
+  KATZEN_ADVANCED_SPACE_BOMBER:99 "Space Bomber Airframe Mk. II"
   
   PANZER_ARTILLERY_1:99 "Weltraumpanzergewehr"
   PANZER_ARTILLERY_1_DESC:0 "Усовершенствованная версия главного танкового орудия."
@@ -7124,18 +7168,15 @@
   ###CONTACT EVENT###
   giga_katzen.020intro.desc:0 "Мы, Katzen, приветствуем вас, инопланетяне. Я §YДуклав МакКатур§!, представитель нашего великого лидера §YКайзера Каттейл§!.\n\nЗнаю, что мы поддаемся дипломатии, но без колебаний возьмся за оружие, если это когда-нибудь понадобится."
   
+  
   giga_katzen.020.name:0 "Империум Катценартиг"
+  
   giga_katzen.020aally.desc:0 "Приветствую [Root.GetSpeciesName]! Кайзер всегда рад услышать новости от вашего вида. Он много о вас говорит."
   giga_katzen.020bally.desc:0 "Кайзер счастлив, что нам удалось создать военный союз. Он считает ваш вид достойным уважения."
   giga_katzen.020cally.desc:0 "[Root.GetSpeciesName]! Пусть наш союз продлится, пока не сгорят звезды, а потом еще немного."
   giga_katzen.020dally.desc:0 "С [Root.GetSpeciesNamePlural] на нашей стороне Организация Флузианского договора будет править галактикой!"
   giga_katzen.020eally.desc:0 "FTO изначально создавался как военный союз между нами и другой страной на Flusion, до того, как мы получили прыжковый двигатель.\n\nНе спрашивайте, что случилось с указанной нацией."
-  giga_katzen.020aneutral.desc:0 "Привет, инопланетяне. Вы пришли обсудить возможные торги территорией, а? Как вы знаете, это очень прибыльный способ заработка ресурсов."
-  giga_katzen.020bneutral.desc:0 "Приветствия. Вы принесли хорошие новости? Кайзер хочет только хороших новостей."
-  giga_katzen.020cneutral.desc:0 "Кайзер надеется установить хорошие отношения с вашим видом. Вы бы не хотели нас подвести, не так ли?"
-  giga_katzen.020dneutral.desc:0 "Да? Дуклав МакКатур здесь, говорит от имени Кайзера Каттайла."
-  giga_katzen.020eneutral.desc:0 "Доброго времени суток вам, инопланетяне. Наши военные следят за этим каналом, так что не слишком шумите."
-  giga_katzen.020fneutral.desc:99 "We hope your arkships are compliant with all relevant travel regulations while in Katzenartig space."
+  
   giga_katzen.020ahappy.desc:0 "Ах! [Root.GetName]! Кайзер будет рад договориться с вами. Он надеется, что мы сможем торговать ресурсами и территорией. Особенно территория."
   giga_katzen.020bhappy.desc:0 "Как идут дела у вашей империи, [Root.GetSpeciesNamePlural]? Кайзер надеется, что все идет хорошо."
   giga_katzen.020chappy.desc:0 "Кайзер часто говорит о вас, [Root.GetName]. Он считает вас достойным доверия видом, что, честно говоря, является настоящим подвигом."
@@ -7143,18 +7184,51 @@
   giga_katzen.020ehappy.desc:0 "Кайзер надеется, что две наши цивилизации могут расти и процветать вместе, [Root.GetSpeciesNamePlural]."
   giga_katzen.020fhappy.desc:99 "It is always a pleasure to hear from our travelling friends. In our own ways, we explore this galaxy together."
   giga_katzen.020ghappy.desc:99 "You should know that many on Flusion dream of seeing the wonders you must encounter on your journeys. But alas, there is a lifetime of sights already on our beloved capital."
+  giga_katzen.020hhappy.desc:99 "It's a pleasure to know we can rely on the [Root.GetName] as a friendly voice in the [global_event_country.GetGalCommunityOrGalImperium]."
+  
+  giga_katzen.020aneutral.desc:0 "Привет, инопланетяне. Вы пришли обсудить возможные торги территорией, а? Как вы знаете, это очень прибыльный способ заработка ресурсов."
+  giga_katzen.020bneutral.desc:0 "Приветствия. Вы принесли хорошие новости? Кайзер хочет только хороших новостей."
+  giga_katzen.020cneutral.desc:0 "Кайзер надеется установить хорошие отношения с вашим видом. Вы бы не хотели нас подвести, не так ли?"
+  giga_katzen.020dneutral.desc:0 "Да? Дуклав МакКатур здесь, говорит от имени Кайзера Каттайла."
+  giga_katzen.020eneutral.desc:0 "Доброго времени суток вам, инопланетяне. Наши военные следят за этим каналом, так что не слишком шумите."
+  giga_katzen.020fneutral.desc:99 "We hope your arkships are compliant with all relevant travel regulations while in Katzenartig space."
+  giga_katzen.020gneutral.desc:99 "I wonder, are your kind truly prospering under that \"$galactic_empire$\"? The Kaiser has personally expressed his concern for you [Root.GetSpeciesNamePlural]. Just know that the Katzen way is always open."
+  giga_katzen.020hneutral.desc:99 "Douclaw MacCathur here. I trust you're speaking well of the Kaiser in the [global_event_country.GetGalCommunityOrGalImperium]. I wouldn't want to catch wind of anything to the contrary."
+  
   giga_katzen.020aangry.desc:0 "[Root.GetName]. Знайте, что мы не боимся конфликтов. Кайзер был бы более чем рад стереть вашу империю с карты и заменить ее нашей."
   giga_katzen.020bangry.desc:0 "Вы пришли отдать нам свою территорию? Кайзер очень на это надеется. Если нет, мы могли бы просто взять это сами."
   giga_katzen.020cangry.desc:0 "Вы знали? Кайзер часто произносит речи, чтобы описать, насколько презренно ваше правительство. И он прав."
   giga_katzen.020dangry.desc:0 "У Кайзера есть обширный список "Империй, которые нужно удалить с карты".\n\n[Root.GetName] находится на самом верху."
   giga_katzen.020eangry.desc:0 "Нам, Katzen, интересно, как вы вообще попали в космос."
   giga_katzen.020fangry.desc:99 "You can flee in your dinghies for now, [Root.GetSpeciesNamePlural]. But the spread of our banner will eventually leave you with nowhere to hide in this galaxy, or beyond it."
+  giga_katzen.020gangry.desc:99 "You think that you're protecting the galaxy, Custodian, but only the Kaiser can secure our future. And you're in his way."
+  giga_katzen.020hangry.desc:99 "I must tell you, [Root.GetName], you're on the Kaiser's list of unfriendly galactic nations. You should find a way off that list."
+  giga_katzen.020iangry.desc:99 "The [Root.GetAllianceName] is a nest of anti-Katzen lies. Don't think banding together will keep you safe forever."
+  giga_katzen.020jangry.desc:99 "The Katzenartig Imperium will protect its citizens from your mad butchery. Your warbots will be melted down to feed the forges of Flusion."
+  giga_katzen.020kangry.desc:99 "The Katzenartig Imperium will protect its citizens from your mad butchery and introduce your [Root.Species.GetSpawnNamePlural] to civilised ways."
+  giga_katzen.020langry.desc:99 "I assume you plan to assimilate us too, [Root.GetSpeciesNamePlural]. But it is you who will be assimilated into the great Katzen culture."
+  giga_katzen.020mangry.desc:99 "Your rampant hunger for biomass is no match for the Kaiser's insatiable appetite for glory."
+  giga_katzen.020nangry.desc:99 "If you're so fond of the heat, High Command would be happy to test some new orbital bombardment doctrines on [GetCapitalPlanetNameOrRandom]."
+  
   giga_katzen.020awar.desc:0 "Мы будем приливом, который унесет вашу цивилизацию в глубины истории. И кайзер будет более чем счастлив управлять этим течением."
   giga_katzen.020bwar.desc:0 "У вас был шанс, [Root.GetSpeciesNamePlural]. Пришло время действовать."
   giga_katzen.020cwar.desc:0 "Кайзеру не терпится освободить ваш народ от вашего глупого правительства. Они научатся любить кайзера."
   giga_katzen.020dwar.desc:0 "Кайзер должен отправить [Root.GetName] туда, где он принадлежит: На свалку истории."
   giga_katzen.020ewar.desc:0 "[Root.GetName] скоро присоединится к бесчисленным народам Flusion."
   giga_katzen.020fwar.desc:99 "Where will your people hide when the Weltraumpanzers breach your hulls? All of space belongs to Katzenkind, and vagrants are unwelcome."
+  giga_katzen.020gwar.desc:99 " Soon, your self-proclaimed "Galactic Imperium" will realise its mistake: this galaxy belongs to the Katzenartig Imperium."
+  
+  giga_katzen.020aprot.desc:0 "Ах! Наш дорогой [Root.GetName]. Как дела?"
+  giga_katzen.020bprot.desc:0 "Уверяю вас, что [Root.GetRulerName] исключительно грамотный руководитель, уважаемый Катцпротекторат."
+  giga_katzen.020cprot.desc:0 "Вы сделали правильный выбор, обратившись к нам. Мы будем защищать тебя вечно."
+  giga_katzen.020dprot.desc:0 "Кайзер более чем счастлив разделить нашу славу с вашим видом."
+  giga_katzen.020eprot.desc:0 "Мы вместе покорим галактику, [Root.GetName]!"
+  
+  giga_katzen.020amisc.desc:99 "The Blokkats want to harvest every last star in the sky, and some want to squabble over minutiae like sovereignty. No. Only the Kaiser can protect us."
+  giga_katzen.020bmisc.desc:99 "Meopa, the great Katzenlandian king and destroyer of old... in your ranks. Stunning. I hope you understand what you've gotten yourselves into."
+  giga_katzen.020cmisc.desc:99 "How are your... experiments going, [Root.GetSpeciesNamePlural]? Safely? The Kaiser seems convinced that they could be quite dangerous for Flusion."
+  giga_katzen.020dmisc.desc:99 "Ah, the [Root.GetName]. You're dabbling with some dangerous things, which makes your affairs Katzenartig business. Some barriers shouldn't be broken."
+  giga_katzen.020emisc.desc:99 "The Kaiser has personally told me to convey that you're on the wrong path with your thermal obsession. I don't understand the science, but the Kaiser assures me he's been consulting with our top astrophysicists. Turn down the heat."
   
   giga_katzen.020.kaiserhappy4:0 "§YМнение Кайзера§!: 4|Ликующий"
   giga_katzen.020.kaiserhappy3:0 "§YМнение Кайзера§!: 3|Очень дружественный"
@@ -7197,6 +7271,7 @@
   
   giga_katzen.02011.name:0 "Покупка кораблей Katzen"
   giga_katzen.02011.desc:0 "Кайзер готов продать вам некоторые из наших передовых военных кораблей, да. У нас есть несколько классов кораблей, так что выбирайте сами. Конечно, мы будем строить эти корабли иначе, чем наши обычные корабли, так что не мечтайте, что вы получаете бесплатную информацию о наших разработках.\n\n...\n\nИ нет, Луна Кайзера не продается ."
+  giga_katzen.02011.protectorate.desc:99 "Of course the Kaiser would be willing to support the defence of a loyal Imperium government! We have several ship classes available, so make your choice. Of course, the newest designs are reserved for our flagship forces, so you needn't worry about leaking our engineering.\n\n...\n\nAnd no, the Kaiser Moon is not for sale."
   
   giga_katzen.02011.a:99 "5 §BKatzenweltraumpanzers§! | §Y5000§! £trade£"
   giga_katzen.02011.a.tooltip:0 "Мы купим флот из 5 юрких и быстрых бронированных боевых кораблей §BKatzenweltraumpanzers§!.\nЕсть 15% вероятности того, что §YМнение Кайзера§! о нас будет §Gувеличено§!.$attache_boost_chance$"
@@ -7207,12 +7282,19 @@
   giga_katzen.02011.c:99 "1 §BKatzenkreuzer§! | §Y15000§! £trade£"
   giga_katzen.02011.c.tooltip:0 "Мы купим один §BKatzenkreuzers§!, большой и хорошо оснащенный военный корабль, чтобы атаковать врага издалека.\nЕсть 25% вероятности того, что §YМнение Кайзера§! о нас будет §Gувеличено§!.$attache_boost_chance$"
   
-  giga_katzen.02011.response:0 "Отличный выбор! Изделия доставим в вашу столицу в течение ближайшего месяца."
+  giga_katzen.02011.d:99 "1 §BGepanzerterluftschiffträger§! | §Y50000§! £trade£"
+  giga_katzen.02011.d.tooltip:99 "We will purchase a single §BGepanzerterluftschiffträger§!, a heavily-armoured strikecraft carrier with a powerful main gun.\nThere is a 30% chance the §YKaiser's Opinion§! of us will §Gincrease§!.$attache_boost_chance$"
+  katzen_reserved_for_allies:99 "The Katzens reserve these capital ships for close allies (Katzprotektorats or Flusionian Treaty Organisation members)."
+  
+  giga_katzen.02011.response.plural:99 "An excellent choice! We'll have the crafts delivered to your capital within the next month."
+  giga_katzen.02011.response.singular:99 "An excellent choice! We'll have the craft delivered to your capital within the next month."
   
   giga_katzen.02011.bye:0 "Забудьте об этом."
   
   giga_katzen.02012.name:0 "Корабли Katzen прибыли!"
   giga_katzen.02012.desc:0 "Как и было обещано, кайзер доставил заказанные нами корабли в нашу столицу. Теперь они официально присоединились к нашим вооруженным силам, и мы можем использовать их по своему усмотрению.\n\nНам придется подождать 6 месяцев, если мы снова захотим заказать корабли Katzen."
+  giga_katzen.02012.cruiser.desc:99 "As promised, the Kaiser has had the ship we ordered delivered to our capital. It has  now officially joined our armed forces, and we may use it as we please.\n\nWe'll have to wait 6 months if we wish to order Katzen ships again."
+  giga_katzen.02012.blimp.desc:99 "As promised, the Kaiser has had the ship we ordered delivered to our capital. It has now officially joined our armed forces, and we may use it as we please.\n\nSince this was a large order, we'll have to wait 12 months if we wish to order Katzen ships again."
   giga_katzen.02012.a:0 "Отлично."
   
   #ALLIANCE
@@ -7220,6 +7302,11 @@
   giga_katzen.020.ally.tooltip:0 "Если кайзер будет относиться к нам очень дружелюбно, мы сможем вступить в §Eсоюз§! с §YИмпериумом Катценартиг§!.\n\nМы должны присоединиться ко всем их войнам, но мы сможем беспрепятственно призвать их к себе на помощь."
   need_elated_kaiser:0 "§YМнение Кайзера§! должно быть §E4|Ликующий§!, чтобы он вступил в союз."
   giga_katzen.020.ally.response:0 "Вы говорите, союз? Учитывая хорошие отношения между нашими видами, я уверен, что кайзер был бы более чем счастлив заключить мощный военный союз с вашими, пришельцами!\n\nМы свяжемся с вами с более подробным соглашением о союзе в течение недели."
+  cant_katzen_fed:0 "Мы не можем объединиться с Katzen, если мы в федерации."
+  cant_katzen_imperium:99 "We can't ally the Katzens if we are in the Galactic Imperium."
+  cant_katzen_custodian:99 "We can't ally the Katzens if we are the Galactic Custodian."
+  cant_katzen_subject:0 "Мы не можем вступить в союз с Katzen, если мы субъект."
+  cant_katzen_nomad:99 "Our nomadic ways are incompatible with Katzen strategic standards."
   
   giga_katzen.3000.name:0 "Организация Флузийского договора"
   giga_katzen.3000.desc:0 "§YКайзер Каттайл§! прислал нам дипломатическое сообщение относительно заключения союза между нами. Этот альянс, который он называет §YОрганизация Флузийского договора§!, имеет следующие условия:\n\n-Мы не можем объявлять войну друг другу.\n-Нам придется присоединиться к каждому конфликту, в котором участвуют Katzen.\n-Мы сможем призывать к нам на помощь Katzen, когда это будет необходимо.\n-Мы получим более высокий уровень военного, научного и экономического сотрудничества.\n-Кайзер больше не будет требовать от нас земли.\n-В обмен на военную защиту мы предоставим Katzen 5% наших военно-космических сил.\n\nМы вправе отклонить эти условия, но это приведет к §Rуменьшению§! §YМнения Кайзера§! о нас. Кайзер может аннулировать альянс, если его мнение о нас упадет ниже §B3|Очень дружественный§!.\n\nПринять?"
@@ -7259,10 +7346,6 @@
   giga_katzen.3002.name:0 "Кайзер исключает нас из ОФД!"
   giga_katzen.3002.desc:0 "Ужасные новости. Похоже, что некоторые из наших недавних действий разозлили §YКайзера§!, который впоследствии решил разрушить созданный нами альянс.\n\nНас фактически исключили из §YОрганизации Флузийского договора§!, и §YМнение Кайзера§! о нас значительно упало."
   giga_katzen.3002.a:0 "Стыд. В любом случае он нам не нужен."
-  
-  cant_katzen_fed:0 "Мы не можем объединиться с Katzen, если мы в федерации."
-  cant_katzen_subject:0 "Мы не можем вступить в союз с Katzen, если мы субъект."
-  cant_katzen_nomad:99 "Our nomadic ways are incompatible with Katzen strategic standards."
   
   giga_katzen.3003.name:0 "Организация Флюзийского договора рушится!"
   giga_katzen.3003.desc:0 "После уничтожения §YЛуны Кайзера§!, §YИмпериум Катценартиг§! пришел в беспорядок. В результате §YОрганизация Флузийского договора§! полностью разрушилась и фактически больше не существует.\n\nМы больше не можем получать военную помощь от Katzen, и Кайзер больше не отвечает на наши приветствия."
@@ -7378,7 +7461,16 @@
   
   giga_katzen.051.name:0 "Империум Катценартиг идет на войну!"
   giga_katzen.051.desc:0 "До нас дошли новости, что после разногласий между кайзером и [kaiser_attack_target.GetAdjective] руководство §YИмпериум Катценартиг§! недавно объявило войну §Y[kaiser_attack_target.GetName]§!!\n\nДипломатические отношения между двумя странами полностью разрушены, и оба собираются вступить в тотальную войну друг с другом..."
+  giga_katzen.051.protectorate.desc:99 "News has reached us that following disagreements between the Kaiser and [kaiser_attack_target.GetAdjective] leadership, the §YKatzenartig Imperium§! has recently declared war on the §Y[kaiser_attack_target.GetName]§!!\n\nDiplomatic relations between the two nations have completely broken down, and both are about to engage in total war with each other.\n\nDue to our tight integration with the Katzenartig Imperium, we are also in a state of war with the [kaiser_attack_target.GetName]."
   giga_katzen.051.a:0 "Очередная война в галактике."
+  giga_katzen.051.b:99 "For the Kaiser!"
+  giga_katzen.051.c:99 "Flusion drags us into another war..."
+  
+  giga_katzen.052.name:99 "[kaiser_attack_target.GetAdj] Submit to Kaiser!"
+  giga_katzen.052.desc:99 "A heated standoff recently occurred between the [kaiser_attack_target.GetAdj] and the §YKatzenartig Imperium§!, with the Katzens even threatening war. This diplomatic crisis has now come to an end, with the [kaiser_attack_target.GetAdj] announcing their submission to Katzenartig authority!\n\nThe [kaiser_attack_target.GetAdj] have formally restructured into a §YKatzprotektorat§! and committed to economically and militarily supporting the Kaiser."
+  giga_katzen.052.a:99 "More soldiers for the Kaiser..."
+  giga_katzen.052.b:99 "A war averted, or a growing war machine?"
+  giga_katzen.052.c:99 "Another nation sees the Kaiser's vision."
   
   #Project
   giga_katzen.2000.name:0 "Секреты Луны Кайзера"
@@ -7416,6 +7508,7 @@
   giga_flusion.091.name:0 "Луна Кайзера уничтожена!"
   giga_flusion.091.desc:0 "Сегодня §YИмпериуму Катценартиг§! был нанесен жестокий удар. Действительно, силы §Y[kaiser_moon_slayer.GetName]§! удалось вывести из строя и уничтожить флагман Империума, могучую §YЛуну Кайзера§!.\n\nСудно, которое служило передовой базой для операций Katzen, превратилось в гигантское лунное разрушенное судно, что привело к огромным жертвам среди Katzen. Империум вошел в состояние паники после потери своего самого важного военного актива, когда их высшее командование отступило в укрепленный родной мир §YFlusion§!.\n\n§YКайзер§! якобы впал в безумную ярость, и кажется, что вся их империя сейчас находится в беспорядке..."
   giga_flusion.091.a:0 "Их конец неизбежен."
+  giga_flusion.091.b:99 "What? No!"
   
   giga_flusion.090.a.tooltip:0 "§YИмпериум Катценартиг§! получит §Rштрафы§! на §Yскорость стрельбы§!, §Yорбитальную бомбардировку§!, §Yурон врагу§! и §Yскорость корабей§!."
   
@@ -7424,19 +7517,29 @@
   giga_katzen.092.war:0 "Мы ускорим их гибель, §Rобъявите им войну!§!"
   giga_katzen.092.war.tooltip:0 "§T§RМЫ ОБЪЯВЛЯЕМ ПОЛНОЦЕННУЮ ВОЙНУ ИМПЕРИУМУ КАТЦЕНАРТИГ.§!\n\nМир будет §RНЕ§! возможен больше.\n\n§YFlusion§! должна быть §Yзахвачена§! или §Yуничтожена§! чтобы навсегда победить Империум.§T"
   giga_katzen.092.a:0 "Ну что ж."
+  giga_katzen.092.b:99 "The Imperium will be fine, right?!"
   
   giga_katzen.094.name:0 "Падение Flusion"
   giga_katzen.094.desc:0 "Flusion пал.\n\nПосле ужасной битвы силы [flusion_conqueror.GetName] сокрушили защитников Katzen на Flusion и полностью взяли под свой контроль планету. С потерей столицы чрезвычайно централизованный §YИмпериум Катценартиг§! не может больше держаться вместе и полностью разрушится в течение следующих нескольких дней.\n\nВ настоящее время они допросят верховное командование Katzen, чтобы выяснить, где §YКайзер Каттайл§! прячется, если он еще жив.\n\nВ любом случае, теперь галактика может вздохнуть с облегчением, поскольку угрозы Katzen, наконец, больше нет."
+  giga_katzen.094.protectorate.desc:99 "Flusion has fallen.\n\nAfter gruesome fighting, the forces of the [flusion_conqueror.GetName] have overwhelmed the Katzen defenders on Flusion, and taken full control of the planet. With the loss of their capital, the extremely centralized §YKatzenartig Imperium§! can no longer hold itself together, and will undergo total collapse within the next few days.\n\n[flusion_conqueror.GetAdj] forces are now in process of interrogating the Katzen high-command, in order to find out where §YKaiser Kattail§! is hiding, if he's even alive anymore.\n\nMost relevantly to us, with the Kaiser's government destroyed, our status as §YKatzprotektorat§! is voided..."
   giga_katzen.094.a:0 "Скатертью дорога."
   giga_katzen.094.b:0 "Скатертью дорога."
+  giga_katzen.094.c:99 "As of today, we are free once again!"
+  giga_katzen.094.d:99 "No... NO! A dream was killed today!"
+  giga_katzen.protectorate_freed.tooltip:99 "We will become §Yindependent§!."
   
   giga_katzen.095.name:0 "Разрушение Flusion"
   giga_katzen.095.desc:0 "Flusion упал.\n\nПланета подверглась интенсивному оружию, и Katzen были стерты с поверхности мира. С потерей столицы чрезвычайно централизованный §YИмпериум Катценартиг§! больше не может держаться вместе и в ближайшие несколько дней подвергнется полному коллапсу.\n\nТеперь галактика может вздохнуть с облегчением, так как угрозы Katzen, наконец, больше нет."
+  giga_katzen.095.protectorate.desc:99 "Flusion has fallen.\n\nThe planet has been exposed to intense weapon fire, and the Katzens have been wiped from the world's surface. With the loss of their capital, the extremely centralized §YKatzenartig Imperium§! can no longer hold itself together, and will undergo total collapse within the next few days.\n\nMost relevantly to us, with the Kaiser's government destroyed, our status as §YKatzprotektorat§! is voided..."
   giga_katzen.095.a:0 "Скатертью дорога."
+  giga_katzen.095.b:99 "Horrible... but hopefully the last of this tragic violence."
+  giga_katzen.095.c:99 "Our chains were destroyed with Flusion."
+  giga_katzen.095.d:99 "This is the greatest crime in galactic history."
   
   giga_katzen.097.name:0 "Империум Катценартиг рушится"
   giga_katzen.097.desc:0 "Как и ожидалось, с захватом §YFlusion§!, история §YИмпериум Катценартиг§! длилась недолго. Без централизованного правительства и кайзера, который их возглавил, все оставшиеся колонии Katzen провозгласили независимость, и Империум распался, по-видимому, в мгновение ока.\n\nКогда могучий Империум, наконец, превратился в ничто иное, как историю."
   giga_katzen.097.a:0 "У них был хороший пробег."
+  giga_katzen.097.b:99 "It really is over, then..."
   
   # katzenartig_splinter:0 "Splinter State Resources"
   # katzenartig_splinter_desc:0 "To avoid catastrophic collapse."
@@ -7541,10 +7644,24 @@
   giga_katzen.04001.name:0 "Кайзер провозглашает Großkatzenartig Империум!"
   giga_katzen.04001.desc:0 "После недавних завоеваний Katzen §YИмпериум Катценартиг§! расширилась, чтобы охватить большую часть галактики. Таким образом, чтобы отметить эту веху, §YКайзер Каттайл§! официально провозгласил §YGroßkatzenartig Империум§!, чтобы отразить более широкие границы своей нации.\n\nНазвание и флаг Империума были впоследствии изменены, и кайзер выступил перед миллиардами имперских граждан с речью, заявив, что «Это великое достижение не было бы возможным без поддержки каждого из нас и что это было началом чего-то еще большего для всего Империума ».\n\nПохоже, что его амбиции вряд ли остановятся в скором времени..."
   giga_katzen.04001.a:0 "Он кажется немного самоуверенным."
+  giga_katzen.04001.b:99 "Nor should they! The Kaiser's ambition drives us forwards!"
   
   giga_katzen.04002.name:0 "Кайзер провозглашает Galaktisches Katzenimperium!"
   giga_katzen.04002.desc:0 "§YGroßkatzenartig Империум§! теперь расширился, чтобы покрыть подавляющее большинство галактики, и §YКайзер Каттайл§! еще раз решил почтить эту веху, переименовав страну в «Галактическую Империю Katzen», чтобы лучше отразить практически полный контроль Katzen над нашей галактикой.\n\nВоенная машина Katzen выросла до чудовищных размеров, и надежды галактики на победу над Империумом становятся все тоньше с каждым днем, когда кайзер заявляет, что его империя продержится «до тех пор, пока не догорят звезды»."
   giga_katzen.04002.a:0 "Это не сулит ничего хорошего."
+  giga_katzen.04002.b:99 "A galaxy united! Three cheers for the Kaiser!"
+  giga_katzen.04002.c:99 "Is there no-one who can free us?"
+  giga_katzen.04002.tooltip:99 "§YThe Katzen Navy will begin fielding upgraded Mark II ships.§!"
+  
+  ###KAISER VERSUS BLOKKATS###
+  katzen_antiblokkat_tech:99 "katzen_antiblokkat_tech"
+  giga_katblokk.002.name:99 "Kaiser Declares the Würfelkrieg"
+  giga_katblokk.002.desc:99 "The Katzenartig Imperium, like every civilisation in our galaxy, faces an existential threat in the Blokkats. Thus, predictably, the Katzens have also mobilised their scientific forces into the newly-formed §YWürfelforschungbereich§!, dedicated to anti-Blokkat research and countermeasure development.\n\nIn true Katzen fashion, the Kaiser has rallied the population by branding the situation as the §YWürfelkrieg§!, a total war for survival fought by every member of Katzen civilisation where scientists are on the metaphorical frontlines.\n\nWhile the Kaiser has been using this \"inevitable\" threat to vindicate his past galactic unification attempts, it remains to be seen whether his model society truly stands a chance against such an unthinkable danger."
+  giga_katblokk.002.protectorate.desc:99 "The Katzenartig central government, like our own on [Root.Capital.GetName], is aware of the existential threat the Blokkats pose. Thus, predictably, Flusion has also mobilised its scientific forces into the newly-formed §YWürfelforschungbereich§!, dedicated to anti-Blokkat research and countermeasure development.\n\nIn true Katzen fashion, the Kaiser has rallied loyal populations by branding the situation as the §YWürfelkrieg§!, a total war for survival fought by every member of Katzen civilisation where scientists are on the metaphorical frontlines.\n\nWhile the Kaiser has been using this \"inevitable\" threat to justify his rule over us and others, it remains to be seen whether the Kaiserist model truly stands a chance against the danger we face."
+  giga_katblokk.002.a:99 "Let us hope he has a plan, for the galaxy's sake."
+  giga_katblokk.002.b:99 "The Kaiser was preparing us for this moment."
+  giga_katblokk.002.c:99 "Regrettably, we must support the Kaiser here..."
+  giga_katblokk.002.tooltip:99 "The §YKatzenartig Imperium§! will suffer economically but produce more research as §RBlokkat Inquietude§! increases. They also receive a base §G+50%§! §BKatzen Research Output§! for the duration of the crisis."
   
   ###KAISER MISSING###
   giga_katzen.0941.name:0 "Пропавший кайзер"
@@ -7711,6 +7828,12 @@
   giga_katzen.04007.name:99 "The Galaktischerkatzenkreuzzug"
   giga_katzen.04007.desc:0 "Тревожные новости! §YКайзер Катайл§!, подкрепленный своим невероятно мощным вечным оружием, сегодня провозгласил начало §YGalaktischerkreuzzug§!, или «Галактический крестовый поход Katzen».\n\nОн заявил, что настало время, чтобы Katzen наконец захватили то, что было законно их, и впоследствии §Rобъявил войну§! всей галактике.\n\nКайзер теперь не желает мириться с галактикой, и теперь кажется, что единственные результаты - либо победа, либо полное уничтожение."
   
+  giga_katzen.04009.name:99 "Katzen Navy Unveils $giga_katzen_blimp_plural$!"
+  giga_katzen.04009.desc:99 "Shortly after the proclamation of the Großkatzenartig Imperium, the Katzen Navy held a grand space parade in Flusion's orbit showcasing the first of its new Pawris-class carriers. These hulking ships are the strongest yet in the Katzen armada - other than the Kaiser Moon itself, of course - and seem poised to be its new capital-class ships.\n\nTheir timely rollout following the expansion of the Imperium is undoubtedly intended to send a clear message of Katzen martial and industrial might to the galaxy. The open showcase of cutting-edge technology is also a powerful statement in itself: the Imperium is confident in its ambition to rule the galaxy."
+  giga_katzen.04009.a:99 "Their ambition isn't satisfied yet."
+  giga_katzen.04009.b:99 "As it should be! These vessels will lead the Großkatzenartig Imperium onwards!"
+  giga_katzen.04009.tooltip:99 "Katzenartig fleets will begin using $giga_katzen_blimp_plural$."
+  
   giga_contact_solak_tooltip:0 "§HСвяжитесь с §YСолакианскими борцами за свободу§! и оставшимися §YФлюзианскими партизанами...§!"
   giga_contact_ezic_tooltip:0 "§HСвяжитесь с §YОрденом Zuspri§!...§!"
   
@@ -7737,12 +7860,6 @@
   giga_katzen.02021.a:0 "Это сделка!"
   giga_katzen.02021.tooltip:0 "Мы §Yпередали§! систему §YGatzo§! §YИмпериуму Катценартиг§!, в обмен на ресурсы.\n§YМнение Кайзера§! о нас будет §BУвеличено§! на §G2§ !."
   giga_katzen.02021.response:0 "Как мило! Мы обязательно будем дорожить этой великой землей."
-  
-  giga_katzen.020aprot.desc:0 "Ах! Наш дорогой [Root.GetName]. Как дела?"
-  giga_katzen.020bprot.desc:0 "Уверяю вас, что [Root.GetRulerName] исключительно грамотный руководитель, уважаемый Катцпротекторат."
-  giga_katzen.020cprot.desc:0 "Вы сделали правильный выбор, обратившись к нам. Мы будем защищать тебя вечно."
-  giga_katzen.020dprot.desc:0 "Кайзер более чем счастлив разделить нашу славу с вашим видом."
-  giga_katzen.020eprot.desc:0 "Мы вместе покорим галактику, [Root.GetName]!"
   
   kaiser_ehof_0:0 "Строительная площадка Katzen E.H.V.E."
   kaiser_ehof_0_DESC:0 "Строительная площадка для Ereignis Horizont Versatz Einrichtung, который является формой E.H.O.F. спроектирован с использованием технологии Katzen. Katzen будут использовать его для создания червоточин в другие недоступные места."
@@ -8173,12 +8290,12 @@
   giga_katzen.02020.otherraces.response:0 "Ах, Flusion. Прекрасный мир, который мы сделали еще более величественным. Благодаря грандиозным архитектурным проектам мы слегка осушили несколько морей и использовали воду для орошения некогда бесплодных пустынь, превратив обширные участки суши в великолепные пастбища и поля.\n\nМы очистили враждебную природу, заменив ее совершенством цивилизации и устойчивой ядерной промышленности.\n\nЧто касается других видов... ну, мы позаботились о том, чтобы они были полностью интегрированы в нашу культуру, и постарались улучшить их жизнь насколько это возможно.\n\nВозьмите §YZuspri§!, например. Эти бедняги жили примитивной и убогой жизнью охотников-собирателей, прежде чем мы вытащили их из грязи и возвеличили.\nИх продолжительность жизни была долгой, но многие из их молодых людей стали жертвами болезней и хищников, поэтому мы изобрели лекарства и уничтожили названных хищников, чтобы им было позволено процветать, как и нам.\n\nSYKronk§!, эти членистоногие существа, которые раньше жили в вырытых вручную городах-гнездах, которые часто были вредными и небезопасными.\nПоэтому мы построили им великие города, моделирующие их анатомию, чтобы они тоже могли наслаждаться плодами цивилизации и современной жизни!\n\nКаждый вид, который мы покоряем, и особенно те, что с Flusion, подобен скале, которую мы затем позаботьтесь о том, чтобы превратить в красивую жемчужину, украшающую нашу империю и великолепную корону кайзера."
   
   ###Submit###
-  SUBJECT_katzprotektorat:99 "Katzprotektorat"
-  SUBJECT_DESC_katzprotektorat:0 "Katzprotektorat - это форма марионеточного правительства, созданного Империумом Катценартиг. Они фактически являются региональными губернаторами Империума и пользуются некоторой ограниченной автономией."
-  
   giga_katzen.020.submit:0 "Мы сдаемся. Покоримся вашей империи."
   giga_katzen.020.submit.tooltip:0 "Мы можем §Yподчиниться§! §YИмпериуму Катценартиг§!. Любые войны между нами прекратятся, и мы станем §YKatzprotektorat§!, который является особым типом подданных Katzen, пользующихся ограниченной автономией."
   cant_submit_fto:0 "Мы не можем подчиняться, если находимся в Организации Флузионского договора."
+  cant_submit_vassal:99 "We cannot submit if we already have an overlord."
+  cant_submit_custodian:99 "We cannot submit if we are the Galactic Custodian."
+  cant_submit_emperor:99 "We cannot submit if we are the Imperial Core."
   
   giga_katzen.0030.name:0 "Империум Катценартиг: Покорность"
   giga_katzen.0030.desc:0 "Итак, вы хотите отказаться от своей автономии и подчиниться нам?\nНу конечно! Кайзер будет рад приветствовать вас в нашей великой цивилизации.\n\n§YСтав Katzprotektorat, вы получите следующие эффекты::§!\n-Любые продолжающиеся конфликты между нами и Katzen прекратятся.\n-Наша Империя станет §YKatzprotektorat [Root.Capital.GetStarName]§!, и наш флаг изменится.\nЕсли мы не §YРазум Улья§!, тогда нашего лидера заменит §YГубернатор Katzen§!, которого нельзя сместить даже на выборах.\n-Мы сохраним всю землю, которая сейчас находится в нашей собственности.\n-Мы автоматически присоединимся ко всем войнам Katzen.\n-Кайзер не будет требовать от нас земли.\n-Мы получим +100% §YПривлекательность Милитаризма§!.\n-Мы сохраним возможность строить форпосты, но не сможем объявлять войны.\n-§YМнение Кайзера§! о нас вернется к §G3 | Дружелюбный§! если бы оно было ниже.\n-Katzen смогут построить §YВоенные кузницы Katzen§! на нашей территории.\n-Katzen получат контроль над нашей экономикой, что приведет к -25% §YПроизводство сплавов§!, -50% §YВместимость флотилии§! и -20% §YСкорость строительства кораблей§!\n-Однако они будут помогать нам своими военными знаниями, предоставляя +25% §YСкорострельность кораблей§!, +25% §YСкорость кораблей§!, +25% §YУрон корабельных орудий§!, +25% §YСкорость инженерных исследований§!\n-Мы получаем 40% снижение стоимости всех технологий, которыми в настоящее время обладают Katzen.\n-Любые наши субъекты тоже станут Katzprotektorat.\n-Все послы в Империуме будут отозваны..\n-Katzen §YНЕ§! будут аннексировать нас.\n\n§RИЗ-ЗА ЖЕСТКОГО КОНТРОЛЯ, ЧТО МЫ ПРЕДОСТАВЛЯЕМ KATZEN НАД НАШЕЙ НАЦИЕЙ, МЫ БУДЕМ СВОБОДНЫМИ ТОЛЬКО, ЕСЛИ ЛУНА КАЙЗЕРА УНИЧТОЖЕНА!\n\nМЫ БОЛЬШЕ НЕ СМОЖЕМ СВЯЗАТЬСЯ С ПАРТИЗАНАМИ ИЛИ ИЗУЧАТЬ ЛУНУ КАЙЗЕРА!\n\nИЗ-ЗА ТЕХНИЧЕСКИХ ОГРАНИЧЕНИЙ МЫ НЕ СМОЖЕМ ВЕРНУТЬ НАШ СТАРЫЙ ФЛАГ, ЕСЛИ МЫ ОСВОБОДИМСЯ.§!"
@@ -8188,10 +8305,26 @@
   
   giga_katzen.0031.name:0 "Рождение §YKatzprotektorat [Root.Capital.GetStarName]§!"
   giga_katzen.0031.desc:0 "Сегодня одни сочтут фантастическим днем, а другие - ужасной капитуляцией.\n\nСвершилось, и наша империя теперь подчиняется §YИмпериуму Катценартиг§!, официально став §YKatzprotektorat§!. Катцены теперь смогут контролировать нашу экономику и использовать нашу инфраструктуру для подпитки своей экспансионистской программы.\n\n§YГубернатор Katzen§! стал правителем нашей нации и будет наблюдать за сотрудничеством между нами и Katzen. Хотя это фактически сковало нас их волей, мы можем быть уверены, что они будут относиться к нам с уважением, и теперь мы находимся под их абсолютной защитой как к лучшему, так и к худшему.\n\n§YКайзер§! выступил с триумфальной речью, приветствуя этот \"удивительный подвиг межвидового сотрудничества\", и выразил свое желание, чтобы наши виды были \"едины до скончания веков.\""
+  giga_katzen.0031.gestalt.desc:99 "Today will be viewed a fantastic day by some, and as a dreaded surrender by others.\n\nIndeed, the collective has now submitted to the §YKatzenartig Imperium§!, officially becoming a §YKatzprotektorat§!. The Katzens will now be able to control our economy and use our infrastructure to fuel their expansionist agenda.\n\nWhile this has effectively shackled the collective's will to that of the Katzens, we can rest assured that they will treat us with respect, and we are now under their absolute protection, for better or worse.\n\nThe §YKaiser§! has given a triumphant speech, acclaiming this \"amazing feat of interspecies cooperation\", and has stated his wishes for our kinds to be \"united until the ends of time.\""
   giga_katzen.0031.a:0 "Будем надеяться, что это было правильное решение."
   
-  katzprotektorat_modifier:99 "Katzprotekrotat"
+  giga_katzen.0032.name:99 "$giga_katzen.0031.name$"
+  giga_katzen.0032.desc:99 "Today will be viewed a fantastic day by some, and as a dreaded betrayal by others.\n\nOur old overlord, now known as the [event_target:old_overlord.GetName], has now submitted to the §YKatzenartig Imperium§!, officially becoming a §YKatzprotektorat§! - and accordingly, so have we. The Katzens will now be able to control our economy and use our infrastructure to fuel their expansionist agenda.\n\nA §YKatzen Governor§! has become the ruler of our nation, and will oversee cooperation between our kind and the Katzens. While this has effectively shackled us to their will, we can rest assured that they will treat us with respect, and we are now under their absolute protection, for better or worse.\n\nThe §YKaiser§! has given a triumphant speech, acclaiming this \"amazing feat of interspecies cooperation\", and has stated his wishes for our kinds to be \"united until the ends of time.\""
+  giga_katzen.0032.gestalt.desc:99 "Today will be viewed a fantastic day by some, and as a dreaded betrayal by others.\n\nOur old overlord, now known as the [event_target:old_overlord.GetName], has now submitted to the §YKatzenartig Imperium§!, officially becoming a §YKatzprotektorat§! - and accordingly, so have we. The Katzens will now be able to control our economy and use our infrastructure to fuel their expansionist agenda.\n\nWhile this has effectively shackled the collective's will to that of the Katzens, we can rest assured that they will treat us with respect, and we are now under their absolute protection, for better or worse.\n\nThe §YKaiser§! has given a triumphant speech, acclaiming this \"amazing feat of interspecies cooperation\", and has stated his wishes for our kinds to be \"united until the ends of time.\""
+  giga_katzen.0032.a:99 "We'll gladly follow the [event_target:old_overlord.GetName] on this path."
+  giga_katzen.0032.b:99 "Do we get a say in this?!"
+  
+  preset_giga_katzen_protectorate:99 "Katzprotektorat"
+  preset_giga_katzen_protectorate_desc:99 "A Katzprotektorat is Katzen puppet state committed to serving the Kaiser's war machine."
+  katzprotektorat_modifier:99 "Katzprotektorat"
   katzprotektorat_modifier_desc:0 "Мы Katzprotektorat, марионеточное государство Katzen с ограниченной автономией."
+  preset_giga_katzen_protectorate_flavor_desc:99 "A Katzprotektorat is a semi-autonomous puppet state of the Katzenartig Imperium, akin to a regional government. They are under a heavy regime of cultural Katzenification, and are strategically and industrially integrated into the Kaiser's war machine."
+  giga_naval_cap_katzen_protectorate:99 "$preset_giga_katzen_protectorate$"
+  giga_katzen_protektorakt_naval_cap:99 "Modifier"
+  katzen_protektorat_name:99 "Katzprotektorat [this.Capital.GetName]"
+  katzen_ex_protektorat_name:99 "Free [this.Capital.GetName]"
+  katzen_protektorat_ruler_title:99 "Katzgouverneur"
+  katzen_vassal_forbids_trigger:99 "$TRIGGER_FAIL$As a §YKatzprotektorat§! our Katzen overlords hold too much power over us for supporting anti-Katzen rebels to be possible, let alone a safe affair"
   
   giga_katzen.0033.name:0 "Возможность"
   giga_katzen.0033.desc:0 "С уничтожением §YЛуны Кайзера§!, §YИмпериум Катценартиг§! впал в беспорядок.\n\nМы могли бы воспользоваться этим, чтобы избавиться от нашего статуса §YKatzprotektorat§!, и фактически освободиться от правления Katzen..."
@@ -8310,19 +8443,25 @@
   giga_corrona.008.name:0 "Корронианская магократия"
   giga_corrona.008.desc:0 "Обитатели Небесного Плана!\n\nМы, §YСкелетоиды§!, наконец объединили наш мир, и теперь мы отправляемся к звездам. Мы будем управлять нашим великим §YWorldcraft§! до победы, и мы создадим империю на самих Небесах.\n\nНашей первой целью станет никто иной, как мерзкий §YИмпериум Катценартиг§!, жалкие кошачьи, которые стоят на пути наших амбиций. Кайзер и трусливые Katzen, которые прячутся за своей грубой «технологией», сами будут уничтожены с помощью адского огня!\n\nНе пытайтесь сопротивляться нам, потому что наш Worldcraft сметет любую форму сопротивления, которую вы можете применить с использованием вашей низшей «технологии»."
   giga_corrona.008.a:0 "Отлично, еще одна империя с манией величия..."
+  giga_corrona.008.b:99 "A threat to Flusion itself!"
+  giga_corrona.008.c:99 "Hopefully they can weaken Flusion's rule."
   giga_corrona.008.a.tooltip:0 "§YКорронианская Магократия§! появилась в системе §YJupitwo§! и вступит в бой с §YИмпериумом Катценартиг§!. Если кайзер падет, они наверняка придут за нами в следующий раз..."
   
   giga_corrona.020.name:0 "Корронианский Worldcraft уничтожен"
   giga_corrona.020.desc:0 "После чрезвычайно напряженного космического боя нашим силам удалось успешно уничтожить §YКорронианский Worldcraft§!, эзотерический Planetcraft, который они использовали в своей попытке подчинить себе галактику.\n\nКорронианских заклинаний было недостаточно, чтобы защитить и восстановить судно, которое подвергалось интенсивным воздействиям большого количества вооружения. Все энергии, содержащиеся в корабле, больше не сдерживались должным образом, и впоследствии они затопили поверхность планеты.\n\nВ результате весь корабль-мир начал разрушаться и был разорван на части своими собственными катастрофическими эзотерическими энергиями.\n\nНичего не осталось от корабля, за исключением нескольких слабых энергетических бурь, и все оставшиеся корронианские корабли погибли из-за того, что они были отделены от корронианской магии, которая поддерживала их жизнь в космическом вакууме."
   giga_corrona.020.a:0 "Скатертью дорога."
+  giga_corrona.020.b:99 "None will stand in our Kaiser's path!"
   
   giga_corrona.021.name:0 "Корронианский Worldcraft уничтожен"
   giga_corrona.021.desc:0 "После чрезвычайно напряженного космического боя силы §Y[corrona_moon_slayer.GetName]§! сумели успешно уничтожить §YКорронианский Worldcraft§!, эзотерический Planetcraft, который они использовали в своей попытке подчинить себе галактику.\n\nКорронианских заклинаний было недостаточно, чтобы защитить и восстановить судно, которое подвергалось интенсивным воздействиям большого количества вооружения. Все энергии, содержащиеся в корабле, больше не сдерживались должным образом, и впоследствии они затопили поверхность планеты.\n\nВ результате весь корабль-мир начал разрушаться и был разорван на части своими собственными катастрофическими эзотерическими энергиями.\n\nНичего не осталось от корабля, за исключением нескольких слабых энергетических бурь, и все оставшиеся корронианские корабли погибли из-за того, что они были отделены от корронианской магии, которая поддерживала их жизнь в космическом вакууме."
   giga_corrona.021.a:0 "Они встретили свой конец."
+  giga_corrona.021.b:99 "Another barrier to Katzen domination defeated."
   
   giga_corrona.022.name:0 "Katzen уничтожили корронианский Worldcraft"
   giga_corrona.022.desc:0 "После чрезвычайно напряженного космического боя бронированные силы §Y[corrona_moon_slayer.GetName]§! сумели успешно уничтожить §YКорронианский Worldcraft§!, эзотерический Planetcraft, который они использовали в своей попытке подчинить себе галактику.\n\nКорронианских заклинаний было недостаточно, чтобы защитить и восстановить судно, которое подвергалось интенсивным воздействиям большого количества вооружения. Все энергии, содержащиеся в корабле, больше не сдерживались должным образом, и впоследствии они затопили поверхность планеты.\n\nВ результате весь корабль-мир начал разрушаться и был разорван на части своими собственными катастрофическими эзотерическими энергиями.\n\nНичего не осталось от корабля, за исключением нескольких слабых энергетических бурь, и все оставшиеся корронианские корабли погибли из-за того, что они были отделены от корронианской магии, которая поддерживала их жизнь в космическом вакууме.\n\nКажется, что даже корронианской эзотерической магии было недостаточно, чтобы остановить военную машину Katzen, и кайзер произнес оживленную речь перед миллиардами граждан, празднуя \"Победу технологии и изобретательности Katzen над этими варварскими и примитивными существами.\""
   giga_corrona.022.a:0 "Katzen побеждают еще одного врага..."
+  giga_corrona.022.b:99 "Hurrah! Another glorious victory for Katzenkind!"
+  giga_corrona.022.c:99 "If only the Corronians had taken more Katzen fleets with them..."
   
   
   ###RESISTANCE###
@@ -8424,11 +8563,13 @@
   giga_katrebels.0101.name:0 "Сопротивление Zuspri увеличивается!"
   giga_katrebels.0101.desc:0 "Благодаря поддержке других империй §YСопротивление Zuspri§! в §YИмпериуме Катценартиг§! возросло!\n\nKatzen теперь будут страдать от более серьезных штрафов, что затруднит их военные действия."
   giga_katrebels.0101.a:0 "Прекрасно!"
+  giga_katrebels.0101.b:99 "Can't they see what the Kaiser has gifted them?!"
   giga_katrebels.ezic.increase:0 "§YСопротивление Zuspri§!  §Gувеличилось§! на: §Y1§!."
   
   giga_katrebels.0102.name:0 "Сопротивление Zuspri снижается!"
   giga_katrebels.0102.desc:0 "Из-за отсутствия поддержки §YСопротивление Zuspri§! в §YИмпериуме Катценартиг§! естественно уменьшилось.\n\nKatzen предприняли ряд операций, которые снизили способность §YОрдена Zuspri§! действовать против кайзера. Katzen понесут меньшие штрафы за свои военные усилия."
   giga_katrebels.0102.a:0 "Стыд."
+  giga_katrebels.0102.b:99 "The Zuspris are coming to see the light."
   giga_katrebels.ezic.decreases:0 "§YСопротивление Zuspri§! §Rуменьшилось§! на: §Y1§!."
   
   giga_katrebels.0103.name:0 "Кайзер узнает о нашей деятельности!"
@@ -8504,6 +8645,8 @@
   giga_katrebels.00178.name:0 "Восстание Zuspri подавлено"
   giga_katrebels.00178.desc:0 "§YОрден Zuspri§! храбро сражались, но этого было недостаточно. Их восстание было подавлено §YИмпериумом Катценартиг§!, и все захваченные миры снова оказались под контролем Katzen.\n\nИ все же, §YЛоуф§! продолжает надеяться, что это была лишь временная неудача, и, по слухам, он уже планирует второе восстание. Однако многие эксперты полагают, что у Zuspri практически нет шансов когда-либо снова поднять такое восстание."
   giga_katrebels.00178.a:0 "Будущее выглядит мрачным..."
+  giga_katrebels.00178.b:99 "Betrayal has consequences, Zuspris."
+  giga_katrebels.00178.c:99 "Another hope for freedom dashed..."
   giga_katrebels.00178.a.tooltip:0 "Сопротивление Zuspri §Rуменьшилось§! на 3."
   
   ezic_assault_army:0 "Охотники Zuspri"
@@ -8667,6 +8810,7 @@
   giga_flusionunion.002.name:0 "Империум Катценартиг побежден!"
   giga_flusionunion.002.desc:0 "Удивительные новости прибыли из примитивного мира §YFlusion§! в системе §YJublio§!.\n\n§YИмпериум Катценартиг§!, который несколько лет назад приступил к завоеванию мира, потерпел поражение от коалиции флюзионских наций, возглавляемой §YСолакийской республикой§!! Этот союз, известный как §YОбъединенные флюзионские государства§!, возник для того, чтобы напрямую противостоять попыткам Katzen захватить мир, и из-за чрезвычайной ситуации быстро разросся, чтобы охватить правительства остальных стран.\n\nПосле поражения Империума, §YФС§! теперь охватывает весь Flusion. С гораздо более мирной, либеральной и демократической политикой по сравнению с Империумом Катценартиг, некоторые считают это великой победой флузионианцев, и многие озадачены тем, что все это не закончилось ядерным апокалипсисом.\n\n§YПроект Mondkanone§! был сохранен, хотя он был полностью переоборудован лицами, не принадлежащими к Katzen, чтобы они больше никогда не могли использовать его в злонамеренных целях. Местонахождение §YКайзера Катайла§! однако остается неизвестным, так как он, кажется, просто исчез с поверхности Flusion после своего поражения."
   giga_flusionunion.002.a:0 "Победа демократии."
+  giga_flusionunion.002.b:99 "Mob rule claims another world."
   
   giga_flusionunion.004.name:0 "Flusion открывает сверхсветовой двигатель!"
   giga_flusionunion.004.desc:0 "Примерно через десять лет консолидации своей власти §YОбъединенные флюзионские государства§! на §YFlusion§! наконец открыли сверхсветовой двигатель. Следовательно, их избранный лидер, §YДофус Текник Макина§!, отправил нам дипломатическое сообщение с просьбой о передаче системы §YJublio§! им.\n\nХотя они только недавно открыли сверхсветовую дальность, их вооружение и другие технологии, тем не менее, удивительно продвинуты, и было бы разумно проявить осторожность с этим новым соперником на галактической арене."
@@ -9585,6 +9729,7 @@
   
   giga_katzen.0211.name:99 "Cetana, the Synth Queen"
   giga_katzen.0211.desc:99 "Strangely enough... yes? It's... pretty weird, admittedly. We had no idea she existed just like everyone else, but thing is? The instant her nanites begin to show up, the Kaiser immediately tasked us with developing a very specific set of anti-nanite countermeasures which he supposedly 'figured out' from Cetana's reportedly 'predictable design'.\n\nOur top scientists felt a bit conflicted about investing so many resources into something the Kaiser seemed to have randomly thought of, but this wasn't the first time he had pulled this sort of trick so we went along with it.\n\nAnd, against our expectations, the countermeasures... work well enough! It's not perfect, of course, but these systems let us ward off most of her nanite storm and engage her fleets directly, although they are sufficiently powerful that she remains a big problem.\n\nHm. Seeing as your kind is rather friendly with us, would you be interested in acquiring some of this anti-nanite data? The Kaiser explicitly stated that it could be sold off to friendly civilisations in order to help the struggle against this mad Queen."
+  giga_katzen.0211.protectorate.desc:99 "Strangely enough... yes? It's... pretty weird, admittedly. We had no idea she existed just like everyone else, but thing is? The instant her nanites begin to show up, the Kaiser immediately tasked us with developing a very specific set of anti-nanite countermeasures which he supposedly 'figured out' from Cetana's reportedly 'predictable design'.\n\nOur top scientists felt a bit conflicted about investing so many resources into something the Kaiser seemed to have randomly thought of, but this wasn't the first time he had pulled this sort of trick so we went along with it.\n\nAnd, against our expectations, the countermeasures... work well enough! It's not perfect, of course, but these systems let us ward off most of her nanite storm and engage her fleets directly, although they are sufficiently powerful that she remains a big problem.\n\nSeeing as your kind are committed followers of the Kaiser, would you be interested in acquiring some of this anti-nanite data? The Kaiser explicitly stated that it could be shared with our allies in order to help the struggle against this mad Queen."
   giga_katzen.0211.a:99 "Certainly!"
   giga_katzen.0211.a.response:99 "Pleasure doing business with your kind, aliens. May Cetana's wicked reign be short."
   giga_katzen.0211.b:99 "We'll pass."
@@ -9601,6 +9746,7 @@
   
   giga_aeternum.4121.name:0 "Банк данных Aeternite"
   giga_aeternum.4121.desc:0 "Удивительно, да! Кайзер заявил, что был бы более чем счастлив поделиться с вами некоторыми из этих данных, конечно, за небольшую плату.\n\nСудя по тому, что я видел, он, кажется, испытывает некоторое презрение к Aeternite, поэтому я почти уверен, что он будет рад помочь вам сразиться с Аэтернум, если в этом возникнет необходимость."
+  giga_aeternum.4121.protectorate.desc:99 "Certainly, yes! The Kaiser has stated that he would be more than happy to share some of this data with you, for a slight administrative fee, of course.\n\nFrom what I've seen, he seems to have some contempt towards the Aeternites, so it's possible we'll have to fight them together in the future."
   
   giga_aeternum.4121.a:0 "Это сделка! | §Y25000§! £energy£"
   giga_aeternum.4121.a.tooltip:0 "$giga_aeternum_4_intel_tooltip$\n§YМнение Кайзера§! будет §Bувеличено§! на §G1§!."
@@ -10013,18 +10159,22 @@
   giga_katcivilwar.1012.name:0 "Мяукхайл Катлинин Воссоединяет Империум Катценартиг!"
   giga_katcivilwar.1012.desc:0 "С уничтожением всех других воюющих сторон гражданской войны Katzen, §YМяукхайл Катлинин§! из §YСоциалистического государства Katzen§! теперь является верховным победителем смертоносного кошачьего гражданского конфликта.\n\nКатлинин официально объявил о воссоединении Империума под его социалистическим правлением.\n\nВ своей победоносной речи он пообещал для дальнейшего распространения революции Katzen и обеспечения того, чтобы рабочие всей галактики были освобождены при социализме Katzen, и официально переименовали нацию в §YСоциалистический Катцимпериум§!\n\nК сожалению, Катлинин также воспользовался этой возможностью, чтобы §Rобъявить войну§! на все оставшиеся независимые §YОтколовшиеся государства Katzen§!, чтобы завершить воссоединение Katzen.\n\nПоскольку теперь он контролирует большую часть того, что раньше было Империумом, государство Катлинин значительно выросло в силе, и он может стать мощным противником, которого нужно остерегаться в ближайшем будущем..."
   giga_katcivilwar.1012.a:0 "Социалистическое государство Katzen? Интересно..."
+  giga_katcivilwar.1012.b:99 "Our comrades' victory is our victory."
   
   giga_katcivilwar.1013.name:0 "Канцлер Кибблс Воссоединяет Империум Катценартиг!"
   giga_katcivilwar.1013.desc:0 "С уничтожением всех других участников гражданской войны Katzen, §YКанцлер Кибблс§! из §YВеселой республики Katzen§! теперь является верховным победителем смертоносного кошачьего гражданского конфликта.\n\nДемократический и либеральный режим Кибблса одержал победу над своими противниками, и впоследствии он провозгласил воссоединение и преобразование Империума Катценартиг в §Y[katzen_civil_war_republic.GetName]§!.\n\nС гораздо более миролюбивой и дружелюбной политикой по сравнению со старым Империумом и мало чем отличается от старой §YСолакийской Республики§! на §YFlusion§!, республика Кибблса, вероятно, будет стремиться к дальнейшему сотрудничеству с остальной частью галактики, и похоже, что угроза \"второй империи Катцен\" не является тем, о чем следует беспокоиться, по крайней мере, на данный момент."
   giga_katcivilwar.1013.a:0 "Он кажется лучше, чем кайзер, это точно."
+  giga_katcivilwar.1013.b:99 "Their weak-willed ways will not last."
   
   giga_katcivilwar.1014.name:0 "Кошачий маршал Элвин Воссоединяет Империум Катценартиг!"
   giga_katcivilwar.1014.desc:0 "С уничтожением всех других участников гражданской войны Katzen, §YЭлвин§! из §YВоенной хунты Katzen§! теперь является верховным победителем смертоносного кошачьего гражданского конфликта.\n\nС помощью своей милитаристской политики Элвин стремилась эффективно перековать §YИмпериум Катценартиг§! §YКайзера§!, хотя и ее недавно провозглашенную §Y[katzen_civil_war_junta.GetName]§! безусловно, гораздо более авторитарен и деспотичен, чем агрессивное, но гостеприимное и эгалитарное общество кайзера.\n\nЭлвин гордится превосходством расы и государства Katzen, и поэтому §Rобъявила войну§! оставшимся независимым отколовшимся государствам Katzen, чтобы вернуть всех Katzen в лоно.\n\nК счастью для нас, режим Элвина кажется несколько ксенофобским и изоляционистским, поэтому она, скорее всего, сосредоточится на утверждении своего внутреннего контроля, а не на внешнем. Тем не менее, мы должны оставаться осторожными, потому что Элвин не самая стабильная из людей, и она дополнительно §Yтребовала§! все системы, содержащие колонии с §Yнаселением Katzen§!..."
   giga_katcivilwar.1014.a:0 "То же самое, только еще хуже. Кровавые кошки."
+  giga_katcivilwar.1014.b:99 "Surely even the Katzens can learn to love peace one day..."
   
   giga_katcivilwar.1015.name:0 "Сержант T-T Воссоединяет Империум Катценартиг!"
   giga_katcivilwar.1015.desc:0 "С уничтожением всех других участников гражданской войны Katzen, §YСержант T-T§! из §YСовета защиты Katzen§! теперь является верховным победителем смертоносного кошачьего гражданского конфликта.\n\nЭта победа стала неожиданностью для многих сторонних наблюдателей, поскольку сержант и ее народ в целом были широко известны своими мирными путями, и сама сержант открыто заявляла о том, что хочет подавить милитаризм Katzen.\n\nСержант объявила о создании §Y[katzen_civil_war_realm.GetName]§!, мирной, аграрной и экологической нации Katzen, которая стремится обеспечить как свой внутренний мир, так и глобальный галактический мир мир через дипломатию и понимание.\n\nХотя это явное отклонение от обычных методов Katzen, тем не менее, это означает, что нам не нужно беспокоиться об очередной войне, вызванной Katzen, поскольку сержант, похоже, полна решимости отстаивать свои идеалы."
   giga_katcivilwar.1015.a:0 "Резкое изменение курса. По крайней мере, они нас больше не побеспокоят."
+  giga_katcivilwar.1015.b:99 "How is this possible?!"
   
   civic_reunited_imperium_socialist:0 "Воссоединенный Империум - Галактическая революция"
   civic_reunited_imperium_socialist_desc:0 "Катлинин объединил Katzen под знаменем социализма и эгалитаризма и теперь стремится принести великую революцию кошачьих во всю галактику."
@@ -10063,7 +10213,9 @@
   giga_disco.120.name:0 "Протесты в поддержку ночи на §Y[giga_pronight_protests_planet.GetName]§!!"
   giga_disco.120.desc:0 "Недавно произошли крупные протесты на §Y[giga_pronight_protests_planet.GetName]§!, с просьбой о \"возвращении ночи\".\n\nПохоже, что протоколы No-Night нашего §YЛунного отражателя§! не слишком хорошо работают с местным населением, и большая часть жителей планеты требует, чтобы мы немедленно отменили протоколы и восстановили естественный цикл дня и ночи на планете.\n\nХотя в настоящее время они относительно мирны, протесты могут обостриться, если не будут приняты меры."
   giga_disco.120.a:0 "Кем они себя возомнили?"
+  giga_disco.120.servitor.a:99 "Declined: service request outside acceptable parameters."
   giga_disco.120.b:0 "Они правы, давайте немедленно прекратим протоколы."
+  giga_disco.120.servitor.b:99 "Error: prior policy reduced bio-trophy wellbeing. Re-evaluating."
   giga_disco.120.b.tooltip:0 "§YЛунный отражатель§! сияющий на §Y[giga_pronight_protests_planet.GetName]§! будет установлен на §YЛунное световое шоу§!.\n\nМы не сможем включить §YПротоколы No-Night§! следующие §Y10 лет§!."
   
   pronight_protests:0 "Протесты в поддержку ночи"
@@ -10311,9 +10463,9 @@
   #
   # giga_accelerator.160.a.tooltip:0 "All planets in the §Y[accelerator_quasistar.GetName]§! system become hotter.\n\nIf there is one, the §YStellar Particle Accelerator§! will be §Rdestroyed§!.\n\n"
   
-  giga_flavor.999.name:0 "Обновление Gigastructures: новые возможности"
-  giga_flavor.999.desc:0 "Привет! Недавно был обновлен мод Gigastructures, добавлены новые функции настройки для §YУскорителя звездных частиц§! и §YЛунного отражателя§!. Обновление не нарушает сохранения, но вам, возможно, придется выбрать настройки и нажать кнопку «Управление», чтобы правильно применить новые функции.\n\nБлагодарим вас за чтение и получайте удовольствие!"
-  giga_flavor.999.a:0 "Понял."
+  # giga_flavor.999.name:0 "Gigastructures Update: New Features"
+  # giga_flavor.999.desc:0 "Greetings! Gigastructures has recently updated, bringing new customisation features to the §YStellar Particle Accelerator§! and the §YLunar Speculorefractor§!. The update does not break saves, but you might have to select the megas and click the \"Manage\" button in order to properly apply the new features.\n\nThank you for reading, and have fun!"
+  # giga_flavor.999.a:0 "Understood."
   
   giga_bulk_matter_cost_disabled:99 "£menu_disabled£Megastructure Bulk Matter Cost\n\nShould large megastructures cost £giga_sr_bulk_matter£ §H$giga_sr_bulk_matter$§! and thus require dismantling multiple planets for materials?\n\nApplies to the §YRingworld§!, §YMatrioskha Brain§!, §Y$name_alderson$§!, §YBirch World§!, §YQuasi-Stellar Obliterator§!, §YSupermassive E.H.O.F.§! and the §YNicoll-Dyson Beam§!.\n\nIf disabled, then £giga_sr_bulk_matter£ §H$giga_sr_bulk_matter$§! will only be needed for Celestial Printing."
   giga_bulk_matter_cost_enabled:99 "£menu_enabled£Megastructure Bulk Matter Cost\n\nShould large megastructures cost £giga_sr_bulk_matter£ §H$giga_sr_bulk_matter$§! and thus require dismantling multiple planets for materials?\n\nApplies to the §YRingworld§!, §YMatrioskha Brain§!, §Y$name_alderson$§!, §YBirch World§!, §YQuasi-Stellar Obliterator§!, §YSupermassive E.H.O.F.§! and the §YNicoll-Dyson Beam§!.\n\nIf disabled, then £giga_sr_bulk_matter£ §H$giga_sr_bulk_matter$§! will only be needed for Celestial Printing."
@@ -10578,9 +10730,9 @@
   giga_o_star.2000.desc:0 "Чудесная находка была сделана исследовательским кораблем, который в настоящее время исследует галактику. Судно сообщает, что центральная звезда системы §Y[from.GetName]§! - не что иное, как гигантская §YЗвезда класса О§!!\n\nЭта чрезвычайно яркая, редкая и сине-пурпурная звезда имеет поистине гигантские размеры и долгое время стерилизовала окружающую ее планетную систему. Кроме того, из-за огромной активности звезды солнечные ветры невероятно заметны по всей системе, что оказывается пагубным для всех судов, пересекающих эту область.\n\nОднако, несмотря на то, что такие звезды опасны и недолговечны, любые мегаструктуры, построенные вокруг них, несомненно, будут §Yчрезвычайно мощными§!, даже в большей степени, чем построенные вокруг типичных звезд класса B.\n\nОднако мы должны помнить, что в нашей галактике существует лишь несколько таких звезд, и поэтому они чрезвычайно ценны."
   giga_o_star.2000.a:0 "Чудесно!"
   
-  giga_menu.200.name:0 "Временно отключенные функции"
-  giga_menu.200.desc:0 "Привет! Благодарим вас за использование Gigastructural Engineering & More. Это всплывающее окно информирует вас о том, что §YПсионический маяк§! временно отключен, т.к. 3.0 сломал его."
-  giga_menu.200.a:0 "Принято."
+  # giga_menu.200.name:0 "Temporarily Disabled Features"
+  # giga_menu.200.desc:0 "Greetings! Thank you for using Gigastructural Engineering & More. This popup is here to inform you that the §YPsionic Beacon§! is temporarily disabled as 3.0 broke it."
+  # giga_menu.200.a:0 "Understood."
   
   ASTEROID_ARTILLERY_STERN:0 "Спинальная артиллерия"
   ASTEROID_ARTILLERY_MID:0 "Оружейные батареи"
@@ -11715,6 +11867,11 @@
   giga_blokkat.5010.desc.crisis6:99 "Cetana's work is curious. We too had considered ridding ourselves of sapience in order to focus on our task without distractions and thoughts getting in the way, but they nonetheless such sufficient strategic advantage and adaptability that we deemed it critical to our purpose. However, as she does not seem to be seeking to harvest energy, we are uncertain as to what she is to achieve in the long run. It would be depressing for her immense computing power to be wasted on a futile vanity project."
   giga_blokkat.5010.desc.crisis7:99 "Seemingly gathering energy out of strife and hatred is a fascinating feat of psionic manipulation. Ultimately however, it remains inefficient in the face of proper harvesting methods."
   giga_blokkat.5010.desc.crisis8:99 "§RSomething is deeply wrong.§!"
+  giga_blokkat.5010.desc.crisis9:99 "The 'Compound' like to think they're the ultimate form of life, but really, they're a dead end in non-baryonic evolution."
+  
+  #Other empire features
+  giga_blokkat.5010.desc.nomad1:99 "Can that Exodus Jump Coordinator get you out of the galaxy yet?"
+  giga_blokkat.5010.desc.nomad2:99 "You call yourself nomads, but you're still sitting here in this dwindling galaxy. Curious."
   
   
   giga_blokkat.5010.a:0 "Выключить экран."
@@ -11779,6 +11936,8 @@
   giga_blokkat.30691.a.tooltip:0 "Экстрамерный дестабилизатор будет активирован, пути назад нет."
   giga_blokkat.30691.b:0 "Не будем торопиться."
   giga_blokkat.30691.b.tooltip:0 "Мы всегда можем активировать его позже."
+  giga_blokkat.30691.c:99 "We should upgrade the Destabilizer before proceeding."
+  giga_blokkat.30691.c.tooltip:99 "Immediately begin upgrading our Hyperdimensional Destabilizer."
   
   blokkat_shieldkiller_broke_reality:0 "Расколотая реальность"
   blokkat_shieldkiller_broke_reality_desc:0 "Экстрамерный дестабилизатор оказал сильное влияние на стабильность нашей реальности."
@@ -12643,6 +12802,9 @@
   giga_dialog.13401.name:0 "Планетарная верфь завершена!"
   giga_dialog.13401.desc:0 "Около §Y[giga_planet.GetName]§! была завершена планетарная верфь.\n\nВключая обширные верфи, многочисленные якорные стоянки и стыковочные массивы, она значительно повысит производительность звездной базы системы, позволяя одновременно строить несколько военных кораблей на своих верфях.\n\nЗавершение этой структуры сделает §Y[giga_planet.GetName]§! одним из самых важных военных миров нашей империи, так как он предоставит своим жителям многочисленные рабочие места для солдат, а также защиту от орбитальной бомбардировки.\n\nНам нужно будет построить §YЗдание связи§! на звездной базе, чтобы получить преимущества, которые могут давать до §Y20§! Планетарных верфей в одной системе."
   giga_dialog.13401.a:0 "Отлично!"
+  giga_dialog.13401.a.DESC:99 "$planetary_drive_yard_1_shipyard_DESC$"
+  giga_dialog.13401.b:99 "Upgrade into $planetary_drive_yard_1_fortress$"
+  giga_dialog.13401.b.DESC:99 "$planetary_drive_yard_1_fortress_DESC$"
   
   giga_dialog.13402.name:0 "Нексус планетарной обороны в рабочем состоянии"
   giga_dialog.13402.desc:0 "В системе §Y[giga_system.GetName]§! Планетарная верфь была преобразована в функционирующий §YНексус планетарной обороны§!.\n\nОборудованный огромными ангарами и доками для военных кораблей, Нексус обороны может автоматически строить определенное количество §YУдарных корветов§!, определяемое количеством населения §Y[giga_planet.GetName]§!.\n\nЭти §YУдарные корветы§! будут развернуты всякий раз, когда вражеский флот приближается к §Y[giga_planet.GetName]§! и автоматически вступят в бой со всеми вражескими кораблями в системе, прежде чем вернуться на §Y[giga_planet.GetName]§!, если больше не останется угроз.\n\nНаши §YУдарные корветы§! будут использовать дизайн §Yкорвета§ из нашего §Yконструктора судов§! (поэтому нам не нужно проектировать новый класс кораблей), но они будут обладать большей огневой мощью и не иметь сверхсветового двигателя.\n\nМы можем посмотреть, сколько §YУдарных корветов§! в настоящее время содержится в структуре, и настроить, когда они начнут развертывание, выбрав §YНексус планетарной обороны§!.\n\nКроме того, он создаст армию одного могущественного §YПланетарного стража§! за каждые §Y10§! население, проживающее на его планете, обеспечивающую безопасность планеты в случае вторжения на планету."
@@ -12786,7 +12948,7 @@
   
   resolution_category_aeternum_focus:0 "Разбирательство с Аэтернум"
   
-  giga_aaa_requires_friends:99 "$TRIGGER_FAIL$Requires at least 2 galactic community members."
+  giga_aaa_requires_friends:99 "$TRIGGER_FAIL$Requires at least 2 [global_event_country.GetGalCommunityOrGalImperium] members."
   
   resolution_cooperative_intel_gathering:0 "Совместный сбор информации"
   resolution_cooperative_intel_gathering_desc:0 "Если [global_event_country.GetGalCommunityOrGalImperium] объединят свои научные усилия, мы сможем удаленно получить $aeternum_tech_intel$ и распространить их по всей галактике."
@@ -12881,12 +13043,12 @@
   giga_aeternum.8040.a.tooltip:0 "§YAnti-Aeternite Alliance§! распадается."
   
   giga_aeternum.8041.name:99 "Anti-Aeternite League Defeated"
-  giga_aeternum.8041.desc:99 "Be it through combat, or through disunity, the §YAnti-Aeternite League§! has fallen.\n\nAny surviving members of both the galactic community and the alliance are left to continue their fight alone."
+  giga_aeternum.8041.desc:99 "Be it through combat, or through disunity, the §YAnti-Aeternite League§! has fallen.\n\nAny surviving members of both the $GALACTIC_COMMUNITY$ and the alliance are left to continue their fight alone."
   giga_aeternum.8041.a:99 "The league is gone, but the fight continues."
   giga_aeternum.8041.a.tooltip:99 "The §YAnti-Aeternite League§! is no more."
   
   giga_aeternum.8042.name:99 "Anti-Aeternite League Disbanded"
-  giga_aeternum.8042.desc:99 "The once disunited galactic community has come together for the birth of §YThe [Root.GetGalEmpireName]§!.\n\nAs such, the §YAnti-Aeternite League§! is a relic of the past and no longer needed. The Galactic Emperor has proclaimed the formal end of the alliance and the centralization of the old military efforts under their watchful gaze.\n\nAlthough it remains to be seen if §YThe [Root.GetGalEmpireName]§! can fully replace the §YAnti-Aeternite League§!. However, the grand alliance can forevermore stand as proof of what the galaxy is capable of accomplishing when its inhabitants put their differences aside."
+  giga_aeternum.8042.desc:99 "The once disunited $GALACTIC_COMMUNITY$ has come together for the birth of §YThe [Root.GetGalEmpireName]§!.\n\nAs such, the §YAnti-Aeternite League§! is a relic of the past and no longer needed. The Galactic Emperor has proclaimed the formal end of the alliance and the centralization of the old military efforts under their watchful gaze.\n\nAlthough it remains to be seen if §YThe [Root.GetGalEmpireName]§! can fully replace the §YAnti-Aeternite League§!. However, the grand alliance can forevermore stand as proof of what the galaxy is capable of accomplishing when its inhabitants put their differences aside."
   giga_aeternum.8042.a:99 "The league is gone, but the Empire shall carry on its fight."
   giga_aeternum.8042.a.tooltip:99 "$giga_aeternum.8040.a.tooltip$"
   
@@ -12930,10 +13092,14 @@
   
   giga_yggdrasil.120.name:0 "[yggdrasil_food_beggar_country.GetName]"
   giga_yggdrasil.120.desc:0 "Приветствую, [ROOT.GetName]. Ваша §YОрхидея Иггдрасиль§! является настоящим чудом инженерной мысли, чье производство продуктов питания затмевает все, что мы смогли произвести сами.\n\nПоэтому [yggdrasil_food_beggar_country.GetName] хотел бы смиренно попросить долю производства продуктов питания вашей орхидеи Иггдрасиль, чтобы помочь накормить наше собственное население. Если вы великодушно согласитесь, мы обязательно отплатим вам в будущем."
+  giga_yggdrasil.120.machine.desc:99 "Analysis: [ROOT.GetAdj] §YYggdrasil Orchid§! food production categorised "superior" to [yggdrasil_food_beggar_country.GetAdj] food production.\n\nProposal: [yggdrasil_food_beggar_country.GetName] receives partial food output of [ROOT.GetAdj] Yggdrasil Orchid. [yggdrasil_food_beggar_country.GetName] will provide payment.\n\nProjected outcome: mutual benefit."
   giga_yggdrasil.120.a:0 "Конечно! Мы передадим часть еды на несколько лет."
+  giga_yggdrasil.120.machine.a:99 "Diplomatic benefit analysis: positive. Initiating reallocation of output."
   giga_yggdrasil.120.a.tooltip:0 "[yggdrasil_food_beggar_country.GetName], несомненно, будут больше поддерживать наши дипломатические усилия в будущем.\n\n"
   giga_yggdrasil.120.b:0 "Возможно, но вам придется заплатить нам."
+  giga_yggdrasil.120.machine.b:99 "Payment parameters acceptable. Initiating reallocation of output."
   giga_yggdrasil.120.c:0 "Нелепая просьба. Вопрос закрыт."
+  giga_yggdrasil.120.machine.c:99 "Proposal deemed non-beneficial for [ROOT.GetName]. Response: refusal."
   
   yggdrasil_food_share_donator:0 "Пожертвование производства Иггдрасиль"
   yggdrasil_food_share_donator_desc:0 "Мы жертвуем часть нашего производства еды другой империи."
@@ -12964,9 +13130,13 @@
   giga_yggdrasil.140.c:0 "Изучите этих очаровательных существ и то, как они эволюционировали!"
   giga_yggdrasil.140.c.tooltip:0 "§YКомплекс Орхидеи Иггдрасиль [giga_event_planet.GetName]§! будет производить на §Y50%§! меньше §YЕды§!, но его результаты исследований будут §Yувеличены§! на §Y50%§! постоянно."
   
+  giga_yggdrasil.140.d:99 "Bring them into symbiosis with the collective."
+  giga_yggdrasil.140.d.tooltip:99 "The §Y[giga_event_planet.GetName] Yggdrasil Orchid§! will produce §Y20%§! less §YFood§! but its Research output will §Yincrease§! by §Y50%§! permanently."
+  
   giga_yggdrasil.141.name:0 "Иггдрасильская саранча уничтожена"
   giga_yggdrasil.141.desc:0 "Благодаря обширным усилиям по уничтожению, воздушная саранча, досаждающая нашему §YКомплексу Орхидеи Иггдрасиль§! была устранена.\n\nПроизводство и обслуживание вернулись к своему обычному уровню."
   giga_yggdrasil.141.a:0 "Отлично."
+  giga_yggdrasil.141.b:99 "Painful but necessary to preserve ecological balance."
   
   giga_yggdrasil.142.name:0 "Иггдрасильская саранча вымерла"
   giga_yggdrasil.142.desc:0 "Следуя протоколам выбраковки, воздушная саранча заполонившая наш §YКомплекс Орхидеи Иггдрасиль§! вымерла.\n\nПроизводство и обслуживание вернулись к своему обычному уровню."
@@ -12987,12 +13157,16 @@
   giga_katzen.8004.name:0 "[global_event_country.GetGalCommunityOrGalImperium] поддерживает §YLaurandar§!"
   giga_katzen.8004.desc:0 "§L\"Указом Галактического Сената от [global_event_country.laurandar_recognised_date] [global_event_country.GetGalCommunityOrGalImperium] заявляет о своей единодушной поддержке Laurandar и его жителей в их борьбе против оккупации Katzen. Таким образом, нация Laurandar должна быть признана как свободное флусионское государство, и вся поддержка, которую должны получить повстанцы из Laurnaise, должна быть подвергнута чрезвычайному исключению, чтобы обойти бюрократические препятствия.\"§!\n\nСовместное заявление каждого свободного члена [global_event_country.GetGalCommunityOrGalImperium] официально обещает всякую поддержку Галактикой §YLaurandar§!, признав их независимость и пообещав широко финансировать их повстанческие группы.\n\n§YАарон Н. Блю§!, бывший правитель Laurnaise, выразил свое одобрение нашему решению и немедленно отправил обширные подарки, состоящие из безделушек Laurnaise, руководящим органам каждой нации, поддержавшей его дело.\n\n §YКайзер§! как сообщается, крайне недоволен этим «нелепым решением» и «поклялся сокрушить ослика [global_event_country.GetGalCommunityOrGalImperium], чьи намерения явно ошибочны». Примет ли он меры, пока неизвестно."
   giga_katzen.8004.a:0 "Великолепно."
+  giga_katzen.8004.b:99 "Not good for our standing."
   giga_katzen.8004.a.tooltip:0 "§YМнение Кайзера§! о нас §Rуменьшается§! на §Y2§!.\n\n§YПартизанская деятельность§! увеличивается на §Y2§! в §YLaurendaar§! и §YGeschwollen§!.\n\nНабеги на склады Katzen дадут в два раза больше §BРесурсов сопротивления§!.\n\nХарактеристики армий Katzen будут §Rснижены§!.\n\n"
+  giga_katzen.8004.b.tooltip:99 "§YPartisan Activity§! increases by §Y2§! in §YLaurendaar§! and §YGeschwollen§!.\n\nRaiding Katzen Warehouses will grant twice as many §BResistance Resources§!.\n\nKatzen armies will suffer from §R+20%§! $MOD_ARMY_DAMAGE_TAKEN_MULT$ and $MOD_ARMY_MORALE_DAMAGE_TAKEN_MULT$.\n\n"
   
   giga_katzen.8002.name:0 "[global_event_country.GetGalCommunityOrGalImperium] признает §YСолакийскую Республику§!"
   giga_katzen.8002.desc:0 "§L\"По указу Галактического Сената от [global_event_country.solakia_recognised_date] Солакианская Республика теперь является законным органом управления солакианскими землями на Flusion и любыми другими территориями на планете, считающими себя солакианскими. Таким образом, оккупация планеты и, соответственно, Roqualia Империумом Катценартиг является незаконным актом воинственного варварства.\"§!\n\nСовместная декларация каждого свободного члена [global_event_country.GetGalCommunityOrGalImperium] официально признала §YСолакианскую Республику§! как законное правительство своей собственной земли, тем самым формально учреждая §YИмпериум Катценартиг§! как незаконного оккупанта.\n\nСообщается, что §YКайзер§! «в ярости» из-за этого «предсказуемого акта политического маневрирования», но заверил, что это не повлияет на стабильность его империи."
   giga_katzen.8002.a:0 "Превосходно."
+  giga_katzen.8002.b:99 "We don't look good here on the Kaiser's side..."
   giga_katzen.8002.a.tooltip:0 "§YМнение Кайзера§! о нас §Rуменьшается§! на §Y1§!.\n\n§YПартизанская деятельность§! увеличивается на §Y1§! везде, кроме §YKatown§! и §YKatzen Herzlands§!, и на §Y2§! в §YRokalien§!.\n\nРешение §YОказать влияние§! предоставит §Y2§! ресурса сопротивления вместо §Y1§!."
+  giga_katzen.8002.b.tooltip:99 "§YPartisan Activity§! increases by §Y1§! everywhere except in §YKatown§! and the §YKatzen Herzlands§!, and by §Y2§! in §YRokalien§!.\n\nThe §YExert our Influence§! decision will grant §Y2§! Resistance Resources instead of §Y1§!."
   
   solakia_already_recognised:0 "Roqualia уже признана."
   ezics_already_denounced:0 "Вторжение Katzen в империю Zuspri уже осуждено."
@@ -13008,14 +13182,19 @@
   giga_katzen.8001.name:0 "[global_event_country.GetGalCommunityOrGalImperium] объявляет войну Кайзеру Каттайлу"
   giga_katzen.8001.desc:0 "В беспрецедентном проявлении галактического сотрудничества [global_event_country.GetGalCommunityOrGalImperium] коллективно объявила войну милитаристскому §YИмпериуму Катценартиг§!.\n\nНации, присоединившиеся к кайзеру, были исключены из сообщества, а все остальные члены теперь полностью мобилизованы для войны и готовы столкнуться лицом к лицу с мощью военной машины Katzen.\n\nТолько время покажет, сможет ли кайзер справиться со всей галактикой сразу, но в [global_event_country.GetGalCommunityOrGalImperium] уверены в своей победе."
   giga_katzen.8001.a:0 "Посмотрим, сколько он протянет..."
+  giga_katzen.8001.b:99 "Katzenkind will not fall!"
+  giga_katzen.8001.c:99 "We want freedom, but we must protect ourselves..."
   giga_katzen.8001.a.tooltip:0 "Мир с кайзером будет §RНЕ§! возможен."
+  giga_katzen.8001.b.tooltip:99 "We are at war with the entire [global_event_country.GetGalCommunityOrGalImperium]. Peace will §RNOT§! be possible."
   
   katzenartig_imperium_governor:0 "Губернатор Katzen"
   
   giga_katzen.8003.name:0 "[global_event_country.GetGalCommunityOrGalImperium] осуждает вторжение в §YИмперию Zuspri§!"
   giga_katzen.8003.desc:0 "§L\"Указом Галактического Сената от [global_event_country.ezics_denounced_date] вторжение Katzen и последующее ограбление земель Zuspri на Flusion теперь признано преступлением против разума и вопиющим нарушением права Zuspri на самоопределение.\"§!\n\nСовместное заявление каждого свободного члена [global_event_country.GetGalCommunityOrGalImperium] официально объявило оккупацию §YИмперии Zuspri§! и разрушение поселений Zuspri военным преступлением, которое очерняет правление кайзера над Flusion.\n\n§YКайзер§! объявил эти обвинения «полностью лишенными смысла», назвав их «вопиющей ложью, направленной на подрыв законности законного правительства Flusion», в то время как §YЛоуф Церелесс Хорнсфельт§! выразил свое одобрение поддержке его дела от лица [global_event_country.GetGalCommunityOrGalImperium]."
   giga_katzen.8003.a:0 "Отлично."
+  giga_katzen.8003.b:99 "They don't blame us... right?"
   giga_katzen.8003.a.tooltip:0 "§YМнение Кайзера§! о нас §Rуменьшится§! на §Y1§!.\n\n§YСопротивление Zuspri§! увеличивается на §Y2§!.\n\nБудущая революция §YОрдена Zuspri§! сможет захватить на §Y10%§! больше планет у §YИмпериума Катценартиг§!."
+  giga_katzen.8003.b.tooltip:99 "§YZuspri Resistance§! increases by §Y2§!.\n\nA future revolution by the §YZuspri Vanguard§! will be able to seize §Y10%§! more planets from the §YKatzenartig Imperium§!."
   
   laurandar_lowers_armies:0 "Дезорганизованные вооруженные силы"
   laurandar_lowers_armies_desc:0 "Дезорганизованные вооруженные силы"
@@ -13077,6 +13256,7 @@
   giga_katzen_submarine_cap:99 "$giga_katzen_submarine$"
   giga_katzen_submarine_plural:99 "Unterraumboots"
   KATZEN_SPACE_SUBMARINE:0 "Корпус"
+  KATZEN_ADVANCED_SPACE_SUBMARINE:99 "Hull"
   
   giga_katzen_submarine_submerged:0 "Разрушение подпространства"
   giga_katzen_submarine_submerged_cap:99 "$giga_katzen_submarine_submerged$"
@@ -13630,6 +13810,8 @@
   giga_fallen_empire_misc.1024.name:0 "Двигатель Вознесения"
   giga_fallen_empire_misc.1024.desc:0 "Очевидно, что §YПушкинская исследовательская сеть§! нашла свой так называемый §YАбсолютный ответ§!, который она пыталась найти на протяжении тысячелетий.\n\nХотя точная природа этого ответа неясна, очевидно, что вся операция является заговором их сумасшедшего директора, §YВени Пушкина§!, чтобы, как сообщается, вознестись и освободиться от объятия нашей реальности.\n\nСенсоры дальнего действия обнаружили, что Пушкин начал масштабные строительные работы над колоссальной Мозг-Матрешкой класса О в пределах системы §YApex of Understanding§!. Согласно перехваченным сообщениям, он намеревается преобразовать структуру в так называемый §YДвигатель Вознесения§!, гигантское устройство, позволяющее Пушкину подняться на более высокий план существования.\n\nКак ни странно, Пушкину не проявляет интереса к поднятию остальная часть его цивилизации, превратив своих собратьев в апатичных и ничего не подозревающих гедонистов, по-видимому, чтобы убрать их со своего пути.\n\nЕсли Пушкину будет позволено завершить его устройство, наша галактика, подпространственная обратная связь, вызванная тем, что Пушкину прорвал ткань вселенной, §Rразрушит и перестроит каждую гиперлинию в галактике§!, а также §Rнанесет значительный ущерб колониям и сверхсветовым сетям связи§!.\n\nЕсли предположить, что Пушкин не будет остановлен, предполагается, что у нас есть около §Y25 лет§! до завершения работы над двигателем. Нам придется §Rзахватить§! систему §YApex of Understanding§! и привести к капитуляции Пробужденной Империи, если мы хотим покончить с безумной схемой Пушкина."
   giga_fallen_empire_misc.1024.a:0 "Подтверждено."
+  giga_fallen_empire_misc.1024.b:99 "We know his kind. He must be stopped - to protect our own experiments."
+  giga_fallen_empire_misc.1024.c:99 "We know his kind. That path is a threat to us all."
   
   pouchkinn_engine_1:0 "Двигатель Вознесения"
   pouchkinn_engine_1_DESC:0 "Колоссальная конструкция, использующая энергию и вычислительную мощность Мозг-Матрешки, чтобы разорвать ткань реальности на части."
@@ -13660,6 +13842,8 @@
   giga_fallen_empire_misc.1041.name:0 "Мозг-Матрешка O-класса захвачена"
   giga_fallen_empire_misc.1041.desc:0 "С потерей своего колоссальной Мозг-Матрешки класса О, расположенной в системе §YApex of Understanding§!, §YПушкинская исследовательская сеть§! больше не может продолжать свои безумные поиски своего §YАбсолютного ответа§!.\n\nНенормальный директор Угасшей Империи, §YВеня Пушкин§!, пропал без вести после потери его самого ценного актива, что привело к полной остановке большинства исследовательских операций.\n\nОднако в качестве последнего акта неповиновения, чтобы помешать тому, кто захватил его ценную мегаструктуру, Пушкин саботировал самые внешние слои своей Мозг-Матрешки с помощью скрытых взрывчатых устройств, что, несомненно, приведет к резкому сокращению ее исследовательских возможностей."
   giga_fallen_empire_misc.1041.a:0 "Отлично."
+  giga_fallen_empire_misc.1041.b:99 "What a spiteful destruction of knowledge."
+  giga_fallen_empire_misc.1041.c:99 "Some questions are best left unanswered."
   giga_fallen_empire_misc.1041.a.tooltip:0 "§YПушкинская исследовательская сеть§! возвращается к состоянию обычной Угасшей Империи, §YGatzo Archivists§!."
   
   giga_fallen_empire_misc.1042.name:0 "Двигатель Вознесения захвачен"
@@ -13744,8 +13928,6 @@
   giga_flusionoperations.6035.desc:99 "While the Kaiser's rule over Flusion has finally ended, the planet and its inhabitants aren't in the clear yet.\n\nThe fighting to wrestle the §YFlusio-Arcology§! away from the Katzens has caused significant damage to the planet's surface, further aggravated by the fact that Katzen soldiers sometimes refused to surrender, choosing instead to inflict as much damage as possible on surrounding infrastructure to prevent capture.\n\nAs such, large parts of the planet's megacities lay in ruin, destroyed in the fighting, and entire swathes of the planet have collapsed into lawless anarchy as the planetary government is not able to properly reach and supply the populations trapped in highly radioactive or devastated areas.\n\nIt is evident that much work will have to be done if we are to restore the §YFlusio-Arcology§! to its former glory and at last enjoy its infinite potential."
   giga_flusionoperations.6035.a:99 "Unfortunate."
   
-  giga_flusionoperations.505.e:99 "Excellent, more land for us!"
-  
   katzen_easy:99 "Relaxed Kaiser"
   katzen_easy_desc:99 "It ain't easy to conquer the galaxy."
   
@@ -13792,7 +13974,7 @@
   giga_flusionoperations.6032.a:99 "Well, whatever... We can always take it back later, right?"
   
   giga_flusionoperations.6030.name:99 "The Fall of the Pyramid"
-  giga_flusionoperations.6030.desc:99 "Although Kaiser Kattail has apparently escaped, or disintegrated itself, the §YGrand Katown Pyramid§! is now under complete control of Flusionian forces. With the capture of the last bastion of Katzen rule on §YFlusion§!, the §YKatzenartig Imperium§! is expected to collapse within the next few days.\n\nIn the meantime, the §YFlusionians§! will now decide whether or not §YFlusion§! will be handed to us, based on §GFlusionian Willingness§!, which is currently equal to §Y[giga_storming_pyramid_country.solakian_willingness]%§!."
+  giga_flusionoperations.6030.desc:99 "Although Kaiser Kattail has apparently escaped, or disintegrated itself, the §YGrand Katown Pyramid§! is now under complete control of Free Flusionian forces. With the capture of the last bastion of Katzen rule on §YFlusion§!, the §YKatzenartig Imperium§! is expected to collapse within the next few days.\n\nIn the meantime, the §YFlusionians§! will now decide whether or not §YFlusion§! will be handed to us, based on §GFlusionian Willingness§!, which is currently equal to §Y[giga_storming_pyramid_country.solakian_willingness]%§!."
   giga_flusionoperations.6030.a:99 "Let us see what they decide."
   
   giga_flusionoperations.6020.name:99 "Flusionian Revolution Sieges the Pyramid"
@@ -13895,6 +14077,7 @@
   giga_katzen.6001.name:99 "Kaiser Kattail Inaugurates Flusio-Arcology"
   giga_katzen.6001.desc:99 "Reports are coming in that the §YKaiser§! has completed a large-scale infrastructure project aiming to radically reshape Flusion's surface and allow the planet to properly support its ever-growing population provided by the Kaiser's conquests and colonization efforts.\n\nThe Katzen capital of §YKatown§! has been enlarged tremendously, becoming a colossal megacity stretching for thousands of kilometers over Flusion's surface, with the Kaiser going as far as constructing half of the megacity underwater in order to accommodate for Flusion's amphibious species.\n\nOther major Katzen-built cities such as §YBundengrad§! and §YTeho§! has been expanded as well in order to help concentrate Flusion's non-Katzen populations, evidently to establish greater control over the planet's population.\n\nThe planet's ecosystem has been almost completely replaced with organisms specifically engineered to fit the Katzens' needs while dozens of additional quarries and industrial centers have been constructed to harvest Flusion's humongous resource stockpiles in order to fuel the Katzen war machine.\n\n§YKaiser Kattail§! has given a triumphant speech in front of his empire celebrating this grand accomplishment which will, according to him, drastically increase the living standards of Flusion's inhabitants. And yet, experts across the galaxy mostly agree that this is likely to be part of the Kaiser's plan to facilitate the mass-surveillance and monitoring of Flusion's populations as well as ensure his complete dominance over Flusion itself.\n\n§RNOTE: The Flusio-Arcology cannot be shielded, but it can still be cracked.§!"
   giga_katzen.6001.a:99 "A great feat."
+  giga_katzen.6001.b:99 "Bravo! Flusion will become the heart of the galaxy!"
   giga_katzen.6001.a.tooltip:99 "§YFlusion§! gains new unique powerful §YDistricts§! to ensure it is able to continue sustaining the Kaiser's conquests."
   
   giga_flusionoperations.5007.name:99 "Flusionian Population Mourns Loris"
@@ -13913,7 +14096,7 @@
   giga_flusionoperations.5003.a.tooltip:99 "Yuo are Of Monster...\nKatzen wariness §Rincreases§! by §R3§!."
   
   giga_flusionoperations.5004.name:99 "Loris Assassination Successful... except not."
-  giga_flusionoperations.5004.desc:99 "Our Roqualian allies report that the operation to shoot Loris took place without issues. They managed to infiltrate Loris' surroundings and slip an assassin into his private chambers under the guise of an assistant, who then pulled out a gun and shoot the Katzgouverneur in the head, before swallowing a cyanide pill to avoid capture by Katzen authorities.\n\nUnfortunately for us, we failed to account for the fact that the Katzens had established a §YSoulbot Factory§! on §YKleinkalien Isle§!, which immediately produced a purpose-made backup synthetic chassis into which Loris' consciousness could be uploaded, effectively bringing him back to life and negating the entire operation...\n\nThe success chance was §Y[flusion_primitives_country.flusion_operation_odds]%§!"
+  giga_flusionoperations.5004.desc:99 "Our Roqualian allies report that the operation to shoot Loris took place without issues. They managed to infiltrate Loris' surroundings and slip an assassin into his private chambers under the guise of an assistant, who then pulled out a gun and shot the Katzgouverneur in the head, before swallowing a cyanide pill to avoid capture by Katzen authorities.\n\nUnfortunately for us, we failed to account for the fact that the Katzens had established a §YSoulbot Factory§! on §YKleinkalien Isle§!, which immediately produced a purpose-made backup synthetic chassis into which Loris' consciousness could be uploaded, effectively bringing him back to life and negating the entire operation...\n\nThe success chance was §Y[flusion_primitives_country.flusion_operation_odds]%§!"
   giga_flusionoperations.5004.a:99 "What?? How dare he survive like that?"
   giga_flusionoperations.5004.a.tooltip:99 "Loris' new form is now immune to poisoning and shooting.\nKatzen wariness §Rincreases§! by §R2§!."
   
@@ -14041,10 +14224,11 @@
   ezicania_desc:99 "§LZuspristaat is the land formerly occupied by the Zuspri Intermarium, one of the first victims of the Kaiser's conquests. It once consisted of verdant pastures and untouched mountain ranges sparsely populated by Zuspris living an idyllic lifestyle.\n\nFollowing its conquest by the Katzenartig Imperium, its mountains have been torn open and are being excavated by the Katzens to retrieve truly prodigious quantities of various rare minerals essential to their civilization, while most of the former pastures have been transformed into vast industrial smelteries to produce ever-growing quantities of alloys.\n\nThe Zuspris Order itself considers this land to be little interest to them anymore, considering Katzen industrialization has, according to them, defaced it beyond recovery.§!"
   
   CORE_KATZEN_BLIMP_SECTION:99 "Core"
+  CORE_KATZEN_ADVANCED_BLIMP_SECTION:99 "$CORE_KATZEN_BLIMP_SECTION$"
   
-  giga_katzen_blimp:99 "Armored Blimp Carrier" #Gepanzerterluftschiffträger
+  giga_katzen_blimp:99 "Gepanzerterluftschiffträger"
   giga_katzen_blimp_cap:99 "$giga_katzen_blimp$"
-  giga_katzen_blimp_plural:99 "Armored Blimp Carriers"
+  giga_katzen_blimp_plural:99 "Gepanzerterluftschiffträgers"
   
   MOON_ARMOR_1:99 "Lunar Crust Reinforcements"
   MOON_ARMOR_1_DESC:99 "Relatively simple and cheap lunar armor which merely employs the moon's pre-existing rocky crust with minor adjustments to its density, providing some protection at the cost of speed."
@@ -14169,10 +14353,10 @@
   building_katzen_science_desc:99 "A large facility where researchers work tirelessly to push the boundaries of Katzen science (reportedly the \"best in the galaxy\") further and further. The nature of the experiments conducted within are however somewhat... controversial, at times, often being undertaken on less-than-willing test subjects comprised of criminals deemed 'unredeemable' and death row inmates."
   
   katzenartig_chain_3:99 "Katzen Economic Status"
-  katzenartig_chain_3_desc:99 "§PKatzen Resources§! represents an amalgamate of the resources employed by the Katzens. They are required to build new ships and fuel their §YWarforges§!.\n\nConversion rates between monthly regular resources and monthly §PKatzen Resources§! are as follow:\n§Y50§! £energy£/£trade£ = §Y1§! §PKatzen Resource§!\n§Y20§! £minerals£ = §Y1§! §PKatzen Resource§!\n§Y1§! £alloys£ = §Y1§! §PKatzen Resource§! \n§Y5§! £consumer_goods£ = §Y1§! §PKatzen Resource§! \n§Y5§! £rare_crystals£/£volatile_motes£/£exotic_gases£ = §Y1§! §PKatzen Resource§!\n\nCurrent §GIncome§!: §Y[flusion_primitives_country.kaiser_resource_income]§! §PKatzen Resources§!\nCurrent §RSpending§!: §Y[flusion_primitives_country.kaiser_resource_spending]§! §PKatzen Resources§!\n\nCurrent §HBalance§!: §Y[flusion_primitives_country.kaiser_resource_balance]§! §PKatzen Resources§!\nCurrent §BStockpile§!: §Y[flusion_primitives_country.kaiser_resource_stockpile]§! §PKatzen Resources§!"
+  katzenartig_chain_3_desc:99 "§PKatzen Resources§! represents an amalgamate of the resources employed by the Katzens. They are required to build new ships and fuel their §YWarforges§!.\n\nConversion rates between monthly regular resources and monthly §PKatzen Resources§! are as follow:\n§Y50§! £energy£/£trade£ = §Y1§! §PKatzen Resource§!\n§Y20§! £minerals£ = §Y1§! §PKatzen Resource§!\n§Y1§! £alloys£ = §Y1§! §PKatzen Resource§! \n§Y5§! £consumer_goods£ = §Y1§! §PKatzen Resource§! \n§Y2§! £rare_crystals£/£volatile_motes£/£exotic_gases£ = §Y1§! §PKatzen Resource§!\n\nCurrent §GIncome§!: §Y[flusion_primitives_country.kaiser_resource_income]§! §PKatzen Resources§!\nCurrent §RSpending§!: §Y[flusion_primitives_country.kaiser_resource_spending]§! §PKatzen Resources§!\n\nCurrent §HBalance§!: §Y[flusion_primitives_country.kaiser_resource_balance]§! §PKatzen Resources§!\nCurrent §BStockpile§!: §Y[flusion_primitives_country.kaiser_resource_stockpile]§! §PKatzen Resources§!"
   
   katzenartig_chain_4:99 "Katzen Research Efforts"
-  katzenartig_chain_4_desc:99 "§BKatzen Research Output§! represents how much technological progress the Katzens are making every month as they work towards their next tech level.\n\n§GKatzen Tech Level§! represents how advanced the Katzens have become, with each level increasing §YHull§!, §YArmor§! & §YShields§! §YHP§! by §Y[flusion_primitives_country.cdk_kaiser_other_buff_desc]%§!, §YFire Rate§! and §YWeapons Damage§! by §Y[flusion_primitives_country.cdk_kaiser_weapon_buff_desc]%§!, §YArmy Damage§! and §YArmy Health§! by §Y[flusion_primitives_country.cdk_kaiser_other_buff_desc]%§! and §YMegastructure Build Speed§! by §Y[flusion_primitives_country.cdk_kaiser_other_buff_desc]%§!.\n\nCurrent Monthly §BKatzen Research§!: §Y[flusion_primitives_country.kaiser_tech_income]§!\nProgress to next §GKatzen Tech Level§!: §Y[flusion_primitives_country.kaiser_tech_stockpile]§!/§Y[flusion_primitives_country.kaiser_tech_to_next_level]§!\n\nCurrent §GKatzen Tech Level§!: §Y[flusion_primitives_country.kaiser_tech_level]§!\nExtra §HShip Hull§!/§HArmor§!/§HShields§!: §Y[flusion_primitives_country.kaiser_tech_ship_hp_buff]%§!\nExtra §HWeapons Damage§! & §HFire Rate§!: §Y[flusion_primitives_country.kaiser_tech_damage_buff]%§!\nExtra §HArmy Damage§! & §HArmy Health§!: §Y[flusion_primitives_country.kaiser_tech_army_buff]%§!\nExtra §HMegastructure Build Speed§!: §Y[flusion_primitives_country.kaiser_tech_mega_speed_buff]%§!"
+  katzenartig_chain_4_desc:99 "§BKatzen Research Output§! represents how much technological progress the Katzens are making every month as they work towards their next tech level.\n\n§GKatzen Tech Level§! represents how advanced the Katzens have become, with each level increasing §YHull§!, §YArmor§! & §YShields§! §YHP§! by §Y[flusion_primitives_country.cdk_kaiser_other_buff_desc]%§!, §YWeapons/Strike Craft Damage§! and §YWeapons/Strike Craft Fire Rate§! by §Y[flusion_primitives_country.cdk_kaiser_weapon_buff_desc]%§!, §YArmy Damage§! and §YArmy Health§! by §Y[flusion_primitives_country.cdk_kaiser_other_buff_desc]%§! and §YMegastructure Build Speed§! by §Y[flusion_primitives_country.cdk_kaiser_other_buff_desc]%§!.\n\nCurrent Monthly §BKatzen Research§!: §Y[flusion_primitives_country.kaiser_tech_income]§!\nProgress to next §GKatzen Tech Level§!: §Y[flusion_primitives_country.kaiser_tech_stockpile]§!/§Y[flusion_primitives_country.kaiser_tech_to_next_level]§!\n\nCurrent §GKatzen Tech Level§!: §Y[flusion_primitives_country.kaiser_tech_level]§!\nExtra §HShip Hull§!/§HArmor§!/§HShields§!: §Y[flusion_primitives_country.kaiser_tech_ship_hp_buff]%§!\nExtra §HWeapons/Strike Craft Damage§! and §HWeapons/Strike Craft Fire Rate§!: §Y[flusion_primitives_country.kaiser_tech_damage_buff]%§!\nExtra §HArmy Damage§! & §HArmy Health§!: §Y[flusion_primitives_country.kaiser_tech_army_buff]%§!\nExtra §HMegastructure Build Speed§!: §Y[flusion_primitives_country.kaiser_tech_mega_speed_buff]%§!"
   
   
   katzen_economy_modifier:99 "Katzen Economy Mechanics"
@@ -14208,9 +14392,12 @@
   giga_flusionoperations.505.name:99 "Katzen Colony Revolts!"
   giga_flusionoperations.505.desc:99 "News have reached us that because of the §YAgricultural Crisis§! currently plaguing the §YKatzenartig Imperium§!, the Katzen colony of §Y[giga_katzen_agri_crisis_planet.GetName]§! has revolted against the Kaiser's rule and declared complete independence from Flusion, formally establishing the §Y[giga_katzen_agri_crisis_country.GetName]§! as a sovereign nation.\n\nThe Kaiser has immediately declared open hostilities towards the new regime and is likely going to attempt re-taking the world within the coming months."
   giga_flusionoperations.505.a:99 "A struggle for survival."
-  giga_flusionoperations.505.b:99 "Send them some support. | §Y750§! £trade£ & §Y200§! £alloys£"
-  giga_flusionoperations.505.c:99 "Sent them support. | §Y1500§! £trade£ & §Y400§! £alloys£"
-  giga_flusionoperations.505.d:99 "Sent them major support! | §Y2500§! £trade£ & §Y800§! £alloys£"
+  giga_flusionoperations.505.b:99 "Traitors to Flusiocentrism and the Imperium!"
+  giga_flusionoperations.505.c:99 "If only we could fight alongside them..."
+  giga_flusionoperations.505.d:99 "Send them some support. | §Y750§! £trade£ & §Y200§! £alloys£"
+  giga_flusionoperations.505.e:99 "Sent them support. | §Y1500§! £trade£ & §Y400§! £alloys£"
+  giga_flusionoperations.505.f:99 "Sent them major support! | §Y2500§! £trade£ & §Y800§! £alloys£"
+  giga_flusionoperations.505.g:99 "Excellent, more land for us!"
   
   giga_flusionoperations.4000.name:99 "Blowing up the §YKatlantropa Dams§!"
   giga_flusionoperations.4000.desc:99 "The §YKatlantropa Dams§! consist of a pair of dams built on the §YKatsula§! and §YPolga§! rivers. The redirected water has been used to create new artificial lakes, irrigating once-deserting areas and permitting agriculture in previously uninhabitable places.\n\nOur agents will have to strategically detonate small warheads within both dams, which will disrupt the project as a whole and have a drastic impact on Flusion's agricultural output.\n\n§YIf successful§!:\n§YFlusion§! and the §YKatzens§! will get debuffs due to disruption of their agriculture and supply chains, reducing their §YShip HP§! and §YShip Fire Rate§!.\nKatzen Wariness will §Rincrease§! by §R3§!\nResistance in §YLyuinstaat§! and §YGeschwollen§! will decrease by §Y1§!\n\n§YIf failure§!:\nKatzen Wariness will §Rincrease§! by §R1§!.\n\n§YChance of success§!:\nBase: §Y70%§!\n§HKatzen Wariness§!: §R-[flusion_primitives_country.katzen_wary_perc]%§!\n§RHigh Risk Level§!: §R-30%§!\n§BGlobal Partisan Activity§!: §G+[flusion_primitives_country.flusion_total_res_perc]%§!\n§BPartisans in Mercurreich§!: §G+[flusion_primitives_country.mercuria_res_perc]%§!\nTotal: §Y[flusion_primitives_country.flusion_success_chance_total]%§!"
@@ -14366,11 +14553,11 @@
   giga_katzen.2004.name:99 "The Katzenartig Imperium"
   giga_katzen.2004.desc:99 "Following a thorough investigation, it has come to our attention that you were the ones orchestrating this little Sonya heist.\n\nDo you really believe you can just snatch up one of our most precious scientific assets without us noticing?\n\nWe demand immediate payment for the damage caused to our military infrastructure at once."
   giga_katzen.2004.a:99 "Alright, alright, we'll pay you. | §Y10000§! £trade£"
-  giga_katzen.2004.a.tooltip:99 "The §YKaiser's Opinion§! of us will only §Rdecrease§! by §Y1§!."
+  giga_katzen.2004.a.tooltip:99 "The §YKaiser's Opinion§! of us will only §Rdecrease§! by §Y20§!."
   giga_katzen.2004.a.response:99 "Do not think you are forgiven just yet, aliens."
   
   giga_katzen.2004.b:99 "Get lost."
-  giga_katzen.2004.b.tooltip:99 "The §YKaiser's Opinion§! of us will §Rdecrease§! by §Y2§!."
+  giga_katzen.2004.b.tooltip:99 "The §YKaiser's Opinion§! of us will §Rdecrease§! by §Y40§!."
   giga_katzen.2004.b.response:99 "The Kaiser will remember this, aliens."
   
   giga_flusionoperations.2002.name:99 "Sonya Rescue Foiled"
@@ -14393,8 +14580,6 @@
   giga_flusionoperations.1002.desc:99 "Our Roqualian allies are reporting that contact has unfortunately been lost with our Zuspri double-agents attempting to steal §YRiesigerkatzenpanzer Blueprints§!.\n\nThe myriad of Katzen soldiers guarding the heavily-fortified §YLionsburg Assembly Plant§! likely caught on to their scheme and promptly proceeded to gun our agents down.\n\nThe Katzens are likely to further reinforce their security in the coming weeks, leading to an increase in §YKatzen Wariness§!."
   giga_flusionoperations.1002.a:99 "Curses..."
   giga_flusionoperations.1002.a.tooltip:99 "Katzen wariness §Rincreases§! by §R1§!."
-  
-  giga_disabled_for_overlord:99 "This feature has been temporarily disabled due to the new vassalization mechanics in 3.4!"
   
   giga_cant_remove_orbital_ring_part:99 "Can only remove this module if the planet does not use regular districts."
   
@@ -14685,6 +14870,8 @@
   giga_pending_rework:99 "Temporarily disabled, to be reworked"
   
   giga_reset:99 "£giga_reset£ Reset"
+  
+  giga_crisis_damage:99 "Damage Against Gigastructures Crises" #shouldn't be visible
   
   giga_disable_supertensiles_4_4.2.name:99 "JOB BASED MEGASTRUCTURE BUILD CAP / SUPERTENSILES DISABLED"
   giga_disable_supertensiles_4_4.2.desc:99 "Due to a bug introduced in 4.4 with the job based build cap / supertensiles, they have been temporarily forcibly disabled. Your mega build cap has been set to §_Unlimited§!.\n\nThis is not stating your game is broken, just that the feature is disabled."

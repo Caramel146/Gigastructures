@@ -1038,8 +1038,7 @@ zone_giga_flusion_fort = {
     potential = {
         uses_district_set = city_world
         is_planet_class = pc_flusion_gaia_ecu
-		exists = from
-		from = {
+		owner? = {
 			is_wilderness_empire = no
 		}
     }
@@ -1052,7 +1051,7 @@ zone_giga_flusion_fort = {
 		}
     }
 
-    swap_type = district_flusion_city_wilderness
+    swap_type = district_flusion_city
     swap_type_weight = 10
     planet_limit = 1
     zone_sets = { urban }
@@ -1074,14 +1073,22 @@ zone_giga_flusion_fort = {
         zone_building_slots_add = 3
     }
 
+	triggered_district_planet_modifier = {
+		potential = {
+			owner? = { katzen_country_type = yes }
+		}
+		job_entertainer_add = 150 #this lets their amenities and thus happiness and crime scale as Flusion develops. They become duelists but still this is ugly - the consequences of Flusioarc using ecu districts now
+		job_enforcer_add = 100 #similar here. They need to keep crime down
+	}
+
     # multiplied by 3 since it counts as an ecu
     inline_script = {
         script = jobs/zone_soldiers_add
-        AMOUNT = 125
+        AMOUNT = 100
     }
     inline_script = {
-        script = jobs/zone_clerks_add
-        AMOUNT = 25
+        script = jobs/zone_foundry_add
+        AMOUNT = 50
     }
 
     included_building_sets = {
@@ -1114,8 +1121,7 @@ zone_giga_flusion_fort_wilderness = {
     potential = {
         uses_district_set = city_world
         is_planet_class = pc_flusion_gaia_ecu
-		exists = from
-		from = {
+		owner? = {
 			is_wilderness_empire = yes
 		}
     }
@@ -1128,7 +1134,7 @@ zone_giga_flusion_fort_wilderness = {
 		}
     }
 
-    swap_type = district_flusion_city
+    swap_type = district_flusion_city_wilderness
     swap_type_weight = 15
     planet_limit = 1
     zone_sets = { urban }
@@ -1151,14 +1157,14 @@ zone_giga_flusion_fort_wilderness = {
     }
 
     # multiplied by 3 since it counts as an ecu
-    inline_script = {
-        script = jobs/zone_soldiers_add
-        AMOUNT = 125
-    }
-    inline_script = {
-        script = jobs/zone_clerks_add
-        AMOUNT = 25
-    }
+	inline_script = {
+		script = jobs/zone_soldiers_add
+		AMOUNT = 100
+	}
+	inline_script = {
+		script = jobs/zone_foundry_add
+		AMOUNT = 50
+	}
 
     included_building_sets = {
         fortress
@@ -1190,8 +1196,8 @@ zone_giga_flusion_energy = {
 
     potential = { # planet scope
         is_planet_class = pc_flusion_gaia_ecu
-		exists = from
-		from = {
+		exists = owner
+		owner? = {
 			is_wilderness_empire = no
 		}
     }
@@ -1204,7 +1210,7 @@ zone_giga_flusion_energy = {
 		}
     }
 
-    swap_type = district_flusion_heavy_industry_wilderness
+    swap_type = district_flusion_heavy_industry
     swap_type_weight = 10
     planet_limit = 1
     zone_sets = { arcology }
@@ -1258,8 +1264,7 @@ zone_giga_flusion_energy_wilderness = {
 
     potential = { # planet scope
         is_planet_class = pc_flusion_gaia_ecu
-		exists = from
-		from = {
+		owner? = {
 			is_wilderness_empire = yes
 		}
     }
@@ -1272,7 +1277,7 @@ zone_giga_flusion_energy_wilderness = {
 		}
     }
 
-    swap_type = district_flusion_heavy_industry
+    swap_type = district_flusion_heavy_industry_wilderness
     swap_type_weight = 15
     planet_limit = 1
     zone_sets = { arcology }
@@ -1319,8 +1324,7 @@ zone_giga_flusion_mining = {
 
     potential = { # planet scope
         is_planet_class = pc_flusion_gaia_ecu
-		exists = from
-		from = {
+		owner? = {
 			is_wilderness_empire = no
 		}
     }
@@ -1333,7 +1337,7 @@ zone_giga_flusion_mining = {
 		}
     }
 
-    swap_type = district_flusion_mining_wilderness
+    swap_type = district_flusion_mining
     swap_type_weight = 10
     planet_limit = 1
     zone_sets = { arcology }
@@ -1385,8 +1389,7 @@ zone_giga_flusion_mining_wilderness = {
 
     potential = { # planet scope
         is_planet_class = pc_flusion_gaia_ecu
-		exists = from
-		from = {
+		owner? = {
 			is_wilderness_empire = yes
 		}
     }
@@ -1399,7 +1402,7 @@ zone_giga_flusion_mining_wilderness = {
 		}
     }
 
-    swap_type = district_flusion_mining
+    swap_type = district_flusion_mining_wilderness
     swap_type_weight = 15
     planet_limit = 1
     zone_sets = { arcology }
@@ -1444,8 +1447,7 @@ zone_giga_flusion_farming = {
 
     potential = { # planet scope
         is_planet_class = pc_flusion_gaia_ecu
-		exists = from
-		from = {
+		owner? = {
 			is_wilderness_empire = no
 		}
     }
@@ -1458,7 +1460,7 @@ zone_giga_flusion_farming = {
 		}
     }
 
-    swap_type = district_flusion_farming_wilderness
+    swap_type = district_flusion_farming
     swap_type_weight = 10
     planet_limit = 1
     zone_sets = { arcology }
@@ -1512,8 +1514,7 @@ zone_giga_flusion_farming_wilderness = {
 
     potential = { # planet scope
         is_planet_class = pc_flusion_gaia_ecu
-		exists = from
-		from = {
+		owner? = {
 			is_wilderness_empire = yes
 		}
     }
@@ -1526,7 +1527,7 @@ zone_giga_flusion_farming_wilderness = {
 		}
     }
 
-    swap_type = district_flusion_farming
+    swap_type = district_flusion_farming_wilderness
     swap_type_weight = 15
     planet_limit = 1
     zone_sets = { arcology }

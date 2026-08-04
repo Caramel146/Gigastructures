@@ -1,48 +1,7 @@
-kaiser_is_very_happy = {
-	# has_country_flag = kaiser_happy_4
+kaiser_is_ally = { #used for diplo lines that assume he also really likes you
 	kaiser_opinion_range_elated = yes
-	has_country_flag = first_katzen_diplomacy
+	kaiser_opinion_range_very_friendly = yes
 	has_country_flag = allied_to_kaiser
-}
-
-kaiser_is_happy = {
-	OR = {
-		kaiser_opinion_range_elated = yes
-		kaiser_opinion_range_very_friendly = yes
-		kaiser_opinion_range_friendly = yes
-		# has_country_flag = kaiser_happy_4
-		# has_country_flag = kaiser_happy_3
-		# has_country_flag = kaiser_happy_2
-	}
-	has_country_flag = first_katzen_diplomacy
-	NOT = { has_country_flag = allied_to_kaiser }
-}
-
-kaiser_is_neutral = {
-	OR = {
-		kaiser_opinion_range_cordial = yes
-		kaiser_opinion_range_indifferent = yes
-		# has_country_flag = kaiser_happy_1
-		# has_country_flag = kaiser_neutral
-	}
-	has_country_flag = first_katzen_diplomacy
-}
-
-kaiser_is_angry = {
-	OR = {
-		kaiser_opinion_range_terse = yes
-		kaiser_opinion_range_displeased = yes
-		kaiser_opinion_range_angered = yes
-		# has_country_flag = kaiser_angry_1
-		# has_country_flag = kaiser_angry_2
-	}
-	has_country_flag = first_katzen_diplomacy
-}
-
-kaiser_is_at_war = {
-	# has_country_flag = kaiser_angry_3
-	kaiser_opinion_range_enraged = yes
-	has_country_flag = first_katzen_diplomacy
 }
 
 kaiser_opinion_range_elated = {
@@ -136,6 +95,12 @@ kaiser_opinion_range_enraged = {
 	}
 }
 
+katzen_vassal = {
+	overlord? = {
+		katzen_country_type = yes
+	}
+}
+
 kaiser_can_demand_system = {
 	NOR = {
 		is_capital_system = yes #Can't demand if its a capital
@@ -152,12 +117,12 @@ kaiser_can_demand_system = {
 	}
 }
 
-is_small_katzen_fleet = {
-	OR = {
-		has_fleet_flag = katzen_panzer_fleet
-		has_fleet_flag = katzen_bomber_fleet
-	}
-}
+# is_small_katzen_fleet = {
+# 	OR = {
+# 		has_fleet_flag = katzen_panzer_fleet
+# 		has_fleet_flag = katzen_bomber_fleet
+# 	}
+# }
 
 has_katzen_colony = {
 	any_system_planet = {
@@ -166,13 +131,12 @@ has_katzen_colony = {
 }
 
 is_katzen_colony = {
-	owner = { is_country_type = katzenartig_imperium }
+	owner = { katzen_country_type = yes }
 	is_colony = yes
 }
 
 katzen_jump_blocked_system = {
-	exists = owner
-	owner = { is_country_type = katzenartig_imperium }
+	owner? = { katzen_country_type = yes }
 	any_system_planet = { #Must have a colony
 		is_katzen_colony = yes
 		has_carrier_flag = gigaflusion
@@ -246,10 +210,7 @@ is_allowed_for_kaiser_spawn = {
 		has_star_flag = mem_severance_relic_system
 
 		# is_fe_cluster = yes
-		AND = {
-			exists = space_owner
-			space_owner = { is_fallen_empire = yes }
-		}
+		space_owner? = { is_fallen_empire = yes }
 		any_system = {
 			distance = {
 				source = this
@@ -261,10 +222,7 @@ is_allowed_for_kaiser_spawn = {
 				has_star_flag = empire_home_system
 				has_star_flag = empire_cluster
 				# is_fe_cluster = yes
-				AND = {
-					exists = space_owner
-					space_owner = { is_fallen_empire = yes }
-				}
+				space_owner? = { is_fallen_empire = yes }
 			}
 		}
 	}
@@ -293,45 +251,84 @@ is_allowed_for_kaiser_spawn = {
 # }
 
 is_forbidden_for_kaiser_starbase = {
-	#not already owned
-	exists = starbase
-	exists = owner
-	any_system_planet = {
-		is_colony = yes
-		owner = {
-			NOT = { is_country_type = primitive }
+	OR = {
+		#not already owned
+		exists = starbase
+		exists = owner
+		any_system_planet = {
+			is_colony = yes
+			owner = {
+				NOT = { is_country_type = primitive }
+			}
 		}
-	}
 
-	#no hostiles
-	any_fleet_in_system = {
-		controller = {
-			OR = {
-				is_at_war_with = event_target:flusion_primitives_country
-				is_hostile = event_target:flusion_primitives_country
+		#no hostiles
+		any_fleet_in_system = {
+			controller = {
+				OR = {
+					is_at_war_with = event_target:flusion_primitives_country
+					is_hostile = event_target:flusion_primitives_country
+				}
+			}
+		}
+
+		# kaiser shouldn't anger the xenophobe fallen empire unless he's at war with them
+		any_neighbor_system = {
+			owner? = {
+				is_fallen_empire = yes
+				has_ai_personality = fallen_empire_xenophobe
+				not = { is_at_war_with = root }
+			}
+		}
+
+		# In case shrouded Faust is accessible, no-one should be in there
+		has_star_flag = eawaf_faust_killzone
+
+		# Don't interrupt the Sirens if they're guaranteed
+		AND = {
+			has_global_flag = giga_eawaf_sirens_guaranteed
+			has_star_flag = eawaf_system
+		}
+
+		# Wild space compatibility
+		is_star_class = sc_dn
+	}
+}
+
+kaiser_can_wardec = { #should be run in target country scope
+	NOR = {
+		has_country_flag = katzenartig_war_declaration_forbidden #for ACE
+		any_subject = { is_ai = no } #not overlord of player
+		overlord? = { is_ai = no } #not subject of player
+		is_at_war_with = root #is already at war
+	}
+	katzen_vassal = no
+	is_ai = yes
+	NAND = { #not in fed with player
+		exists = federation
+		federation = {
+			any_member = {
+				is_ai = no
 			}
 		}
 	}
-
-	# kaiser shouldn't anger the xenophobe fallen empire unless he's at war with them
-	any_neighbor_system = {
-		exists = owner
-		owner = {
-			is_fallen_empire = yes
-			has_ai_personality = fallen_empire_xenophobe
-			not = { is_at_war_with = root }
+	any_neighbor_country = {
+		OR = {
+			is_country_type = katzenartig_imperium
+			katzen_vassal = yes
 		}
 	}
+}
 
-	# In case shrouded Faust is accessible, no-one should be in there
-	has_star_flag = eawaf_faust_killzone
+katzen_reformation_active = {
+	has_global_flag = katzen_reformation_begun
+	NOT = { has_global_flag = katzen_reformation_complete }
+}
 
-	# Don't interrupt the Sirens if they're guaranteed
-	AND = {
-		has_global_flag = giga_eawaf_sirens_guaranteed
-		has_star_flag = eawaf_system
+#NOTE: this should be used on a case-by-case basis alongside is_country_type katzenartig_imperium depending on whether the Provisional Government should be included
+katzen_country_type = {
+	OR = {
+		is_country_type = katzenartig_imperium
+		is_country_type = katzenartig_imperium_provisional
 	}
-
-	# Wild space compatibility
-	is_star_class = sc_dn
 }
