@@ -21,9 +21,8 @@ orbital_elysium_0 = {
 	}
 
 	potential = {
-		always = no # disabled 4.0
 		OR = {
-			has_origin = giga_elysium_origin
+			has_origin = origin_elysium
 			NOT = { has_global_flag = giga_elysium_disabled }
 		}
 		giga_can_use_habitables = yes
@@ -96,7 +95,6 @@ orbital_elysium_0 = {
 			remove_modifier = penal_colony
 
 			giga_set_elysium_buildings = yes
-			set_planet_flag = can_organic_assemble_flag
 
 			# fire event for elysium origin empires
 			planet_event = { id = giga_elysium_origin.100 }
@@ -144,7 +142,7 @@ orbital_elysium_0 = {
 				set_carrier_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 				set_planet_flag = giga_elysium
 
-				add_deposit = d_giga_elysium_buildings
+				add_deposit = d_giga_elysium_mechanics
 
 				giga_get_species_for_colony = {
 					TARGET = this
@@ -268,7 +266,7 @@ orbital_elysium_origin_platform_1 = {
 				set_carrier_flag = colony_event			# Vanilla uses to prevent unwanted events on planets
 				set_planet_flag = giga_elysium
 
-				add_deposit = d_giga_elysium_buildings
+				add_deposit = d_giga_elysium_mechanics
 
 				giga_get_species_for_colony = {
 					TARGET = this
