@@ -3378,7 +3378,6 @@ country_event = {
 				set_update_modifiers_batch = begin
 				every_owned_planet = {
 					limit = {
-						is_colony = yes
 						NOT = { has_carrier_flag = gigaflusion }
 						NOT = { has_planet_flag = katzen_colony_rebelled_agri_crisis }
 						NOT = {
@@ -3389,7 +3388,7 @@ country_event = {
 					random_list = {
 						5 = {
 							set_planet_flag = katzen_colony_rebelled_agri_crisis
-							planet_event = { id = giga_flusionoperations.507 days = 5 random = 20 }
+							planet = { planet_event = { id = giga_flusionoperations.507 days = 5 random = 20 } }
 						}
 						95 = {}
 					}
@@ -3461,7 +3460,7 @@ country_event = {
 		event_target:giga_katzen_agri_crisis_country = {
 			add_modifier = {
 				modifier = katzen_rebel_got_support
-				days = 1080
+				years = 5
 				multiplier = 1
 			}
 		}
@@ -3495,7 +3494,7 @@ country_event = {
 		event_target:giga_katzen_agri_crisis_country = {
 			add_modifier = {
 				modifier = katzen_rebel_got_support
-				days = 1080
+				years = 5
 				multiplier = 3
 			}
 		}
@@ -3529,7 +3528,7 @@ country_event = {
 		event_target:giga_katzen_agri_crisis_country = {
 			add_modifier = {
 				modifier = katzen_rebel_got_support
-				days = 1080
+				years = 5
 				multiplier = 6
 			}
 		}
