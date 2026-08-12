@@ -6505,85 +6505,85 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 	is_triggered_only = yes
 
 	trigger = {
-		event_target:flusion_primitives_country = {
-			OR = {
-				NOT = { has_country_flag = kaiser_moon_destroyed }
-				has_global_flag = katzen_reformation_complete
-			}
-		}
-		OR = {
-			AND = {
-				is_at_war = yes #only wardec weak and alone countries when already bogged in wars elsewhere
-				any_country = {
-					kaiser_can_wardec = yes
-					OR = {
-						AND = {
-							NOT = { exists = federation }
-							giga_is_standard_country_type = yes
-							OR = {
-								relative_power = {
-									who = event_target:flusion_primitives_country
-									category = fleet
-									value <= inferior
-								}
-							}
-						}
-					}
-				}
-			}
-			AND = {
-				is_at_war = no
-				any_country = {
-					kaiser_can_wardec = yes
-					OR = {
-						AND = {
-							NOT = { exists = federation }
-							giga_is_standard_country_type = yes
-							OR = {
-								relative_power = {
-									who = event_target:flusion_primitives_country
-									category = fleet
-									value <= equivalent
-								}
-							}
-						}
-						AND = {
-							giga_is_standard_country_type = yes
-							OR = {
-								relative_power = {
-									who = event_target:flusion_primitives_country
-									category = fleet
-									value <= inferior
-								}
-							}
-							exists = federation
-							NOT = {
-								federation = {
-									any_member = {
-										OR = {
-											relative_power = {
-												who = event_target:flusion_primitives_country
-												category = fleet
-												value >= equivalent
-											}
-										}
-									}
-								}
-							}
-						}
-						AND = {
-							is_fallen_empire = yes
-							mid_game_years_passed > 50
-							relative_power = {
-								who = event_target:flusion_primitives_country
-								category = fleet
-								value = pathetic
-							}
-						}
-					}
-				}
-			}
-		}
+		# event_target:flusion_primitives_country = {
+		# 	OR = {
+		# 		NOT = { has_country_flag = kaiser_moon_destroyed }
+		# 		has_global_flag = katzen_reformation_complete
+		# 	}
+		# }
+		# OR = {
+		# 	AND = {
+		# 		is_at_war = yes #only wardec weak and alone countries when already bogged in wars elsewhere
+		# 		any_country = {
+		# 			kaiser_can_wardec = yes
+		# 			OR = {
+		# 				AND = {
+		# 					NOT = { exists = federation }
+		# 					giga_is_standard_country_type = yes
+		# 					OR = {
+		# 						relative_power = {
+		# 							who = event_target:flusion_primitives_country
+		# 							category = fleet
+		# 							value <= inferior
+		# 						}
+		# 					}
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# 	AND = {
+		# 		is_at_war = no
+		# 		any_country = {
+		# 			kaiser_can_wardec = yes
+		# 			OR = {
+		# 				AND = {
+		# 					NOT = { exists = federation }
+		# 					giga_is_standard_country_type = yes
+		# 					OR = {
+		# 						relative_power = {
+		# 							who = event_target:flusion_primitives_country
+		# 							category = fleet
+		# 							value <= equivalent
+		# 						}
+		# 					}
+		# 				}
+		# 				AND = {
+		# 					giga_is_standard_country_type = yes
+		# 					OR = {
+		# 						relative_power = {
+		# 							who = event_target:flusion_primitives_country
+		# 							category = fleet
+		# 							value <= inferior
+		# 						}
+		# 					}
+		# 					exists = federation
+		# 					NOT = {
+		# 						federation = {
+		# 							any_member = {
+		# 								OR = {
+		# 									relative_power = {
+		# 										who = event_target:flusion_primitives_country
+		# 										category = fleet
+		# 										value >= equivalent
+		# 									}
+		# 								}
+		# 							}
+		# 						}
+		# 					}
+		# 				}
+		# 				AND = {
+		# 					is_fallen_empire = yes
+		# 					mid_game_years_passed > 50
+		# 					relative_power = {
+		# 						who = event_target:flusion_primitives_country
+		# 						category = fleet
+		# 						value = pathetic
+		# 					}
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# }
 	}
 
 	immediate = {
@@ -8997,6 +8997,14 @@ country_event = {
 				target = root
 				attacker_war_goal = "wg_katzen_conquest"
 				name = "Katzenkrieg"
+			}
+			random_country = {
+				limit = { is_fallen_empire = yes }
+				declare_war = {
+					target = event_target:flusion_primitives_country
+					attacker_war_goal = "wg_katzen_conquest"
+					name = "Katzenkrieg"
+				}
 			}
 			every_owned_fleet = {
 				limit = {
