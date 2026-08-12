@@ -1542,38 +1542,7 @@ katzen_reformation_collapse = {
 			katzen_free_protectorate = yes
 		}
 
-		#withdraw a portion of fleets (so the splinters don't take them) to defend Flusion and prevent splinter economic collapse from upkeep
-		every_owned_fleet = {
-			limit = {
-				is_mobile = yes
-				NOR = {
-					any_owned_ship = { is_ship_size = katzen_warforge_platform }
-					solar_system = { #no need if they're already in the FPA territory
-						OR = {
-							has_star_flag = flusion_system
-							any_neighbor_system = {
-								has_star_flag = flusion_system
-							}
-						}
-					}
-				}
-			}
-			random = {
-				chance = 10
-				set_location = event_target:gigaflusion
-			}
-			if = { #take the OG Kaiser Moon back
-				limit = {
-					any_owned_ship = {
-						is_ship_size = giga_war_moon
-					}
-				}
-				set_location = event_target:gigaflusion
-			}
-		}
-
 		count_katzen_planets_and_systems_sans_flusiosector = yes
-
 
 		if = { #Civil War between ideological splinters (modified Reformation version) if there are enough systems
 			limit = {
@@ -1876,6 +1845,7 @@ katzen_reformation_collapse = {
 				katzen_splinter_system_division = yes
 			}
 
+			#delete static defences outside the Flusiosector
 			every_owned_ship = {
 				limit = {
 					is_ship_size = katzen_warforge_platform
@@ -1888,9 +1858,155 @@ katzen_reformation_collapse = {
 						}
 					}
 				}
+				delete_ship = this
 			}
 
-			#jumpstart the shift from the Kaiser's fake economy to a real one
+			#withdraw the Kaiser Moon fleet to Flusion
+			if = {
+				limit = {
+					any_owned_fleet = {
+						any_owned_ship = {
+							is_ship_size = giga_war_moon
+						}
+					}
+				}
+				random_owned_fleet = {
+					limit = {
+						any_owned_ship = {
+							is_ship_size = giga_war_moon
+						}
+					}
+					set_location = event_target:gigaflusion
+				}
+			}
+
+			#then split all OTHER fleets ~20% each between the ProvGov and 4 splinters
+			while = {
+				limit = {
+					check_variable_arithmetic = {
+						which = value:katzen_splinter_fleets_to_divide #discounts the Moon fleet and fleets already assigned to FPA via this process
+						value > 0
+					}
+				}
+
+				random_owned_fleet = {
+					limit = {
+						NOR = {
+							any_owned_ship = {
+								is_ship_size = giga_war_moon
+							}
+							has_fleet_flag = fleet_assigned_to_katzen_provisional
+						}
+					}
+
+					#give a fleet to any of five options which has not been given a fleet in this round. If all have been given a fleet, reset for the next round of fleet-division
+					random_list = {
+						1 = {
+							modifier = {
+								factor = 0
+								owner = { has_country_flag = given_katzen_socialist_fleet }
+							}
+							owner = { set_country_flag = given_katzen_socialist_fleet }
+							set_owner = event_target:katzen_civil_war_socialist
+							event_target:katzen_civil_war_socialist = {
+								random_system_within_border = { #make the war fleets starting positions a little chaotic
+									save_event_target_as = katzen_splinter_fleet_system
+								}
+							}
+							set_location = { target = event_target:katzen_splinter_fleet_system distance = 100 angle = random }
+							set_location = event_target:katzen_splinter_fleet_system
+						}
+					}
+					random_list = {
+						1 = {
+							modifier = {
+								factor = 0
+								owner = { has_country_flag = given_katzen_junta_fleet }
+							}
+							owner = { set_country_flag = given_katzen_junta_fleet }
+							set_owner = event_target:katzen_civil_war_junta
+							event_target:katzen_civil_war_junta = {
+								random_system_within_border = { #make the war fleets starting positions a little chaotic
+									save_event_target_as = katzen_splinter_fleet_system
+								}
+							}
+							set_location = { target = event_target:katzen_splinter_fleet_system distance = 100 angle = random }
+							set_location = event_target:katzen_splinter_fleet_system
+						}
+					}
+					random_list = {
+						1 = {
+							modifier = {
+								factor = 0
+								owner = { has_country_flag = given_katzen_republic_fleet }
+							}
+							owner = { set_country_flag = given_katzen_republic_fleet }
+							set_owner = event_target:katzen_civil_war_republic
+							event_target:katzen_civil_war_republic = {
+								random_system_within_border = { #make the war fleets starting positions a little chaotic
+									save_event_target_as = katzen_splinter_fleet_system
+								}
+							}
+							set_location = { target = event_target:katzen_splinter_fleet_system distance = 100 angle = random }
+							set_location = event_target:katzen_splinter_fleet_system
+						}
+					}
+					random_list = {
+						1 = {
+							modifier = {
+								factor = 0
+								owner = { has_country_flag = given_katzen_realm_fleet }
+							}
+							owner = { set_country_flag = given_katzen_realm_fleet }
+							set_owner = event_target:katzen_civil_war_realm
+							event_target:katzen_civil_war_realm = {
+								random_system_within_border = { #make the war fleets starting positions a little chaotic
+									save_event_target_as = katzen_splinter_fleet_system
+								}
+							}
+							set_location = { target = event_target:katzen_splinter_fleet_system distance = 100 angle = random }
+							set_location = event_target:katzen_splinter_fleet_system
+						}
+					}
+					random_list = {
+						1 = {
+							modifier = {
+								factor = 0
+								owner = { has_country_flag = given_katzen_provisional_fleet }
+							}
+							owner = { set_country_flag = given_katzen_provisional_fleet }
+							#do nothing to ownership - the FPA already owns it
+							set_fleet_flag = fleet_assigned_to_katzen_provisional
+							set_location = event_target:gigaflusion
+						}
+					}
+					random_list = {
+						1 = {
+							modifier = {
+								factor = 0
+								owner = {
+									NAND = {
+										has_country_flag = given_katzen_socialist_fleet
+										has_country_flag = given_katzen_junta_fleet
+										has_country_flag = given_katzen_republic_fleet
+										has_country_flag = given_katzen_realm_fleet
+										has_country_flag = given_katzen_provisional_fleet
+									}
+								}
+							}
+							owner = {
+								remove_country_flag = given_katzen_socialist_fleet
+								remove_country_flag = given_katzen_junta_fleet
+								remove_country_flag = given_katzen_republic_fleet
+								remove_country_flag = given_katzen_realm_fleet
+								remove_country_flag = given_katzen_provisional_fleet
+							}
+						}
+					}
+				}
+			}
+
+			#jumpstart the shift from the Kaiser's fake economy to a real one that the AI can use
 			every_country = {
 				limit = {
 					has_country_flag = katzen_civil_war_faction
