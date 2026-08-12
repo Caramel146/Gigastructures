@@ -3148,25 +3148,21 @@ country_event = { #hello
 			}
 			random_system_within_border = {
 				limit = {
-					NOT = { has_star_flag = paluush_system }
-					is_capital_system = no
-					any_neighbor_system = {
-						exists = owner
-						owner = { is_country_type = katzenartig_imperium }
+					NOR = {
+						is_capital_system = yes
+						has_star_flag = paluush_system
 					}
+					any_neighbor_system = { owner? = { is_country_type = katzenartig_imperium } }
 				}
 				set_star_flag = kaiser_sell_1
 				save_global_event_target_as = kaiser_sell_1
 			}
 			random_system_within_border = {
 				limit = {
-					any_neighbor_system = {
-						exists = owner
-						owner = { is_country_type = katzenartig_imperium }
-					}
+					any_neighbor_system = { owner? = { is_country_type = katzenartig_imperium } }
 					NOR = {
 						has_star_flag = kaiser_sell_1
-						is_capital_system = no
+						is_capital_system = yes
 						has_star_flag = paluush_system
 					}
 				}
@@ -3179,7 +3175,7 @@ country_event = { #hello
 					NOR = {
 						has_star_flag = kaiser_sell_1
 						has_star_flag = kaiser_sell_2
-						is_capital_system = no
+						is_capital_system = yes
 						has_star_flag = paluush_system
 					}
 				}
@@ -3188,12 +3184,12 @@ country_event = { #hello
 			}
 			random_system_within_border = {
 				limit = {
-					any_neighbor_system = { owner = { is_country_type = katzenartig_imperium } }
+					any_neighbor_system = { owner? = { is_country_type = katzenartig_imperium } }
 					NOR = {
 						has_star_flag = kaiser_sell_1
 						has_star_flag = kaiser_sell_2
 						has_star_flag = kaiser_sell_3
-						is_capital_system = no
+						is_capital_system = yes
 						has_star_flag = paluush_system
 					}
 				}
@@ -9364,7 +9360,7 @@ country_event = {
 	}
 
 	immediate = {
-		country_event = { id = giga_katzen.080 days = 240 random = 120 } #run event again in up to a year (Flusion needs to be develop faster than normal colonies, which are 330 days with random of 60)
+		country_event = { id = giga_katzen.080 days = 240 random = 120 } #run event again in up to a year (Flusion develops faster than normal colonies, which are 330 days with random of 60)
 		
 		# event_target:gigaflusion = {
 		# 	change_variable = {
