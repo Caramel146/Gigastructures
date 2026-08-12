@@ -2999,7 +2999,6 @@ country_event = { #hello
 				NAND = {
 					is_galactic_community_member = yes
 					has_galactic_emperor = yes
-					is_galactic_emperor = no
 				}
 			}
 			custom_tooltip = {
@@ -6479,6 +6478,9 @@ country_event = { #galactic
 	is_triggered_only = yes
 
 	option = { #aw
+		trigger = {
+			katzen_vassal = no
+		}
 		name = "giga_katzen.04002.a"
 	}
 
@@ -6504,88 +6506,6 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 
 	is_triggered_only = yes
 
-	trigger = {
-		event_target:flusion_primitives_country = {
-			OR = {
-				NOT = { has_country_flag = kaiser_moon_destroyed }
-				has_global_flag = katzen_reformation_complete
-			}
-		}
-		OR = {
-			AND = {
-				is_at_war = yes #only wardec weak and alone countries when already bogged in wars elsewhere
-				any_country = {
-					kaiser_can_wardec = yes
-					OR = {
-						AND = {
-							NOT = { exists = federation }
-							giga_is_standard_country_type = yes
-							OR = {
-								relative_power = {
-									who = event_target:flusion_primitives_country
-									category = fleet
-									value <= inferior
-								}
-							}
-						}
-					}
-				}
-			}
-			AND = {
-				is_at_war = no
-				any_country = {
-					kaiser_can_wardec = yes
-					OR = {
-						AND = {
-							NOT = { exists = federation }
-							giga_is_standard_country_type = yes
-							OR = {
-								relative_power = {
-									who = event_target:flusion_primitives_country
-									category = fleet
-									value <= equivalent
-								}
-							}
-						}
-						AND = {
-							giga_is_standard_country_type = yes
-							OR = {
-								relative_power = {
-									who = event_target:flusion_primitives_country
-									category = fleet
-									value <= inferior
-								}
-							}
-							exists = federation
-							NOT = {
-								federation = {
-									any_member = {
-										OR = {
-											relative_power = {
-												who = event_target:flusion_primitives_country
-												category = fleet
-												value >= equivalent
-											}
-										}
-									}
-								}
-							}
-						}
-						AND = {
-							is_fallen_empire = yes
-							mid_game_years_passed > 50
-							relative_power = {
-								who = event_target:flusion_primitives_country
-								category = fleet
-								value = pathetic
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
 	immediate = {
 		switch = { #not too sharp a delay variation across difficulty so Reformation doesn't kick in too fast on high diffs
 			trigger = has_global_flag
@@ -6608,6 +6528,87 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 		if = {
 			limit = {
 				katzen_reformation_active = no #don't start wars during the inwards-focus era
+				event_target:flusion_primitives_country = {
+					OR = {
+						NOT = { has_country_flag = kaiser_moon_destroyed }
+						has_global_flag = katzen_reformation_complete
+					}
+				}
+
+				#make sure he can handle another war
+				OR = {
+					AND = {
+						is_at_war = yes #only wardec weak and alone countries when already bogged in wars elsewhere
+						any_country = {
+							kaiser_can_wardec = yes
+							OR = {
+								AND = {
+									NOT = { exists = federation }
+									giga_is_standard_country_type = yes
+									OR = {
+										relative_power = {
+											who = event_target:flusion_primitives_country
+											category = fleet
+											value <= inferior
+										}
+									}
+								}
+							}
+						}
+					}
+					AND = {
+						is_at_war = no
+						any_country = {
+							kaiser_can_wardec = yes
+							OR = {
+								AND = {
+									NOT = { exists = federation }
+									giga_is_standard_country_type = yes
+									OR = {
+										relative_power = {
+											who = event_target:flusion_primitives_country
+											category = fleet
+											value <= equivalent
+										}
+									}
+								}
+								AND = {
+									giga_is_standard_country_type = yes
+									OR = {
+										relative_power = {
+											who = event_target:flusion_primitives_country
+											category = fleet
+											value <= inferior
+										}
+									}
+									exists = federation
+									NOT = {
+										federation = {
+											any_member = {
+												OR = {
+													relative_power = {
+														who = event_target:flusion_primitives_country
+														category = fleet
+														value >= equivalent
+													}
+												}
+											}
+										}
+									}
+								}
+								AND = {
+									is_fallen_empire = yes
+									mid_game_years_passed > 50
+									relative_power = {
+										who = event_target:flusion_primitives_country
+										category = fleet
+										value = pathetic
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 			random_country = {
 				limit = {
@@ -9362,7 +9363,7 @@ country_event = {
 	}
 
 	immediate = {
-		country_event = { id = giga_katzen.080 days = 300 random = 60 } #run event again in approximately a year (Flusion needs to be able to develop a little faster than normal colonies)
+		country_event = { id = giga_katzen.080 days = 240 random = 120 } #run event again in up to a year (Flusion needs to be develop faster than normal colonies, which are 330 days with random of 60)
 		
 		# event_target:gigaflusion = {
 		# 	change_variable = {
@@ -16539,13 +16540,13 @@ country_event = { #Roll for Instability
 		#if he consolidates at the standard endgame date, we can assume he has 80 kaiser_size, and 20 consolidation_trigger is from time passed 2320-2400
 		#80 kaiser_size could look something like 30% of galaxy owned (30 size) with 50 colonies (25 size) and 5000 pops per colony (25 size)
 		#let's assume as a baseline he has -10 score from ~two-thirds partisan activity, so 70 kaiser_score here is a decent performance
-		#let him roll for instability below score 65, roll for collapse below score 60 (yes, some leeway), guarantee instability below 55, and guarantee collapse below score 40
+		#let him roll for instability below score 70, roll for collapse below score 60 (leeway lets vassals do the sabotage-from-within options), guarantee instability below 60, and guarantee collapse below score 40
 		#40 score means we assume he had ~50 consolidation_trigger from time passed - AKA didn't trigger consolidation till sixty years past endgame
 		if = {
 			limit = {
 				check_variable = {
 					which = kaiser_score
-					value <= 65
+					value <= 70
 				}
 			}
 			random_list = {
@@ -16567,7 +16568,7 @@ country_event = { #Roll for Instability
 						factor = 0
 						check_variable = {
 							which = kaiser_score
-							value <= 55
+							value <= 60
 						}
 					}
 				}
