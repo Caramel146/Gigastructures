@@ -1313,16 +1313,33 @@ country_event = {
 			#country_event = { id = giga_katzen.04006 days = 90 } #THERE IS ONLY WAR
 		}
 		country_event = { id = giga_katzen.040 days = 330 random = 60 } #Katzen expansion, runs every year or so
-		country_event = { id = giga_katzen.041 days = 540 random = 60 } #Kaiser demands stuff, runs every year or so
+		country_event = { id = giga_katzen.041 days = 510 random = 60 } #Kaiser demands stuff, runs every 1.5 years or so
 		country_event = { id = giga_katzen.070 days = 180 random = 30 } #Warforges spawn fleets
 		country_event = { id = giga_katzen.030 days = 30 } #Manage warforges and eco
 		# country_event = { id = giga_katzen.036 days = 30 } # Leader management
-		country_event = { id = giga_katzen.080 days = 300 random = 60 } #Flusion expansion
+		country_event = { id = giga_katzen.080 days = 240 random = 120 } #Flusion expansion
 		# country_event = { id = giga_katzen.082 days = 7200 } #Second flusion expansion
 		# country_event = { id = giga_katzen.083 days = 10800 } #Third flusion expansion
 		country_event = { id = giga_katzen.9999 days = 5 } #Crisis counter
 		country_event = { id = giga_katzenai.010 days = 60 } #Give the AI a little kick to ensure they actually move troops
-		country_event = { id = giga_katzen.04003 days = 2880 random = 1440 } #Declare war on random nations
+		switch = { #Declare war on random nations
+			trigger = has_global_flag
+			katzenartig_easy = {
+				country_event = { id = giga_katzen.04003 days = 3060 random = 1440 } #+180 days
+			}
+			default = {
+				country_event = { id = giga_katzen.04003 days = 2880 random = 1440  } #run event again in 8-12 years
+			}
+			katzenartig_deathwish = {
+				country_event = { id = giga_katzen.04003 days = 2700 random = 1440 } #-180 days
+			}
+			katzenartig_stellarite = {
+				country_event = { id = giga_katzen.04003 days = 2520 random = 1440 } #-360 days
+			}
+			katzenartig_improbable = {
+				country_event = { id = giga_katzen.04003 days = 2340 random = 1440 } #-540 days
+			}
+		}
 		country_event = { id = giga_katehof.001 days = 1800 } #EHOF
 		country_event = { id = giga_katehof.010 days = 2700 } #Wormholes
 		if = {
@@ -6511,7 +6528,7 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 		switch = { #not too sharp a delay variation across difficulty so Reformation doesn't kick in too fast on high diffs
 			trigger = has_global_flag
 			katzenartig_easy = {
-				country_event = { id = giga_katzen.04003 days = 3240 random = 1440 } #+180 days
+				country_event = { id = giga_katzen.04003 days = 3060 random = 1440 } #+180 days
 			}
 			default = {
 				country_event = { id = giga_katzen.04003 days = 2880 random = 1440  } #run event again in 8-12 years
@@ -7757,6 +7774,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 			}
 		}
 
+		#upgrade terraforming megas
 		if = {
 			limit = {
 				check_variable = {
@@ -7828,6 +7846,8 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 				}
 			}
 		}
+
+		#colonise worlds
 		set_variable = {
 			which = katzen_colonization_targets
 			value = 0
@@ -7934,30 +7954,35 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 				}
 			}
 		}
-		random_planet_within_border = { #locate brown dwarf
-			limit = {
-				OR = {
-					giga_brown_dwarf = yes
-					AND = {
-						has_modifier = helioforming_candidate
-						giga_is_gas_giant = yes
+
+		#substellar compress an eligible body
+		random = {
+			chance = 25
+			random_planet_within_border = { #locate brown dwarf
+				limit = {
+					OR = {
+						giga_brown_dwarf = yes
+						AND = {
+							has_modifier = helioforming_candidate
+							giga_is_gas_giant = yes
+						}
+					}
+					NOR = {
+						has_carrier_flag = has_megastructure
+						has_carrier_flag = megastructure
+						solar_system = { has_star_flag = flusion_system }
+						AND = { #don't ignite Jupitwo before the Corronians are out of the way
+							solar_system = { has_star_flag = jupitwo_system }
+							NOT = { has_global_flag = corrona_moon_destroyed }
+						}
 					}
 				}
-				NOR = {
-					has_carrier_flag = has_megastructure
-					has_carrier_flag = megastructure
-					solar_system = { has_star_flag = flusion_system }
-					AND = { #don't ignite Jupitwo before the Corronians are out of the way
-						solar_system = { has_star_flag = jupitwo_system }
-						NOT = { has_global_flag = corrona_moon_destroyed }
+				solar_system = {
+					spawn_megastructure = {
+						type = substellar_compressor_0
+						planet = prev
+						owner = event_target:flusion_primitives_country
 					}
-				}
-			}
-			solar_system = {
-				spawn_megastructure = {
-					type = substellar_compressor_0
-					planet = prev
-					owner = event_target:flusion_primitives_country
 				}
 			}
 		}
@@ -8026,7 +8051,103 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 				}
 			}
 		}
-		country_event = { id = giga_katzen.040 days = 330 random = 60 } # Do it again
+
+		#chance of player subjects rolling from the vassalhood event pool
+		if = {
+			limit = {
+				NOT = {
+					has_global_flag = katzen_reformation_begun #event pool is intended to give player vassals opportunities to push for the Reformation Collapse - Succession scenario
+				}
+			}
+			every_subject = {
+				limit = {
+					is_ai = no
+					NOR = {
+						has_country_flag = katzen_recently_vassalhood_event
+						has_country_flag = katzen_finished_vassalhood_events
+					}
+				}
+
+				random = {
+					chance = 20
+					set_timed_country_flag = { flag = katzen_recently_vassalhood_event years = 5 }
+					random_list = {
+						10 = {
+							country_event = { id = giga_katzen.7040 random = 360 }
+							set_country_flag = katzen_had_event_7040
+							modifier = { factor = 0 has_country_flag = katzen_had_event_7040 }
+						}
+						10 = {
+							country_event = { id = giga_katzen.7041 random = 360 }
+							set_country_flag = katzen_had_event_7041
+							modifier = { factor = 0 has_country_flag = katzen_had_event_7041 }
+						}
+						10 = {
+							country_event = { id = giga_katzen.7042 random = 360 }
+							set_country_flag = katzen_had_event_7042
+							modifier = { factor = 0 has_country_flag = katzen_had_event_7042 }
+						}
+						10 = {
+							country_event = { id = giga_katzen.7043 random = 360 }
+							set_country_flag = katzen_had_event_7043
+							modifier = { factor = 0 has_country_flag = katzen_had_event_7043 }
+						}
+						10 = {
+							country_event = { id = giga_katzen.7044 random = 360 }
+							set_country_flag = katzen_had_event_7044
+							modifier = { factor = 0 has_country_flag = katzen_had_event_7044 }
+						}
+						10 = {
+							country_event = { id = giga_katzen.7045 random = 360 }
+							set_country_flag = katzen_had_event_7045
+							modifier = { factor = 0 has_country_flag = katzen_had_event_7045 }
+						}
+						10 = {
+							country_event = { id = giga_katzen.7046 random = 360 }
+							set_country_flag = katzen_had_event_7046
+							modifier = { factor = 0 has_country_flag = katzen_had_event_7046 }
+						}
+						10 = {
+							country_event = { id = giga_katzen.7047 random = 360 }
+							set_country_flag = katzen_had_event_7047
+							modifier = { factor = 0 has_country_flag = katzen_had_event_7047 }
+						}
+						10 = {
+							country_event = { id = giga_katzen.7048 random = 360 }
+							set_country_flag = katzen_had_event_7048
+							modifier = { factor = 0 has_country_flag = katzen_had_event_7048 }
+						}
+						10 = {
+							country_event = { id = giga_katzen.7049 random = 360 }
+							set_country_flag = katzen_had_event_7049
+							modifier = { factor = 0 has_country_flag = katzen_had_event_7049 }
+						}
+					}
+
+					#block the pool if all have been rolled
+					if = {
+						limit = {
+							AND = {
+								has_country_flag = katzen_had_event_7040
+								has_country_flag = katzen_had_event_7041
+								has_country_flag = katzen_had_event_7042
+								has_country_flag = katzen_had_event_7043
+								has_country_flag = katzen_had_event_7044
+								has_country_flag = katzen_had_event_7045
+								has_country_flag = katzen_had_event_7046
+								has_country_flag = katzen_had_event_7047
+								has_country_flag = katzen_had_event_7048
+								has_country_flag = katzen_had_event_7049
+							}
+						}
+						set_country_flag = katzen_finished_vassalhood_events
+					}
+				}
+			}
+		}
+
+		#rerun this event
+		country_event = { id = giga_katzen.040 days = 330 random = 60 }
 	}
 }
 
