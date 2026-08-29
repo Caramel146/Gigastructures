@@ -11841,6 +11841,12 @@ country_event = {
 			country_event = { id = giga_katrebels.1003 days = 90 } #tropiana
 		}
 		every_galaxy_planet = {
+			limit = {
+				is_colony = yes
+				any_owned_pop_group = {
+					is_same_species = event_target:arcticezics
+				}
+			}
 			every_owned_pop_group = {
 				limit = {
 					is_same_species = event_target:arcticezics
@@ -11865,7 +11871,6 @@ country_event = {
 			limit = { any_country = { has_country_flag = ezic_rebels_country } }
 			random_country = {
 				limit = { has_country_flag = ezic_rebels_country }
-				save_global_event_target_as = ezicania_rebellion_country
 				every_planet_within_border = {
 					limit = {
 						is_colony = yes
@@ -11879,16 +11884,33 @@ country_event = {
 					create_katzen_splinter_state = yes
 					solar_system = { starbase = { set_owner = PREVPREV.owner } }
 				}
+				# event_target:ezic_rebels_country = { #TODO compare above block with this bit I found previously in giga_katrebels.1001
+				# 	every_system_within_border = {
+				# 		limit = {
+				# 			any_system_planet = { is_colony = yes owner = { is_country = event_target:ezic_rebels_country } }
+				# 		}
+				# 		random_system_planet = {
+				# 			limit = { is_colony = yes owner = { is_country = event_target:ezic_rebels_country } }
+				# 			create_katzen_splinter_state = yes
+				# 		}
+				# 		starbase = { set_owner = PREVPREV.owner }
+				# 	}
+				# 	every_owned_planet = {
+				# 		destroy_colony = yes
+				# 	}
+				# }
 			}
 		}
 		event_target:louf = {
 			exile_leader_as = loufmoving
 		}
-		every_country = {
+		every_playable_country = {
+			limit = {
+				is_ai = no
+			}
 			country_event = { id = giga_katrebels.1001 }
 			if = { #ezics within player empires ask to leave
 				limit = {
-					is_ai = no
 					any_owned_pop_group = {
 						is_same_species = event_target:arcticezics
 					}
@@ -11923,23 +11945,6 @@ country_event = { #ezics leave
 	option = {
 		name = "giga_katrebels.1001.a"
 		custom_tooltip = "giga_katrebels.1001.a.tooltip"
-		hidden_effect = {
-			event_target:ezic_rebels_country = {
-				every_system_within_border = {
-					limit = {
-						any_system_planet = { is_colony = yes owner = { is_country = event_target:ezic_rebels_country } }
-					}
-					random_system_planet = {
-						limit = { is_colony = yes owner = { is_country = event_target:ezic_rebels_country } }
-						create_katzen_splinter_state = yes
-						solar_system = { starbase = { set_owner = PREVPREV.owner } }
-					}
-				}
-				every_owned_planet = {
-					destroy_colony = yes
-				}
-			}
-		}
 	}
 }
 

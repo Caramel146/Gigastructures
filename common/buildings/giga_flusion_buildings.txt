@@ -150,7 +150,10 @@ building_giga_katzen_capital = {
 			NOR = {
 				katzen_country_type = yes
 				has_country_flag = hke_federated
-				has_country_flag = katzen_civil_war_faction
+				AND = {
+					has_country_flag = katzen_civil_war_faction
+					is_ai = yes #a player civil war faction getting these is more trouble than anything
+				}
 			}
 		}
 	}

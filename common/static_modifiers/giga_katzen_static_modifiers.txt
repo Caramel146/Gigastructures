@@ -311,6 +311,11 @@ katzen_subversion_bureaucratic = {
 	country_cost_mult = 0.2
 }
 
+katzen_subversion_bureaucratic_imperium = {
+	icon = "gfx/interface/icons/modifiers/mod_council_in_tatters.dds"
+	planet_jobs_produces_mult = -0.075 #update application tooltip if changing this
+}
+
 katzen_subversion_heavyhanded = {
 	icon = "gfx/interface/icons/modifiers/mod_negative_pop_happiness.dds"
 	pop_happiness = -0.15
@@ -319,6 +324,11 @@ katzen_subversion_heavyhanded = {
 katzen_subversion_heavyhanded_gestalt = {
 	icon = "gfx/interface/icons/modifiers/mod_negative_pop_happiness.dds"
 	pop_bonus_workforce_mult = -0.2
+}
+
+katzen_subversion_heavyhanded_imperium = {
+	icon = "gfx/interface/icons/modifiers/mod_negative_pop_happiness.dds"
+	pop_happiness = -0.05 #update application tooltip if changing this
 }
 
 katzen_subversion_unrest = {
@@ -333,6 +343,16 @@ katzen_subversion_unrest_gestalt = {
 	planet_stability_add = -5
 	planet_crime_add = 50
 	planet_crime_mult = 0.25
+}
+
+katzen_subversion_unrest_imperium = {
+	icon = "gfx/interface/icons/modifiers/mod_planet_crime_add.dds"
+	planet_stability_add = -5
+}
+
+katzen_subversion_unrest_gestalt_imperium = {
+	icon = "gfx/interface/icons/modifiers/mod_planet_crime_add.dds"
+	planet_stability_add = -5
 }
 
 katzen_planetcraft_intervention = {
