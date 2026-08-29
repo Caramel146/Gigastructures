@@ -105,7 +105,7 @@ kaiser_subversion_bureaucratic_count = {
         }
         mode = subtract
     }
-    mult = 4
+    mult = 3
 }
 
 kaiser_subversion_heavyhanded_count = {
@@ -120,7 +120,7 @@ kaiser_subversion_heavyhanded_count = {
         }
         mode = subtract
     }
-    mult = 4
+    mult = 3
 }
 
 kaiser_subversion_unrest_count = {
@@ -135,7 +135,7 @@ kaiser_subversion_unrest_count = {
         }
         mode = subtract
     }
-    mult = 4
+    mult = 3
 }
 
 katzen_splinter_fleets_to_divide = {
@@ -144,6 +144,7 @@ katzen_splinter_fleets_to_divide = {
         trigger = count_owned_fleet
         parameters = {
             limit = {
+                is_mobile = yes
                 NOR = {
                     any_owned_ship = {
                         is_ship_size = giga_war_moon

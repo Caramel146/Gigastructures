@@ -788,7 +788,7 @@ country_event = {
 					}
 					force_add_civic = civic_reunited_imperium_socialist
 					remove_modifier = katzen_civil_war_navy_boost
-					add_modifier = { #give it back but only temporarily to ease the trasition in case the inherited FPA fleets are that chonky
+					add_modifier = { #give it back but only temporarily to ease the transition in case the inherited FPA fleets are that chonky
 						modifier = katzen_civil_war_navy_boost
 						days = 1800
 					}
@@ -868,7 +868,7 @@ country_event = {
 					}
 					force_add_civic = civic_reunited_imperium_republic
 					remove_modifier = katzen_civil_war_navy_boost
-					add_modifier = { #give it back but only temporarily to ease the trasition in case the inherited FPA fleets are that chonky
+					add_modifier = { #give it back but only temporarily to ease the transition in case the inherited FPA fleets are that chonky
 						modifier = katzen_civil_war_navy_boost
 						days = 1800
 					}
@@ -947,7 +947,7 @@ country_event = {
 					}
 					force_add_civic = civic_reunited_imperium_junta
 					remove_modifier = katzen_civil_war_navy_boost
-					add_modifier = { #give it back but only temporarily to ease the trasition in case the inherited FPA fleets are that chonky
+					add_modifier = { #give it back but only temporarily to ease the transition in case the inherited FPA fleets are that chonky
 						modifier = katzen_civil_war_navy_boost
 						days = 1800
 					}
@@ -1026,7 +1026,7 @@ country_event = {
 					}
 					force_add_civic = civic_reunited_imperium_realm
 					remove_modifier = katzen_civil_war_navy_boost
-					add_modifier = { #give it back but only temporarily to ease the trasition in case the inherited FPA fleets are that chonky
+					add_modifier = { #give it back but only temporarily to ease the transition in case the inherited FPA fleets are that chonky
 						modifier = katzen_civil_war_navy_boost
 						days = 1800
 					}

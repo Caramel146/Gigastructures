@@ -974,7 +974,7 @@ decision_take_solakia_back = {
 		custom_tooltip = decision_take_solakia_back_effect
 		hidden_effect = {
 			root.owner = { defect_sonya = yes }
-			set_planet_flag = seizing_solakia
+			set_carrier_flag = seizing_solakia
 			if = {
 				limit = {
 					exists = event_target:solakia
@@ -1041,7 +1041,6 @@ decision_take_solakia_back = {
 							target = ROOT.owner
 						}
 						set_hostile = root.owner
-						set_country_flag = solakia_waiting_to_get_flusion
 					}
 				}
 				ROOT.owner = { set_hostile = event_target:solakia }
