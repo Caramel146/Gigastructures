@@ -8,7 +8,7 @@ create_katzen_socialist = {
 	}
 	create_country = {
 		species = event_target:flusion_katzens
-		name = "Sozialistisches Katzen Staat"
+		name = "Sozialistischer Katzenstaat"
 		authority = auth_democratic
 		ethos = {
 			ethic = ethic_militarist
@@ -1541,10 +1541,13 @@ katzen_reformation_collapse = {
 			limit = { is_ai = yes } #players get this in other places
 			katzen_free_protectorate = yes
 		}
+		event_target:global_event_country = {
+			country_event = { id = giga_katrebels.1000 days = 270 random = 180 } #ezics leave
+		}
 
 		count_katzen_planets_and_systems_sans_flusiosector = yes
 
-		if = { #Civil War between ideological splinters (modified Reformation version) if there are enough systems
+		if = { #Civil War between ideological splinters (modified Reformation version) if there is enough space
 			limit = {
 				check_variable = {
 					which = katzen_total_planet_count #excludes planets in Jublio and direct neighbours, as well as Siegfrieds
@@ -1881,16 +1884,18 @@ katzen_reformation_collapse = {
 			}
 
 			#then split all OTHER fleets ~20% each between the ProvGov and 4 splinters
+			#TODO this doesn't split them as intended but it works well enough for me to leave that for another time lol
 			while = {
 				limit = {
 					check_variable_arithmetic = {
-						which = value:katzen_splinter_fleets_to_divide #discounts the Moon fleet and fleets already assigned to FPA via this process
+						which = value:katzen_splinter_fleets_to_divide #discounts immobile fleets, the Moon fleet and fleets already assigned to FPA via this process
 						value > 0
 					}
 				}
 
 				random_owned_fleet = {
 					limit = {
+						is_mobile = yes
 						NOR = {
 							any_owned_ship = {
 								is_ship_size = giga_war_moon
@@ -2112,12 +2117,7 @@ katzen_reformation_collapse = {
 				kill_leader = { show_notification = no } #he's GONE Loris, stop pretending he's on your council
 			}
 
-			#Return all Provisional Gov-owned fleets to Flusion
-			every_owned_fleet = {
-				set_location = event_target:gigaflusion
-			}
-
-			#Kickstart a population ethics shift so that Elwin doesn't embrace xenophilia again (okay this doesn't work but I hope it helps...)
+			#TODO for 4.5 Kickstart a population ethics shift so that Elwin doesn't embrace xenophilia again (okay this doesn't work but I hope it helps...)
 			# every_playable_country = {
 			# 	limit = { has_country_flag = katzen_civil_war_faction }
 			# 	every_owned_planet = {
@@ -2210,6 +2210,14 @@ katzen_reformation_collapse = {
 			set_global_flag = katzen_civil_war_reformation_version
 			event_target:global_event_country = {
 				country_event = { id = giga_katcivilwar.1000 } #begins Katzen Civil War
+			}
+
+			#establish FPA-splinter comms to make observing/swapping tests more convenient
+			every_country = {
+				limit = {
+					has_country_flag = katzen_civil_war_faction
+				}
+				establish_communications_no_message = root
 			}
 		}
 
