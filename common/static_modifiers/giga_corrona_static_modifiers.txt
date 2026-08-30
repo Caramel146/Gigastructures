@@ -371,6 +371,7 @@ katzen_rebel_got_support = {
 }
 
 katzen_economy_modifier = {
+	planet_resettlement_unemployed_mult = -0.5 #reduce mass emigration from Flusion when a colony opens up - territorial expansion should boost Flusion's development so don't simultaneously undermine it
 	ships_upkeep_mult = -100 #does not work for some reason...
 	armies_upkeep_mult = -100
 	country_starbase_capacity_add = 1000
@@ -381,7 +382,7 @@ katzen_economy_modifier = {
 	leaders_upkeep_mult = -100
 	country_naval_cap_add = 100000
 	country_naval_cap_mult = 100
-	country_leader_cap_add = 500 # excessive perhaps but maaan do these cats have some leaders
+	country_leader_cap_add = 1000 # excessive perhaps but maaan do these cats have some leaders
 	planet_jobs_produces_mult = 0.5
 }
 
