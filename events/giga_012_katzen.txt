@@ -17609,10 +17609,9 @@ country_event = {
 	id = giga_katzen.7040
 	title = "giga_katzen.7040.name"
 	desc = "giga_katzen.7040.desc"
-	location = event_target:gigaflusion
 
-	show_sound = event_public_unrest
-	picture = GFX_evt_civil_action
+	show_sound = event_celebration
+	picture = GFX_evt_coronation
 
 	is_triggered_only = yes
 
@@ -17657,8 +17656,8 @@ country_event = {
 	desc = "giga_katzen.7041.desc"
 	location = event_target:gigaflusion
 
-	show_sound = event_public_unrest
-	picture = GFX_evt_civil_action
+	show_sound = event_life_support_fail
+	picture = GFX_evt_stairway_to_heavens
 
 	is_triggered_only = yes
 
@@ -17701,10 +17700,10 @@ country_event = {
 	id = giga_katzen.7042
 	title = "giga_katzen.7042.name"
 	desc = "giga_katzen.7042.desc"
-	location = event_target:gigaflusion
+	location = capital_scope
 
-	show_sound = event_public_unrest
-	picture = GFX_evt_civil_action
+	show_sound = event_administrative_work
+	picture = GFX_evt_board_meeting
 
 	is_triggered_only = yes
 
@@ -17746,8 +17745,18 @@ country_event = {
 country_event = {
 	id = giga_katzen.7043
 	title = "giga_katzen.7043.name"
-	desc = "giga_katzen.7043.desc"
-	location = event_target:gigaflusion
+	desc = {
+		text = "giga_katzen.7043.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "giga_katzen.7043.hive.desc"
+		trigger = { is_hive_empire = yes }
+	}
+	desc = {
+		text = "giga_katzen.7043.machine.desc"
+		trigger = { is_machine_empire = yes }
+	}
 
 	show_sound = event_public_unrest
 	picture = GFX_evt_civil_action
@@ -17795,8 +17804,8 @@ country_event = {
 	desc = "giga_katzen.7044.desc"
 	location = event_target:gigaflusion
 
-	show_sound = event_public_unrest
-	picture = GFX_evt_civil_action
+	show_sound = event_conversation
+	picture = GFX_evt_hand_shake
 
 	is_triggered_only = yes
 
@@ -17841,8 +17850,8 @@ country_event = {
 	desc = "giga_katzen.7045.desc"
 	location = event_target:gigaflusion
 
-	show_sound = event_public_unrest
-	picture = GFX_evt_civil_action
+	show_sound = event_radio_chatter
+	picture = GFX_evt_overt_indoctrination
 
 	is_triggered_only = yes
 
@@ -17885,10 +17894,9 @@ country_event = {
 	id = giga_katzen.7046
 	title = "giga_katzen.7046.name"
 	desc = "giga_katzen.7046.desc"
-	location = event_target:gigaflusion
 
-	show_sound = event_public_unrest
-	picture = GFX_evt_civil_action
+	show_sound = event_space_battle
+	picture = GFX_evt_salute
 
 	is_triggered_only = yes
 
@@ -17930,11 +17938,22 @@ country_event = {
 country_event = {
 	id = giga_katzen.7047
 	title = "giga_katzen.7047.name"
-	desc = "giga_katzen.7047.desc"
+	desc = {
+		text = "giga_katzen.7047.desc"
+		trigger = { is_gestalt = no }
+	}
+	desc = {
+		text = "giga_katzen.7047.hive.desc"
+		trigger = { is_hive_empire = yes }
+	}
+	desc = {
+		text = "giga_katzen.7047.machine.desc"
+		trigger = { is_machine_empire = yes }
+	}
 	location = event_target:gigaflusion
 
-	show_sound = event_public_unrest
-	picture = GFX_evt_civil_action
+	show_sound = event_conversation
+	picture = GFX_evt_cosmic_storms_hold_the_line
 
 	is_triggered_only = yes
 
@@ -17976,10 +17995,46 @@ country_event = {
 country_event = {
 	id = giga_katzen.7048
 	title = "giga_katzen.7048.name"
-	desc = "giga_katzen.7048.desc"
-	location = event_target:gigaflusion
+	desc = {
+		text = "giga_katzen.7048.democratic.desc"
+		trigger = {
+			is_democratic_authority = yes
+		}
+	}
+	desc = {
+		text = "giga_katzen.7048.oligarchic.desc"
+		trigger = {
+			#let this be oligarchic AND a fallback in case of modded authorities
+			NOR = {
+				is_democratic_authority = yes
+				is_dictatorial_authority = yes
+				is_imperial_authority = yes
+				is_megacorp = yes
+			}
+		}
+	}
+	desc = {
+		text = "giga_katzen.7048.dictatorial.desc"
+		trigger = {
+			is_dictatorial_authority = yes
+		}
+	}
+	desc = {
+		text = "giga_katzen.7048.imperial.desc"
+		trigger = {
+			is_imperial_authority = yes
+		}
+	}
+	desc = {
+		text = "giga_katzen.7048.corporate.desc"
+		trigger = {
+			is_megacorp = yes
+		}
+	}
 
-	show_sound = event_public_unrest
+	location = capital_scope
+
+	show_sound = event_factions
 	picture = GFX_evt_civil_action
 
 	is_triggered_only = yes
@@ -18023,10 +18078,10 @@ country_event = {
 	id = giga_katzen.7049
 	title = "giga_katzen.7049.name"
 	desc = "giga_katzen.7049.desc"
-	location = event_target:gigaflusion
+	location = capital_scope
 
-	show_sound = event_public_unrest
-	picture = GFX_evt_civil_action
+	show_sound = event_radio_chatter
+	picture = GFX_evt_spy_network
 
 	is_triggered_only = yes
 
@@ -18062,6 +18117,69 @@ country_event = {
 			}
 		}
 		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+	}
+}
+
+country_event = {
+	id = giga_katzen.70491
+	title = "giga_katzen.70491.name"
+	desc = "giga_katzen.70491.desc"
+	location = randomplanetname
+
+	show_sound = event_ground_battle
+	picture = GFX_evt_interior_battle
+
+	is_triggered_only = yes
+
+	option = {
+		name = giga_katzen.70491.a
+		custom_tooltip = katzen_instability_down
+	}
+
+	option = {
+		trigger = {
+			katzen_vassal = yes
+		}
+		name = giga_katzen.70491.b
+		custom_tooltip = katzen_instability_up
+		if = {
+			limit = { is_gestalt = no }
+			add_modifier = {
+				modifier = katzen_subversion_unrest
+				years = 3
+			}
+		}
+		else_if = {
+			limit = { is_gestalt = yes }
+			add_modifier = {
+				modifier = katzen_subversion_unrest_gestalt
+				years = 3
+			}
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_unrest_imperium
+				years = 3
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+	}
+}
+
+country_event = {
+	id = giga_katzen.70492
+	title = "giga_katzen.70492.name"
+	desc = "giga_katzen.70492.desc"
+	location = event_target:gigaflusion
+
+	show_sound = event_burning_city
+	picture = GFX_evt_burning_city
+
+	is_triggered_only = yes
+
+	option = {
+		name = giga_katzen.70492.a
+		custom_tooltip = katzen_instability_down
 	}
 }
 
