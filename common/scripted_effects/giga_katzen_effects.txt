@@ -3239,6 +3239,8 @@ katzen_set_protectorate = {
 }
 
 katzen_free_protectorate = {
+	remove_modifier = katzprotektorat_modifier
+
 	if = {
 		limit = {
 			leader = { has_leader_flag = katzen_governor }
@@ -3347,7 +3349,7 @@ katzen_calculate_score = { #to be run on Katzenartig country scope
 
 	#TODO additional -1 if the Kaiser Moon was destroyed at any point in the past (so -3 total without a moon)
 
-	#account for vassals that are sabotaging from within
+	#account for vassals that are sabotaging from within - from reformation-related events
 	#yeah these are some hefty modifiers but consider that vassals can't access partisans which give an even higher potential score deduction
 	change_variable = {
 		which = kaiser_score
@@ -3360,6 +3362,49 @@ katzen_calculate_score = { #to be run on Katzenartig country scope
 	change_variable = {
 		which = kaiser_score
 		value = value:kaiser_subversion_unrest_count #-3 per country that subverted the Kaiser at the third option
+	}
+
+	#also vassal sabotage but from the general random event pool
+	#most of these are either +1 for the compliance option or -2 for the noncompliance option
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_rally_count
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_building_count
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_standards_count
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_cultural_count
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_exchange_count
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_propaganda_count
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_exercises_count
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_sociology_count
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_legitimacy_count
+	}
+	change_variable = {
+		which = kaiser_score
+		value = value:kaiser_subversion_partisans_count
 	}
 
 	#roll -3 to +3 randomisation

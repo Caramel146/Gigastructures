@@ -415,7 +415,7 @@ planet_event = {
 				gender = male
 				background_ethic = ethic_militarist
 				background_job = soldier
-				background_planet = event_target:flusion
+				background_planet = event_target:gigaflusion
 				traits = {
 					trait = katzen_trait_elite
 					trait = katzen_trait_nukelad
@@ -691,7 +691,7 @@ country_event = {
 			gender = male
 			background_ethic = ethic_egalitarian
 			background_job = politician
-			background_planet = event_target:flusion
+			background_planet = event_target:gigaflusion
 			traits = {
 				trait = katzen_trait_elite
 				trait = leader_trait_architectural_interest
@@ -719,7 +719,7 @@ country_event = {
 				gender = male
 				background_ethic = ethic_materialist
 				background_job = soldier
-				background_planet = event_target:flusion
+				background_planet = event_target:gigaflusion
 				traits = {
 					trait = katzen_trait_elite
 					trait = katzen_trait_nukelad
@@ -992,7 +992,7 @@ country_event = {
 			gender = male
 			background_ethic = ethic_authoritarian
 			background_job = enforcer
-			background_planet = event_target:flusion
+			background_planet = event_target:gigaflusion
 			traits = {
 				trait = katzen_trait_elite
 				trait = leader_trait_unyielding
@@ -3541,7 +3541,7 @@ country_event = {
 			}
 			random_owned_leader = {
 				limit = { has_leader_flag = katzen_governor }
-				save_global_event_target_as = katzen_governor
+				save_event_target_as = katzen_governor
 			}
 			set_leader = event_target:katzen_governor
 		}
@@ -3571,7 +3571,6 @@ country_event = {
 	option = {
 		name = "giga_katzen.0033.a"
 		custom_tooltip = "giga_katzen.0033.a.tooltip"
-		remove_modifier = katzprotektorat_modifier
 		hidden_effect = {
 			katzen_free_protectorate = yes
 			set_kaiser_war_opinion = yes
@@ -8074,6 +8073,22 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 					}
 				}
 
+				#block certain events that the empire type can't accept
+				#TODO gestalts especially need a larger pool by at least a couple events to achieve parity - or modified versions of these blocked events
+				if = {
+					limit = {
+						is_gestalt = yes
+						NOR = {
+							has_country_flag = katzen_had_event_7040
+							has_country_flag = katzen_had_event_7045
+							has_country_flag = katzen_had_event_7048
+						}
+					}
+					set_country_flag = katzen_had_event_7040
+					set_country_flag = katzen_had_event_7045
+					set_country_flag = katzen_had_event_7048
+				}
+
 				random = {
 					chance = 20
 					set_timed_country_flag = { flag = katzen_recently_vassalhood_event years = 5 }
@@ -8082,21 +8097,49 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 							country_event = { id = giga_katzen.7040 random = 360 }
 							set_country_flag = katzen_had_event_7040
 							modifier = { factor = 0 has_country_flag = katzen_had_event_7040 }
+							modifier = {
+								factor = 1.25
+								OR = {
+									has_valid_civic = civic_efficient_bureaucracy
+									has_valid_civic = civic_crowdsourcing
+									has_valid_civic = civic_corporate_crowdsourcing
+								}
+							}
+							modifier = {
+								factor = 0.75
+								has_valid_civic = civic_dystopian_society
+							}
 						}
 						10 = {
 							country_event = { id = giga_katzen.7041 random = 360 }
 							set_country_flag = katzen_had_event_7041
 							modifier = { factor = 0 has_country_flag = katzen_had_event_7041 }
+							modifier = {
+								factor = 1.25
+								is_capitalist = yes
+							}
 						}
 						10 = {
 							country_event = { id = giga_katzen.7042 random = 360 }
 							set_country_flag = katzen_had_event_7042
 							modifier = { factor = 0 has_country_flag = katzen_had_event_7042 }
+							modifier = {
+								factor = 0.75
+								has_valid_civic = civic_efficient_bureaucracy
+							}
 						}
 						10 = {
 							country_event = { id = giga_katzen.7043 random = 360 }
 							set_country_flag = katzen_had_event_7043
 							modifier = { factor = 0 has_country_flag = katzen_had_event_7043 }
+							modifier = {
+								factor = 1.25
+								OR = {
+									is_xenophobe = yes
+									is_pacifist = yes
+									has_valid_civic = civic_machine_maintenance_protocols
+								}
+							}
 						}
 						10 = {
 							country_event = { id = giga_katzen.7044 random = 360 }
@@ -8107,21 +8150,49 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 							country_event = { id = giga_katzen.7045 random = 360 }
 							set_country_flag = katzen_had_event_7045
 							modifier = { factor = 0 has_country_flag = katzen_had_event_7045 }
+							modifier = {
+								factor = 1.25
+								OR  = {
+									has_valid_civic = civic_heroic_tales
+									has_valid_civic = civic_media_conglomerate
+								}
+							}
 						}
 						10 = {
 							country_event = { id = giga_katzen.7046 random = 360 }
 							set_country_flag = katzen_had_event_7046
 							modifier = { factor = 0 has_country_flag = katzen_had_event_7046 }
+							modifier = {
+								factor = 1.25
+								OR = {
+									is_militarist = yes
+									has_valid_civic = civic_machine_tactical_algorithms
+								}
+							}
 						}
 						10 = {
 							country_event = { id = giga_katzen.7047 random = 360 }
 							set_country_flag = katzen_had_event_7047
 							modifier = { factor = 0 has_country_flag = katzen_had_event_7047 }
+							modifier = {
+								factor = 1.25
+								OR = {
+									is_materialist = yes
+									has_valid_civic = civic_machine_predictive_analysis
+								}
+							}
 						}
 						10 = {
 							country_event = { id = giga_katzen.7048 random = 360 }
 							set_country_flag = katzen_had_event_7048
 							modifier = { factor = 0 has_country_flag = katzen_had_event_7048 }
+							modifier = {
+								factor = 1.25
+								OR = {
+									is_egalitarian = yes
+									has_valid_civic = civic_shadow_council
+								}
+							}
 						}
 						10 = {
 							country_event = { id = giga_katzen.7049 random = 360 }
@@ -8130,7 +8201,7 @@ country_event = { #Katzen expansion: Every year, all nearby unclaimed systems ar
 						}
 					}
 
-					#block the pool if all have been rolled
+					#block the pool from rolling again if all events have been rolled
 					if = {
 						limit = {
 							AND = {
@@ -16597,7 +16668,7 @@ country_event = {
 			katzen_vassal = yes
 		}
 		name = giga_katzen.7000.d
-		custom_tooltip = katzen_instability_up
+		custom_tooltip = katzen_instability_up_lots
 		add_modifier = {
 			modifier = katzen_subversion_bureaucratic
 			years = 3
@@ -16698,7 +16769,7 @@ country_event = {
 			katzen_vassal = yes
 		}
 		name = giga_katzen.7002.d
-		custom_tooltip = katzen_instability_up
+		custom_tooltip = katzen_instability_up_lots
 		if = {
 			limit = { is_gestalt = no }
 			add_modifier = {
@@ -16895,7 +16966,7 @@ country_event = {
 			katzen_vassal = yes
 		}
 		name = giga_katzen.7012.e
-		custom_tooltip = katzen_instability_up
+		custom_tooltip = katzen_instability_up_lots
 		if = {
 			limit = { is_gestalt = no }
 			add_modifier = {
@@ -17569,6 +17640,8 @@ country_event = {
 	}
 }
 
+
+
 ##### giga_katzen.700x is Reformation Ends #####
 country_event = {
 	id = giga_katzen.7031
@@ -17652,6 +17725,8 @@ country_event = {
 	}
 }
 
+
+
 ##### giga_katzen.7040/7050 are for the vassalhood event pool
 country_event = {
 	id = giga_katzen.7040
@@ -17666,35 +17741,49 @@ country_event = {
 	option = {
 		name = giga_katzen.7040.a
 		custom_tooltip = katzen_instability_down
-	}
-
-	option = {
-		trigger = {
-			katzen_vassal = yes
-		}
-		name = giga_katzen.7040.b
-		custom_tooltip = katzen_instability_up
-		if = {
-			limit = { is_gestalt = no }
-			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
-			}
-		}
-		else_if = {
-			limit = { is_gestalt = yes }
-			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
-			}
+		add_modifier = {
+			modifier = katzen_subversion_rally_compliance
+			years = 5
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_rally_compliance_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_supported_rally }
+	}
+
+	option = {
+		name = giga_katzen.7040.b
+		custom_tooltip = katzen_instability_up
+		add_modifier = {
+			modifier = katzen_subversion_rally_noncompliance
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_rally_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_rally }
+	}
+
+	option = {
+		name = giga_katzen.7040.c
+		custom_tooltip = katzen_instability_up_lots
+		add_modifier = {
+			modifier = katzen_subversion_rally_severe_noncompliance
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_rally_severe_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_rally_severe }
 	}
 }
 
@@ -17710,37 +17799,59 @@ country_event = {
 	is_triggered_only = yes
 
 	option = {
+		trigger = {
+			is_megacorp = no
+		}
 		name = giga_katzen.7041.a
 		custom_tooltip = katzen_instability_down
+		add_modifier = {
+			modifier = katzen_subversion_building_compliance
+			years = 5
+		}
+
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_building_compliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_supported_building }
 	}
 
 	option = {
 		trigger = {
-			katzen_vassal = yes
+			is_megacorp = yes
 		}
+		name = giga_katzen.7041.corporate.a
+		custom_tooltip = katzen_instability_down
+		add_modifier = {
+			modifier = katzen_subversion_building_compliance_corporate
+			years = 5
+		}
+
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_building_compliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_supported_building }
+	}
+
+	option = {
 		name = giga_katzen.7041.b
 		custom_tooltip = katzen_instability_up
-		if = {
-			limit = { is_gestalt = no }
-			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
-			}
-		}
-		else_if = {
-			limit = { is_gestalt = yes }
-			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
-			}
+		add_modifier = {
+			modifier = katzen_subversion_building_noncompliance
+			years = 5
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_building_noncompliance_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_subverted_building }
 	}
 }
 
@@ -17758,35 +17869,33 @@ country_event = {
 	option = {
 		name = giga_katzen.7042.a
 		custom_tooltip = katzen_instability_down
-	}
-
-	option = {
-		trigger = {
-			katzen_vassal = yes
-		}
-		name = giga_katzen.7042.b
-		custom_tooltip = katzen_instability_up
-		if = {
-			limit = { is_gestalt = no }
-			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
-			}
-		}
-		else_if = {
-			limit = { is_gestalt = yes }
-			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
-			}
+		add_modifier = {
+			modifier = katzen_subversion_standards_compliance
+			years = 5
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_standards_compliance_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_supported_standards }
+	}
+
+	option = {
+		name = giga_katzen.7042.b
+		custom_tooltip = katzen_instability_up
+		add_modifier = {
+			modifier = katzen_subversion_standards_noncompliance
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_standards_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_standards }
 	}
 }
 
@@ -17814,35 +17923,81 @@ country_event = {
 	option = {
 		name = giga_katzen.7043.a
 		custom_tooltip = katzen_instability_down
-	}
-
-	option = {
-		trigger = {
-			katzen_vassal = yes
-		}
-		name = giga_katzen.7043.b
-		custom_tooltip = katzen_instability_up
-		if = {
-			limit = { is_gestalt = no }
-			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
-			}
-		}
-		else_if = {
-			limit = { is_gestalt = yes }
-			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
-			}
+		add_modifier = {
+			modifier = katzen_subversion_cultural_compliance
+			years = 5
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_cultural_compliance_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_supported_cultural }
+	}
+
+	option = {
+		name = giga_katzen.7043.hive.a
+		custom_tooltip = katzen_instability_down
+		add_modifier = {
+			modifier = katzen_subversion_cultural_compliance_hive
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_cultural_compliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_supported_cultural }
+	}
+
+	option = {
+		name = giga_katzen.7043.machine.a
+		custom_tooltip = katzen_instability_down
+		add_modifier = {
+			modifier = katzen_subversion_cultural_compliance_machine
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_cultural_compliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_supported_cultural }
+	}
+
+	option = {
+		name = giga_katzen.7043.b
+		custom_tooltip = katzen_instability_up
+		add_modifier = {
+			modifier = katzen_subversion_cultural_noncompliance
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_cultural_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_cultural }
+	}
+
+	option = {
+		name = giga_katzen.7043.gestalt.b
+		custom_tooltip = katzen_instability_up
+		add_modifier = {
+			modifier = katzen_subversion_cultural_noncompliance_gestalt
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_cultural_noncompliance_gestalt_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_cultural }
 	}
 }
 
@@ -17860,35 +18015,49 @@ country_event = {
 	option = {
 		name = giga_katzen.7044.a
 		custom_tooltip = katzen_instability_down
-	}
-
-	option = {
-		trigger = {
-			katzen_vassal = yes
-		}
-		name = giga_katzen.7044.b
-		custom_tooltip = katzen_instability_up
-		if = {
-			limit = { is_gestalt = no }
-			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
-			}
-		}
-		else_if = {
-			limit = { is_gestalt = yes }
-			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
-			}
+		add_modifier = {
+			modifier = katzen_subversion_exchange_compliance
+			years = 5
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_exchange_compliance_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_supported_exchange }
+	}
+
+	option = {
+		name = giga_katzen.7044.b
+		custom_tooltip = katzen_instability_up
+		add_modifier = {
+			modifier = katzen_subversion_exchange_noncompliance
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_exchange_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_exchange }
+	}
+
+	option = {
+		name = giga_katzen.7044.c
+		custom_tooltip = katzen_instability_up_lots
+		add_modifier = {
+			modifier = katzen_subversion_exchange_severe_noncompliance
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_exchange_severe_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_exchange_severe }
 	}
 }
 
@@ -17906,35 +18075,33 @@ country_event = {
 	option = {
 		name = giga_katzen.7045.a
 		custom_tooltip = katzen_instability_down
-	}
-
-	option = {
-		trigger = {
-			katzen_vassal = yes
-		}
-		name = giga_katzen.7045.b
-		custom_tooltip = katzen_instability_up
-		if = {
-			limit = { is_gestalt = no }
-			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
-			}
-		}
-		else_if = {
-			limit = { is_gestalt = yes }
-			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
-			}
+		add_modifier = {
+			modifier = katzen_subversion_propaganda_compliance
+			years = 5
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_propaganda_compliance_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_supported_propaganda }
+	}
+
+	option = {
+		name = giga_katzen.7045.b
+		custom_tooltip = katzen_instability_up
+		add_modifier = {
+			modifier = katzen_subversion_propaganda_noncompliance
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_propaganda_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_propaganda }
 	}
 }
 
@@ -17951,35 +18118,33 @@ country_event = {
 	option = {
 		name = giga_katzen.7046.a
 		custom_tooltip = katzen_instability_down
-	}
-
-	option = {
-		trigger = {
-			katzen_vassal = yes
-		}
-		name = giga_katzen.7046.b
-		custom_tooltip = katzen_instability_up
-		if = {
-			limit = { is_gestalt = no }
-			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
-			}
-		}
-		else_if = {
-			limit = { is_gestalt = yes }
-			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
-			}
+		add_modifier = {
+			modifier = katzen_subversion_exercises_compliance
+			years = 5
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_exercises_compliance_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_supported_exercises }
+	}
+
+	option = {
+		name = giga_katzen.7046.b
+		custom_tooltip = katzen_instability_up
+		add_modifier = {
+			modifier = katzen_subversion_exercises_noncompliance
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_exercises_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_exercises }
 	}
 }
 
@@ -18008,35 +18173,72 @@ country_event = {
 	option = {
 		name = giga_katzen.7047.a
 		custom_tooltip = katzen_instability_down
-	}
-
-	option = {
-		trigger = {
-			katzen_vassal = yes
-		}
-		name = giga_katzen.7047.b
-		custom_tooltip = katzen_instability_up
-		if = {
-			limit = { is_gestalt = no }
-			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
-			}
-		}
-		else_if = {
-			limit = { is_gestalt = yes }
-			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
-			}
+		add_modifier = {
+			modifier = katzen_subversion_sociology_compliance
+			years = 5
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_sociology_compliance_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_supported_sociology }
+	}
+
+	option = {
+		name = giga_katzen.7047.gestalt.a
+		custom_tooltip = katzen_instability_down
+		add_modifier = {
+			modifier = katzen_subversion_sociology_compliance_gestalt
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_sociology_compliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_supported_sociology }
+	}
+
+	option = {
+		name = {
+			text = giga_katzen.7047.b
+			trigger = { is_materialist = no }
+		}
+		name = {
+			text = giga_katzen.7047.materialist.b
+			trigger = { is_materialist = yes }
+		}
+		custom_tooltip = katzen_instability_up
+		add_modifier = {
+			modifier = katzen_subversion_sociology_noncompliance
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_sociology_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_sociology }
+	}
+
+	option = {
+		name = giga_katzen.7047.gestalt.b
+		custom_tooltip = katzen_instability_up
+		add_modifier = {
+			modifier = katzen_subversion_sociology_noncompliance_gestalt
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_sociology_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_sociology }
 	}
 }
 
@@ -18045,9 +18247,7 @@ country_event = {
 	title = "giga_katzen.7048.name"
 	desc = {
 		text = "giga_katzen.7048.democratic.desc"
-		trigger = {
-			is_democratic_authority = yes
-		}
+		trigger = { is_democratic_authority = yes }
 	}
 	desc = {
 		text = "giga_katzen.7048.oligarchic.desc"
@@ -18063,21 +18263,15 @@ country_event = {
 	}
 	desc = {
 		text = "giga_katzen.7048.dictatorial.desc"
-		trigger = {
-			is_dictatorial_authority = yes
-		}
+		trigger = { is_dictatorial_authority = yes }
 	}
 	desc = {
 		text = "giga_katzen.7048.imperial.desc"
-		trigger = {
-			is_imperial_authority = yes
-		}
+		trigger = { is_imperial_authority = yes }
 	}
 	desc = {
 		text = "giga_katzen.7048.corporate.desc"
-		trigger = {
-			is_megacorp = yes
-		}
+		trigger = { is_megacorp = yes }
 	}
 
 	location = capital_scope
@@ -18088,37 +18282,128 @@ country_event = {
 	is_triggered_only = yes
 
 	option = {
-		name = giga_katzen.7048.a
-		custom_tooltip = katzen_instability_down
-	}
-
-	option = {
-		trigger = {
-			katzen_vassal = yes
+		name = {
+			text = giga_katzen.7048.democratic.a
+			trigger = { is_democratic_authority = yes }
 		}
-		name = giga_katzen.7048.b
-		custom_tooltip = katzen_instability_up
+		name = {
+			text = giga_katzen.7048.oligarchic.a
+			trigger = {
+				#let this be oligarchic AND a fallback in case of modded authorities
+				NOR = {
+					is_democratic_authority = yes
+					is_dictatorial_authority = yes
+					is_imperial_authority = yes
+					is_megacorp = yes
+				}
+			}
+		}
+		name = {
+			text = giga_katzen.7048.dictatorial.a
+			trigger = { is_dictatorial_authority = yes }
+		}
+		name = {
+			text = giga_katzen.7048.imperial.a
+			trigger = { is_imperial_authority = yes }
+		}
+		name = {
+			text = giga_katzen.7048.corporate.a
+			trigger = { is_megacorp = yes }
+		}
+		custom_tooltip = katzen_instability_down
 		if = {
-			limit = { is_gestalt = no }
+			limit = { is_democratic_authority = yes }
 			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
+				modifier = katzen_subversion_legitimacy_compliance_democratic
+				years = 5
 			}
 		}
 		else_if = {
-			limit = { is_gestalt = yes }
+			limit = {
+				#let this be oligarchic AND a fallback in case of modded authorities
+				NOR = {
+					is_democratic_authority = yes
+					is_dictatorial_authority = yes
+					is_imperial_authority = yes
+					is_megacorp = yes
+				}
+			}
 			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
+				modifier = katzen_subversion_legitimacy_compliance_oligarchic
+				years = 5
+			}
+		}
+		else_if = {
+			limit = { is_dictatorial_authority = yes }
+			add_modifier = {
+				modifier = katzen_subversion_legitimacy_compliance_dictatorial
+				years = 5
+			}
+		}
+		else_if = {
+			limit = { is_imperial_authority = yes }
+			add_modifier = {
+				modifier = katzen_subversion_legitimacy_compliance_imperial
+				years = 5
+			}
+		}
+		else_if = {
+			limit = { is_megacorp = yes }
+			add_modifier = {
+				modifier = katzen_subversion_legitimacy_compliance_corporate
+				years = 5
 			}
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_legitimacy_compliance_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_supported_legitimacy }
+	}
+
+	option = {
+		name = {
+			text = giga_katzen.7048.democratic.b
+			trigger = { is_democratic_authority = yes }
+		}
+		name = {
+			text = giga_katzen.7048.oligarchic.b
+			trigger = {
+				#let this be oligarchic AND a fallback in case of modded authorities
+				NOR = {
+					is_democratic_authority = yes
+					is_dictatorial_authority = yes
+					is_imperial_authority = yes
+					is_megacorp = yes
+				}
+			}
+		}
+		name = {
+			text = giga_katzen.7048.dictatorial.b
+			trigger = { is_dictatorial_authority = yes }
+		}
+		name = {
+			text = giga_katzen.7048.imperial.b
+			trigger = { is_imperial_authority = yes }
+		}
+		name = {
+			text = giga_katzen.7048.corporate.b
+			trigger = { is_megacorp = yes }
+		}
+		custom_tooltip = katzen_instability_up
+		add_modifier = {
+			modifier = katzen_subversion_legitimacy_noncompliance
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_legitimacy_noncompliance_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_legitimacy }
 	}
 }
 
@@ -18136,35 +18421,38 @@ country_event = {
 	option = {
 		name = giga_katzen.7049.a
 		custom_tooltip = katzen_instability_down
-	}
-
-	option = {
-		trigger = {
-			katzen_vassal = yes
-		}
-		name = giga_katzen.7049.b
-		custom_tooltip = katzen_instability_up
-		if = {
-			limit = { is_gestalt = no }
-			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
-			}
-		}
-		else_if = {
-			limit = { is_gestalt = yes }
-			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
-			}
+		add_modifier = {
+			modifier = katzen_subversion_partisans_compliance
+			years = 5
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_partisans_compliance_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_supported_partisans }
+	}
+
+	option = {
+		name = giga_katzen.7049.b
+		custom_tooltip = giga_katzen.7049.b.tooltip
+		hidden_effect = {
+			random_list = {
+				50 = {
+					random_owned_colony = {
+						limit = {
+							pop_amount > 100
+						}
+						save_event_target_as = katzen_partisan_raid_planet
+					}
+					country_event = { id = giga_katzen.70491 days = 30 random = 30 }
+				}
+				50 = {
+					country_event = { id = giga_katzen.70492 days = 30 random = 30 }
+				}
+			}
+		}
 	}
 }
 
@@ -18172,7 +18460,7 @@ country_event = {
 	id = giga_katzen.70491
 	title = "giga_katzen.70491.name"
 	desc = "giga_katzen.70491.desc"
-	location = randomplanetname
+	location = event_target:katzen_partisan_raid_planet
 
 	show_sound = event_ground_battle
 	picture = GFX_evt_interior_battle
@@ -18181,36 +18469,52 @@ country_event = {
 
 	option = {
 		name = giga_katzen.70491.a
-		custom_tooltip = katzen_instability_down
-	}
-
-	option = {
-		trigger = {
-			katzen_vassal = yes
-		}
-		name = giga_katzen.70491.b
 		custom_tooltip = katzen_instability_up
-		if = {
-			limit = { is_gestalt = no }
-			add_modifier = {
-				modifier = katzen_subversion_unrest
-				years = 3
+		event_target:katzen_partisan_raid_planet = {
+			while = {
+				count = 2
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
 			}
+			add_planet_devastation = 15
 		}
-		else_if = {
-			limit = { is_gestalt = yes }
-			add_modifier = {
-				modifier = katzen_subversion_unrest_gestalt
-				years = 3
-			}
+		add_modifier = {
+			modifier = katzen_subversion_partisans_noncompliance_raid_noprotest
+			years = 5
 		}
 		event_target:flusion_primitives_country = {
 			add_modifier = {
-				modifier = katzen_subversion_unrest_imperium
-				years = 3
+				modifier = katzen_subversion_partisans_noncompliance_raid_noprotest_imperium
+				years = 5
 			}
 		}
-		hidden_effect = { set_country_flag = kaiser_subverted_unrest }
+		hidden_effect = { set_country_flag = kaiser_subverted_partisans_raid_noprotest }
+	}
+
+	option = {
+		name = giga_katzen.70491.b
+		custom_tooltip = katzen_instability_up
+		event_target:katzen_partisan_raid_planet = {
+			while = {
+				count = 2
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			add_planet_devastation = 15
+		}
+		add_modifier = {
+			modifier = katzen_subversion_partisans_noncompliance_raid_protest
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_partisans_noncompliance_raid_protest_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_partisans_raid_protest }
 	}
 }
 
@@ -18227,7 +18531,38 @@ country_event = {
 
 	option = {
 		name = giga_katzen.70492.a
-		custom_tooltip = katzen_instability_down
+		custom_tooltip = katzen_instability_up_lots
+		event_target:gigaflusion = {
+			#these effects together should set Flusion's development back a few cycles
+			while = {
+				count = 5
+				random_owned_pop_group = {
+					kill_single_pop = yes
+				}
+			}
+			add_planet_devastation = 25
+			if = {
+				limit = {
+					is_planet_class = pc_flusion_gaia_ecu
+				}
+				remove_district = district_flusion_city
+			}
+			else = {
+				remove_district = district_city
+			}
+			add_deposit = d_bomb_crater
+		}
+		add_modifier = {
+			modifier = katzen_subversion_partisans_noncompliance_bombing
+			years = 5
+		}
+		event_target:flusion_primitives_country = {
+			add_modifier = {
+				modifier = katzen_subversion_partisans_noncompliance_bombing_imperium
+				years = 5
+			}
+		}
+		hidden_effect = { set_country_flag = kaiser_subverted_partisans_bombing }
 	}
 }
 

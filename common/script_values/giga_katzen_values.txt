@@ -104,8 +104,8 @@ kaiser_subversion_bureaucratic_count = {
             }
         }
         mode = subtract
+        mult = 3
     }
-    mult = 3
 }
 
 kaiser_subversion_heavyhanded_count = {
@@ -119,8 +119,8 @@ kaiser_subversion_heavyhanded_count = {
             }
         }
         mode = subtract
+        mult = 3
     }
-    mult = 3
 }
 
 kaiser_subversion_unrest_count = {
@@ -134,8 +134,312 @@ kaiser_subversion_unrest_count = {
             }
         }
         mode = subtract
+        mult = 3
     }
-    mult = 3
+}
+
+kaiser_subversion_rally_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_supported_rally
+            }
+        }
+        mode = add
+        multiplier = 1
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_rally
+            }
+        }
+        mode = subtract
+        multiplier = 2
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_rally_severe
+            }
+        }
+        mode = subtract
+        multiplier = 3
+    }
+}
+
+kaiser_subversion_building_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_supported_building
+            }
+        }
+        mode = add
+        multiplier = 1
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_building
+            }
+        }
+        mode = subtract
+        multiplier = 2
+    }
+}
+
+kaiser_subversion_standards_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_supported_standards
+            }
+        }
+        mode = add
+        multiplier = 1
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_standards
+            }
+        }
+        mode = subtract
+        multiplier = 2
+    }
+}
+
+kaiser_subversion_cultural_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_supported_cultural
+            }
+        }
+        mode = add
+        multiplier = 1
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_cultural
+            }
+        }
+        mode = subtract
+        multiplier = 2
+    }
+}
+
+kaiser_subversion_exchange_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_supported_exchange
+            }
+        }
+        mode = add
+        multiplier = 1
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_exchange
+            }
+        }
+        mode = subtract
+        multiplier = 2
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_exchange_severe
+            }
+        }
+        mode = subtract
+        multiplier = 3
+    }
+}
+
+kaiser_subversion_propaganda_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_supported_propaganda
+            }
+        }
+        mode = add
+        multiplier = 1
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_propaganda
+            }
+        }
+        mode = subtract
+        multiplier = 2
+    }
+}
+
+kaiser_subversion_exercises_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_supported_exercises
+            }
+        }
+        mode = add
+        multiplier = 1
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_exercises
+            }
+        }
+        mode = subtract
+        multiplier = 2
+    }
+}
+
+kaiser_subversion_sociology_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_supported_sociology
+            }
+        }
+        mode = add
+        multiplier = 1
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_sociology
+            }
+        }
+        mode = subtract
+        multiplier = 2
+    }
+}
+
+kaiser_subversion_legitimacy_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_supported_legitimacy
+            }
+        }
+        mode = add
+        multiplier = 1
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_legitimacy
+            }
+        }
+        mode = subtract
+        multiplier = 2
+    }
+}
+
+kaiser_subversion_partisans_count = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_supported_partisans
+            }
+        }
+        mode = add
+        multiplier = 1
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_partisans_raid_noprotest
+            }
+        }
+        mode = subtract
+        multiplier = 1 #slight issue in that cooperation was rejected and partisans exist but then again, partisans were ultimately busted
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_partisans_raid_protest
+            }
+        }
+        mode = subtract
+        multiplier = 2 #same as above but the vassal made an even bigger fuss so it hurts more
+    }
+    complex_trigger_modifier = {
+        trigger = count_country
+        parameters = {
+            limit = {
+                katzen_vassal = yes
+                has_country_flag = kaiser_subverted_partisans_bombing
+            }
+        }
+        mode = subtract
+        multiplier = 4 #cooperation was rejected and partisans managed to nuke the capital... oof
+    }
 }
 
 katzen_splinter_fleets_to_divide = {
