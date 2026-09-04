@@ -2126,14 +2126,14 @@ create_katzen_governor = {
 		species = event_target:flusion_katzens
 		name = random
 		skill = 5
-		background_planet = event_target:flusion
+		background_planet = event_target:gigaflusion
 		traits = {
 			trait = trait_ruler_warlike
 			trait = trait_ruler_from_the_ranks
 		}
 		effect = {
 			set_leader_flag = katzen_governor
-			save_global_event_target_as = katzen_governor
+			save_event_target_as = katzen_governor
 			set_katzen_ruler_name = yes
 		}
 	}
