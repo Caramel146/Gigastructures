@@ -757,6 +757,7 @@ country_event = {
 				}
 				effect = {
 					set_owner = event_target:flusion_primitives_country
+					add_modifier = { modifier = "no_naval_capacity" days = -1 }
 					create_ship = {
 						name =  "Kaiser Moon of Infinite Improbability"
 						design = "Improbable Kaiser Moon"
@@ -800,6 +801,7 @@ country_event = {
 				}
 				effect = {
 					set_owner = event_target:flusion_primitives_country
+					add_modifier = { modifier = "no_naval_capacity" days = -1 }
 					create_ship = {
 						name = "Stellarite Kaiser Moon"
 						design = "Stellarite Kaiser Moon"
@@ -842,6 +844,7 @@ country_event = {
 				}
 				effect = {
 					set_owner = event_target:flusion_primitives_country
+					add_modifier = { modifier = "no_naval_capacity" days = -1 }
 					create_ship = {
 						name = "Kaiservorherrschaft"
 						design = "Kaiser Moon"
@@ -887,6 +890,7 @@ country_event = {
 				}
 				effect = {
 					set_owner = event_target:flusion_primitives_country
+					add_modifier = { modifier = "no_naval_capacity" days = -1 }
 					create_ship = {
 						name = "Kaiservorherrschaft"
 						design = "Kaiser Moon"
@@ -970,6 +974,7 @@ country_event = {
 			}
 			effect = {
 				set_owner = event_target:flusion_primitives_country
+				add_modifier = { modifier = "no_naval_capacity" days = -1 }
 				while = {
 					count = 4 #4 submarines, early pack
 					spawn_katzen_submarine = yes
@@ -1010,6 +1015,7 @@ country_event = {
 			}
 			effect = {
 				set_owner = event_target:flusion_primitives_country
+				add_modifier = { modifier = "no_naval_capacity" days = -1 }
 				while = {
 					count = 2
 					spawn_katzen_cruiser = yes
@@ -1050,6 +1056,7 @@ country_event = {
 			}
 			effect = {
 				set_owner = event_target:flusion_primitives_country
+				add_modifier = { modifier = "no_naval_capacity" days = -1 }
 				while = {
 					count = 2
 					spawn_katzen_cruiser = yes
@@ -4609,6 +4616,7 @@ country_event = { #Trading with Kaiser
 				}
 				effect = {
 					set_owner = ROOT
+					add_modifier = { modifier = "no_naval_capacity" days = -1 }
 					spawn_katzen_blimp = yes
 					set_location = {
 						target = ROOT.capital_scope
@@ -5817,7 +5825,39 @@ country_event = { #Manage war forges and the Kaiser's eco
 		update_katzen_tech_level_buffs = yes
 		update_katzen_tech_level_display = yes
 
-		# set country flag, backup incase on action doesnt fire
+		#manually update displays of variables in the sitlog because 4.4 broke this :(
+		every_playable_country = {
+			limit = {
+				is_ai = no
+				has_event_chain = katzenartig_chain
+			}
+			remove_point_of_interest = katzen_chain.2 #if this isn't included it will create duplicate POIs
+			create_point_of_interest = { #EHVEs
+				id = katzen_chain.2
+				name = "katzenartig_chain_2"
+				desc = "katzenartig_chain_2_desc"
+				event_chain = "katzenartig_chain"
+				location = event_target:giga_jublio_system
+			}
+			remove_point_of_interest = katzenartig_chain.3
+			create_point_of_interest = { #economy
+				id = katzenartig_chain.3
+				name = "katzenartig_chain_3"
+				desc = "katzenartig_chain_3_desc"
+				event_chain = "katzenartig_chain"
+				location = event_target:giga_jublio_system
+			}
+			remove_point_of_interest = katzenartig_chain.4
+			create_point_of_interest = { #research
+				id = katzenartig_chain.4
+				name = "katzenartig_chain_4"
+				desc = "katzenartig_chain_4_desc"
+				event_chain = "katzenartig_chain"
+				location = event_target:giga_jublio_system
+			}
+		}
+
+		#Kaiser Moon destroyed backup trigger incase on action doesnt fire
 		if = {
 			limit = {
 				NOT = {
@@ -7484,6 +7524,7 @@ country_event = { #Kaiser rolls out his blimps after becoming theGroßkatzenarti
 			}
 			effect = {
 				set_owner = event_target:flusion_primitives_country
+				add_modifier = { modifier = "no_naval_capacity" days = -1 }
 				while = {
 					count = @kaiser_warforge_build_capacity
 					limit = { #so long as they can afford the upkeep on the flanking ships
@@ -15030,6 +15071,7 @@ country_event = {
 					}
 					effect = {
 						set_owner = event_target:flusion_primitives_country
+						add_modifier = { modifier = "no_naval_capacity" days = -1 }
 						while = {
 							count = 6
 							spawn_katzen_submarine = yes
@@ -15101,6 +15143,7 @@ country_event = {
 				}
 				effect = {
 					set_owner = event_target:flusion_primitives_country
+					add_modifier = { modifier = "no_naval_capacity" days = -1 }
 					while = {
 						count = 12 #12 submarines, big pack
 						spawn_katzen_submarine = yes
@@ -15139,6 +15182,7 @@ country_event = {
 				}
 				effect = {
 					set_owner = event_target:flusion_primitives_country
+					add_modifier = { modifier = "no_naval_capacity" days = -1 }
 					while = {
 						count = 6 #6 submarines, small pack
 						spawn_katzen_submarine = yes
@@ -15308,6 +15352,7 @@ fleet_event = {
 			}
 			effect = {
 				set_owner = event_target:flusion_primitives_country
+				add_modifier = { modifier = "no_naval_capacity" days = -1 }
 				while = {
 					count = ROOT.giga_submarine_fleet_ship_count
 					spawn_katzen_submarine = yes
@@ -15339,8 +15384,7 @@ fleet_event = {
 				NOT = { any_system_planet = { is_colony = yes } }
 				is_viable_system_for_submarine = no
 			}
-			exists = starbase
-			starbase = { space_owner = { is_at_war_with = event_target:flusion_primitives_country } }
+			starbase? = { space_owner = { is_at_war_with = event_target:flusion_primitives_country } }
 		}
 	}
 
@@ -15349,13 +15393,11 @@ fleet_event = {
 			which = giga_submarine_fleet_ship_count
 			value = 0
 		}
-		ROOT = { #Count submarines
-			every_owned_ship = {
-				ROOT = {
-					change_variable = {
-						which = giga_submarine_fleet_ship_count
-						value = 1
-					}
+		every_owned_ship = { #Count submarines
+			ROOT = {
+				change_variable = {
+					which = giga_submarine_fleet_ship_count
+					value = 1
 				}
 			}
 		}

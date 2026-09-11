@@ -2753,7 +2753,7 @@ calculate_kaiser_spending = {
 	# 	}
 	# }
 	# every_owned_ship = { #1 attack moon --> 10 #resources
-	# 	limit = { is_ship_size = giga_massive_planet }
+	# 	limit = { OR = { is_ship_size = giga_war_moon is_ship_size = giga_kaiser_moon_flusion } }
 	# 	event_target:flusion_primitives_country = {
 	# 		change_variable = {
 	# 			which = kaiser_resource_spending
@@ -2766,7 +2766,19 @@ calculate_kaiser_spending = {
 	# 	event_target:flusion_primitives_country = {
 	# 		change_variable = {
 	# 			which = kaiser_resource_spending
-	# 			value = @kaiser_moon_upkeep #value:katzen_upkeep|UPKEEP|@kaiser_moon_upkeep|
+	# 			value = @kaiser_submarine_upkeep #value:katzen_upkeep|UPKEEP|@kaiser_submarine_upkeep|
+	# 		}
+	# 	}
+	# }
+	# every_owned_ship = {
+	# 	limit = { is_ship_size = giga_katzen_submarine_submerged  }
+	# 	while = {
+	# 		count = fleet.giga_submarine_fleet_ship_count #per submerged submarine that is "in this fleet"
+	# 		event_target:flusion_primitives_country = {
+	# 			change_variable = {
+	# 				which = kaiser_resource_spending
+	# 				value = @kaiser_submarine_upkeep #value:katzen_upkeep|UPKEEP|@kaiser_submarine_upkeep|
+	# 			}
 	# 		}
 	# 	}
 	# }
