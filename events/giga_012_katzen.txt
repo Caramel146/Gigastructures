@@ -2994,8 +2994,12 @@ country_event = { #hello
 				fail_text = "cant_submit_reformation" #this is to block players opportunistically joining when they see reformation instability just to join the succession war
 				katzen_reformation_active = no
 			}
+			custom_tooltip = {
+				fail_text = "cant_submit_nomadic" #nomads do not YET have proper vassalhood support
+				is_nomadic = no
+			}
 		}
-		hidden_effect = {
+		hidden_effect = { #submission notification and final choice event
 			country_event = { id = giga_katzen.1030 }
 		}
 	}
@@ -9562,11 +9566,11 @@ country_event = {
 	}
 
 	immediate = {
-		#run event again in 0.5-1 years
-		#Flusion develops faster than normal colonies, which are 330 days with random of 60
+		#run event again in 0.33-1 years
+		#Flusion develops significantly faster than colonies, which are 330 days with random of 60
 		#This is so that it can develop in bursts if overpopulated
 		# so that the Flusioarc gets built fast if the Kaiser is conquering many pops
-		country_event = { id = giga_katzen.080 days = 180 random = 180 }
+		country_event = { id = giga_katzen.080 days = 120 random = 240 }
 		
 		# event_target:gigaflusion = {
 		# 	change_variable = {
@@ -9716,7 +9720,7 @@ country_event = {
 						value = 1
 					}
 				}
-				add_building = building_katzen_theater
+				add_building = building_katzen_theater #see note in uhh Katzen Imperium awakens event
 			}
 
 			if = {
@@ -9822,7 +9826,7 @@ country_event = {
 					limit = {
 						planet_devastation > 20
 					}
-					add_planet_devastation = -15
+					add_planet_devastation = -10 #smaller cleanup than colonies (15) since Flusion reruns development quickly
 				}
 
 				else_if = { #if it's not devastation keeping housing down, see if we can build some districts!
@@ -17589,6 +17593,23 @@ country_event = {
 
 	option = {
 		name = "giga_katzen.7024.c"
+	}
+}
+
+# Remove Reunited Imperium civic from released vassals. Called by on_released_as_vassal
+country_event = {
+	id = giga_katzen.7025
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_civic = civic_reunited_imperium_player
+			}
+			force_remove_civic = civic_reunited_imperium_player
+		}
 	}
 }
 
