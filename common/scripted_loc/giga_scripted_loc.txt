@@ -718,3 +718,19 @@ defined_text = {
 
 	default = giga_amenities_icon
 }
+  
+define_text = {
+	name = ImprobKaiserMoonSalvageTetradimensional
+	text = {
+		trigger = {
+			NOT = { has_technology = giga_tech_tetradimensional_engineering }
+		}
+		localization_key = giga_tech_improbable_kaiser_moon_non_tetradim_desc
+	}
+	text = {
+		trigger = {
+			has_technology = giga_tech_tetradimensional_engineering
+		}
+		localization_key = giga_tech_improbable_kaiser_moon_tetradim_desc
+	}
+}
