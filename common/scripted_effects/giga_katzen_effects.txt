@@ -269,6 +269,7 @@ spawn_katzen_submarine_fleet = {
 		}
 		effect = {
 			set_owner = event_target:flusion_primitives_country
+			add_modifier = { modifier = "no_naval_capacity" days = -1 }
 			while = {
 				count = 6
 				spawn_katzen_submarine = yes
@@ -2583,6 +2584,7 @@ katzen_submarine_unsubmerge = {
 		}
 		effect = {
 			set_owner = event_target:flusion_primitives_country
+			add_modifier = { modifier = "no_naval_capacity" days = -1 }
 			while = {
 				count = ROOT.giga_submarine_fleet_ship_count
 				spawn_katzen_submarine = yes
@@ -2616,6 +2618,7 @@ spawn_katzen_warforge_fleet = {
 		}
 		effect = {
 			set_owner = event_target:flusion_primitives_country
+			add_modifier = { modifier = "no_naval_capacity" days = -1 }
 			while = {
 				count = @kaiser_warforge_build_capacity
 				limit = {

@@ -101,6 +101,7 @@ kaiser_planetcraft_2 = {
 					assign_leader = event_target:flusion_douclaw
 					set_location = fromfrom.planet
 					set_fleet_stance = aggressive
+					add_modifier = { modifier = "no_naval_capacity" days = -1 }
 					create_ship = {
 						name = "Kaiserübermacht"
 						design = "Kaiser Planetcraft"
