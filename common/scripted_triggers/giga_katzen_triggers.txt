@@ -168,12 +168,17 @@ is_viable_system_for_submarine = {
 	NOT = {
 		any_ship_in_system = {
 			is_ship_size = giga_war_moon
+			is_ship_size = carks_lunark
 			is_ship_size = giga_planet_behemoth
 			is_ship_size = giga_aeternum_planetcraft
 			is_ship_size = giga_corrona_planetcraft
+			is_ship_size = carks_planark
 			is_ship_size = giga_systemcraft
+			is_ship_size = carks_sysark
 			is_ship_size = giga_o_systemcraft
+			is_ship_size = carks_sysark_o
 			is_ship_size = quasarmod_quasarcraft
+			is_ship_size = carks_quasark
 		}
 	}
 }
@@ -198,6 +203,13 @@ katzen_is_planetkiller = {
 		is_ship_size = voidspawn_boss
 		is_ship_size = synth_queen_titan
 		is_ship_size = warped_consciousness #The Reckoning / End of the Cycle boss
+		is_ship_size = xhk_worldark_tier_8 #smallest wark tier that can have planetkillers
+		is_ship_size = xhk_worldark_tier_9
+		is_ship_size = xhk_worldark_tier_10
+		is_ship_size = xhk_worldark_tier_11
+		is_ship_size = xhk_worldark_tier_12
+		is_ship_size = carks_quasark
+		#carks_sysark and carks_sysark_o do NOT have planetkillers implemented so no need to have them here
 	}
 }
 
@@ -208,6 +220,8 @@ is_allowed_for_kaiser_spawn = {
 
 		#MEM
 		has_star_flag = mem_severance_relic_system
+
+		has_star_flag = marauder_system #Kaiser doesn't aggro them so he can get stuck if surrounded
 
 		# is_fe_cluster = yes
 		space_owner? = { is_fallen_empire = yes }
