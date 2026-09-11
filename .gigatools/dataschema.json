@@ -23,6 +23,14 @@
                 },
                 "fullDesc": {
                   "type": "string"
+                },
+                "classify": {
+                  "type": "boolean"
+                },
+                "incompatible": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "uniqueItems": true
                 }
               },
               "additionalProperties": false

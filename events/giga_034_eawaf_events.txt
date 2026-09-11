@@ -3541,6 +3541,13 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 
+	trigger = { #Equestria may be at war but even they can't nuke the planet if they don't have it
+		owner = {
+			is_same_value = event_target:giga_eawaf_country
+			is_primitive = yes
+		}
+	}
+
 	immediate = {
 		set_update_modifiers_batch = begin
 		if = {

@@ -1,0 +1,51 @@
+
+define_text = {
+    name = GigaFlusionProvisionalGovernmentName
+    default = giga_katzen.7021.name.loris
+    text = {
+        trigger = {
+            has_global_flag = flusion_provisional_gov_loris
+        }
+        localization_key = giga_katzen.7021.name.loris
+    }
+    text = {
+        trigger = {
+            has_global_flag = flusion_provisional_gov_douclaw
+        }
+        localization_key = giga_katzen.7021.name.douclaw
+    }
+}
+
+define_text = {
+    name = VassalEventTitleCultural
+    default = giga_katzen.7043.individualist.name
+    text = {
+        trigger = {
+            is_hive_empire = yes
+        }
+        localization_key = giga_katzen.7043.hive.name
+    }
+    text = {
+        trigger = {
+            is_machine_empire = yes
+        }
+        localization_key = giga_katzen.7043.machine.name
+    }
+}
+
+define_text = {
+    name = VassalEventTitleAcademic
+    default = giga_katzen.7047.individualist.name
+    text = {
+        trigger = {
+            is_hive_empire = yes
+        }
+        localization_key = giga_katzen.7047.hive.name
+    }
+    text = {
+        trigger = {
+            is_machine_empire = yes
+        }
+        localization_key = giga_katzen.7047.machine.name
+    }
+}

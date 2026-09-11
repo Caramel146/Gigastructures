@@ -749,11 +749,11 @@ giga_kaiser_prevent_civilian_candidates = {
 		limit = {
 			exists = owner
 			owner = {
-				is_country_type = katzenartig_imperium
+				katzen_country_type = yes
 			}
 		}
 		root = {
-			is_country_type = katzenartig_imperium
+			katzen_country_type = yes
 		}
 	}
 }
@@ -1074,6 +1074,16 @@ giga_has_consumer_goods_civic_or_individualist = {
 	}
 }
 
+giga_country_uses_consumer_goods_after_game_start = {
+	if = {
+		limit = { days_passed <= 0 }
+		giga_has_consumer_goods_civic_or_individualist = yes
+	}
+	else = {
+		country_uses_consumer_goods = yes
+	}
+}
+
 # extra conditions for whether the angler job swaps should happen
 giga_angler_jobs_trigger = {
     hidden_trigger = {
@@ -1116,6 +1126,10 @@ giga_ship_uses_war_system_components = {
 		is_ship_size = giga_systemcraft
 		is_ship_size = giga_o_systemcraft
 	}
+}
+
+giga_is_owner_main_species = {
+	is_same_species = owner_main_species
 }
 
 giga_has_megastructure_origin = { # Even in vanilla not all origins count, be particular about what origins are added here

@@ -7,7 +7,42 @@
 tags:
   #################################################
 
+  economic_category:
+    kilostructure:
+      desc: "Kilostructure"
+      fullDesc: "Megastructures with this economic category are considered kilostructures. Can be overridden on mega definitions."
+      incompatible:
+        - megastructure
+        - gigastructure
+
+    megastructure:
+      desc: "Megastructure"
+      fullDesc: "Megastructures with this economic category are neither a kilostructure nor gigastructure. Can be overridden on mega definitions."
+      incompatible:
+        - kilostructure
+        - gigastructure
+
+    gigastructure:
+      desc: "Gigastructure"
+      fullDesc: "Megastructures with this economic category are considered gigastructures. Can be overridden on mega definitions."
+      incompatible:
+        - kilostructure
+        - megastructure
+
+  #################################################
+
   megastructure:
+    kilostructure:
+      desc: "Kilostructure"
+      fullDesc: "This megastructure is a kilostructure and should be treated as such by triggers.\nInherited by megas from their economic category, can be used to override."
+
+    megastructure:
+      desc: "Megastructure"
+      fullDesc: "This megastructure is neither a kilostructure nor gigastructure and should be treated as such by triggers.\nInherited by megas from their economic category, can be used to override."
+
+    gigastructure:
+      desc: "Gigastructure"
+      fullDesc: "This megastructure is a gigastructure and should be treated as such by triggers.\nInherited by megas from their economic category, can be used to override."
 
     technical:
       desc: "Technical Mega"
@@ -25,17 +60,28 @@ tags:
       desc: "Non-megastructure Project"
       fullDesc: "This mega is a construction project which doesn't result in an actual megastructure, so shouldn't count against supertensiles."
 
-    force_kilo:
-      desc: "Kilostructure Override"
-      fullDesc: "This mega should be classed as a kilostructure for trigger purposes even if it doesn't have the right economic category."
+    first_stage:
+      desc: "First Stage Megastructure"
+      fullDesc: "Applied automatically to the first stage of megastructures."
 
-    force_giga:
-      desc: "Gigastructure Override"
-      fullDesc: "This mega should be classed as a gigastructure for trigger purposes even if it doesn't have the right economic category."
+    final_stage:
+      desc: "Final Stage Megastructure"
+      fullDesc: "Applied automatically to the final stage of megastructures."
 
-    force_final:
-      desc: "Final Stage Override"
-      fullDesc: "This mega should count as the final mega in its series even if other non-technical megas upgrade from it."
+    force_final_stage:
+      desc: "Final Stage Megastructure Override"
+      fullDesc: "This mega should be considered the final step in a chain even though it has further upgrades."
+      classify: false
+
+    dummy:
+      desc: "Dummy Mega"
+      fullDesc: "Dummy mega for mod compat or similar purposes, should not be included in mega categorisation, and generally ignored by the tools."
+      classify: false
+
+    buildable:
+      desc: "Buildable"
+      fullDesc: "Will be considered in construction ship related triggers and effects. Automatically applied to first stage megas where potential isn't always = no."
+      classify: false
 
   #################################################
 

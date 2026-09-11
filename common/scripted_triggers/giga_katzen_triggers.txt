@@ -97,7 +97,7 @@ kaiser_opinion_range_enraged = {
 
 katzen_vassal = {
 	overlord? = {
-		is_country_type = katzenartig_imperium
+		katzen_country_type = yes
 	}
 }
 
@@ -117,12 +117,12 @@ kaiser_can_demand_system = {
 	}
 }
 
-is_small_katzen_fleet = {
-	OR = {
-		has_fleet_flag = katzen_panzer_fleet
-		has_fleet_flag = katzen_bomber_fleet
-	}
-}
+# is_small_katzen_fleet = {
+# 	OR = {
+# 		has_fleet_flag = katzen_panzer_fleet
+# 		has_fleet_flag = katzen_bomber_fleet
+# 	}
+# }
 
 has_katzen_colony = {
 	any_system_planet = {
@@ -131,13 +131,12 @@ has_katzen_colony = {
 }
 
 is_katzen_colony = {
-	owner = { is_country_type = katzenartig_imperium }
+	owner = { katzen_country_type = yes }
 	is_colony = yes
 }
 
 katzen_jump_blocked_system = {
-	exists = owner
-	owner = { is_country_type = katzenartig_imperium }
+	owner? = { katzen_country_type = yes }
 	any_system_planet = { #Must have a colony
 		is_katzen_colony = yes
 		has_carrier_flag = gigaflusion
@@ -166,15 +165,27 @@ is_valid_kaiser_moon_candidate = {
 }
 
 is_viable_system_for_submarine = {
+	#system is viable if there are no hostile-owned celestials
 	NOT = {
 		any_ship_in_system = {
-			is_ship_size = giga_war_moon
-			is_ship_size = giga_planet_behemoth
-			is_ship_size = giga_aeternum_planetcraft
-			is_ship_size = giga_corrona_planetcraft
-			is_ship_size = giga_systemcraft
-			is_ship_size = giga_o_systemcraft
-			is_ship_size = quasarmod_quasarcraft
+			AND = {
+				OR = {
+					is_ship_size = giga_war_moon
+					is_ship_size = giga_kaiser_moon_flusion #players could reverse-engineer these during the crisis so this is relevant
+					is_ship_size = carks_lunark
+					is_ship_size = giga_planet_behemoth
+					is_ship_size = giga_aeternum_planetcraft
+					is_ship_size = giga_corrona_planetcraft
+					is_ship_size = carks_planark
+					is_ship_size = giga_systemcraft
+					is_ship_size = carks_sysark
+					is_ship_size = giga_o_systemcraft
+					is_ship_size = carks_sysark_o
+					is_ship_size = quasarmod_quasarcraft
+					is_ship_size = carks_quasark
+				}
+				owner = { NOT = { is_same_value = event_target:flusion_primitives_country } } #Katzen celestials can coordinate with Katzen submarines to not sabotage stealth
+			}
 		}
 	}
 }
@@ -199,6 +210,13 @@ katzen_is_planetkiller = {
 		is_ship_size = voidspawn_boss
 		is_ship_size = synth_queen_titan
 		is_ship_size = warped_consciousness #The Reckoning / End of the Cycle boss
+		is_ship_size = xhk_worldark_tier_8 #smallest wark tier that can have planetkillers
+		is_ship_size = xhk_worldark_tier_9
+		is_ship_size = xhk_worldark_tier_10
+		is_ship_size = xhk_worldark_tier_11
+		is_ship_size = xhk_worldark_tier_12
+		is_ship_size = carks_quasark
+		#carks_sysark and carks_sysark_o do NOT have planetkillers implemented so no need to have them here
 	}
 }
 
@@ -210,11 +228,10 @@ is_allowed_for_kaiser_spawn = {
 		#MEM
 		has_star_flag = mem_severance_relic_system
 
+		has_star_flag = marauder_system #Kaiser doesn't aggro them so he can get stuck if surrounded
+
 		# is_fe_cluster = yes
-		AND = {
-			exists = space_owner
-			space_owner = { is_fallen_empire = yes }
-		}
+		space_owner? = { is_fallen_empire = yes }
 		any_system = {
 			distance = {
 				source = this
@@ -226,10 +243,7 @@ is_allowed_for_kaiser_spawn = {
 				has_star_flag = empire_home_system
 				has_star_flag = empire_cluster
 				# is_fe_cluster = yes
-				AND = {
-					exists = space_owner
-					space_owner = { is_fallen_empire = yes }
-				}
+				space_owner? = { is_fallen_empire = yes }
 			}
 		}
 	}
@@ -258,47 +272,48 @@ is_allowed_for_kaiser_spawn = {
 # }
 
 is_forbidden_for_kaiser_starbase = {
-	#not already owned
-	exists = starbase
-	exists = owner
-	any_system_planet = {
-		is_colony = yes
-		owner = {
-			NOT = { is_country_type = primitive }
-		}
-	}
-
-	#no hostiles
-	any_fleet_in_system = {
-		controller = {
-			OR = {
-				is_at_war_with = event_target:flusion_primitives_country
-				is_hostile = event_target:flusion_primitives_country
+	OR = {
+		#not already owned
+		exists = starbase
+		exists = owner
+		any_system_planet = {
+			is_colony = yes
+			owner = {
+				NOT = { is_country_type = primitive }
 			}
 		}
-	}
 
-	# kaiser shouldn't anger the xenophobe fallen empire unless he's at war with them
-	any_neighbor_system = {
-		exists = owner
-		owner = {
-			is_fallen_empire = yes
-			has_ai_personality = fallen_empire_xenophobe
-			not = { is_at_war_with = root }
+		#no hostiles
+		any_fleet_in_system = {
+			controller = {
+				OR = {
+					is_at_war_with = event_target:flusion_primitives_country
+					is_hostile = event_target:flusion_primitives_country
+				}
+			}
 		}
+
+		# kaiser shouldn't anger the xenophobe fallen empire unless he's at war with them
+		any_neighbor_system = {
+			owner? = {
+				is_fallen_empire = yes
+				has_ai_personality = fallen_empire_xenophobe
+				not = { is_at_war_with = root }
+			}
+		}
+
+		# In case shrouded Faust is accessible, no-one should be in there
+		has_star_flag = eawaf_faust_killzone
+
+		# Don't interrupt the Sirens if they're guaranteed
+		AND = {
+			has_global_flag = giga_eawaf_sirens_guaranteed
+			has_star_flag = eawaf_system
+		}
+
+		# Wild space compatibility
+		is_star_class = sc_dn
 	}
-
-	# In case shrouded Faust is accessible, no-one should be in there
-	has_star_flag = eawaf_faust_killzone
-
-	# Don't interrupt the Sirens if they're guaranteed
-	AND = {
-		has_global_flag = giga_eawaf_sirens_guaranteed
-		has_star_flag = eawaf_system
-	}
-
-	# Wild space compatibility
-	is_star_class = sc_dn
 }
 
 kaiser_can_wardec = { #should be run in target country scope
@@ -308,6 +323,7 @@ kaiser_can_wardec = { #should be run in target country scope
 		overlord? = { is_ai = no } #not subject of player
 		is_at_war_with = root #is already at war
 	}
+	katzen_vassal = no
 	is_ai = yes
 	NAND = { #not in fed with player
 		exists = federation
@@ -322,5 +338,18 @@ kaiser_can_wardec = { #should be run in target country scope
 			is_country_type = katzenartig_imperium
 			katzen_vassal = yes
 		}
+	}
+}
+
+katzen_reformation_active = {
+	has_global_flag = katzen_reformation_begun
+	NOT = { has_global_flag = katzen_reformation_complete }
+}
+
+#NOTE: this should be used on a case-by-case basis alongside is_country_type katzenartig_imperium depending on whether the Provisional Government should be included
+katzen_country_type = {
+	OR = {
+		is_country_type = katzenartig_imperium
+		is_country_type = katzenartig_imperium_provisional
 	}
 }
