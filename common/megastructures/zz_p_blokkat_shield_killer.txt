@@ -390,6 +390,7 @@ blokkat_shield_killer_energy = {
 		always = no
 	}
 
+    upgrade_from = { blokkat_shield_killer_4 }
 	upgrade_desc = hide
 
 	ai_weight = { factor = 0 } # If we can build it, we will build it
@@ -426,6 +427,7 @@ blokkat_shield_killer_influence = {
 		category_blokkats_research_speed_mult = 0.75
 	}
 
+    upgrade_from = { blokkat_shield_killer_4 }
 	upgrade_desc = hide
 
 	potential = {

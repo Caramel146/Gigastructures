@@ -73,11 +73,11 @@ ndb_can_target_system = {
 				is_planet_class = pc_ai
 				is_planet_class = pc_birch
 				is_planet_class = pc_squareworld_habitable
-				#is_planet_class = pc_alderson_slice_ecu
-				#is_planet_class = pc_alderson_slice_machine
+				# is_planet_class = pc_alderson_slice_ecu
+				# is_planet_class = pc_alderson_slice_machine
 				is_planet_class = pc_alderson_slice_gaia
-				#is_planet_class = pc_alderson_slice_pc
-				#is_planet_class = pc_alderson_slice_hive
+				# is_planet_class = pc_alderson_slice_pc
+				# is_planet_class = pc_alderson_slice_hive
 			}
 		}
 	}
@@ -95,11 +95,11 @@ ndb_can_target_planet = {
 		is_star = yes
 		is_astral_scar = yes
 		is_planet_class = pc_birch
-		#is_planet_class = pc_alderson_slice_ecu
-		#is_planet_class = pc_alderson_slice_hive
-		#is_planet_class = pc_alderson_slice_machine
+		# is_planet_class = pc_alderson_slice_ecu
+		# is_planet_class = pc_alderson_slice_hive
+		# is_planet_class = pc_alderson_slice_machine
 		is_planet_class = pc_alderson_slice_gaia
-		#is_planet_class = pc_alderson_slice_pc
+		# is_planet_class = pc_alderson_slice_pc
 		is_planet_class = pc_ai
 		is_planet_class = pc_squareworld_habitable
 		has_planet_flag = cant_build_here
@@ -523,6 +523,7 @@ giga_has_artificial_preference_trait = {
 		has_trait = trait_pc_habitat_preference
 		has_trait = trait_pc_shattered_ring_habitable_preference
 		has_trait = trait_pc_ringworld_habitable_preference # you can break the vanilla event with this...
+		has_trait = trait_pc_ark_preference
 		# gigas
 		has_trait = trait_pc_giga_frameworld_preference
 		has_trait = trait_pc_flusion_gaia_ecu_preference
@@ -533,18 +534,11 @@ giga_has_artificial_preference_trait = {
 		has_trait = trait_pc_interstellar_habitat_preference
 		has_trait = trait_pc_interstellar_ringworld_habitable_preference
 		has_trait = trait_pc_flat_world_preference
-		# has_trait = trait_pc_ringworld_city_preference
-		# has_trait = trait_pc_ringworld_machine_preference
-		# has_trait = trait_pc_ringworld_hive_preference
 		has_trait = trait_pc_birch_preference
 		has_trait = trait_pc_origin_birch_preference
 		has_trait = trait_pc_equatorial_shipyard_preference
 		has_trait = trait_pc_giga_planetary_computer_preference
 		has_trait = trait_pc_habitable_gas_giant_preference
-		has_trait = trait_pc_alderson_slice_pc_preference
-		#has_trait = trait_pc_alderson_slice_ecu_preference
-		#has_trait = trait_pc_alderson_slice_hive_preference
-		#has_trait = trait_pc_alderson_slice_machine_preference
 		has_trait = trait_pc_alderson_slice_gaia_preference
 		has_trait = trait_pc_ehof_habitat_preference
 		has_trait = trait_pc_void_birch_preference
@@ -1080,6 +1074,16 @@ giga_has_consumer_goods_civic_or_individualist = {
 	}
 }
 
+giga_country_uses_consumer_goods_after_game_start = {
+	if = {
+		limit = { days_passed <= 0 }
+		giga_has_consumer_goods_civic_or_individualist = yes
+	}
+	else = {
+		country_uses_consumer_goods = yes
+	}
+}
+
 # extra conditions for whether the angler job swaps should happen
 giga_angler_jobs_trigger = {
     hidden_trigger = {
@@ -1124,6 +1128,10 @@ giga_ship_uses_war_system_components = {
 	}
 }
 
+giga_is_owner_main_species = {
+	is_same_species = owner_main_species
+}
+
 giga_has_megastructure_origin = { # Even in vanilla not all origins count, be particular about what origins are added here
 	# Called in tech_mega_engineering weight overwrite
 	OR = {
@@ -1135,5 +1143,49 @@ giga_has_megastructure_origin = { # Even in vanilla not all origins count, be pa
 		has_origin = origin_interstellar_ring
 		has_origin = origin_squareworld
 		has_origin = origin_penrose_ring
+	}
+}
+
+giga_is_moon = {
+	optimize_memory
+	custom_tooltip = {
+		text = giga_is_moon
+		exists = orbit
+	}
+}
+
+
+## Overpowered stuffs that should trigger anime blokkat
+giga_has_extremely_overpowered_start = {
+	OR = {
+		## Stellarborne empire
+		has_country_flag = oe_player
+
+		## Theta tier acot tech
+		has_sots = yes
+
+		## Warship girl R
+		has_authority = auth_united_fleet
+
+		## Voyage to eternity
+		OR = { has_origin = origin_KZ_VOY_e_pluribus_unum has_origin = origin_KZ_VOY_e_pluribus_unum }
+		OR = { has_civic = civic_KZ_VOY_shenlong_republic has_civic = civic_KZ_VOY_shenlong_republic_setup }
+
+		## Ascended salvation
+		has_shelter_MOD = yes
+
+		## Touhou Stellar Chronicles and Ancient Empire collab origin
+		has_country_flag = touhou_shell_world
+
+		## OP sphereship levels
+		event_target:global_event_country = {
+			OR = {
+				has_country_flag = sphereship_divine
+				has_country_flag = sphereship_aeon
+			}
+		}
+
+		## StellarRegulator Array
+		has_country_flag = origin_SRA_Rokia_flag
 	}
 }

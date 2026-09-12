@@ -283,28 +283,12 @@ remove_flags_vanilla_dyson_swarm = {
 	remove_global_flag = vanilla_dyson_swarm_capped_u
 }
 
-remove_flags_cityring = {
-	remove_global_flag = cityring_capped_1
-	remove_global_flag = cityring_capped_2
-	remove_global_flag = cityring_capped_3
-	remove_global_flag = cityring_capped_r
-	remove_global_flag = cityring_capped_u
+remove_flags_vanilla_stellar_cannon = {
+    remove_global_flag = vanilla_stellar_cannon_disabled
 }
 
-remove_flags_hivering = {
-	remove_global_flag = hivering_capped_1
-	remove_global_flag = hivering_capped_2
-	remove_global_flag = hivering_capped_3
-	remove_global_flag = hivering_capped_r
-	remove_global_flag = hivering_capped_u
-}
-
-remove_flags_machinering = {
-	remove_global_flag = machinering_capped_1
-	remove_global_flag = machinering_capped_2
-	remove_global_flag = machinering_capped_3
-	remove_global_flag = machinering_capped_r
-	remove_global_flag = machinering_capped_u
+remove_flags_vanilla_dsc = {
+    remove_global_flag = vanilla_dsc_disabled
 }
 
 remove_flags_upgrade = {
@@ -356,7 +340,7 @@ remove_flags_warplanet = {
 }
 
 remove_flags_birch = {
-	remove_global_flag = birch_capped_1
+	remove_global_flag = birch_disabled
 }
 
 remove_flags_crystal = {
@@ -536,12 +520,12 @@ remove_flags_orbital_artificial_eco = {
 	remove_global_flag = orbital_artificial_eco_capped_u
 }
 
-remove_flags_academy = {
-	remove_global_flag = academy_capped_1
-	remove_global_flag = academy_capped_2
-	remove_global_flag = academy_capped_3
-	remove_global_flag = academy_capped_r
-	remove_global_flag = academy_capped_u
+remove_flags_orbital_naval_logistics = {
+	remove_global_flag = orbital_naval_logistics_capped_1
+	remove_global_flag = orbital_naval_logistics_capped_2
+	remove_global_flag = orbital_naval_logistics_capped_3
+	remove_global_flag = orbital_naval_logistics_capped_r
+	remove_global_flag = orbital_naval_logistics_capped_u
 }
 
 remove_flags_penrose_sphere = {
@@ -713,9 +697,6 @@ disable_menu_mega = { #relocated this here for ease of access and to keep it con
 	set_global_flag = vanilla_strategic_disabled
 	set_global_flag = vanilla_furnace_disabled
 	set_global_flag = vanilla_dyson_swarm_disabled
-	set_global_flag = cityring_disabled
-	set_global_flag = hivering_disabled
-	set_global_flag = machinering_disabled
 	set_global_flag = upgrade_disabled
 	set_global_flag = alderson_disabled
 	set_global_flag = terraform_toxic_disabled
@@ -742,7 +723,7 @@ disable_menu_mega = { #relocated this here for ease of access and to keep it con
 	set_global_flag = nidavellir_disabled
 	set_global_flag = orbital_arcologies_disabled
 	set_global_flag = orbital_artificial_eco_disabled
-	set_global_flag = academy_disabled
+	set_global_flag = orbital_naval_logistics_disabled
 	set_global_flag = giga_habitats_disabled
 	set_global_flag = giga_habitats_advanced_orbitals_disabled
 	set_global_flag = penrose_sphere_disabled
@@ -795,9 +776,6 @@ remove_menu_mega_disable = { #Removes the disable flag for everything mega relat
 		remove_global_flag = vanilla_furnace_disabled
 		remove_global_flag = vanilla_dyson_swarm_disabled
 	}
-	remove_global_flag = cityring_disabled
-	remove_global_flag = hivering_disabled
-	remove_global_flag = machinering_disabled
 	remove_global_flag = upgrade_disabled
 	remove_global_flag = alderson_disabled
 	remove_global_flag = terraform_toxic_disabled
@@ -824,7 +802,7 @@ remove_menu_mega_disable = { #Removes the disable flag for everything mega relat
 	remove_global_flag = nidavellir_disabled
 	remove_global_flag = orbital_arcologies_disabled
 	remove_global_flag = orbital_artificial_eco_disabled
-	remove_global_flag = academy_disabled
+	remove_global_flag = orbital_naval_logistics_disabled
 	remove_global_flag = penrose_sphere_disabled
 	remove_global_flag = planetary_computer_disabled
 	remove_global_flag = siphon_disabled
@@ -852,11 +830,10 @@ remove_menu_mega_disable = { #Removes the disable flag for everything mega relat
 remove_all_mega_flags = { #This is so all the capacity buttons and whatnot do not mess with difficulty settings
 	remove_flags_maginot = yes
 	remove_flags_planetshipyard = yes
-	remove_flags_academy = yes
+	remove_flags_orbital_naval_logistics = yes
 	remove_flags_accelerator = yes
 	remove_flags_alderson = yes
 	remove_flags_birch = yes
-	remove_flags_cityring = yes
 	remove_flags_compressor = yes
 	remove_flags_crystal = yes
 	remove_flags_disco_moon = yes
@@ -865,12 +842,10 @@ remove_all_mega_flags = { #This is so all the capacity buttons and whatnot do no
 	remove_flags_glue = yes
 	remove_flags_giga_rings = yes
 	remove_flags_gigaforge = yes
-	remove_flags_hivering = yes
 	remove_flags_hraemc = yes
 	remove_flags_hyperstructural_ass = yes
 	remove_flags_kugel = yes
 	remove_flags_lifters = yes
-	remove_flags_machinering = yes
 	remove_flags_matrioshka_brain = yes
 	remove_flags_megabase = yes
 	remove_flags_ndb = yes
@@ -900,6 +875,8 @@ remove_all_mega_flags = { #This is so all the capacity buttons and whatnot do no
 	remove_flags_vanilla_art = yes
 	remove_flags_vanilla_dyson = yes
 	remove_flags_vanilla_dyson_swarm = yes
+    remove_flags_vanilla_dsc = yes
+    remove_flags_vanilla_stellar_cannon = yes
 	remove_flags_storm_observatory = yes
 	remove_flags_vanilla_interstellar = yes
 	remove_flags_vanilla_matter = yes
@@ -948,6 +925,154 @@ remove_all_preset_flags = {
 	remove_global_flag = giga_vanilla_plus_preset_selected
 	remove_global_flag = giga_gigas_experience_preset_selected
 	remove_global_flag = giga_arcade_preset_selected
+}
+
+set_blokkat_difficulty = {
+    if = {
+        limit = {
+			any_country = { giga_has_extremely_overpowered_start = yes }
+        }
+        set_global_flag = giga_blokkats_deathmode
+    }
+    else_if = {
+        limit = {
+            OR = {
+				has_global_flag = acot_full_activated
+                has_global_flag = has_aot_mod
+				is_sbtg_activated = yes
+            }
+        }
+        set_global_flag = giga_blokkats_endtech
+    }
+    else_if = {
+        limit = {
+			has_global_flag = acot_activated
+        }
+        set_global_flag = giga_blokkats_bismuth
+    }
+    else_if = {
+        limit = {
+            OR = {
+                has_global_flag = nhsc_v30
+                has_global_flag = nhsc_overwrites_v30
+                has_global_flag = has_nsc_active
+				has_global_flag = giga_arcade_preset_selected 	## Default for arcade
+            }
+        }
+        set_global_flag = giga_blokkats_normal
+    }
+	else_if = { ## Default for giga experience
+		limit = { has_global_flag = giga_arcade_preset_selected }
+		set_global_flag = giga_blokkats_easy
+	}
+    else = { ## default for vanilla plus (if they enable it)
+        set_global_flag = giga_blokkats_very_easy
+    }
+}
+
+set_siren_difficulty = {
+    if = {
+        limit = {
+			any_country = { giga_has_extremely_overpowered_start = yes }
+        }
+        event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 7 } }
+    }
+    else_if = {
+        limit = {
+            OR = {
+                has_global_flag = acot_full_activated
+                has_global_flag = has_aot_mod
+				is_sbtg_activated = yes
+            }
+        }
+        event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 6 } }
+    }
+    else_if = {
+        limit = {
+			has_global_flag = acot_activated
+        }
+        event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 4 } }
+    }
+    else_if = {
+        limit = { OR = {
+			has_global_flag = nhsc_v30
+			has_global_flag = nhsc_overwrites_v30
+			has_global_flag = has_nsc_active
+			has_global_flag = giga_arcade_preset_selected 	## Default for arcade
+		} }
+        event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 3 } }
+    }
+    else = {
+        event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 2 } }
+    }
+}
+
+set_aeternum_difficulty = {
+    # check for other mods
+	if = {
+		limit = {
+			any_country = { giga_has_extremely_overpowered_start = yes }
+		}
+		set_global_flag = giga_core_aeternum_4
+	}
+    else_if = {
+        limit = { has_global_flag = acot_activated }
+        set_global_flag = giga_core_aeternum_3
+    }
+	else_if = { ## Default for arcade and giga experience
+		limit = { OR = {
+			has_global_flag = giga_arcade_preset_selected
+			has_global_flag = giga_gigas_experience_preset_selected
+		} }
+		set_global_flag = giga_core_aeternum_2
+	}
+	else = {
+		set_global_flag = giga_core_aeternum_1
+	}
+}
+
+
+set_fallen_empire_difficulty = {
+	if = {
+		limit = {
+			any_country = { giga_has_extremely_overpowered_start = yes }
+		}
+		set_global_flag = giga_fe_planetcrafts_7
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_global_flag = acot_full_activated
+				has_global_flag = has_aot_mod
+				is_sbtg_activated = yes
+			}
+		}
+		set_global_flag = giga_fe_planetcrafts_6
+	}
+	else_if = {
+		limit = {
+			has_global_flag = acot_activated
+		}
+		set_global_flag = giga_fe_planetcrafts_4
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_global_flag = nhsc_v30
+				has_global_flag = nhsc_overwrites_v30
+				has_global_flag = has_nsc_active
+				has_global_flag = giga_arcade_preset_selected
+			}
+		}
+		set_global_flag = giga_fe_planetcrafts_3
+	}
+	else_if = {	## Default for giga experience
+		limit = { has_global_flag = giga_gigas_experience_preset_selected}
+		set_global_flag = giga_fe_planetcrafts_2
+	}
+	else = {
+		set_global_flag = giga_fe_planetcrafts_1
+	}
 }
 
 # Random
@@ -1175,66 +1300,6 @@ giga_preset_random = {
 			set_global_flag = giga_rings_gar
 		}
 	}
-	random_list = { #Ecumenopolis ringworld cap
-		1 = {
-			set_global_flag = cityring_capped_1
-		}
-		1 = {
-			set_global_flag = cityring_capped_2
-		}
-		1 = {
-			set_global_flag = cityring_capped_3
-		}
-		1 = {
-			set_global_flag = cityring_capped_r
-		}
-		1 = {
-			set_global_flag = cityring_capped_u
-		}
-		1 = {
-			set_global_flag = cityring_disabled
-		}
-	}
-	random_list = { #hive ringworld cap
-		1 = {
-			set_global_flag = hivering_capped_1
-		}
-		1 = {
-			set_global_flag = hivering_capped_2
-		}
-		1 = {
-			set_global_flag = hivering_capped_3
-		}
-		1 = {
-			set_global_flag = hivering_capped_r
-		}
-		1 = {
-			set_global_flag = hivering_capped_u
-		}
-		1 = {
-			set_global_flag = hivering_disabled
-		}
-	}
-	random_list = { #machine ringworld cap
-		1 = {
-			set_global_flag = machinering_capped_1
-		}
-		1 = {
-			set_global_flag = machinering_capped_2
-		}
-		1 = {
-			set_global_flag = machinering_capped_3
-		}
-		1 = {
-			set_global_flag = machinering_capped_r
-		}
-		1 = {
-			set_global_flag = machinering_capped_u
-		}
-		1 = {
-			set_global_flag = machinering_disabled
-		}
-	}
 	random_list = { #upgraded ringworld cap
 		1 = {
 			set_global_flag = upgrade_capped_1
@@ -1357,7 +1422,7 @@ giga_preset_random = {
 	}
 	random_list = { #birch world cap
 		1 = {
-			set_global_flag = birch_capped_1
+			# leave birch on
 		}
 		1 = {
 			set_global_flag = birch_disabled
@@ -1789,24 +1854,24 @@ giga_preset_random = {
 			set_global_flag = orbital_artificial_eco_disabled
 		}
 	}
-	random_list = { #orbital bastion cap
+	random_list = { #orbital naval logistics office cap
 		1 = {
-			set_global_flag = academy_capped_1
+			set_global_flag = orbital_naval_logistics_capped_1
 		}
 		1 = {
-			set_global_flag = academy_capped_2
+			set_global_flag = orbital_naval_logistics_capped_2
 		}
 		1 = {
-			set_global_flag = academy_capped_3
+			set_global_flag = orbital_naval_logistics_capped_3
 		}
 		1 = {
-			set_global_flag = academy_capped_r
+			set_global_flag = orbital_naval_logistics_capped_r
 		}
 		1 = {
-			set_global_flag = academy_capped_u
+			set_global_flag = orbital_naval_logistics_capped_u
 		}
 		1 = {
-			set_global_flag = academy_disabled
+			set_global_flag = orbital_naval_logistics_disabled
 		}
 	}
 	random_list = { #habitats and orbital elysiums cap
@@ -2550,9 +2615,6 @@ giga_preset_vanilla_plus = {
 	set_global_flag = vanilla_furnace_capped_1
 	set_global_flag = vanilla_dyson_swarm_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_disabled
 	set_global_flag = alderson_capped_1
 	set_global_flag = terraform_toxic_capped_1
@@ -2579,7 +2641,7 @@ giga_preset_vanilla_plus = {
 	set_global_flag = nidavellir_capped_1
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_1
-	set_global_flag = academy_capped_1
+	set_global_flag = orbital_naval_logistics_capped_1
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_1
 	set_global_flag = planetary_computer_capped_1
@@ -2618,12 +2680,12 @@ giga_preset_vanilla_plus = {
 		remove_global_flag = giga_dyson_scaling
 		remove_global_flag = giga_lifter_scaling
 		remove_global_flag = giga_matroishka_scaling
+		set_global_flag = gigas_menu_fe_planetcrafts_disabled
 		set_global_flag = katzenartig_disabled #it's kaisover
 		set_global_flag = giga_blokkats_disabled
 		set_global_flag = giga_core_always_empty
 		set_global_flag = giga_galactic_fed_shuffle
-		# THE SIRENS
-		set_global_flag = giga_eawaf_sirens_disabled
+		#Sirens are disabled already via remove_all_menu_flags
 		event_target:global_event_country = {
 			set_variable = { #For mega output
 				which = giga_mega_output
@@ -2649,15 +2711,6 @@ giga_preset_vanilla_plus = {
 				which = giga_mega_upkeep_ai
 				value = 100
 			}
-			# Siren variables
-			set_variable = { 
-				which = giga_eawaf_sirens_difficulty 
-				value = 2 
-			}
-			set_variable = {
-				which = sirens_spawn_date
-				value = 2400
-			}
 			# Blokkat Variables
 			set_variable = {
 				which = blokkat_spawn_date
@@ -2672,148 +2725,17 @@ giga_preset_vanilla_plus = {
 			set_global_flag = giga_blokkats_disabled
 		}
 		#CHECK FOR BLOKKAT DIFFICULTY
-		if = {
-			limit = {
-				OR = {
-					any_country = { has_country_flag = oe_player }
-					any_country = { has_authority = auth_warshipgirls }
-					any_country = { has_authority = auth_shenhai }
-				}
-			}
-			set_global_flag = giga_blokkats_deathmode
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_full_activated
-					has_global_flag = has_aot_mod
-					has_global_flag = has_sots_mod
-				}
-			}
-			set_global_flag = giga_blokkats_endtech
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			set_global_flag = giga_blokkats_bismuth
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			set_global_flag = giga_blokkats_normal
-		}
-		else_if = { #No Planetcrafts?
-			limit = {
-				NOT = {
-					host_has_dlc = "Apocalypse"
-				}
-			}
-			set_global_flag = giga_blokkats_very_easy
-		}
-		else = {
-			set_global_flag = giga_blokkats_easy
-		}
+        set_blokkat_difficulty = yes
 		#CHECK FOR SIRENS DIFFICULTY
-		if = {
-			limit = {
-				OR = {
-					any_country = { has_country_flag = oe_player }
-					any_country = { has_authority = auth_warshipgirls }
-					any_country = { has_authority = auth_shenhai }
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 7 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_full_activated
-					has_global_flag = has_aot_mod
-					has_global_flag = has_sots_mod
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 6 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 4 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 3 } }
-		}
-		else = {
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 2 } }
-		}
+        set_siren_difficulty = yes
+		#CHECK FOR FE DIFFICULTY
+		set_fallen_empire_difficulty = yes
 		# Disable O-Stars for real space
 		if = {
 			limit = { has_global_flag = has_real_space_mod }
 			set_global_flag = giga_o_stars_disabled
 		}
-		# Check for FE planetcraft
-		if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			remove_flags_fe_planetcrafts = yes
-			set_global_flag = giga_fe_planetcrafts_3
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			remove_flags_fe_planetcrafts = yes
-			set_global_flag = giga_fe_planetcrafts_2
-		}
-		else = {
-			remove_flags_fe_planetcrafts = yes
-			set_global_flag = giga_fe_planetcrafts_0
-		}
-		# Nerf aeternum if no planetcraft
-		if = {
-			limit = {
-				NOT = {
-					host_has_dlc = "Apocalypse"
-				}
-			}
-			set_global_flag = giga_core_aeternum_1
-		}
-		else = {
-			set_global_flag = giga_core_aeternum_2
-		}
-		# Buff aeternum for acot
-		if = { 
-			limit = { has_global_flag = acot_activated }
-			remove_flags_aeternum_difficulty = yes
-			set_global_flag = giga_core_aeternum_3
-		}
+		# NO AETERNUM DIFF CAUSE DISABLED
 		# Machine age Settings
 		if = {
 			limit = {
@@ -2837,6 +2759,8 @@ giga_preset_vanilla_plus = {
 			set_global_flag = giga_matroishka_scaling
 		}
 	}
+
+    fire_on_action = { on_action = giga_preset_vanillaplus_selected }
 }
 
 giga_preset_gigas_experience = {
@@ -2859,16 +2783,12 @@ giga_preset_gigas_experience = {
 	set_global_flag = vanilla_furnace_capped_u
 	set_global_flag = vanilla_dyson_swarm_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_disabled
 	set_global_flag = alderson_capped_1
 	set_global_flag = terraform_toxic_capped_3
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_1
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_3
 	set_global_flag = shipyard_capped_3
@@ -2888,7 +2808,7 @@ giga_preset_gigas_experience = {
 	set_global_flag = nidavellir_capped_1
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_3
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_3
 	set_global_flag = planetary_computer_capped_3
@@ -2924,8 +2844,7 @@ giga_preset_gigas_experience = {
 		set_global_flag = giga_blokkats_enabled
 		set_global_flag = giga_core_shuffle
 		set_global_flag = giga_galactic_fed_shuffle
-		# THE SIRENS
-		set_global_flag = giga_eawaf_sirens_disabled
+		#Sirens are disabled already via remove_all_menu_flags
 		event_target:global_event_country = {
 			set_variable = { #For mega output
 				which = giga_mega_output
@@ -2951,15 +2870,6 @@ giga_preset_gigas_experience = {
 				which = giga_mega_upkeep_ai
 				value = 100
 			}
-			# Siren variables
-			set_variable = { 
-				which = giga_eawaf_sirens_difficulty 
-				value = 2 
-			}
-			set_variable = {
-				which = sirens_spawn_date
-				value = 2400
-			}
 			# Blokkat Variables
 			set_variable = {
 				which = blokkat_spawn_date
@@ -2974,131 +2884,20 @@ giga_preset_gigas_experience = {
 			set_global_flag = giga_blokkats_disabled
 		}
 		#CHECK FOR BLOKKAT DIFFICULTY
-		if = {
-			limit = {
-				OR = {
-					any_country = { has_country_flag = oe_player }
-					any_country = { has_authority = auth_warshipgirls }
-					any_country = { has_authority = auth_shenhai }
-				}
-			}
-			set_global_flag = giga_blokkats_deathmode
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_full_activated
-					has_global_flag = has_aot_mod
-					has_global_flag = has_sots_mod
-				}
-			}
-			set_global_flag = giga_blokkats_endtech
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			set_global_flag = giga_blokkats_bismuth
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			set_global_flag = giga_blokkats_normal
-		}
-		else = {
-			set_global_flag = giga_blokkats_very_easy
-		}
+        set_blokkat_difficulty = yes
+
+		#CHECK FOR AETERNUM DIFFICULTY
+		set_aeternum_difficulty = yes
 
 		#CHECK FOR SIRENS DIFFICULTY
-		if = {
-			limit = {
-				OR = {
-					any_country = { has_country_flag = oe_player }
-					any_country = { has_authority = auth_warshipgirls }
-					any_country = { has_authority = auth_shenhai }
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 7 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_full_activated
-					has_global_flag = has_aot_mod
-					has_global_flag = has_sots_mod
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 6 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 4 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 3 } }
-		}
-		else = {
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 2 } }
-		}
+        set_siren_difficulty = yes
+
+		#CHECK FOR FE DIFFICULTY
+		set_fallen_empire_difficulty = yes
 		# Disable O-Stars for real space
 		if = {
 			limit = { has_global_flag = has_real_space_mod }
 			set_global_flag = giga_o_stars_disabled
-		}
-		# Check for FE planetcraft
-		if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			remove_flags_fe_planetcrafts = yes
-			set_global_flag = giga_fe_planetcrafts_3
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			remove_flags_fe_planetcrafts = yes
-			set_global_flag = giga_fe_planetcrafts_2
-		}
-		else = {
-			remove_flags_fe_planetcrafts = yes
-			set_global_flag = giga_fe_planetcrafts_1
-		}
-
-		set_global_flag = giga_core_aeternum_1
-
-		# Buff aeternum for acot
-		if = { 
-			limit = { has_global_flag = acot_activated }
-			remove_flags_aeternum_difficulty = yes
-			set_global_flag = giga_core_aeternum_3
 		}
 		# Machine age Settings
 		if = {
@@ -3123,6 +2922,8 @@ giga_preset_gigas_experience = {
 			set_global_flag = giga_matroishka_scaling
 		}
 	}
+
+    fire_on_action = { on_action = giga_preset_gigaexp_selected }
 }
 
 giga_preset_arcade = {
@@ -3145,9 +2946,6 @@ giga_preset_arcade = {
 	set_global_flag = vanilla_furnace_capped_u
 	set_global_flag = vanilla_dyson_swarm_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
@@ -3174,7 +2972,7 @@ giga_preset_arcade = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -3205,9 +3003,7 @@ giga_preset_arcade = {
 		set_global_flag = ehof_ai_capped_1
 		set_global_flag = giga_core_shuffle
 		set_global_flag = giga_galactic_fed_shuffle
-        set_global_flag = compound_disabled # THE KING IS DEAD
-		# THE SIRENS
-		set_global_flag = giga_eawaf_sirens_disabled
+        set_global_flag = compound_disabled # THE KING STAYS DEAD
 		event_target:global_event_country = {
 			set_variable = { #For mega output
 				which = giga_mega_output
@@ -3233,15 +3029,6 @@ giga_preset_arcade = {
 				which = giga_mega_upkeep_ai
 				value = 100
 			}
-			# Siren variables
-			set_variable = { 
-				which = giga_eawaf_sirens_difficulty 
-				value = 2 
-			}
-			set_variable = {
-				which = sirens_spawn_date
-				value = 2400
-			}
 			# Blokkat Variables
 			set_variable = {
 				which = blokkat_spawn_date
@@ -3256,136 +3043,23 @@ giga_preset_arcade = {
 			set_global_flag = giga_blokkats_disabled
 		}
 		#CHECK FOR BLOKKAT DIFFICULTY
-		if = {
-			limit = {
-				OR = {
-					any_country = { has_country_flag = oe_player }
-					any_country = { has_authority = auth_warshipgirls }
-					any_country = { has_authority = auth_shenhai }
-				}
-			}
-			set_global_flag = giga_blokkats_deathmode
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_full_activated
-					has_global_flag = has_aot_mod
-					has_global_flag = has_sots_mod
-				}
-			}
-			set_global_flag = giga_blokkats_endtech
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			set_global_flag = giga_blokkats_bismuth
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			set_global_flag = giga_blokkats_normal
-		}
-		else_if = { #No Planetcrafts?
-			limit = {
-				NOT = {
-					host_has_dlc = "Apocalypse"
-				}
-			}
-			set_global_flag = giga_blokkats_very_easy
-		}
-		else = {
-			set_global_flag = giga_blokkats_easy
-		}
+        set_blokkat_difficulty = yes
+
+		# THE SIRENS
+		remove_global_flag = giga_eawaf_sirens_disabled
 		#CHECK FOR SIRENS DIFFICULTY
-		if = {
-			limit = {
-				OR = {
-					any_country = { has_country_flag = oe_player }
-					any_country = { has_authority = auth_warshipgirls }
-					any_country = { has_authority = auth_shenhai }
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 7 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_full_activated
-					has_global_flag = has_aot_mod
-					has_global_flag = has_sots_mod
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 6 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 4 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 3 } }
-		}
-		else = {
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 2 } }
-		}
+        set_siren_difficulty = yes
+
+		#CHECK FOR AETERNUM DIFFICULTY
+		set_aeternum_difficulty = yes
+
+		#CHECK FOR FE DIFFICULTY
+		set_fallen_empire_difficulty = yes
+
 		# Disable O-Stars for real space
 		if = {
 			limit = { has_global_flag = has_real_space_mod }
 			set_global_flag = giga_o_stars_disabled
-		}
-		# Check for FE planetcraft
-		if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			remove_flags_fe_planetcrafts = yes
-			set_global_flag = giga_fe_planetcrafts_3
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			remove_flags_fe_planetcrafts = yes
-			set_global_flag = giga_fe_planetcrafts_2
-		}
-		else = {
-			remove_flags_fe_planetcrafts = yes
-			set_global_flag = giga_fe_planetcrafts_1
-		}
-		set_global_flag = giga_core_aeternum_2
-		# Buff aeternum for acot
-		if = { 
-			limit = { has_global_flag = acot_activated }
-			remove_flags_aeternum_difficulty = yes
-			set_global_flag = giga_core_aeternum_3
 		}
 		# Machine age Settings
 		if = {
@@ -3410,6 +3084,8 @@ giga_preset_arcade = {
 			set_global_flag = giga_matroishka_scaling
 		}
 	}
+
+    fire_on_action = { on_action = giga_preset_arcade_selected }
 }
 
 giga_preset_00 = {
@@ -3430,9 +3106,6 @@ giga_preset_00 = {
 	set_global_flag = vanilla_furnace_capped_1
 	set_global_flag = vanilla_dyson_swarm_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_disabled
 	set_global_flag = alderson_capped_1
 	set_global_flag = terraform_toxic_capped_1
@@ -3459,7 +3132,7 @@ giga_preset_00 = {
 	set_global_flag = nidavellir_capped_1
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_1
-	set_global_flag = academy_capped_1
+	set_global_flag = orbital_naval_logistics_capped_1
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_1
 	set_global_flag = planetary_computer_capped_1
@@ -3499,8 +3172,7 @@ giga_preset_00 = {
 		set_global_flag = giga_blokkats_disabled
 		set_global_flag = giga_core_always_empty
 		set_global_flag = giga_galactic_fed_shuffle
-		# THE SIRENS
-		set_global_flag = giga_eawaf_sirens_disabled
+		#Sirens are disabled already via remove_all_menu_flags
 		event_target:global_event_country = {
 			set_variable = { #For mega output
 				which = giga_mega_output
@@ -3526,15 +3198,6 @@ giga_preset_00 = {
 				which = giga_mega_upkeep_ai
 				value = 100
 			}
-			# Siren variables
-			set_variable = { 
-				which = giga_eawaf_sirens_difficulty 
-				value = 2 
-			}
-			set_variable = {
-				which = sirens_spawn_date
-				value = 2400
-			}
 			# Blokkat Variables
 			set_variable = {
 				which = blokkat_spawn_date
@@ -3549,99 +3212,11 @@ giga_preset_00 = {
 			set_global_flag = giga_blokkats_disabled
 		}
 		#CHECK FOR BLOKKAT DIFFICULTY
-		if = {
-			limit = {
-				OR = {
-					any_country = { has_country_flag = oe_player }
-					any_country = { has_authority = auth_warshipgirls }
-					any_country = { has_authority = auth_shenhai }
-				}
-			}
-			set_global_flag = giga_blokkats_deathmode
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_full_activated
-					has_global_flag = has_aot_mod
-					has_global_flag = has_sots_mod
-				}
-			}
-			set_global_flag = giga_blokkats_endtech
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			set_global_flag = giga_blokkats_bismuth
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			set_global_flag = giga_blokkats_normal
-		}
-		else_if = { #No Planetcrafts?
-			limit = {
-				NOT = {
-					host_has_dlc = "Apocalypse"
-				}
-			}
-			set_global_flag = giga_blokkats_very_easy
-		}
-		else = {
-			set_global_flag = giga_blokkats_easy
-		}
+        set_blokkat_difficulty = yes
 		#CHECK FOR SIRENS DIFFICULTY
-		if = {
-			limit = {
-				OR = {
-					any_country = { has_country_flag = oe_player }
-					any_country = { has_authority = auth_warshipgirls }
-					any_country = { has_authority = auth_shenhai }
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 7 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_full_activated
-					has_global_flag = has_aot_mod
-					has_global_flag = has_sots_mod
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 6 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = acot_activated
-					is_sbtg_activated = yes 
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 4 } }
-		}
-		else_if = {
-			limit = {
-				OR = {
-					has_global_flag = nhsc_v30
-					has_global_flag = nhsc_overwrites_v30
-					has_global_flag = has_nsc_active
-				}
-			}
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 3 } }
-		}
-		else = {
-			event_target:global_event_country = { set_variable = { which = giga_eawaf_sirens_difficulty value = 2 } }
-		}
+        set_siren_difficulty = yes
+		#CHECK FOR FE DIFFICULTY
+		set_fallen_empire_difficulty = yes
 		# Disable O-Stars for real space
 		if = {
 			limit = { has_global_flag = has_real_space_mod }
@@ -3672,15 +3247,6 @@ giga_preset_00 = {
 		else = {
 			remove_flags_fe_planetcrafts = yes
 			set_global_flag = giga_fe_planetcrafts_0
-		}
-		# Nerf aeternum if no planetcraft
-		if = {
-			limit = {
-				NOT = {
-					host_has_dlc = "Apocalypse"
-				}
-			}
-			set_global_flag = giga_core_aeternum_1
 		}
 		else = {
 			set_global_flag = giga_core_aeternum_2
@@ -3716,437 +3282,6 @@ giga_preset_00 = {
 	}
 }
 
-giga_preset_01 = {
-	#original five
-	remove_all_menu_flags = yes
-	remove_flags_buildcap = yes
-	set_global_flag = giga_buildcap_1
-	set_global_flag = vanilla_dyson_capped_1
-	set_global_flag = vanilla_interstellar_capped_1
-	set_global_flag = vanilla_matter_capped_1
-	set_global_flag = vanilla_art_capped_1
-	set_global_flag = vanilla_shipyard_capped_1
-	set_global_flag = vanilla_ringworld_capped_u
-	set_global_flag = vanilla_nexus_capped_1
-	set_global_flag = vanilla_array_capped_1
-	set_global_flag = vanilla_strategic_capped_1
-	set_global_flag = giga_rings_van
-	set_global_flag = cityring_disabled
-	set_global_flag = hivering_disabled
-	set_global_flag = machinering_disabled
-	set_global_flag = upgrade_disabled
-	set_global_flag = alderson_disabled
-	set_global_flag = terraform_toxic_disabled
-	set_global_flag = warmoon_disabled
-	set_global_flag = drill_disabled
-	set_global_flag = warplanet_disabled
-	set_global_flag = birch_disabled
-	set_global_flag = crystal_disabled
-	set_global_flag = terraform_barren_disabled
-	set_global_flag = shipyard_disabled
-	set_global_flag = suppressor_disabled
-	set_global_flag = geothermal_disabled
-	set_global_flag = glue_disabled
-	set_global_flag = hraemc_capped_u
-	set_global_flag = hyperstructural_ass_disabled
-	set_global_flag = stellarhabitat_disabled
-	set_global_flag = kugel_disabled
-	set_global_flag = disco_moon_disabled
-	set_global_flag = terraform_gasgiant_disabled
-	set_global_flag = megabase_capped_u
-	set_global_flag = matrioshka_brain_capped_u
-	set_global_flag = gigaforge_disabled
-	set_global_flag = ndb_disabled
-	set_global_flag = nidavellir_disabled
-	set_global_flag = orbital_arcologies_disabled
-	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_disabled
-	# set_global_flag = giga_habitats_unlimited
-	set_global_flag = penrose_sphere_disabled
-	set_global_flag = planetary_computer_disabled
-	set_global_flag = siphon_disabled
-	set_global_flag = quasistellar_disabled
-	set_global_flag = lifters_disabled
-	set_global_flag = accelerator_capped_u
-	set_global_flag = systemcraft_disabled
-	set_global_flag = compressor_disabled
-	set_global_flag = succ_disabled
-	set_global_flag = orchid_disabled
-	set_global_flag = the_vat_disabled
-	set_global_flag = asteroid_manufactory_disabled
-	set_global_flag = psychic_beacon_disabled
-	set_global_flag = asteroid_artillery_disabled
-	set_global_flag = planetshipyard_disabled
-	set_global_flag = maginot_disabled
-	set_global_flag = supermassive_ehof_disabled
-
-	if = {
-		limit = {
-			NOT = {
-				has_global_flag = giga_game_started
-			}
-		}#Culled the unnecessary remove flags and the deprecated paluushia flag
-		set_global_flag = ehof_disabled
-		set_global_flag = ehof_ai_disabled
-		set_global_flag = compound_disabled
-		set_global_flag = ehof_ai_capped_s
-		set_global_flag = compound_capped_1
-		set_global_flag = giga_dyson_scaling
-		set_global_flag = giga_lifter_scaling
-		set_global_flag = giga_matroishka_scaling
-		set_global_flag = giga_fe_planetcrafts_0
-		set_global_flag = giga_core_disabled
-		set_global_flag = giga_galactic_fed_disabled
-		set_global_flag = giga_blokkats_easy
-		set_global_flag = giga_core_aeternum_3
-	}
-}
-
-giga_preset_02 = {
-	#True To The Mod's Name
-	remove_all_menu_flags = yes
-	remove_flags_buildcap = yes
-	set_global_flag = giga_buildcap_1
-	set_global_flag = vanilla_dyson_capped_1
-	set_global_flag = vanilla_interstellar_capped_1
-	set_global_flag = vanilla_matter_capped_1
-	set_global_flag = vanilla_art_capped_1
-	set_global_flag = vanilla_shipyard_capped_1
-	set_global_flag = vanilla_ringworld_capped_u
-	set_global_flag = vanilla_nexus_capped_1
-	set_global_flag = vanilla_array_capped_1
-	set_global_flag = vanilla_strategic_capped_1
-	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_disabled
-	set_global_flag = hivering_disabled
-	set_global_flag = machinering_disabled
-	set_global_flag = upgrade_disabled
-	set_global_flag = alderson_capped_u
-	set_global_flag = terraform_toxic_disabled
-	set_global_flag = warmoon_disabled
-	set_global_flag = drill_disabled
-	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
-	set_global_flag = crystal_disabled
-	set_global_flag = terraform_barren_disabled
-	set_global_flag = shipyard_disabled
-	set_global_flag = suppressor_disabled
-	set_global_flag = geothermal_disabled
-	set_global_flag = glue_disabled
-	set_global_flag = hraemc_capped_u
-	set_global_flag = hyperstructural_ass_capped_u
-	set_global_flag = stellarhabitat_disabled
-	set_global_flag = kugel_disabled
-	set_global_flag = disco_moon_disabled
-	set_global_flag = terraform_gasgiant_disabled
-	set_global_flag = megabase_disabled
-	set_global_flag = matrioshka_brain_capped_u
-	set_global_flag = gigaforge_disabled
-	set_global_flag = ndb_capped_1
-	set_global_flag = nidavellir_capped_u
-	set_global_flag = orbital_arcologies_disabled
-	set_global_flag = orbital_artificial_eco_disabled
-	set_global_flag = academy_disabled
-	# set_global_flag = giga_habitats_unlimited
-	set_global_flag = penrose_sphere_disabled
-	set_global_flag = planetary_computer_disabled
-	set_global_flag = siphon_disabled
-	set_global_flag = quasistellar_capped_1
-	set_global_flag = lifters_disabled
-	set_global_flag = accelerator_disabled
-	set_global_flag = systemcraft_capped_u
-	set_global_flag = compressor_disabled
-	set_global_flag = succ_disabled
-	set_global_flag = orchid_disabled
-	set_global_flag = the_vat_disabled
-	set_global_flag = asteroid_manufactory_disabled
-	set_global_flag = psychic_beacon_disabled
-	set_global_flag = asteroid_artillery_disabled
-	set_global_flag = planetshipyard_disabled
-	set_global_flag = maginot_disabled
-	set_global_flag = supermassive_ehof_capped_1
-	set_global_flag = planetary_seeder_nexus_capped_u
-
-	if = {
-		limit = {
-			NOT = {
-				has_global_flag = giga_game_started
-			}
-		}
-		set_global_flag = ehof_disabled
-		set_global_flag = ehof_ai_disabled
-		set_global_flag = compound_disabled
-		set_global_flag = ehof_ai_capped_s
-		set_global_flag = compound_capped_1
-		set_global_flag = giga_dyson_scaling
-		set_global_flag = giga_lifter_scaling
-		set_global_flag = giga_matroishka_scaling
-		set_global_flag = giga_fe_planetcrafts_1
-		set_global_flag = giga_core_shuffle
-		set_global_flag = giga_galactic_fed_shuffle
-		set_global_flag = giga_blokkats_easy
-		set_global_flag = giga_core_aeternum_3
-	}
-}
-
-giga_preset_03 = {
-	#Smaller is Better
-	remove_all_menu_flags = yes
-	remove_flags_buildcap = yes
-	set_global_flag = giga_buildcap_1
-	set_global_flag = vanilla_dyson_capped_1
-	set_global_flag = vanilla_interstellar_capped_1
-	set_global_flag = vanilla_matter_capped_1
-	set_global_flag = vanilla_art_capped_1
-	set_global_flag = vanilla_shipyard_capped_1
-	set_global_flag = vanilla_ringworld_capped_u
-	set_global_flag = vanilla_nexus_capped_1
-	set_global_flag = vanilla_array_capped_1
-	set_global_flag = vanilla_strategic_capped_1
-	set_global_flag = giga_rings_tit
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
-	set_global_flag = upgrade_capped_u
-	set_global_flag = alderson_disabled
-	set_global_flag = terraform_toxic_capped_u
-	set_global_flag = warmoon_capped_u
-	set_global_flag = drill_capped_u
-	set_global_flag = warplanet_disabled
-	set_global_flag = birch_disabled
-	set_global_flag = crystal_capped_u
-	set_global_flag = terraform_barren_capped_u
-	set_global_flag = shipyard_capped_u
-	set_global_flag = suppressor_capped_u
-	set_global_flag = geothermal_capped_u
-	set_global_flag = glue_capped_u
-	set_global_flag = hraemc_disabled
-	set_global_flag = hyperstructural_ass_disabled
-	set_global_flag = stellarhabitat_capped_u
-	set_global_flag = kugel_capped_u
-	set_global_flag = disco_moon_capped_u
-	set_global_flag = terraform_gasgiant_capped_u
-	set_global_flag = megabase_capped_u
-	set_global_flag = matrioshka_brain_disabled
-	set_global_flag = gigaforge_capped_u
-	set_global_flag = ndb_disabled
-	set_global_flag = nidavellir_disabled
-	set_global_flag = orbital_arcologies_capped_u
-	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
-	# set_global_flag = giga_habitats_unlimited
-	set_global_flag = penrose_sphere_capped_u
-	set_global_flag = planetary_computer_capped_u
-	set_global_flag = siphon_capped_1
-	set_global_flag = quasistellar_disabled
-	set_global_flag = lifters_capped_u
-	set_global_flag = accelerator_capped_u
-	set_global_flag = systemcraft_disabled
-	set_global_flag = compressor_capped_u
-	set_global_flag = succ_capped_u
-	set_global_flag = orchid_capped_u
-	set_global_flag = the_vat_capped_u
-	set_global_flag = asteroid_manufactory_disabled
-	set_global_flag = psychic_beacon_disabled
-	set_global_flag = asteroid_artillery_capped_u
-	set_global_flag = planetshipyard_capped_u
-	set_global_flag = maginot_disabled
-	set_global_flag = supermassive_ehof_disabled
-
-	if = {
-		limit = {
-			NOT = {
-				has_global_flag = giga_game_started
-			}
-		}
-		set_global_flag = ehof_disabled
-		set_global_flag = ehof_ai_disabled
-		set_global_flag = compound_disabled
-		set_global_flag = ehof_ai_capped_s
-		set_global_flag = compound_capped_1
-		set_global_flag = giga_dyson_scaling
-		set_global_flag = giga_lifter_scaling
-		set_global_flag = giga_matroishka_scaling
-		set_global_flag = giga_fe_planetcrafts_0
-		set_global_flag = giga_core_disabled
-		set_global_flag = giga_galactic_fed_disabled
-		set_global_flag = giga_blokkats_easy
-		set_global_flag = giga_core_aeternum_3
-	}
-}
-
-giga_preset_04 = {
-	#Glory to the rings
-	remove_all_menu_flags = yes
-	remove_flags_buildcap = yes
-	set_global_flag = giga_buildcap_1
-	set_global_flag = vanilla_dyson_capped_1
-	set_global_flag = vanilla_interstellar_capped_1
-	set_global_flag = vanilla_matter_capped_1
-	set_global_flag = vanilla_art_capped_1
-	set_global_flag = vanilla_shipyard_capped_1
-	set_global_flag = vanilla_ringworld_capped_u
-	set_global_flag = vanilla_nexus_capped_1
-	set_global_flag = vanilla_array_capped_1
-	set_global_flag = vanilla_strategic_capped_1
-	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
-	set_global_flag = upgrade_capped_u
-	set_global_flag = alderson_disabled
-	set_global_flag = terraform_toxic_disabled
-	set_global_flag = warmoon_disabled
-	set_global_flag = drill_disabled
-	set_global_flag = warplanet_disabled
-	set_global_flag = birch_disabled
-	set_global_flag = crystal_disabled
-	set_global_flag = terraform_barren_disabled
-	set_global_flag = shipyard_capped_u
-	set_global_flag = suppressor_disabled
-	set_global_flag = geothermal_disabled
-	set_global_flag = glue_disabled
-	set_global_flag = hraemc_disabled
-	set_global_flag = hyperstructural_ass_disabled
-	set_global_flag = stellarhabitat_capped_u
-	set_global_flag = kugel_disabled
-	set_global_flag = disco_moon_disabled
-	set_global_flag = terraform_gasgiant_disabled
-	set_global_flag = megabase_disabled
-	set_global_flag = matrioshka_brain_disabled
-	set_global_flag = gigaforge_disabled
-	set_global_flag = ndb_disabled
-	set_global_flag = nidavellir_disabled
-	set_global_flag = orbital_arcologies_capped_u
-	set_global_flag = orbital_artificial_eco_disabled
-	set_global_flag = academy_disabled
-	# set_global_flag = giga_habitats_unlimited
-	set_global_flag = penrose_sphere_capped_u
-	set_global_flag = planetary_computer_disabled
-	set_global_flag = siphon_disabled
-	set_global_flag = quasistellar_disabled
-	set_global_flag = lifters_disabled
-	set_global_flag = accelerator_disabled
-	set_global_flag = systemcraft_disabled
-	set_global_flag = compressor_disabled
-	set_global_flag = succ_disabled
-	set_global_flag = orchid_disabled
-	set_global_flag = the_vat_disabled
-	set_global_flag = asteroid_manufactory_disabled
-	set_global_flag = psychic_beacon_disabled
-	set_global_flag = asteroid_artillery_disabled
-	set_global_flag = planetshipyard_disabled
-	set_global_flag = maginot_disabled
-	set_global_flag = supermassive_ehof_disabled
-
-	if = {
-		limit = {
-			NOT = {
-				has_global_flag = giga_game_started
-			}
-		}
-		set_global_flag = ehof_disabled
-		set_global_flag = ehof_ai_disabled
-		set_global_flag = compound_disabled
-		set_global_flag = ehof_ai_capped_s
-		set_global_flag = compound_capped_1
-		set_global_flag = giga_dyson_scaling
-		set_global_flag = giga_lifter_scaling
-		set_global_flag = giga_matroishka_scaling
-		set_global_flag = giga_fe_planetcrafts_1
-		set_global_flag = giga_core_shuffle
-		set_global_flag = giga_galactic_fed_shuffle
-		set_global_flag = giga_blokkats_easy
-		set_global_flag = giga_core_aeternum_3
-	}
-}
-
-giga_preset_05 = {
-	#Dangerous megastructures
-	remove_all_menu_flags = yes
-	remove_flags_buildcap = yes
-	set_global_flag = giga_buildcap_1
-	set_global_flag = vanilla_dyson_capped_1
-	set_global_flag = vanilla_interstellar_capped_1
-	set_global_flag = vanilla_matter_capped_1
-	set_global_flag = vanilla_art_capped_1
-	set_global_flag = vanilla_shipyard_capped_1
-	set_global_flag = vanilla_ringworld_capped_u
-	set_global_flag = vanilla_nexus_capped_1
-	set_global_flag = vanilla_array_capped_1
-	set_global_flag = vanilla_strategic_capped_1
-	set_global_flag = giga_rings_van
-	set_global_flag = cityring_disabled
-	set_global_flag = hivering_disabled
-	set_global_flag = machinering_disabled
-	set_global_flag = upgrade_disabled
-	set_global_flag = alderson_disabled
-	set_global_flag = terraform_toxic_disabled
-	set_global_flag = warmoon_capped_u
-	set_global_flag = drill_disabled
-	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_disabled
-	set_global_flag = crystal_disabled
-	set_global_flag = terraform_barren_disabled
-	set_global_flag = shipyard_disabled
-	set_global_flag = suppressor_capped_u
-	set_global_flag = geothermal_disabled
-	set_global_flag = glue_disabled
-	set_global_flag = hraemc_disabled
-	set_global_flag = hyperstructural_ass_disabled
-	set_global_flag = stellarhabitat_disabled
-	set_global_flag = kugel_disabled
-	set_global_flag = disco_moon_disabled
-	set_global_flag = terraform_gasgiant_disabled
-	set_global_flag = megabase_disabled
-	set_global_flag = matrioshka_brain_disabled
-	set_global_flag = gigaforge_disabled
-	set_global_flag = ndb_capped_1
-	set_global_flag = nidavellir_disabled
-	set_global_flag = orbital_arcologies_disabled
-	set_global_flag = orbital_artificial_eco_disabled
-	set_global_flag = academy_disabled
-	# set_global_flag = giga_habitats_unlimited
-	set_global_flag = penrose_sphere_capped_u
-	set_global_flag = planetary_computer_disabled
-	set_global_flag = siphon_disabled
-	set_global_flag = quasistellar_capped_1
-	set_global_flag = lifters_disabled
-	set_global_flag = accelerator_disabled
-	set_global_flag = systemcraft_capped_u
-	set_global_flag = compressor_disabled
-	set_global_flag = succ_disabled
-	set_global_flag = orchid_disabled
-	set_global_flag = the_vat_disabled
-	set_global_flag = asteroid_manufactory_disabled
-	set_global_flag = psychic_beacon_disabled
-	set_global_flag = asteroid_artillery_capped_u
-	set_global_flag = planetshipyard_capped_u
-	set_global_flag = maginot_capped_u
-	set_global_flag = supermassive_ehof_disabled
-
-	if = {
-		limit = {
-			NOT = {
-				has_global_flag = giga_game_started
-			}
-		}
-		set_global_flag = ehof_disabled
-		set_global_flag = ehof_ai_disabled
-		set_global_flag = compound_disabled
-		set_global_flag = ehof_ai_capped_s
-		set_global_flag = compound_capped_1
-		set_global_flag = giga_dyson_scaling
-		set_global_flag = giga_lifter_scaling
-		set_global_flag = giga_matroishka_scaling
-		set_global_flag = giga_fe_planetcrafts_1
-		set_global_flag = giga_core_active
-		set_global_flag = giga_galactic_fed_shuffle
-		set_global_flag = giga_blokkats_easy
-		set_global_flag = giga_core_aeternum_3
-	}
-}
-
 # Kreitani
 giga_preset_06 = {
 	remove_all_menu_flags = yes
@@ -4162,16 +3297,12 @@ giga_preset_06 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_r
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_3
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_3
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_3
@@ -4191,7 +3322,7 @@ giga_preset_06 = {
 	set_global_flag = nidavellir_capped_r
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -4245,9 +3376,6 @@ giga_preset_07 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
@@ -4274,7 +3402,7 @@ giga_preset_07 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -4330,16 +3458,12 @@ giga_preset_08 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_r
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -4359,7 +3483,7 @@ giga_preset_08 = {
 	set_global_flag = nidavellir_capped_r
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_r
 	set_global_flag = planetary_computer_capped_u
@@ -4412,9 +3536,6 @@ giga_preset_09 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_van
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_disabled
 	set_global_flag = terraform_toxic_capped_u
@@ -4441,7 +3562,7 @@ giga_preset_09 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -4495,16 +3616,12 @@ giga_preset_10 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -4524,7 +3641,7 @@ giga_preset_10 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_2
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_1
@@ -4586,16 +3703,12 @@ giga_preset_11 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_r
 	set_global_flag = terraform_toxic_disabled
 	set_global_flag = warmoon_capped_r
 	set_global_flag = drill_disabled
 	set_global_flag = warplanet_capped_r
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_disabled
 	set_global_flag = shipyard_capped_u
@@ -4616,7 +3729,7 @@ giga_preset_11 = {
 	set_global_flag = nidavellir_capped_r
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -4678,16 +3791,12 @@ giga_preset_13 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_van
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_disabled
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -4707,7 +3816,7 @@ giga_preset_13 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_disabled
 	set_global_flag = planetary_computer_capped_u
@@ -4762,16 +3871,12 @@ giga_preset_14 = {
 	set_global_flag = vanilla_nexus_capped_1
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
-	set_global_flag = cityring_disabled
-	set_global_flag = hivering_disabled
-	set_global_flag = machinering_disabled
 	set_global_flag = upgrade_disabled
 	set_global_flag = alderson_disabled
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -4792,7 +3897,7 @@ giga_preset_14 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_1
-	set_global_flag = academy_disabled
+	set_global_flag = orbital_naval_logistics_disabled
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_disabled
 	set_global_flag = siphon_capped_1
@@ -4850,7 +3955,7 @@ giga_preset_14 = {
 }
 
  # piecat
- giga_preset_17 = {
+giga_preset_17 = {
 	remove_all_menu_flags = yes
 	set_global_flag = giga_rings_gar
 	set_global_flag = vanilla_dyson_capped_3
@@ -4865,16 +3970,12 @@ giga_preset_14 = {
 	set_global_flag = vanilla_furnace_capped_1
 	set_global_flag = storm_observatory_capped_3
 	set_global_flag = vanilla_dyson_swarm_capped_1
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_1
 	set_global_flag = terraform_toxic_capped_3
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_3
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_3
 	set_global_flag = terraform_barren_capped_3
 	set_global_flag = shipyard_capped_3
@@ -4895,7 +3996,7 @@ giga_preset_14 = {
 	set_global_flag = nidavellir_capped_1
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_3
-	set_global_flag = academy_capped_3
+	set_global_flag = orbital_naval_logistics_capped_3
 	set_global_flag = penrose_sphere_capped_3
 	set_global_flag = planetary_computer_capped_3
 	set_global_flag = siphon_capped_3
@@ -4915,7 +4016,7 @@ giga_preset_14 = {
 	set_global_flag = planetary_seeder_nexus_capped_u
 
 	if = {
-		limit = { 
+		limit = {
 			NOT = {
 				has_global_flag = giga_game_started
 			}
@@ -4935,7 +4036,7 @@ giga_preset_14 = {
 		set_global_flag = ehof_ai_disabled
 		set_global_flag = giga_buildcap_j
 		set_global_flag = giga_eawaf_sirens_disabled
-		event_target:global_event_country = { 
+		event_target:global_event_country = {
 			set_variable = { which = giga_ruined_warships_perc value = 120 }
 			set_variable = { which = blokkat_spawn_date value = 2500  }
 			set_variable = { which = giga_mega_output value = 100  }
@@ -4964,16 +4065,12 @@ giga_preset_18 = {
 	set_global_flag = vanilla_furnace_capped_u
 	set_global_flag = vanilla_dyson_swarm_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_1
-	set_global_flag = birch_capped_u
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -4993,7 +4090,7 @@ giga_preset_18 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_u
@@ -5104,16 +4201,12 @@ giga_preset_19 = {
 	set_global_flag = vanilla_dyson_swarm_capped_u
 	set_global_flag = vanilla_stellar_cannon_disabled
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_u
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -5133,7 +4226,7 @@ giga_preset_19 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_u
@@ -5282,7 +4375,6 @@ giga_preset_20 = {
     set_global_flag = giga_rings_gar
     set_global_flag = upgrade_disabled
     set_global_flag = alderson_capped_1
-    set_global_flag = birch_capped_1
     set_global_flag = shipyard_capped_u
     set_global_flag = stellarhabitat_capped_1
     set_global_flag = maginot_capped_1
@@ -5357,9 +4449,6 @@ giga_preset_patreon_01 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_van
-	set_global_flag = cityring_disabled
-	set_global_flag = hivering_disabled
-	set_global_flag = machinering_disabled
 	set_global_flag = upgrade_disabled
 	set_global_flag = alderson_disabled
 	set_global_flag = terraform_toxic_capped_u
@@ -5386,7 +4475,7 @@ giga_preset_patreon_01 = {
 	set_global_flag = nidavellir_disabled
 	set_global_flag = orbital_arcologies_disabled
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_disabled
@@ -5439,16 +4528,12 @@ giga_preset_patreon_02 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -5468,7 +4553,7 @@ giga_preset_patreon_02 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -5523,16 +4608,12 @@ giga_preset_patreon_03 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -5552,7 +4633,7 @@ giga_preset_patreon_03 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -5606,9 +4687,6 @@ giga_preset_patreon_04 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
@@ -5635,7 +4713,7 @@ giga_preset_patreon_04 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -5690,9 +4768,6 @@ giga_preset_patreon_05 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
@@ -5719,7 +4794,7 @@ giga_preset_patreon_05 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -5774,16 +4849,12 @@ giga_preset_patreon_06 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = giga_rings_beh
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -5803,7 +4874,7 @@ giga_preset_patreon_06 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_disabled
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -5898,9 +4969,6 @@ giga_preset_patreon_07 = {
 	set_global_flag = vanilla_ringworld_capped_u
 	set_global_flag = vanilla_nexus_capped_u
 	set_global_flag = vanilla_strategic_capped_u
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
@@ -5926,7 +4994,7 @@ giga_preset_patreon_07 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -5944,7 +5012,6 @@ giga_preset_patreon_07 = {
 	set_global_flag = siphon_capped_1
 	set_global_flag = quasistellar_capped_1
 	set_global_flag = psychic_beacon_capped_1
-	set_global_flag = birch_capped_1
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = supermassive_ehof_capped_1
 	set_global_flag = planetary_seeder_nexus_capped_u
@@ -5967,7 +5034,7 @@ giga_preset_patreon_07 = {
 		set_global_flag = giga_dyson_scaling
 		set_global_flag = giga_lifter_scaling
 		set_global_flag = giga_matroishka_scaling
-		event_target:global_event_country = { 
+		event_target:global_event_country = {
 			set_variable = { which = giga_ruined_warships_perc value = 10 }
 			set_variable = { which = blokkat_spawn_date value = 2500  }
 			set_variable = { which = giga_mega_output value = 100  }
@@ -5995,9 +5062,6 @@ giga_preset_patreon_08 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
@@ -6024,7 +5088,7 @@ giga_preset_patreon_08 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -6077,16 +5141,12 @@ giga_preset_patreon_09 = {
 	set_global_flag = vanilla_nexus_capped_1
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_1
 	set_global_flag = terraform_toxic_capped_1
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_1
 	set_global_flag = shipyard_capped_1
@@ -6107,7 +5167,7 @@ giga_preset_patreon_09 = {
 	set_global_flag = nidavellir_capped_1
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_1
 	set_global_flag = planetary_computer_capped_1
 	set_global_flag = siphon_capped_1
@@ -6145,7 +5205,7 @@ giga_preset_patreon_09 = {
 		set_global_flag = giga_galactic_fed_shuffle
 		set_global_flag = compound_disabled
 		set_global_flag = ehof_ai_capped_1
-		event_target:global_event_country = { 
+		event_target:global_event_country = {
 			set_variable = { which = giga_ruined_warships_perc value = 100 }
 			set_variable = { which = blokkat_spawn_date value = 2500  }
 			set_variable = { which = giga_mega_output value = 100  }
@@ -6173,9 +5233,6 @@ giga_preset_patreon_10 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = asteroid_manufactory_capped_u
@@ -6183,7 +5240,6 @@ giga_preset_patreon_10 = {
 	set_global_flag = drill_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -6203,7 +5259,7 @@ giga_preset_patreon_10 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = psychic_beacon_capped_1
@@ -6253,16 +5309,12 @@ giga_preset_patreon_11 = {
 	set_global_flag = vanilla_nexus_capped_u
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_3
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -6283,7 +5335,7 @@ giga_preset_patreon_11 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_1
@@ -6340,120 +5392,113 @@ giga_preset_patreon_11 = {
 	}
 }
 
-
-
 # Lantas
 giga_preset_patreon_12 = {
-	remove_all_menu_flags = yes
-	remove_flags_buildcap = yes
-	#No flag for O class stars found! O class stars enabled!
-	#No flag for Attack moon printer found! Attack moon printer enabled!
-	#No flag for Wrecked warhips found! Wrecked warships enabled!
-	#No flag for virtual reality found! Virtual reality without industry enabled!
-	#No flag for Jublio found! Jublio enabled!
-	#No flag for Jupitwo found! Jupitwo enabled!
-	#No flag for Faust found! Faust enabled!
-	#No flag for Tyaur found! Tyaur enabled!
-	#No flag for Squareworld found! Squareworld enabled!
-	#No flag for Kerbol found! Kerbol enabled!
-	set_global_flag = giga_dyson_scaling
-	set_global_flag = giga_lifter_scaling
-	set_global_flag = giga_matroishka_scaling
-	#No flag for Achievements found! Achievements enabled!
-	#No flag for Influence upkeep found! Influence upkeep enabled!
-	set_global_flag = giga_gatzo_nopaluushia
-	#No flag for Blokkat spawn guarantee found! Blokkat spawn guarantee disabled!
-	set_global_flag = giga_fe_planetcrafts_1
-	set_global_flag = giga_blokkats_normal
-	set_global_flag = anime_blokkats
-	#No flag for Katzenartig difficulty found! Setting default!
-	set_global_flag = silly_flusionian_portraits_enabled
-	set_global_flag = giga_core_active
-	#No flag for Aeternum difficulty found!
-	set_global_flag = giga_galactic_fed_shuffle
-	#No flag for Ehof found! Ehof enabled!
-	set_global_flag = compound_capped_2
-	set_global_flag = ehof_ai_disabled
-	set_global_flag = giga_rings_gar
-	set_global_flag = vanilla_dyson_capped_u
-	set_global_flag = vanilla_interstellar_capped_u
-	set_global_flag = vanilla_matter_capped_u
-	set_global_flag = vanilla_art_capped_u
-	set_global_flag = vanilla_shipyard_capped_1
-	set_global_flag = vanilla_ringworld_capped_u
-	set_global_flag = vanilla_nexus_capped_3
-	set_global_flag = vanilla_array_capped_1
-	set_global_flag = vanilla_strategic_capped_3
-	set_global_flag = vanilla_furnace_capped_u
-	set_global_flag = storm_observatory_capped_3
-	set_global_flag = vanilla_dyson_swarm_capped_u
-	#No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
-	set_global_flag = upgrade_capped_u
-	set_global_flag = alderson_disabled
-	set_global_flag = terraform_toxic_capped_u
-	set_global_flag = warmoon_capped_u
-	set_global_flag = drill_capped_u
-	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_disabled
-	set_global_flag = supermassive_ehof_capped_1
-	set_global_flag = planetary_seeder_nexus_capped_u
-	set_global_flag = crystal_capped_u
-	set_global_flag = terraform_barren_capped_u
-	set_global_flag = shipyard_capped_u
-	set_global_flag = maginot_capped_u
-	set_global_flag = suppressor_capped_u
-	set_global_flag = geothermal_capped_u
-	set_global_flag = glue_capped_u
-	set_global_flag = hraemc_capped_3
-	set_global_flag = hyperstructural_ass_capped_2
-	set_global_flag = stellarhabitat_capped_u
-	set_global_flag = kugel_capped_u
-	set_global_flag = disco_moon_capped_u
-	set_global_flag = terraform_gasgiant_capped_u
-	set_global_flag = megabase_capped_3
-	set_global_flag = matrioshka_brain_capped_3
-	set_global_flag = gigaforge_capped_u
-	set_global_flag = ndb_capped_1
-	set_global_flag = nidavellir_capped_2
-	set_global_flag = orbital_arcologies_capped_u
-	set_global_flag = orbital_artificial_eco_capped_3
-	set_global_flag = academy_capped_u
-	set_global_flag = penrose_sphere_capped_u
-	set_global_flag = planetary_computer_capped_u
-	set_global_flag = siphon_capped_1
-	set_global_flag = quasistellar_capped_1
-	set_global_flag = lifters_capped_u
-	set_global_flag = accelerator_disabled
-	set_global_flag = planetshipyard_capped_u
-	set_global_flag = systemcraft_capped_r
-	set_global_flag = compressor_capped_u
-	set_global_flag = succ_capped_u
-	set_global_flag = orchid_capped_u
-	set_global_flag = the_vat_capped_1
-	set_global_flag = asteroid_manufactory_capped_u
-	set_global_flag = psychic_beacon_capped_1
-	set_global_flag = asteroid_artillery_capped_u
-	set_global_flag = giga_buildcap_3
-	#No flag for habitats found! Assume Enabled
-	#No flag for advanced orbitals found! Assume Enabled
-	set_global_flag = giga_eawaf_sirens_disabled
-	event_target:global_event_country = {
-		set_variable = { which = giga_ruined_warships_perc value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_colossi value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_juggs value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_titan value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_battle value = 100 }
-		set_variable = { which = blokkat_spawn_date value = 2500  }
-		set_variable = { which = giga_mega_output value = 100  }
-		set_variable = { which = giga_mega_output_ai value = 150  }
-		set_variable = { which = giga_mega_cost value = 100  }
-		set_variable = { which = giga_mega_cost_ai value = 100  }
-		set_variable = { which = giga_mega_upkeep value = 100  }
-		set_variable = { which = giga_mega_upkeep_ai value = 100  }
-	}
+    remove_all_menu_flags = yes
+    #No flag for Achievements found! Achievements enabled!
+    #No flag for O class stars found! O class stars enabled!
+    set_global_flag = giga_dyson_scaling
+    set_global_flag = giga_lifter_scaling
+    set_global_flag = giga_matroishka_scaling
+    set_global_flag = giga_buildcap_j
+    #No flag for Influence upkeep found! Influence upkeep enabled!
+    #No flag for planet bulking found! Planet bulking enabled!
+    #No flag for bulk matter cost found! Bulk matter cost enabled!
+    #No flag for Attack moon printer found! Attack moon printer enabled!
+    #No flag for Attack planet printer found! Attack planet printer enabled!
+    #No flag for Wrecked warhips found! Wrecked warships enabled!
+    set_global_flag = giga_core_active
+    #No flag for Jublio found! Jublio enabled!
+    #No flag for Jupitwo found! Jupitwo enabled!
+    #No flag for Faust found! Faust enabled!
+    #No flag for Tyaur found! Tyaur enabled!
+    #No flag for Squareworld found! Squareworld enabled!
+    #No flag for Kerbol found! Kerbol enabled!
+    set_global_flag = giga_gatzo_nopaluushia
+    #No flag for Ehof found! Ehof enabled!
+    set_global_flag = ehof_ai_disabled
+    set_global_flag = compound_capped_2
+    set_global_flag = giga_fe_planetcrafts_1
+    set_global_flag = silly_flusionian_portraits_enabled
+    #No flag for Katzenartig difficulty found! Setting default!
+    set_global_flag = giga_eawaf_sirens_disabled
+    #No flag for Aeternum difficulty found!
+    set_global_flag = anime_blokkats
+    set_global_flag = giga_blokkats_normal
+    #No flag for Blokkat spawn guarantee found! Blokkat spawn guarantee disab
+    set_global_flag = vanilla_dyson_capped_u
+    set_global_flag = vanilla_dyson_swarm_capped_u
+    #No flag to disable swarm replacement found! Dyson Swarm Replacement Enab
+    set_global_flag = vanilla_interstellar_capped_u
+    set_global_flag = vanilla_matter_capped_u
+    set_global_flag = vanilla_art_capped_u
+    set_global_flag = vanilla_shipyard_capped_r
+    set_global_flag = vanilla_ringworld_capped_u
+    set_global_flag = vanilla_nexus_capped_r
+    set_global_flag = vanilla_strategic_capped_r
+    set_global_flag = vanilla_furnace_capped_u
+    set_global_flag = vanilla_array_capped_1
+    set_global_flag = giga_rings_gar
+    set_global_flag = upgrade_capped_u
+    set_global_flag = alderson_disabled
+    set_global_flag = birch_disabled
+    set_global_flag = shipyard_capped_u
+    set_global_flag = stellarhabitat_capped_u
+    set_global_flag = maginot_capped_u
+    set_global_flag = planetary_computer_capped_u
+    set_global_flag = asteroid_artillery_capped_u
+    set_global_flag = asteroid_manufactory_capped_u
+    set_global_flag = megabase_capped_r
+    set_global_flag = orbital_artificial_eco_capped_r
+    set_global_flag = storm_observatory_capped_r
+    set_global_flag = succ_capped_u
+    set_global_flag = drill_capped_u
+    set_global_flag = crystal_capped_u
+    set_global_flag = kugel_capped_u
+    set_global_flag = planetary_seeder_nexus_capped_u
+    set_global_flag = psychic_beacon_capped_1
+    set_global_flag = the_vat_capped_r
+    set_global_flag = suppressor_capped_u
+    set_global_flag = disco_moon_capped_u
+    set_global_flag = gigaforge_capped_u
+    set_global_flag = orbital_arcologies_capped_u
+    set_global_flag = orbital_naval_logistics_capped_u
+    set_global_flag = siphon_capped_r
+    set_global_flag = lifters_capped_u
+    set_global_flag = orchid_capped_u
+    set_global_flag = planetshipyard_capped_u
+    set_global_flag = hraemc_capped_r
+    set_global_flag = hyperstructural_ass_capped_r
+    set_global_flag = matrioshka_brain_capped_r
+    set_global_flag = ndb_capped_1
+    set_global_flag = nidavellir_capped_r
+    set_global_flag = giga_galactic_fed_shuffle
+    set_global_flag = quasistellar_capped_1
+    set_global_flag = penrose_sphere_capped_u
+    set_global_flag = supermassive_ehof_capped_1
+    set_global_flag = warmoon_capped_u
+    set_global_flag = warplanet_capped_u
+    set_global_flag = systemcraft_capped_r
+    set_global_flag = terraform_toxic_capped_u
+    set_global_flag = terraform_barren_capped_u
+    set_global_flag = geothermal_capped_u
+    set_global_flag = glue_capped_u
+    set_global_flag = terraform_gasgiant_capped_u
+    set_global_flag = compressor_capped_u
+    event_target:global_event_country = {
+        set_variable = { which = giga_ruined_warships_perc value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_colossi value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_juggs value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_titan value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_battle value = 100 }
+        set_variable = { which = blokkat_spawn_date value = 2500  }
+        set_variable = { which = giga_mega_output value = 100  }
+        set_variable = { which = giga_mega_output_ai value = 150  }
+        set_variable = { which = giga_mega_cost value = 100  }
+        set_variable = { which = giga_mega_cost_ai value = 100  }
+        set_variable = { which = giga_mega_upkeep value = 100  }
+        set_variable = { which = giga_mega_upkeep_ai value = 100  }
+    }
 }
 
 # Andromeda Galaxy
@@ -6471,9 +5516,6 @@ giga_preset_patreon_13 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_2
 	set_global_flag = giga_rings_tit
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_1
 	set_global_flag = asteroid_manufactory_capped_3
@@ -6481,7 +5523,6 @@ giga_preset_patreon_13 = {
 	set_global_flag = drill_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = warplanet_capped_3
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_3
@@ -6501,7 +5542,7 @@ giga_preset_patreon_13 = {
 	set_global_flag = nidavellir_capped_2
 	set_global_flag = orbital_arcologies_capped_3
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_disabled
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = psychic_beacon_capped_1
@@ -6557,16 +5598,12 @@ giga_preset_patreon_14 = {
 	set_global_flag = vanilla_nexus_capped_1
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_1
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_disabled
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -6587,7 +5624,7 @@ giga_preset_patreon_14 = {
 	set_global_flag = nidavellir_capped_1
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_1
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_disabled
@@ -6657,16 +5694,12 @@ giga_preset_other_01 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_r
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_r
 	set_global_flag = terraform_toxic_disabled
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_disabled
 	set_global_flag = shipyard_capped_u
@@ -6686,7 +5719,7 @@ giga_preset_other_01 = {
 	set_global_flag = nidavellir_capped_r
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -6747,9 +5780,6 @@ giga_preset_patreon_15 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_r
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = asteroid_manufactory_capped_u
@@ -6757,7 +5787,6 @@ giga_preset_patreon_15 = {
 	set_global_flag = drill_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -6777,7 +5806,7 @@ giga_preset_patreon_15 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = psychic_beacon_capped_1
@@ -6843,12 +5872,8 @@ giga_preset_patreon_16 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_1
-	set_global_flag = hivering_capped_1
-	set_global_flag = machinering_capped_1
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_disabled
-	set_global_flag = birch_capped_1
 	set_global_flag = shipyard_capped_2
 	set_global_flag = stellarhabitat_disabled
 	set_global_flag = planetary_computer_capped_1
@@ -6870,7 +5895,7 @@ giga_preset_patreon_16 = {
 	set_global_flag = maginot_capped_2
 	set_global_flag = gigaforge_capped_1
 	set_global_flag = orbital_arcologies_capped_3
-	set_global_flag = academy_capped_1
+	set_global_flag = orbital_naval_logistics_capped_1
 	set_global_flag = psychic_beacon_disabled
 	set_global_flag = siphon_disabled
 	set_global_flag = lifters_capped_2
@@ -6946,12 +5971,8 @@ giga_preset_patreon_17 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_2
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_2
-	set_global_flag = birch_capped_1
 	set_global_flag = shipyard_capped_u
 	set_global_flag = stellarhabitat_capped_u
 	set_global_flag = planetary_computer_capped_2
@@ -6970,7 +5991,7 @@ giga_preset_patreon_17 = {
 	set_global_flag = maginot_capped_u
 	set_global_flag = gigaforge_capped_u
 	set_global_flag = orbital_arcologies_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = psychic_beacon_capped_1
 	set_global_flag = siphon_capped_1
 	set_global_flag = lifters_capped_u
@@ -7065,12 +6086,8 @@ giga_preset_patreon_18 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = shipyard_capped_u
 	set_global_flag = stellarhabitat_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -7089,7 +6106,7 @@ giga_preset_patreon_18 = {
 	set_global_flag = maginot_capped_u
 	set_global_flag = gigaforge_capped_u
 	set_global_flag = orbital_arcologies_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = psychic_beacon_capped_1
 	set_global_flag = siphon_capped_1
 	set_global_flag = lifters_capped_u
@@ -7193,12 +6210,8 @@ giga_preset_patreon_19 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = shipyard_capped_u
 	set_global_flag = stellarhabitat_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -7217,7 +6230,7 @@ giga_preset_patreon_19 = {
 	set_global_flag = maginot_capped_u
 	set_global_flag = gigaforge_capped_u
 	set_global_flag = orbital_arcologies_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = psychic_beacon_capped_1
 	set_global_flag = siphon_capped_1
 	set_global_flag = lifters_capped_u
@@ -7365,7 +6378,7 @@ giga_preset_patreon_20 = {
 		set_global_flag = giga_galactic_fed_shuffle
 	}
 }
-#DrCaos	
+#DrCaos
 giga_preset_patreon_21 = {
 	remove_all_menu_flags = yes
 	remove_flags_buildcap = yes
@@ -7386,9 +6399,6 @@ giga_preset_patreon_21 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
@@ -7415,7 +6425,7 @@ giga_preset_patreon_21 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -7529,16 +6539,12 @@ giga_preset_patreon_22 = {
 	set_global_flag = storm_observatory_capped_u
 	set_global_flag = vanilla_dyson_swarm_capped_u
 	set_global_flag = vanilla_dyson_swarm_replace_disabled
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -7559,7 +6565,7 @@ giga_preset_patreon_22 = {
 	set_global_flag = nidavellir_capped_1
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_u
@@ -7615,16 +6621,12 @@ giga_preset_patreon_23 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = giga_rings_van
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -7644,7 +6646,7 @@ giga_preset_patreon_23 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -7736,16 +6738,12 @@ giga_preset_patreon_24 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_3
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -7765,7 +6763,7 @@ giga_preset_patreon_24 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -7889,16 +6887,12 @@ giga_preset_patreon_25 = {
 	set_global_flag = storm_observatory_capped_r
 	set_global_flag = vanilla_dyson_swarm_capped_r
 	#No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
-	set_global_flag = cityring_capped_r
-	set_global_flag = hivering_capped_r
-	set_global_flag = machinering_capped_r
 	set_global_flag = upgrade_capped_r
 	set_global_flag = alderson_capped_r
 	set_global_flag = terraform_toxic_disabled
 	set_global_flag = warmoon_capped_r
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_r
-	set_global_flag = birch_capped_1
 	set_global_flag = supermassive_ehof_capped_1
 	set_global_flag = planetary_seeder_nexus_capped_u
 	set_global_flag = crystal_capped_u
@@ -7921,7 +6915,7 @@ giga_preset_patreon_25 = {
 	set_global_flag = nidavellir_capped_r
 	set_global_flag = orbital_arcologies_capped_r
 	set_global_flag = orbital_artificial_eco_capped_r
-	set_global_flag = academy_capped_r
+	set_global_flag = orbital_naval_logistics_capped_r
 	set_global_flag = penrose_sphere_capped_r
 	set_global_flag = planetary_computer_capped_r
 	set_global_flag = siphon_capped_r
@@ -7980,9 +6974,6 @@ giga_preset_patreon_26 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
@@ -7990,7 +6981,6 @@ giga_preset_patreon_26 = {
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = terraform_barren_disabled
@@ -8014,7 +7004,7 @@ giga_preset_patreon_26 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -8095,7 +7085,7 @@ giga_preset_patreon_26 = {
 		set_global_flag = giga_fe_pouchkinn_disabled
 	}
 }
-### Bread 
+### Bread
 #I am become Bread, Breaker of menus
 giga_preset_patreon_27 = {
 	remove_all_menu_flags = yes
@@ -8117,16 +7107,12 @@ giga_preset_patreon_27 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -8146,7 +7132,7 @@ giga_preset_patreon_27 = {
 	set_global_flag = nidavellir_capped_r
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_3
+	set_global_flag = orbital_naval_logistics_capped_3
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -8223,10 +7209,10 @@ giga_preset_patreon_27 = {
 		set_global_flag = giga_core_shuffle
 		set_global_flag = giga_galactic_fed_shuffle
 		set_global_flag = giga_fe_planetcrafts_4
-		
+
 	}
 }
-### Ninjad 
+### Ninjad
 giga_preset_patreon_28 = {
 	remove_all_menu_flags = yes
 	remove_flags_buildcap = yes
@@ -8255,16 +7241,12 @@ giga_preset_patreon_28 = {
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = vanilla_furnace_capped_u
 	set_global_flag = vanilla_dyson_swarm_capped_u
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -8285,7 +7267,7 @@ giga_preset_patreon_28 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_u
@@ -8305,7 +7287,7 @@ giga_preset_patreon_28 = {
 	set_global_flag = supermassive_ehof_capped_1
 	set_global_flag = planetary_seeder_nexus_capped_u
 
-	event_target:global_event_country = { 
+	event_target:global_event_country = {
 		set_variable = { which = giga_ruined_warships_perc value = 100 }
 		set_variable = { which = blokkat_spawn_date value = 2500  }
 		set_variable = { which = giga_mega_output value = 100  }
@@ -8338,9 +7320,6 @@ giga_preset_patreon_29 = {
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
 	set_global_flag = giga_rings_gar
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
@@ -8348,7 +7327,6 @@ giga_preset_patreon_29 = {
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	# set_global_flag = terraform_barren_disabled
@@ -8372,7 +7350,7 @@ giga_preset_patreon_29 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	# set_global_flag = giga_habitats_unlimited
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
@@ -8446,7 +7424,7 @@ giga_preset_patreon_29 = {
 		set_global_flag = giga_core_aeternum_3
 		set_global_flag = giga_galactic_fed_shuffle
 		set_global_flag = giga_fe_planetcrafts_2
-		
+
 	}
 }
 
@@ -8466,16 +7444,12 @@ giga_preset_patreon_30 = {
 	set_global_flag = vanilla_nexus_capped_u
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -8496,7 +7470,7 @@ giga_preset_patreon_30 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_1
@@ -8518,7 +7492,7 @@ giga_preset_patreon_30 = {
 	set_global_flag = planetary_seeder_nexus_capped_u
 
 	if = {
-		limit = { 
+		limit = {
 			NOT = {
 				has_global_flag = giga_game_started
 			}
@@ -8543,7 +7517,7 @@ giga_preset_patreon_30 = {
 		set_global_flag = giga_fe_planetcrafts_1
 		set_global_flag = giga_fe_pouchkinn_disabled
 		set_global_flag = giga_blokkats_guaranteed
-		event_target:global_event_country = { 
+		event_target:global_event_country = {
 			set_variable = { which = giga_ruined_warships_perc value = 100 }
 			set_variable = { which = blokkat_spawn_date value = 2500  }
 			set_variable = { which = giga_mega_output value = 100  }
@@ -8570,16 +7544,12 @@ giga_preset_patreon_31 = {
 	set_global_flag = vanilla_nexus_capped_u
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -8600,7 +7570,7 @@ giga_preset_patreon_31 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_1
@@ -8626,7 +7596,7 @@ giga_preset_patreon_31 = {
 	set_global_flag = planetary_seeder_nexus_capped_u
 
 	if = {
-		limit = { 
+		limit = {
 			NOT = {
 				has_global_flag = giga_game_started
 			}
@@ -8641,7 +7611,7 @@ giga_preset_patreon_31 = {
 		set_global_flag = giga_core_aeternum_3
 		set_global_flag = silly_flusionian_portraits_enabled
 		set_global_flag = giga_blokkats_easy
-		event_target:global_event_country = { 
+		event_target:global_event_country = {
 			set_variable = { which = giga_ruined_warships_perc value = 100 }
 			set_variable = { which = blokkat_spawn_date value = 2500  }
 			set_variable = { which = giga_mega_output value = 100  }
@@ -8668,16 +7638,12 @@ giga_preset_patreon_32 = {
 	set_global_flag = vanilla_nexus_capped_u
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_u
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -8698,7 +7664,7 @@ giga_preset_patreon_32 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_1
@@ -8720,7 +7686,7 @@ giga_preset_patreon_32 = {
 	set_global_flag = planetary_seeder_nexus_capped_u
 
 	if = {
-		limit = { 
+		limit = {
 			NOT = {
 				has_global_flag = giga_game_started
 			}
@@ -8745,7 +7711,7 @@ giga_preset_patreon_32 = {
 		set_global_flag = giga_tyaur_guaranteed
 		set_global_flag = giga_square_guaranteed
 		set_global_flag = giga_kerbol_guaranteed
- 		event_target:global_event_country = { 
+ 		event_target:global_event_country = {
 			set_variable = { which = giga_ruined_warships_perc value = 100 }
 			set_variable = { which = blokkat_spawn_date value = 2450  }
 			set_variable = { which = giga_mega_output value = 1000  }
@@ -8758,8 +7724,7 @@ giga_preset_patreon_32 = {
 	}
 }
 
-
-#Lucy 
+#Lucy
 giga_preset_patreon_33 = {
 	remove_all_menu_flags = yes
 	remove_flags_buildcap = yes
@@ -8808,16 +7773,12 @@ giga_preset_patreon_33 = {
 	set_global_flag = storm_observatory_capped_u
 	set_global_flag = vanilla_dyson_swarm_capped_u
 	#No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_disabled
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_disabled
 	set_global_flag = warmoon_disabled
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_disabled
-	set_global_flag = birch_capped_1
 	set_global_flag = supermassive_ehof_capped_1
 	set_global_flag = planetary_seeder_nexus_capped_u
 	set_global_flag = crystal_capped_u
@@ -8840,7 +7801,7 @@ giga_preset_patreon_33 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_u
@@ -8875,108 +7836,119 @@ giga_preset_patreon_33 = {
 		set_variable = { which = giga_mega_upkeep_ai value = 100  }
 	}
 }
+
 #Sophia
 giga_preset_patreon_34 = {
-	remove_all_menu_flags = yes
-	set_global_flag = vanilla_dyson_capped_u
-	set_global_flag = vanilla_interstellar_capped_u
-	set_global_flag = vanilla_matter_capped_u
-	set_global_flag = vanilla_art_capped_u
-	set_global_flag = vanilla_shipyard_capped_u
-	set_global_flag = vanilla_ringworld_capped_u
-	set_global_flag = vanilla_nexus_capped_u
-	set_global_flag = vanilla_array_capped_1
-	set_global_flag = vanilla_strategic_capped_u
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
-	set_global_flag = upgrade_capped_u
-	set_global_flag = alderson_capped_u
-	set_global_flag = terraform_toxic_capped_u
-	set_global_flag = warmoon_capped_u
-	set_global_flag = drill_capped_u
-	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
-	set_global_flag = crystal_capped_u
-	set_global_flag = terraform_barren_capped_u
-	set_global_flag = shipyard_capped_u
-	set_global_flag = maginot_capped_u
-	set_global_flag = suppressor_capped_u
-	set_global_flag = geothermal_capped_u
-	set_global_flag = glue_capped_u
-	set_global_flag = hraemc_capped_u
-	set_global_flag = hyperstructural_ass_capped_u
-	set_global_flag = stellarhabitat_capped_u
-	set_global_flag = kugel_capped_u
-	set_global_flag = disco_moon_capped_u
-	set_global_flag = terraform_gasgiant_capped_u
-	set_global_flag = megabase_capped_u
-	set_global_flag = matrioshka_brain_capped_u
-	set_global_flag = gigaforge_capped_u
-	set_global_flag = ndb_capped_1
-	set_global_flag = nidavellir_capped_u
-	set_global_flag = orbital_arcologies_capped_u
-	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
-	set_global_flag = penrose_sphere_capped_u
-	set_global_flag = planetary_computer_capped_u
-	set_global_flag = siphon_capped_1
-	set_global_flag = quasistellar_capped_1
-	set_global_flag = lifters_capped_u
-	set_global_flag = accelerator_capped_u
-	set_global_flag = planetshipyard_capped_u
-	set_global_flag = systemcraft_capped_u
-	set_global_flag = compressor_capped_u
-	set_global_flag = succ_capped_u
-	set_global_flag = orchid_capped_u
-	set_global_flag = the_vat_capped_u
-	set_global_flag = asteroid_manufactory_capped_u
-	set_global_flag = psychic_beacon_capped_1
-	set_global_flag = asteroid_artillery_capped_u
-	set_global_flag = supermassive_ehof_capped_1
-	set_global_flag = planetary_seeder_nexus_capped_u
+    remove_all_menu_flags = yes
+    #No flag for Achievements found! Achievements enabled!
+    set_global_flag = giga_o_stars_disabled
+    set_global_flag = giga_dyson_scaling
+    set_global_flag = giga_lifter_scaling
+    set_global_flag = giga_matroishka_scaling
+    set_global_flag = giga_buildcap_j
+    #No flag for Influence upkeep found! Influence upkeep enabled!
+    #No flag for planet bulking found! Planet bulking enabled!
+    #No flag for bulk matter cost found! Bulk matter cost enabled!
+    #No flag for Attack moon printer found! Attack moon printer enabled!
+    #No flag for Attack planet printer found! Attack planet printer enabled!
+    #No flag for Wrecked warhips found! Wrecked warships enabled!
+    set_global_flag = giga_core_inactive_aeternum
+    #No flag for Jublio found! Jublio enabled!
+    #No flag for Jupitwo found! Jupitwo enabled!
+    set_global_flag = giga_eaw_guaranteed
+    set_global_flag = giga_tyaur_guaranteed
+    set_global_flag = giga_square_guaranteed
+    set_global_flag = giga_kerbol_guaranteed
+    #No flag found for Gatzo! Gatzo enabled!
+    #No flag for Ehof found! Ehof enabled!
+    set_global_flag = ehof_ai_disabled
+    set_global_flag = compound_disabled
+    set_global_flag = giga_fe_planetcrafts_0
+    set_global_flag = giga_fe_gamers_disabled
+    set_global_flag = giga_fe_pouchkinn_disabled
+    set_global_flag = silly_flusionian_portraits_enabled
+    set_global_flag = katzenartig_deathwish
+    set_global_flag = giga_eawaf_sirens_disabled
+    set_global_flag = giga_core_aeternum_3
+    #No flag for Blokkat Portraits found! Setting default!
+    set_global_flag = giga_blokkats_endtech
+    set_global_flag = giga_blokkats_guaranteed
+    set_global_flag = vanilla_dyson_capped_u
+    set_global_flag = vanilla_dyson_swarm_capped_u
+    #No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
+    set_global_flag = vanilla_interstellar_capped_u
+    set_global_flag = vanilla_matter_capped_u
+    set_global_flag = vanilla_art_capped_u
+    set_global_flag = vanilla_shipyard_capped_u
+    set_global_flag = vanilla_ringworld_capped_u
+    set_global_flag = vanilla_nexus_capped_u
+    set_global_flag = vanilla_strategic_capped_u
+    set_global_flag = vanilla_furnace_capped_u
+    set_global_flag = vanilla_array_capped_1
+    set_global_flag = giga_rings_gar
+    set_global_flag = upgrade_capped_u
+    set_global_flag = alderson_capped_u
+    set_global_flag = shipyard_capped_u
+    set_global_flag = stellarhabitat_capped_u
+    set_global_flag = maginot_capped_u
+    set_global_flag = planetary_computer_capped_u
+    set_global_flag = asteroid_artillery_capped_u
+    set_global_flag = asteroid_manufactory_capped_u
+    set_global_flag = megabase_capped_u
+    set_global_flag = orbital_artificial_eco_capped_u
+    set_global_flag = storm_observatory_capped_u
+    set_global_flag = succ_capped_u
+    set_global_flag = drill_capped_u
+    set_global_flag = crystal_capped_u
+    set_global_flag = kugel_capped_u
+    set_global_flag = planetary_seeder_nexus_capped_u
+    set_global_flag = psychic_beacon_capped_1
+    set_global_flag = the_vat_capped_u
+    set_global_flag = suppressor_capped_u
+    set_global_flag = disco_moon_capped_u
+    set_global_flag = gigaforge_capped_u
+    set_global_flag = orbital_arcologies_capped_u
+    set_global_flag = orbital_naval_logistics_capped_u
+    set_global_flag = siphon_capped_u
+    set_global_flag = lifters_capped_u
+    set_global_flag = orchid_capped_u
+    set_global_flag = planetshipyard_capped_u
+    set_global_flag = hraemc_capped_u
+    set_global_flag = hyperstructural_ass_capped_u
+    set_global_flag = matrioshka_brain_capped_u
+    set_global_flag = ndb_capped_1
+    set_global_flag = nidavellir_capped_u
+    set_global_flag = giga_galactic_fed_shuffle
+    set_global_flag = quasistellar_capped_1
+    set_global_flag = penrose_sphere_capped_u
+    set_global_flag = supermassive_ehof_capped_1
+    set_global_flag = warmoon_capped_u
+    set_global_flag = warplanet_capped_u
+    set_global_flag = systemcraft_capped_u
+    set_global_flag = terraform_toxic_capped_u
+    set_global_flag = terraform_barren_capped_u
+    set_global_flag = geothermal_capped_u
+    set_global_flag = glue_capped_u
+    set_global_flag = terraform_gasgiant_capped_u
+    set_global_flag = compressor_capped_u
+    event_target:global_event_country = {
+        set_variable = { which = giga_ruined_warships_perc value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_colossi value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_juggs value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_titan value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_battle value = 100 }
+        set_variable = { which = blokkat_spawn_date value = 2450  }
+        set_variable = { which = giga_mega_output value = 100  }
+        set_variable = { which = giga_mega_output_ai value = 200  }
+        set_variable = { which = giga_mega_cost value = 100  }
+        set_variable = { which = giga_mega_cost_ai value = 50  }
+        set_variable = { which = giga_mega_upkeep value = 100  }
+        set_variable = { which = giga_mega_upkeep_ai value = 100  }
+    }
 
-	if = {
-		limit = { 
-			NOT = {
-				has_global_flag = giga_game_started
-			}
-		}
-		set_global_flag = giga_virtual_industry
-		set_global_flag = giga_eaw_guaranteed
-		set_global_flag = giga_tyaur_guaranteed
-		set_global_flag = giga_square_guaranteed
-		set_global_flag = giga_kerbol_guaranteed
-		set_global_flag = giga_dyson_scaling
-		set_global_flag = giga_lifter_scaling
-		set_global_flag = giga_matroishka_scaling
-		set_global_flag = giga_fe_planetcrafts_1
-		set_global_flag = giga_fe_pouchkinn_disabled
-		set_global_flag = giga_blokkats_endtech
-		set_global_flag = katzenartig_deathwish
-		set_global_flag = silly_flusionian_portraits_enabled
-		set_global_flag = giga_core_inactive_aeternum
-		set_global_flag = giga_core_aeternum_4
-		set_global_flag = giga_galactic_fed_shuffle
-		set_global_flag = compound_disabled
-		set_global_flag = ehof_ai_disabled
-		set_global_flag = giga_rings_gar
-		set_global_flag = giga_buildcap_j
-		# set_global_flag = giga_habitats_unlimited
-		event_target:global_event_country = { 
-			set_variable = { which = giga_ruined_warships_perc value = 100 }
-			set_variable = { which = blokkat_spawn_date value = 2500  }
-			set_variable = { which = giga_mega_output value = 100  }
-			set_variable = { which = giga_mega_output_ai value = 200  }
-			set_variable = { which = giga_mega_cost value = 100  }
-			set_variable = { which = giga_mega_cost_ai value = 50  }
-			set_variable = { which = giga_mega_upkeep value = 100  }
-			set_variable = { which = giga_mega_upkeep_ai value = 100  }
-		}
-	}
 }
 
- # Fishum
+# Fishum
 giga_preset_patreon_35 = {
 	remove_all_menu_flags = yes
 	set_global_flag = giga_blokkats_easy
@@ -8993,16 +7965,12 @@ giga_preset_patreon_35 = {
 	set_global_flag = vanilla_nexus_capped_r
 	set_global_flag = vanilla_array_capped_1
 	set_global_flag = vanilla_strategic_capped_1
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -9023,7 +7991,7 @@ giga_preset_patreon_35 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_u
@@ -9045,18 +8013,18 @@ giga_preset_patreon_35 = {
 	#No flag for habitats found! Assume Enabled
 	#No flag for advanced orbitals found! Assume Enabled
 	if = {
-		limit = { 
+		limit = {
 			NOT = {
 				has_global_flag = giga_game_started
 			}
 		}
 		set_global_flag = giga_o_stars_disabled #
-		set_global_flag = giga_dyson_scaling # 
+		set_global_flag = giga_dyson_scaling #
 		set_global_flag = giga_lifter_scaling #
 		set_global_flag = giga_matroishka_scaling #
 		set_global_flag = giga_fe_planetcrafts_1 #
 		set_global_flag = compound_disabled #
-		set_global_flag = ehof_ai_disabled # 
+		set_global_flag = ehof_ai_disabled #
 		set_global_flag = giga_buildcap_j #
 		event_target:global_event_country = { set_variable = { which = giga_ruined_warships_perc value = 180 }
 			set_variable = { which = blokkat_spawn_date value = 2500  }
@@ -9069,6 +8037,7 @@ giga_preset_patreon_35 = {
 		}
 	}
  }
+#Aeryn
 giga_preset_patreon_36 = {
 	remove_all_menu_flags = yes
 	remove_flags_buildcap = yes
@@ -9107,16 +8076,12 @@ giga_preset_patreon_36 = {
 	set_global_flag = vanilla_furnace_capped_1
 	set_global_flag = vanilla_dyson_swarm_capped_1
 	set_global_flag = vanilla_dyson_swarm_replace_disabled
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -9136,7 +8101,7 @@ giga_preset_patreon_36 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_u
@@ -9153,7 +8118,7 @@ giga_preset_patreon_36 = {
 	set_global_flag = supermassive_ehof_capped_1
 	set_global_flag = planetary_seeder_nexus_capped_u
 
-	event_target:global_event_country = { 
+	event_target:global_event_country = {
 		set_variable = { which = giga_ruined_warships_perc value = 1 }
 		set_variable = { which = blokkat_spawn_date value = 2500  }
 		set_variable = { which = giga_mega_output value = 100  }
@@ -9181,16 +8146,12 @@ giga_preset_patreon_37 = {
 	set_global_flag = vanilla_strategic_capped_1
 	set_global_flag = vanilla_furnace_capped_1
 	set_global_flag = vanilla_dyson_swarm_capped_1
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -9211,7 +8172,7 @@ giga_preset_patreon_37 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_u
@@ -9232,7 +8193,7 @@ giga_preset_patreon_37 = {
 	set_global_flag = planetary_seeder_nexus_capped_u
 
 	if = {
-		limit = { 
+		limit = {
 			NOT = {
 				has_global_flag = giga_game_started
 			}
@@ -9252,7 +8213,7 @@ giga_preset_patreon_37 = {
 		set_global_flag = giga_blokkats_deathmode
 		set_global_flag = katzenartig_deathwish
 		set_global_flag = silly_flusionian_portraits_enabled
-		event_target:global_event_country = { 
+		event_target:global_event_country = {
 			set_variable = { which = giga_ruined_warships_perc value = 200 }
 			set_variable = { which = blokkat_spawn_date value = 2500  }
 			set_variable = { which = giga_mega_output value = 100  }
@@ -9264,120 +8225,118 @@ giga_preset_patreon_37 = {
 		}
 	}
 }
-giga_preset_patreon_38 = { 
-	remove_all_menu_flags = yes
-	remove_flags_buildcap = yes
-	#No flag for O class stars found! O class stars enabled!
-	set_global_flag = giga_celestial_printing_moon_disabled
-	#No flag for Wrecked warhips found! Wrecked warships enabled!
-	set_global_flag = giga_virtual_industry
-	#No flag for Jublio found! Jublio enabled!
-	#No flag for Jupitwo found! Jupitwo enabled!
-	set_global_flag = giga_eaw_guaranteed
-	set_global_flag = giga_tyaur_disabled
-	set_global_flag = giga_square_guaranteed
-	set_global_flag = giga_kerbol_guaranteed
-	set_global_flag = giga_dyson_scaling
-	set_global_flag = giga_lifter_scaling
-	set_global_flag = giga_matroishka_scaling
-	#No flag for Achievements found! Achievements enabled!
-	#No flag for Influence upkeep found! Influence upkeep enabled!
-	#No flag found for Gatzo! Gatzo enabled!
-	#No flag for Blokkat spawn guarantee found! Blokkat spawn guarantee disabled!
-	set_global_flag = giga_fe_planetcrafts_1
-	set_global_flag = giga_blokkats_disabled
-	set_global_flag = regular_blokkats
-	set_global_flag = katzenartig_always
-	#No flag for Katzenartig portraits set! Setting default!
-	set_global_flag = giga_core_always_empty
-	set_global_flag = giga_core_aeternum_3
-	set_global_flag = giga_galactic_fed_disabled
-	#No flag for Ehof found! Ehof enabled!
-	set_global_flag = compound_disabled
-	set_global_flag = ehof_ai_disabled
-	set_global_flag = giga_rings_gar
-	set_global_flag = vanilla_dyson_capped_u
-	set_global_flag = vanilla_interstellar_capped_1
-	set_global_flag = vanilla_matter_capped_u
-	set_global_flag = vanilla_art_capped_1
-	set_global_flag = vanilla_shipyard_capped_1
-	set_global_flag = vanilla_ringworld_capped_u
-	set_global_flag = vanilla_nexus_capped_1
-	set_global_flag = vanilla_array_capped_1
-	set_global_flag = vanilla_strategic_capped_1
-	set_global_flag = vanilla_furnace_capped_u
-	set_global_flag = storm_observatory_capped_u
-	set_global_flag = vanilla_dyson_swarm_capped_u
-	#No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
-	set_global_flag = upgrade_capped_u
-	set_global_flag = alderson_capped_1
-	set_global_flag = terraform_toxic_capped_u
-	set_global_flag = warmoon_disabled
-	set_global_flag = drill_capped_u
-	set_global_flag = warplanet_disabled
-	set_global_flag = birch_capped_1
-	set_global_flag = supermassive_ehof_disabled
-	set_global_flag = crystal_capped_u
-	set_global_flag = terraform_barren_capped_u
-	set_global_flag = shipyard_capped_u
-	set_global_flag = maginot_capped_u
-	set_global_flag = suppressor_capped_u
-	set_global_flag = geothermal_capped_u
-	set_global_flag = glue_capped_u
-	set_global_flag = hraemc_capped_1
-	set_global_flag = hyperstructural_ass_capped_1
-	set_global_flag = stellarhabitat_capped_1
-	set_global_flag = kugel_capped_u
-	set_global_flag = disco_moon_capped_u
-	set_global_flag = terraform_gasgiant_capped_u
-	set_global_flag = megabase_capped_u
-	set_global_flag = matrioshka_brain_capped_1
-	set_global_flag = gigaforge_capped_u
-	set_global_flag = ndb_disabled
-	set_global_flag = nidavellir_capped_1
-	set_global_flag = orbital_arcologies_capped_u
-	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
-	set_global_flag = penrose_sphere_capped_1
-	set_global_flag = planetary_computer_capped_u
-	set_global_flag = siphon_capped_u
-	set_global_flag = quasistellar_disabled
-	set_global_flag = lifters_capped_u
-	set_global_flag = accelerator_disabled
-	set_global_flag = planetshipyard_capped_u
-	set_global_flag = systemcraft_disabled
-	set_global_flag = compressor_capped_u
-	set_global_flag = succ_capped_u
-	set_global_flag = orchid_capped_u
-	set_global_flag = the_vat_capped_u
-	set_global_flag = asteroid_manufactory_capped_u
-	#No flag for Psychic beacon found!
-	#No flag for Asteroid Artillery found!
-	set_global_flag = giga_buildcap_j
-	#No flag for habitats found! Assume Enabled
-	#No flag for advanced orbitals found! Assume Enabled
-	set_global_flag = giga_eawaf_sirens_disabled
-	event_target:global_event_country = {
-		set_variable = { which = giga_ruined_warships_perc value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_colossi value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_juggs value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_titan value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_battle value = 100 }
-		set_variable = { which = blokkat_spawn_date value = 2500  }
-		set_variable = { which = giga_mega_output value = 100  }
-		set_variable = { which = giga_mega_output_ai value = 100  }
-		set_variable = { which = giga_mega_cost value = 100  }
-		set_variable = { which = giga_mega_cost_ai value = 100  }
-		set_variable = { which = giga_mega_upkeep value = 100  }
-		set_variable = { which = giga_mega_upkeep_ai value = 100  }
-	}
+# MTX
+giga_preset_patreon_38 = {
+    remove_all_menu_flags = yes
+    remove_flags_buildcap = yes
+    #No flag for Achievements found! Achievements enabled!
+    #No flag for O class stars found! O class stars enabled!
+    set_global_flag = giga_dyson_scaling
+    set_global_flag = giga_lifter_scaling
+    set_global_flag = giga_matroishka_scaling
+    set_global_flag = giga_buildcap_j
+    #No flag for Influence upkeep found! Influence upkeep enabled!
+    set_global_flag = giga_planet_bulking_disabled
+    set_global_flag = giga_bulk_matter_cost_disabled
+    set_global_flag = giga_celestial_printing_moon_disabled
+    set_global_flag = giga_celestial_printing_planet_disabled
+    #No flag for Wrecked warhips found! Wrecked warships enabled!
+    set_global_flag = giga_core_always_empty
+    #No flag for Jublio found! Jublio enabled!
+    #No flag for Jupitwo found! Jupitwo enabled!
+    set_global_flag = giga_eaw_guaranteed
+    set_global_flag = giga_tyaur_guaranteed
+    set_global_flag = giga_square_guaranteed
+    set_global_flag = giga_kerbol_guaranteed
+    #No flag found for Gatzo! Gatzo enabled!
+    set_global_flag = ehof_disabled
+    set_global_flag = ehof_ai_disabled
+    set_global_flag = compound_disabled
+    set_global_flag = giga_fe_planetcrafts_0
+    set_global_flag = giga_fe_pouchkinn_disabled
+    #No flag for Katzenartig portraits set! Setting default!
+    set_global_flag = katzenartig_always
+    set_global_flag = giga_eawaf_sirens_disabled
+    set_global_flag = giga_core_aeternum_2
+    set_global_flag = regular_blokkats
+    set_global_flag = giga_blokkats_disabled
+    #No flag for Blokkat spawn guarantee found! Blokkat spawn guarantee disabled!
+    set_global_flag = vanilla_dyson_capped_u
+    set_global_flag = vanilla_dyson_swarm_capped_u
+    #No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
+    set_global_flag = vanilla_interstellar_capped_1
+    set_global_flag = vanilla_matter_capped_u
+    set_global_flag = vanilla_art_capped_1
+    set_global_flag = vanilla_shipyard_capped_1
+    set_global_flag = vanilla_ringworld_capped_u
+    set_global_flag = vanilla_nexus_capped_1
+    set_global_flag = vanilla_strategic_capped_1
+    set_global_flag = vanilla_furnace_capped_u
+    set_global_flag = vanilla_array_capped_1
+    set_global_flag = giga_rings_gar
+    set_global_flag = upgrade_capped_u
+    set_global_flag = alderson_capped_1
+    set_global_flag = shipyard_capped_u
+    set_global_flag = stellarhabitat_capped_1
+    set_global_flag = maginot_capped_u
+    set_global_flag = planetary_computer_capped_u
+    #No flag for Asteroid Artillery found!
+    set_global_flag = asteroid_manufactory_capped_u
+    set_global_flag = megabase_capped_u
+    set_global_flag = orbital_artificial_eco_capped_u
+    set_global_flag = storm_observatory_capped_u
+    set_global_flag = succ_capped_u
+    set_global_flag = drill_capped_u
+    set_global_flag = crystal_capped_u
+    set_global_flag = kugel_capped_u
+    set_global_flag = planetary_seeder_nexus_capped_u
+    #No flag for Psychic beacon found!
+    set_global_flag = the_vat_capped_u
+    set_global_flag = suppressor_capped_u
+    set_global_flag = disco_moon_capped_u
+    set_global_flag = gigaforge_capped_u
+    set_global_flag = orbital_arcologies_capped_u
+    set_global_flag = orbital_naval_logistics_capped_u
+    set_global_flag = siphon_capped_u
+    set_global_flag = lifters_capped_u
+    set_global_flag = orchid_capped_u
+    set_global_flag = planetshipyard_capped_u
+    set_global_flag = hraemc_capped_1
+    set_global_flag = hyperstructural_ass_capped_1
+    set_global_flag = matrioshka_brain_capped_1
+    set_global_flag = ndb_disabled
+    set_global_flag = nidavellir_capped_1
+    set_global_flag = giga_galactic_fed_disabled
+    set_global_flag = quasistellar_disabled
+    set_global_flag = penrose_sphere_capped_1
+    set_global_flag = supermassive_ehof_disabled
+    set_global_flag = warmoon_disabled
+    set_global_flag = warplanet_disabled
+    set_global_flag = systemcraft_disabled
+    set_global_flag = terraform_toxic_capped_u
+    set_global_flag = terraform_barren_capped_u
+    set_global_flag = geothermal_capped_u
+    set_global_flag = glue_capped_u
+    set_global_flag = terraform_gasgiant_capped_u
+    set_global_flag = compressor_capped_u
+    event_target:global_event_country = {
+        set_variable = { which = giga_ruined_warships_perc value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_colossi value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_juggs value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_titan value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_battle value = 100 }
+        set_variable = { which = blokkat_spawn_date value = 2500  }
+        set_variable = { which = giga_mega_output value = 100  }
+        set_variable = { which = giga_mega_output_ai value = 100  }
+        set_variable = { which = giga_mega_cost value = 100  }
+        set_variable = { which = giga_mega_cost_ai value = 100  }
+        set_variable = { which = giga_mega_upkeep value = 100  }
+        set_variable = { which = giga_mega_upkeep_ai value = 100  }
+    }
 }
 
 #De Clare
-giga_preset_patreon_39 = { 
+giga_preset_patreon_39 = {
 	remove_all_menu_flags = yes
 	remove_flags_buildcap = yes
 	set_global_flag = giga_celestial_printing_moon_disabled
@@ -9410,16 +8369,12 @@ giga_preset_patreon_39 = {
 	set_global_flag = vanilla_furnace_capped_3
 	set_global_flag = storm_observatory_capped_u
 	set_global_flag = vanilla_dyson_swarm_capped_2
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_1
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_1
-	set_global_flag = birch_capped_1
 	set_global_flag = crystal_capped_u
 	set_global_flag = terraform_barren_capped_u
 	set_global_flag = shipyard_capped_u
@@ -9440,7 +8395,7 @@ giga_preset_patreon_39 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_disabled
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_disabled
@@ -9470,7 +8425,7 @@ giga_preset_patreon_39 = {
 }
 
 #SV Miss Fortune
-giga_preset_patreon_40 = { 
+giga_preset_patreon_40 = {
 	remove_all_menu_flags = yes
 	remove_flags_buildcap = yes
 	set_global_flag = giga_dyson_scaling
@@ -9499,16 +8454,12 @@ giga_preset_patreon_40 = {
 	set_global_flag = vanilla_furnace_capped_2
 	set_global_flag = storm_observatory_capped_u
 	set_global_flag = vanilla_dyson_swarm_capped_2
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_u
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_capped_u
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = supermassive_ehof_capped_1
 	set_global_flag = planetary_seeder_nexus_capped_u
 	set_global_flag = crystal_capped_u
@@ -9531,7 +8482,7 @@ giga_preset_patreon_40 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_u
 	set_global_flag = siphon_capped_u
@@ -9567,7 +8518,7 @@ giga_preset_patreon_40 = {
 }
 
 #Lucasif
-giga_preset_patreon_41 = { 
+giga_preset_patreon_41 = {
 	remove_all_menu_flags = yes
 	remove_flags_buildcap = yes
 	#No flag for O class stars found! O class stars enabled!
@@ -9612,16 +8563,12 @@ giga_preset_patreon_41 = {
 	set_global_flag = storm_observatory_disabled
 	set_global_flag = vanilla_dyson_swarm_capped_1
 	#No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
 	set_global_flag = upgrade_capped_u
 	set_global_flag = alderson_capped_2
 	set_global_flag = terraform_toxic_disabled
 	set_global_flag = warmoon_capped_u
 	set_global_flag = drill_disabled
 	set_global_flag = warplanet_capped_u
-	set_global_flag = birch_capped_1
 	set_global_flag = supermassive_ehof_capped_1
 	set_global_flag = planetary_seeder_nexus_capped_u
 	set_global_flag = crystal_disabled
@@ -9644,7 +8591,7 @@ giga_preset_patreon_41 = {
 	set_global_flag = nidavellir_capped_u
 	set_global_flag = orbital_arcologies_capped_u
 	set_global_flag = orbital_artificial_eco_disabled
-	set_global_flag = academy_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
 	set_global_flag = penrose_sphere_capped_u
 	set_global_flag = planetary_computer_capped_3
 	set_global_flag = siphon_capped_u
@@ -9680,7 +8627,8 @@ giga_preset_patreon_41 = {
 	}
 }
 
-giga_preset_patreon_42 = { 
+#Jin2188
+giga_preset_patreon_42 = {
 	remove_all_menu_flags = yes
 	remove_flags_buildcap = yes
 	#No flag for O class stars found! O class stars enabled!
@@ -9725,16 +8673,12 @@ giga_preset_patreon_42 = {
 	set_global_flag = storm_observatory_capped_r
 	set_global_flag = vanilla_dyson_swarm_capped_r
 	#No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
-	set_global_flag = cityring_capped_r
-	set_global_flag = hivering_capped_r
-	set_global_flag = machinering_capped_r
 	set_global_flag = upgrade_capped_r
 	set_global_flag = alderson_capped_r
 	set_global_flag = terraform_toxic_capped_u
 	set_global_flag = warmoon_capped_r
 	set_global_flag = drill_capped_r
 	set_global_flag = warplanet_capped_r
-	set_global_flag = birch_capped_1
 	set_global_flag = supermassive_ehof_capped_1
 	set_global_flag = planetary_seeder_nexus_capped_u
 	set_global_flag = crystal_capped_r
@@ -9757,7 +8701,7 @@ giga_preset_patreon_42 = {
 	set_global_flag = nidavellir_capped_r
 	set_global_flag = orbital_arcologies_capped_r
 	set_global_flag = orbital_artificial_eco_capped_r
-	set_global_flag = academy_capped_r
+	set_global_flag = orbital_naval_logistics_capped_r
 	set_global_flag = penrose_sphere_capped_r
 	set_global_flag = planetary_computer_capped_r
 	set_global_flag = siphon_capped_r
@@ -9793,117 +8737,114 @@ giga_preset_patreon_42 = {
 	}
 }
 
-#Eragonn
+#Eragonn1490
 giga_preset_patreon_43 = {
     remove_all_menu_flags = yes
-	#No flag for O class stars found! O class stars enabled!
-	#No flag for Attack moon printer found! Attack moon printer enabled!
-	#No flag for Wrecked warhips found! Wrecked warships enabled!
-	#No flag for virtual reality found! Virtual reality without industry enabled!
-	#No flag for Jublio found! Jublio enabled!
-	#No flag for Jupitwo found! Jupitwo enabled!
-	#No flag for Faust found! Faust enabled!
-	#No flag for Tyaur found! Tyaur enabled!
-	#No flag for Squareworld found! Squareworld enabled!
-	#No flag for Kerbol found! Kerbol enabled!
-	set_global_flag = giga_dyson_scaling
-	set_global_flag = giga_lifter_scaling
-	set_global_flag = giga_matroishka_scaling
-	#No flag for Achievements found! Achievements enabled!
-	#No flag for Influence upkeep found! Influence upkeep enabled!
-	#No flag found for Gatzo! Gatzo enabled!
-	#No flag for Blokkat spawn guarantee found! Blokkat spawn guarantee disabled!
-	set_global_flag = giga_fe_planetcrafts_3
-	set_global_flag = giga_blokkats_bismuth
-	#No flag for Blokkat Portraits found! Setting default!
-	set_global_flag = katzenartig_disabled
-	#No flag for Katzenartig portraits set! Setting default!
-	set_global_flag = giga_core_shuffle
-	set_global_flag = giga_core_aeternum_3
-	set_global_flag = giga_galactic_fed_shuffle
-	#No flag for Ehof found! Ehof enabled!
-	set_global_flag = compound_disabled
-	set_global_flag = ehof_ai_capped_1
-	set_global_flag = giga_rings_gar
-	set_global_flag = vanilla_dyson_capped_u
-	set_global_flag = vanilla_interstellar_capped_3
-	set_global_flag = vanilla_matter_capped_3
-	set_global_flag = vanilla_art_capped_3
-	set_global_flag = vanilla_shipyard_capped_3
-	set_global_flag = vanilla_ringworld_capped_3
-	set_global_flag = vanilla_nexus_capped_3
-	set_global_flag = vanilla_array_capped_1
-	set_global_flag = vanilla_strategic_capped_3
-	set_global_flag = vanilla_furnace_capped_u
-	set_global_flag = storm_observatory_capped_u
-	set_global_flag = vanilla_dyson_swarm_capped_u
-	#No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
-	set_global_flag = cityring_capped_u
-	set_global_flag = hivering_capped_u
-	set_global_flag = machinering_capped_u
-	set_global_flag = upgrade_disabled
-	set_global_flag = alderson_capped_1
-	set_global_flag = terraform_toxic_capped_3
-	set_global_flag = warmoon_capped_u
-	set_global_flag = drill_capped_u
-	set_global_flag = warplanet_capped_2
-	set_global_flag = birch_capped_1
-	set_global_flag = supermassive_ehof_capped_1
-	set_global_flag = planetary_seeder_nexus_capped_u
-	set_global_flag = crystal_capped_u
-	set_global_flag = terraform_barren_capped_3
-	set_global_flag = shipyard_capped_3
-	set_global_flag = maginot_capped_3
-	set_global_flag = suppressor_capped_3
-	set_global_flag = geothermal_capped_3
-	set_global_flag = glue_capped_3
-	set_global_flag = hraemc_capped_1
-	set_global_flag = hyperstructural_ass_capped_1
-	set_global_flag = stellarhabitat_capped_3
-	set_global_flag = kugel_capped_u
-	set_global_flag = disco_moon_capped_r
-	set_global_flag = terraform_gasgiant_capped_3
-	set_global_flag = megabase_capped_u
-	set_global_flag = matrioshka_brain_capped_2
-	set_global_flag = gigaforge_capped_u
-	set_global_flag = ndb_capped_1
-	set_global_flag = nidavellir_capped_u
-	set_global_flag = orbital_arcologies_capped_u
-	set_global_flag = orbital_artificial_eco_capped_u
-	set_global_flag = academy_capped_3
-	set_global_flag = penrose_sphere_capped_r
-	set_global_flag = planetary_computer_capped_3
-	set_global_flag = siphon_capped_u
-	set_global_flag = quasistellar_capped_1
-	set_global_flag = lifters_capped_3
-	set_global_flag = accelerator_disabled
-	set_global_flag = planetshipyard_capped_u
-	set_global_flag = systemcraft_capped_1
-	set_global_flag = compressor_capped_3
-	set_global_flag = succ_capped_u
-	set_global_flag = orchid_capped_r
-	set_global_flag = the_vat_capped_3
-	set_global_flag = asteroid_manufactory_capped_u
-	set_global_flag = psychic_beacon_capped_1
-	set_global_flag = asteroid_artillery_capped_u
-	set_global_flag = giga_buildcap_u
-	#No flag for habitats found! Assume Enabled
-	#No flag for advanced orbitals found! Assume Enabled
-	set_global_flag = giga_eawaf_sirens_disabled
-	event_target:global_event_country = {
-		set_variable = { which = giga_ruined_warships_perc value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_colossi value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_juggs value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_titan value = 100 }
-		set_variable = { which = giga_ruined_warships_perc_battle value = 100 }
-		set_variable = { which = blokkat_spawn_date value = 2500  }
-		set_variable = { which = giga_mega_output value = 100  }
-		set_variable = { which = giga_mega_output_ai value = 100  }
-		set_variable = { which = giga_mega_cost value = 100  }
-		set_variable = { which = giga_mega_cost_ai value = 50  }
-		set_variable = { which = giga_mega_upkeep value = 100  }
-		set_variable = { which = giga_mega_upkeep_ai value = 100 }
-	}
+    set_global_flag = giga_achievements_effect_disabled
+    #No flag for O class stars found! O class stars enabled!
+    set_global_flag = giga_dyson_scaling
+    set_global_flag = giga_lifter_scaling
+    set_global_flag = giga_matroishka_scaling
+    set_global_flag = giga_buildcap_u
+    #No flag for Influence upkeep found! Influence upkeep enabled!
+    #No flag for planet bulking found! Planet bulking enabled!
+    #No flag for bulk matter cost found! Bulk matter cost enabled!
+    #No flag for Attack moon printer found! Attack moon printer enabled!
+    #No flag for Attack planet printer found! Attack planet printer enabled!
+    #No flag for Wrecked warhips found! Wrecked warships enabled!
+    set_global_flag = giga_core_shuffle
+    #No flag for Jublio found! Jublio enabled!
+    #No flag for Jupitwo found! Jupitwo enabled!
+    set_global_flag = giga_eaw_guaranteed
+    set_global_flag = giga_tyaur_guaranteed
+    set_global_flag = giga_square_guaranteed
+    set_global_flag = giga_kerbol_guaranteed
+    #No flag found for Gatzo! Gatzo enabled!
+    #No flag for Ehof found! Ehof enabled!
+    set_global_flag = ehof_ai_capped_1
+    set_global_flag = compound_disabled
+    set_global_flag = giga_fe_planetcrafts_3
+    set_global_flag = giga_fe_pouchkinn_disabled
+    #No flag for Katzenartig portraits set! Setting default!
+    set_global_flag = katzenartig_always
+    set_global_flag = giga_eawaf_sirens_disabled
+    set_global_flag = giga_core_aeternum_3
+    #No flag for Blokkat Portraits found! Setting default!
+    set_global_flag = giga_blokkats_disabled
+    #No flag for Blokkat spawn guarantee found! Blokkat spawn guarantee disabled!
+    set_global_flag = vanilla_dyson_capped_3
+    set_global_flag = vanilla_dyson_swarm_capped_u
+    #No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
+    set_global_flag = vanilla_interstellar_capped_2
+    set_global_flag = vanilla_matter_capped_3
+    set_global_flag = vanilla_art_capped_3
+    set_global_flag = vanilla_shipyard_capped_2
+    set_global_flag = vanilla_ringworld_capped_3
+    set_global_flag = vanilla_nexus_capped_3
+    set_global_flag = vanilla_strategic_capped_3
+    set_global_flag = vanilla_furnace_capped_u
+    set_global_flag = vanilla_array_capped_1
+    set_global_flag = giga_rings_gar
+    set_global_flag = upgrade_disabled
+    set_global_flag = alderson_capped_1
+    set_global_flag = shipyard_capped_3
+    set_global_flag = stellarhabitat_capped_3
+    set_global_flag = maginot_capped_3
+    set_global_flag = planetary_computer_capped_3
+    set_global_flag = asteroid_artillery_capped_u
+    set_global_flag = asteroid_manufactory_capped_u
+    set_global_flag = megabase_capped_u
+    set_global_flag = orbital_artificial_eco_capped_u
+    set_global_flag = storm_observatory_capped_u
+    set_global_flag = succ_capped_u
+    set_global_flag = drill_capped_u
+    set_global_flag = crystal_capped_u
+    set_global_flag = kugel_capped_u
+    set_global_flag = planetary_seeder_nexus_capped_u
+    set_global_flag = psychic_beacon_capped_1
+    set_global_flag = the_vat_capped_3
+    set_global_flag = suppressor_capped_3
+    set_global_flag = disco_moon_capped_3
+    set_global_flag = gigaforge_capped_u
+    set_global_flag = orbital_arcologies_capped_u
+    set_global_flag = orbital_naval_logistics_capped_u
+    set_global_flag = siphon_capped_u
+    set_global_flag = lifters_capped_3
+    set_global_flag = orchid_capped_r
+    set_global_flag = planetshipyard_capped_u
+    set_global_flag = hraemc_capped_2
+    set_global_flag = hyperstructural_ass_capped_1
+    set_global_flag = matrioshka_brain_capped_3
+    set_global_flag = ndb_capped_1
+    set_global_flag = nidavellir_capped_u
+    set_global_flag = giga_galactic_fed_shuffle
+    set_global_flag = quasistellar_capped_1
+    set_global_flag = penrose_sphere_capped_3
+    set_global_flag = supermassive_ehof_capped_1
+    set_global_flag = warmoon_capped_u
+    set_global_flag = warplanet_capped_3
+    set_global_flag = systemcraft_capped_1
+    set_global_flag = terraform_toxic_capped_3
+    set_global_flag = terraform_barren_capped_3
+    set_global_flag = geothermal_capped_u
+    set_global_flag = glue_capped_u
+    set_global_flag = terraform_gasgiant_capped_3
+    set_global_flag = compressor_capped_u
+    event_target:global_event_country = {
+        set_variable = { which = giga_ruined_warships_perc value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_colossi value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_juggs value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_titan value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_battle value = 100 }
+        set_variable = { which = blokkat_spawn_date value = 2500  }
+        set_variable = { which = giga_mega_output value = 100  }
+        set_variable = { which = giga_mega_output_ai value = 100  }
+        set_variable = { which = giga_mega_cost value = 100  }
+        set_variable = { which = giga_mega_cost_ai value = 80  }
+        set_variable = { which = giga_mega_upkeep value = 100  }
+        set_variable = { which = giga_mega_upkeep_ai value = 100  }
+    }
+
 }
 
 #Lucy
@@ -9951,16 +8892,12 @@ giga_preset_patreon_44 = {
 	set_global_flag = storm_observatory_capped_r
 	set_global_flag = vanilla_dyson_swarm_capped_r
 	#No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
-	set_global_flag = cityring_capped_r
-	set_global_flag = hivering_capped_r
-	set_global_flag = machinering_capped_r
 	set_global_flag = upgrade_capped_r
 	set_global_flag = alderson_capped_r
 	set_global_flag = terraform_toxic_capped_r
 	set_global_flag = warmoon_capped_r
 	set_global_flag = drill_capped_r
 	set_global_flag = warplanet_capped_r
-	set_global_flag = birch_capped_1
 	set_global_flag = supermassive_ehof_capped_1
 	set_global_flag = crystal_capped_r
 	set_global_flag = terraform_barren_capped_r
@@ -9983,7 +8920,7 @@ giga_preset_patreon_44 = {
 	set_global_flag = orbital_arcologies_capped_r
 	set_global_flag = orbital_artificial_eco_capped_r
 	#No flag for orbital artificial ecosystem found!
-	set_global_flag = academy_capped_r
+	set_global_flag = orbital_naval_logistics_capped_r
 	set_global_flag = penrose_sphere_capped_r
 	set_global_flag = planetary_computer_capped_r
 	set_global_flag = siphon_capped_r
@@ -10074,7 +9011,6 @@ giga_preset_patreon_45 = {
     set_global_flag = warmoon_capped_u
     set_global_flag = drill_disabled
     set_global_flag = warplanet_capped_3
-    set_global_flag = birch_capped_1
     set_global_flag = supermassive_ehof_capped_1
     set_global_flag = crystal_disabled
     set_global_flag = terraform_barren_capped_u
@@ -10161,6 +9097,8 @@ giga_preset_patreon_46 = {
     set_global_flag = giga_blokkats_disabled
     #No flag for Blokkat Portraits found! Setting default!
     #No flag for Katzenartig difficulty found! Setting default!
+    set_global_flag = katzenartig_never
+    set_global_flag = katzenartig_disabled
     #No flag for Katzenartig portraits set! Setting default!
     set_global_flag = giga_core_shuffle
     #No flag for Aeternum difficulty found!
@@ -10188,7 +9126,6 @@ giga_preset_patreon_46 = {
     set_global_flag = warmoon_capped_u
     set_global_flag = drill_capped_u
     set_global_flag = warplanet_capped_r
-    set_global_flag = birch_capped_1
     set_global_flag = supermassive_ehof_capped_1
     set_global_flag = crystal_capped_u
     set_global_flag = terraform_barren_capped_3
@@ -10245,6 +9182,440 @@ giga_preset_patreon_46 = {
         set_variable = { which = giga_mega_upkeep value = 100  }
         set_variable = { which = giga_mega_upkeep_ai value = 100  }
     }
+}
+
+#bundil
+giga_preset_patreon_47 = {
+    remove_all_menu_flags = yes
+    remove_all_menu_flags = yes
+    set_global_flag = giga_achievements_disabled
+    #No flag for O class stars found! O class stars enabled!
+    set_global_flag = giga_dyson_scaling
+    set_global_flag = giga_lifter_scaling
+    set_global_flag = giga_matroishka_scaling
+    set_global_flag = giga_buildcap_j
+    set_global_flag = giga_disable_influence_upkeep
+    #No flag for planet bulking found! Planet bulking enabled!
+    #No flag for bulk matter cost found! Bulk matter cost enabled!
+    #No flag for Attack moon printer found! Attack moon printer enabled!
+    #No flag for Attack planet printer found! Attack planet printer enabled!
+    #No flag for Wrecked warhips found! Wrecked warships enabled!
+    set_global_flag = giga_core_shuffle
+    #No flag for Jublio found! Jublio enabled!
+    #No flag for Jupitwo found! Jupitwo enabled!
+    #No flag for Faust found! Faust enabled!
+    #No flag for Tyaur found! Tyaur enabled!
+    #No flag for Squareworld found! Squareworld enabled!
+    #No flag for Kerbol found! Kerbol enabled!
+    #No flag found for Gatzo! Gatzo enabled!
+    #No flag for Ehof found! Ehof enabled!
+    set_global_flag = ehof_ai_disabled
+    set_global_flag = compound_disabled
+    set_global_flag = giga_fe_planetcrafts_1
+    #No flag for Katzenartig portraits set! Setting default!
+    set_global_flag = katzenartig_disabled
+    set_global_flag = giga_eawaf_sirens_disabled
+    set_global_flag = giga_core_aeternum_2
+    #No flag for Blokkat Portraits found! Setting default!
+    set_global_flag = giga_blokkats_disabled
+    #No flag for Blokkat spawn guarantee found! Blokkat spawn guarantee disab
+    set_global_flag = vanilla_dyson_capped_3
+    set_global_flag = vanilla_dyson_swarm_capped_u
+    #No flag to disable swarm replacement found! Dyson Swarm Replacement Enab
+    set_global_flag = vanilla_interstellar_capped_3
+    set_global_flag = vanilla_matter_capped_u
+    set_global_flag = vanilla_art_capped_3
+    set_global_flag = vanilla_shipyard_capped_3
+    set_global_flag = vanilla_ringworld_capped_3
+    set_global_flag = vanilla_nexus_capped_3
+    set_global_flag = vanilla_strategic_capped_3
+    set_global_flag = vanilla_furnace_capped_u
+    set_global_flag = vanilla_array_capped_1
+    set_global_flag = giga_rings_gar
+    set_global_flag = upgrade_capped_u
+    set_global_flag = alderson_capped_1
+    set_global_flag = shipyard_capped_u
+    set_global_flag = stellarhabitat_capped_3
+    set_global_flag = maginot_capped_u
+    set_global_flag = planetary_computer_capped_3
+    set_global_flag = asteroid_artillery_capped_u
+    set_global_flag = asteroid_manufactory_capped_u
+    set_global_flag = megabase_capped_u
+    set_global_flag = orbital_artificial_eco_capped_u
+    set_global_flag = storm_observatory_capped_u
+    set_global_flag = succ_capped_u
+    set_global_flag = drill_capped_u
+    set_global_flag = crystal_capped_u
+    set_global_flag = kugel_capped_u
+    set_global_flag = planetary_seeder_nexus_capped_u
+    set_global_flag = psychic_beacon_capped_1
+    set_global_flag = the_vat_capped_3
+    set_global_flag = suppressor_capped_u
+    set_global_flag = disco_moon_capped_3
+    set_global_flag = gigaforge_capped_3
+    set_global_flag = orbital_arcologies_capped_u
+    set_global_flag = orbital_naval_logistics_capped_u
+    set_global_flag = siphon_capped_u
+    set_global_flag = lifters_capped_u
+    set_global_flag = orchid_capped_u
+    set_global_flag = planetshipyard_capped_u
+    set_global_flag = hraemc_capped_u
+    set_global_flag = hyperstructural_ass_capped_1
+    set_global_flag = matrioshka_brain_capped_1
+    set_global_flag = ndb_capped_1
+    set_global_flag = nidavellir_capped_1
+    set_global_flag = giga_galactic_fed_shuffle
+    set_global_flag = quasistellar_capped_1
+    set_global_flag = penrose_sphere_capped_u
+    set_global_flag = supermassive_ehof_capped_1
+    set_global_flag = warmoon_capped_u
+    set_global_flag = warplanet_capped_1
+    set_global_flag = systemcraft_disabled
+    set_global_flag = terraform_toxic_capped_u
+    set_global_flag = terraform_barren_capped_u
+    set_global_flag = geothermal_capped_u
+    set_global_flag = glue_capped_u
+    set_global_flag = terraform_gasgiant_capped_u
+    set_global_flag = compressor_capped_u
+    event_target:global_event_country = {
+        set_variable = { which = giga_ruined_warships_perc value = 500 }
+        set_variable = { which = giga_ruined_warships_perc_colossi value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_juggs value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_titan value = 100 }
+        set_variable = { which = giga_ruined_warships_perc_battle value = 100 }
+        set_variable = { which = blokkat_spawn_date value = 2500  }
+        set_variable = { which = giga_mega_output value = 100  }
+        set_variable = { which = giga_mega_output_ai value = 100  }
+        set_variable = { which = giga_mega_cost value = 100  }
+        set_variable = { which = giga_mega_cost_ai value = 50  }
+        set_variable = { which = giga_mega_upkeep value = 100  }
+        set_variable = { which = giga_mega_upkeep_ai value = 100  }
+    }
+}
+
+#Notfox
+giga_preset_patreon_48 = {
+	remove_all_menu_flags = yes
+	#No flag for Achievements found! Achievements enabled!
+	#No flag for O class stars found! O class stars enabled!
+	set_global_flag = giga_dyson_scaling
+	set_global_flag = giga_lifter_scaling
+	set_global_flag = giga_matroishka_scaling
+	set_global_flag = giga_buildcap_j
+	#No flag for Influence upkeep found! Influence upkeep enabled!
+	set_global_flag = giga_planet_bulking_disabled
+	set_global_flag = giga_bulk_matter_cost_disabled
+	set_global_flag = giga_celestial_printing_moon_disabled
+	set_global_flag = giga_celestial_printing_planet_disabled
+	#No flag for Wrecked warhips found! Wrecked warships enabled!
+	set_global_flag = giga_core_shuffle
+	#No flag for Jublio found! Jublio enabled!
+	#No flag for Jupitwo found! Jupitwo enabled!
+	#No flag for Faust found! Faust enabled!
+	#No flag for Tyaur found! Tyaur enabled!
+	#No flag for Squareworld found! Squareworld enabled!
+	#No flag for Kerbol found! Kerbol enabled!
+	#No flag found for Gatzo! Gatzo enabled!
+	set_global_flag = ehof_disabled
+	set_global_flag = ehof_ai_disabled
+	set_global_flag = compound_disabled
+	set_global_flag = giga_fe_planetcrafts_0
+	set_global_flag = giga_fe_pouchkinn_disabled
+	#No flag for Katzenartig portraits set! Setting default!
+	set_global_flag = katzenartig_disabled
+	set_global_flag = giga_eawaf_sirens_disabled
+	set_global_flag = giga_core_aeternum_1
+	#No flag for Blokkat Portraits found! Setting default!
+	set_global_flag = giga_blokkats_disabled
+	#No flag for Blokkat spawn guarantee found! Blokkat spawn guarantee disabled!
+	set_global_flag = vanilla_dyson_capped_3
+	set_global_flag = vanilla_dyson_swarm_capped_1
+	#No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled!
+	set_global_flag = vanilla_interstellar_capped_1
+	set_global_flag = vanilla_matter_capped_3
+	set_global_flag = vanilla_art_capped_1
+	set_global_flag = vanilla_shipyard_capped_3
+	set_global_flag = vanilla_ringworld_capped_3
+	set_global_flag = vanilla_nexus_capped_3
+	set_global_flag = vanilla_strategic_capped_1
+	set_global_flag = vanilla_furnace_capped_1
+	set_global_flag = vanilla_array_capped_1
+	set_global_flag = giga_rings_van
+	set_global_flag = upgrade_capped_u
+	set_global_flag = alderson_disabled
+	set_global_flag = shipyard_capped_3
+	set_global_flag = stellarhabitat_capped_3
+	set_global_flag = maginot_capped_3
+	set_global_flag = planetary_computer_capped_3
+	set_global_flag = asteroid_artillery_capped_u
+	set_global_flag = asteroid_manufactory_capped_u
+	set_global_flag = megabase_capped_u
+	set_global_flag = orbital_artificial_eco_capped_u
+	set_global_flag = storm_observatory_capped_u
+	set_global_flag = succ_capped_u
+	set_global_flag = drill_capped_u
+	set_global_flag = crystal_capped_u
+	set_global_flag = kugel_capped_u
+	set_global_flag = planetary_seeder_nexus_capped_u
+	set_global_flag = psychic_beacon_capped_1
+	set_global_flag = the_vat_capped_3
+	set_global_flag = suppressor_capped_3
+	set_global_flag = disco_moon_capped_3
+	set_global_flag = gigaforge_capped_3
+	set_global_flag = orbital_arcologies_capped_u
+	set_global_flag = orbital_naval_logistics_capped_u
+	set_global_flag = siphon_capped_u
+	set_global_flag = lifters_capped_3
+	set_global_flag = orchid_capped_3
+	set_global_flag = planetshipyard_capped_u
+	set_global_flag = hraemc_capped_1
+	set_global_flag = hyperstructural_ass_capped_1
+	set_global_flag = matrioshka_brain_capped_1
+	set_global_flag = ndb_capped_1
+	set_global_flag = nidavellir_capped_1
+	set_global_flag = giga_galactic_fed_shuffle
+	set_global_flag = quasistellar_capped_1
+	set_global_flag = penrose_sphere_capped_3
+	set_global_flag = supermassive_ehof_capped_1
+	set_global_flag = warmoon_disabled
+	set_global_flag = warplanet_disabled
+	set_global_flag = systemcraft_disabled
+	set_global_flag = terraform_toxic_capped_3
+	set_global_flag = terraform_barren_capped_3
+	set_global_flag = geothermal_capped_3
+	set_global_flag = glue_capped_3
+	set_global_flag = terraform_gasgiant_capped_3
+	set_global_flag = compressor_capped_3
+	event_target:global_event_country = {
+		set_variable = { which = giga_ruined_warships_perc value = 100 }
+		set_variable = { which = giga_ruined_warships_perc_colossi value = 100 }
+		set_variable = { which = giga_ruined_warships_perc_juggs value = 100 }
+		set_variable = { which = giga_ruined_warships_perc_titan value = 100 }
+		set_variable = { which = giga_ruined_warships_perc_battle value = 100 }
+		set_variable = { which = blokkat_spawn_date value = 2500  }
+		set_variable = { which = giga_mega_output value = 100  }
+		set_variable = { which = giga_mega_output_ai value = 100  }
+		set_variable = { which = giga_mega_cost value = 100  }
+		set_variable = { which = giga_mega_cost_ai value = 50  }
+		set_variable = { which = giga_mega_upkeep value = 100  }
+		set_variable = { which = giga_mega_upkeep_ai value = 100  }
+	}
+}
+
+#Dr Inferno
+giga_preset_patreon_49 = {
+    remove_all_menu_flags = yes
+    #No flag for Achievements found! Achievements enabled!
+    #No flag for O class stars found! O class stars enabled!
+    set_global_flag = giga_dyson_scaling
+    set_global_flag = giga_lifter_scaling
+    set_global_flag = giga_matroishka_scaling
+    set_global_flag = giga_buildcap_u
+    #No flag for Influence upkeep found! Influence upkeep enabled!
+    #No flag for planet bulking found! Planet bulking enabled!
+    #No flag for bulk matter cost found! Bulk matter cost enabled!
+    #No flag for Attack moon printer found! Attack moon printer enabled!
+    #No flag for Attack planet printer found! Attack planet printer enabled!
+    #No flag for Wrecked warhips found! Wrecked warships enabled!
+    set_global_flag = giga_core_inactive_aeternum
+    #No flag for Jublio found! Jublio enabled!
+    #No flag for Jupitwo found! Jupitwo enabled!
+    #No flag for Faust found! Faust enabled!
+    #No flag for Tyaur found! Tyaur enabled!
+    #No flag for Squareworld found! Squareworld enabled!
+    #No flag for Kerbol found! Kerbol enabled!
+    #No flag found for Gatzo! Gatzo enabled!
+    #No flag for Ehof found! Ehof enabled!
+    set_global_flag = ehof_ai_capped_3
+    set_global_flag = compound_capped_4
+    set_global_flag = giga_fe_planetcrafts_4
+    #No flag for Katzenartig portraits set! Setting default!
+    set_global_flag = katzenartig_stellarite
+    set_global_flag = giga_core_aeternum_4
+    set_global_flag = regular_blokkats
+    set_global_flag = giga_blokkats_endtech
+    set_global_flag = giga_blokkats_guaranteed
+    set_global_flag = vanilla_dyson_capped_u
+    set_global_flag = vanilla_dyson_swarm_capped_u
+    #No flag to disable swarm replacement found! Dyson Swarm Replacement Enabled
+    set_global_flag = vanilla_interstellar_capped_u
+    set_global_flag = vanilla_matter_capped_u
+    set_global_flag = vanilla_art_capped_u
+    set_global_flag = vanilla_shipyard_capped_u
+    set_global_flag = vanilla_ringworld_capped_u
+    set_global_flag = vanilla_nexus_capped_u
+    set_global_flag = vanilla_strategic_capped_u
+    set_global_flag = vanilla_furnace_capped_u
+    set_global_flag = vanilla_array_capped_1
+    set_global_flag = giga_rings_gar
+    set_global_flag = upgrade_capped_u
+    set_global_flag = alderson_capped_u
+    set_global_flag = shipyard_capped_u
+    set_global_flag = stellarhabitat_capped_u
+    set_global_flag = maginot_capped_u
+    set_global_flag = planetary_computer_capped_u
+    set_global_flag = asteroid_artillery_capped_u
+    set_global_flag = asteroid_manufactory_capped_u
+    set_global_flag = megabase_capped_u
+    set_global_flag = orbital_artificial_eco_capped_u
+    set_global_flag = storm_observatory_capped_u
+    set_global_flag = succ_capped_u
+    set_global_flag = drill_capped_u
+    set_global_flag = crystal_capped_u
+    set_global_flag = kugel_capped_u
+    set_global_flag = planetary_seeder_nexus_capped_u
+    set_global_flag = psychic_beacon_capped_1
+    set_global_flag = the_vat_capped_u
+    set_global_flag = suppressor_capped_u
+    set_global_flag = disco_moon_capped_u
+    set_global_flag = gigaforge_capped_u
+    set_global_flag = orbital_arcologies_capped_u
+    set_global_flag = orbital_naval_logistics_capped_u
+    set_global_flag = siphon_capped_u
+    set_global_flag = lifters_capped_u
+    set_global_flag = orchid_capped_u
+    set_global_flag = planetshipyard_capped_u
+    set_global_flag = hraemc_capped_u
+    set_global_flag = hyperstructural_ass_capped_u
+    set_global_flag = matrioshka_brain_capped_u
+    set_global_flag = ndb_capped_1
+    set_global_flag = nidavellir_capped_u
+    set_global_flag = giga_galactic_fed_shuffle
+    set_global_flag = quasistellar_capped_1
+    set_global_flag = penrose_sphere_capped_u
+    set_global_flag = supermassive_ehof_capped_1
+    set_global_flag = warmoon_capped_u
+    set_global_flag = warplanet_capped_u
+    set_global_flag = systemcraft_capped_u
+    set_global_flag = terraform_toxic_capped_u
+    set_global_flag = terraform_barren_capped_u
+    set_global_flag = geothermal_capped_u
+    set_global_flag = glue_capped_u
+    set_global_flag = terraform_gasgiant_capped_u
+    set_global_flag = compressor_capped_u
+    event_target:global_event_country = {
+        set_variable = { which = giga_ruined_warships_perc value = 800 }
+        set_variable = { which = giga_ruined_warships_perc_colossi value = 1600 }
+        set_variable = { which = giga_ruined_warships_perc_juggs value = 1600 }
+        set_variable = { which = giga_ruined_warships_perc_titan value = 1600 }
+        set_variable = { which = giga_ruined_warships_perc_battle value = 800 }
+        set_variable = { which = blokkat_spawn_date value = 2450  }
+        remove_global_flag = giga_eawaf_sirens_disabled
+        set_variable = { which = giga_eawaf_sirens_difficulty value = 4 }
+        set_variable = { which = sirens_spawn_date value = 2400 }
+        set_variable = { which = giga_mega_output value = 1500  }
+        set_variable = { which = giga_mega_output_ai value = 100  }
+        set_variable = { which = giga_mega_cost value = 70  }
+        set_variable = { which = giga_mega_cost_ai value = 100  }
+        set_variable = { which = giga_mega_upkeep value = 40  }
+        set_variable = { which = giga_mega_upkeep_ai value = 100  }
+    }
+}
+
+# Midiray
+giga_preset_patreon_50 = {
+    remove_all_menu_flags = yes
+    #No flag for Achievements found! Achievements enabled!
+    #No flag for O class stars found! O class stars enabled!
+    set_global_flag = giga_dyson_scaling
+    set_global_flag = giga_lifter_scaling
+    set_global_flag = giga_matroishka_scaling
+    set_global_flag = giga_buildcap_j
+    set_global_flag = giga_disable_influence_upkeep
+    #No flag for planet bulking found! Planet bulking enabled!
+    #No flag for bulk matter cost found! Bulk matter cost enabled!
+    #No flag for Attack moon printer found! Attack moon printer enabled!
+    #No flag for Attack planet printer found! Attack planet printer enabled!
+    set_global_flag = giga_wrecked_ships_disabled
+    set_global_flag = giga_core_inactive_aeternum
+    #No flag for Jublio found! Jublio enabled!
+    #No flag for Jupitwo found! Jupitwo enabled!
+    #No flag for Faust found! Faust enabled!
+    #No flag for Tyaur found! Tyaur enabled!
+    #No flag for Squareworld found! Squareworld enabled!
+    #No flag for Kerbol found! Kerbol enabled!
+    #No flag found for Gatzo! Gatzo enabled!
+    #No flag for Ehof found! Ehof enabled!
+    set_global_flag = ehof_ai_disabled
+    set_global_flag = compound_capped_4
+    set_global_flag = giga_fe_planetcrafts_4
+    #No flag for Katzenartig portraits set! Setting default!
+    set_global_flag = katzenartig_improbable
+    set_global_flag = giga_eawaf_sirens_disabled
+    set_global_flag = giga_core_aeternum_4
+    #No flag for Blokkat Portraits found! Setting default!
+    set_global_flag = giga_blokkats_deathmode
+    set_global_flag = giga_blokkats_guaranteed
+    set_global_flag = vanilla_dyson_capped_u
+    set_global_flag = vanilla_dyson_swarm_capped_u
+    set_global_flag = vanilla_dyson_swarm_replace_disabled
+    set_global_flag = vanilla_interstellar_capped_u
+    set_global_flag = vanilla_matter_capped_u
+    set_global_flag = vanilla_art_capped_u
+    set_global_flag = vanilla_shipyard_capped_u
+    set_global_flag = vanilla_ringworld_capped_u
+    set_global_flag = vanilla_nexus_capped_u
+    set_global_flag = vanilla_strategic_capped_u
+    set_global_flag = vanilla_furnace_capped_u
+    set_global_flag = vanilla_array_capped_1
+	set_global_flag = vanilla_dsc_disabled
+	set_global_flag = vanilla_stellar_cannon_disabled
+    set_global_flag = giga_rings_gar
+    #No flag for Ringworld upgrade found, assume enabled!
+    set_global_flag = alderson_capped_u
+    set_global_flag = shipyard_capped_u
+    set_global_flag = stellarhabitat_capped_u
+    set_global_flag = maginot_capped_u
+    set_global_flag = planetary_computer_capped_u
+    set_global_flag = asteroid_artillery_capped_u
+    set_global_flag = asteroid_manufactory_capped_u
+    set_global_flag = megabase_capped_u
+    set_global_flag = orbital_artificial_eco_capped_u
+    set_global_flag = storm_observatory_capped_u
+    set_global_flag = succ_capped_u
+    set_global_flag = drill_capped_u
+    set_global_flag = crystal_capped_u
+    set_global_flag = kugel_capped_u
+    set_global_flag = planetary_seeder_nexus_capped_u
+    set_global_flag = psychic_beacon_capped_1
+    set_global_flag = the_vat_capped_u
+    set_global_flag = suppressor_capped_u
+    set_global_flag = disco_moon_capped_u
+    set_global_flag = gigaforge_capped_u
+    set_global_flag = orbital_arcologies_capped_u
+    set_global_flag = orbital_naval_logistics_capped_u
+    set_global_flag = siphon_capped_u
+    set_global_flag = lifters_capped_u
+    set_global_flag = orchid_capped_u
+    set_global_flag = planetshipyard_capped_u
+    set_global_flag = hraemc_capped_u
+    set_global_flag = hyperstructural_ass_capped_u
+    set_global_flag = matrioshka_brain_capped_u
+    set_global_flag = ndb_disabled
+    set_global_flag = nidavellir_capped_u
+    set_global_flag = giga_galactic_fed_disabled
+    set_global_flag = quasistellar_disabled
+    set_global_flag = penrose_sphere_capped_u
+    #set_global_flag = supermassive_ehof_disabled
+    set_global_flag = warmoon_capped_u
+    set_global_flag = warplanet_capped_u
+    set_global_flag = systemcraft_capped_u
+    set_global_flag = terraform_toxic_capped_u
+    set_global_flag = terraform_barren_capped_u
+    set_global_flag = geothermal_capped_u
+    set_global_flag = glue_capped_u
+    set_global_flag = terraform_gasgiant_capped_u
+    set_global_flag = compressor_capped_u
+    event_target:global_event_country = {
+        set_variable = { which = blokkat_spawn_date value = 2450  }
+        set_variable = { which = giga_mega_output value = 100  }
+        set_variable = { which = giga_mega_output_ai value = 100  }
+        set_variable = { which = giga_mega_cost value = 100  }
+        set_variable = { which = giga_mega_cost_ai value = 50  }
+        set_variable = { which = giga_mega_upkeep value = 100  }
+        set_variable = { which = giga_mega_upkeep_ai value = 100  }
+    }
+
 }
 
 # this should now print in a sensible order now
@@ -10963,13 +10334,13 @@ giga_print_current_preset_options = {# bit of a large overhaul here, however wit
     }
 
 	if = { # DSC
-		limit = {has_global_flag = giga_dsc_disabled}
-		log = "set_global_flag = giga_dsc_disabled"
+		limit = {has_global_flag = vanilla_dsc_disabled}
+		log = "set_global_flag = vanilla_dsc_disabled"
 	}
 
-	if = { # DSC
-		limit = {has_global_flag = giga_stellar_cannon_disabled}
-		log = "set_global_flag = giga_stellar_cannon_disabled"
+	if = { # stellar cannon
+		limit = {has_global_flag = vanilla_stellar_cannon_disabled}
+		log = "set_global_flag = vanilla_stellar_cannon_disabled"
 	}
 
     ####################################################################################################################
@@ -10995,23 +10366,8 @@ giga_print_current_preset_options = {# bit of a large overhaul here, however wit
     if = { # Ringworld upgrade
         limit = {has_global_flag = upgrade_disabled}
         log = "set_global_flag = upgrade_disabled"
-    } else_if = {
-        limit = {has_global_flag = upgrade_capped_1}
-        log = "set_global_flag = upgrade_capped_1"
-    } else_if = {
-        limit = {has_global_flag = upgrade_capped_2}
-        log = "set_global_flag = upgrade_capped_2"
-    } else_if = {
-        limit = {has_global_flag = upgrade_capped_3}
-        log = "set_global_flag = upgrade_capped_3"
-    } else_if = {
-        limit = {has_global_flag = upgrade_capped_r}
-        log = "set_global_flag = upgrade_capped_r"
-    } else_if = {
-        limit = {has_global_flag = upgrade_capped_u}
-        log = "set_global_flag = upgrade_capped_u"
     } else = {
-        log = "#No flag for Ringworld upgrade found!"
+        log = "#No flag for Ringworld upgrade found, assume enabled!"
     }
 
     if = { # Alderson disc
@@ -11037,9 +10393,7 @@ giga_print_current_preset_options = {# bit of a large overhaul here, however wit
     }
 
     if = { #Birch world
-        limit = {has_global_flag = birch_capped_1}
-        log = "set_global_flag = birch_capped_1"
-    } else = {
+        limit = {has_global_flag = birch_disabled}
         log = "set_global_flag = birch_disabled"
     }
 
@@ -11492,26 +10846,26 @@ giga_print_current_preset_options = {# bit of a large overhaul here, however wit
         log = "#No flag for Orbital arcologies found!"
     }
 
-    if = { # Orbital bastion
-        limit = {has_global_flag = academy_disabled}
-        log = "set_global_flag = academy_disabled"
+    if = { # Orbital Naval Logistics Office
+        limit = {has_global_flag = orbital_naval_logistics_disabled}
+        log = "set_global_flag = orbital_naval_logistics_disabled"
     } else_if = {
-        limit = {has_global_flag = academy_capped_1 }
-        log = "set_global_flag = academy_capped_1"
+        limit = {has_global_flag = orbital_naval_logistics_capped_1 }
+        log = "set_global_flag = orbital_naval_logistics_capped_1"
     } else_if = {
-        limit = {has_global_flag = academy_capped_2}
-        log = "set_global_flag = academy_capped_2"
+        limit = {has_global_flag = orbital_naval_logistics_capped_2}
+        log = "set_global_flag = orbital_naval_logistics_capped_2"
     } else_if = {
-        limit = {has_global_flag = academy_capped_3}
-        log = "set_global_flag = academy_capped_3"
+        limit = {has_global_flag = orbital_naval_logistics_capped_3}
+        log = "set_global_flag = orbital_naval_logistics_capped_3"
     } else_if = {
-        limit = {has_global_flag = academy_capped_r}
-        log = "set_global_flag = academy_capped_r"
+        limit = {has_global_flag = orbital_naval_logistics_capped_r}
+        log = "set_global_flag = orbital_naval_logistics_capped_r"
     } else_if = {
-        limit = {has_global_flag = academy_capped_u}
-        log = "set_global_flag = academy_capped_u"
+        limit = {has_global_flag = orbital_naval_logistics_capped_u}
+        log = "set_global_flag = orbital_naval_logistics_capped_u"
     } else = {
-        log = "#No flag for Orbital bastion found!"
+        log = "#No flag for Orbital Naval Logistics Office found!"
     }
 
     if = {#Psychic Hypersiphon

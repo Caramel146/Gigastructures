@@ -3,10 +3,17 @@
   ### Orbital Elysium #########################################################################################################################
   #############################################################################################################################################
 
+  pc_giga_elysium:0 "$name_orb_elysium$"
+  pc_giga_elysium_desc:0 "An idyllic orbital habitat designed to exert a controlling influence over the world below."
+  pc_giga_elysium_adj:0 "Elysian"
+
   mod_giga_elysium_host_stability_add:0 "Elysium Host Planet Stability"
-  mod_giga_elysium_host_jobs_produces_mult:0 "Elysium Host Planet Job Output"
+  mod_giga_elysium_host_efficiency_mult:0 "Elysium Host Planet [this.GetWorker] Efficiency"
+  mod_giga_elysium_host_amenities_add:0 "Elysium Host Planet Amenities"
+  mod_giga_elysium_host_amenities_no_happiness_add:0 "$mod_giga_elysium_host_amenities_add$"
 
   giga_elysium_host_planet:0 "$name_orb_elysium$ Host Planet"
+  giga_elysium_host_planet_plural:0 "$name_orb_elysium$ Host Planets"
   giga_elysium_host_planet_desc:0 "Controlled from on high, governance of this planet has largely been left in the hands of planetside authorities while their superiors observe from the station in orbit."
 
   giga_elysium_origin_fix:0 "$name_orb_elysium$ Origin Homeworld Fix"
@@ -25,13 +32,40 @@
   giga_dismantle_elysium_desc:0 "This station, and the stifling control it provides, no longer suit our needs."
   giga_dismantle_elysium_tooltip:0 "The $name_orb_elysium$ will be §Rdestroyed§!."
 
-  d_giga_elysium_buildings:0 "Planetary Support Infrastructure"
-  d_giga_elysium_buildings_desc:0 "§WThe $name_orb_elysium$ gains a £building£ §YBuilding Slot§! for every one which would be unlocked on the host world.§!\n§W--------------§!\nFar from independent of its host world, the Elysium benefits greatly from sufficient supporting infrastructure."
+  d_giga_elysium_mechanics:0 "Planetary Support Infrastructure"
+  d_giga_elysium_mechanics_desc:0 "§WThe $name_orb_elysium$ gains additional £district£ §Y$MOD_PLANET_MAX_DISTRICTS_ADD$§! for eah upgrade to the host world's £building£ §YCapital Building§!.§!\n§W--------------§!\nFar from independent of its host world, the Elysium benefits greatly from sufficient supporting infrastructure."
 
   d_giga_elysium_origin_industry:0 "Abandoned Industrial Zone"
   d_giga_elysium_origin_industry_desc:0 "Relics of a former period of industrial development, these outdated manufacturing facilities now only stand in the way of progress."
   d_giga_elysium_origin_industry_effect:0 "Replaces some £job_foundry£ §Y[owner.GetAlloyProducer]§! and [owner.GetArtisanIcon] §Y[owner.GetArtisan]§! Jobs with §Y[owner.GetClerkOrMaintenanceDrone]§! Jobs when the Planet has an §YIndustrial§!, §YFoundry§!, or §YFactory§! Planet Designation."
 
+  giga_tech_orbital_elysium:0 "\"Top Down\" Orbital Infrastructure"
+  giga_tech_orbital_elysium_desc:0 "Governing a planet from an orbital installation would allow us to impose our will with relative impunity."
+
+  giga_dialog.1101.name:0 "$name_orb_elysium$ Completed"
+  giga_dialog.1101.desc:0 "An $name_orb_elysium$ habitat has just been completed above [giga_planet.GetName] in the [giga_system.GetName] system! An excellent vantage point for our planetary governors, it will ensure our control of [giga_planet.GetName], no matter how squalid the conditions become on the ground."
+  giga_dialog.1101.a:0 "Excellent."
+
+  orbital_elysium_0:0 "$gc_kilo$$name_orb_elysium$"
+  orbital_elysium_0_DESC:0 "An $name_orb_elysium$ is a small habitat orbiting a planet, providing a safe vantage point for planetary administration to exploit the surface below."
+  orbital_elysium_0_MEGASTRUCTURE_DETAILS:0 "$giga_list_category_kilostructure$ - $giga_list_category_habitable_mega$ - $giga_list_category_basic_resource_production$\nA small §YHabitat§! over an inhabited planet, §Pradically changing§! how it is managed\n§LAn orbital control center where the elite control the masses below. Their conditions matter little to us, as long as they meet production quotas. §!" #megalistentry ORBITAL ELYSIUM
+
+  orbital_elysium_origin_platform_0:0 "$name_orb_elysium$ Construction Site"
+  orbital_elysium_origin_platform_0_DESC:0 "The future site of an $name_orb_elysium$."
+  orbital_elysium_origin_platform_0_MEGASTRUCTURE_DETAILS:0 "orbital_elysium_origin_platform_0_MEGASTRUCTURE_DETAILS placeholder"
+
+  orbital_elysium_origin_platform_1:0 "$orbital_elysium_0$"
+  orbital_elysium_origin_platform_1_DESC:0 "$orbital_elysium_0_DESC$"
+
+  orbital_elysium_0_CONSTRUCTION_INFO_DELAYED:0 "$giga_list_additional_data$ - TODO"
+
+  orbital_elysium_ruined:0 "Ruined $name_orb_elysium$"
+  orbital_elysium_ruined_DESC:0 "This $name_orb_elysium$ has been completely ruined by some cataclysm. It might be possible to repair it given the right technologies."
+
+  orbital_elysium_repaired:0 "$name_orb_elysium$"
+  orbital_elysium_repaired_DESC:0 "A complete $name_orb_elysium$, ready for habitation."
+
+  GIGA_ELYSIUM_PLANET_NAME:0 "[event_target:giga_elysium_host.GetName] Control"
 
   # blocker events
 
@@ -83,66 +117,108 @@
   district_giga_elysium_housing_plural:0 "Habitation Districts"
   district_giga_elysium_housing_desc:0 "Spacious housing set among simulated countryside, with direct access to high speed communications infrastructure."
 
-  district_giga_elysium_control:0 "Planetary Control Center"
-  district_giga_elysium_control_plural:0 "Planetary Control Centers"
+  district_giga_elysium_control:0 "Control District"
+  district_giga_elysium_control_plural:0 "Control Districts"
   district_giga_elysium_control_desc:0 "The nerve center for planetside operations, where overseers ensure compliance from the population below."
+  district_giga_elysium_control_subtitle:0 "Orbital Command Center"
 
-  district_giga_elysium_admin:0 "Administrative District"
-  district_giga_elysium_admin_plural:0 "Administrative Districts"
-  district_giga_elysium_admin_desc:0 "A sprawling administrative installation, managing communications for the station and its host planet."
-
-  district_giga_elysium_science:0 "Research District"
-  district_giga_elysium_science_plural:0 "Research Districts"
-  district_giga_elysium_science_desc:0 "High-tech laboratories where our brightest minds can work without distraction."
+  district_giga_elysium_archive:0 "Cultural Development District"
+  district_giga_elysium_archive_plural:0 "Cultural Development Districts"
+  district_giga_elysium_archive_desc:0 "A state-of-the-art research and administration installation, managing communications for the station and its host planet."
 
   district_giga_elysium_entertainment:0 "Entertainment District"
   district_giga_elysium_entertainment_plural:0 "Entertainment Districts"
   district_giga_elysium_entertainment_desc:0 "A center of broadcast media production, able to produce an endless stream of content to satisfy the masses."
+  district_giga_elysium_entertainment_subtitle:0 "Media Megaplex"
+
+  district_giga_elysium_maintenance:0 "Maintenance District"
+  district_giga_elysium_maintenance_plural:0 "Maintenance Districts"
+  district_giga_elysium_maintenance_desc:0 "A orbital maintenance depot, able to deploy response drones to anywhere on the station's host planet within a standard day."
+  district_giga_elysium_maintenance_subtitle:0 "Rapid Deployment Arrays"
+
+  #########################################
+  ### Elysium zones #######################
+  #########################################
+
+  zone_giga_elysium_host:0 "Elysium Host Control"
+  zone_giga_elysium_host_desc:0 ""
+
+  zone_giga_elysium_host_energy:0 "Cottage Industry"
+  zone_giga_elysium_host_energy_desc:0 "Scrappy workshops and ragtag generator banks, nestled among the urban sprawl."
+
+  zone_giga_elysium_host_minerals:0 "Trash Reprocessing"
+  zone_giga_elysium_host_minerals_desc:0 "Endless castoffs from the paradise above, sorted, categorized, and repurposed."
+
+  zone_giga_elysium_host_food:0 "Urban Homesteading"
+  zone_giga_elysium_host_food_desc:0 "Where space is at a premium, urban greenery can be made productive."
+
+  zone_giga_entertainment:0 "Entertainment Multiplex"
+  zone_giga_entertainment_desc:0 "A cradle of creativity, where dreams become broadcast programming."
+
+  zone_giga_maintenance:0 "Self-Correcting Works"
+  zone_giga_maintenance_desc:0 "Who maintains the maintainers?"
 
   #########################################
   ### Elysium buildings ###################
   #########################################
 
+  # regular
   building_giga_elysium_host_capital:0 "Elysium Planetary Control Center"
   building_giga_elysium_host_capital_plural:0 "Elysium Planetary Control Center"
   building_giga_elysium_host_capital_desc:0 "The seat of local bureaucracy, managing the planet on behalf of their superiors above."
+  building_giga_elysium_host_capital_concept:0 "['building:building_giga_elysium_host_capital']"
 
   building_giga_elysium_host_major_capital:0 "Elysium Planetary Control Complex"
   building_giga_elysium_host_major_capital_plural:0 "Elysium Planetary Control Complexes"
   building_giga_elysium_host_major_capital_desc:0 "A major administrative center, mediating between the local populace and their superiors in orbit."
 
+  building_giga_elysium_host_system_capital:0 "Elysium Planetary Control Omnicomplex"
+  building_giga_elysium_host_system_capital_plural:0 "Elysium Planetary Control Omnicomplexes"
+  building_giga_elysium_host_system_capital_desc:0 "A planetary panopticon, managing every aspect of governance on behalf of the paradise above."
+
   giga_elysium_dystopian_stability_desc:0 "\n§H$civic_dystopian_society$:§! Additionally receives §Y50%§! of the £stability£ §YStability§! of the orbiting Elysium"
 
+  # hive
   building_giga_elysium_host_hive_capital:0 "Elysium Planetary Synapse Node"
   building_giga_elysium_host_hive_capital_plural:0 "Elysium Planetary Synapse Nodes"
   building_giga_elysium_host_hive_capital_desc:0 "The primary synaptic relay through which the Hive Mind manages planetside functions."
+  building_giga_elysium_host_hive_capital_concept:0 "['building:building_giga_elysium_host_hive_capital']"
 
   building_giga_elysium_host_hive_major_capital:0 "Elysium Planetary Synapse Cluster"
   building_giga_elysium_host_hive_major_capital_plural:0 "Elysium Planetary Synapse Clusters"
   building_giga_elysium_host_hive_major_capital_desc:0 "A huge synaptic relay though which the Hive Mind focuses planetary development and planning."
 
+  # machine
   building_giga_elysium_host_machine_capital:0 "Elysium Planetary Relay Node"
   building_giga_elysium_host_machine_capital_plural:0 "Elysium Planetary Relay Nodes"
   building_giga_elysium_host_machine_capital_desc:0 "A signal relay hub serving instructions from the station far above."
+  building_giga_elysium_host_machine_capital_concept:0 "['building:building_giga_elysium_host_machine_capital']"
 
   building_giga_elysium_host_machine_major_capital:0 "Elysium Planetary Relay Nexus"
   building_giga_elysium_host_machine_major_capital_plural:0 "Elysium Planetary Relay Nexuses"
   building_giga_elysium_host_machine_major_capital_desc:0 "A powerful administrative hub and relay center, processing instructions sent from orbit."
 
+  building_giga_elysium_host_machine_system_capital:0 "Elysium Planetary Relay Mainframe"
+  building_giga_elysium_host_machine_system_capital_plural:0 "Elysium Planetary Relay Mainframes"
+  building_giga_elysium_host_machine_system_capital_desc:0 "An all-seeing data management hub, monitoring and manipulating all planetside operations."
+
 
   building_giga_elysium_host_jobs:0 "Ministry of Employment"
   building_giga_elysium_host_jobs_plural:0 "Ministries of Employment"
   building_giga_elysium_host_jobs_desc:0 "A pervasive government authority from which jobs are assigned and quotas issued."
-  building_giga_elysium_host_jobs_effect:0 "Provides §Y$@giga_elysium_jobs_per_100|*0$§! £job£ Jobs for every §Y100§! £pop£ Pops on the planet, suited to our §YEmpire Type§! and the current §YColony Designation§!."
-  building_giga_elysium_host_jobs_amenities_effect:0 "Provides §Y$@giga_elysium_jobs_per_100|*0$§! £job£ Jobs for every §Y100§! £pop£ Pops on the planet, suited to our §YEmpire Type§! and the current §YColony Designation§!, and additional £amenities£ §YAmenities§! per £job_clerk£ §Y$job_clerk$§! Job"
+  building_giga_elysium_host_jobs_concept:0 "['building:building_giga_elysium_host_jobs']"
+
+  building_giga_elysium_host_jobs_effect:0 "Provides §Y$@giga_elysium_jobs_per_100|0$§! £job£ Jobs for every §Y100§! £pop£ Pops on the planet, suited to our §YEmpire Type§! and the £zone£ ['concept_giga_elysium_zones', Current District Specializations]."
 
   building_giga_elysium_host_hive_jobs:0 "Drone Assignment Center"
   building_giga_elysium_host_hive_jobs_plural:0 "Drone Assignment Centers"
   building_giga_elysium_host_hive_jobs_desc:0 "A facility housing a semi-autonomous neural cluster, tasked with maintaining drone productivity across the planet."
+  building_giga_elysium_host_hive_jobs_concept:0 "['building:building_giga_elysium_host_hive_jobs']"
 
   building_giga_elysium_host_machine_jobs:0 "Task Assignment Hub"
   building_giga_elysium_host_machine_jobs_plural:0 "Task Assignment Hubs"
   building_giga_elysium_host_machine_jobs_desc:0 "A computational node which distributes tasks to idle drones across the planet."
+  building_giga_elysium_host_machine_jobs_concept:0 "['building:building_giga_elysium_host_machine_jobs']"
 
   building_giga_elysium_host_booster:0 "Supplemental Industrial Sector"
   building_giga_elysium_host_booster_plural:0 "Supplemental Industrial Sectors"
@@ -165,6 +241,7 @@
   mod_job_giga_elysium_controller_add:0 "[giga_elysium_controller.GetName] Jobs"
   mod_job_giga_elysium_controller_per_pop:0 "§G+1§! [giga_elysium_controller.GetName] Job per $VALUE$ Pops"
   mod_job_giga_elysium_controller_per_pop_short:0 "\n§G+1§! £mod_job_giga_elysium_controller_add£ per $VALUE$ £pop£"
+  mod_pop_giga_elysium_controller_bonus_workforce_mult:0 "Job Efficiency for [giga_elysium_controller.GetNamePlural]"
 
   job_giga_elysium_controller_drone:0 "Elysian Overseer Drone"
   job_giga_elysium_controller_drone_plural:0 "Elysian Overseer Drones"
@@ -174,7 +251,46 @@
   mod_job_giga_elysium_controller_drone_add:0 "[giga_elysium_controller_drone.GetName] Jobs"
   mod_job_giga_elysium_controller_drone_per_pop:0 "§G+1§! [giga_elysium_controller_drone.GetName] Job per $VALUE$ Pops"
   mod_job_giga_elysium_controller_drone_per_pop_short:0 "\n§G+1§! £mod_job_giga_elysium_controller_add£ per $VALUE$ £pop£"
+  mod_pop_giga_elysium_controller_drone_bonus_workforce_mult:0 "Job Efficiency for [giga_elysium_controller_drone.GetNamePlural]"
 
   # extra bit for the origin effect
   job_giga_elysium_controller_origin_effect_desc:0 "and £job£ §YJob Output§! "
   giga_elysium_from_station:0 "From $orbital_elysium$"
+
+  #########################################
+  ### Origin ##############################
+  #########################################
+  origin_elysium:0 "Elysian Overseers"
+  origin_elysium_desc:0 "This civilization believes that the best way to rule the masses is from a safe vantage point."
+  origin_elysium_effects:0 "- Start with your Empire Capital on an ['concept_pc_giga_elysium'] (Size: £planetsize£ $@giga_elysium_base_size|0$) orbiting your Homeworld as a second Colony\n- $INITIAL_POPS$ §G+$@giga_elysium_origin_extra_pops|0$§!\n- Starting Technology: ['technology:giga_tech_orbital_elysium']\n- Newly settled Colonies immediately start construction of an §Y$name_orb_elysium$§! if they are able to support one\n- Needs fewer pops to upgrade Capital Buildings on §Y$giga_elysium_host_planet_plural$§!"
+  origin_elysium_effects_negative:0 "- Homeworld Modifier: ['modifier:giga_elysium_host_planet']\n- Colonies which are able to support an §Y$name_orb_elysium$§! but are lacking one suffer the ['modifier:giga_origin_no_elysium'] penalty\n- Unable to decommission §Y$name_orb_elysium$§! stations\n\n§ESee the ['concept_giga_elysium'] for more information.§!"
+
+  #########################################
+  ### Concepts ############################
+  #########################################
+
+  # planet_colony_development_speed_mult = 4.0
+  # planet_resettlement_unemployed_destination_mult = 0.25
+  # pop_cat_ruler_happiness = 0.1
+  # pop_cat_ruler_bonus_workforce_mult = 0.25
+  # pop_cat_worker_bonus_workforce_mult = -0.5
+  # planet_amenities_mult = 0.15
+  # giga_virtual_colony_size = -0.5
+
+  # update this if the planet class bonuses change
+  concept_pc_giga_elysium:0 "$pc_giga_elysium$"
+  concept_pc_giga_elysium_desc:0 "- Base Habitability: §Y100%§!\n- $MOD_PLANET_COLONY_DEVELOPMENT_SPEED_MULT$: §G+400%§!\n- $MOD_PLANET_RESETTLEMENT_UNEMPLOYED_DESTINATION_MULT$: §Y+25%§!\n- $mod_pop_cat_ruler_happiness$: §G+10%§!\n- $mod_pop_cat_ruler_bonus_workforce_mult$: §G+25%§!\n- $mod_pop_cat_worker_bonus_workforce_mult$: §R-50%§!\n- $MOD_PLANET_AMENITIES_MULT$: §G+15%§!\n- $mod_giga_virtual_colony_size$: §Y-0.5§!\n\n§L$pc_giga_elysium_desc$§!"
+
+  concept_giga_elysium:0 "$name_orb_elysium$ Mechanics Reference"
+  concept_giga_elysium_desc:0 "Building an §Y$name_orb_elysium$§! Kilostructure over a £planet£ Planetary ['concept_colony'] creates a ['concept_pc_giga_elysium', Habitable Station] (Size: £planetsize£ $@giga_elysium_base_size|0$), and designates the Colony as a §YHost Planet§!.\n\n§HStation:§!\n- Focused on [this.GetGigaEliteAndSpecialist] Jobs\n- Penalties to [this.GetGigaWorker] Jobs\n- £district£ ['concept_districts'] for £research£ §Y$research$§!, £unity£ §Y$unity$§!, [this.GigaAmenitiesIcon] §Y$concept_amenities$§!, and maintaining £stability£ §Y$concept_stability$§! on the Host Planet[this.GetElysiumHiveDistricts]\n- Upgrading the £building£ Capital Building on the Host Planet provides [this.GetElysiumUpgradeDistricts]\n\n§HHost Planet:§!\n- Modifier: ['modifier:giga_elysium_host_planet']\n- Job distribution biased towards [this.GetGigaWorker] Jobs\n- Heavy penalties to £research£ §Y$research$§! Output\n- £district£ Primary District:$TABBED_NEW_LINE$- $mod_zone_building_slots_add$: §R-3§!$TABBED_NEW_LINE$- Replacement Capital: £building£ [this.building_giga_elysium_host_capital]$TABBED_NEW_LINE$- Building: £building£ [this.building_giga_elysium_host_jobs]$TABBED_NEW_LINE$- Building: £building£ ['building:building_giga_elysium_trash_heap']$TABBED_NEW_LINE$- £zone£ $concept_district_specializations$ for £basic_resources£ §YBasic Resources§! are available"
+
+  giga_elysium_districts_hive:0 "\n- $hive_mind$ Bonus: §G+$@giga_elysium_base_size_hive|0$§! $MOD_PLANET_MAX_DISTRICTS_ADD$"
+
+  giga_elysium_upgrade_non_hive:0 "§G+$@giga_elysium_upgrade_size|0$§! $MOD_PLANET_MAX_DISTRICTS_ADD$ per upgrade"
+  giga_elysium_upgrade_hive:0 "§G+$@giga_elysium_upgrade_size_hive|0$§! $MOD_PLANET_MAX_DISTRICTS_ADD$"
+
+  concept_giga_elysium_zones:0 "$giga_elysium_host_planet$ $concept_district_specializations$"
+  concept_giga_elysium_zones_desc:0 "The £building£ [this.building_giga_elysium_host_jobs] Building provides §Y$@giga_elysium_jobs_per_100|*0$§! £job£ Jobs for every §Y100§! £pop£ Pops on an $giga_elysium_host_planet$.\nThe distribution of these jobs depends upon the type of the owning Empire, and the £zone£ ['concept_district_specializations'] present on the Planet.\n\nMost £zone£ Specializations shift the distribution to provide their primary £job£ Job. Urban and Amenities £zone£ Specializations do not contribute to the distribution. ['concept_giga_elysium_zone_splits', Some Specializations] provide several types of Jobs in varying proportion.\n\nWhen the planet has §Y3 or fewer contributing £zone£ Specializations§!, each one contributes §Y1/3§! of the distribution, and the remaining Jobs are of a general mix based on Empire Type.\nWhen the planet has §Y4 or more contributing £zone£ Specializations§!, each one contributes an equal share of the distribution."
+
+  concept_giga_elysium_zone_splits:0 "$giga_elysium_host_planet$ Split $concept_district_specializations$"
+  concept_giga_elysium_zone_splits_desc:0 "Some £zone£ ['concept_district_specializations'] provide a split of £job£ Jobs to the £building£ [this.building_giga_elysium_host_jobs]. They are considered a mix of other Specialization types in varying proportions.\n\n$zone_industrial$:\n1/2 £alloys£ §Y$alloys$§!, 1/2 £consumer_goods£ §Y$consumer_goods$§!\n\n$zone_research$:\n1/3 £physics_research£ §Y$physics_research$§!, 1/3 £society_research£ §Y$society_research$§!, 1/3 £engineering_research£ §Y$engineering_research$§!\n\n$zone_research_unity$:\n6/9 £unity£ §Y$unity$§!, 1/9 £physics_research£ §Y$physics_research$§!, 1/9 £society_research£ §Y$society_research$§!, 1/9 £engineering_research£ §Y$engineering_research$§!\n\n$zone_subterranean_urban$ (['civic:origin_subterranean'] Origin):\n3/4 £minerals£ §Y$minerals$§!, 1/4 £trade£ §Y$trade$§!\n\n$zone_agrarian_urban$ (['civic:civic_agrarian_idyll'] Civic):\n3/4 £food£ §Y$food$§!, 1/4 £trade£ §Y$trade$§!\n\n$zone_anglers$ (['civic:civic_anglers'] Civic):\n3/4 £food£ §Y$food$§!, 1/4 £consumer_goods£ §Y$consumer_goods$§!\n\n$zone_agrarian_anglers$ (['civic:civic_agrarian_idyll'] and ['civic:civic_anglers'] Civics):\n3/5 £food£ §Y$food$§!, 1/5 £consumer_goods£ §Y$consumer_goods$§!, 1/5 £trade£ §Y$trade$§!"

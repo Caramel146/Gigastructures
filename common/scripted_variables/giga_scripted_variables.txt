@@ -853,13 +853,7 @@
 @starlifter_p5_buildtime_k_star				= 2700		# 75%
 @starlifter_p5_buildtime_m_star				= 1800		# 50%
 
-#############################
-### Elysium #################
-#############################
 
-@giga_elysium_jobs_per_100 = 75
-
-@giga_elysium_trash_amenities = 0.3
 
 #############################
 ### Pop Scaling Modifiers ###
@@ -940,7 +934,8 @@
 @job_mode_per_crime = per_crime
 
 @modifier_mode_planet = planet
-@modifier_mode_district = district
+@modifier_mode_district_planet = district_planet
+@modifier_mode_district_country = district_country
 @modifier_mode_country = country
 
 #############################

@@ -24,6 +24,9 @@
                 "fullDesc": {
                   "type": "string"
                 },
+                "classify": {
+                  "type": "boolean"
+                },
                 "incompatible": {
                   "type": "array",
                   "items": { "type": "string" },
@@ -60,18 +63,6 @@
             }
           },
           "additionalProperties": false
-        }
-      }
-    },
-
-    "mega_family_names": {
-      "title": "Megastructure family name overrides for when they don't match the usual pattern",
-      "type": "object",
-      "default": {},
-      "patternProperties": {
-        "\\w+": {
-          "title": "Mega family name entry",
-          "type": "string"
         }
       }
     },

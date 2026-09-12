@@ -19,11 +19,28 @@ asteroid_manufactory_0 = {
 		"
 	}
 	show_prereqs = yes
+
+	#build_system_tooltip =
+
+	## maybe one day we'll get custom strings here so this can be made cool and interesting, but not today
+	# tooltip_system_score = {
+	# 	base = 0
+	# 	add = value:max_habitat_districts_value
+	# }
+	# tooltip_best_systems_header = "asteroid_manufactory_BEST_SYSTEMS_TOOLTIP_HEADER"
+	# tooltip_system_filter = {
+	# 	any_system_planet = {
+	# 		planet_has_no_megastructure = yes
+	# 		giga_asteroid_industry_placement_player = yes
+	# 	}
+	# }
+	# tooltip_system_score_low_threshold = 0
+	# tooltip_system_score_high_threshold = 0
 }
 
 ########################################################################################################################
 # consumer goods
-## Tags: @dummy_first_stage
+## Family: asteroid_manufactory
 asteroid_manufactory_ai_consumer_goods = {
 	inline_script = {
 		script = megastructures/asteroid_industry/asteroid_industry_construction
@@ -58,7 +75,7 @@ asteroid_manufactory_consumer_goods = {
 
 ########################################################################################################################
 # alloys
-## Tags: @dummy_first_stage
+## Family: asteroid_manufactory
 asteroid_manufactory_ai_alloys = {
 	inline_script = {
 		script = megastructures/asteroid_industry/asteroid_industry_construction
@@ -88,7 +105,7 @@ asteroid_manufactory_alloys = {
 
 ########################################################################################################################
 # food
-## Tags: @dummy_first_stage
+## Family: asteroid_manufactory
 asteroid_manufactory_ai_food = {
 	inline_script = {
 		script = megastructures/asteroid_industry/asteroid_industry_construction
@@ -127,7 +144,7 @@ asteroid_manufactory_food = {
 
 ########################################################################################################################
 # energy
-## Tags: @dummy_first_stage
+## Family: asteroid_manufactory
 asteroid_manufactory_ai_energy = {
 	inline_script = {
 		script = megastructures/asteroid_industry/asteroid_industry_construction
@@ -156,7 +173,7 @@ asteroid_manufactory_energy = {
 
 ########################################################################################################################
 # supertensiles
-## Tags: @dummy_first_stage
+## Family: asteroid_manufactory
 asteroid_manufactory_ai_supertensiles = {
 	inline_script = {
 		script = megastructures/asteroid_industry/asteroid_industry_construction
