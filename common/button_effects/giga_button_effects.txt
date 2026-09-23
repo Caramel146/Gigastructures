@@ -780,6 +780,18 @@ giga_presets_patreon_48 = {
 	allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }
 	effect = { hidden_effect = { from = { giga_preset_patreon_48 = yes } } }
 }
+# Dr Inferno
+giga_presets_patreon_49 = {
+    potential = { exists = from from = { has_country_flag = giga_menu_page_presets_02 } }
+    allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }
+    effect = { hidden_effect = { from = { giga_preset_patreon_49 = yes } } }
+}
+# Midiray
+giga_presets_patreon_50 = {
+    potential = { exists = from from = { has_country_flag = giga_menu_page_presets_02 } }
+    allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }
+    effect = { hidden_effect = { from = { giga_preset_patreon_50 = yes } } }
+}
 
 
 #######################################################################################################################
@@ -1176,8 +1188,8 @@ giga_buildcap_j_disabled = {
         }
     }
     allow = {
-        custom_tooltip = "must_not_have_started_game"
-        hidden_trigger = { NOT = { has_global_flag = giga_game_started } }
+		custom_tooltip = "must_not_have_started_game"
+		hidden_trigger = { NOT = { has_global_flag = giga_game_started } }
     }
     effect = {
         custom_tooltip = "giga_buildcap_j"
@@ -1319,7 +1331,6 @@ giga_all_r = {
             set_global_flag = warmoon_capped_r
             set_global_flag = drill_capped_r
             set_global_flag = warplanet_capped_r
-            set_global_flag = birch_capped_1
             set_global_flag = crystal_capped_r
             set_global_flag = terraform_barren_capped_r
             set_global_flag = shipyard_capped_r
@@ -1398,7 +1409,6 @@ giga_all_u = {
             set_global_flag = warmoon_capped_u
             set_global_flag = drill_capped_u
             set_global_flag = warplanet_capped_u
-            set_global_flag = birch_capped_1
             set_global_flag = crystal_capped_u
             set_global_flag = terraform_barren_capped_u
             set_global_flag = shipyard_capped_u
@@ -1476,7 +1486,6 @@ giga_all_3 = {
             set_global_flag = warmoon_capped_3
             set_global_flag = drill_capped_3
             set_global_flag = warplanet_capped_3
-            set_global_flag = birch_capped_1
             set_global_flag = crystal_capped_3
             set_global_flag = terraform_barren_capped_3
             set_global_flag = shipyard_capped_3
@@ -1555,7 +1564,6 @@ giga_all_2 = {
             set_global_flag = warmoon_capped_2
             set_global_flag = drill_capped_2
             set_global_flag = warplanet_capped_2
-            set_global_flag = birch_capped_1
             set_global_flag = crystal_capped_2
             set_global_flag = terraform_barren_capped_2
             set_global_flag = shipyard_capped_2
@@ -1634,7 +1642,6 @@ giga_all_1 = {
             set_global_flag = warmoon_capped_1
             set_global_flag = drill_capped_1
             set_global_flag = warplanet_capped_1
-            set_global_flag = birch_capped_1
             set_global_flag = crystal_capped_1
             set_global_flag = terraform_barren_capped_1
             set_global_flag = shipyard_capped_1
@@ -1779,15 +1786,8 @@ giga_fe_pouchkinn_disabled = {
 	}
 	effect = {
 		custom_tooltip = "giga_fe_pouchkinn_disabled"
-		hidden_effect = { 
-			if = {
-				limit = { has_global_flag = giga_fe_pouchkinn_disabled }
-				remove_global_flag = giga_fe_pouchkinn_disabled
-			}
-			if = {
-				limit = { has_global_flag = giga_tyaur_guaranteed }
-				remove_global_flag = giga_tyaur_guaranteed
-			}
+		hidden_effect = {
+			remove_global_flag = giga_fe_pouchkinn_disabled
 		}
 	}
 }
@@ -1796,7 +1796,10 @@ giga_fe_pouchkinn_enabled = {
 		exists = from
 		from = {
 			has_country_flag = giga_menu_page_00
-			NOT = { has_global_flag = giga_fe_pouchkinn_disabled }
+			NOR = {
+				has_global_flag = giga_fe_pouchkinn_disabled
+				has_global_flag = giga_fe_pouchkinn_guaranteed
+			}
 		}
 	}
 	allow = {
@@ -1806,17 +1809,138 @@ giga_fe_pouchkinn_enabled = {
 	effect = {
 		custom_tooltip = "giga_fe_pouchkinn_enabled"
 		hidden_effect = {
+			set_global_flag = giga_fe_pouchkinn_guaranteed
+			if = {
+				limit = { has_global_flag = giga_gatzo_disabled }
+				remove_global_flag = giga_gatzo_disabled
+			}
+		}
+	}
+}
+giga_fe_pouchkinn_guaranteed = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			has_global_flag = giga_fe_pouchkinn_guaranteed
+		}
+	}
+	allow = {
+		custom_tooltip = "must_not_have_started_game"
+		hidden_trigger = { NOT = { has_global_flag = giga_game_started } }
+	}
+	effect = {
+		custom_tooltip = "giga_fe_pouchkinn_guaranteed"
+		hidden_effect = {
+			remove_global_flag = giga_fe_pouchkinn_guaranteed
 			set_global_flag = giga_fe_pouchkinn_disabled
 		}
 	}
 }
 
-fe_planetcrafts_x_0 = { # No FE Planetcrafts
+# literally a dummy made to show a tooltip about the FEs in the main menu
+giga_page_00_fe_planetcrafts_desc = {
+	potential = { exists = from from = { has_country_flag = giga_menu_page_00 } }
+	allow = { always = yes }
+	effect = {
+		custom_tooltip = "giga_menu_fe_planetcrafts_section_desc"
+	}
+}
+
+# enabled, default -> moves to celestials only
+fe_planetcrafts_x = {
 	potential = {
 		exists = from
 		from = {
 			has_country_flag = giga_menu_page_00
-			has_global_flag = giga_fe_planetcrafts_0
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_celestials }
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_repeatables }
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+		}
+	}
+	allow = {
+		custom_tooltip = "must_not_have_started_game"
+		hidden_trigger = { NOT = { has_global_flag = giga_game_started } }
+	}
+	effect = {
+		custom_tooltip = "gigas_menu_fe_planetcrafts_enabled"
+		hidden_effect = {
+			set_global_flag = gigas_menu_fe_planetcrafts_celestials
+		}
+	}
+}
+# celestials only -> moves to repeatables only
+fe_planetcrafts_x_celestials = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			has_global_flag = gigas_menu_fe_planetcrafts_celestials
+		}
+	}
+	allow = {
+		custom_tooltip = "must_not_have_started_game"
+		hidden_trigger = { NOT = { has_global_flag = giga_game_started } }
+	}
+	effect = {
+		custom_tooltip = "gigas_menu_fe_planetcrafts_celestials"
+		hidden_effect = {
+			set_global_flag = gigas_menu_fe_planetcrafts_repeatables
+			remove_global_flag = gigas_menu_fe_planetcrafts_celestials
+		}
+	}
+}
+# repeatables only -> moves to disabled
+fe_planetcrafts_x_repeatables = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			has_global_flag = gigas_menu_fe_planetcrafts_repeatables
+		}
+	}
+	allow = {
+		custom_tooltip = "must_not_have_started_game"
+		hidden_trigger = { NOT = { has_global_flag = giga_game_started } }
+	}
+	effect = {
+		custom_tooltip = "gigas_menu_fe_planetcrafts_repeatables"
+		hidden_effect = {
+			set_global_flag = gigas_menu_fe_planetcrafts_disabled
+			remove_flags_fe_planetcrafts = yes
+			remove_global_flag = gigas_menu_fe_planetcrafts_repeatables
+		}
+	}
+}
+# disabled -> moves to enabled
+fe_planetcrafts_x_disabled = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			has_global_flag = gigas_menu_fe_planetcrafts_disabled
+		}
+	}
+	allow = {
+		custom_tooltip = "must_not_have_started_game"
+		hidden_trigger = { NOT = { has_global_flag = giga_game_started } }
+	}
+	effect = {
+		custom_tooltip = "gigas_menu_fe_planetcrafts_disabled"
+		hidden_effect = {
+			remove_global_flag = gigas_menu_fe_planetcrafts_disabled
+			set_global_flag = giga_fe_planetcrafts_1
+		}
+	}
+}
+
+
+fe_planetcrafts_x_0 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			has_global_flag = gigas_menu_fe_planetcrafts_disabled
 		}
 	}
 	allow = {
@@ -1824,15 +1948,20 @@ fe_planetcrafts_x_0 = { # No FE Planetcrafts
 			fail_text = "must_not_have_started_game"
 			NOT = { has_global_flag = giga_game_started }
 		}
+		custom_tooltip = {
+			fail_text = "giga_fe_planetcrafts_disabled"
+			has_global_flag = gigas_menu_fe_planetcrafts_disabled
+		}
 	}
-	effect = { custom_tooltip = "giga_fe_planetcrafts_0" }
+	effect = { custom_tooltip = "giga_fe_planetcrafts_0_curr" }
 }
-fe_planetcrafts_x_1 = { # 0 - 3 Moons
+fe_planetcrafts_x_1 = {
 	potential = {
 		exists = from
 		from = {
 			has_country_flag = giga_menu_page_00
 			has_global_flag = giga_fe_planetcrafts_1
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
 		}
 	}
 	allow = {
@@ -1840,15 +1969,17 @@ fe_planetcrafts_x_1 = { # 0 - 3 Moons
 			fail_text = "must_not_have_started_game"
 			NOT = { has_global_flag = giga_game_started }
 		}
+		hidden_trigger = { NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled } }
 	}
-	effect = { custom_tooltip = "giga_fe_planetcrafts_1" }
+	effect = { custom_tooltip = "giga_fe_planetcrafts_1_curr" }
 }
-fe_planetcrafts_x_2 = { # 2 - 5 Moons, 0 - 1 Planetcrafts
+fe_planetcrafts_x_2 = {
 	potential = {
 		exists = from
 		from = {
 			has_country_flag = giga_menu_page_00
 			has_global_flag = giga_fe_planetcrafts_2
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
 		}
 	}
 	allow = {
@@ -1857,14 +1988,15 @@ fe_planetcrafts_x_2 = { # 2 - 5 Moons, 0 - 1 Planetcrafts
 			NOT = { has_global_flag = giga_game_started }
 		}
 	}
-	effect = { custom_tooltip = "giga_fe_planetcrafts_2" }
+	effect = { custom_tooltip = "giga_fe_planetcrafts_2_curr" }
 }
-fe_planetcrafts_x_3 = { # 5 - 10 Moons, 1 - 3 Planetcrafts
+fe_planetcrafts_x_3 = {
 	potential = {
 		exists = from
 		from = {
 			has_country_flag = giga_menu_page_00
 			has_global_flag = giga_fe_planetcrafts_3
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
 		}
 	}
 	allow = {
@@ -1873,13 +2005,156 @@ fe_planetcrafts_x_3 = { # 5 - 10 Moons, 1 - 3 Planetcrafts
 			NOT = { has_global_flag = giga_game_started }
 		}
 	}
-	effect = { custom_tooltip = "giga_fe_planetcrafts_3" }
+	effect = { custom_tooltip = "giga_fe_planetcrafts_3_curr" }
 }
-fe_planetcrafts_x_4 = { # 10 - 20 Moons, 3 - 6 Planetcrafts
+fe_planetcrafts_x_4 = {
 	potential = {
 		exists = from
 		from = {
 			has_country_flag = giga_menu_page_00
+			has_global_flag = giga_fe_planetcrafts_4
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = { custom_tooltip = "giga_fe_planetcrafts_4_curr" }
+}
+fe_planetcrafts_x_5 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			has_global_flag = giga_fe_planetcrafts_5
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = { custom_tooltip = "giga_fe_planetcrafts_5_curr" }
+}
+fe_planetcrafts_x_6 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			has_global_flag = giga_fe_planetcrafts_6
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = { custom_tooltip = "giga_fe_planetcrafts_6_curr" }
+}
+fe_planetcrafts_x_7 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			has_global_flag = giga_fe_planetcrafts_7
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = { custom_tooltip = "giga_fe_planetcrafts_7_curr" }
+}
+
+# increase
+fe_planetcrafts_increase_stop = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			OR = {
+				has_global_flag = gigas_menu_fe_planetcrafts_disabled
+				has_global_flag = giga_fe_planetcrafts_7
+			}
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+		custom_tooltip = {
+			fail_text = "giga_fe_planetcrafts_disabled"
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+		}
+		custom_tooltip = {
+			fail_text = "gigas_max_fe_planetcrafts_difficulty"
+			NOT = { has_global_flag = giga_fe_planetcrafts_7 }
+		}
+	}
+}
+fe_planetcrafts_increase_6 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_6
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_7_inc"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_7
+		}
+	}
+}
+fe_planetcrafts_increase_5 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_5
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_6_inc"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_6
+		}
+	}
+}
+fe_planetcrafts_increase_4 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
 			has_global_flag = giga_fe_planetcrafts_4
 		}
 	}
@@ -1889,15 +2164,21 @@ fe_planetcrafts_x_4 = { # 10 - 20 Moons, 3 - 6 Planetcrafts
 			NOT = { has_global_flag = giga_game_started }
 		}
 	}
-	effect = { custom_tooltip = "giga_fe_planetcrafts_4" }
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_5_inc"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_5
+		}
+	}
 }
-# DISABLED
-fe_planetcrafts_x_0_disabled = {
+fe_planetcrafts_increase_3 = {
 	potential = {
 		exists = from
 		from = {
 			has_country_flag = giga_menu_page_00
-			NOT = { has_global_flag = giga_fe_planetcrafts_0 }
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_3
 		}
 	}
 	allow = {
@@ -1907,91 +2188,227 @@ fe_planetcrafts_x_0_disabled = {
 		}
 	}
 	effect = {
-		custom_tooltip = "giga_fe_planetcrafts_0"
-		remove_flags_fe_planetcrafts = yes
-		set_global_flag = giga_fe_planetcrafts_0
+		custom_tooltip = "giga_fe_planetcrafts_4_inc"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_4
+		}
 	}
 }
-fe_planetcrafts_x_1_disabled = {
+fe_planetcrafts_increase_2 = {
 	potential = {
 		exists = from
 		from = {
 			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_2
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_3_inc"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_3
+		}
+	}
+}
+fe_planetcrafts_increase_1 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_1
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_2_inc"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_2
+		}
+	}
+}
+
+#decrease
+fe_planetcrafts_decrease_7 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_7
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_6_dec"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_6
+		}
+	}
+}
+fe_planetcrafts_decrease_6 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_6
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_5_dec"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_5
+		}
+	}
+}
+fe_planetcrafts_decrease_5 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_5
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_4_dec"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_4
+		}
+	}
+}
+fe_planetcrafts_decrease_4 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_4
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_3_dec"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_3
+		}
+	}
+}
+fe_planetcrafts_decrease_3 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_3
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_2_dec"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_2
+		}
+	}
+}
+fe_planetcrafts_decrease_2 = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+			has_global_flag = giga_fe_planetcrafts_2
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+	}
+	effect = {
+		custom_tooltip = "giga_fe_planetcrafts_1_dec"
+		hidden_effect = {
+			remove_flags_fe_planetcrafts = yes
+			set_global_flag = giga_fe_planetcrafts_1
+		}
+	}
+}
+fe_planetcrafts_decrease_stop = {
+	potential = {
+		exists = from
+		from = {
+			has_country_flag = giga_menu_page_00
+			OR = {
+				has_global_flag = gigas_menu_fe_planetcrafts_disabled
+				has_global_flag = giga_fe_planetcrafts_1
+			}
+		}
+	}
+	allow = {
+		custom_tooltip = {
+			fail_text = "must_not_have_started_game"
+			NOT = { has_global_flag = giga_game_started }
+		}
+		custom_tooltip = {
+			fail_text = "giga_fe_planetcrafts_disabled"
+			NOT = { has_global_flag = gigas_menu_fe_planetcrafts_disabled }
+		}
+		custom_tooltip = {
+			fail_text = "gigas_min_fe_planetcrafts_difficulty"
 			NOT = { has_global_flag = giga_fe_planetcrafts_1 }
 		}
 	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_fe_planetcrafts_1"
-		remove_flags_fe_planetcrafts = yes
-		set_global_flag = giga_fe_planetcrafts_1
-	}
 }
-fe_planetcrafts_x_2_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = { has_global_flag = giga_fe_planetcrafts_2 }
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_fe_planetcrafts_2"
-		remove_flags_fe_planetcrafts = yes
-		set_global_flag = giga_fe_planetcrafts_2
-	}
-}
-fe_planetcrafts_x_3_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = { has_global_flag = giga_fe_planetcrafts_3 }
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_fe_planetcrafts_3"
-		remove_flags_fe_planetcrafts = yes
-		set_global_flag = giga_fe_planetcrafts_3
-	}
-}
-fe_planetcrafts_x_4_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = { has_global_flag = giga_fe_planetcrafts_4 }
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_fe_planetcrafts_4"
-		remove_flags_fe_planetcrafts = yes
-		set_global_flag = giga_fe_planetcrafts_4
-	}
-}
+
+
 
 #######################################################################################################################
 # MISC CORE
@@ -1999,43 +2416,135 @@ fe_planetcrafts_x_4_disabled = {
 
 #base core stuff
 giga_galactic_core_disabled = {		potential = { exists = from from = { has_country_flag = giga_menu_page_00 }			has_global_flag = giga_core_disabled }													allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }																			effect = { custom_tooltip = "giga_galactic_core_disabled"	remove_global_flag = giga_core_disabled } }
-giga_galactic_core_a = {			potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = {	has_global_flag = giga_core_disabled } has_global_flag = giga_core_active }				allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }																			effect = { custom_tooltip = "giga_galactic_core_active" } }
-giga_galactic_core_i = {			potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = {	has_global_flag = giga_core_disabled } has_global_flag = giga_core_inactive }			allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }																			effect = { custom_tooltip = "giga_galactic_core_inactive" } }
+giga_galactic_core_enabled = {		potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = {	has_global_flag = giga_core_disabled } }												allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }																			effect = { custom_tooltip = "giga_galactic_core_enabled"	set_global_flag = giga_core_disabled } }
+# shuffle
 giga_galactic_core_s = {			potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = {	has_global_flag = giga_core_disabled } has_global_flag = giga_core_shuffle }			allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }																			effect = { custom_tooltip = "giga_galactic_core_shuffle" } }
+giga_galactic_core_s_disabled = {
+    potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = {	has_global_flag = giga_core_disabled NOT = { has_global_flag = giga_core_shuffle } } }
+    allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = giga_core_disabled } } }
+    effect = {
+        custom_tooltip = "giga_galactic_core_shuffle"
+        remove_flags_galactic_core = yes
+        set_global_flag = giga_core_shuffle
+        set_aeternum_difficulty = yes
+    }
+}
+# quasar
+giga_galactic_core_a = {			potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = {	has_global_flag = giga_core_disabled } has_global_flag = giga_core_active }				allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }																			effect = { custom_tooltip = "giga_galactic_core_active" } }
+giga_galactic_core_a_disabled = {
+    potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = {	has_global_flag = giga_core_disabled NOT = { has_global_flag = giga_core_active } } }
+    allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = giga_core_disabled } } }
+    effect = {
+        custom_tooltip = "giga_galactic_core_active"
+        remove_flags_galactic_core = yes
+        set_global_flag = giga_core_active
+    }
+}
+# empty random
 giga_galactic_core_empty = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = {	has_global_flag = giga_core_disabled }
-			has_global_flag = giga_core_always_empty
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-	}
-	effect = { custom_tooltip = "giga_galactic_core_always_empty" }
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = giga_core_disabled }
+            has_global_flag = giga_core_always_empty
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+    }
+    effect = { custom_tooltip = "giga_galactic_core_always_empty" }
 }
+giga_galactic_core_empty_disabled = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            OR = {
+                has_global_flag = giga_core_disabled
+                NOT = { has_global_flag = giga_core_always_empty }
+            }
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOT = { has_global_flag = giga_core_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_galactic_core_always_empty"
+        remove_flags_galactic_core = yes
+        set_global_flag = giga_core_always_empty
+    }
+}
+# smbh random
+giga_galactic_core_i = {			potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = {	has_global_flag = giga_core_disabled } has_global_flag = giga_core_inactive }			allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }																			effect = { custom_tooltip = "giga_galactic_core_inactive" } }
+giga_galactic_core_i_disabled = {
+    potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = {	has_global_flag = giga_core_disabled NOT = { has_global_flag = giga_core_inactive } } }
+    allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = giga_core_disabled } } }
+    effect = {
+        custom_tooltip = "giga_galactic_core_inactive"
+        remove_flags_galactic_core = yes
+        set_global_flag = giga_core_inactive
+        set_aeternum_difficulty = yes
+    }
+}
+# smbh empty
 giga_galactic_core_i_empty = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = {	has_global_flag = giga_core_disabled }
-			has_global_flag = giga_core_inactive_empty
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-	}
-	effect = { custom_tooltip = "giga_galactic_core_inactive_empty" }
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = giga_core_disabled }
+            has_global_flag = giga_core_inactive_empty
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+    }
+    effect = { custom_tooltip = "giga_galactic_core_inactive_empty" }
 }
+giga_galactic_core_i_empty_disabled = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            OR = {
+                has_global_flag = giga_core_disabled
+                NOT = { has_global_flag = giga_core_inactive_empty }
+            }
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOT = { has_global_flag = giga_core_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_galactic_core_inactive_empty"
+        remove_flags_galactic_core = yes
+        set_global_flag = giga_core_inactive_empty
+    }
+}
+
+#######################################################################################################################
+# AETERNUM
+#######################################################################################################################
+
 giga_galactic_core_i_aeternum = {
 	potential = {
 		exists = from
@@ -2053,379 +2562,419 @@ giga_galactic_core_i_aeternum = {
 	}
 	effect = { custom_tooltip = "giga_galactic_core_inactive_aeternum" }
 }
-giga_galactic_core_enabled = {		potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = {	has_global_flag = giga_core_disabled } }												allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }																			effect = { custom_tooltip = "giga_galactic_core_enabled"	set_global_flag = giga_core_disabled } }
-giga_galactic_core_a_disabled = {	potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = {	has_global_flag = giga_core_disabled NOT = { has_global_flag = giga_core_active } } }	allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = giga_core_disabled } } }		effect = { custom_tooltip = "giga_galactic_core_active" remove_flags_galactic_core = yes					set_global_flag = giga_core_active } }
-giga_galactic_core_s_disabled = {	potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = {	has_global_flag = giga_core_disabled NOT = { has_global_flag = giga_core_shuffle } } }	allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = giga_core_disabled } } }		effect = { custom_tooltip = "giga_galactic_core_shuffle" remove_flags_galactic_core = yes					set_global_flag = giga_core_shuffle } }
-giga_galactic_core_i_disabled = {	potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = {	has_global_flag = giga_core_disabled NOT = { has_global_flag = giga_core_inactive } } }	allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = giga_core_disabled } } }		effect = { custom_tooltip = "giga_galactic_core_inactive" remove_flags_galactic_core = yes					set_global_flag = giga_core_inactive } }
-galactic_core_empty_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			OR = {
-				has_global_flag = giga_core_disabled
-				NOT = { has_global_flag = giga_core_always_empty }
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOT = { has_global_flag = giga_core_disabled }
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_galactic_core_always_empty"
-		remove_flags_galactic_core = yes
-		set_global_flag = giga_core_always_empty
-	}
-}
-giga_galactic_core_i_empty_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			OR = {
-				has_global_flag = giga_core_disabled
-				NOT = { has_global_flag = giga_core_inactive_empty }
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOT = { has_global_flag = giga_core_disabled }
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_galactic_core_inactive_empty"
-		remove_flags_galactic_core = yes
-		set_global_flag = giga_core_inactive_empty
-	}
-}
 giga_galactic_core_i_aeternum_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			OR = {
-				has_global_flag = giga_core_disabled
-				NOT = { has_global_flag = giga_core_inactive_aeternum }
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOT = { has_global_flag = giga_core_disabled }
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_galactic_core_inactive_aeternum"
-		remove_flags_galactic_core = yes
-		set_global_flag = giga_core_inactive_aeternum
-	}
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            OR = {
+                has_global_flag = giga_core_disabled
+                NOT = { has_global_flag = giga_core_inactive_aeternum }
+            }
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOT = { has_global_flag = giga_core_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_galactic_core_inactive_aeternum"
+        remove_flags_galactic_core = yes
+        set_global_flag = giga_core_inactive_aeternum
+        set_aeternum_difficulty = yes
+    }
+}
+
+# literally a dummy made to show a tooltip
+giga_page_00_aeternum_desc = {
+    potential = { exists = from from = { has_country_flag = giga_menu_page_00 } }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = "giga_menu_aeternum_section_desc"
+    }
 }
 
 #aeternum difficulties
-giga_galactic_core_aet_1 = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = {	has_global_flag = giga_core_disabled }
-			has_global_flag = giga_core_aeternum_1
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOR = {
-				has_global_flag = giga_core_disabled
-				has_global_flag = giga_core_inactive_empty
-				has_global_flag = giga_core_active
-				has_global_flag = giga_core_always_empty
-			}
-		}
-	}
-	effect = { custom_tooltip = "giga_galactic_core_aeternum_1" }
+aeternum_diff_disabled = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            OR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        custom_tooltip = {
+            fail_text = "giga_menu_aeternum_disabled_tt"
+            always = no
+        }
+    }
+    effect = { custom_tooltip = "giga_menu_aeternum_disabled_tt" }
 }
-giga_galactic_core_aet_2 = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = {	has_global_flag = giga_core_disabled }
-			has_global_flag = giga_core_aeternum_2
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOR = {
-				has_global_flag = giga_core_disabled
-				has_global_flag = giga_core_inactive_empty
-				has_global_flag = giga_core_active
-				has_global_flag = giga_core_always_empty
-			}
-		}
-	}
-	effect = { custom_tooltip = "giga_galactic_core_aeternum_2" }
+aeternum_diff_omega = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+            has_global_flag = giga_core_aeternum_4
+        }
+    }
+    allow = {
+        hidden_trigger = {
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    effect = { custom_tooltip = "giga_menu_aeternum_omega_curr" }
 }
-giga_galactic_core_aet_3 = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = {	has_global_flag = giga_core_disabled }
-			has_global_flag = giga_core_aeternum_3
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOR = {
-				has_global_flag = giga_core_disabled
-				has_global_flag = giga_core_inactive_empty
-				has_global_flag = giga_core_active
-				has_global_flag = giga_core_always_empty
-			}
-		}
-	}
-	effect = { custom_tooltip = "giga_galactic_core_aeternum_3" }
+aeternum_diff_azure = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+            has_global_flag = giga_core_aeternum_3
+        }
+    }
+    allow = {
+        hidden_trigger = {
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    effect = { custom_tooltip = "giga_menu_aeternum_azure_curr" }
 }
-giga_galactic_core_aet_4 = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = {	has_global_flag = giga_core_disabled }
-			has_global_flag = giga_core_aeternum_4
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOR = {
-				has_global_flag = giga_core_disabled
-				has_global_flag = giga_core_inactive_empty
-				has_global_flag = giga_core_active
-				has_global_flag = giga_core_always_empty
-			}
-		}
-	}
-	effect = { custom_tooltip = "giga_galactic_core_aeternum_4" }
+aeternum_diff_normal = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+            has_global_flag = giga_core_aeternum_2
+        }
+    }
+    allow = {
+        hidden_trigger = {
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    effect = { custom_tooltip = "giga_menu_aeternum_normal_curr" }
 }
-giga_galactic_core_aet_5 = {
-	potential = {
-		always = no # Disabled for 4.0
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			NOT = {	has_global_flag = giga_core_disabled }
-			has_global_flag = giga_core_aeternum_5
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOR = {
-				has_global_flag = giga_core_disabled
-				has_global_flag = giga_core_inactive_empty
-				has_global_flag = giga_core_active
-				has_global_flag = giga_core_always_empty
-			}
-		}
-	}
-	effect = { custom_tooltip = "giga_galactic_core_aeternum_5" }
-}
-
-giga_galactic_core_aet_1_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			OR = {
-				has_global_flag = giga_core_disabled
-				NOT = { has_global_flag = giga_core_aeternum_1 }
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOR = {
-				has_global_flag = giga_core_disabled
-				has_global_flag = giga_core_inactive_empty
-				has_global_flag = giga_core_active
-				has_global_flag = giga_core_always_empty
-			}
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_galactic_core_aeternum_1"
-		remove_flags_aeternum_difficulty = yes
-		set_global_flag = giga_core_aeternum_1
-	}
-}
-giga_galactic_core_aet_2_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			OR = {
-				has_global_flag = giga_core_disabled
-				NOT = { has_global_flag = giga_core_aeternum_2 }
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOR = {
-				has_global_flag = giga_core_disabled
-				has_global_flag = giga_core_inactive_empty
-				has_global_flag = giga_core_active
-				has_global_flag = giga_core_always_empty
-			}
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_galactic_core_aeternum_2"
-		remove_flags_aeternum_difficulty = yes
-		set_global_flag = giga_core_aeternum_2
-	}
-}
-giga_galactic_core_aet_3_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			OR = {
-				has_global_flag = giga_core_disabled
-				NOT = { has_global_flag = giga_core_aeternum_3 }
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOR = {
-				has_global_flag = giga_core_disabled
-				has_global_flag = giga_core_inactive_empty
-				has_global_flag = giga_core_active
-				has_global_flag = giga_core_always_empty
-			}
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_galactic_core_aeternum_3"
-		remove_flags_aeternum_difficulty = yes
-		set_global_flag = giga_core_aeternum_3
-	}
-}
-giga_galactic_core_aet_4_disabled = {
-	potential = {
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			OR = {
-				has_global_flag = giga_core_disabled
-				NOT = { has_global_flag = giga_core_aeternum_4 }
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOR = {
-				has_global_flag = giga_core_disabled
-				has_global_flag = giga_core_inactive_empty
-				has_global_flag = giga_core_active
-				has_global_flag = giga_core_always_empty
-			}
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_galactic_core_aeternum_4"
-		remove_flags_aeternum_difficulty = yes
-		set_global_flag = giga_core_aeternum_4
-	}
-}
-giga_galactic_core_aet_5_disabled = {
-	potential = {
-		always = no # Disabled for 4.0
-		exists = from
-		from = {
-			has_country_flag = giga_menu_page_00
-			OR = {
-				has_global_flag = giga_core_disabled
-				NOT = { has_global_flag = giga_core_aeternum_5 }
-			}
-		}
-	}
-	allow = {
-		custom_tooltip = {
-			fail_text = "must_not_have_started_game"
-			NOT = { has_global_flag = giga_game_started }
-		}
-		hidden_trigger = {
-			NOR = {
-				has_global_flag = giga_core_disabled
-				has_global_flag = giga_core_inactive_empty
-				has_global_flag = giga_core_active
-				has_global_flag = giga_core_always_empty
-				NOT = { is_sbtg_activated = yes }
-			}
-		}
-	}
-	effect = {
-		custom_tooltip = "giga_galactic_core_aeternum_5"
-		remove_flags_aeternum_difficulty = yes
-		set_global_flag = giga_core_aeternum_5
-	}
+aeternum_diff_easy = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+            has_global_flag = giga_core_aeternum_1
+        }
+    }
+    allow = {
+        hidden_trigger = {
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    effect = { custom_tooltip = "giga_menu_aeternum_easy_curr" }
 }
 
-#defunct, not used
-giga_galactic_fed_disabled = { 	potential = { exists = from	from = { has_country_flag = giga_menu_page_03 } OR = { 	has_global_flag = giga_galactic_fed_disabled 	has_global_flag = quasistellar_disabled } NOT = { has_global_flag = giga_galactic_fed_always } } 			allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } } effect = { 	remove_flags_galactic_fed = yes 	set_global_flag = giga_galactic_fed_always 	custom_tooltip = "giga_galactic_fed_disabled" } }
-giga_galactic_fed_a = {		   	potential = { exists = from	from = { has_country_flag = giga_menu_page_03 } 			has_global_flag = giga_galactic_fed_always	NOT = { has_global_flag = giga_galactic_fed_shuffle } } 																allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } } effect = {	remove_flags_galactic_fed = yes	set_global_flag = giga_galactic_fed_shuffle	custom_tooltip = "giga_galactic_fed_active"} }
-giga_galactic_fed_s = { 	   	potential = { exists = from	from = { has_country_flag = giga_menu_page_03 } 			has_global_flag = giga_galactic_fed_shuffle } 																																allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } } effect = { 	remove_flags_galactic_fed = yes 	set_global_flag = giga_galactic_fed_disabled 	custom_tooltip = "giga_galactic_fed_shuffle" } }
+# increase
+aeternum_increase_stop = { #shows up if compound disabled
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            OR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+                has_global_flag = giga_core_aeternum_4
+            }
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        custom_tooltip = {
+            fail_text = "giga_menu_aeternum_disabled_tt"
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+        custom_tooltip = {
+            fail_text = "giga_max_aeternum_difficulty"
+            NOT = { has_global_flag = giga_core_aeternum_4 }
+        }
+    }
+}
+aeternum_increase_omega = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = giga_core_disabled }
+            has_global_flag = giga_core_aeternum_3
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_aeternum_omega_inc"
+        remove_flags_aeternum_difficulty = yes
+        set_global_flag = giga_core_aeternum_4
+    }
+}
+aeternum_increase_azure = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = giga_core_disabled }
+            has_global_flag = giga_core_aeternum_2
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_aeternum_azure_inc"
+        remove_flags_aeternum_difficulty = yes
+        set_global_flag = giga_core_aeternum_3
+    }
+}
+aeternum_increase_normal = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = giga_core_disabled }
+            has_global_flag = giga_core_aeternum_1
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_aeternum_normal_inc"
+        remove_flags_aeternum_difficulty = yes
+        set_global_flag = giga_core_aeternum_2
+    }
+}
+
+#decrease
+aeternum_decrease_azure = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = giga_core_disabled }
+            has_global_flag = giga_core_aeternum_4
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_aeternum_azure_dec"
+        remove_flags_aeternum_difficulty = yes
+        set_global_flag = giga_core_aeternum_3
+    }
+}
+aeternum_decrease_normal = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = giga_core_disabled }
+            has_global_flag = giga_core_aeternum_3
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_aeternum_normal_dec"
+        remove_flags_aeternum_difficulty = yes
+        set_global_flag = giga_core_aeternum_2
+    }
+}
+aeternum_decrease_easy = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = giga_core_disabled }
+            has_global_flag = giga_core_aeternum_2
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_aeternum_easy_dec"
+        remove_flags_aeternum_difficulty = yes
+        set_global_flag = giga_core_aeternum_1
+    }
+}
+aeternum_decrease_stop = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            OR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+                has_global_flag = giga_core_aeternum_1
+            }
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        custom_tooltip = {
+            fail_text = "giga_menu_aeternum_disabled_tt"
+            NOR = {
+                has_global_flag = giga_core_disabled
+                has_global_flag = giga_core_inactive_empty
+                has_global_flag = giga_core_active
+                has_global_flag = giga_core_always_empty
+            }
+        }
+        custom_tooltip = {
+            fail_text = "giga_min_aeternum_difficulty"
+            NOT = { has_global_flag = giga_core_aeternum_1 }
+        }
+    }
+}
 
 #######################################################################################################################
 # KAISER
@@ -2971,7 +3520,7 @@ katzenartig_x_silly_cattail = {
 }
 
 #######################################################################################################################
-# EHOF / COMPOUND
+# EHOF
 #######################################################################################################################
 
 giga_ehof_disabled = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } has_global_flag = ehof_disabled }																												allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } }																						effect = { custom_tooltip = "giga_menu_enabled" remove_global_flag = ehof_disabled } }
@@ -2989,19 +3538,346 @@ giga_ehof_ai_2_disabled = { potential = { exists = from from = { has_country_fla
 giga_ehof_ai_3_disabled = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = { has_global_flag = ehof_ai_disabled NOT = { has_global_flag = ehof_ai_capped_3 } } }												allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = ehof_ai_disabled } } }					effect = { remove_flags_ehof_ai = yes set_global_flag = ehof_ai_capped_3 } }
 giga_ehof_ai_s_disabled = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = { has_global_flag = ehof_ai_disabled NOT = { has_global_flag = ehof_ai_capped_s } } }												allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = ehof_ai_disabled } } }					effect = { remove_flags_ehof_ai = yes set_global_flag = ehof_ai_capped_s } }
 
-giga_compound_disabled = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } has_global_flag = compound_disabled }																										allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = ehof_disabled } } }						effect = { custom_tooltip = "giga_menu_compound_enabled" remove_global_flag = compound_disabled } }
-giga_compound_1 = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = { has_global_flag = compound_disabled } has_global_flag = compound_capped_1 }																allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = ehof_disabled } } }						effect = { custom_tooltip = "giga_menu_compound_1" } }
-giga_compound_2 = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = { has_global_flag = compound_disabled } has_global_flag = compound_capped_2 }																allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = ehof_disabled } } }						effect = { custom_tooltip = "giga_menu_compound_2" } }
-giga_compound_3 = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = { has_global_flag = compound_disabled } has_global_flag = compound_capped_3 }																allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = ehof_disabled } } }						effect = { custom_tooltip = "giga_menu_compound_3" } }
-giga_compound_4 = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = { has_global_flag = compound_disabled } has_global_flag = compound_capped_4 }																allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = ehof_disabled } } }						effect = { custom_tooltip = "giga_menu_compound_4" } }
-giga_compound_s = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = { has_global_flag = compound_disabled } has_global_flag = compound_capped_s }																allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = ehof_disabled } } }						effect = { custom_tooltip = "giga_menu_compound_s" } }
+#######################################################################################################################
+# COMPOUND
+#######################################################################################################################
 
-giga_compound_enabled = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } NOT = { has_global_flag = compound_disabled } }																								allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = ehof_disabled } } }						effect = { custom_tooltip = "giga_menu_compound_disabled" set_global_flag = compound_disabled } }
-giga_compound_1_disabled = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = { has_global_flag = compound_disabled NOT = { has_global_flag = compound_capped_1 } } }												allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = compound_disabled } } }					effect = { remove_flags_compound = yes set_global_flag = compound_capped_1 } }
-giga_compound_2_disabled = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = { has_global_flag = compound_disabled NOT = { has_global_flag = compound_capped_2 } } }												allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = compound_disabled } } }					effect = { remove_flags_compound = yes set_global_flag = compound_capped_2 } }
-giga_compound_3_disabled = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = { has_global_flag = compound_disabled NOT = { has_global_flag = compound_capped_3 } } }												allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = compound_disabled } } }					effect = { remove_flags_compound = yes set_global_flag = compound_capped_3 } }
-giga_compound_4_disabled = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = { has_global_flag = compound_disabled NOT = { has_global_flag = compound_capped_4 } } }												allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = compound_disabled } } }					effect = { remove_flags_compound = yes set_global_flag = compound_capped_4 } }
-giga_compound_s_disabled = { potential = { exists = from from = { has_country_flag = giga_menu_page_00 } OR = { has_global_flag = compound_disabled NOT = { has_global_flag = compound_capped_s } } }												allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = compound_disabled } } }					effect = { remove_flags_compound = yes set_global_flag = compound_capped_s } }
+giga_menu_compound_section_desc = {
+    potential = { exists = from from = { has_country_flag = giga_menu_page_00 } }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = "giga_menu_compound_section_desc"
+    }
+}
+
+giga_compound_enabled = {
+    potential = {
+        exists = from
+        from = { has_country_flag = giga_menu_page_00 }
+        NOT = { has_global_flag = compound_disabled }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOT = { has_global_flag = ehof_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_compound_enabled"
+        remove_flags_compound = yes
+        set_global_flag = compound_disabled
+    }
+}
+giga_compound_disabled = {
+    potential = {
+        exists = from
+        from = { has_country_flag = giga_menu_page_00 }
+        has_global_flag = compound_disabled
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        custom_tooltip = {
+            fail_text = "giga_menu_compound_no_ehof"
+            NOT = { has_global_flag = ehof_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_compound_disabled"
+        remove_global_flag = compound_disabled
+        set_global_flag = compound_capped_2 # normal diff
+    }
+}
+
+giga_compound_diff_disabled = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            has_global_flag = compound_disabled
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        custom_tooltip = {
+            fail_text = "giga_menu_compound_disabled_tt"
+            always = no
+        }
+    }
+    effect = { custom_tooltip = "giga_menu_compound_disabled_tt" }
+}
+giga_compound_1 = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = compound_disabled }
+            has_global_flag = compound_capped_1
+        }
+    }
+    allow = {
+        hidden_trigger = {
+            NOT = { has_global_flag = ehof_disabled }
+        }
+    }
+    effect = { custom_tooltip = "giga_menu_compound_1_curr" }
+}
+giga_compound_2 = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = compound_disabled }
+            has_global_flag = compound_capped_2
+        }
+    }
+    allow = {
+        hidden_trigger = {
+            NOT = { has_global_flag = ehof_disabled }
+        }
+    }
+    effect = { custom_tooltip = "giga_menu_compound_2_curr" }
+}
+giga_compound_3 = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = compound_disabled }
+            has_global_flag = compound_capped_3
+        }
+    }
+    allow = {
+        hidden_trigger = {
+            NOT = { has_global_flag = ehof_disabled }
+        }
+    }
+    effect = { custom_tooltip = "giga_menu_compound_3_curr" }
+}
+giga_compound_4 = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = compound_disabled }
+            has_global_flag = compound_capped_4
+        }
+    }
+    allow = {
+        hidden_trigger = {
+            NOT = { has_global_flag = ehof_disabled }
+        }
+    }
+    effect = { custom_tooltip = "giga_menu_compound_4_curr" }
+}
+
+#increase
+giga_compound_increase_stop = { #shows up if compound disabled
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            OR = {
+                has_global_flag = compound_disabled
+                has_global_flag = compound_capped_4
+            }
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        custom_tooltip = {
+            fail_text = "giga_menu_compound_disabled_tt"
+            NOT = { has_global_flag = compound_disabled }
+        }
+        custom_tooltip = {
+            fail_text = "giga_max_compound_difficulty"
+            NOT = { has_global_flag = compound_capped_4 }
+        }
+    }
+}
+giga_compound_increase_4 = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = compound_disabled }
+            has_global_flag = compound_capped_3
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOT = { has_global_flag = compound_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_compound_4_inc"
+        remove_flags_compound = yes
+        set_global_flag = compound_capped_4
+    }
+}
+giga_compound_increase_3 = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = compound_disabled }
+            has_global_flag = compound_capped_2
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOT = { has_global_flag = compound_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_compound_3_inc"
+        remove_flags_compound = yes
+        set_global_flag = compound_capped_3
+    }
+}
+giga_compound_increase_2 = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = compound_disabled }
+            has_global_flag = compound_capped_1
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOT = { has_global_flag = compound_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_compound_2_inc"
+        remove_flags_compound = yes
+        set_global_flag = compound_capped_2
+    }
+}
+
+#decrease
+giga_compound_decrease_3 = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = compound_disabled }
+            has_global_flag = compound_capped_4
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOT = { has_global_flag = compound_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_compound_3_dec"
+        remove_flags_compound = yes
+        set_global_flag = compound_capped_3
+    }
+}
+giga_compound_decrease_2 = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = compound_disabled }
+            has_global_flag = compound_capped_3
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOT = { has_global_flag = compound_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_compound_2_dec"
+        remove_flags_compound = yes
+        set_global_flag = compound_capped_2
+    }
+}
+giga_compound_decrease_1 = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            NOT = {	has_global_flag = compound_disabled }
+            has_global_flag = compound_capped_2
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        hidden_trigger = {
+            NOT = { has_global_flag = compound_disabled }
+        }
+    }
+    effect = {
+        custom_tooltip = "giga_menu_compound_1_dec"
+        remove_flags_compound = yes
+        set_global_flag = compound_capped_1
+    }
+}
+giga_compound_decrease_stop = { #shows up if blokkats disabled
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = giga_menu_page_00
+            OR = {
+                has_global_flag = compound_disabled
+                has_global_flag = compound_capped_1
+            }
+        }
+    }
+    allow = {
+        custom_tooltip = {
+            fail_text = "must_not_have_started_game"
+            NOT = { has_global_flag = giga_game_started }
+        }
+        custom_tooltip = {
+            fail_text = "giga_menu_compound_disabled_tt"
+            NOT = { has_global_flag = compound_disabled }
+        }
+        custom_tooltip = {
+            fail_text = "giga_min_compound_difficulty"
+            NOT = { has_global_flag = compound_capped_1 }
+        }
+    }
+}
 
 #######################################################################################################################
 # DISABLED STUFF
@@ -3065,6 +3941,10 @@ giga_elysium_enabled = {
 	}
 }
 
+#defunct, not used
+giga_galactic_fed_disabled = { 	potential = { exists = from	from = { has_country_flag = giga_menu_page_03 } OR = { 	has_global_flag = giga_galactic_fed_disabled 	has_global_flag = quasistellar_disabled } NOT = { has_global_flag = giga_galactic_fed_always } } 			allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } } effect = { 	remove_flags_galactic_fed = yes 	set_global_flag = giga_galactic_fed_always 	custom_tooltip = "giga_galactic_fed_disabled" } }
+giga_galactic_fed_a = {		   	potential = { exists = from	from = { has_country_flag = giga_menu_page_03 } 			has_global_flag = giga_galactic_fed_always	NOT = { has_global_flag = giga_galactic_fed_shuffle } } 																allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } } effect = {	remove_flags_galactic_fed = yes	set_global_flag = giga_galactic_fed_shuffle	custom_tooltip = "giga_galactic_fed_active"} }
+giga_galactic_fed_s = { 	   	potential = { exists = from	from = { has_country_flag = giga_menu_page_03 } 			has_global_flag = giga_galactic_fed_shuffle } 																																allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } } effect = { 	remove_flags_galactic_fed = yes 	set_global_flag = giga_galactic_fed_disabled 	custom_tooltip = "giga_galactic_fed_shuffle" } }
 
 # giga_habitat_unlimited = { potential = { exists = from from = { has_country_flag = giga_menu_page_01 has_global_flag = giga_habitats_unlimited } } allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = giga_habitats_disabled } } } effect = { custom_tooltip = "giga_menu_u" remove_flags_habitats = yes set_global_flag = giga_habitats_pop set_global_flag = giga_habitats_pop_25 } }
 # giga_habitat_pop = { potential = { exists = from from = { has_country_flag = giga_menu_page_01 has_global_flag = giga_habitats_pop } } allow = { custom_tooltip = { fail_text = "must_not_have_started_game" NOT = { has_global_flag = giga_game_started } } hidden_trigger = { NOT = { has_global_flag = giga_habitats_disabled } } } effect = { custom_tooltip = "giga_habitats_pops" remove_flags_habitats = yes set_global_flag = giga_habitats_system set_global_flag = giga_habitats_system_3 } }
@@ -3230,8 +4110,28 @@ inline_script = {
     BUTTON_EFFECT_PREFIX = giga_vanilla_array
     GIGA_PAGE_FLAG = giga_menu_page_01
     MEGA_FLAG_NAME_PREFIX = vanilla_array
-    OTHER_ENABLE_EFFECTS = ""
-    OTHER_DISABLE_EFFECTS = ""
+    OTHER_ENABLE_EFFECTS = "set_global_flag = vanilla_array_capped_1"
+    OTHER_DISABLE_EFFECTS = "remove_global_flag = vanilla_array_capped_1"
+}
+
+# deep space citadel
+inline_script = {
+	script = button_effects/giga_menu_button_toggle
+	BUTTON_EFFECT_PREFIX = giga_dsc
+	GIGA_PAGE_FLAG = giga_menu_page_01
+	MEGA_FLAG_NAME_PREFIX = vanilla_dsc
+	OTHER_ENABLE_EFFECTS = ""
+	OTHER_DISABLE_EFFECTS = ""
+}
+
+# stellar cannon
+inline_script = {
+	script = button_effects/giga_menu_button_toggle
+	BUTTON_EFFECT_PREFIX = giga_stellar_cannon
+	GIGA_PAGE_FLAG = giga_menu_page_01
+	MEGA_FLAG_NAME_PREFIX = vanilla_stellar_cannon
+	OTHER_ENABLE_EFFECTS = ""
+	OTHER_DISABLE_EFFECTS = ""
 }
 
 # habitats

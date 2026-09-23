@@ -9,10 +9,12 @@
 # housing and amenities for soldiers
 district_maginot_world_barracks = {
 	base_buildtime = @maginot_district_buildtime
-	is_capped_by_modifier = no
+	is_uncapped = { always = yes }
 	exempt_from_ai_planet_specialization = yes
 	district_background = district_city
 	gridbox = district_city
+    overlay_icon = GFX_district_government
+
 	zone_slots = {
 		slot_city_government
 		slot_maginot_barracks_01
@@ -176,7 +178,7 @@ district_maginot_world_barracks = {
 district_maginot_world_barracks_wilderness = {
 	icon = district_maginot_world_barracks
 	base_buildtime = @maginot_district_buildtime
-	is_capped_by_modifier = no
+	is_uncapped = { always = yes }
 	exempt_from_ai_planet_specialization = yes
 	district_background = district_city
 	gridbox = district_city
@@ -328,9 +330,11 @@ district_maginot_world_barracks_wilderness = {
 # heavy duty shield generators
 district_maginot_world_shield_generators = {
 	base_buildtime = @maginot_district_buildtime
-	is_capped_by_modifier = no
+	is_uncapped = { always = yes }
 	gridbox = district_arcology_administrative
 	district_background = district_arcology_research_physics
+    overlay_icon = GFX_giga_district_maginot_shield
+
 	show_on_uncolonized = {
 		uses_district_set = maginot_world_districts
 		exists = from
@@ -397,7 +401,7 @@ district_maginot_world_shield_generators = {
 district_maginot_world_shield_generators_wilderness = {
 	icon = district_maginot_world_shield_generators
 	base_buildtime = @maginot_district_buildtime
-	is_capped_by_modifier = no
+	is_uncapped = { always = yes }
 	gridbox = district_arcology_administrative
 	district_background = district_arcology_research_physics
 	show_on_uncolonized = {
@@ -467,8 +471,10 @@ district_maginot_world_shield_generators_wilderness = {
 # planetary cannon batteries and orbital command stations
 district_maginot_world_planetary_cannons = {
 	base_buildtime = @maginot_district_buildtime
-	is_capped_by_modifier = no
+	is_uncapped = { always = yes }
 	district_background = district_arcology_administrative
+    overlay_icon = GFX_giga_district_maginot_cannon
+
 	show_on_uncolonized = {
 		uses_district_set = maginot_world_districts
 		exists = from
@@ -530,7 +536,7 @@ district_maginot_world_planetary_cannons = {
 district_maginot_world_planetary_cannons_wilderness = {
 	icon = district_maginot_world_planetary_cannons
 	base_buildtime = @maginot_district_buildtime
-	is_capped_by_modifier = no
+	is_uncapped = { always = yes }
 	district_background = district_arcology_administrative
 	show_on_uncolonized = {
 		uses_district_set = maginot_world_districts
@@ -594,7 +600,8 @@ district_maginot_world_planetary_cannons_wilderness = {
 # underground bunkers and fortifications
 district_maginot_world_bunkers = {
 	base_buildtime = @maginot_district_buildtime
-	is_capped_by_modifier = no
+	is_uncapped = { always = yes }
+    overlay_icon = GFX_district_fortress
 	gridbox = district_arcology_fortress
 	district_background = district_arcology_fortress
 	show_on_uncolonized = {
@@ -682,7 +689,7 @@ district_maginot_world_bunkers = {
 district_maginot_world_bunkers_wilderness = {
 	icon = district_maginot_world_bunkers
 	base_buildtime = @maginot_district_buildtime
-	is_capped_by_modifier = no
+	is_uncapped = { always = yes }
 	gridbox = district_arcology_fortress
 	district_background = district_arcology_fortress
 	show_on_uncolonized = {
@@ -761,10 +768,12 @@ district_maginot_world_bunkers_wilderness = {
 # housing and amenities for soldiers
 district_maginot_ringworld_barracks = {
 	base_buildtime = @maginot_district_buildtime_ringworld
-	is_capped_by_modifier = no
+	is_uncapped = { always = yes }
+    icon = district_maginot_world_barracks
 	district_background = district_city
 	gridbox = district_city
 	exempt_from_ai_planet_specialization = yes
+    overlay_icon = GFX_district_government
 
 	show_on_uncolonized = {
 		uses_district_set = maginot_ringworld_districts
@@ -858,16 +867,6 @@ district_maginot_ringworld_barracks = {
 		}
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_active_tradition = tr_mercantile_trickle_up_economics }
-		}
-		modifier = {
-			job_clerk_add = @maginot_entertainer_filler_jobs_buff_ringworld
-		}
-	}
-
 
 	# planet housing and additions
 
@@ -929,9 +928,12 @@ district_maginot_ringworld_barracks = {
 # heavy duty shield generators
 district_maginot_ringworld_shield_generators = {
 	base_buildtime = @maginot_district_buildtime_ringworld
-	is_capped_by_modifier = no
+	is_uncapped = { always = yes }
+    icon = district_maginot_world_shield_generators
 	gridbox = district_arcology_administrative
 	district_background = district_arcology_research_physics
+    overlay_icon = GFX_giga_district_maginot_shield
+
 	show_on_uncolonized = {
 		uses_district_set = maginot_ringworld_districts
 	}
@@ -991,8 +993,11 @@ district_maginot_ringworld_shield_generators = {
 # planetary cannon batteries and orbital command stations
 district_maginot_ringworld_planetary_cannons = {
 	base_buildtime = @maginot_district_buildtime_ringworld
-	is_capped_by_modifier = no
-	district_background = district_arcology_administrative
+	is_uncapped = { always = yes }
+	icon = district_maginot_world_planetary_cannons
+    district_background = district_arcology_administrative
+    overlay_icon = GFX_giga_district_maginot_cannon
+
 	show_on_uncolonized = {
 		uses_district_set = maginot_ringworld_districts
 	}
@@ -1046,7 +1051,9 @@ district_maginot_ringworld_planetary_cannons = {
 # underground bunkers and fortifications
 district_maginot_ringworld_bunkers = {
 	base_buildtime = @maginot_district_buildtime_ringworld
-	is_capped_by_modifier = no
+    icon = district_maginot_world_bunkers
+	is_uncapped = { always = yes }
+    overlay_icon = GFX_district_fortress
 	gridbox = district_arcology_fortress
 	district_background = district_arcology_fortress
 
