@@ -342,6 +342,7 @@ origin_scorched = {
 			}
 		}
 		species_archetype = { NOT = { value = MACHINE } }
+		is_nomadic = no
 	}
 
 	starting_colony = pc_katzenland

@@ -2257,10 +2257,7 @@ katzen_reformation_collapse = {
 					modifier = "irradiated_desert_planet"
 					days = -1
 				}
-				while = {
-					count = 12
-					create_katzenland_deposits = yes
-				}
+				create_katzenland_deposits_new = yes
 				solar_system = {
 					remove_star_flag = siegfried_anti_jump_star
 					every_neighbor_system = { remove_star_flag = siegfried_anti_jump_star }
@@ -2460,10 +2457,7 @@ katzen_reformation_collapse = {
 										modifier = "irradiated_desert_planet"
 										days = -1
 									}
-									while = {
-										count = 12
-										create_katzenland_deposits = yes
-									}
+									create_katzenland_deposits_new = yes
 								}
 							}
 							else_if = {

@@ -1032,7 +1032,7 @@ trait_pc_katzenland_preference = {
 		pc_katzenland_habitability = 0.8
 
 		#@secondary habitability levels
-		pc_nuked_habitability = 0.6 #tomb world conditions have substantial overlap
+		pc_nuked_habitability = 0.6 #tomb world conditions have some overlap
 		pc_desert_habitability = 0.6 #dry worlds also have some similar conditions
 		pc_arid_habitability = 0.6
 		pc_savannah_habitability = 0.6

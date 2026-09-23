@@ -52,21 +52,21 @@
  giga_situation_scorched:0 "Immolated Origins"
  giga_situation_scorched_type:0 "$giga_situation_scorched$"
  giga_situation_scorched_monthly_change_tooltip:0 "The progress of this situation is dependent on the §YApproach§! we pick and our responses to related §YEvents§! that occur."
- giga_situation_scorched_desc:0 "Our identity is in crisis after our understanding of history was shaken by the discovery that our homeworld is the wreck of an ancient planet-cum-warship. We must seek firm ground on which to rebase our civilisation."
+ giga_situation_scorched_desc:0 "The discovery that our homeworld is the wreck of an ancient planet-cum-warship has thrown our identity into crisis. We must seek firm ground on which to rebase our civilisation."
  giga_situation_scorched_stage_renewal:0 "Renewal"
  giga_situation_scorched_stage_synthesis:0 "Synthesis"
  giga_situation_scorched_stage_continuity:0 "Continuity"
 
  #relentless_industrialists_situation_completion_tooltip:0 "§Y[Target.GetName]§! will become a §YTomb World§!.\nFurther effects may happen, depending on the §YApproach§! picked." #TODO
  # giga_situation_scorched_outcome: "The situation will end once we have answered four §YQuestions§! events that will pop up roughly every §Y2 years§!.\n\nThe outcome will depend on which §YStage§! we are in upon the situation's conclusion.\n\n§YQuestions Answered:§! [giga_scorched_questions_answered]/4" #couldn't get this simpler version to work
- giga_situation_scorched_outcome: "The outcome will depend on which §YStage§! we are in upon the situation's conclusion.\n\nThe situation will end once we have answered four §YQuestions§! that will pop up every §Y3 years§!.\n\n§YQuestions Answered:§! [owner.GigaOriginScorchedQuestionsAnswered]"
+ giga_situation_scorched_outcome: "The outcome will depend on which §YStage§! we are in upon the situation's conclusion.\n\nThe situation will end once we have answered four §YQuestions§! that will arise every few years. §YQuestions Answered:§! [owner.GigaOriginScorchedQuestionsAnswered]"
  giga_situation_scorched_questions_answered_zero: "0/4"
  giga_situation_scorched_questions_answered_one: "1/4"
  giga_situation_scorched_questions_answered_two: "2/4"
  giga_situation_scorched_questions_answered_three: "3/4"
  giga_situation_scorched_questions_answered_four: "4/4"
 
- giga_situation_scorched_approach_renewal:0 "Restoration"
+ giga_situation_scorched_approach_renewal:0 "Revival"
  giga_situation_scorched_approach_renewal_desc:0 "We will work to reclaim as much of our historical culture and environment as possible."
  giga_situation_scorched_approach_renewal_tooltip:0 "$giga_situation_scorched_approach_renewal_desc$" #TODO?
  giga_situation_scorched_approach_synthesis:0 "Debate"
@@ -78,7 +78,7 @@
  giga_situation_scorched_progress:0 "Cultural Momentum"
 
  giga_scorched.002.name: "From the Dustbin of History"
- giga_scorched.002.desc: "A wave of archaeological studies across [root.GetHomeWorldName] are racing to present their conclusions to the wider public; the revelation is stunning, but the overwhelming evidence cannot be faulted. Our planet is not a natural world, but the husk of an entire planet turned into a starfaring vessel by ancestors far more powerful than our folk histories ever fantasised. And it was destroyed by... something even more unthinkably powerful. First came initial strikes that crippled critical components of the planetary warship, followed by a rain of bombardment from the skies that melted away the past - nearly including our entire species. Biologists are now chiming in, saying that our genetic code is ill-suited to the current environment. All the lands we have ever known and loved apparently make up a barely-hospitable wreck of a world. Horrifyingly, we cannot even conclusively determine that our species is originally from our... homeworld?\n\nThese discoveries have thrown our society into turmoil as we grapple with the consequences of having so much history upended. Bitter resentments and divisions are erupting over the correction of oral histories; over the legitimacy of festivals and traditions; and over whether or not these precursor [root.GetSpeciesNamePlural] are also "us." We have no choice but to respond to such fundamental questions, lest our civilisation be torn apart."
+ giga_scorched.002.desc: "A wave of archaeological studies across [root.GetHomeWorldName] are racing to present their conclusions to the wider public; the revelation is stunning, but the overwhelming evidence cannot be faulted. Our planet is not a natural world, but the husk of an entire planet turned into a starfaring vessel by ancestors far more powerful than our folk histories ever fantasised. And it was destroyed by... something even stronger.\n\nFirst came initial strikes that crippled the planetary warship, followed by a rain of bombardment from the skies that melted away the past - nearly including our entire species. Biologists have also chimed in, claiming that our genetic code is ill-suited to the current environment. All the lands we have ever known and loved apparently make up a barely-hospitable wreck of a world. Horrifyingly, we cannot even conclusively determine that our species is originally from this \"homeworld\" we hold so dear.\n\nThese discoveries have thrown our society into turmoil as we grapple with the consequences of having so much history upended. Bitter resentments and divisions are erupting over the correction of oral histories; over the legitimacy of festivals and traditions; and over whether or not these precursor [root.GetSpeciesNamePlural] are also "us." We have no choice but to respond to such fundamental questions, lest our civilisation be torn apart."
  giga_scorched.002.a.renewal: "We must recover our lost culture!"
  giga_scorched.002.a.renewal.tooltip: "Sets situation approach to §Y$giga_situation_scorched_approach_renewal$§!. Our situation approach can be changed at any time."
  giga_scorched.002.a.synthesis: "A challenging question."
@@ -92,14 +92,14 @@
  giga_scorched.004.a.continuity: "We remember a beautiful beginning."
 
  giga_scorched.005.name: "Immolated Origins: Heritage"
- giga_scorched.005.desc: "What is our heritage? It has never been a simple question, but in recent times, it has also never been so complicated. The answer used to be that we inherit the blazing skies, earthen caves and rocky plains from preceding generations. But some now suggest that these things are not what our ancestors gave us, but merely the rubble left over from the destruction of our history. These people say that our true heritage is something to be rediscovered. As with everything these days, this is a fiercely contested perspective. We are forced to answer: must our heritage be reclaimed, or protected?"
+ giga_scorched.005.desc: "What is our heritage? It has never been a simple question, but in recent times, it has also never been so complicated. The answer used to be that we inherit the blazing skies, earthen caves and rocky plains from preceding generations. But some now suggest that these things are not what our ancestors gave us, but merely the rubble left over from the destruction of our people. These individuals say that our true heritage is something to be rediscovered. As with everything these days, this is a fiercely contested perspective. We are forced to answer: is our heritage something to be reclaimed, or protected?"
  giga_scorched.005.a.renewal: "Recover what was taken."
  giga_scorched.005.a.renewal.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% $biologist_jobs_bonus_workforce_mult$§!." #§Y+5% $r_society$ from Jobs§!
  giga_scorched.005.a.continuity: "Preserve what we know."
  giga_scorched.005.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% $bureaucrat_jobs_bonus_workforce_mult$§!." #§Y+5% $r_unity$ from Jobs§!
 
  giga_scorched.006.name: "Immolated Origins: Pride"
- giga_scorched.006.desc: "Our peoples have long united around our pride in shared achievements, but that unity is hard to find when people don't share the same stories to be proud of. New movements have begun which see the the greatest moments of [root.GetSpeciesAdj] heroism as during the desperate days when [root.GetHomeWorldName] was relentlessly bombarded from orbit. This has caused others to dig in even more firmly, protecting the prevailing stories of hardy pioneers who tamed the wilderness in service to future generations.\n\nWe can't go on like this, with different memories tearing history in two directions. It's time to decide who our heroic ancestors were."
+ giga_scorched.006.desc: "Our peoples have long united around our pride in shared achievements, but that unity is hard to find when people don't share the same stories. New movements have begun which see the the greatest moments of [root.GetSpeciesAdj] heroism as during the desperate days when [root.GetHomeWorldName] was relentlessly bombarded from orbit. This has caused others to dig in even more firmly, protecting the prevailing stories of hardy pioneers who tamed the wilderness in service to future generations.\n\nWe can't go on like this, with different memories tearing history in two directions. It's time to decide who our heroic ancestors were."
  giga_scorched.006.a.renewal: "Starfarers, fighting to protect what they could."
  giga_scorched_tenacity: "Tenacious Heroes"
  giga_scorched_tenacity_desc: "Those who refuse to die, no matter how dire the odds, are held up as role models."
@@ -115,7 +115,7 @@
  giga_scorched.007.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% $MOD_POP_BONUS_WORKFORCE_MULT$."
 
  giga_scorched.008.name: "Immolated Origins: A New Chapter"
- giga_scorched.008.desc: "What did we lose that day? What is our heritage? What are our proudest moments? What is our homeworld? We have asked, and answered, every question. We have battled with every idea, and looked at ourselves more closely than we may have liked.\n\nNow, communities once rifted by such existential disagreements are tentatively coming back together, embracing around the new story of the [root.GetSpeciesAdj] civilisation. There is one final question, but by now, we already know the answer. Who are we?"
+ giga_scorched.008.desc: "What did we lose that day? What is our heritage? What are our proudest moments? What is our homeworld? We have asked, and answered, every question. We have battled with every idea, and looked within ourselves more closely than we may have found comfortable.\n\nNow, communities once rifted by such existential disagreements are tentatively coming back together, embracing around a new story of the [root.GetSpeciesAdj] civilisation. There is one final question, but by now, we already know the answer. Who are we?"
  giga_scorched.008.a.renewal: "We are an ancient race of the stars."
  giga_scorched.008.a.renewal.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y-10% $MOD_EMPIRE_SIZE_POPS_MULT$§!."
  irradiated_desert_planet_rehabilitated: "Rehabilitated Wasteland"
