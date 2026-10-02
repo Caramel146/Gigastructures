@@ -1,0 +1,3 @@
+caramel_ai_scaling = {
+    pop_bonus_workforce_mult = 0.01
+}
