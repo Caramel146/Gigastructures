@@ -2,6 +2,9 @@ caramel_ai_scaling_multiplier = {
     add = trigger:years_passed
     modifier = {
         is_subject = yes
+        overlord = {
+            is_ai = no
+        }
         mult = 0.5
     }
 }
