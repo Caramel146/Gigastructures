@@ -18,5 +18,25 @@ country_event = {
             years = -1
             mult = trigger:years_passed
         }
+        if = {
+            limit = {
+                mid_game_years_passed > 0
+            }
+            add_modifier = {
+                modifier = caramel_ai_midgame_scaling
+                years = -1
+                mult = trigger:mid_game_years_passed
+            }
+        }
+        if = {
+            limit = {
+                end_game_years_passed > 0
+            }
+            add_modifier = {
+                modifier = caramel_ai_endgame_scaling
+                years = -1
+                mult = trigger:end_game_years_passed
+            }
+        }
     }
 }
