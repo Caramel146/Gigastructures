@@ -16,7 +16,7 @@ country_event = {
         add_modifier = {
             modifier = caramel_ai_scaling
             years = -1
-            mult = trigger:years_passed
+            mult = value:caramel_ai_scaling_multiplier
         }
         if = {
             limit = {
@@ -25,7 +25,7 @@ country_event = {
             add_modifier = {
                 modifier = caramel_ai_midgame_scaling
                 years = -1
-                mult = trigger:mid_game_years_passed
+                mult = value:caramel_ai_scaling_midgame_multiplier
             }
         }
         if = {
@@ -35,7 +35,7 @@ country_event = {
             add_modifier = {
                 modifier = caramel_ai_endgame_scaling
                 years = -1
-                mult = trigger:end_game_years_passed
+                mult = value:caramel_ai_scaling_endgame_multiplier
             }
         }
     }

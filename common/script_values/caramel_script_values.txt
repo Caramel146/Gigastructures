@@ -1,0 +1,29 @@
+caramel_ai_scaling_multiplier = {
+    add = trigger:years_passed
+    modifier = {
+        is_subject = yes
+        mult = 0.5
+    }
+}
+
+caramel_ai_scaling_midgame_multiplier = {
+    add = trigger:mid_game_years_passed
+    modifier = {
+        is_subject = yes
+        overlord = {
+            is_ai = no
+        }
+        mult = 0.5
+    }
+}
+
+caramel_ai_scaling_endgame_multiplier = {
+    add = trigger:end_game_years_passed
+    modifier = {
+        is_subject = yes
+        overlord = {
+            is_ai = no
+        }
+        mult = 0.5
+    }
+}
