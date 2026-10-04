@@ -1028,14 +1028,17 @@ trait_pc_katzenland_preference = {
 	}
 	species_possible_merge_add = { always = yes }
 	modifier = {
-		#@primary habitability levels
+		#a full @primary habitability - I know it's an IRRADIATED DESERT but consider that the planet modifier simultaneously applies a hefty reduction
 		pc_katzenland_habitability = 0.8
 
-		#@secondary habitability levels
-		pc_nuked_habitability = 0.6 #tomb world conditions have some overlap
-		pc_desert_habitability = 0.6 #dry worlds also have some similar conditions
-		pc_arid_habitability = 0.6
-		pc_savannah_habitability = 0.6
+		#if you can survive Scorched you can probably survive Tomb but we don't want this trait to steal Nuked Hab's thunder, so only 0.4
+		#this trait also has worse habitabilities for other world types than nuked hab trait gets
+		pc_nuked_habitability = 0.4
+
+		#dry worlds have some similar conditions so they get slight boosts
+		pc_desert_habitability = 0.3
+		pc_arid_habitability = 0.3
+		pc_savannah_habitability = 0.3
 
 		#@tertiary habitability levels
 		pc_tropical_habitability = 0.2

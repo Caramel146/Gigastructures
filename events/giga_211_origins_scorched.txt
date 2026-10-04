@@ -239,9 +239,9 @@ country_event = {
 
     option = {
         name = giga_scorched.005.a.renewal
-        custom_tooltip = giga_scorched.005.a.renewal.tooltip
-        hidden_effect = {
-            set_country_flag = giga_incandescent_society #modifies the Incandescent trait
+        add_modifier = {
+            modifier = giga_scorched_archaeologists
+            days = -1
         }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
@@ -449,10 +449,12 @@ country_event = {
             }
         }
         name = giga_scorched.008.a.renewal
-        custom_tooltip = giga_scorched.008.a.renewal.tooltip
         hidden_effect = {
-            set_country_flag = giga_incandescent_empire_size_pops #modifies the Incandescent trait
             remove_country_flag = tech_katzen_atomic_munitions_from_scorched #remove the tech swap if the option with the tech isn't chosen
+        }
+        add_modifier = {
+            modifier = giga_scorched_interstellar_tradition
+            days = -1
         }
         capital_scope = {
             remove_modifier = irradiated_desert_planet

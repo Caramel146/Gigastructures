@@ -371,6 +371,13 @@ irradiated_desert_shelters = {
 	pop_environment_tolerance = 0.3
 }
 
+giga_scorched_archaeologists = {
+	icon = "gfx/interface/icons/modifiers/mod_resource_minor_artifacts_mult.dds"
+	ship_archaeological_site_clues_add = 1
+	deposit_blockers_cost_mult = -0.1
+	planet_clear_blocker_speed_mult = 0.2
+}
+
 giga_scorched_tenacity = {
 	icon = "gfx/interface/icons/modifiers/mod_army_morale_damage_mult.dds"
 	ship_emergency_ftl_mult = -0.2
@@ -382,6 +389,12 @@ giga_scorched_everseeking = {
 	science_ship_survey_speed = 0.1
 	ship_anomaly_generation_chance_mult = 0.15
 	ship_archaeological_site_excavation_speed_mult = 0.1
+}
+
+giga_scorched_interstellar_tradition = {
+	icon = "gfx/interface/icons/modifiers/mod_empire_size_mult.dds"
+	empire_size_systems_mult = -0.1
+	empire_size_colonies_mult = -0.1
 }
 
 giga_scorched_alloyed_identity = {

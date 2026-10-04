@@ -29,7 +29,7 @@
  d_katzenland_salt_lake: "Salt Lake"
  d_katzenland_salt_lake_desc: "Though exposed water quickly evaporates, thick black mud survives here beneath an insulating salt crust. Plants that can tolerate the hypersaline conditions have a monopoly over the moisture."
  d_katzenland_commemoration_memorial: "Monument to the Lost"
- d_katzenland_commemoration_memorial_desc: "This memorial was built to remember those killed when this planet was devastated from orbit aeons ago."
+ d_katzenland_commemoration_memorial_desc: "This memorial remembers those killed when the planet was devastated from orbit aeons ago."
  d_katzenland_commemoration_creation: "Monument to Creation"
  d_katzenland_commemoration_creation_desc: "This monument serves to commemorate the crafting of the world from primordial fire, as told in local folklore."
 
@@ -43,11 +43,9 @@
  trait_giga_incandescent_desc: "Tempered in the furnace of a scorched world, this species has an unfaltering drive to endure."
  #origin_tooltip_post_apocalyptic_effects: "- $HOMEWORLD$ ['concept_pc_nuked']$NEW_LINE$- $SPECIES_TRAITS$ ['concept_survivor']" #TODO concepts with this as a reference
  giga_incandescent_efficiency_trait_tooltip: "This trait may have other effects depending on our choices during the §Y$giga_situation_scorched$§! situation. Effects other than $MOD_ARMY_DEFENSE_DAMAGE_MULT$ are doubled on §Y$pc_katzenland$s§!." #TODO make the specific effects display somehow. With GigaIncandescentTooltip?
- # giga_incandescent_society_tooltip: "§Y+5% $biologist_jobs_bonus_workforce_mult$§!"
- # giga_incandescent_unity_tooltip: ""
+ # giga_incandescent_unity_tooltip: "§Y+5% $biologist_jobs_bonus_workforce_mult$§!"
  # giga_incandescent_habitability_floor_tooltip: ""
  # giga_incandescent_efficiency_tooltip: ""
- # giga_incandescent_empire_size_pops_tooltip: ""
 
  giga_situation_scorched:0 "Immolated Origins"
  giga_situation_scorched_type:0 "$giga_situation_scorched$"
@@ -94,7 +92,8 @@
  giga_scorched.005.name: "Immolated Origins: Heritage"
  giga_scorched.005.desc: "What is our heritage? It has never been a simple question, but in recent times, it has also never been so complicated. The answer used to be that we inherit the blazing skies, earthen caves and rocky plains from preceding generations. But some now suggest that these things are not what our ancestors gave us, but merely the rubble left over from the destruction of our people. These individuals say that our true heritage is something to be rediscovered. As with everything these days, this is a fiercely contested perspective. We are forced to answer: is our heritage something to be reclaimed, or protected?"
  giga_scorched.005.a.renewal: "Recover what was taken."
- giga_scorched.005.a.renewal.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% $biologist_jobs_bonus_workforce_mult$§!." #§Y+5% $r_society$ from Jobs§!
+ giga_scorched_archaeologists: "Impassioned Archaeologists"
+ giga_scorched_archaeologists_desc: "Their history drives this civilisation to uncover more history still."
  giga_scorched.005.a.continuity: "Preserve what we know."
  giga_scorched.005.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% $bureaucrat_jobs_bonus_workforce_mult$§!." #§Y+5% $r_unity$ from Jobs§!
 
@@ -117,7 +116,8 @@
  giga_scorched.008.name: "Immolated Origins: A New Chapter"
  giga_scorched.008.desc: "What did we lose that day? What is our heritage? What are our proudest moments? What is our homeworld? We have asked, and answered, every question. We have battled with every idea, and looked within ourselves more closely than we may have found comfortable.\n\nNow, communities once rifted by such existential disagreements are tentatively coming back together, embracing around a new story of the [root.GetSpeciesAdj] civilisation. There is one final question, but by now, we already know the answer. Who are we?"
  giga_scorched.008.a.renewal: "We are an ancient race of the stars."
- giga_scorched.008.a.renewal.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y-10% $MOD_EMPIRE_SIZE_POPS_MULT$§!."
+ giga_scorched_interstellar_tradition: "Interstellar Tradition"
+ giga_scorched_interstellar_tradition_desc: "This nation proudly inherits a long history of life across the stars."
  irradiated_desert_planet_rehabilitated: "Rehabilitated Wasteland"
  irradiated_desert_planet_rehabilitated_desc: "This planet was subjected to untold amounts of nuclear weaponry in the distant past. Its surface still suffers from high background radiation, dust storms, and extreme heatwaves, but is in the process of recovery. The upsides of the the sheer quantity of explosives unleashed on this world are beginning to shine through, since the crust was violently loaded with heavy elements, and minerals were melted into almost alloy-like materials."
  giga_scorched.008.a.synthesis: "Sometimes, answers are complex."

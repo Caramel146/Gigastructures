@@ -1473,7 +1473,14 @@ country_event = {
 country_event = {
 	id = giga_flusion.005
 	title = "giga_flusion.005.name"
-	desc = "giga_flusion.005.desc"
+	desc = {
+		trigger = { NOT = { has_country_flag = tech_katzen_atomic_munitions_from_scorched } }
+		text = "giga_flusion.005.desc"
+	}
+	desc = {
+		trigger = { has_country_flag = tech_katzen_atomic_munitions_from_scorched }
+		text = "giga_flusion.005.scorched.desc"
+	}
 
 	picture = GFX_evt_relic_world_street
 	show_sound = event_radio_chatter
@@ -1483,9 +1490,7 @@ country_event = {
 	}
 	option = {
 		trigger = {
-			NOT = {
-				has_origin = origin_scorched
-			}
+			NOT = { has_country_flag = tech_katzen_atomic_munitions_from_scorched }
 		}
 		name = "giga_flusion.005.a"
 		add_research_option = tech_katzen_atomic_munitions
@@ -1494,6 +1499,7 @@ country_event = {
 			progress = 0.25
 		}
 		hidden_effect = {
+			set_country_flag = tech_katzen_atomic_munitions_from_katzens
 			if = {
 				limit = {
 					NOR = {
@@ -1510,11 +1516,27 @@ country_event = {
 
 	option = {
 		trigger = {
-			NOT = {
+			NOR = {
+				has_country_flag = tech_katzen_atomic_munitions_from_scorched
 				has_origin = origin_scorched
 			}
 		}
 		name = "giga_flusion.005.b"
+		remove_country_flag = katzen_atomic_munitions_possible
+	}
+
+	option = {
+		trigger = {
+			NOT = { has_country_flag = tech_katzen_atomic_munitions_from_scorched }
+			has_origin = origin_scorched
+		}
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier4unityreward
+			min = @tier4unitymin
+			max = @tier4unitymax
+		}
+		name = "giga_flusion.005.scorched.b"
 		remove_country_flag = katzen_atomic_munitions_possible
 	}
 
@@ -1706,10 +1728,6 @@ planet_event = {
 				modifier = "irradiated_desert_planet"
 				days = -1
 			}
-			# while = {
-			# 	count = 12
-			# 	create_katzenland_deposits = yes
-			# }
 			create_katzenland_deposits_new = yes
 			while = {
 				count = 28
@@ -1778,7 +1796,24 @@ country_event = {
 	is_triggered_only = yes
 
 	option = {
+		trigger = {
+			has_country_flag = tech_katzen_atomic_munitions_from_katzens
+		}
 		name = "giga_flusion.201.a"
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier3unityreward
+			min = @tier3unitymin
+			max = @tier3unitymax
+		}
+	}
+
+	option = {
+		trigger = {
+			has_country_flag = tech_katzen_atomic_munitions_from_scorched
+			has_origin = origin_scorched
+		}
+		name = "giga_flusion.201.b"
 		add_monthly_resource_mult = {
 			resource = unity
 			value = @tier3unityreward

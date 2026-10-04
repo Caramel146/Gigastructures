@@ -6682,13 +6682,16 @@
 
   giga_flusion.005.name:0 "Katzen Atomics"
   giga_flusion.005.desc:0 "After Flusion's destruction caused by the Katzens incinerating the entire planet in nuclear fire, our scientists couldn't help but notice that the Katzens' method of nuclear self-devastation were surprisingly efficient for a primitive species.\n\nAdditionally, Katzenland's archeological records show that its destruction was just as quick as that of Flusion, which further indicates that the Katzens had mastered the art of destroying planets in nuclear hellfire.\n\nThe more... radical elements of our military are suggesting that we reverse-engineer our findings on both of these worlds, in order to effectively adapt the Katzen methods to our planetary bombardment operations.\n\nThis would undoubtedly enable us to devastate worlds with unseen efficiency, although the rest of the galaxy might not be too happy about us destroying entire worlds in atomic fire..."
+  giga_flusion.005.scorched.desc:0 "After Flusion's destruction caused by the Katzens incinerating the entire planet in nuclear fire, our scientists couldn't help but notice that the Katzens' method of nuclear self-devastation were surprisingly efficient for a primitive species.\n\nAdditionally, Katzenland's archeological records show that its destruction was just as quick as that of Flusion, which further indicates that the Katzens had mastered the art of destroying planets in nuclear hellfire.\n\nWere we not already in possession of similar capabilities, this could have been a powerful capability to reverse-engineer. Even so, comparing our own techniques to similar ones wielded by an alien race could aid in their refinement."
   giga_flusion.005.a:0 "A wonderful suggestion! Let us do so at once..."
   giga_flusion.005.b:0 "Preposterous."
+  giga_flusion.005.scorched.b:0 "Such destructive power should stay buried."
   giga_flusion.005.c:0 "Curious... but not unique."
 
   giga_flusion.201.name:0 "Planet Devastated"
   giga_flusion.201.desc:0 "Our fleets have now completely destroyed the surface of an enemy planet, eradicating all signs of life and transforming it into a gigantic boiling radioactive desert. The sheer amount of weaponry we unleashed has had the side-effect of \"synthetizing\" some rare resources (that usually only naturally form under extreme conditions) onto the planet's surface, as well.\n\nTruly a beautiful sight."
   giga_flusion.201.a:0 "The Katzens would be proud, if they weren't all dead."
+  giga_flusion.201.b:0 "The firelight spreads to another world."
 
   bombardment_katzen:0 "Atomic"
   bombardment_katzen_desc:0 "$bombardment_katzen$ Bombardment unleashes the full might of nuclear, antimatter and biological weaponry onto the planet's surface.\n- §PApocalyptic§! damage to §YArmies§!\n- §PApocalyptic§! damage to §YPlanet§!\n- §PApocalyptic§! damage to §YPops§!\n- Will bombard undefended planets\n- Can reduce planets to Irradiated Desert Worlds\n - High chance of generating rare resource deposits on devastated worlds\n- Will §Rreduce§! the opinion of foreign empires we are not allied with upon planet devastation, if used on a non-genocidal empire\n- §RThis bombardment stance can, and will, completely ruin the planets it is used on§!"

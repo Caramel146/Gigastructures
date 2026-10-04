@@ -14,7 +14,7 @@ trait_giga_gas_giant_hab = {
     }
 
     randomized = no
-    allowed_archetypes = { BIOLOGICAL LITHOID }
+    allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
     sorting_priority = 30
     initial = no
 
@@ -222,7 +222,7 @@ trait_giga_incandescent = {
         always = no
     }
 
-    allowed_archetypes = { BIOLOGICAL LITHOID }
+    allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
 
     # custom_tooltip_with_modifiers = giga_incandescent_efficiency_trait_tooltip
 
@@ -236,16 +236,21 @@ trait_giga_incandescent = {
             fromfrom = {
                 has_country_flag = giga_incandescent_habitability_floor
             }
-            is_planet_class = pc_katzenland
+            planet = { is_planet_class = pc_katzenland }
         }
         key = MOD_POP_ENVIRONMENT_TOLERANCE
-        habitability_floor_add = 0.1
+        pop_environment_tolerance = 0.05
+    }
+    triggered_species_modifier = {
+        potential = {
+            planet = { is_planet_class = pc_katzenland }
+        }
+        army_defense_damage_mult = 0.2
     }
 
     triggered_pop_group_modifier = {
         potential = {
-            exists = owner
-            owner = { has_country_flag = giga_incandescent_society }
+            owner? = { has_country_flag = giga_incandescent_unity }
         }
         key = bureaucrat_jobs_bonus_workforce_mult
         modifier = {
@@ -255,42 +260,12 @@ trait_giga_incandescent = {
     #to double the modifier on Irradiated Desert Worlds
     triggered_pop_group_modifier = {
         potential = {
-            exists = owner
-            owner = { has_country_flag = giga_incandescent_society }
-            exists = planet
-            planet = {
-                is_planet_class = pc_katzenland
-            }
+            owner? = { has_country_flag = giga_incandescent_unity }
+            planet? = { is_planet_class = pc_katzenland }
         }
         key = bureaucrat_jobs_bonus_workforce_mult
         modifier = {
             bureaucrat_jobs_bonus_workforce_mult = 0.05
-        }
-    }
-
-    triggered_pop_group_modifier = {
-        potential = {
-            exists = owner
-            owner = { has_country_flag = giga_incandescent_unity }
-        }
-        key = biologist_jobs_bonus_workforce_mult
-        modifier = {
-            biologist_jobs_bonus_workforce_mult = 0.05
-        }
-    }
-    #to double the modifier on Irradiated Desert Worlds
-    triggered_pop_group_modifier = {
-        potential = {
-            exists = owner
-            owner = { has_country_flag = giga_incandescent_unity }
-            exists = planet
-            planet = {
-                is_planet_class = pc_katzenland
-            }
-        }
-        key = biologist_jobs_bonus_workforce_mult
-        modifier = {
-            biologist_jobs_bonus_workforce_mult = 0.05
         }
     }
 
@@ -309,7 +284,7 @@ trait_giga_incandescent = {
             fromfrom = {
                 has_country_flag = giga_incandescent_habitability_floor
             }
-            is_planet_class = pc_katzenland
+            planet = { is_planet_class = pc_katzenland }
         }
         key = MOD_POP_ENVIRONMENT_TOLERANCE
         habitability_floor_add = 0.1
@@ -317,8 +292,7 @@ trait_giga_incandescent = {
 
     triggered_pop_group_modifier = {
         potential = {
-            exists = owner
-            owner = { has_country_flag = giga_incandescent_efficiency }
+            owner? = { has_country_flag = giga_incandescent_efficiency }
         }
         key = MOD_POP_BONUS_WORKFORCE_MULT
         pop_bonus_workforce_mult = 0.05
@@ -326,40 +300,10 @@ trait_giga_incandescent = {
     #to double the modifier on Irradiated Desert Worlds
     triggered_pop_group_modifier = {
         potential = {
-            exists = owner
-            owner = { has_country_flag = giga_incandescent_efficiency }
-            exists = planet
-            planet = {
-                is_planet_class = pc_katzenland
-            }
+            owner? = { has_country_flag = giga_incandescent_efficiency }
+            planet? = { is_planet_class = pc_katzenland }
         }
         key = MOD_POP_BONUS_WORKFORCE_MULT
         pop_bonus_workforce_mult = 0.05
-    }
-
-    triggered_pop_group_modifier = {
-        potential = {
-            exists = owner
-            owner = { has_country_flag = giga_incandescent_empire_size_pops }
-        }
-        key = MOD_SPECIES_EMPIRE_SIZE_MULT
-        modifier = {
-            species_empire_size_mult = 0.1
-        }
-    }
-    #to double the modifier on Irradiated Desert Worlds
-    triggered_pop_group_modifier = {
-        potential = {
-            exists = owner
-            owner = { has_country_flag = giga_incandescent_empire_size_pops }
-            exists = planet
-            planet = {
-                is_planet_class = pc_katzenland
-            }
-        }
-        key = MOD_SPECIES_EMPIRE_SIZE_MULT
-        modifier = {
-            species_empire_size_mult = 0.1
-        }
     }
 }
