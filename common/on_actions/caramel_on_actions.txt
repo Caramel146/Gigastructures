@@ -1,5 +1,11 @@
 on_yearly_pulse_country = {
     events = {
-        caramel.1
+        caramel.1 #AI scaling buffs throughout the game
+    }
+}
+
+on_monthly_pulse_country = {
+    events = {
+        #caramel.2 #fixes modifier in MEM's Eden Protocol origin (nope, the modifier straight-up doesn't work)
     }
 }

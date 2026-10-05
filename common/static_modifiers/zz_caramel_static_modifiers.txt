@@ -72,3 +72,16 @@ caramel_ai_endgame_scaling = {
     country_resource_max_add = 1000
     country_naval_cap_add = 1
 }
+
+#overwrite for dysfunctional modifiers of same key in MEM
+mem_eden_protocol_mod_1_a = {
+    icon = "gfx/interface/icons/modifiers/mod_starbase_building_capacity_add.dds"
+    station_observers_produces_mult = 2
+    # station_observers_physics_research_produces_add = 5
+    # station_observers_society_research_produces_add = 5
+    # station_observers_engineering_research_produces_add = 5
+}
+mem_eden_protocol_mod_1_b = {
+    icon = "gfx/interface/icons/modifiers/mod_starbase_building_capacity_add.dds"
+    planet_housing_mult = 0.1 #habitat_districts_housing_add = 150
+}

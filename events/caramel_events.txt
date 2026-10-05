@@ -40,3 +40,39 @@ country_event = {
         }
     }
 }
+
+#MEM Eden origin fix for dysfunctional modifier mem_eden_protocol_mod_1_a
+country_event = {
+    id = caramel.2
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        is_country_type = primitive
+        capital_scope = {
+            has_observation_outpost = yes
+            observation_outpost = {
+                NOT = {
+                    has_modifier = mem_eden_protocol_mod_1_a
+                }
+            }
+            exists = observation_outpost_owner
+            observation_outpost_owner = {
+                has_modifier = mem_eden_protocol_mod_1_a #since MEM gives this modifier on an empire scope
+            }
+        }
+    }
+
+    immediate = {
+        capital_scope = {
+            observation_outpost = {
+                add_modifier = {
+                    modifier = mem_eden_protocol_mod_1_a
+                    years = -1
+                    clear_on_owner_change = yes
+                }
+            }
+        }
+    }
+}
