@@ -1,0 +1,78 @@
+namespace = caramel
+
+#pls AI be more relevant in endgame
+country_event = {
+    id = caramel.1
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        is_ai = yes
+        is_country_type = default
+    }
+
+    immediate = {
+        add_modifier = {
+            modifier = caramel_ai_scaling
+            years = -1
+            mult = value:caramel_ai_scaling_multiplier
+        }
+        if = {
+            limit = {
+                mid_game_years_passed > 0
+            }
+            add_modifier = {
+                modifier = caramel_ai_midgame_scaling
+                years = -1
+                mult = value:caramel_ai_scaling_midgame_multiplier
+            }
+        }
+        if = {
+            limit = {
+                end_game_years_passed > 0
+            }
+            add_modifier = {
+                modifier = caramel_ai_endgame_scaling
+                years = -1
+                mult = value:caramel_ai_scaling_endgame_multiplier
+            }
+        }
+    }
+}
+
+#MEM Eden origin fix for dysfunctional modifier mem_eden_protocol_mod_1_a
+country_event = {
+    id = caramel.2
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        is_country_type = primitive
+        capital_scope = {
+            has_observation_outpost = yes
+            observation_outpost = {
+                NOT = {
+                    has_modifier = mem_eden_protocol_mod_1_a
+                }
+            }
+            exists = observation_outpost_owner
+            observation_outpost_owner = {
+                has_modifier = mem_eden_protocol_mod_1_a #since MEM gives this modifier on an empire scope
+            }
+        }
+    }
+
+    immediate = {
+        capital_scope = {
+            observation_outpost = {
+                add_modifier = {
+                    modifier = mem_eden_protocol_mod_1_a
+                    years = -1
+                    clear_on_owner_change = yes
+                }
+            }
+        }
+    }
+}

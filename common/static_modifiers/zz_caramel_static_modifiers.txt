@@ -1,0 +1,87 @@
+caramel_ai_scaling = {
+    country_energy_produces_mult = 0.01
+    country_minerals_produces_mult = 0.01
+    country_food_produces_mult = 0.01
+    country_consumer_goods_produces_mult = 0.01
+    country_alloys_produces_mult = 0.01
+    country_trade_produces_mult = 0.01
+    country_volatile_motes_produces_mult = 0.01
+    country_exotic_gases_produces_mult = 0.01
+    country_rare_crystals_produces_mult = 0.01
+    country_sr_zro_produces_mult = 0.01
+    country_sr_dark_matter_produces_mult = 0.01
+    country_nanites_produces_mult = 0.01
+    country_giga_sr_iodizium_produces_mult = 0.01
+    country_giga_sr_sentient_metal_produces_mult = 0.01
+    country_giga_sr_negative_mass_produces_mult = 0.01
+    country_giga_sr_amb_megaconstruction_produces_mult = 0.01
+    country_unity_produces_mult = 0.01
+    country_physics_research_produces_mult = 0.01
+    country_society_research_produces_mult = 0.01
+    country_engineering_research_produces_mult = 0.01
+    country_resource_max_add = 1000
+    country_naval_cap_add = 1
+}
+
+caramel_ai_midgame_scaling = {
+    country_energy_produces_mult = 0.01
+    country_minerals_produces_mult = 0.01
+    country_food_produces_mult = 0.01
+    country_consumer_goods_produces_mult = 0.01
+    country_alloys_produces_mult = 0.01
+    country_trade_produces_mult = 0.01
+    country_volatile_motes_produces_mult = 0.01
+    country_exotic_gases_produces_mult = 0.01
+    country_rare_crystals_produces_mult = 0.01
+    country_sr_zro_produces_mult = 0.01
+    country_sr_dark_matter_produces_mult = 0.01
+    country_nanites_produces_mult = 0.01
+    country_giga_sr_iodizium_produces_mult = 0.01
+    country_giga_sr_sentient_metal_produces_mult = 0.01
+    country_giga_sr_negative_mass_produces_mult = 0.01
+    country_giga_sr_amb_megaconstruction_produces_mult = 0.01
+    country_unity_produces_mult = 0.01
+    country_physics_research_produces_mult = 0.01
+    country_society_research_produces_mult = 0.01
+    country_engineering_research_produces_mult = 0.01
+    country_resource_max_add = 1000
+    country_naval_cap_add = 1
+}
+
+caramel_ai_endgame_scaling = {
+    country_energy_produces_mult = 0.01
+    country_minerals_produces_mult = 0.01
+    country_food_produces_mult = 0.01
+    country_consumer_goods_produces_mult = 0.01
+    country_alloys_produces_mult = 0.01
+    country_trade_produces_mult = 0.01
+    country_volatile_motes_produces_mult = 0.01
+    country_exotic_gases_produces_mult = 0.01
+    country_rare_crystals_produces_mult = 0.01
+    country_sr_zro_produces_mult = 0.01
+    country_sr_dark_matter_produces_mult = 0.01
+    country_nanites_produces_mult = 0.01
+    country_giga_sr_iodizium_produces_mult = 0.01
+    country_giga_sr_sentient_metal_produces_mult = 0.01
+    country_giga_sr_negative_mass_produces_mult = 0.01
+    country_giga_sr_amb_megaconstruction_produces_mult = 0.01
+    country_unity_produces_mult = 0.01
+    country_physics_research_produces_mult = 0.01
+    country_society_research_produces_mult = 0.01
+    country_engineering_research_produces_mult = 0.01
+    country_resource_max_add = 1000
+    country_naval_cap_add = 1
+}
+
+#overwrite for dysfunctional modifiers of same key in MEM
+mem_eden_protocol_mod_1_a = {
+    icon = "gfx/interface/icons/modifiers/mod_starbase_building_capacity_add.dds"
+    station_observers_produces_mult = 2
+    # station_observers_physics_research_produces_add = 5
+    # station_observers_society_research_produces_add = 5
+    # station_observers_engineering_research_produces_add = 5
+}
+mem_eden_protocol_mod_1_b = {
+    icon = "gfx/interface/icons/modifiers/mod_starbase_building_capacity_add.dds"
+    planet_housing_mult = 0.1 #habitat_districts_housing_add = 150
+}
