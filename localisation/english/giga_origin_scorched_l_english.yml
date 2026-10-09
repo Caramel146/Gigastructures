@@ -42,9 +42,9 @@
  trait_giga_incandescent:0 "Incandescent"
  trait_giga_incandescent_desc: "Tempered in the furnace of a scorched world, this species has an unfaltering drive to endure."
  #origin_tooltip_post_apocalyptic_effects: "- $HOMEWORLD$ ['concept_pc_nuked']$NEW_LINE$- $SPECIES_TRAITS$ ['concept_survivor']" #TODO concepts with this as a reference
- giga_incandescent_efficiency_trait_tooltip: "This trait may have other effects depending on our choices during the §Y$giga_situation_scorched$§! situation. Effects other than $MOD_ARMY_DEFENSE_DAMAGE_MULT$ are doubled on §Y$pc_katzenland$s§!." #TODO make the specific effects display somehow. With GigaIncandescentTooltip?
+ giga_incandescent_efficiency_trait_tooltip: "This trait may have other effects depending on our choices during the §Y$giga_situation_scorched$§! situation. All effects are doubled on §Y$pc_katzenland$s§!." #TODO make the specific effects display somehow. With GigaIncandescentTooltip?
  # giga_incandescent_unity_tooltip: "§Y+5% $biologist_jobs_bonus_workforce_mult$§!"
- # giga_incandescent_habitability_floor_tooltip: ""
+ # giga_incandescent_amenities_tooltip: ""
  # giga_incandescent_efficiency_tooltip: ""
 
  giga_situation_scorched:0 "Immolated Origins"
@@ -95,7 +95,7 @@
  giga_scorched_archaeologists: "Impassioned Archaeologists"
  giga_scorched_archaeologists_desc: "Their history drives this civilisation to uncover more history still."
  giga_scorched.005.a.continuity: "Preserve what we know."
- giga_scorched.005.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% $bureaucrat_jobs_bonus_workforce_mult$§!." #§Y+5% $r_unity$ from Jobs§!
+ giga_scorched.005.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% £unity£ Unity from jobs§!, doubled on §YIrradiated Desert Worlds§!."
 
  giga_scorched.006.name: "Immolated Origins: Pride"
  giga_scorched.006.desc: "Our peoples have long united around our pride in shared achievements, but that unity is hard to find when people don't share the same stories. New movements have begun which see the the greatest moments of [root.GetSpeciesAdj] heroism as during the desperate days when [root.GetHomeWorldName] was relentlessly bombarded from orbit. This has caused others to dig in even more firmly, protecting the prevailing stories of hardy pioneers who tamed the wilderness in service to future generations.\n\nWe can't go on like this, with different memories tearing history in two directions. It's time to decide who our heroic ancestors were."
@@ -103,7 +103,7 @@
  giga_scorched_tenacity: "Tenacious Heroes"
  giga_scorched_tenacity_desc: "Those who refuse to die, no matter how dire the odds, are held up as role models."
  giga_scorched.006.a.continuity: "Pioneers, toiling to build a better home."
- giga_scorched.006.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+10% $MOD_HABITABILITY_FLOOR$§!." #gfx/interface/icons/modifiers/mod_habitability_floor_add.dds
+ giga_scorched.006.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y-5% $MOD_POP_AMENITIES_USAGE_BASE$§!, doubled on §YIrradiated Desert Worlds§!."
 
  giga_scorched.007.name: "Immolated Origins: Homeland"
  giga_scorched.007.desc: "What is our homeworld? Can it be [root.GetHomeWorldName], when we cannot prove our origins on this planet? Even if we are, is it really the same world we evolved on anymore? Alternatively, perhaps the origin of the [root.GetSpeciesNamePlural] species is irrelevant, and it is madness to suggest our civilisation could possibly not be native to [root.GetHomeWorldName] when our way of life is so intrinsically connected to it.\n\nIt is too important a question to avoid asking, and too simple an answer to avoid giving: is [root.GetHomeWorldName] our homeworld?"
@@ -111,7 +111,7 @@
  giga_scorched_everseeking: "Ever-seeking"
  giga_scorched_everseeking_desc: "We may never conclusively discover our real homeworld, but we will also never stop searching."
  giga_scorched.007.a.continuity: "We are from [root.GetHomeWorldName]."
- giga_scorched.007.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% $MOD_POP_BONUS_WORKFORCE_MULT$."
+ giga_scorched.007.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% $MOD_POP_BONUS_WORKFORCE_MULT$, doubled on §YIrradiated Desert Worlds§!."
 
  giga_scorched.008.name: "Immolated Origins: A New Chapter"
  giga_scorched.008.desc: "What did we lose that day? What is our heritage? What are our proudest moments? What is our homeworld? We have asked, and answered, every question. We have battled with every idea, and looked within ourselves more closely than we may have found comfortable.\n\nNow, communities once rifted by such existential disagreements are tentatively coming back together, embracing around a new story of the [root.GetSpeciesAdj] civilisation. There is one final question, but by now, we already know the answer. Who are we?"
@@ -124,4 +124,4 @@
  giga_scorched_alloyed_identity: "Alloyed Identity"
  giga_scorched_alloyed_identity_desc: "Our unity is tempered in the forges of debate, where every obstacle must be faced to be overcome."
  giga_scorched.008.a.continuity: "We are a young race of the wastelands."
- giga_scorched.008.a.continuity.tooltip: "§Y$trait_pc_katzenland_preference$§! is now available for species habitability modification."
+ giga_scorched.008.a.continuity.tooltip: "§Y$trait_pc_katzenland_preference$§! is now available for species habitability modification if we have the §Y$tech_glandular_acclimation$§! technology."

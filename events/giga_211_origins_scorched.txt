@@ -324,7 +324,7 @@ country_event = {
         name = giga_scorched.006.a.continuity
         custom_tooltip = giga_scorched.006.a.continuity.tooltip
         hidden_effect = {
-            set_country_flag = giga_incandescent_habitability_floor #modifies the Incandescent trait
+            set_country_flag = giga_incandescent_amenities #modifies the Incandescent trait
         }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }

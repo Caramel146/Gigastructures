@@ -224,38 +224,28 @@ trait_giga_incandescent = {
 
     allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
 
-    # custom_tooltip_with_modifiers = giga_incandescent_efficiency_trait_tooltip
+    custom_tooltip_with_modifiers = giga_incandescent_efficiency_trait_tooltip
 
     modifier = {
-        army_defense_damage_mult = 0.2
         pop_environment_tolerance = 0.05
+        planet_pops_upkeep_mult = -0.05
     }
     #to double the modifiers on Irradiated Desert Worlds
     triggered_planet_growth_habitability_modifier = {
-        potential = {
-            fromfrom = {
-                has_country_flag = giga_incandescent_habitability_floor
-            }
-            planet = { is_planet_class = pc_katzenland }
-        }
+        potential = { is_planet_class = pc_katzenland }
         key = MOD_POP_ENVIRONMENT_TOLERANCE
         pop_environment_tolerance = 0.05
     }
-    triggered_species_modifier = {
-        potential = {
-            planet = { is_planet_class = pc_katzenland }
-        }
-        army_defense_damage_mult = 0.2
+    triggered_pop_group_modifier = {
+        potential = { planet? = { is_planet_class = pc_katzenland } }
+        planet_pops_upkeep_mult = -0.05
     }
 
     triggered_pop_group_modifier = {
         potential = {
             owner? = { has_country_flag = giga_incandescent_unity }
         }
-        key = bureaucrat_jobs_bonus_workforce_mult
-        modifier = {
-            bureaucrat_jobs_bonus_workforce_mult = 0.05
-        }
+        planet_jobs_unity_produces_mult = 0.05
     }
     #to double the modifier on Irradiated Desert Worlds
     triggered_pop_group_modifier = {
@@ -263,31 +253,22 @@ trait_giga_incandescent = {
             owner? = { has_country_flag = giga_incandescent_unity }
             planet? = { is_planet_class = pc_katzenland }
         }
-        key = bureaucrat_jobs_bonus_workforce_mult
-        modifier = {
-            bureaucrat_jobs_bonus_workforce_mult = 0.05
-        }
+        planet_jobs_unity_produces_mult = 0.05
     }
 
-    triggered_planet_growth_habitability_modifier = {
+    triggered_pop_group_modifier = {
         potential = {
-            fromfrom = {
-                has_country_flag = giga_incandescent_habitability_floor
-            }
+            fromfrom = { has_country_flag = giga_incandescent_amenities }
         }
-        key = MOD_POP_ENVIRONMENT_TOLERANCE
-        habitability_floor_add = 0.1
+        pop_amenities_usage_mult = -0.05
     }
     #to double the modifier on Irradiated Desert Worlds
-    triggered_planet_growth_habitability_modifier = {
+    triggered_pop_group_modifier = {
         potential = {
-            fromfrom = {
-                has_country_flag = giga_incandescent_habitability_floor
-            }
-            planet = { is_planet_class = pc_katzenland }
+            fromfrom = { has_country_flag = giga_incandescent_amenities }
+            planet? = { is_planet_class = pc_katzenland }
         }
-        key = MOD_POP_ENVIRONMENT_TOLERANCE
-        habitability_floor_add = 0.1
+        pop_amenities_usage_mult = -0.05
     }
 
     triggered_pop_group_modifier = {

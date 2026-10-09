@@ -765,9 +765,9 @@ define_text = {
 # 	}
 # 	text = {
 # 		trigger = {
-# 			has_country_flag = giga_incandescent_habitability_floor
+# 			has_country_flag = giga_incandescent_amenities
 # 		}
-# 		localization_key = giga_incandescent_habitability_floor_tooltip
+# 		localization_key = giga_incandescent_amenities_tooltip
 # 	}
 # 	text = {
 # 		trigger = {
