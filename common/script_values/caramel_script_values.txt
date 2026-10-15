@@ -8,6 +8,9 @@ caramel_ai_scaling_multiplier = {
         mult = 0.5
     }
 }
+caramel_ai_scaling_multiplier_nontaxable = {
+    add = trigger:years_passed
+}
 
 caramel_ai_scaling_midgame_multiplier = {
     add = trigger:mid_game_years_passed
@@ -19,6 +22,9 @@ caramel_ai_scaling_midgame_multiplier = {
         mult = 0.5
     }
 }
+caramel_ai_scaling_midgame_multiplier_nontaxable = {
+    add = trigger:mid_game_years_passed
+}
 
 caramel_ai_scaling_endgame_multiplier = {
     add = trigger:end_game_years_passed
@@ -29,4 +35,7 @@ caramel_ai_scaling_endgame_multiplier = {
         }
         mult = 0.5
     }
+}
+caramel_ai_scaling_endgame_multiplier_nontaxable = {
+    add = trigger:end_game_years_passed
 }

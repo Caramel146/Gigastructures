@@ -1,0 +1,10 @@
+NGameplay = {
+    FEDERATION_OPPOSING_ETHICS_PENALTY	= -0.75 #up from -0.5	# Federation cohesion for opposing ethics
+    NAVAL_CAPACITY_MAX										= 99999	# Max value of Naval Capacity
+}
+
+NAI = {
+    FEDERATION_ACCEPTANCE_MEMBER_VOTE = 40 #down from 50	# added to acceptance when a member is voting whether to approve an alliance invite
+    FEDERATION_ACCEPTANCE_ASSOCIATION_VOTE = 80 #down from 100
+    FEDERATION_ACCEPTANCE_DISTANCE_MULT = -0.15 #previously -0.1 # per 1 border distance
+}

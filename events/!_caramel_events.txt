@@ -1,0 +1,205 @@
+namespace = caramel
+
+#pls AI be more relevant in endgame
+country_event = {
+    id = caramel.1
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        is_ai = yes
+        is_country_type = default
+    }
+
+    immediate = {
+        add_modifier = {
+            modifier = caramel_ai_scaling
+            years = -1
+            mult = value:caramel_ai_scaling_multiplier
+        }
+        add_modifier = {
+            modifier = caramel_ai_scaling_nontaxable
+            years = -1
+            mult = value:caramel_ai_scaling_multiplier_nontaxable
+        }
+        if = {
+            limit = {
+                mid_game_years_passed > 0
+            }
+            add_modifier = {
+                modifier = caramel_ai_midgame_scaling
+                years = -1
+                mult = value:caramel_ai_scaling_midgame_multiplier
+            }
+            add_modifier = {
+                modifier = caramel_ai_midgame_scaling_nontaxable
+                years = -1
+                mult = value:caramel_ai_scaling_midgame_multiplier_nontaxable
+            }
+        }
+        if = {
+            limit = {
+                end_game_years_passed > 0
+            }
+            add_modifier = {
+                modifier = caramel_ai_endgame_scaling
+                years = -1
+                mult = value:caramel_ai_scaling_endgame_multiplier
+            }
+            add_modifier = {
+                modifier = caramel_ai_endgame_scaling_nontaxable
+                years = -1
+                mult = value:caramel_ai_scaling_endgame_multiplier_nontaxable
+            }
+        }
+    }
+}
+
+#MEM Eden origin fix for dysfunctional modifier mem_eden_protocol_mod_1_a
+country_event = {
+    id = caramel.2
+    hide_window = yes
+
+    is_triggered_only = yes
+
+    trigger = {
+        is_country_type = primitive
+        capital_scope = {
+            has_observation_outpost = yes
+            observation_outpost = {
+                NOT = {
+                    has_modifier = mem_eden_protocol_mod_1_a
+                }
+            }
+            exists = observation_outpost_owner
+            observation_outpost_owner = {
+                has_modifier = mem_eden_protocol_mod_1_a #since MEM gives this modifier on an empire scope
+            }
+        }
+    }
+
+    immediate = {
+        capital_scope = {
+            observation_outpost = {
+                add_modifier = {
+                    modifier = mem_eden_protocol_mod_1_a
+                    years = -1
+                    clear_on_owner_change = yes
+                }
+            }
+        }
+    }
+}
+
+
+
+#add supress_country_destroyed_message to asteroids
+namespace = observation
+country_event = {
+    id = observation.2
+    title = "observation.2.name"
+    desc = "observation.2.desc"
+    picture = GFX_evt_asteroid_approaching_planet
+    show_sound = event_red_alert
+    location = event_target:pre_ftl_planet
+
+    is_triggered_only = yes
+
+    immediate = {
+        if = {
+            limit = {
+                event_target:pre_ftl_planet = { has_observation_outpost = yes }
+            }
+            event_target:pre_ftl_planet.observation_outpost = {
+                set_event_locked = yes
+            }
+        }
+        create_country = {
+            name = "NAME_Incoming_Asteroid"
+            type = asteroid_faction
+        }
+        last_created_country = {
+            set_country_flag = incoming_asteroid_pre_ftl
+            set_country_flag = supress_country_destroyed_message
+            create_fleet = {
+                name = "NAME_Asteroid"
+                effect = {
+                    set_owner = PREV
+                    create_ship = {
+                        name = "NAME_Asteroid"
+                        design = "NAME_Asteroid"
+                    }
+                    set_location = {
+                        target = event_target:pre_ftl_planet
+                        distance = 75
+                        angle = random
+                    }
+                    queue_actions = {
+                        move_to = event_target:pre_ftl_planet
+                        effect = {
+                            id = "observation.2.effect.1"
+                            ROOT = {
+                                random_list = {
+                                    # Collides with planet!
+                                    75 = { country_event = { id = observation.3 } }
+                                    # Collides with observation post!
+                                    25 = {
+                                        modifier = {
+                                            factor = 0
+                                            event_target:pre_ftl_planet = {
+                                                OR = {
+                                                    has_observation_outpost = no
+                                                    AND = {
+                                                        has_observation_outpost = yes
+                                                        observation_outpost_owner = {
+                                                            NOT = { is_same_value = ROOT }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        modifier = {
+                                            factor = 0.1
+                                            is_xenophobe = yes
+                                        }
+                                        country_event = { id = observation.5 }
+                                    }
+                                    # Pre-FTLs divert asteroid!
+                                    5 = {
+                                        modifier = {
+                                            factor = 0
+                                            event_target:pre_ftl_country = {
+                                                NOR = {
+                                                    has_pre_ftl_age = atomic_age
+                                                    has_pre_ftl_age = early_space_age
+                                                }
+                                            }
+                                        }
+                                        country_event = { id = observation.10 }
+                                    }
+                                }
+                            }
+                            event_target:pre_ftl_planet = {
+                                set_timed_carrier_flag = {
+                                    flag = impacted_asteroid
+                                    days = 30
+                                }
+                            }
+                            destroy_fleet = this
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    option = {
+        name = "observation.2.a"
+    }
+
+    after = {
+        custom_tooltip = cannot_reveal_tt
+        custom_tooltip = cannot_dismantle_outpost_tt
+    }
+}

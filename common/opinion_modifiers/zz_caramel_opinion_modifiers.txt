@@ -1,0 +1,17 @@
+opinion_forced_subjectized = {
+    opinion = {
+        base = -200 #doubled
+    }
+
+    decay = {
+        base = 2 #doubled
+    }
+}
+
+opinion_friction = {
+    opinion = {
+        base = -2 #doubled
+    }
+
+    unique = yes
+}
