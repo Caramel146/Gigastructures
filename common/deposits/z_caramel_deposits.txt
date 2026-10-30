@@ -1,0 +1,128 @@
+
+d_frameworld_nature_preserve = {
+    is_for_colonizable = yes
+    category = deposit_cat_rare
+    icon = d_gaia_planet
+
+    drop_weight = { weight = 0 }
+    potential = { always = no }
+
+    resources = {
+        category = planet_buildings # ranger lodge
+
+        # unity for non-xenophobes and servitors
+        produces = {
+            trigger = {
+                exists = owner
+                owner = {
+                    giga_is_environmentalist = no
+                    or = {
+                        and = {
+                            is_gestalt = no
+                            is_xenophobe = no
+                        }
+                        has_valid_civic = civic_machine_servitor
+                    }
+                }
+            }
+            unity = 10
+        }
+
+        # food for everyone else
+        produces = {
+            trigger = {
+                exists = owner
+                owner = {
+                    giga_is_environmentalist = no
+                    or = {
+                        is_xenophobe = yes
+                        is_gestalt = yes
+                    }
+                }
+            }
+            food = 10
+        }
+
+        # 2 unity per outpost with blockers
+        produces = {
+            trigger = {
+                exists = owner
+                owner = { giga_is_environmentalist = yes }
+            }
+            unity = 2
+            multiplier = value:giga_frameworld_ranger_count
+        }
+    }
+
+    planet_modifier = {
+        planet_max_districts_add = -1
+    }
+
+    # 1 ranger plus 1 per outpost with blockers
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { giga_is_environmentalist = yes }
+        }
+        job_biologist_add = 100
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { giga_is_environmentalist = yes }
+        }
+        job_biologist_add = 100
+        multiplier = value:giga_frameworld_ranger_count
+    }
+
+    # boosts
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { giga_is_environmentalist = yes }
+        }
+        planet_biologists_minerals_produces_add = 1
+        multiplier = value:giga_frameworld_ranger_boost|resource|minerals|
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { giga_is_environmentalist = yes }
+        }
+        planet_biologists_energy_produces_add = 1
+        multiplier = value:giga_frameworld_ranger_boost|resource|energy|
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { giga_is_environmentalist = yes }
+        }
+        planet_biologists_food_produces_add = 1
+        multiplier = value:giga_frameworld_ranger_boost|resource|food|
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { giga_is_environmentalist = yes }
+        }
+        planet_biologists_physics_research_produces_add = 1
+        multiplier = value:giga_frameworld_ranger_boost|resource|physics_research|
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { giga_is_environmentalist = yes }
+        }
+        planet_biologists_society_research_produces_add = 1
+        multiplier = value:giga_frameworld_ranger_boost|resource|society_research|
+    }
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { giga_is_environmentalist = yes }
+        }
+        planet_biologists_engineering_research_produces_add = 1
+        multiplier = value:giga_frameworld_ranger_boost|resource|engineering_research|
+    }
+}
