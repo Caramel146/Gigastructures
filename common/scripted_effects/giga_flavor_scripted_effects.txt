@@ -2250,9 +2250,7 @@ katzen_reformation_collapse = {
 				remove_all_buildings = yes
 				remove_all_districts = yes
 				change_pc = pc_katzenland
-				set_planet_entity = {
-					entity = katzenland_01_entity
-				}
+				set_planet_entity = { entity = katzenland_01_entity }
 				add_modifier = {
 					modifier = "irradiated_desert_planet"
 					days = -1
@@ -2450,9 +2448,9 @@ katzen_reformation_collapse = {
 								random = {
 									chance = 50
 									change_pc = pc_katzenland
-									set_planet_entity = {
-										entity = katzenland_01_entity
-									}
+									clear_blockers = yes
+									clear_deposits = yes
+									set_planet_entity = { entity = katzenland_01_entity }
 									add_modifier = {
 										modifier = "irradiated_desert_planet"
 										days = -1

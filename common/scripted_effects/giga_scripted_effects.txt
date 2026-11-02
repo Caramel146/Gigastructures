@@ -97,6 +97,12 @@ setup_katzenland_planet = {
 # }
 
 create_katzenland_deposits_new = {
+	remove_modifier = "natural_beauty"
+	remove_modifier = "atmospheric_aphrodisiac"
+	remove_modifier = "atmospheric_hallucinogen"
+	remove_modifier = "lush_planet"
+	remove_modifier = "dangerous_wildlife"
+
 	export_trigger_value_to_variable = {
 		trigger = planet_size
 		variable = katzenland_district_rolls
