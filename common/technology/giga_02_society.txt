@@ -10,7 +10,14 @@ giga_tech_orbital_naval_logistics = {
 	tier = 4
 	category = { military_theory }
 	is_rare = yes
-	prerequisites = { "tech_starbase_4" "tech_centralized_command" }
+	prerequisites = {
+		OR = {
+			"tech_starbase_4"
+			"tech_waystation_2"
+		}
+		"tech_centralized_command"
+	}
+
 	weight = @tier5weight1
 	prereqfor_desc = {
 		custom = { title = "allow_orb_naval_logistics"	desc = "orb_naval_logistics_desc" }
@@ -211,16 +218,11 @@ giga_tech_planetary_seeder_nexus = {
 			has_technology = tech_gene_tailoring
 			AND = {
 				is_machine_empire = yes
-				or = {
-					is_catalytic_empire = yes
-					country_uses_bio_ships = yes
+				resource_expenses_compare = {
+					resource = food
+					value > 0
 				}
 			}
-		}
-		OR = {
-			has_genetically_ascended = yes
-			country_uses_bio_ships = yes
-			is_catalytic_empire = yes
 		}
 		NOT = {
 			AND = {
@@ -654,7 +656,6 @@ giga_tech_stellar_ring_habitat = {
 	cost = @tier5cost3
 	tier = 5
 	category = { new_worlds }
-	ai_update_type = all
 	prerequisites = { tech_mega_engineering tech_habitat_2 }
 	weight = @tier5weight3
 	is_rare = yes
