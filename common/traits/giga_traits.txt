@@ -207,7 +207,6 @@ trait_giga_gas_giant_hab_robot = {
 
 trait_giga_incandescent = {
     cost = 0
-    icon = "gfx/interface/icons/traits/trait_malleable_forge.dds" #TODO unique
 
     initial = no
     randomized = no
@@ -241,35 +240,35 @@ trait_giga_incandescent = {
         planet_pops_upkeep_mult = -0.05
     }
 
-    triggered_pop_group_modifier = {
-        potential = {
-            owner? = { has_country_flag = giga_incandescent_unity }
-        }
-        planet_jobs_unity_produces_mult = 0.05
-    }
-    #to double the modifier on Irradiated Desert Worlds
-    triggered_pop_group_modifier = {
-        potential = {
-            owner? = { has_country_flag = giga_incandescent_unity }
-            planet? = { is_planet_class = pc_katzenland }
-        }
-        planet_jobs_unity_produces_mult = 0.05
-    }
+    # triggered_pop_group_modifier = {
+    #     potential = {
+    #         owner? = { has_country_flag = giga_incandescent_unity }
+    #     }
+    #     planet_jobs_unity_produces_mult = 0.05
+    # }
+    # #to double the modifier on Irradiated Desert Worlds
+    # triggered_pop_group_modifier = {
+    #     potential = {
+    #         owner? = { has_country_flag = giga_incandescent_unity }
+    #         planet? = { is_planet_class = pc_katzenland }
+    #     }
+    #     planet_jobs_unity_produces_mult = 0.05
+    # }
 
-    triggered_pop_group_modifier = {
-        potential = {
-            fromfrom = { has_country_flag = giga_incandescent_amenities }
-        }
-        pop_amenities_usage_mult = -0.05
-    }
-    #to double the modifier on Irradiated Desert Worlds
-    triggered_pop_group_modifier = {
-        potential = {
-            fromfrom = { has_country_flag = giga_incandescent_amenities }
-            planet? = { is_planet_class = pc_katzenland }
-        }
-        pop_amenities_usage_mult = -0.05
-    }
+    # triggered_pop_group_modifier = {
+    #     potential = {
+    #         fromfrom = { has_country_flag = giga_incandescent_amenities }
+    #     }
+    #     pop_amenities_usage_mult = -0.05
+    # }
+    # #to double the modifier on Irradiated Desert Worlds
+    # triggered_pop_group_modifier = {
+    #     potential = {
+    #         fromfrom = { has_country_flag = giga_incandescent_amenities }
+    #         planet? = { is_planet_class = pc_katzenland }
+    #     }
+    #     pop_amenities_usage_mult = -0.05
+    # }
 
     triggered_pop_group_modifier = {
         potential = {

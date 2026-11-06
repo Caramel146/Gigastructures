@@ -36,13 +36,13 @@
 
  origin_scorched:0 "Scorched Earth"
  origin_scorched_desc:0 "§RWARNING: Challenging Origin§!\nThis species clings on to life in an irradiated wasteland - since time immemorial, or so their oldest stories say. But now, as their archaeological capabilities grow, they must grapple with the possibility that something else came Before..." #yes that capital B is deliberate
- origin_tooltip_scorched_effects: "Start on an $pc_katzenland$, with the $trait_giga_incandescent$ species trait."
+ origin_tooltip_scorched_effects: "Start on an $pc_katzenland$, with the $trait_giga_incandescent$ species trait and an additional £building£ ['building:building_factory_1']."
  giga_start_screen_scorched:0 "Our society's oldest memories are of firestorms overhead, and gales sandblasting away our shelters. We knew nothing else. It wasn't until we turned out telescopes to distant worlds that we realised how hostile our home is for life. Driven by renewed interest in the story of life on our planet, our archaeologists are digging deep below the sands, hunting for anything that the howling winds have not destroyed..."
 
  trait_giga_incandescent:0 "Incandescent"
  trait_giga_incandescent_desc: "Tempered in the furnace of a scorched world, this species has an unfaltering drive to endure."
  #origin_tooltip_post_apocalyptic_effects: "- $HOMEWORLD$ ['concept_pc_nuked']$NEW_LINE$- $SPECIES_TRAITS$ ['concept_survivor']" #TODO concepts with this as a reference
- giga_incandescent_efficiency_trait_tooltip: "This trait may have other effects depending on our choices during the §Y$giga_situation_scorched$§! situation. All effects are doubled on §Y$pc_katzenland$s§!." #TODO make the specific effects display somehow. With GigaIncandescentTooltip?
+ giga_incandescent_efficiency_trait_tooltip: "This trait may have other effects depending on our choices during the §Y$giga_situation_scorched$§! situation. All effects are doubled on §Y$pc_katzenland$s§!." #TODO make the triggered effects display somehow. With GigaIncandescentTooltip?
  # giga_incandescent_unity_tooltip: "§Y+5% $biologist_jobs_bonus_workforce_mult$§!"
  # giga_incandescent_amenities_tooltip: ""
  # giga_incandescent_efficiency_tooltip: ""
@@ -65,14 +65,14 @@
  giga_situation_scorched_questions_answered_four: "4/4"
 
  giga_situation_scorched_approach_renewal:0 "Revival"
- giga_situation_scorched_approach_renewal_desc:0 "We will work to reclaim as much of our historical culture and environment as possible."
- giga_situation_scorched_approach_renewal_tooltip:0 "$giga_situation_scorched_approach_renewal_desc$" #TODO?
+ giga_situation_scorched_approach_renewal_desc:0 "Our history was stolen from us - but we will take it back, and will not let any opposition stand in our way."
+ giga_situation_scorched_approach_renewal_tooltip:0 "We will work to reclaim as much of our historical culture and environment as possible."
  giga_situation_scorched_approach_synthesis:0 "Debate"
- giga_situation_scorched_approach_synthesis_desc:0 "By facilitating productive debate we can face and resolve this cultural unrest."
- giga_situation_scorched_approach_synthesis_tooltip:0 "$giga_situation_scorched_approach_synthesis_desc$" #TODO?
+ giga_situation_scorched_approach_synthesis_desc:0 "We are swamped by differences, and if we do not learn to respect them all simultaneously, they will tear us apart."
+ giga_situation_scorched_approach_synthesis_tooltip:0 "By facilitating productive debate we can face and resolve this cultural unrest."
  giga_situation_scorched_approach_continuity:0 "Autochthony"
- giga_situation_scorched_approach_continuity_desc:0 "We will further embrace the current state of the world we are indigenous to."
- giga_situation_scorched_approach_continuity_tooltip:0 "$giga_situation_scorched_approach_continuity_desc$" #TODO?
+ giga_situation_scorched_approach_continuity_desc:0 "This is our home, and it always has been. We reject any who seek to make our planet a stranger to us."
+ giga_situation_scorched_approach_continuity_tooltip:0 "We will further embrace the current state of the world we are indigenous to."
  giga_situation_scorched_progress:0 "Cultural Momentum"
 
  giga_scorched.002.name: "From the Dustbin of History"
@@ -93,9 +93,11 @@
  giga_scorched.005.desc: "What is our heritage? It has never been a simple question, but in recent times, it has also never been so complicated. The answer used to be that we inherit the blazing skies, earthen caves and rocky plains from preceding generations. But some now suggest that these things are not what our ancestors gave us, but merely the rubble left over from the destruction of our people. These individuals say that our true heritage is something to be rediscovered. As with everything these days, this is a fiercely contested perspective. We are forced to answer: is our heritage something to be reclaimed, or protected?"
  giga_scorched.005.a.renewal: "Recover what was taken."
  giga_scorched_archaeologists: "Impassioned Archaeologists"
- giga_scorched_archaeologists_desc: "Their history drives this civilisation to uncover more history still."
+ giga_scorched_archaeologists_desc: "This civilisation is driven to uncover their lost prehistory."
  giga_scorched.005.a.continuity: "Preserve what we know."
- giga_scorched.005.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% £unity£ Unity from jobs§!, doubled on §YIrradiated Desert Worlds§!."
+ giga_scorched_conservation: "Historical Conservation"
+ giga_scorched_conservation_desc: "This civilisation is determined to preserve the achievements of recent historical ages - artifacts, architecture, literature and all."
+ #giga_scorched.005.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y+5% £unity£ Unity from jobs§!, doubled on §YIrradiated Desert Worlds§!."
 
  giga_scorched.006.name: "Immolated Origins: Pride"
  giga_scorched.006.desc: "Our peoples have long united around our pride in shared achievements, but that unity is hard to find when people don't share the same stories. New movements have begun which see the the greatest moments of [root.GetSpeciesAdj] heroism as during the desperate days when [root.GetHomeWorldName] was relentlessly bombarded from orbit. This has caused others to dig in even more firmly, protecting the prevailing stories of hardy pioneers who tamed the wilderness in service to future generations.\n\nWe can't go on like this, with different memories tearing history in two directions. It's time to decide who our heroic ancestors were."
@@ -103,7 +105,9 @@
  giga_scorched_tenacity: "Tenacious Heroes"
  giga_scorched_tenacity_desc: "Those who refuse to die, no matter how dire the odds, are held up as role models."
  giga_scorched.006.a.continuity: "Pioneers, toiling to build a better home."
- giga_scorched.006.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y-5% $MOD_POP_AMENITIES_USAGE_BASE$§!, doubled on §YIrradiated Desert Worlds§!."
+ giga_scorched_pioneers: "Ascetic Heritage"
+ giga_scorched_pioneers_desc: "Our ancestors thrived on so little, and we are proud to do the same."
+ #giga_scorched.006.a.continuity.tooltip: "The §Y$trait_giga_incandescent$§! trait will be upgraded with §Y-5% $MOD_POP_AMENITIES_USAGE_BASE$§!, doubled on §YIrradiated Desert Worlds§!."
 
  giga_scorched.007.name: "Immolated Origins: Homeland"
  giga_scorched.007.desc: "What is our homeworld? Can it be [root.GetHomeWorldName], when we cannot prove our origins on this planet? Even if we are, is it really the same world we evolved on anymore? Alternatively, perhaps the origin of the [root.GetSpeciesNamePlural] species is irrelevant, and it is madness to suggest our civilisation could possibly not be native to [root.GetHomeWorldName] when our way of life is so intrinsically connected to it.\n\nIt is too important a question to avoid asking, and too simple an answer to avoid giving: is [root.GetHomeWorldName] our homeworld?"

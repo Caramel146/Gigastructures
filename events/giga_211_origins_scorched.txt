@@ -267,14 +267,18 @@ country_event = {
 
     option = {
         name = giga_scorched.005.a.continuity
-        custom_tooltip = giga_scorched.005.a.continuity.tooltip
-        hidden_effect = {
-            set_country_flag = giga_incandescent_unity #modifies the Incandescent trait
+        add_modifier = {
+            modifier = giga_scorched_conservation
+            days = -1
         }
-        every_situation = {
-            limit = { is_situation_type = giga_situation_scorched }
-            add_situation_progress = 24
-        }
+        # custom_tooltip = giga_scorched.005.a.continuity.tooltip
+        # hidden_effect = {
+        #     set_country_flag = giga_incandescent_unity #modifies the Incandescent trait
+        # }
+        # every_situation = {
+        #     limit = { is_situation_type = giga_situation_scorched }
+        #     add_situation_progress = 24
+        # }
         ai_chance = {
             base = 1
         }
@@ -335,10 +339,14 @@ country_event = {
 
     option = {
         name = giga_scorched.006.a.continuity
-        custom_tooltip = giga_scorched.006.a.continuity.tooltip
-        hidden_effect = {
-            set_country_flag = giga_incandescent_amenities #modifies the Incandescent trait
+        add_modifier = {
+            modifier = giga_scorched_pioneers
+            days = -1
         }
+        # custom_tooltip = giga_scorched.006.a.continuity.tooltip
+        # hidden_effect = {
+        #     set_country_flag = giga_incandescent_amenities #modifies the Incandescent trait
+        # }
         every_situation = {
             limit = { is_situation_type = giga_situation_scorched }
             add_situation_progress = 24
@@ -520,7 +528,7 @@ country_event = {
         trigger = {
             check_variable = {
                 which = scorched_situation_final_position
-                value > 100
+                value > 200
             }
         }
         name = giga_scorched.008.a.continuity
