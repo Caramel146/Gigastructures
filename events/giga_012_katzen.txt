@@ -724,22 +724,117 @@ country_event = {
 		########################
 		# INITIAL FLEET SPAWNS #
 		########################
-		if = {
-			limit = {
-				has_global_flag = katzenartig_improbable
-			} #improbable buff
-			create_fleet = { #Spawn the cooler attack moon and an escort fleet.
-				name = "Kaiser's Boundless Will"
-				settings = {
-					spawn_debris = no
-					can_upgrade = no
-					can_change_composition = no # no
-					uses_naval_capacity = yes
-					is_boss = yes
-					can_change_leader = no
-				}
-				effect = {
-					set_owner = event_target:flusion_primitives_country
+		# if = {
+		# 	limit = {
+		# 		has_global_flag = katzenartig_improbable
+		# 	} #improbable buff
+		# 	create_fleet = { #Spawn the cooler attack moon and an escort fleet.
+		# 		name = "Kaiser's Boundless Will"
+		# 		settings = {
+		# 			spawn_debris = no
+		# 			can_upgrade = no
+		# 			can_change_composition = no # no
+		# 			uses_naval_capacity = yes
+		# 			is_boss = yes
+		# 			can_change_leader = no
+		# 		}
+		# 		effect = {
+		# 			set_owner = event_target:flusion_primitives_country
+		# 			create_ship = {
+		# 				name =  "Kaiser Moon of Infinite Improbability"
+		# 				design = "Improbable Kaiser Moon"
+		# 				upgradable = no
+		# 				effect = {
+		# 					set_ship_flag = kaiser_moon_ship
+		# 					save_global_event_target_as = target_kaiser_moon_ship
+		# 				}
+		# 			}
+		# 			assign_leader = event_target:flusion_douclaw
+		# 			set_location = event_target:gigaflusion
+		# 			set_fleet_stance = aggressive
+		# 		}
+		# 	}
+		# }
+		# else_if = {
+		# 	limit = {
+		# 		has_global_flag = katzenartig_stellarite
+		# 	} #stellarite buff
+		# 	create_fleet = { #Spawn the cooler attack moon and an escort fleet.
+		# 		name = "Kaiser's Undying Will"
+		# 		settings = {
+		# 			spawn_debris = no
+		# 			can_upgrade = no
+		# 			can_change_composition = yes # no
+		# 			uses_naval_capacity = yes
+		# 			is_boss = yes
+		# 			can_change_leader = no
+		# 		}
+		# 		effect = {
+		# 			set_owner = event_target:flusion_primitives_country
+		# 			create_ship = {
+		# 				name = "Stellarite Kaiser Moon"
+		# 				design = "Stellarite Kaiser Moon"
+		# 				upgradable = no
+		# 				effect = {
+		# 					set_ship_flag = kaiser_moon_ship
+		# 					save_global_event_target_as = target_kaiser_moon_ship
+		# 				}
+		# 			}
+		# 			assign_leader = event_target:flusion_douclaw
+		# 			set_location = event_target:gigaflusion
+		# 			set_fleet_stance = aggressive
+		# 		}
+		# 	}
+		# }
+		# else_if = {
+		# 	limit = {
+		# 		NOR = {
+		# 			has_global_flag = katzenartig_stellarite
+		# 			has_global_flag = katzenartig_improbable
+		# 		}
+		# 	}
+		# 	create_fleet = { #Spawn the cooler attack moon and an escort fleet.
+		# 		name = "Kaiservorherrschaft"
+		# 		settings = {
+		# 			spawn_debris = no
+		# 			can_upgrade = no
+		# 			can_change_composition = yes # no Its a surprise tool that will help us later
+		# 			uses_naval_capacity = yes
+		# 		}
+		# 		effect = {
+		# 			set_owner = event_target:flusion_primitives_country
+		# 			create_ship = {
+		# 				name = "Kaiservorherrschaft"
+		# 				design = "Kaiser Moon"
+		# 				upgradable = no
+		# 				effect = {
+		# 					set_ship_flag = kaiser_moon_ship
+		# 					save_global_event_target_as = target_kaiser_moon_ship
+		# 				}
+		# 			}
+		# 			assign_leader = event_target:flusion_douclaw
+		# 			set_location = event_target:gigaflusion
+		# 			set_fleet_stance = aggressive
+		# 		}
+		# 	}
+		# }
+
+		create_fleet = { #Spawn the cooler attack moon and an escort fleet.
+			name = "Kaiservorherrschaft"
+			settings = {
+				spawn_debris = no
+				can_upgrade = no
+				can_change_composition = yes # no Its a surprise tool that will help us later
+				uses_naval_capacity = yes
+				can_change_leader = no
+			}
+			effect = {
+				if = {
+					limit = {
+						has_global_flag = katzenartig_improbable
+					}
+					set_name = "Kaiser's Boundless Will"
+					set_fleet_settings = { is_boss = yes }
 					create_ship = {
 						name =  "Kaiser Moon of Infinite Improbability"
 						design = "Improbable Kaiser Moon"
@@ -749,40 +844,13 @@ country_event = {
 							save_global_event_target_as = target_kaiser_moon_ship
 						}
 					}
-					while = {
-						count = 24 #4 escort ships
-						spawn_katzen_cruiser = yes
-					}
-					while = {
-						count = 48 #12 bombers
-						spawn_katzen_bomber = yes
-					}
-					while = {
-						count = 112 #24 panzers
-						spawn_katzen_panzer = yes
-					}
-					assign_leader = event_target:flusion_douclaw
-					set_location = event_target:gigaflusion
-					set_fleet_stance = aggressive
 				}
-			}
-		}
-		else_if = {
-			limit = {
-				has_global_flag = katzenartig_stellarite
-			} #stellarite buff
-			create_fleet = { #Spawn the cooler attack moon and an escort fleet.
-				name = "Kaiser's Undying Will"
-				settings = {
-					spawn_debris = no
-					can_upgrade = no
-					can_change_composition = yes # no
-					uses_naval_capacity = yes
-					is_boss = yes
-					can_change_leader = no
-				}
-				effect = {
-					set_owner = event_target:flusion_primitives_country
+				else_if = {
+					limit = {
+						has_global_flag = katzenartig_stellarite
+					}
+					set_name = "Kaiser's Undying Will"
+					set_fleet_settings = { is_boss = yes }
 					create_ship = {
 						name = "Stellarite Kaiser Moon"
 						design = "Stellarite Kaiser Moon"
@@ -792,38 +860,8 @@ country_event = {
 							save_global_event_target_as = target_kaiser_moon_ship
 						}
 					}
-					while = {
-						count = 6 #4 escort ships
-						spawn_katzen_cruiser = yes
-					}
-					while = {
-						count = 16 #12 bombers
-						spawn_katzen_bomber = yes
-					}
-					while = {
-						count = 30 #24 panzers
-						spawn_katzen_panzer = yes
-					}
-					assign_leader = event_target:flusion_douclaw
-					set_location = event_target:gigaflusion
-					set_fleet_stance = aggressive
 				}
-			}
-		}
-		else_if = {
-			limit = {
-				has_global_flag = katzenartig_deathwish
-			}
-			create_fleet = { #Spawn the cooler attack moon and an escort fleet.
-				name = "Kaiservorherrschaft"
-				settings = {
-					spawn_debris = no
-					can_upgrade = no
-					can_change_composition = yes # no
-					uses_naval_capacity = yes
-				}
-				effect = {
-					set_owner = event_target:flusion_primitives_country
+				else = {
 					create_ship = {
 						name = "Kaiservorherrschaft"
 						design = "Kaiser Moon"
@@ -833,67 +871,23 @@ country_event = {
 							save_global_event_target_as = target_kaiser_moon_ship
 						}
 					}
-					while = {
-						count = 4 #4 escort ships
-						spawn_katzen_cruiser = yes
-					}
-					while = {
-						count = 12 #12 bombers
-						spawn_katzen_bomber = yes
-					}
-					while = {
-						count = 24 #24 panzers
-						spawn_katzen_panzer = yes
-					}
-					assign_leader = event_target:flusion_douclaw
-					set_location = event_target:gigaflusion
-					set_fleet_stance = aggressive
 				}
-			}
-		}
-		else_if = {
-			limit = {
-				NOR = {
-					has_global_flag = katzenartig_deathwish
-					has_global_flag = katzenartig_stellarite
-					has_global_flag = katzenartig_improbable
+				while = {
+					count = 4 #4 escort ships
+					spawn_katzen_cruiser = yes
 				}
-			}
-			create_fleet = { #Spawn the cooler attack moon and an escort fleet.
-				name = "Kaiservorherrschaft"
-				settings = {
-					spawn_debris = no
-					can_upgrade = no
-					can_change_composition = yes # no Its a surprise tool that will help us later
-					uses_naval_capacity = yes
+				while = {
+					count = 12 #12 bombers
+					spawn_katzen_bomber = yes
 				}
-				effect = {
-					set_owner = event_target:flusion_primitives_country
-					create_ship = {
-						name = "Kaiservorherrschaft"
-						design = "Kaiser Moon"
-						upgradable = no
-						effect = {
-							set_ship_flag = kaiser_moon_ship
-							save_global_event_target_as = target_kaiser_moon_ship
-						}
-					}
-					while = {
-						count = 4 #4 escort ships
-						spawn_katzen_cruiser = yes
-					}
-					while = {
-						count = 12 #12 bombers
-						spawn_katzen_bomber = yes
-					}
-					while = {
-						count = 24 #24 panzers
-						spawn_katzen_panzer = yes
-					}
-					assign_leader = event_target:flusion_douclaw
-					set_location = event_target:gigaflusion
-					set_fleet_stance = aggressive
+				while = {
+					count = 24 #24 panzers
+					spawn_katzen_panzer = yes
 				}
+				set_owner = event_target:flusion_primitives_country
+				assign_leader = event_target:flusion_douclaw
+				set_location = event_target:gigaflusion
+				set_fleet_stance = aggressive
 			}
 		}
 		event_target:target_kaiser_moon_ship = {
@@ -1925,10 +1919,7 @@ country_event = { #Inform player that Flusion is fighting
 				name = "Katzenkrieg"
 			}
 		}
-		set_timed_country_flag = {
-			flag = recent_katzenartig_war
-			days = 900
-		}
+		set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 		if = {
 			limit = { is_ai = no }
 			every_country = {
@@ -1940,10 +1931,7 @@ country_event = { #Inform player that Flusion is fighting
 				}
 				join_war = ROOT
 				set_kaiser_war_opinion = yes
-				set_timed_country_flag = {
-					flag = recent_katzenartig_war
-					days = 900
-				}
+				set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 			}
 		}
 		every_subject = {
@@ -1964,10 +1952,7 @@ country_event = { #Inform player that Flusion is fighting
 			}
 			join_war = ROOT
 			set_kaiser_war_opinion = yes
-			set_timed_country_flag = {
-				flag = recent_katzenartig_war
-				days = 900
-			}
+			set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 		}
 		if = {
 			limit = {
@@ -1988,10 +1973,7 @@ country_event = { #Inform player that Flusion is fighting
 			overlord = {
 				join_war = ROOT
 				set_kaiser_war_opinion = yes
-				set_timed_country_flag = {
-					flag = recent_katzenartig_war
-					days = 900
-				}
+				set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 			}
 		}
 		set_kaiser_war_opinion = yes
@@ -2841,10 +2823,7 @@ country_event = { #hello
 				limit = { is_in_federation_with = ROOT } #can't call defensive pact allies in an offensive war
 				join_war = ROOT
 				set_kaiser_war_opinion = yes
-				set_timed_country_flag = {
-					flag = recent_katzenartig_war
-					days = 900
-				}
+				set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 			}
 			every_subject = {
 				limit = {
@@ -2863,10 +2842,7 @@ country_event = { #hello
 				}
 				join_war = ROOT
 				set_kaiser_war_opinion = yes
-				set_timed_country_flag = {
-					flag = recent_katzenartig_war
-					days = 900
-				}
+				set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 			}
 			if = {
 				limit = {
@@ -2887,16 +2863,10 @@ country_event = { #hello
 				overlord = {
 					join_war = ROOT
 					set_kaiser_war_opinion = yes
-					set_timed_country_flag = {
-						flag = recent_katzenartig_war
-						days = 900
-					}
+					set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 				}
 			}
-			set_timed_country_flag = {
-				flag = recent_katzenartig_war
-				days = 900
-			}
+			set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 		}
 	}
 
@@ -3480,7 +3450,13 @@ country_event = {
 	title = "giga_katzen.0030.name"
 
 	desc = {
+		trigger = { NOT = { is_at_war_with = event_target:flusion_primitives_country } }
 		text = "giga_katzen.0030.desc"
+	}
+
+	desc = {
+		trigger = { is_at_war_with = event_target:flusion_primitives_country }
+		text = "giga_katzen.0030.atwar.desc"
 	}
 
 	is_triggered_only = yes
@@ -6842,10 +6818,7 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 							}
 							join_war = event_target:kaiser_attack_target
 							set_kaiser_war_opinion = yes
-							set_timed_country_flag = {
-								flag = recent_katzenartig_war
-								days = 900
-							}
+							set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 						}
 						every_subject = {
 							limit = {
@@ -6865,10 +6838,7 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 							}
 							join_war = event_target:kaiser_attack_target
 							set_kaiser_war_opinion = yes
-							set_timed_country_flag = {
-								flag = recent_katzenartig_war
-								days = 900
-							}
+							set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 						}
 						if = {
 							limit = {
@@ -6889,10 +6859,7 @@ country_event = { #every 8-12 years, Kaiser randomly declares war on an AI and r
 							overlord = {
 								join_war = event_target:kaiser_attack_target
 								set_kaiser_war_opinion = yes
-								set_timed_country_flag = {
-									flag = recent_katzenartig_war
-									days = 900
-								}
+								set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 							}
 						}
 						every_country = { #inform others
@@ -9333,10 +9300,7 @@ country_event = {
 			}
 			country_event = { id = giga_katzen.5001 days = 10 } #recall attache
 		}
-		set_timed_country_flag = {
-			flag = recent_katzenartig_war
-			days = 900
-		}
+		set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 		event_target:flusion_primitives_country = {
 			declare_war = {
 				target = root
@@ -9366,10 +9330,7 @@ country_event = {
 			}
 			join_war = ROOT
 			set_kaiser_war_opinion = yes
-			set_timed_country_flag = {
-				flag = recent_katzenartig_war
-				days = 900
-			}
+			set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 		}
 		every_subject = {
 			limit = {
@@ -9389,10 +9350,7 @@ country_event = {
 			}
 			join_war = ROOT
 			set_kaiser_war_opinion = yes
-			set_timed_country_flag = {
-				flag = recent_katzenartig_war
-				days = 900
-			}
+			set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 		}
 		if = {
 			limit = {
@@ -9413,10 +9371,7 @@ country_event = {
 			overlord = {
 				join_war = ROOT
 				set_kaiser_war_opinion = yes
-				set_timed_country_flag = {
-					flag = recent_katzenartig_war
-					days = 900
-				}
+				set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 			}
 		}
 		save_global_event_target_as = kaiser_attack_target
@@ -9691,16 +9646,10 @@ country_event = {
 				overlord = {
 					join_war = ROOT
 					set_kaiser_war_opinion = yes
-					set_timed_country_flag = {
-						flag = recent_katzenartig_war
-						days = 900
-					}
+					set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 				}
 			}
-			set_timed_country_flag = {
-				flag = recent_katzenartig_war
-				days = 900
-			}
+			set_timed_country_flag = { flag = recent_katzenartig_war days = 1080 }
 		}
 	}
 
@@ -17305,7 +17254,7 @@ country_event = { #roll to restabilise or collapse during instability
 	}
 }
 
-country_event = {
+country_event = { #Notify nation of Reformation instability
 	id = giga_katzen.7012
 	title = "giga_katzen.7012.name"
 	desc = "giga_katzen.7012.desc"
