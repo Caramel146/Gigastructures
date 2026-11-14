@@ -4835,29 +4835,7 @@ country_event = { #Trading with Kaiser
 			set_country_flag = sold_gatzo
 			while = { count = 2 increase_kaiser_opinion = yes }
 			event_target:paluushia.solar_system = {
-				if = {
-					limit = {
-						exists = starbase
-					}
-					starbase = { #Transfer land
-						set_owner = event_target:flusion_primitives_country
-					}
-				}
-				else = { #No starbase, kaiser makes one
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:flusion_primitives_country
-					}
-				}
-				every_system_planet = {
-					limit = {
-						is_colony = yes
-						owner = {
-							NOT = { is_country_type = primitive }
-						}
-					}
-					set_owner = event_target:flusion_primitives_country
-				}
+				transfer_system_to_kaiser = yes
 				event_target:katzenland = { carrier_event = { id = giga_katzen.110 } } #colonise
 			}
 		}
@@ -4872,7 +4850,46 @@ country_event = { #Trading with Kaiser
 country_event = { #Trading with Kaiser
 	id = giga_katzen.0202
 	title = "giga_katzen.0202.name"
-	desc = "giga_katzen.0202.desc"
+	desc = {
+		trigger = {
+			event_target:kaiser_sell_yes = {
+				any_system_planet = {
+					giga_is_birch_world = yes
+				}
+			}
+		}
+		text = "giga_katzen.0202.birch.desc"
+	}
+	desc = {
+		trigger = {
+			event_target:kaiser_sell_yes = {
+				has_star_flag = jupitwo_system
+			}
+		}
+		text = "giga_katzen.0202.jupitwo.desc"
+	}
+	desc = {
+		trigger = {
+			event_target:kaiser_sell_yes = {
+				is_same_value = event_target:giga_eawaf_system
+			}
+		}
+		text = "giga_katzen.0202.faust.desc"
+	}
+	desc = {
+		trigger = {
+			event_target:kaiser_sell_yes = {
+				NOR = {
+					any_system_planet = {
+						giga_is_birch_world = yes
+					}
+					has_star_flag = jupitwo_system
+					is_same_value = event_target:giga_eawaf_system
+				}
+			}
+		}
+		text = "giga_katzen.0202.desc"
+	}
 
 	diplomatic = yes
 	location = from
@@ -4941,26 +4958,7 @@ country_event = { #Trading with Kaiser
 				}
 			}
 			event_target:kaiser_sell_yes = {
-				starbase = { #Transfer land
-					set_owner = event_target:flusion_primitives_country
-				}
-				if = {
-					limit = {
-						NOT = { exists = starbase } #No starbase, kaiser makes one
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:flusion_primitives_country
-					}
-				}
-				every_system_planet_colony = {
-					limit = {
-						owner = {
-							NOT = { is_country_type = primitive }
-						}
-					}
-					set_owner = event_target:flusion_primitives_country
-				}
+				transfer_system_to_kaiser = yes
 			}
 			every_system = {
 				remove_star_flag = kaiser_sell_1
@@ -5035,26 +5033,7 @@ country_event = { #Trading with Kaiser
 				}
 			}
 			event_target:kaiser_sell_yes = {
-				starbase = { #Transfer land
-					set_owner = event_target:flusion_primitives_country
-				}
-				if = {
-					limit = {
-						NOT = { exists = starbase } #No starbase, kaiser makes one
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:flusion_primitives_country
-					}
-				}
-				every_system_planet_colony = {
-					limit = {
-						owner = {
-							NOT = { is_country_type = primitive }
-						}
-					}
-					set_owner = event_target:flusion_primitives_country
-				}
+				transfer_system_to_kaiser = yes
 			}
 			every_system = {
 				remove_star_flag = kaiser_sell_1
@@ -5123,26 +5102,7 @@ country_event = { #Trading with Kaiser
 				}
 			}
 			event_target:kaiser_sell_yes = {
-				starbase = { #Transfer land
-					set_owner = event_target:flusion_primitives_country
-				}
-				if = {
-					limit = {
-						NOT = { exists = starbase } #No starbase, kaiser makes one
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:flusion_primitives_country
-					}
-				}
-				every_system_planet_colony = {
-					limit = {
-						owner = {
-							NOT = { is_country_type = primitive }
-						}
-					}
-					set_owner = event_target:flusion_primitives_country
-				}
+				transfer_system_to_kaiser = yes
 			}
 			every_system = {
 				remove_star_flag = kaiser_sell_1
@@ -5155,7 +5115,7 @@ country_event = { #Trading with Kaiser
 
 	option = { #bye!
 		default_hide_option = yes
-		name = "giga_katzen.0202.bye"
+		name = "giga_katzen.0201.bye"
 	}
 }
 
@@ -5520,6 +5480,19 @@ country_event = { #Manage war forges and the Kaiser's eco
 					size = starbase_outpost
 					owner = event_target:flusion_primitives_country
 				}
+			}
+		}
+		every_system_within_border = {
+			limit = {
+				any_system_megastructure = {
+					NOT = { exists = owner }
+				}
+			}
+			every_system_megastructure = {
+				limit = {
+					NOT = { exists = owner }
+				}
+				set_owner = event_target:flusion_primitives_country
 			}
 		}
 
@@ -9154,26 +9127,7 @@ country_event = { #Kaiser demands land!
 					has_star_flag = kaiser_demands_system
 					owner = { is_country = event_target:kaiser_system_demand_target }
 				}
-				starbase = { #Transfer land
-					set_owner = event_target:flusion_primitives_country
-				}
-				if = {
-					limit = {
-						NOT = { exists = starbase } #No starbase, kaiser makes one
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:flusion_primitives_country
-					}
-				}
-				every_system_planet_colony = {
-					limit = {
-						owner = {
-							NOT = { is_country_type = primitive }
-						}
-					}
-					set_owner = event_target:flusion_primitives_country
-				}
+				transfer_system_to_kaiser = yes
 				remove_star_flag = kaiser_demands_system
 			}
 			every_system = {

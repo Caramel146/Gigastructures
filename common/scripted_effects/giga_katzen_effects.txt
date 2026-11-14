@@ -743,11 +743,19 @@ create_katzen_general = {
 # 	}
 # }
 
+#run on system scope
 calculate_system_value_kaiser = {
-	if = {
-		limit = { #Empty system
+	#nothing in here should count nomad assets! They're not being sold!
+
+	if = { #Colonyless system has 5 value as a floor
+		limit = {
 			NOT = {
-				any_system_planet = { is_colony = yes }
+				any_system_planet = {
+					OR = {
+						is_colonizable = yes
+						is_colony = yes
+					}
+				}
 			}
 		}
 		event_target:flusion_primitives_country = {
@@ -757,114 +765,137 @@ calculate_system_value_kaiser = {
 			}
 		}
 	}
-	else_if = { #Habitable worlds (non colonies) add value
+
+	every_system_planet = { #Habitable worlds add value
+		#TODO anyone, please add appropriate cross-mod compat to higher value categories!
 		limit = {
-			any_system_planet = {
-				is_planet_habitable = yes
-				is_colony = no
-			}
-		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 10
-			}
-		}
-	}
-	else_if = { #Calculate the system's value based on colonies
-		limit = {
-			any_system_planet = { #Minor colony
+			OR = {
+				is_colonizable = yes
 				is_colony = yes
-				NOT = { count_owned_pop_amount = { count > 1000 } }
 			}
 		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 20
-			}
-		}
-	}
-	else_if = {
-		limit = {
-			any_system_planet = { #Medium colony
-				is_colony = yes
-				count_owned_pop_amount = { count > 1000 }
-				count_owned_pop_amount = { count < 4000 }
-			}
-		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 40
-			}
-		}
-	}
-	else_if = {
-		limit = {
-			any_system_planet = { #Major colony
-				is_colony = yes
-				count_owned_pop_amount = { count >= 4000 }
-			}
-		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 100
-			}
-		}
-	}
-	if = { #Megas add value
-		limit = {
-			any_system_megastructure = {
-				exists = THIS
-			}
-		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 40
-			}
-		}
-	}
-	if = { #QSO adds value
-		limit = {
-			any_system_megastructure = {
+		if = { #EXTREME value worlds
+			limit = {
 				OR = {
-					is_megastructure_type = quasi_stellar_obliterator_0
-					is_megastructure_type = quasi_stellar_obliterator_1
-					is_megastructure_type = quasi_stellar_obliterator_2
-					is_megastructure_type = quasi_stellar_obliterator_3
-					is_megastructure_type = quasi_stellar_obliterator_4
-					is_megastructure_type = quasi_stellar_obliterator_5
-					is_megastructure_type = nicoll_beam_0
-					is_megastructure_type = nicoll_beam_1
-					is_megastructure_type = nicoll_beam_2
-					is_megastructure_type = nicoll_beam_3
-					is_megastructure_type = nicoll_beam_4
-					is_megastructure_type = nicoll_beam_firing
-					is_megastructure_type = nicoll_beam_menu
-					is_megastructure_type = nicoll_beam_ready
-					is_megastructure_type = nicoll_beam_cooldown
-					is_megastructure_type = nicoll_beam_targetting
-					is_megastructure_type = psychic_beacon_0
-					is_megastructure_type = psychic_beacon_1
-					is_megastructure_type = psychic_beacon_2
-					is_megastructure_type = psychic_beacon_3
-					is_megastructure_type = psychic_beacon_4
+					giga_is_birch_world = yes #who tf is selling these though
+					AND = {
+						giga_is_frame_world = yes
+						planet_size >= 1000 #niche but technically they can be conquered then sold on
+					}
+				}
+			}
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = 5000 #500k trade + 250k alloys which sounds like a lot but consider the cost of making those structures
 				}
 			}
 		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 300
+		else_if = { #ultra valuable worlds
+			limit = {
+				OR = {
+					giga_is_frame_world = yes #due to else_if this frame must be BELOW 1k planet size
+					giga_is_alderson_disk = yes
+					is_planet_class = pc_alderson_slice_gaia_shattered #I'm not making another to split repaired and shattered alderson values
+					is_acot_awesome_planet_class = yes
+					is_acot_pmc_vault = yes
+				}
+			}
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = 500 #50k trade + 25k alloys
+				}
+			}
+		}
+		else_if = { #very valuable worlds
+			limit = {
+				OR = {
+					giga_is_ringworld = yes
+					is_planet_class = pc_shattered_ring_habitable #no I'm not less lazy here than for the shattered Alderson
+				}
+			}
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = 100 #10k trade + 5k alloys
+				}
+			}
+		}
+		else_if = { #increased value worlds
+			limit = {
+				OR = {
+					AND = { #AKA relics, ecus etc
+						habitable_planet = yes
+						habitable_planet_not_urban = no
+					}
+					giga_is_gaia = yes
+					giga_is_habitable_gas_giant = yes
+					#Kaiser can't use hive or machine worlds so they're not any more valuable to him
+				}
+			}
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = 30
+				}
+			}
+		}
+		else_if = { #surprise LESS valuable world
+			limit = {
+				giga_is_pc_giga_elysium = yes
+			}
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = 5
+				}
+			}
+		}
+		else = { #normal planets etc. or fallback
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = 10
+				}
 			}
 		}
 	}
-	if = { #QSO adds value if katown res is high
+
+	if = { #Pops add value - 1 per 100 pops
 		limit = {
-			any_system_megastructure = {
+			any_system_planet_colony = {
+				is_colony = yes
+				owner = { is_same_value = solar_system.owner }
+			}
+		}
+		every_system_planet_colony = {
+			limit = {
+				owner = { is_same_value = solar_system.owner }
+			}
+			export_trigger_value_to_variable = {
+				trigger = pop_amount
+				variable = value_kaiser_pops_on_planet
+			}
+			divide_variable = {
+				which = value_kaiser_pops_on_planet
+				value = 100 #AKA 100 trade + 50 alloys per 100 pops
+			}
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = prev.value_kaiser_pops_on_planet
+				}
+			}
+		}
+	}
+
+	every_system_megastructure = { #Megas add value
+		limit = {
+			owner = { is_same_value = solar_system.owner }
+		}
+		if = { #he wants to buy out all potential Flusion-sniping weapons
+			limit = {
 				OR = {
 					is_megastructure_type = quasi_stellar_obliterator_0
 					is_megastructure_type = quasi_stellar_obliterator_1
@@ -882,6 +913,33 @@ calculate_system_value_kaiser = {
 					is_megastructure_type = nicoll_beam_ready
 					is_megastructure_type = nicoll_beam_cooldown
 					is_megastructure_type = nicoll_beam_targetting
+				}
+			}
+			event_target:flusion_primitives_country = {
+				if = { #he REALLY wants to deny others that superweapon if the Katown Shield is at risk
+					limit = {
+						check_variable = {
+							which = katown_res
+							value > 0
+						}
+					}
+					change_variable = {
+						which = "kaiser_trade_value"
+						value = 1000 #100k trade 50k alloys
+					}
+				}
+				else = { #otherwise he doesn't care AS much
+					change_variable = {
+						which = "kaiser_trade_value"
+						value = 300
+					}
+				}
+			}
+		}
+
+		else_if = { #more Flusion-sniping weapons but you are NOT allowed to sell psionic beacons for those profits
+			limit = {
+				OR = {
 					is_megastructure_type = psychic_beacon_0
 					is_megastructure_type = psychic_beacon_1
 					is_megastructure_type = psychic_beacon_2
@@ -890,22 +948,29 @@ calculate_system_value_kaiser = {
 				}
 			}
 			event_target:flusion_primitives_country = {
-				check_variable = {
-					which = katown_res
-					value > 0
+				if = { #he REALLY wants to deny others that superweapon if the Katown Shield is at risk
+					limit = {
+						check_variable = {
+							which = katown_res
+							value > 0
+						}
+					}
+					change_variable = {
+						which = "kaiser_trade_value"
+						value = 100 #10k trade 5k alloys
+					}
+				}
+				else = { #otherwise he doesn't care AS much
+					change_variable = {
+						which = "kaiser_trade_value"
+						value = 40 #just normal mega value
+					}
 				}
 			}
 		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 1000
-			}
-		}
-	}
-	if = { #systemcraft adds value
-		limit = {
-			any_system_megastructure = {
+
+		else_if = { #he wants to buy out scary weapons that the wicked Gigas devs deny him
+			limit = {
 				OR = {
 					is_megastructure_type = war_system_0
 					is_megastructure_type = war_system_1
@@ -915,69 +980,71 @@ calculate_system_value_kaiser = {
 					is_megastructure_type = war_system_5
 				}
 			}
-		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 800
-			}
-		}
-	}
-	if = { #Gaia and artificial worlds add value
-		limit = {
-			any_system_planet = {
-				OR = {
-					is_planet_class = pc_gaia
-					giga_habitable_structure = yes
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = 800 #80k trade + 40k alloys (technically systemcraft construction sites net a strong profit but shh I don't want to account for that)
 				}
 			}
 		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 20
+
+		else_if = { #hyper relays are cool but NOT comparable value to most megas
+			limit = {
+				OR = {
+					is_megastructure_type = hyper_relay
+					is_megastructure_type = hyper_relay_ruined
+					is_megastructure_type = hyper_relay_restored
+				}
+			}
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = 2 #200 trade 100 alloys
+				}
+			}
+		}
+
+		else = {
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = 40 #4k trade 2k alloys
+				}
 			}
 		}
 	}
+
 	if = { #Strategic resources add value
 		limit = {
 			any_system_planet = {
 				has_any_strategic_resource = yes
 			}
 		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 10
+		every_system_planet = {
+			limit = {
+				has_any_strategic_resource = yes
 			}
-		}
-	}
-	if = { #ecus adds value
-		limit = {
-			any_system_planet = {
-				is_planet_class = pc_city
-			}
-		}
-		event_target:flusion_primitives_country = {
-			change_variable = {
-				which = "kaiser_trade_value"
-				value = 100
-			}
-		}
-	}
-	if = { #ACOT stuff adds value
-		limit = {
-			any_system_planet = {
-				OR = {
-					is_acot_awesome_planet_class = yes
-					is_acot_pmc_vault = yes
+			event_target:flusion_primitives_country = {
+				change_variable = {
+					which = "kaiser_trade_value"
+					value = 5 #500 trade 250 alloys
 				}
 			}
 		}
+	}
+
+	if = { #certain very special stars add value (he doesn't use them but canonically he would - also PLAYERS value them so the trade works for gameplay)
+		limit = {
+			OR = {
+				is_star_class = sc_giga_o_star
+				is_star_class = sc_birch
+				is_star_class = sc_quasar
+			}
+		}
 		event_target:flusion_primitives_country = {
 			change_variable = {
 				which = "kaiser_trade_value"
-				value = 600
+				value = 50 #5k trade 2.5k alloys
 			}
 		}
 	}
@@ -1165,6 +1232,40 @@ calculate_system_trade_offer_from_kaiser = {
 			which = "kaiser_trade_value_alloys"
 			value = 2
 		}
+	}
+}
+
+#run on system scope
+transfer_system_to_kaiser = {
+	every_system_megastructure = { #megastructures must be transferred BEFORE system ownership
+		limit = {
+			owner = { #only transfer megas you own
+				is_same_value = root
+			}
+		}
+		set_owner = event_target:flusion_primitives_country
+	}
+	if = {
+		limit = {
+			exists = starbase
+		}
+		starbase = { #Transfer land
+			set_owner = event_target:flusion_primitives_country
+		}
+	}
+	else = { #No starbase, kaiser makes one
+		create_starbase = {
+			size = starbase_outpost
+			owner = event_target:flusion_primitives_country
+		}
+	}
+	every_system_planet_colony = {
+		limit = {
+			owner = {
+				NOT = { is_country_type = primitive }
+			}
+		}
+		set_owner = event_target:flusion_primitives_country
 	}
 }
 
