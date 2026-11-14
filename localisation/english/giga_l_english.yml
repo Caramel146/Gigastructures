@@ -7329,12 +7329,12 @@
   giga_katzen.020.kaiseropinion:0 "§TThe §YKaiser's Opinion§! of us can vary between §E100|Elated§! and §R-100|Enraged§!.\n\nDoing specific actions for or against the Katzenartig Imperium can alter his opinion.\n\nAn enraged Kaiser will automatically §Rdeclare war§! on us, while we might be able to seek an §Ealliance§! with an elated Kaiser.§!"
 
   giga_katzen.020.war:0 "We've had enough of you, §Rthis is war!§!"
-  giga_katzen.020.war.tooltip:0 "§T§RWE WILL DECLARE TOTAL WAR ON THE KATZENARTIG IMPERIUM.§!\n\nThe §YKaiser's Opinion§! will §Rdecrease§! to §Renraged§!.\n\nPeace will only be possible after at least §Y2.5 years of fighting§!.\n\n§YFlusion§! must be §Ycaptured§! or §Ydestroyed§! to defeat the Imperium for good.§T"
+  giga_katzen.020.war.tooltip:0 "§T§RWE WILL DECLARE TOTAL WAR ON THE KATZENARTIG IMPERIUM.§!\n\nThe §YKaiser's Opinion§! will §Rdecrease§! to §Renraged§!.\n\nPeace will only be possible after at least §Y3 years of fighting§!.\n\n§YFlusion§! must be §Ycaptured§! or §Ydestroyed§! to defeat the Imperium for good.§T"
   giga_katzen.020.war.response:0 "Very well.\n\nIf you want war, then war it shall be, aliens."
 
   giga_katzen.020.peace:0 "§BOffer peace§!"
   giga_katzen.020.peace.tooltip:0 "§T§BWe will sign a truce with the Katzenartig Imperium.§!\n\nThe §YKaiser's Opinion§! will §Gincrease§! to §HAngered§!.\n\nAll §Ycurrent borders§! will be kept.§!"
-  need_katzen_war_10_years:0 "The Katzens will only be willing to sign a peace treaty after §Y2.5 years§! of fighting."
+  need_katzen_war_10_years:0 "The Katzens will only be willing to sign a peace treaty after §Y3 years§! of fighting."
   giga_katzen.020.peace.response:0 "Ah, peace? The Kaiser will be glad to see our people could finally come to an agreement!"
 
   giga_katzen.020.a:0 "Goodbye."
@@ -7547,7 +7547,7 @@
   giga_katzen.050.name:0 "§RDeclaration of War§!"
   giga_katzen.050.desc:0 "[Root.GetSpeciesNamePlural]. Your nation has gotten in the way of our Kaiser for the last time.\n\nThis is a declaration of war! Your people shall be liberated from the influence of your wretched government, and integrated into our superior society.\n\nEn garde, aliens!"
   giga_katzen.050.a:0 "We will meet you on the battlefield, then."
-  giga_katzen.050.a.tooltip:0 "§T§RTHE KATZENARTIG IMPERIUM WILL DECLARE TOTAL WAR ON US.§!\n\nThe §YKaiser's Opinion§! will §Rdecrease§! to §Renraged§!.\n\nPeace will only be possible after at least §Y2.5 years of fighting§!.\n\n§YFlusion§! must be §Ycaptured§! or §Ydestroyed§! to defeat the Imperium for good.§T"
+  giga_katzen.050.a.tooltip:0 "§T§RTHE KATZENARTIG IMPERIUM WILL DECLARE TOTAL WAR ON US.§!\n\nThe §YKaiser's Opinion§! will §Rdecrease§! to §Renraged§!.\n\nPeace will only be possible after at least §Y3 years of fighting§!.\n\n§YFlusion§! must be §Ycaptured§! or §Ydestroyed§! to defeat the Imperium for good.§T"
 
   giga_katzen.051.name:0 "[KatzenAttacksNationTitle]"
   giga_katzen.051.default.name:0 "Katzenartig Imperium Goes to War!"
