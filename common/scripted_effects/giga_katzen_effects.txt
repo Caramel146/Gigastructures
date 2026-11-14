@@ -1048,6 +1048,152 @@ calculate_system_value_kaiser = {
 			}
 		}
 	}
+
+	event_target:flusion_primitives_country = {
+		round_variable = "kaiser_trade_value"
+	}
+}
+
+#run on carrier scope
+calculate_arkship_value_kaiser = {
+	#base value for the actual vessel
+	#has compat for vanilla arkships and Midiray's carks
+
+	if = {
+		limit = {
+			ship = {
+				is_ship_size = carks_quasark #anyone who does this needs help
+			}
+		}
+		event_target:flusion_primitives_country = {
+			change_variable = {
+				which = "kaiser_trade_value"
+				value = 5000 #500k trade + 250k alloys (standard core mega value)
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			ship = {
+				is_ship_size = carks_sysark_o
+			}
+		}
+		event_target:flusion_primitives_country = {
+			change_variable = {
+				which = "kaiser_trade_value"
+				value = 2000 #200k trade + 100k alloys
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			ship = {
+				is_ship_size = carks_sysark
+			}
+		}
+		event_target:flusion_primitives_country = {
+			change_variable = {
+				which = "kaiser_trade_value"
+				value = 1500 #150k trade + 75k alloys
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			ship = {
+				is_ship_size = carks_planark
+			}
+		}
+		event_target:flusion_primitives_country = {
+			change_variable = {
+				which = "kaiser_trade_value"
+				value = 500 #50k trade + 25k alloys
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			ship = {
+				is_ship_size = carks_lunark
+			}
+		}
+		event_target:flusion_primitives_country = {
+			change_variable = {
+				which = "kaiser_trade_value"
+				value = 250 #25k trade + 12.5k alloys
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			ship = {
+				is_arkship_tier_3 = yes
+			}
+		}
+		event_target:flusion_primitives_country = {
+			change_variable = {
+				which = "kaiser_trade_value"
+				value = 100 #10k trade + 5k alloys
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			ship = {
+				is_arkship_tier_2 = yes
+			}
+		}
+		event_target:flusion_primitives_country = {
+			change_variable = {
+				which = "kaiser_trade_value"
+				value = 75 #7.5k trade + 3.75k alloys
+			}
+		}
+	}
+	else = { #is_arkship_tier_1 or fallback
+		event_target:flusion_primitives_country = {
+			change_variable = {
+				which = "kaiser_trade_value"
+				value = 50 #5k trade + 2.5k alloys
+			}
+		}
+	}
+
+	#Pops add value - 1 per 100 pops
+	export_trigger_value_to_variable = {
+		trigger = pop_amount
+		variable = value_kaiser_pops_on_planet
+	}
+	divide_variable = {
+		which = value_kaiser_pops_on_planet
+		value = 100 #AKA 100 trade + 50 alloys per 100 pops
+	}
+	event_target:flusion_primitives_country = {
+		change_variable = {
+			which = "kaiser_trade_value"
+			value = prev.value_kaiser_pops_on_planet
+		}
+	}
+
+	if = { #Spinal mount adds value
+		limit = {
+			is_arkship_tier_3 = yes
+			OR = { #OR can be removed if Gigas overwrites arkship_spinal_slot_free with our spinals
+				arkship_spinal_slot_free = no
+				inline_script = components/spinal_mounts/has_giga_spinal_mount
+			}
+		}
+		event_target:flusion_primitives_country = {
+			change_variable = {
+				which = "kaiser_trade_value"
+				value = 40 #4k trade 2k alloys - equivalent to settled empire selling heneric megastructure
+			}
+		}
+	}
+
+	event_target:flusion_primitives_country = {
+		round_variable = "kaiser_trade_value"
+	}
 }
 
 calculate_system_trade_offer_to_kaiser = {
@@ -1267,6 +1413,24 @@ transfer_system_to_kaiser = {
 		}
 		set_owner = event_target:flusion_primitives_country
 	}
+}
+
+#run on carrier scope
+transfer_arkship_to_kaiser = {
+	every_owned_pop_group = {
+		resettle_pop_group = {
+			POP_GROUP = this
+			PLANET = event_target:gigaflusion
+			PERCENTAGE = 1
+		}
+	}
+	event_target:flusion_primitives_country = {
+		change_variable = {
+			which = kaiser_resource_stockpile
+			value = 5000
+		}
+	}
+	destroy_ship = this
 }
 
 katzen_clear_capitals = {

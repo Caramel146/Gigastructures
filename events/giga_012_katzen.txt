@@ -2222,7 +2222,7 @@ country_event = { #hello
 			NOT = { has_country_flag = kaiser_loris_meme }
 			has_country_flag = first_katzen_diplomacy
 			NOT = { has_country_flag = allied_to_kaiser }
-			is_nomadic = yes #nomad-exclusive line
+			is_galactic_community_member = yes
 		}
 	}
 
@@ -2234,6 +2234,7 @@ country_event = { #hello
 			OR = {
 				kaiser_opinion_range_cordial = yes
 				kaiser_opinion_range_indifferent = yes
+				kaiser_opinion_range_terse = yes
 			}
 			NOT = { has_country_flag = kaiser_loris_meme }
 			has_country_flag = first_katzen_diplomacy
@@ -2330,6 +2331,20 @@ country_event = { #hello
 			NOT = { has_country_flag = kaiser_loris_meme }
 			has_country_flag = first_katzen_diplomacy
 			is_galactic_community_member = yes
+		}
+	}
+	desc = {
+		text = "giga_katzen.020ineutral.desc" #neutral
+		trigger = {
+			OR = {
+				kaiser_opinion_range_cordial = yes
+				kaiser_opinion_range_indifferent = yes
+				kaiser_opinion_range_terse = yes
+			}
+			NOT = { has_country_flag = kaiser_loris_meme }
+			has_country_flag = first_katzen_diplomacy
+			NOT = { has_country_flag = allied_to_kaiser }
+			is_nomadic = yes #references selling arkships
 		}
 	}
 
@@ -3165,9 +3180,9 @@ country_event = { #hello
 		}
 	}
 
-	option = { #Trade
-		name = "giga_katzen.020.trade"
-		custom_tooltip = "giga_katzen.020.trade.tooltip"
+	option = { #Sell land
+		name = "giga_katzen.020.trade_land"
+		custom_tooltip = "giga_katzen.020.trade_land.tooltip"
 		trigger = {
 			is_nomadic = no #can't sell land if you don't own any systems
 		}
@@ -3177,17 +3192,25 @@ country_event = { #hello
 				NOT = { is_at_war_with = event_target:flusion_primitives_country }
 			}
 			custom_tooltip = {
-				fail_text = need_border_with_katzen
-				OR = {
-					any_system_within_border = {
+				fail_text = cant_trade_katzen_capital
+				any_system_within_border = {
+					is_capital_system = no
+					OR = {
 						any_neighbor_system = {
 							owner? = { is_country_type = katzenartig_imperium }
 						}
+						has_star_flag = paluush_system
 					}
-					event_target:paluushia.solar_system = {
-						starbase? = {
-							owner = { is_country = ROOT }
+				}
+			}
+			custom_tooltip = {
+				fail_text = need_border_with_katzen
+				any_system_within_border = {
+					OR = {
+						any_neighbor_system = {
+							owner? = { is_country_type = katzenartig_imperium }
 						}
+						has_star_flag = paluush_system
 					}
 				}
 			}
@@ -3263,7 +3286,86 @@ country_event = { #hello
 		}
 	}
 
-	option = { #Trade
+	option = { #Sell nomadic colonies
+		name = "giga_katzen.020.trade_arkship"
+		custom_tooltip = "giga_katzen.020.trade_arkship.tooltip"
+		trigger = {
+			is_nomadic = yes
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = cant_trade_katzen_war
+				NOT = { is_at_war_with = event_target:flusion_primitives_country }
+			}
+			custom_tooltip = {
+				fail_text = cant_trade_katzen_capital
+				any_owned_colony = {
+					is_capital = no
+				}
+			}
+			custom_tooltip = {
+				fail_text = cant_recently_sold_arkship
+				NOT = { has_country_flag = recently_sold_kaiser_land }
+			}
+		}
+		hidden_effect = {
+			event_target:flusion_primitives_country = {
+				set_variable = { #Reset the value of the Kaiser's deal to 0
+					which = "kaiser_trade_value"
+					value = 0
+				}
+			}
+			every_owned_colony = {
+				remove_carrier_flag = kaiser_sell_1
+				remove_carrier_flag = kaiser_sell_2
+				remove_carrier_flag = kaiser_sell_3
+				remove_carrier_flag = kaiser_sell_4
+			}
+			random_owned_colony = {
+				limit = {
+					is_capital = no
+				}
+				set_carrier_flag = kaiser_sell_1
+				save_global_event_target_as = kaiser_sell_1
+			}
+			random_owned_colony = {
+				limit = {
+					is_capital = no
+					NOT = {
+						has_carrier_flag = kaiser_sell_1
+					}
+				}
+				set_carrier_flag = kaiser_sell_2
+				save_global_event_target_as = kaiser_sell_2
+			}
+			random_owned_colony = {
+				limit = {
+					is_capital = no
+					NOR = {
+						has_carrier_flag = kaiser_sell_1
+						has_carrier_flag = kaiser_sell_2
+					}
+				}
+				set_carrier_flag = kaiser_sell_3
+				save_global_event_target_as = kaiser_sell_3
+			}
+			random_owned_colony = {
+				limit = {
+					is_capital = no
+					NOR = {
+						has_carrier_flag = kaiser_sell_1
+						has_carrier_flag = kaiser_sell_2
+						has_carrier_flag = kaiser_sell_3
+					}
+				}
+				set_carrier_flag = kaiser_sell_4
+				save_global_event_target_as = kaiser_sell_4
+			}
+			country_event = { id = giga_katzen.0221 }
+		}
+	}
+
+	option = { #Buy ships
 		name = "giga_katzen.020.buy"
 		custom_tooltip = "giga_katzen.020.buy.tooltip"
 		allow = {
@@ -4588,7 +4690,7 @@ country_event = { #Trading with Kaiser
 	picture = GFX_evt_fleet_neutral
 	show_sound = event_ship_thrusters
 
-	location = from
+	location = capital_scope
 	is_triggered_only = yes
 
 	immediate = {
@@ -4892,7 +4994,7 @@ country_event = { #Trading with Kaiser
 	}
 
 	diplomatic = yes
-	location = from
+	location = event_target:kaiser_sell_yes
 	is_triggered_only = yes
 
 	picture_event_data = {
@@ -5170,6 +5272,365 @@ country_event = {
 	option = { #bye!
 		default_hide_option = yes
 		name = "giga_katzen.0211.b"
+	}
+}
+
+####ARKSHIP TRADE####
+country_event = { #Trading with Kaiser
+	id = giga_katzen.0221
+	title = "giga_katzen.0221.name"
+	desc = "giga_katzen.0221.desc"
+
+	diplomatic = yes
+	location = from
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:flusion_douclaw
+		room = "flusion_space_room"
+	}
+
+	option = { #Trade
+		name = "giga_katzen.0221.a"
+		custom_tooltip = "giga_katzen.0221.tooltip"
+		trigger = {
+			any_owned_colony = { has_carrier_flag = kaiser_sell_1 }
+		}
+		hidden_effect = {
+			country_event = { id = giga_katzen.0222 }
+			event_target:kaiser_sell_1 = {
+				save_global_event_target_as = kaiser_sell_yes
+				calculate_arkship_value_kaiser = yes
+			}
+			calculate_system_trade_offer_to_kaiser = yes
+		}
+	}
+
+	option = { #Trade
+		name = "giga_katzen.0221.b"
+		custom_tooltip = "giga_katzen.0221.tooltip"
+		trigger = {
+			any_owned_colony = { has_carrier_flag = kaiser_sell_2 }
+		}
+		hidden_effect = {
+			country_event = { id = giga_katzen.0222 }
+			event_target:kaiser_sell_2 = {
+				save_global_event_target_as = kaiser_sell_yes
+				calculate_arkship_value_kaiser = yes
+			}
+			calculate_system_trade_offer_to_kaiser = yes
+		}
+	}
+
+	option = { #Trade
+		name = "giga_katzen.0221.c"
+		custom_tooltip = "giga_katzen.0221.tooltip"
+		trigger = {
+			any_owned_colony = { has_carrier_flag = kaiser_sell_3 }
+		}
+		hidden_effect = {
+			country_event = { id = giga_katzen.0222 }
+			event_target:kaiser_sell_3 = {
+				save_global_event_target_as = kaiser_sell_yes
+				calculate_arkship_value_kaiser = yes
+			}
+			calculate_system_trade_offer_to_kaiser = yes
+		}
+	}
+
+	option = { #Trade
+		name = "giga_katzen.0221.d"
+		custom_tooltip = "giga_katzen.0221.tooltip"
+		trigger = {
+			any_owned_colony = { has_carrier_flag = kaiser_sell_4 }
+		}
+		hidden_effect = {
+			country_event = { id = giga_katzen.0222 }
+			event_target:kaiser_sell_4 = {
+				save_global_event_target_as = kaiser_sell_yes
+				calculate_arkship_value_kaiser = yes
+			}
+			calculate_system_trade_offer_to_kaiser = yes
+		}
+	}
+
+	option = { #bye!
+		default_hide_option = yes
+		name = "giga_katzen.0201.bye"
+	}
+}
+
+country_event = { #Trading with Kaiser
+	id = giga_katzen.0222
+	title = "giga_katzen.0222.name"
+
+	desc = {
+		trigger = {
+			event_target:kaiser_sell_yes = {
+				ship = {
+					OR = {
+						is_ship_size = carks_lunark
+						is_ship_size = carks_planark
+						is_ship_size = carks_sysark
+						is_ship_size = carks_sysark_o
+					}
+				}
+			}
+		}
+		text = "giga_katzen.0222.cark.desc"
+	}
+	desc = {
+		trigger = {
+			event_target:kaiser_sell_yes = {
+				ship = {
+					is_ship_size = carks_quasark
+				}
+			}
+		}
+		text = "giga_katzen.0222.quasark.desc"
+	}
+	desc = {
+		trigger = {
+			event_target:kaiser_sell_yes = {
+				ship = {
+					NOR = {
+						is_ship_size = carks_lunark
+						is_ship_size = carks_planark
+						is_ship_size = carks_sysark
+						is_ship_size = carks_sysark_o
+						is_ship_size = carks_quasark
+					}
+				}
+			}
+		}
+		text = "giga_katzen.0222.desc"
+	}
+
+	diplomatic = yes
+	location = event_target:kaiser_sell_yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:flusion_douclaw
+		room = "flusion_space_room"
+	}
+
+	option = { #Trade
+		name = "giga_katzen.0202.a"
+		custom_tooltip = "giga_katzen.0222.lowvalue.tooltip"
+		response_text = "giga_katzen.0202.response"
+		trigger = {
+			event_target:flusion_primitives_country = {
+				check_variable = {
+					which = kaiser_trade_value
+					value <= 1299
+				}
+			}
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = recently_sold_kaiser_land
+				days = 720
+			}
+			remove_country_flag = recently_gave_kaiser_land
+			set_timed_country_flag = {
+				flag = recently_gave_kaiser_land
+				days = 720
+			}
+			random_list = {
+				40 = {
+					increase_kaiser_opinion = yes
+					modifier = {
+						add = 20
+						has_modifier = katzen_attache
+					}
+				}
+				60 = {
+					modifier = {
+						add = -20
+						has_modifier = katzen_attache
+					}
+				}
+			}
+			event_target:flusion_primitives_country = {
+				while = {
+					limit = {
+						check_variable = {
+							which = kaiser_trade_value
+							value > 0
+						}
+					}
+					ROOT = {
+						add_resource = {
+							trade = 100
+							alloys = 50
+						}
+					}
+					subtract_variable = {
+						which = kaiser_trade_value
+						value = 100
+					}
+				}
+			}
+			event_target:kaiser_sell_yes = {
+				transfer_arkship_to_kaiser = yes
+			}
+			every_owned_colony = {
+				remove_carrier_flag = kaiser_sell_1
+				remove_carrier_flag = kaiser_sell_2
+				remove_carrier_flag = kaiser_sell_3
+				remove_carrier_flag = kaiser_sell_4
+			}
+		}
+	}
+
+	option = { #Trade
+		name = "giga_katzen.0202.b"
+		custom_tooltip = "giga_katzen.0222.medvalue.tooltip"
+		response_text = "giga_katzen.0202.response"
+		trigger = {
+			event_target:flusion_primitives_country = {
+				AND = {
+					check_variable = {
+						which = kaiser_trade_value
+						value >= 1300
+					}
+					check_variable = {
+						which = kaiser_trade_value
+						value <= 7499
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = recently_sold_kaiser_land
+				days = 720
+			}
+			remove_country_flag = recently_gave_kaiser_land
+			set_timed_country_flag = {
+				flag = recently_gave_kaiser_land
+				days = 720
+			}
+			random_list = {
+				60 = {
+					increase_kaiser_opinion = yes
+					modifier = {
+						add = 20
+						has_modifier = katzen_attache
+					}
+				}
+				40 = {
+					modifier = {
+						add = -20
+						has_modifier = katzen_attache
+					}
+				}
+			}
+			event_target:flusion_primitives_country = {
+				while = {
+					limit = {
+						check_variable = {
+							which = kaiser_trade_value
+							value > 0
+						}
+					}
+					ROOT = {
+						add_resource = {
+							trade = 100
+							alloys = 50
+						}
+					}
+					subtract_variable = {
+						which = kaiser_trade_value
+						value = 100
+					}
+				}
+			}
+			event_target:kaiser_sell_yes = {
+				transfer_arkship_to_kaiser = yes
+			}
+			every_owned_colony = {
+				remove_carrier_flag = kaiser_sell_1
+				remove_carrier_flag = kaiser_sell_2
+				remove_carrier_flag = kaiser_sell_3
+				remove_carrier_flag = kaiser_sell_4
+			}
+		}
+	}
+
+	option = { #Trade
+		name = "giga_katzen.0202.c"
+		custom_tooltip = "giga_katzen.0222.highvalue.tooltip"
+		response_text = "giga_katzen.0202.response"
+		trigger = {
+			event_target:flusion_primitives_country = {
+				check_variable = {
+					which = kaiser_trade_value
+					value >= 7500
+				}
+			}
+		}
+		hidden_effect = {
+			set_timed_country_flag = {
+				flag = recently_sold_kaiser_land
+				days = 720
+			}
+			remove_country_flag = recently_gave_kaiser_land
+			set_timed_country_flag = {
+				flag = recently_gave_kaiser_land
+				days = 720
+			}
+			random_list = {
+				80 = {
+					increase_kaiser_opinion = yes
+					modifier = {
+						add = 20
+						has_modifier = katzen_attache
+					}
+				}
+				20 = {
+					modifier = {
+						add = -20
+						has_modifier = katzen_attache
+					}
+				}
+			}
+			event_target:flusion_primitives_country = {
+				while = {
+					limit = {
+						check_variable = {
+							which = kaiser_trade_value
+							value > 0
+						}
+					}
+					ROOT = {
+						add_resource = {
+							trade = 100
+							alloys = 50
+						}
+					}
+					subtract_variable = {
+						which = kaiser_trade_value
+						value = 100
+					}
+				}
+			}
+			event_target:kaiser_sell_yes = {
+				transfer_arkship_to_kaiser = yes
+			}
+			every_owned_colony = {
+				remove_carrier_flag = kaiser_sell_1
+				remove_carrier_flag = kaiser_sell_2
+				remove_carrier_flag = kaiser_sell_3
+				remove_carrier_flag = kaiser_sell_4
+			}
+		}
+	}
+
+	option = { #bye!
+		default_hide_option = yes
+		name = "giga_katzen.0201.bye"
 	}
 }
 
